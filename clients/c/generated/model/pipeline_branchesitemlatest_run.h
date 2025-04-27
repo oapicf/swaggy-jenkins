@@ -34,9 +34,10 @@ typedef struct pipeline_branchesitemlatest_run_t {
     char *commit_id; // string
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_branchesitemlatest_run_t;
 
-pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_create(
+__attribute__((deprecated)) pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_create(
     int duration_in_millis,
     int estimated_duration_in_millis,
     char *en_queue_time,

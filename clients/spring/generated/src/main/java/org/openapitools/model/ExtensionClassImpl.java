@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.ExtensionClassImpllinks;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,15 +23,15 @@ import javax.annotation.Generated;
  * ExtensionClassImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ExtensionClassImpl {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private ExtensionClassImpllinks links;
+  private @Nullable ExtensionClassImpllinks links;
 
   @Valid
-  private List<String> classes;
+  private List<String> classes = new ArrayList<>();
 
   public ExtensionClassImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -40,7 +41,7 @@ public class ExtensionClassImpl {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -60,7 +61,7 @@ public class ExtensionClassImpl {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -88,7 +89,7 @@ public class ExtensionClassImpl {
   /**
    * Get classes
    * @return classes
-  */
+   */
   
   @Schema(name = "classes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("classes")

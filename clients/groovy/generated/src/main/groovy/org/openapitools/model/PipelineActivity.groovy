@@ -12,7 +12,7 @@ class PipelineActivity {
     
     String propertyClass
     
-    List<PipelineActivityartifacts> artifacts
+    List<PipelineActivityartifacts> artifacts = new ArrayList<>()
     
     Integer durationInMillis
     

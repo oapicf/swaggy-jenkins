@@ -6,7 +6,7 @@ After the client have been generated, you have to change these following variabl
 - src/main.cpp | Change wifi password
 - lib/service/AbstractService.h | Change to your url
 
-# Documentation for Swaggy Jenkins 2.0.1-pre.0 Tiny client cpp (Arduino) 
+# Documentation for Swaggy Jenkins 3.0.2-pre.0 Tiny client cpp (Arduino) 
 
 The project is structured like this:
 ```

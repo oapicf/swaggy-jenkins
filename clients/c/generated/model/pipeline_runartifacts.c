@@ -5,7 +5,7 @@
 
 
 
-pipeline_runartifacts_t *pipeline_runartifacts_create(
+static pipeline_runartifacts_t *pipeline_runartifacts_create_internal(
     char *name,
     int size,
     char *url,
@@ -20,12 +20,30 @@ pipeline_runartifacts_t *pipeline_runartifacts_create(
     pipeline_runartifacts_local_var->url = url;
     pipeline_runartifacts_local_var->_class = _class;
 
+    pipeline_runartifacts_local_var->_library_owned = 1;
     return pipeline_runartifacts_local_var;
 }
 
+__attribute__((deprecated)) pipeline_runartifacts_t *pipeline_runartifacts_create(
+    char *name,
+    int size,
+    char *url,
+    char *_class
+    ) {
+    return pipeline_runartifacts_create_internal (
+        name,
+        size,
+        url,
+        _class
+        );
+}
 
 void pipeline_runartifacts_free(pipeline_runartifacts_t *pipeline_runartifacts) {
     if(NULL == pipeline_runartifacts){
+        return ;
+    }
+    if(pipeline_runartifacts->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pipeline_runartifacts_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -92,6 +110,9 @@ pipeline_runartifacts_t *pipeline_runartifacts_parseFromJSON(cJSON *pipeline_run
 
     // pipeline_runartifacts->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(pipeline_runartifactsJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -101,6 +122,9 @@ pipeline_runartifacts_t *pipeline_runartifacts_parseFromJSON(cJSON *pipeline_run
 
     // pipeline_runartifacts->size
     cJSON *size = cJSON_GetObjectItemCaseSensitive(pipeline_runartifactsJSON, "size");
+    if (cJSON_IsNull(size)) {
+        size = NULL;
+    }
     if (size) { 
     if(!cJSON_IsNumber(size))
     {
@@ -110,6 +134,9 @@ pipeline_runartifacts_t *pipeline_runartifacts_parseFromJSON(cJSON *pipeline_run
 
     // pipeline_runartifacts->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(pipeline_runartifactsJSON, "url");
+    if (cJSON_IsNull(url)) {
+        url = NULL;
+    }
     if (url) { 
     if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
@@ -119,6 +146,9 @@ pipeline_runartifacts_t *pipeline_runartifacts_parseFromJSON(cJSON *pipeline_run
 
     // pipeline_runartifacts->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_runartifactsJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -127,7 +157,7 @@ pipeline_runartifacts_t *pipeline_runartifacts_parseFromJSON(cJSON *pipeline_run
     }
 
 
-    pipeline_runartifacts_local_var = pipeline_runartifacts_create (
+    pipeline_runartifacts_local_var = pipeline_runartifacts_create_internal (
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
         size ? size->valuedouble : 0,
         url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,

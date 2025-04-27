@@ -5,7 +5,7 @@
 
 
 
-pipeline_run_impl_t *pipeline_run_impl_create(
+static pipeline_run_impl_t *pipeline_run_impl_create_internal(
     char *_class,
     pipeline_run_impllinks_t *_links,
     int duration_in_millis,
@@ -42,12 +42,52 @@ pipeline_run_impl_t *pipeline_run_impl_create(
     pipeline_run_impl_local_var->type = type;
     pipeline_run_impl_local_var->commit_id = commit_id;
 
+    pipeline_run_impl_local_var->_library_owned = 1;
     return pipeline_run_impl_local_var;
 }
 
+__attribute__((deprecated)) pipeline_run_impl_t *pipeline_run_impl_create(
+    char *_class,
+    pipeline_run_impllinks_t *_links,
+    int duration_in_millis,
+    char *en_queue_time,
+    char *end_time,
+    int estimated_duration_in_millis,
+    char *id,
+    char *organization,
+    char *pipeline,
+    char *result,
+    char *run_summary,
+    char *start_time,
+    char *state,
+    char *type,
+    char *commit_id
+    ) {
+    return pipeline_run_impl_create_internal (
+        _class,
+        _links,
+        duration_in_millis,
+        en_queue_time,
+        end_time,
+        estimated_duration_in_millis,
+        id,
+        organization,
+        pipeline,
+        result,
+        run_summary,
+        start_time,
+        state,
+        type,
+        commit_id
+        );
+}
 
 void pipeline_run_impl_free(pipeline_run_impl_t *pipeline_run_impl) {
     if(NULL == pipeline_run_impl){
+        return ;
+    }
+    if(pipeline_run_impl->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pipeline_run_impl_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -250,6 +290,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -259,12 +302,18 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "_links");
+    if (cJSON_IsNull(_links)) {
+        _links = NULL;
+    }
     if (_links) { 
     _links_local_nonprim = pipeline_run_impllinks_parseFromJSON(_links); //nonprimitive
     }
 
     // pipeline_run_impl->duration_in_millis
     cJSON *duration_in_millis = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "durationInMillis");
+    if (cJSON_IsNull(duration_in_millis)) {
+        duration_in_millis = NULL;
+    }
     if (duration_in_millis) { 
     if(!cJSON_IsNumber(duration_in_millis))
     {
@@ -274,6 +323,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->en_queue_time
     cJSON *en_queue_time = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "enQueueTime");
+    if (cJSON_IsNull(en_queue_time)) {
+        en_queue_time = NULL;
+    }
     if (en_queue_time) { 
     if(!cJSON_IsString(en_queue_time) && !cJSON_IsNull(en_queue_time))
     {
@@ -283,6 +335,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->end_time
     cJSON *end_time = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "endTime");
+    if (cJSON_IsNull(end_time)) {
+        end_time = NULL;
+    }
     if (end_time) { 
     if(!cJSON_IsString(end_time) && !cJSON_IsNull(end_time))
     {
@@ -292,6 +347,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->estimated_duration_in_millis
     cJSON *estimated_duration_in_millis = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "estimatedDurationInMillis");
+    if (cJSON_IsNull(estimated_duration_in_millis)) {
+        estimated_duration_in_millis = NULL;
+    }
     if (estimated_duration_in_millis) { 
     if(!cJSON_IsNumber(estimated_duration_in_millis))
     {
@@ -301,6 +359,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (id) { 
     if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
@@ -310,6 +371,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->organization
     cJSON *organization = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "organization");
+    if (cJSON_IsNull(organization)) {
+        organization = NULL;
+    }
     if (organization) { 
     if(!cJSON_IsString(organization) && !cJSON_IsNull(organization))
     {
@@ -319,6 +383,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->pipeline
     cJSON *pipeline = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "pipeline");
+    if (cJSON_IsNull(pipeline)) {
+        pipeline = NULL;
+    }
     if (pipeline) { 
     if(!cJSON_IsString(pipeline) && !cJSON_IsNull(pipeline))
     {
@@ -328,6 +395,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->result
     cJSON *result = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "result");
+    if (cJSON_IsNull(result)) {
+        result = NULL;
+    }
     if (result) { 
     if(!cJSON_IsString(result) && !cJSON_IsNull(result))
     {
@@ -337,6 +407,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->run_summary
     cJSON *run_summary = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "runSummary");
+    if (cJSON_IsNull(run_summary)) {
+        run_summary = NULL;
+    }
     if (run_summary) { 
     if(!cJSON_IsString(run_summary) && !cJSON_IsNull(run_summary))
     {
@@ -346,6 +419,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->start_time
     cJSON *start_time = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "startTime");
+    if (cJSON_IsNull(start_time)) {
+        start_time = NULL;
+    }
     if (start_time) { 
     if(!cJSON_IsString(start_time) && !cJSON_IsNull(start_time))
     {
@@ -355,6 +431,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->state
     cJSON *state = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "state");
+    if (cJSON_IsNull(state)) {
+        state = NULL;
+    }
     if (state) { 
     if(!cJSON_IsString(state) && !cJSON_IsNull(state))
     {
@@ -364,6 +443,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "type");
+    if (cJSON_IsNull(type)) {
+        type = NULL;
+    }
     if (type) { 
     if(!cJSON_IsString(type) && !cJSON_IsNull(type))
     {
@@ -373,6 +455,9 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     // pipeline_run_impl->commit_id
     cJSON *commit_id = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "commitId");
+    if (cJSON_IsNull(commit_id)) {
+        commit_id = NULL;
+    }
     if (commit_id) { 
     if(!cJSON_IsString(commit_id) && !cJSON_IsNull(commit_id))
     {
@@ -381,7 +466,7 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
     }
 
 
-    pipeline_run_impl_local_var = pipeline_run_impl_create (
+    pipeline_run_impl_local_var = pipeline_run_impl_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         duration_in_millis ? duration_in_millis->valuedouble : 0,

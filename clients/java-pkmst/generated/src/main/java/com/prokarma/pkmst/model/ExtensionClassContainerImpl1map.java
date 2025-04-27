@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * ExtensionClassContainerImpl1map
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ExtensionClassContainerImpl1map   {
   @JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
   private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
@@ -31,10 +31,10 @@ public class ExtensionClassContainerImpl1map   {
     return this;
   }
 
-   /**
+  /**
    * Get ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl
    * @return ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl
-  **/
+   */
   @ApiModelProperty(value = "")
   public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl() {
     return ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
@@ -49,10 +49,10 @@ public class ExtensionClassContainerImpl1map   {
     return this;
   }
 
-   /**
+  /**
    * Get ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl
    * @return ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl
-  **/
+   */
   @ApiModelProperty(value = "")
   public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl() {
     return ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
@@ -67,10 +67,10 @@ public class ExtensionClassContainerImpl1map   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;

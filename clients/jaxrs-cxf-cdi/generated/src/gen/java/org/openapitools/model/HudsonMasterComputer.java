@@ -25,7 +25,7 @@ public class HudsonMasterComputer   {
 
   private String displayName;
 
-  private List<@Valid HudsonMasterComputerexecutors> executors;
+  private List<@Valid HudsonMasterComputerexecutors> executors = new ArrayList<>();
 
   private String icon;
 

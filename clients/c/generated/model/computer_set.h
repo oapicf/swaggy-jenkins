@@ -26,9 +26,10 @@ typedef struct computer_set_t {
     char *display_name; // string
     int total_executors; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } computer_set_t;
 
-computer_set_t *computer_set_create(
+__attribute__((deprecated)) computer_set_t *computer_set_create(
     char *_class,
     int busy_executors,
     list_t *computer,

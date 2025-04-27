@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * HudsonMasterComputerexecutors
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputerexecutors {
 
   private FreeStyleBuild currentExecutable;
@@ -42,7 +42,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get currentExecutable
    * @return currentExecutable
-  */
+   */
   @Valid 
   @Schema(name = "currentExecutable", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("currentExecutable")
@@ -62,7 +62,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get idle
    * @return idle
-  */
+   */
   
   @Schema(name = "idle", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("idle")
@@ -82,7 +82,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get likelyStuck
    * @return likelyStuck
-  */
+   */
   
   @Schema(name = "likelyStuck", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("likelyStuck")
@@ -102,7 +102,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get number
    * @return number
-  */
+   */
   
   @Schema(name = "number", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("number")
@@ -122,7 +122,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get progress
    * @return progress
-  */
+   */
   
   @Schema(name = "progress", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("progress")
@@ -142,7 +142,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

@@ -24,9 +24,10 @@ typedef struct pipelinelatest_runartifacts_t {
     char *url; // string
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipelinelatest_runartifacts_t;
 
-pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_create(
+__attribute__((deprecated)) pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_create(
     char *name,
     int size,
     char *url,

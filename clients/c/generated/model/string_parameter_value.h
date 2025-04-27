@@ -23,9 +23,10 @@ typedef struct string_parameter_value_t {
     char *name; // string
     char *value; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } string_parameter_value_t;
 
-string_parameter_value_t *string_parameter_value_create(
+__attribute__((deprecated)) string_parameter_value_t *string_parameter_value_create(
     char *_class,
     char *name,
     char *value

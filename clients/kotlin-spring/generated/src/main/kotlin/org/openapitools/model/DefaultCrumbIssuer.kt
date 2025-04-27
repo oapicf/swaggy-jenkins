@@ -29,7 +29,7 @@ data class DefaultCrumbIssuer(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("crumbRequestField") val crumbRequestField: kotlin.String? = null
-) {
+    ) {
 
 }
 

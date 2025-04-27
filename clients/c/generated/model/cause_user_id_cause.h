@@ -24,9 +24,10 @@ typedef struct cause_user_id_cause_t {
     char *user_id; // string
     char *user_name; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } cause_user_id_cause_t;
 
-cause_user_id_cause_t *cause_user_id_cause_create(
+__attribute__((deprecated)) cause_user_id_cause_t *cause_user_id_cause_create(
     char *_class,
     char *short_description,
     char *user_id,

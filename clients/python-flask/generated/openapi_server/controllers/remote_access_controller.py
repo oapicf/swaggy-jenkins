@@ -173,6 +173,7 @@ def post_create_item(name, _from=None, mode=None, jenkins_crumb=None, content_ty
 
     :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
+    body = body
     return 'do some magic!'
 
 
@@ -192,6 +193,7 @@ def post_create_view(name, jenkins_crumb=None, content_type=None, body=None):  #
 
     :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
+    body = body
     return 'do some magic!'
 
 
@@ -228,6 +230,7 @@ def post_job_config(name, body, jenkins_crumb=None):  # noqa: E501
 
     :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
+    body = body
     return 'do some magic!'
 
 
@@ -305,4 +308,5 @@ def post_view_config(name, body, jenkins_crumb=None):  # noqa: E501
 
     :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
+    body = body
     return 'do some magic!'

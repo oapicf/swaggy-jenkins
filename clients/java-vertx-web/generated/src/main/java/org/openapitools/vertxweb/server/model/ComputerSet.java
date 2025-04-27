@@ -13,7 +13,7 @@ public class ComputerSet   {
   
   private String propertyClass;
   private Integer busyExecutors;
-  private List<HudsonMasterComputer> computer;
+  private List<HudsonMasterComputer> computer = new ArrayList<>();
   private String displayName;
   private Integer totalExecutors;
 

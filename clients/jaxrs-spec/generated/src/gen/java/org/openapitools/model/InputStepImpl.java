@@ -20,15 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("InputStepImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class InputStepImpl   {
-  private @Valid String propertyClass;
-  private @Valid InputStepImpllinks links;
-  private @Valid String id;
-  private @Valid String message;
-  private @Valid String ok;
-  private @Valid List<@Valid StringParameterDefinition> parameters;
-  private @Valid String submitter;
+  private String propertyClass;
+  private InputStepImpllinks links;
+  private String id;
+  private String message;
+  private String ok;
+  private @Valid List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
+  private String submitter;
+
+  public InputStepImpl() {
+  }
 
   /**
    **/
@@ -59,7 +62,7 @@ public class InputStepImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public InputStepImpllinks getLinks() {
+  @Valid public InputStepImpllinks getLinks() {
     return links;
   }
 
@@ -135,7 +138,7 @@ public class InputStepImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("parameters")
-  public List<StringParameterDefinition> getParameters() {
+  @Valid public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
 

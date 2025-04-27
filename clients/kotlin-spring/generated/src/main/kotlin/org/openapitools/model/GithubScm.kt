@@ -39,7 +39,7 @@ data class GithubScm(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("uri") val uri: kotlin.String? = null
-) {
+    ) {
 
 }
 

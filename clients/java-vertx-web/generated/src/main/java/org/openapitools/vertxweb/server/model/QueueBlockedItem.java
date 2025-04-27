@@ -13,7 +13,7 @@ import org.openapitools.vertxweb.server.model.FreeStyleProject;
 public class QueueBlockedItem   {
   
   private String propertyClass;
-  private List<CauseAction> actions;
+  private List<CauseAction> actions = new ArrayList<>();
   private Boolean blocked;
   private Boolean buildable;
   private Integer id;

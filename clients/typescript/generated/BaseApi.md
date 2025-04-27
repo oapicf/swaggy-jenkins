@@ -16,17 +16,15 @@ Retrieve CSRF protection token
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BaseApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BaseApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BaseApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getCrumb(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getCrumb(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * GithubRepository
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubRepository {
 
   private String propertyClass;
@@ -47,7 +47,7 @@ public class GithubRepository {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -67,7 +67,7 @@ public class GithubRepository {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -87,7 +87,7 @@ public class GithubRepository {
   /**
    * Get defaultBranch
    * @return defaultBranch
-  */
+   */
   
   @Schema(name = "defaultBranch", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("defaultBranch")
@@ -107,7 +107,7 @@ public class GithubRepository {
   /**
    * Get description
    * @return description
-  */
+   */
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
@@ -127,7 +127,7 @@ public class GithubRepository {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -147,7 +147,7 @@ public class GithubRepository {
   /**
    * Get permissions
    * @return permissions
-  */
+   */
   @Valid 
   @Schema(name = "permissions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("permissions")
@@ -167,7 +167,7 @@ public class GithubRepository {
   /**
    * Get _private
    * @return _private
-  */
+   */
   
   @Schema(name = "private", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("private")
@@ -187,7 +187,7 @@ public class GithubRepository {
   /**
    * Get fullName
    * @return fullName
-  */
+   */
   
   @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullName")

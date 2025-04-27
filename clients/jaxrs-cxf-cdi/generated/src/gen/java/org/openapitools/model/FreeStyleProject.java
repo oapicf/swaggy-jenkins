@@ -30,7 +30,7 @@ public class FreeStyleProject   {
 
   private String color;
 
-  private List<@Valid FreeStyleProjectactions> actions;
+  private List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
 
   private String description;
 
@@ -44,11 +44,11 @@ public class FreeStyleProject   {
 
   private Boolean buildable;
 
-  private List<@Valid FreeStyleBuild> builds;
+  private List<@Valid FreeStyleBuild> builds = new ArrayList<>();
 
   private FreeStyleBuild firstBuild;
 
-  private List<@Valid FreeStyleProjecthealthReport> healthReport;
+  private List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
 
   private Boolean inQueue;
 

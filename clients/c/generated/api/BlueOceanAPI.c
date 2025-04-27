@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Delete queue item from an organization pipeline queue
@@ -23,15 +18,24 @@ BlueOceanAPI_deletePipelineQueueItem(apiClient_t *apiClient, char *organization,
     list_t *localVarHeaderType = NULL;
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!queue)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(queue)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(queue)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -41,7 +45,7 @@ BlueOceanAPI_deletePipelineQueueItem(apiClient_t *apiClient, char *organization,
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(queue)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(queue)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -51,7 +55,7 @@ BlueOceanAPI_deletePipelineQueueItem(apiClient_t *apiClient, char *organization,
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_queue = strlen(organization)+3 + strlen(pipeline)+3 + strlen(queue)+3 + strlen("{ queue }");
+    long sizeOfPathParams_queue = strlen(organization)+3 + strlen(pipeline)+3 + strlen(queue)+3 + sizeof("{ queue }") - 1;
     if(queue == NULL) {
         goto end;
     }
@@ -69,6 +73,7 @@ BlueOceanAPI_deletePipelineQueueItem(apiClient_t *apiClient, char *organization,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -113,15 +118,20 @@ BlueOceanAPI_getAuthenticatedUser(apiClient_t *apiClient, char *organization)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/user/")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/user/");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/user/");
+
+    if(!organization)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -140,6 +150,7 @@ BlueOceanAPI_getAuthenticatedUser(apiClient_t *apiClient, char *organization)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -155,11 +166,14 @@ BlueOceanAPI_getAuthenticatedUser(apiClient_t *apiClient, char *organization)
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_t *elementToReturn = user_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -193,15 +207,20 @@ BlueOceanAPI_getClasses(apiClient_t *apiClient, char *_class)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/classes/{class}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/classes/{class}");
+    char *localVarPath = strdup("/blue/rest/classes/{class}");
+
+    if(!_class)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams__class = strlen(_class)+3 + strlen("{ class }");
+    long sizeOfPathParams__class = strlen(_class)+3 + sizeof("{ class }") - 1;
     if(_class == NULL) {
         goto end;
     }
@@ -220,6 +239,7 @@ BlueOceanAPI_getClasses(apiClient_t *apiClient, char *_class)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -234,8 +254,10 @@ BlueOceanAPI_getClasses(apiClient_t *apiClient, char *_class)
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    //primitive return type simple
-    char* elementToReturn =  strdup((char*)apiClient->dataReceived);
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -267,15 +289,18 @@ BlueOceanAPI_getJsonWebKey(apiClient_t *apiClient, int *key)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/jwt-auth/jwks/{key}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/jwt-auth/jwks/{key}");
+    char *localVarPath = strdup("/jwt-auth/jwks/{key}");
+
 
 
     // Path Params
-    long sizeOfPathParams_key =  + strlen("{ key }");
+    long sizeOfPathParams_key =  + sizeof("{ key }") - 1;
     if(key == 0){
         goto end;
     }
@@ -283,7 +308,7 @@ BlueOceanAPI_getJsonWebKey(apiClient_t *apiClient, int *key)
     snprintf(localVarToReplace_key, sizeOfPathParams_key, "{%s}", "key");
 
     char localVarBuff_key[256];
-    intToStr(localVarBuff_key, *key);
+    snprintf(localVarBuff_key, sizeof localVarBuff_key, "%ld", (long)*key);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_key, localVarBuff_key);
 
@@ -298,6 +323,7 @@ BlueOceanAPI_getJsonWebKey(apiClient_t *apiClient, int *key)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -312,8 +338,10 @@ BlueOceanAPI_getJsonWebKey(apiClient_t *apiClient, int *key)
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    //primitive return type simple
-    char* elementToReturn =  strdup((char*)apiClient->dataReceived);
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -345,11 +373,14 @@ BlueOceanAPI_getJsonWebToken(apiClient_t *apiClient, int *expiryTimeInMins, int 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/jwt-auth/token")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/jwt-auth/token");
+    char *localVarPath = strdup("/jwt-auth/token");
+
 
 
 
@@ -388,6 +419,7 @@ BlueOceanAPI_getJsonWebToken(apiClient_t *apiClient, int *expiryTimeInMins, int 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -402,8 +434,10 @@ BlueOceanAPI_getJsonWebToken(apiClient_t *apiClient, int *expiryTimeInMins, int 
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    //primitive return type simple
-    char* elementToReturn =  strdup((char*)apiClient->dataReceived);
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -458,15 +492,20 @@ BlueOceanAPI_getOrganisation(apiClient_t *apiClient, char *organization)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}");
+
+    if(!organization)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -485,6 +524,7 @@ BlueOceanAPI_getOrganisation(apiClient_t *apiClient, char *organization)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -504,11 +544,14 @@ BlueOceanAPI_getOrganisation(apiClient_t *apiClient, char *organization)
     //    printf("%s\n","Pipeline cannot be found on Jenkins instance");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    organisation_t *elementToReturn = organisation_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    organisation_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = organisation_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -542,11 +585,14 @@ BlueOceanAPI_getOrganisations(apiClient_t *apiClient)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/");
+    char *localVarPath = strdup("/blue/rest/organizations/");
+
 
 
 
@@ -559,6 +605,7 @@ BlueOceanAPI_getOrganisations(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -573,24 +620,27 @@ BlueOceanAPI_getOrganisations(apiClient_t *apiClient)
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -621,15 +671,22 @@ BlueOceanAPI_getPipeline(apiClient_t *apiClient, char *organization, char *pipel
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -639,7 +696,7 @@ BlueOceanAPI_getPipeline(apiClient_t *apiClient, char *organization, char *pipel
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -658,6 +715,7 @@ BlueOceanAPI_getPipeline(apiClient_t *apiClient, char *organization, char *pipel
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -677,11 +735,14 @@ BlueOceanAPI_getPipeline(apiClient_t *apiClient, char *organization, char *pipel
     //    printf("%s\n","Pipeline cannot be found on Jenkins instance");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    pipeline_t *elementToReturn = pipeline_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    pipeline_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = pipeline_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -716,15 +777,22 @@ BlueOceanAPI_getPipelineActivities(apiClient_t *apiClient, char *organization, c
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -734,7 +802,7 @@ BlueOceanAPI_getPipelineActivities(apiClient_t *apiClient, char *organization, c
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -753,6 +821,7 @@ BlueOceanAPI_getPipelineActivities(apiClient_t *apiClient, char *organization, c
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -767,24 +836,27 @@ BlueOceanAPI_getPipelineActivities(apiClient_t *apiClient, char *organization, c
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -817,15 +889,24 @@ BlueOceanAPI_getPipelineBranch(apiClient_t *apiClient, char *organization, char 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!branch)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -835,7 +916,7 @@ BlueOceanAPI_getPipelineBranch(apiClient_t *apiClient, char *organization, char 
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -845,7 +926,7 @@ BlueOceanAPI_getPipelineBranch(apiClient_t *apiClient, char *organization, char 
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_branch = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen("{ branch }");
+    long sizeOfPathParams_branch = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + sizeof("{ branch }") - 1;
     if(branch == NULL) {
         goto end;
     }
@@ -864,6 +945,7 @@ BlueOceanAPI_getPipelineBranch(apiClient_t *apiClient, char *organization, char 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -879,11 +961,14 @@ BlueOceanAPI_getPipelineBranch(apiClient_t *apiClient, char *organization, char 
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    branch_impl_t *elementToReturn = branch_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    branch_impl_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = branch_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -919,15 +1004,26 @@ BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char *organization, ch
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!branch)
+        goto end;
+    if(!run)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen(run)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen(run)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -937,7 +1033,7 @@ BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char *organization, ch
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen(run)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen(run)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -947,7 +1043,7 @@ BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char *organization, ch
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_branch = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen(run)+3 + strlen("{ branch }");
+    long sizeOfPathParams_branch = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen(run)+3 + sizeof("{ branch }") - 1;
     if(branch == NULL) {
         goto end;
     }
@@ -957,7 +1053,7 @@ BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char *organization, ch
     localVarPath = strReplace(localVarPath, localVarToReplace_branch, branch);
 
     // Path Params
-    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen(run)+3 + strlen("{ run }");
+    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(branch)+3 + strlen(run)+3 + sizeof("{ run }") - 1;
     if(run == NULL) {
         goto end;
     }
@@ -976,6 +1072,7 @@ BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char *organization, ch
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -991,11 +1088,14 @@ BlueOceanAPI_getPipelineBranchRun(apiClient_t *apiClient, char *organization, ch
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    pipeline_run_t *elementToReturn = pipeline_run_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    pipeline_run_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = pipeline_run_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1032,15 +1132,22 @@ BlueOceanAPI_getPipelineBranches(apiClient_t *apiClient, char *organization, cha
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -1050,7 +1157,7 @@ BlueOceanAPI_getPipelineBranches(apiClient_t *apiClient, char *organization, cha
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -1069,6 +1176,7 @@ BlueOceanAPI_getPipelineBranches(apiClient_t *apiClient, char *organization, cha
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1084,11 +1192,14 @@ BlueOceanAPI_getPipelineBranches(apiClient_t *apiClient, char *organization, cha
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    multibranch_pipeline_t *elementToReturn = multibranch_pipeline_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    multibranch_pipeline_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = multibranch_pipeline_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1123,15 +1234,22 @@ BlueOceanAPI_getPipelineFolder(apiClient_t *apiClient, char *organization, char 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{folder}/")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{folder}/");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{folder}/");
+
+    if(!organization)
+        goto end;
+    if(!folder)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(folder)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(folder)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -1141,7 +1259,7 @@ BlueOceanAPI_getPipelineFolder(apiClient_t *apiClient, char *organization, char 
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_folder = strlen(organization)+3 + strlen(folder)+3 + strlen("{ folder }");
+    long sizeOfPathParams_folder = strlen(organization)+3 + strlen(folder)+3 + sizeof("{ folder }") - 1;
     if(folder == NULL) {
         goto end;
     }
@@ -1160,6 +1278,7 @@ BlueOceanAPI_getPipelineFolder(apiClient_t *apiClient, char *organization, char 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1175,11 +1294,14 @@ BlueOceanAPI_getPipelineFolder(apiClient_t *apiClient, char *organization, char 
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    pipeline_folder_impl_t *elementToReturn = pipeline_folder_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    pipeline_folder_impl_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = pipeline_folder_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1214,15 +1336,24 @@ BlueOceanAPI_getPipelineFolderPipeline(apiClient_t *apiClient, char *organizatio
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!folder)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(folder)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(folder)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -1232,7 +1363,7 @@ BlueOceanAPI_getPipelineFolderPipeline(apiClient_t *apiClient, char *organizatio
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(folder)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(folder)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -1242,7 +1373,7 @@ BlueOceanAPI_getPipelineFolderPipeline(apiClient_t *apiClient, char *organizatio
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_folder = strlen(organization)+3 + strlen(pipeline)+3 + strlen(folder)+3 + strlen("{ folder }");
+    long sizeOfPathParams_folder = strlen(organization)+3 + strlen(pipeline)+3 + strlen(folder)+3 + sizeof("{ folder }") - 1;
     if(folder == NULL) {
         goto end;
     }
@@ -1261,6 +1392,7 @@ BlueOceanAPI_getPipelineFolderPipeline(apiClient_t *apiClient, char *organizatio
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1276,11 +1408,14 @@ BlueOceanAPI_getPipelineFolderPipeline(apiClient_t *apiClient, char *organizatio
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    pipeline_impl_t *elementToReturn = pipeline_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    pipeline_impl_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = pipeline_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1316,15 +1451,22 @@ BlueOceanAPI_getPipelineQueue(apiClient_t *apiClient, char *organization, char *
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -1334,7 +1476,7 @@ BlueOceanAPI_getPipelineQueue(apiClient_t *apiClient, char *organization, char *
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -1353,6 +1495,7 @@ BlueOceanAPI_getPipelineQueue(apiClient_t *apiClient, char *organization, char *
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1367,24 +1510,27 @@ BlueOceanAPI_getPipelineQueue(apiClient_t *apiClient, char *organization, char *
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -1417,15 +1563,24 @@ BlueOceanAPI_getPipelineRun(apiClient_t *apiClient, char *organization, char *pi
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!run)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -1435,7 +1590,7 @@ BlueOceanAPI_getPipelineRun(apiClient_t *apiClient, char *organization, char *pi
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -1445,7 +1600,7 @@ BlueOceanAPI_getPipelineRun(apiClient_t *apiClient, char *organization, char *pi
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ run }");
+    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ run }") - 1;
     if(run == NULL) {
         goto end;
     }
@@ -1464,6 +1619,7 @@ BlueOceanAPI_getPipelineRun(apiClient_t *apiClient, char *organization, char *pi
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1479,11 +1635,14 @@ BlueOceanAPI_getPipelineRun(apiClient_t *apiClient, char *organization, char *pi
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    pipeline_run_t *elementToReturn = pipeline_run_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    pipeline_run_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = pipeline_run_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1519,15 +1678,24 @@ BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char *organization, char 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!run)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -1537,7 +1705,7 @@ BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char *organization, char 
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -1547,7 +1715,7 @@ BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char *organization, char 
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ run }");
+    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ run }") - 1;
     if(run == NULL) {
         goto end;
     }
@@ -1592,6 +1760,7 @@ BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char *organization, char 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1606,8 +1775,10 @@ BlueOceanAPI_getPipelineRunLog(apiClient_t *apiClient, char *organization, char 
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    //primitive return type simple
-    char* elementToReturn =  strdup((char*)apiClient->dataReceived);
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -1665,15 +1836,26 @@ BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char *organization, char
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!run)
+        goto end;
+    if(!node)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -1683,7 +1865,7 @@ BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char *organization, char
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -1693,7 +1875,7 @@ BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char *organization, char
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen("{ run }");
+    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + sizeof("{ run }") - 1;
     if(run == NULL) {
         goto end;
     }
@@ -1703,7 +1885,7 @@ BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char *organization, char
     localVarPath = strReplace(localVarPath, localVarToReplace_run, run);
 
     // Path Params
-    long sizeOfPathParams_node = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen("{ node }");
+    long sizeOfPathParams_node = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + sizeof("{ node }") - 1;
     if(node == NULL) {
         goto end;
     }
@@ -1722,6 +1904,7 @@ BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char *organization, char
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1737,11 +1920,14 @@ BlueOceanAPI_getPipelineRunNode(apiClient_t *apiClient, char *organization, char
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    pipeline_run_node_t *elementToReturn = pipeline_run_node_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    pipeline_run_node_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = pipeline_run_node_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1778,15 +1964,28 @@ BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char *organization, 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!run)
+        goto end;
+    if(!node)
+        goto end;
+    if(!step)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -1796,7 +1995,7 @@ BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char *organization, 
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -1806,7 +2005,7 @@ BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char *organization, 
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + strlen("{ run }");
+    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + sizeof("{ run }") - 1;
     if(run == NULL) {
         goto end;
     }
@@ -1816,7 +2015,7 @@ BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char *organization, 
     localVarPath = strReplace(localVarPath, localVarToReplace_run, run);
 
     // Path Params
-    long sizeOfPathParams_node = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + strlen("{ node }");
+    long sizeOfPathParams_node = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + sizeof("{ node }") - 1;
     if(node == NULL) {
         goto end;
     }
@@ -1826,7 +2025,7 @@ BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char *organization, 
     localVarPath = strReplace(localVarPath, localVarToReplace_node, node);
 
     // Path Params
-    long sizeOfPathParams_step = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + strlen("{ step }");
+    long sizeOfPathParams_step = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + sizeof("{ step }") - 1;
     if(step == NULL) {
         goto end;
     }
@@ -1845,6 +2044,7 @@ BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char *organization, 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1860,11 +2060,14 @@ BlueOceanAPI_getPipelineRunNodeStep(apiClient_t *apiClient, char *organization, 
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    pipeline_step_impl_t *elementToReturn = pipeline_step_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    pipeline_step_impl_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = pipeline_step_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1902,15 +2105,28 @@ BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char *organizatio
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!run)
+        goto end;
+    if(!node)
+        goto end;
+    if(!step)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -1920,7 +2136,7 @@ BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char *organizatio
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -1930,7 +2146,7 @@ BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char *organizatio
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + strlen("{ run }");
+    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + sizeof("{ run }") - 1;
     if(run == NULL) {
         goto end;
     }
@@ -1940,7 +2156,7 @@ BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char *organizatio
     localVarPath = strReplace(localVarPath, localVarToReplace_run, run);
 
     // Path Params
-    long sizeOfPathParams_node = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + strlen("{ node }");
+    long sizeOfPathParams_node = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + sizeof("{ node }") - 1;
     if(node == NULL) {
         goto end;
     }
@@ -1950,7 +2166,7 @@ BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char *organizatio
     localVarPath = strReplace(localVarPath, localVarToReplace_node, node);
 
     // Path Params
-    long sizeOfPathParams_step = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + strlen("{ step }");
+    long sizeOfPathParams_step = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen(step)+3 + sizeof("{ step }") - 1;
     if(step == NULL) {
         goto end;
     }
@@ -1969,6 +2185,7 @@ BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char *organizatio
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1983,8 +2200,10 @@ BlueOceanAPI_getPipelineRunNodeStepLog(apiClient_t *apiClient, char *organizatio
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    //primitive return type simple
-    char* elementToReturn =  strdup((char*)apiClient->dataReceived);
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -2020,15 +2239,26 @@ BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char *organization,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!run)
+        goto end;
+    if(!node)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -2038,7 +2268,7 @@ BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char *organization,
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -2048,7 +2278,7 @@ BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char *organization,
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen("{ run }");
+    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + sizeof("{ run }") - 1;
     if(run == NULL) {
         goto end;
     }
@@ -2058,7 +2288,7 @@ BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char *organization,
     localVarPath = strReplace(localVarPath, localVarToReplace_run, run);
 
     // Path Params
-    long sizeOfPathParams_node = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + strlen("{ node }");
+    long sizeOfPathParams_node = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen(node)+3 + sizeof("{ node }") - 1;
     if(node == NULL) {
         goto end;
     }
@@ -2077,6 +2307,7 @@ BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char *organization,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2091,24 +2322,27 @@ BlueOceanAPI_getPipelineRunNodeSteps(apiClient_t *apiClient, char *organization,
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -2143,15 +2377,24 @@ BlueOceanAPI_getPipelineRunNodes(apiClient_t *apiClient, char *organization, cha
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!run)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -2161,7 +2404,7 @@ BlueOceanAPI_getPipelineRunNodes(apiClient_t *apiClient, char *organization, cha
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -2171,7 +2414,7 @@ BlueOceanAPI_getPipelineRunNodes(apiClient_t *apiClient, char *organization, cha
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ run }");
+    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ run }") - 1;
     if(run == NULL) {
         goto end;
     }
@@ -2190,6 +2433,7 @@ BlueOceanAPI_getPipelineRunNodes(apiClient_t *apiClient, char *organization, cha
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2204,24 +2448,27 @@ BlueOceanAPI_getPipelineRunNodes(apiClient_t *apiClient, char *organization, cha
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -2255,15 +2502,22 @@ BlueOceanAPI_getPipelineRuns(apiClient_t *apiClient, char *organization, char *p
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -2273,7 +2527,7 @@ BlueOceanAPI_getPipelineRuns(apiClient_t *apiClient, char *organization, char *p
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -2292,6 +2546,7 @@ BlueOceanAPI_getPipelineRuns(apiClient_t *apiClient, char *organization, char *p
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2306,24 +2561,27 @@ BlueOceanAPI_getPipelineRuns(apiClient_t *apiClient, char *organization, char *p
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -2356,15 +2614,20 @@ BlueOceanAPI_getPipelines(apiClient_t *apiClient, char *organization)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/");
+
+    if(!organization)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -2383,6 +2646,7 @@ BlueOceanAPI_getPipelines(apiClient_t *apiClient, char *organization)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2397,24 +2661,27 @@ BlueOceanAPI_getPipelines(apiClient_t *apiClient, char *organization)
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -2446,15 +2713,22 @@ BlueOceanAPI_getSCM(apiClient_t *apiClient, char *organization, char *scm)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/scm/{scm}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/scm/{scm}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/scm/{scm}");
+
+    if(!organization)
+        goto end;
+    if(!scm)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(scm)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(scm)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -2464,7 +2738,7 @@ BlueOceanAPI_getSCM(apiClient_t *apiClient, char *organization, char *scm)
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_scm = strlen(organization)+3 + strlen(scm)+3 + strlen("{ scm }");
+    long sizeOfPathParams_scm = strlen(organization)+3 + strlen(scm)+3 + sizeof("{ scm }") - 1;
     if(scm == NULL) {
         goto end;
     }
@@ -2483,6 +2757,7 @@ BlueOceanAPI_getSCM(apiClient_t *apiClient, char *organization, char *scm)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2498,11 +2773,14 @@ BlueOceanAPI_getSCM(apiClient_t *apiClient, char *organization, char *scm)
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    github_scm_t *elementToReturn = github_scm_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    github_scm_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = github_scm_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2537,15 +2815,24 @@ BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char *organi
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories");
+
+    if(!organization)
+        goto end;
+    if(!scm)
+        goto end;
+    if(!scmOrganisation)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -2555,7 +2842,7 @@ BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char *organi
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_scm = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen("{ scm }");
+    long sizeOfPathParams_scm = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + sizeof("{ scm }") - 1;
     if(scm == NULL) {
         goto end;
     }
@@ -2565,7 +2852,7 @@ BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char *organi
     localVarPath = strReplace(localVarPath, localVarToReplace_scm, scm);
 
     // Path Params
-    long sizeOfPathParams_scmOrganisation = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen("{ scmOrganisation }");
+    long sizeOfPathParams_scmOrganisation = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + sizeof("{ scmOrganisation }") - 1;
     if(scmOrganisation == NULL) {
         goto end;
     }
@@ -2622,6 +2909,7 @@ BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char *organi
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2636,24 +2924,27 @@ BlueOceanAPI_getSCMOrganisationRepositories(apiClient_t *apiClient, char *organi
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -2723,15 +3014,26 @@ BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char *organiza
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}");
+
+    if(!organization)
+        goto end;
+    if(!scm)
+        goto end;
+    if(!scmOrganisation)
+        goto end;
+    if(!repository)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen(repository)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen(repository)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -2741,7 +3043,7 @@ BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char *organiza
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_scm = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen(repository)+3 + strlen("{ scm }");
+    long sizeOfPathParams_scm = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen(repository)+3 + sizeof("{ scm }") - 1;
     if(scm == NULL) {
         goto end;
     }
@@ -2751,7 +3053,7 @@ BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char *organiza
     localVarPath = strReplace(localVarPath, localVarToReplace_scm, scm);
 
     // Path Params
-    long sizeOfPathParams_scmOrganisation = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen(repository)+3 + strlen("{ scmOrganisation }");
+    long sizeOfPathParams_scmOrganisation = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen(repository)+3 + sizeof("{ scmOrganisation }") - 1;
     if(scmOrganisation == NULL) {
         goto end;
     }
@@ -2761,7 +3063,7 @@ BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char *organiza
     localVarPath = strReplace(localVarPath, localVarToReplace_scmOrganisation, scmOrganisation);
 
     // Path Params
-    long sizeOfPathParams_repository = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen(repository)+3 + strlen("{ repository }");
+    long sizeOfPathParams_repository = strlen(organization)+3 + strlen(scm)+3 + strlen(scmOrganisation)+3 + strlen(repository)+3 + sizeof("{ repository }") - 1;
     if(repository == NULL) {
         goto end;
     }
@@ -2792,6 +3094,7 @@ BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char *organiza
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2806,24 +3109,27 @@ BlueOceanAPI_getSCMOrganisationRepository(apiClient_t *apiClient, char *organiza
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -2870,15 +3176,22 @@ BlueOceanAPI_getSCMOrganisations(apiClient_t *apiClient, char *organization, cha
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/scm/{scm}/organizations")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/scm/{scm}/organizations");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/scm/{scm}/organizations");
+
+    if(!organization)
+        goto end;
+    if(!scm)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(scm)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(scm)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -2888,7 +3201,7 @@ BlueOceanAPI_getSCMOrganisations(apiClient_t *apiClient, char *organization, cha
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_scm = strlen(organization)+3 + strlen(scm)+3 + strlen("{ scm }");
+    long sizeOfPathParams_scm = strlen(organization)+3 + strlen(scm)+3 + sizeof("{ scm }") - 1;
     if(scm == NULL) {
         goto end;
     }
@@ -2919,6 +3232,7 @@ BlueOceanAPI_getSCMOrganisations(apiClient_t *apiClient, char *organization, cha
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2933,24 +3247,27 @@ BlueOceanAPI_getSCMOrganisations(apiClient_t *apiClient, char *organization, cha
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -2995,15 +3312,22 @@ BlueOceanAPI_getUser(apiClient_t *apiClient, char *organization, char *user)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/users/{user}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/users/{user}");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/users/{user}");
+
+    if(!organization)
+        goto end;
+    if(!user)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(user)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(user)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -3013,7 +3337,7 @@ BlueOceanAPI_getUser(apiClient_t *apiClient, char *organization, char *user)
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_user = strlen(organization)+3 + strlen(user)+3 + strlen("{ user }");
+    long sizeOfPathParams_user = strlen(organization)+3 + strlen(user)+3 + sizeof("{ user }") - 1;
     if(user == NULL) {
         goto end;
     }
@@ -3032,6 +3356,7 @@ BlueOceanAPI_getUser(apiClient_t *apiClient, char *organization, char *user)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -3047,11 +3372,14 @@ BlueOceanAPI_getUser(apiClient_t *apiClient, char *organization, char *user)
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_t *elementToReturn = user_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -3086,15 +3414,20 @@ BlueOceanAPI_getUserFavorites(apiClient_t *apiClient, char *user)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/users/{user}/favorites")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/users/{user}/favorites");
+    char *localVarPath = strdup("/blue/rest/users/{user}/favorites");
+
+    if(!user)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_user = strlen(user)+3 + strlen("{ user }");
+    long sizeOfPathParams_user = strlen(user)+3 + sizeof("{ user }") - 1;
     if(user == NULL) {
         goto end;
     }
@@ -3113,6 +3446,7 @@ BlueOceanAPI_getUserFavorites(apiClient_t *apiClient, char *user)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -3127,24 +3461,27 @@ BlueOceanAPI_getUserFavorites(apiClient_t *apiClient, char *user)
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlueOceanAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlueOceanAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlueOceanAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlueOceanAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -3176,15 +3513,20 @@ BlueOceanAPI_getUsers(apiClient_t *apiClient, char *organization)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/users/")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/users/");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/users/");
+
+    if(!organization)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -3203,6 +3545,7 @@ BlueOceanAPI_getUsers(apiClient_t *apiClient, char *organization)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -3218,11 +3561,14 @@ BlueOceanAPI_getUsers(apiClient_t *apiClient, char *organization)
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_t *elementToReturn = user_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -3256,15 +3602,24 @@ BlueOceanAPI_postPipelineRun(apiClient_t *apiClient, char *organization, char *p
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!run)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -3274,7 +3629,7 @@ BlueOceanAPI_postPipelineRun(apiClient_t *apiClient, char *organization, char *p
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -3284,7 +3639,7 @@ BlueOceanAPI_postPipelineRun(apiClient_t *apiClient, char *organization, char *p
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ run }");
+    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ run }") - 1;
     if(run == NULL) {
         goto end;
     }
@@ -3303,6 +3658,7 @@ BlueOceanAPI_postPipelineRun(apiClient_t *apiClient, char *organization, char *p
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -3318,11 +3674,14 @@ BlueOceanAPI_postPipelineRun(apiClient_t *apiClient, char *organization, char *p
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    queue_item_impl_t *elementToReturn = queue_item_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    queue_item_impl_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = queue_item_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -3358,15 +3717,22 @@ BlueOceanAPI_postPipelineRuns(apiClient_t *apiClient, char *organization, char *
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -3376,7 +3742,7 @@ BlueOceanAPI_postPipelineRuns(apiClient_t *apiClient, char *organization, char *
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -3395,6 +3761,7 @@ BlueOceanAPI_postPipelineRuns(apiClient_t *apiClient, char *organization, char *
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -3410,11 +3777,14 @@ BlueOceanAPI_postPipelineRuns(apiClient_t *apiClient, char *organization, char *
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    queue_item_impl_t *elementToReturn = queue_item_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    queue_item_impl_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = queue_item_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -3449,15 +3819,22 @@ BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char *organization, cha
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -3467,7 +3844,7 @@ BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char *organization, cha
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -3482,9 +3859,10 @@ BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char *organization, cha
     cJSON *localVarSingleItemJSON_body = NULL;
     if (body != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_body = int_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -3496,6 +3874,7 @@ BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char *organization, cha
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -3511,11 +3890,14 @@ BlueOceanAPI_putPipelineFavorite(apiClient_t *apiClient, char *organization, cha
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    favorite_impl_t *elementToReturn = favorite_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    favorite_impl_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = favorite_impl_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -3555,15 +3937,24 @@ BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char *organization, char *pi
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop");
+    char *localVarPath = strdup("/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop");
+
+    if(!organization)
+        goto end;
+    if(!pipeline)
+        goto end;
+    if(!run)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ organization }");
+    long sizeOfPathParams_organization = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ organization }") - 1;
     if(organization == NULL) {
         goto end;
     }
@@ -3573,7 +3964,7 @@ BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char *organization, char *pi
     localVarPath = strReplace(localVarPath, localVarToReplace_organization, organization);
 
     // Path Params
-    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ pipeline }");
+    long sizeOfPathParams_pipeline = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ pipeline }") - 1;
     if(pipeline == NULL) {
         goto end;
     }
@@ -3583,7 +3974,7 @@ BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char *organization, char *pi
     localVarPath = strReplace(localVarPath, localVarToReplace_pipeline, pipeline);
 
     // Path Params
-    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + strlen("{ run }");
+    long sizeOfPathParams_run = strlen(organization)+3 + strlen(pipeline)+3 + strlen(run)+3 + sizeof("{ run }") - 1;
     if(run == NULL) {
         goto end;
     }
@@ -3627,6 +4018,7 @@ BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char *organization, char *pi
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -3642,11 +4034,14 @@ BlueOceanAPI_putPipelineRun(apiClient_t *apiClient, char *organization, char *pi
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    pipeline_run_t *elementToReturn = pipeline_run_parseFromJSON(BlueOceanAPIlocalVarJSON);
-    cJSON_Delete(BlueOceanAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    pipeline_run_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlueOceanAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = pipeline_run_parseFromJSON(BlueOceanAPIlocalVarJSON);
+        cJSON_Delete(BlueOceanAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -3706,11 +4101,14 @@ BlueOceanAPI_search(apiClient_t *apiClient, char *q)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/search/")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/search/");
+    char *localVarPath = strdup("/blue/rest/search/");
+
 
 
 
@@ -3735,6 +4133,7 @@ BlueOceanAPI_search(apiClient_t *apiClient, char *q)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -3749,8 +4148,10 @@ BlueOceanAPI_search(apiClient_t *apiClient, char *q)
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    //primitive return type simple
-    char* elementToReturn =  strdup((char*)apiClient->dataReceived);
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -3793,11 +4194,14 @@ BlueOceanAPI_searchClasses(apiClient_t *apiClient, char *q)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/blue/rest/classes/")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/blue/rest/classes/");
+    char *localVarPath = strdup("/blue/rest/classes/");
+
 
 
 
@@ -3822,6 +4226,7 @@ BlueOceanAPI_searchClasses(apiClient_t *apiClient, char *q)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -3836,8 +4241,10 @@ BlueOceanAPI_searchClasses(apiClient_t *apiClient, char *q)
     //if (apiClient->response_code == 403) {
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
-    //primitive return type simple
-    char* elementToReturn =  strdup((char*)apiClient->dataReceived);
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);

@@ -26,7 +26,7 @@ print(FreeStyleProjecthealthReport.to_json())
 # convert the object into a dict
 free_style_projecthealth_report_dict = free_style_projecthealth_report_instance.to_dict()
 # create an instance of FreeStyleProjecthealthReport from a dict
-free_style_projecthealth_report_form_dict = free_style_projecthealth_report.from_dict(free_style_projecthealth_report_dict)
+free_style_projecthealth_report_from_dict = FreeStyleProjecthealthReport.from_dict(free_style_projecthealth_report_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

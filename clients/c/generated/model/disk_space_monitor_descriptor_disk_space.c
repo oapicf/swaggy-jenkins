@@ -5,7 +5,7 @@
 
 
 
-disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space_create(
+static disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space_create_internal(
     char *_class,
     int timestamp,
     char *path,
@@ -20,12 +20,30 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
     disk_space_monitor_descriptor_disk_space_local_var->path = path;
     disk_space_monitor_descriptor_disk_space_local_var->size = size;
 
+    disk_space_monitor_descriptor_disk_space_local_var->_library_owned = 1;
     return disk_space_monitor_descriptor_disk_space_local_var;
 }
 
+__attribute__((deprecated)) disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space_create(
+    char *_class,
+    int timestamp,
+    char *path,
+    int size
+    ) {
+    return disk_space_monitor_descriptor_disk_space_create_internal (
+        _class,
+        timestamp,
+        path,
+        size
+        );
+}
 
 void disk_space_monitor_descriptor_disk_space_free(disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space) {
     if(NULL == disk_space_monitor_descriptor_disk_space){
+        return ;
+    }
+    if(disk_space_monitor_descriptor_disk_space->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "disk_space_monitor_descriptor_disk_space_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -88,6 +106,9 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
 
     // disk_space_monitor_descriptor_disk_space->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(disk_space_monitor_descriptor_disk_spaceJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -97,6 +118,9 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
 
     // disk_space_monitor_descriptor_disk_space->timestamp
     cJSON *timestamp = cJSON_GetObjectItemCaseSensitive(disk_space_monitor_descriptor_disk_spaceJSON, "timestamp");
+    if (cJSON_IsNull(timestamp)) {
+        timestamp = NULL;
+    }
     if (timestamp) { 
     if(!cJSON_IsNumber(timestamp))
     {
@@ -106,6 +130,9 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
 
     // disk_space_monitor_descriptor_disk_space->path
     cJSON *path = cJSON_GetObjectItemCaseSensitive(disk_space_monitor_descriptor_disk_spaceJSON, "path");
+    if (cJSON_IsNull(path)) {
+        path = NULL;
+    }
     if (path) { 
     if(!cJSON_IsString(path) && !cJSON_IsNull(path))
     {
@@ -115,6 +142,9 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
 
     // disk_space_monitor_descriptor_disk_space->size
     cJSON *size = cJSON_GetObjectItemCaseSensitive(disk_space_monitor_descriptor_disk_spaceJSON, "size");
+    if (cJSON_IsNull(size)) {
+        size = NULL;
+    }
     if (size) { 
     if(!cJSON_IsNumber(size))
     {
@@ -123,7 +153,7 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
     }
 
 
-    disk_space_monitor_descriptor_disk_space_local_var = disk_space_monitor_descriptor_disk_space_create (
+    disk_space_monitor_descriptor_disk_space_local_var = disk_space_monitor_descriptor_disk_space_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         timestamp ? timestamp->valuedouble : 0,
         path && !cJSON_IsNull(path) ? strdup(path->valuestring) : NULL,

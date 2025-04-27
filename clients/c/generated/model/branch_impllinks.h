@@ -26,9 +26,10 @@ typedef struct branch_impllinks_t {
     struct link_t *queue; //model
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } branch_impllinks_t;
 
-branch_impllinks_t *branch_impllinks_create(
+__attribute__((deprecated)) branch_impllinks_t *branch_impllinks_create(
     link_t *self,
     link_t *actions,
     link_t *runs,

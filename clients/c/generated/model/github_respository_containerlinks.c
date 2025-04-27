@@ -5,7 +5,7 @@
 
 
 
-github_respository_containerlinks_t *github_respository_containerlinks_create(
+static github_respository_containerlinks_t *github_respository_containerlinks_create_internal(
     link_t *self,
     char *_class
     ) {
@@ -16,12 +16,26 @@ github_respository_containerlinks_t *github_respository_containerlinks_create(
     github_respository_containerlinks_local_var->self = self;
     github_respository_containerlinks_local_var->_class = _class;
 
+    github_respository_containerlinks_local_var->_library_owned = 1;
     return github_respository_containerlinks_local_var;
 }
 
+__attribute__((deprecated)) github_respository_containerlinks_t *github_respository_containerlinks_create(
+    link_t *self,
+    char *_class
+    ) {
+    return github_respository_containerlinks_create_internal (
+        self,
+        _class
+        );
+}
 
 void github_respository_containerlinks_free(github_respository_containerlinks_t *github_respository_containerlinks) {
     if(NULL == github_respository_containerlinks){
+        return ;
+    }
+    if(github_respository_containerlinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_respository_containerlinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -76,12 +90,18 @@ github_respository_containerlinks_t *github_respository_containerlinks_parseFrom
 
     // github_respository_containerlinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(github_respository_containerlinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // github_respository_containerlinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_respository_containerlinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -90,7 +110,7 @@ github_respository_containerlinks_t *github_respository_containerlinks_parseFrom
     }
 
 
-    github_respository_containerlinks_local_var = github_respository_containerlinks_create (
+    github_respository_containerlinks_local_var = github_respository_containerlinks_create_internal (
         self ? self_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

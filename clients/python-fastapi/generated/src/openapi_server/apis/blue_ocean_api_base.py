@@ -2,6 +2,9 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+from typing import Any, List, Optional
+from typing_extensions import Annotated
 from openapi_server.models.branch_impl import BranchImpl
 from openapi_server.models.favorite_impl import FavoriteImpl
 from openapi_server.models.github_organization import GithubOrganization
@@ -25,356 +28,356 @@ class BaseBlueOceanApi:
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
         BaseBlueOceanApi.subclasses = BaseBlueOceanApi.subclasses + (cls,)
-    def delete_pipeline_queue_item(
+    async def delete_pipeline_queue_item(
         self,
-        organization: str,
-        pipeline: str,
-        queue: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        queue: Annotated[StrictStr, Field(description="Name of the queue item")],
     ) -> None:
         """Delete queue item from an organization pipeline queue"""
         ...
 
 
-    def get_authenticated_user(
+    async def get_authenticated_user(
         self,
-        organization: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
     ) -> User:
         """Retrieve authenticated user details for an organization"""
         ...
 
 
-    def get_classes(
+    async def get_classes(
         self,
-        class: str,
+        class: Annotated[StrictStr, Field(description="Name of the class")],
     ) -> str:
         """Get a list of class names supported by a given class"""
         ...
 
 
-    def get_json_web_key(
+    async def get_json_web_key(
         self,
-        key: int,
+        key: Annotated[StrictInt, Field(description="Key ID received as part of JWT header field kid")],
     ) -> str:
         """Retrieve JSON Web Key"""
         ...
 
 
-    def get_json_web_token(
+    async def get_json_web_token(
         self,
-        expiry_time_in_mins: int,
-        max_expiry_time_in_mins: int,
+        expiry_time_in_mins: Annotated[Optional[StrictInt], Field(description="Token expiry time in minutes, default: 30 minutes")],
+        max_expiry_time_in_mins: Annotated[Optional[StrictInt], Field(description="Maximum token expiry time in minutes, default: 480 minutes")],
     ) -> str:
         """Retrieve JSON Web Token"""
         ...
 
 
-    def get_organisation(
+    async def get_organisation(
         self,
-        organization: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
     ) -> Organisation:
         """Retrieve organization details"""
         ...
 
 
-    def get_organisations(
+    async def get_organisations(
         self,
     ) -> List[Organisation]:
         """Retrieve all organizations details"""
         ...
 
 
-    def get_pipeline(
+    async def get_pipeline(
         self,
-        organization: str,
-        pipeline: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
     ) -> Pipeline:
         """Retrieve pipeline details for an organization"""
         ...
 
 
-    def get_pipeline_activities(
+    async def get_pipeline_activities(
         self,
-        organization: str,
-        pipeline: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
     ) -> List[PipelineActivity]:
         """Retrieve all activities details for an organization pipeline"""
         ...
 
 
-    def get_pipeline_branch(
+    async def get_pipeline_branch(
         self,
-        organization: str,
-        pipeline: str,
-        branch: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        branch: Annotated[StrictStr, Field(description="Name of the branch")],
     ) -> BranchImpl:
         """Retrieve branch details for an organization pipeline"""
         ...
 
 
-    def get_pipeline_branch_run(
+    async def get_pipeline_branch_run(
         self,
-        organization: str,
-        pipeline: str,
-        branch: str,
-        run: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        branch: Annotated[StrictStr, Field(description="Name of the branch")],
+        run: Annotated[StrictStr, Field(description="Name of the run")],
     ) -> PipelineRun:
         """Retrieve branch run details for an organization pipeline"""
         ...
 
 
-    def get_pipeline_branches(
+    async def get_pipeline_branches(
         self,
-        organization: str,
-        pipeline: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
     ) -> MultibranchPipeline:
         """Retrieve all branches details for an organization pipeline"""
         ...
 
 
-    def get_pipeline_folder(
+    async def get_pipeline_folder(
         self,
-        organization: str,
-        folder: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        folder: Annotated[StrictStr, Field(description="Name of the folder")],
     ) -> PipelineFolderImpl:
         """Retrieve pipeline folder for an organization"""
         ...
 
 
-    def get_pipeline_folder_pipeline(
+    async def get_pipeline_folder_pipeline(
         self,
-        organization: str,
-        pipeline: str,
-        folder: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        folder: Annotated[StrictStr, Field(description="Name of the folder")],
     ) -> PipelineImpl:
         """Retrieve pipeline details for an organization folder"""
         ...
 
 
-    def get_pipeline_queue(
+    async def get_pipeline_queue(
         self,
-        organization: str,
-        pipeline: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
     ) -> List[QueueItemImpl]:
         """Retrieve queue details for an organization pipeline"""
         ...
 
 
-    def get_pipeline_run(
+    async def get_pipeline_run(
         self,
-        organization: str,
-        pipeline: str,
-        run: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        run: Annotated[StrictStr, Field(description="Name of the run")],
     ) -> PipelineRun:
         """Retrieve run details for an organization pipeline"""
         ...
 
 
-    def get_pipeline_run_log(
+    async def get_pipeline_run_log(
         self,
-        organization: str,
-        pipeline: str,
-        run: str,
-        start: int,
-        download: bool,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        run: Annotated[StrictStr, Field(description="Name of the run")],
+        start: Annotated[Optional[StrictInt], Field(description="Start position of the log")],
+        download: Annotated[Optional[StrictBool], Field(description="Set to true in order to download the file, otherwise it's passed as a response body")],
     ) -> str:
         """Get log for a pipeline run"""
         ...
 
 
-    def get_pipeline_run_node(
+    async def get_pipeline_run_node(
         self,
-        organization: str,
-        pipeline: str,
-        run: str,
-        node: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        run: Annotated[StrictStr, Field(description="Name of the run")],
+        node: Annotated[StrictStr, Field(description="Name of the node")],
     ) -> PipelineRunNode:
         """Retrieve run node details for an organization pipeline"""
         ...
 
 
-    def get_pipeline_run_node_step(
+    async def get_pipeline_run_node_step(
         self,
-        organization: str,
-        pipeline: str,
-        run: str,
-        node: str,
-        step: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        run: Annotated[StrictStr, Field(description="Name of the run")],
+        node: Annotated[StrictStr, Field(description="Name of the node")],
+        step: Annotated[StrictStr, Field(description="Name of the step")],
     ) -> PipelineStepImpl:
         """Retrieve run node details for an organization pipeline"""
         ...
 
 
-    def get_pipeline_run_node_step_log(
+    async def get_pipeline_run_node_step_log(
         self,
-        organization: str,
-        pipeline: str,
-        run: str,
-        node: str,
-        step: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        run: Annotated[StrictStr, Field(description="Name of the run")],
+        node: Annotated[StrictStr, Field(description="Name of the node")],
+        step: Annotated[StrictStr, Field(description="Name of the step")],
     ) -> str:
         """Get log for a pipeline run node step"""
         ...
 
 
-    def get_pipeline_run_node_steps(
+    async def get_pipeline_run_node_steps(
         self,
-        organization: str,
-        pipeline: str,
-        run: str,
-        node: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        run: Annotated[StrictStr, Field(description="Name of the run")],
+        node: Annotated[StrictStr, Field(description="Name of the node")],
     ) -> List[PipelineStepImpl]:
         """Retrieve run node steps details for an organization pipeline"""
         ...
 
 
-    def get_pipeline_run_nodes(
+    async def get_pipeline_run_nodes(
         self,
-        organization: str,
-        pipeline: str,
-        run: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        run: Annotated[StrictStr, Field(description="Name of the run")],
     ) -> List[PipelineRunNode]:
         """Retrieve run nodes details for an organization pipeline"""
         ...
 
 
-    def get_pipeline_runs(
+    async def get_pipeline_runs(
         self,
-        organization: str,
-        pipeline: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
     ) -> List[PipelineRun]:
         """Retrieve all runs details for an organization pipeline"""
         ...
 
 
-    def get_pipelines(
+    async def get_pipelines(
         self,
-        organization: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
     ) -> List[Pipeline]:
         """Retrieve all pipelines details for an organization"""
         ...
 
 
-    def get_scm(
+    async def get_scm(
         self,
-        organization: str,
-        scm: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        scm: Annotated[StrictStr, Field(description="Name of SCM")],
     ) -> GithubScm:
         """Retrieve SCM details for an organization"""
         ...
 
 
-    def get_scm_organisation_repositories(
+    async def get_scm_organisation_repositories(
         self,
-        organization: str,
-        scm: str,
-        scmOrganisation: str,
-        credential_id: str,
-        page_size: int,
-        page_number: int,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        scm: Annotated[StrictStr, Field(description="Name of SCM")],
+        scmOrganisation: Annotated[StrictStr, Field(description="Name of the SCM organization")],
+        credential_id: Annotated[Optional[StrictStr], Field(description="Credential ID")],
+        page_size: Annotated[Optional[StrictInt], Field(description="Number of items in a page")],
+        page_number: Annotated[Optional[StrictInt], Field(description="Page number")],
     ) -> List[GithubOrganization]:
         """Retrieve SCM organization repositories details for an organization"""
         ...
 
 
-    def get_scm_organisation_repository(
+    async def get_scm_organisation_repository(
         self,
-        organization: str,
-        scm: str,
-        scmOrganisation: str,
-        repository: str,
-        credential_id: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        scm: Annotated[StrictStr, Field(description="Name of SCM")],
+        scmOrganisation: Annotated[StrictStr, Field(description="Name of the SCM organization")],
+        repository: Annotated[StrictStr, Field(description="Name of the SCM repository")],
+        credential_id: Annotated[Optional[StrictStr], Field(description="Credential ID")],
     ) -> List[GithubOrganization]:
         """Retrieve SCM organization repository details for an organization"""
         ...
 
 
-    def get_scm_organisations(
+    async def get_scm_organisations(
         self,
-        organization: str,
-        scm: str,
-        credential_id: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        scm: Annotated[StrictStr, Field(description="Name of SCM")],
+        credential_id: Annotated[Optional[StrictStr], Field(description="Credential ID")],
     ) -> List[GithubOrganization]:
         """Retrieve SCM organizations details for an organization"""
         ...
 
 
-    def get_user(
+    async def get_user(
         self,
-        organization: str,
-        user: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        user: Annotated[StrictStr, Field(description="Name of the user")],
     ) -> User:
         """Retrieve user details for an organization"""
         ...
 
 
-    def get_user_favorites(
+    async def get_user_favorites(
         self,
-        user: str,
+        user: Annotated[StrictStr, Field(description="Name of the user")],
     ) -> List[FavoriteImpl]:
         """Retrieve user favorites details for an organization"""
         ...
 
 
-    def get_users(
+    async def get_users(
         self,
-        organization: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
     ) -> User:
         """Retrieve users details for an organization"""
         ...
 
 
-    def post_pipeline_run(
+    async def post_pipeline_run(
         self,
-        organization: str,
-        pipeline: str,
-        run: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        run: Annotated[StrictStr, Field(description="Name of the run")],
     ) -> QueueItemImpl:
         """Replay an organization pipeline run"""
         ...
 
 
-    def post_pipeline_runs(
+    async def post_pipeline_runs(
         self,
-        organization: str,
-        pipeline: str,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
     ) -> QueueItemImpl:
         """Start a build for an organization pipeline"""
         ...
 
 
-    def put_pipeline_favorite(
+    async def put_pipeline_favorite(
         self,
-        organization: str,
-        pipeline: str,
-        body: bool,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        body: Annotated[StrictBool, Field(description="Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite")],
     ) -> FavoriteImpl:
         """Favorite/unfavorite a pipeline"""
         ...
 
 
-    def put_pipeline_run(
+    async def put_pipeline_run(
         self,
-        organization: str,
-        pipeline: str,
-        run: str,
-        blocking: str,
-        time_out_in_secs: int,
+        organization: Annotated[StrictStr, Field(description="Name of the organization")],
+        pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")],
+        run: Annotated[StrictStr, Field(description="Name of the run")],
+        blocking: Annotated[Optional[StrictStr], Field(description="Set to true to make blocking stop, default: false")],
+        time_out_in_secs: Annotated[Optional[StrictInt], Field(description="Timeout in seconds, default: 10 seconds")],
     ) -> PipelineRun:
         """Stop a build of an organization pipeline"""
         ...
 
 
-    def search(
+    async def search(
         self,
-        q: str,
+        q: Annotated[StrictStr, Field(description="Query string")],
     ) -> str:
         """Search for any resource details"""
         ...
 
 
-    def search_classes(
+    async def search_classes(
         self,
-        q: str,
+        q: Annotated[StrictStr, Field(description="Query string containing an array of class names")],
     ) -> str:
         """Get classes details"""
         ...

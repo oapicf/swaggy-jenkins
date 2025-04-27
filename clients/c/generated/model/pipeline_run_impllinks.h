@@ -27,9 +27,10 @@ typedef struct pipeline_run_impllinks_t {
     struct link_t *steps; //model
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_run_impllinks_t;
 
-pipeline_run_impllinks_t *pipeline_run_impllinks_create(
+__attribute__((deprecated)) pipeline_run_impllinks_t *pipeline_run_impllinks_create(
     link_t *nodes,
     link_t *log,
     link_t *self,

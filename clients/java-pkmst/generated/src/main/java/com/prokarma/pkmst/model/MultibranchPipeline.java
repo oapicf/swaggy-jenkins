@@ -17,7 +17,7 @@ import java.util.List;
  * MultibranchPipeline
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class MultibranchPipeline   {
   @JsonProperty("displayName")
   private String displayName;
@@ -67,10 +67,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get displayName
    * @return displayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayName() {
     return displayName;
@@ -85,10 +85,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
@@ -103,10 +103,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get latestRun
    * @return latestRun
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getLatestRun() {
     return latestRun;
@@ -121,10 +121,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getName() {
     return name;
@@ -139,10 +139,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get organization
    * @return organization
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getOrganization() {
     return organization;
@@ -157,10 +157,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get weatherScore
    * @return weatherScore
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getWeatherScore() {
     return weatherScore;
@@ -183,10 +183,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get branchNames
    * @return branchNames
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<String> getBranchNames() {
     return branchNames;
@@ -201,10 +201,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get numberOfFailingBranches
    * @return numberOfFailingBranches
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNumberOfFailingBranches() {
     return numberOfFailingBranches;
@@ -219,10 +219,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get numberOfFailingPullRequests
    * @return numberOfFailingPullRequests
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNumberOfFailingPullRequests() {
     return numberOfFailingPullRequests;
@@ -237,10 +237,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get numberOfSuccessfulBranches
    * @return numberOfSuccessfulBranches
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNumberOfSuccessfulBranches() {
     return numberOfSuccessfulBranches;
@@ -255,10 +255,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get numberOfSuccessfulPullRequests
    * @return numberOfSuccessfulPullRequests
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNumberOfSuccessfulPullRequests() {
     return numberOfSuccessfulPullRequests;
@@ -273,10 +273,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get totalNumberOfBranches
    * @return totalNumberOfBranches
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getTotalNumberOfBranches() {
     return totalNumberOfBranches;
@@ -291,10 +291,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get totalNumberOfPullRequests
    * @return totalNumberOfPullRequests
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getTotalNumberOfPullRequests() {
     return totalNumberOfPullRequests;
@@ -309,10 +309,10 @@ public class MultibranchPipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;

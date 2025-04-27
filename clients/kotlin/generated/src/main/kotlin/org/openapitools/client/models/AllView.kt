@@ -39,5 +39,8 @@ data class AllView (
     @Json(name = "url")
     val url: kotlin.String? = null
 
-)
+) {
+
+
+}
 

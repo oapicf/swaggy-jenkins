@@ -5,7 +5,7 @@
 
 
 
-github_repositories_t *github_repositories_create(
+static github_repositories_t *github_repositories_create_internal(
     char *_class,
     github_repositorieslinks_t *_links,
     list_t *items,
@@ -24,12 +24,34 @@ github_repositories_t *github_repositories_create(
     github_repositories_local_var->next_page = next_page;
     github_repositories_local_var->page_size = page_size;
 
+    github_repositories_local_var->_library_owned = 1;
     return github_repositories_local_var;
 }
 
+__attribute__((deprecated)) github_repositories_t *github_repositories_create(
+    char *_class,
+    github_repositorieslinks_t *_links,
+    list_t *items,
+    int last_page,
+    int next_page,
+    int page_size
+    ) {
+    return github_repositories_create_internal (
+        _class,
+        _links,
+        items,
+        last_page,
+        next_page,
+        page_size
+        );
+}
 
 void github_repositories_free(github_repositories_t *github_repositories) {
     if(NULL == github_repositories){
+        return ;
+    }
+    if(github_repositories->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_repositories_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -138,6 +160,9 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
 
     // github_repositories->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_repositoriesJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -147,12 +172,18 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
 
     // github_repositories->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(github_repositoriesJSON, "_links");
+    if (cJSON_IsNull(_links)) {
+        _links = NULL;
+    }
     if (_links) { 
     _links_local_nonprim = github_repositorieslinks_parseFromJSON(_links); //nonprimitive
     }
 
     // github_repositories->items
     cJSON *items = cJSON_GetObjectItemCaseSensitive(github_repositoriesJSON, "items");
+    if (cJSON_IsNull(items)) {
+        items = NULL;
+    }
     if (items) { 
     cJSON *items_local_nonprimitive = NULL;
     if(!cJSON_IsArray(items)){
@@ -174,6 +205,9 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
 
     // github_repositories->last_page
     cJSON *last_page = cJSON_GetObjectItemCaseSensitive(github_repositoriesJSON, "lastPage");
+    if (cJSON_IsNull(last_page)) {
+        last_page = NULL;
+    }
     if (last_page) { 
     if(!cJSON_IsNumber(last_page))
     {
@@ -183,6 +217,9 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
 
     // github_repositories->next_page
     cJSON *next_page = cJSON_GetObjectItemCaseSensitive(github_repositoriesJSON, "nextPage");
+    if (cJSON_IsNull(next_page)) {
+        next_page = NULL;
+    }
     if (next_page) { 
     if(!cJSON_IsNumber(next_page))
     {
@@ -192,6 +229,9 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
 
     // github_repositories->page_size
     cJSON *page_size = cJSON_GetObjectItemCaseSensitive(github_repositoriesJSON, "pageSize");
+    if (cJSON_IsNull(page_size)) {
+        page_size = NULL;
+    }
     if (page_size) { 
     if(!cJSON_IsNumber(page_size))
     {
@@ -200,7 +240,7 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
     }
 
 
-    github_repositories_local_var = github_repositories_create (
+    github_repositories_local_var = github_repositories_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         items ? itemsList : NULL,

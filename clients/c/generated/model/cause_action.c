@@ -5,7 +5,7 @@
 
 
 
-cause_action_t *cause_action_create(
+static cause_action_t *cause_action_create_internal(
     char *_class,
     list_t *causes
     ) {
@@ -16,12 +16,26 @@ cause_action_t *cause_action_create(
     cause_action_local_var->_class = _class;
     cause_action_local_var->causes = causes;
 
+    cause_action_local_var->_library_owned = 1;
     return cause_action_local_var;
 }
 
+__attribute__((deprecated)) cause_action_t *cause_action_create(
+    char *_class,
+    list_t *causes
+    ) {
+    return cause_action_create_internal (
+        _class,
+        causes
+        );
+}
 
 void cause_action_free(cause_action_t *cause_action) {
     if(NULL == cause_action){
+        return ;
+    }
+    if(cause_action->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "cause_action_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -86,6 +100,9 @@ cause_action_t *cause_action_parseFromJSON(cJSON *cause_actionJSON){
 
     // cause_action->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(cause_actionJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -95,6 +112,9 @@ cause_action_t *cause_action_parseFromJSON(cJSON *cause_actionJSON){
 
     // cause_action->causes
     cJSON *causes = cJSON_GetObjectItemCaseSensitive(cause_actionJSON, "causes");
+    if (cJSON_IsNull(causes)) {
+        causes = NULL;
+    }
     if (causes) { 
     cJSON *causes_local_nonprimitive = NULL;
     if(!cJSON_IsArray(causes)){
@@ -115,7 +135,7 @@ cause_action_t *cause_action_parseFromJSON(cJSON *cause_actionJSON){
     }
 
 
-    cause_action_local_var = cause_action_create (
+    cause_action_local_var = cause_action_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         causes ? causesList : NULL
         );

@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * DefaultCrumbIssuer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class DefaultCrumbIssuer {
 
   private String propertyClass;
@@ -35,7 +35,7 @@ public class DefaultCrumbIssuer {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -55,7 +55,7 @@ public class DefaultCrumbIssuer {
   /**
    * Get crumb
    * @return crumb
-  */
+   */
   
   @Schema(name = "crumb", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("crumb")
@@ -75,7 +75,7 @@ public class DefaultCrumbIssuer {
   /**
    * Get crumbRequestField
    * @return crumbRequestField
-  */
+   */
   
   @Schema(name = "crumbRequestField", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("crumbRequestField")

@@ -49,7 +49,7 @@ data class GithubContent(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("base64Data") val base64Data: kotlin.String? = null
-) {
+    ) {
 
 }
 

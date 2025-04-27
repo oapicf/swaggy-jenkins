@@ -60,5 +60,8 @@ data class Pipeline (
     @Json(name = "latestRun")
     val latestRun: PipelinelatestRun? = null
 
-)
+) {
+
+
+}
 

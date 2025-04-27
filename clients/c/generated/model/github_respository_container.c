@@ -5,7 +5,7 @@
 
 
 
-github_respository_container_t *github_respository_container_create(
+static github_respository_container_t *github_respository_container_create_internal(
     char *_class,
     github_respository_containerlinks_t *_links,
     github_repositories_t *repositories
@@ -18,12 +18,28 @@ github_respository_container_t *github_respository_container_create(
     github_respository_container_local_var->_links = _links;
     github_respository_container_local_var->repositories = repositories;
 
+    github_respository_container_local_var->_library_owned = 1;
     return github_respository_container_local_var;
 }
 
+__attribute__((deprecated)) github_respository_container_t *github_respository_container_create(
+    char *_class,
+    github_respository_containerlinks_t *_links,
+    github_repositories_t *repositories
+    ) {
+    return github_respository_container_create_internal (
+        _class,
+        _links,
+        repositories
+        );
+}
 
 void github_respository_container_free(github_respository_container_t *github_respository_container) {
     if(NULL == github_respository_container){
+        return ;
+    }
+    if(github_respository_container->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_respository_container_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -98,6 +114,9 @@ github_respository_container_t *github_respository_container_parseFromJSON(cJSON
 
     // github_respository_container->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_respository_containerJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -107,18 +126,24 @@ github_respository_container_t *github_respository_container_parseFromJSON(cJSON
 
     // github_respository_container->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(github_respository_containerJSON, "_links");
+    if (cJSON_IsNull(_links)) {
+        _links = NULL;
+    }
     if (_links) { 
     _links_local_nonprim = github_respository_containerlinks_parseFromJSON(_links); //nonprimitive
     }
 
     // github_respository_container->repositories
     cJSON *repositories = cJSON_GetObjectItemCaseSensitive(github_respository_containerJSON, "repositories");
+    if (cJSON_IsNull(repositories)) {
+        repositories = NULL;
+    }
     if (repositories) { 
     repositories_local_nonprim = github_repositories_parseFromJSON(repositories); //nonprimitive
     }
 
 
-    github_respository_container_local_var = github_respository_container_create (
+    github_respository_container_local_var = github_respository_container_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         repositories ? repositories_local_nonprim : NULL

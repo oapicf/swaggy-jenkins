@@ -21,11 +21,11 @@ import javax.annotation.Generated;
  * ClassesByClass
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ClassesByClass {
 
   @Valid
-  private List<String> classes;
+  private List<String> classes = new ArrayList<>();
 
   private String propertyClass;
 
@@ -45,7 +45,7 @@ public class ClassesByClass {
   /**
    * Get classes
    * @return classes
-  */
+   */
   
   @Schema(name = "classes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("classes")
@@ -65,7 +65,7 @@ public class ClassesByClass {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

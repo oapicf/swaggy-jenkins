@@ -22,7 +22,7 @@ public class PipelineRunNode  {
   private Integer durationInMillis;
 
   @ApiModelProperty(value = "")
-  private List<PipelineRunNodeedges> edges;
+  private List<PipelineRunNodeedges> edges = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private String id;

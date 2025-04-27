@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.GithubContent;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -19,12 +20,12 @@ import javax.annotation.Generated;
  * GithubFile
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubFile {
 
-  private GithubContent content;
+  private @Nullable GithubContent content;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public GithubFile content(GithubContent content) {
     this.content = content;
@@ -34,7 +35,7 @@ public class GithubFile {
   /**
    * Get content
    * @return content
-  */
+   */
   @Valid 
   @Schema(name = "content", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("content")
@@ -54,7 +55,7 @@ public class GithubFile {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

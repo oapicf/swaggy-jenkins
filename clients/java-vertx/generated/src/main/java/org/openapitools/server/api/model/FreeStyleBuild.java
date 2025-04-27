@@ -15,7 +15,7 @@ public class FreeStyleBuild   {
   private String propertyClass;
   private Integer number;
   private String url;
-  private List<CauseAction> actions;
+  private List<CauseAction> actions = new ArrayList<>();
   private Boolean building;
   private String description;
   private String displayName;

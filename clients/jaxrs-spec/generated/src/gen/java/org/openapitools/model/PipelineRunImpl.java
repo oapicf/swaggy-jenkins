@@ -16,23 +16,26 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineRunImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineRunImpl   {
-  private @Valid String propertyClass;
-  private @Valid PipelineRunImpllinks links;
-  private @Valid Integer durationInMillis;
-  private @Valid String enQueueTime;
-  private @Valid String endTime;
-  private @Valid Integer estimatedDurationInMillis;
-  private @Valid String id;
-  private @Valid String organization;
-  private @Valid String pipeline;
-  private @Valid String result;
-  private @Valid String runSummary;
-  private @Valid String startTime;
-  private @Valid String state;
-  private @Valid String type;
-  private @Valid String commitId;
+  private String propertyClass;
+  private PipelineRunImpllinks links;
+  private Integer durationInMillis;
+  private String enQueueTime;
+  private String endTime;
+  private Integer estimatedDurationInMillis;
+  private String id;
+  private String organization;
+  private String pipeline;
+  private String result;
+  private String runSummary;
+  private String startTime;
+  private String state;
+  private String type;
+  private String commitId;
+
+  public PipelineRunImpl() {
+  }
 
   /**
    **/
@@ -63,7 +66,7 @@ public class PipelineRunImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public PipelineRunImpllinks getLinks() {
+  @Valid public PipelineRunImpllinks getLinks() {
     return links;
   }
 

@@ -25,7 +25,7 @@ public class PipelineRunNode   {
 
   private Integer durationInMillis;
 
-  private List<@Valid PipelineRunNodeedges> edges;
+  private List<@Valid PipelineRunNodeedges> edges = new ArrayList<>();
 
   private String id;
 

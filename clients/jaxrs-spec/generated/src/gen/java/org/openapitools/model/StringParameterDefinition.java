@@ -16,13 +16,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("StringParameterDefinition")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class StringParameterDefinition   {
-  private @Valid String propertyClass;
-  private @Valid StringParameterValue defaultParameterValue;
-  private @Valid String description;
-  private @Valid String name;
-  private @Valid String type;
+  private String propertyClass;
+  private StringParameterValue defaultParameterValue;
+  private String description;
+  private String name;
+  private String type;
+
+  public StringParameterDefinition() {
+  }
 
   /**
    **/
@@ -53,7 +56,7 @@ public class StringParameterDefinition   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("defaultParameterValue")
-  public StringParameterValue getDefaultParameterValue() {
+  @Valid public StringParameterValue getDefaultParameterValue() {
     return defaultParameterValue;
   }
 

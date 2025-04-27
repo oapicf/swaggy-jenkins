@@ -3,7 +3,7 @@ Swaggy Jenkins
 
 Jenkins API clients generated from Swagger / Open API specification
 
-API version: 2.0.1-pre.0
+API version: 3.0.2-pre.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -493,10 +493,10 @@ func (a *BlueOceanAPIService) GetJsonWebTokenExecute(r ApiGetJsonWebTokenRequest
 	localVarFormParams := url.Values{}
 
 	if r.expiryTimeInMins != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expiryTimeInMins", r.expiryTimeInMins, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expiryTimeInMins", r.expiryTimeInMins, "form", "")
 	}
 	if r.maxExpiryTimeInMins != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "maxExpiryTimeInMins", r.maxExpiryTimeInMins, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "maxExpiryTimeInMins", r.maxExpiryTimeInMins, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1809,10 +1809,10 @@ func (a *BlueOceanAPIService) GetPipelineRunLogExecute(r ApiGetPipelineRunLogReq
 	localVarFormParams := url.Values{}
 
 	if r.start != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
 	}
 	if r.download != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "download", r.download, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "download", r.download, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2843,13 +2843,13 @@ func (a *BlueOceanAPIService) GetSCMOrganisationRepositoriesExecute(r ApiGetSCMO
 	localVarFormParams := url.Values{}
 
 	if r.credentialId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "credentialId", r.credentialId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "credentialId", r.credentialId, "form", "")
 	}
 	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageSize", r.pageSize, "form", "")
 	}
 	if r.pageNumber != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNumber", r.pageNumber, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pageNumber", r.pageNumber, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2974,7 +2974,7 @@ func (a *BlueOceanAPIService) GetSCMOrganisationRepositoryExecute(r ApiGetSCMOrg
 	localVarFormParams := url.Values{}
 
 	if r.credentialId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "credentialId", r.credentialId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "credentialId", r.credentialId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3091,7 +3091,7 @@ func (a *BlueOceanAPIService) GetSCMOrganisationsExecute(r ApiGetSCMOrganisation
 	localVarFormParams := url.Values{}
 
 	if r.credentialId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "credentialId", r.credentialId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "credentialId", r.credentialId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3869,10 +3869,10 @@ func (a *BlueOceanAPIService) PutPipelineRunExecute(r ApiPutPipelineRunRequest) 
 	localVarFormParams := url.Values{}
 
 	if r.blocking != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "blocking", r.blocking, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "blocking", r.blocking, "form", "")
 	}
 	if r.timeOutInSecs != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "timeOutInSecs", r.timeOutInSecs, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "timeOutInSecs", r.timeOutInSecs, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3983,7 +3983,7 @@ func (a *BlueOceanAPIService) SearchExecute(r ApiSearchRequest) (string, *http.R
 		return localVarReturnValue, nil, reportError("q is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4093,7 +4093,7 @@ func (a *BlueOceanAPIService) SearchClassesExecute(r ApiSearchClassesRequest) (s
 		return localVarReturnValue, nil, reportError("q is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

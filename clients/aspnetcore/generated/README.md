@@ -1,4 +1,4 @@
-# Org.OpenAPITools - ASP.NET Core 3.1 Server
+# Org.OpenAPITools - ASP.NET Core 8.0 Server
 
 Jenkins API clients generated from Swagger / Open API specification
 

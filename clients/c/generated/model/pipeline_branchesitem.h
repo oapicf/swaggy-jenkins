@@ -31,9 +31,10 @@ typedef struct pipeline_branchesitem_t {
     int total_number_of_pull_requests; //numeric
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_branchesitem_t;
 
-pipeline_branchesitem_t *pipeline_branchesitem_create(
+__attribute__((deprecated)) pipeline_branchesitem_t *pipeline_branchesitem_create(
     char *display_name,
     int estimated_duration_in_millis,
     char *name,

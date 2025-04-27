@@ -16,7 +16,7 @@ public class PipelineActivity  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private List<PipelineActivityartifacts> artifacts;
+  private List<PipelineActivityartifacts> artifacts = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private Integer durationInMillis;

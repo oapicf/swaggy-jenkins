@@ -101,5 +101,8 @@ data class FreeStyleBuild (
     @Json(name = "changeSet")
     val changeSet: EmptyChangeLogSet? = null
 
-)
+) {
+
+
+}
 

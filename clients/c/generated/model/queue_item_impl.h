@@ -25,9 +25,10 @@ typedef struct queue_item_impl_t {
     char *pipeline; // string
     int queued_time; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } queue_item_impl_t;
 
-queue_item_impl_t *queue_item_impl_create(
+__attribute__((deprecated)) queue_item_impl_t *queue_item_impl_create(
     char *_class,
     int expected_build_number,
     char *id,

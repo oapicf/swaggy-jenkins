@@ -19,13 +19,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ListView")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ListView   {
-  private @Valid String propertyClass;
-  private @Valid String description;
-  private @Valid List<@Valid FreeStyleProject> jobs;
-  private @Valid String name;
-  private @Valid String url;
+  private String propertyClass;
+  private String description;
+  private @Valid List<@Valid FreeStyleProject> jobs = new ArrayList<>();
+  private String name;
+  private String url;
+
+  public ListView() {
+  }
 
   /**
    **/
@@ -75,7 +78,7 @@ public class ListView   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("jobs")
-  public List<FreeStyleProject> getJobs() {
+  @Valid public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 

@@ -27,7 +27,7 @@ print(HudsonMasterComputerexecutors.to_json())
 # convert the object into a dict
 hudson_master_computerexecutors_dict = hudson_master_computerexecutors_instance.to_dict()
 # create an instance of HudsonMasterComputerexecutors from a dict
-hudson_master_computerexecutors_form_dict = hudson_master_computerexecutors.from_dict(hudson_master_computerexecutors_dict)
+hudson_master_computerexecutors_from_dict = HudsonMasterComputerexecutors.from_dict(hudson_master_computerexecutors_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

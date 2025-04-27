@@ -91,5 +91,8 @@ data class Hudson (
     @Json(name = "views")
     val views: kotlin.collections.List<AllView>? = null
 
-)
+) {
+
+
+}
 

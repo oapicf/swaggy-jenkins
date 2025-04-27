@@ -12,7 +12,7 @@ import org.openapitools.vertxweb.server.model.CauseUserIdCause;
 public class CauseAction   {
   
   private String propertyClass;
-  private List<CauseUserIdCause> causes;
+  private List<CauseUserIdCause> causes = new ArrayList<>();
 
   public CauseAction () {
 

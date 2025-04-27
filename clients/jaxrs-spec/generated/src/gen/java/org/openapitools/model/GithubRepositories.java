@@ -20,14 +20,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubRepositories")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubRepositories   {
-  private @Valid String propertyClass;
-  private @Valid GithubRepositorieslinks links;
-  private @Valid List<@Valid GithubRepository> items;
-  private @Valid Integer lastPage;
-  private @Valid Integer nextPage;
-  private @Valid Integer pageSize;
+  private String propertyClass;
+  private GithubRepositorieslinks links;
+  private @Valid List<@Valid GithubRepository> items = new ArrayList<>();
+  private Integer lastPage;
+  private Integer nextPage;
+  private Integer pageSize;
+
+  public GithubRepositories() {
+  }
 
   /**
    **/
@@ -58,7 +61,7 @@ public class GithubRepositories   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public GithubRepositorieslinks getLinks() {
+  @Valid public GithubRepositorieslinks getLinks() {
     return links;
   }
 
@@ -77,7 +80,7 @@ public class GithubRepositories   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("items")
-  public List<GithubRepository> getItems() {
+  @Valid public List<@Valid GithubRepository> getItems() {
     return items;
   }
 

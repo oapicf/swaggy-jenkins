@@ -16,17 +16,20 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineImpl   {
-  private @Valid String propertyClass;
-  private @Valid String displayName;
-  private @Valid Integer estimatedDurationInMillis;
-  private @Valid String fullName;
-  private @Valid String latestRun;
-  private @Valid String name;
-  private @Valid String organization;
-  private @Valid Integer weatherScore;
-  private @Valid PipelineImpllinks links;
+  private String propertyClass;
+  private String displayName;
+  private Integer estimatedDurationInMillis;
+  private String fullName;
+  private String latestRun;
+  private String name;
+  private String organization;
+  private Integer weatherScore;
+  private PipelineImpllinks links;
+
+  public PipelineImpl() {
+  }
 
   /**
    **/
@@ -190,7 +193,7 @@ public class PipelineImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public PipelineImpllinks getLinks() {
+  @Valid public PipelineImpllinks getLinks() {
     return links;
   }
 

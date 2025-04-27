@@ -14,7 +14,7 @@ public class PipelineRunNode   {
   private String propertyClass;
   private String displayName;
   private Integer durationInMillis;
-  private List<PipelineRunNodeedges> edges;
+  private List<PipelineRunNodeedges> edges = new ArrayList<>();
   private String id;
   private String result;
   private String startTime;

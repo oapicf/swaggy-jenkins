@@ -24,7 +24,7 @@ public class Hudson   {
   
   private String propertyClass;
 
-  private List<@Valid HudsonassignedLabels> assignedLabels;
+  private List<@Valid HudsonassignedLabels> assignedLabels = new ArrayList<>();
 
   private String mode;
 
@@ -36,7 +36,7 @@ public class Hudson   {
 
   private String description;
 
-  private List<@Valid FreeStyleProject> jobs;
+  private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
 
   private AllView primaryView;
 
@@ -50,7 +50,7 @@ public class Hudson   {
 
   private Boolean useSecurity;
 
-  private List<@Valid AllView> views;
+  private List<@Valid AllView> views = new ArrayList<>();
 
   /**
    **/

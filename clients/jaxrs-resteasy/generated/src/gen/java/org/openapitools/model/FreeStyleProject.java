@@ -16,25 +16,24 @@ import org.openapitools.model.NullSCM;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
-import javax.validation.Valid;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2024-03-15T14:15:08.491800734Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2025-04-27T08:09:41.877410809Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class FreeStyleProject   {
   
   private String propertyClass;
   private String name;
   private String url;
   private String color;
-  private List<@Valid FreeStyleProjectactions> actions;
+  private List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
   private String description;
   private String displayName;
   private String displayNameOrNull;
   private String fullDisplayName;
   private String fullName;
   private Boolean buildable;
-  private List<@Valid FreeStyleBuild> builds;
+  private List<@Valid FreeStyleBuild> builds = new ArrayList<>();
   private FreeStyleBuild firstBuild;
-  private List<@Valid FreeStyleProjecthealthReport> healthReport;
+  private List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
   private Boolean inQueue;
   private Boolean keepDependencies;
   private FreeStyleBuild lastBuild;

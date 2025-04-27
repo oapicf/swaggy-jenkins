@@ -83,5 +83,8 @@ data class BranchImpl (
     @Json(name = "latestRun")
     val latestRun: PipelineRunImpl? = null
 
-)
+) {
+
+
+}
 

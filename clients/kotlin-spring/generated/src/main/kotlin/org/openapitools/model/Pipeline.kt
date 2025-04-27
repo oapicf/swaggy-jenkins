@@ -51,7 +51,7 @@ data class Pipeline(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("latestRun") val latestRun: PipelinelatestRun? = null
-) {
+    ) {
 
 }
 

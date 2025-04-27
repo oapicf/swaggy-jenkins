@@ -23,7 +23,7 @@ public class FreeStyleBuild  {
   private String url;
 
   @ApiModelProperty(value = "")
-  private List<CauseAction> actions;
+  private List<CauseAction> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private Boolean building;

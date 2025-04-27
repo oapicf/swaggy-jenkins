@@ -57,5 +57,8 @@ data class InputStepImpl (
     @Json(name = "submitter")
     val submitter: kotlin.String? = null
 
-)
+) {
+
+
+}
 

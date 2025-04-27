@@ -3,7 +3,7 @@ Swaggy Jenkins
 
 Jenkins API clients generated from Swagger / Open API specification
 
-API version: 2.0.1-pre.0
+API version: 3.0.2-pre.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -79,7 +79,7 @@ func (a *RemoteAccessAPIService) GetComputerExecute(r ApiGetComputerRequest) (*C
 		return localVarReturnValue, nil, reportError("depth is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "depth", r.depth, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "depth", r.depth, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -603,7 +603,7 @@ func (a *RemoteAccessAPIService) GetJobProgressiveTextExecute(r ApiGetJobProgres
 		return nil, reportError("start is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1233,12 +1233,12 @@ func (a *RemoteAccessAPIService) PostCreateItemExecute(r ApiPostCreateItemReques
 		return nil, reportError("name is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	if r.from != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
 	}
 	if r.mode != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mode", r.mode, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mode", r.mode, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -1258,10 +1258,10 @@ func (a *RemoteAccessAPIService) PostCreateItemExecute(r ApiPostCreateItemReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.jenkinsCrumb != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "simple", "")
 	}
 	if r.contentType != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Content-Type", r.contentType, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Content-Type", r.contentType, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.body
@@ -1378,7 +1378,7 @@ func (a *RemoteAccessAPIService) PostCreateViewExecute(r ApiPostCreateViewReques
 		return nil, reportError("name is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "name", r.name, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -1397,10 +1397,10 @@ func (a *RemoteAccessAPIService) PostCreateViewExecute(r ApiPostCreateViewReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.jenkinsCrumb != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "simple", "")
 	}
 	if r.contentType != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Content-Type", r.contentType, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Content-Type", r.contentType, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.body
@@ -1512,9 +1512,9 @@ func (a *RemoteAccessAPIService) PostJobBuildExecute(r ApiPostJobBuildRequest) (
 		return nil, reportError("json is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "json", r.json, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "json", r.json, "form", "")
 	if r.token != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "token", r.token, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "token", r.token, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1534,7 +1534,7 @@ func (a *RemoteAccessAPIService) PostJobBuildExecute(r ApiPostJobBuildRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.jenkinsCrumb != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1646,7 +1646,7 @@ func (a *RemoteAccessAPIService) PostJobConfigExecute(r ApiPostJobConfigRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.jenkinsCrumb != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.body
@@ -1761,7 +1761,7 @@ func (a *RemoteAccessAPIService) PostJobDeleteExecute(r ApiPostJobDeleteRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.jenkinsCrumb != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1863,7 +1863,7 @@ func (a *RemoteAccessAPIService) PostJobDisableExecute(r ApiPostJobDisableReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.jenkinsCrumb != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -1965,7 +1965,7 @@ func (a *RemoteAccessAPIService) PostJobEnableExecute(r ApiPostJobEnableRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.jenkinsCrumb != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2067,7 +2067,7 @@ func (a *RemoteAccessAPIService) PostJobLastBuildStopExecute(r ApiPostJobLastBui
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.jenkinsCrumb != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -2179,7 +2179,7 @@ func (a *RemoteAccessAPIService) PostViewConfigExecute(r ApiPostViewConfigReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.jenkinsCrumb != nil {
-		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "")
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "Jenkins-Crumb", r.jenkinsCrumb, "simple", "")
 	}
 	// body params
 	localVarPostBody = r.body

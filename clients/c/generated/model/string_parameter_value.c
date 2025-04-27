@@ -5,7 +5,7 @@
 
 
 
-string_parameter_value_t *string_parameter_value_create(
+static string_parameter_value_t *string_parameter_value_create_internal(
     char *_class,
     char *name,
     char *value
@@ -18,12 +18,28 @@ string_parameter_value_t *string_parameter_value_create(
     string_parameter_value_local_var->name = name;
     string_parameter_value_local_var->value = value;
 
+    string_parameter_value_local_var->_library_owned = 1;
     return string_parameter_value_local_var;
 }
 
+__attribute__((deprecated)) string_parameter_value_t *string_parameter_value_create(
+    char *_class,
+    char *name,
+    char *value
+    ) {
+    return string_parameter_value_create_internal (
+        _class,
+        name,
+        value
+        );
+}
 
 void string_parameter_value_free(string_parameter_value_t *string_parameter_value) {
     if(NULL == string_parameter_value){
+        return ;
+    }
+    if(string_parameter_value->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "string_parameter_value_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -82,6 +98,9 @@ string_parameter_value_t *string_parameter_value_parseFromJSON(cJSON *string_par
 
     // string_parameter_value->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(string_parameter_valueJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -91,6 +110,9 @@ string_parameter_value_t *string_parameter_value_parseFromJSON(cJSON *string_par
 
     // string_parameter_value->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(string_parameter_valueJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -100,6 +122,9 @@ string_parameter_value_t *string_parameter_value_parseFromJSON(cJSON *string_par
 
     // string_parameter_value->value
     cJSON *value = cJSON_GetObjectItemCaseSensitive(string_parameter_valueJSON, "value");
+    if (cJSON_IsNull(value)) {
+        value = NULL;
+    }
     if (value) { 
     if(!cJSON_IsString(value) && !cJSON_IsNull(value))
     {
@@ -108,7 +133,7 @@ string_parameter_value_t *string_parameter_value_parseFromJSON(cJSON *string_par
     }
 
 
-    string_parameter_value_local_var = string_parameter_value_create (
+    string_parameter_value_local_var = string_parameter_value_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
         value && !cJSON_IsNull(value) ? strdup(value->valuestring) : NULL

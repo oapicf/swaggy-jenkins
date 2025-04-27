@@ -21,9 +21,10 @@ typedef struct label1_t label1_t;
 typedef struct label1_t {
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } label1_t;
 
-label1_t *label1_create(
+__attribute__((deprecated)) label1_t *label1_create(
     char *_class
 );
 

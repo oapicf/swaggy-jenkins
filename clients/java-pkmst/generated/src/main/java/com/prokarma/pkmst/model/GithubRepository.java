@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  * GithubRepository
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubRepository   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -47,10 +47,10 @@ public class GithubRepository   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -65,10 +65,10 @@ public class GithubRepository   {
     return this;
   }
 
-   /**
+  /**
    * Get links
    * @return links
-  **/
+   */
   @ApiModelProperty(value = "")
   public GithubRepositorylinks getLinks() {
     return links;
@@ -83,10 +83,10 @@ public class GithubRepository   {
     return this;
   }
 
-   /**
+  /**
    * Get defaultBranch
    * @return defaultBranch
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDefaultBranch() {
     return defaultBranch;
@@ -101,10 +101,10 @@ public class GithubRepository   {
     return this;
   }
 
-   /**
+  /**
    * Get description
    * @return description
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDescription() {
     return description;
@@ -119,10 +119,10 @@ public class GithubRepository   {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getName() {
     return name;
@@ -137,10 +137,10 @@ public class GithubRepository   {
     return this;
   }
 
-   /**
+  /**
    * Get permissions
    * @return permissions
-  **/
+   */
   @ApiModelProperty(value = "")
   public GithubRepositorypermissions getPermissions() {
     return permissions;
@@ -155,10 +155,10 @@ public class GithubRepository   {
     return this;
   }
 
-   /**
+  /**
    * Get _private
    * @return _private
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getPrivate() {
     return _private;
@@ -173,10 +173,10 @@ public class GithubRepository   {
     return this;
   }
 
-   /**
+  /**
    * Get fullName
    * @return fullName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getFullName() {
     return fullName;

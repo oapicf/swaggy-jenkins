@@ -21,9 +21,10 @@ typedef struct unlabeled_load_statistics_t unlabeled_load_statistics_t;
 typedef struct unlabeled_load_statistics_t {
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } unlabeled_load_statistics_t;
 
-unlabeled_load_statistics_t *unlabeled_load_statistics_create(
+__attribute__((deprecated)) unlabeled_load_statistics_t *unlabeled_load_statistics_create(
     char *_class
 );
 

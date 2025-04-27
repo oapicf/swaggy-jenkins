@@ -19,8 +19,7 @@ ExtensionClassContainerImpl1map <- R6::R6Class(
     `io.jenkins.blueocean.service.embedded.rest.PipelineImpl` = NULL,
     `io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl` = NULL,
     `_class` = NULL,
-    #' Initialize a new ExtensionClassContainerImpl1map class.
-    #'
+
     #' @description
     #' Initialize a new ExtensionClassContainerImpl1map class.
     #'
@@ -28,7 +27,6 @@ ExtensionClassContainerImpl1map <- R6::R6Class(
     #' @param io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl
     #' @param _class _class
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`io.jenkins.blueocean.service.embedded.rest.PipelineImpl` = NULL, `io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl` = NULL, `_class` = NULL, ...) {
       if (!is.null(`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`)) {
         stopifnot(R6::is.R6(`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`))
@@ -45,37 +43,58 @@ ExtensionClassContainerImpl1map <- R6::R6Class(
         self$`_class` <- `_class`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return ExtensionClassContainerImpl1map in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return ExtensionClassContainerImpl1map as a base R list.
+    #' @examples
+    #' # convert array of ExtensionClassContainerImpl1map (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert ExtensionClassContainerImpl1map to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       ExtensionClassContainerImpl1mapObject <- list()
       if (!is.null(self$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`)) {
         ExtensionClassContainerImpl1mapObject[["io.jenkins.blueocean.service.embedded.rest.PipelineImpl"]] <-
-          self$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`$toJSON()
+          self$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`$toSimpleType()
       }
       if (!is.null(self$`io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl`)) {
         ExtensionClassContainerImpl1mapObject[["io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl"]] <-
-          self$`io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl`$toJSON()
+          self$`io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl`$toSimpleType()
       }
       if (!is.null(self$`_class`)) {
         ExtensionClassContainerImpl1mapObject[["_class"]] <-
           self$`_class`
       }
-      ExtensionClassContainerImpl1mapObject
+      return(ExtensionClassContainerImpl1mapObject)
     },
-    #' Deserialize JSON string into an instance of ExtensionClassContainerImpl1map
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of ExtensionClassContainerImpl1map
     #'
     #' @param input_json the JSON input
     #' @return the instance of ExtensionClassContainerImpl1map
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`)) {
@@ -93,51 +112,23 @@ ExtensionClassContainerImpl1map <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return ExtensionClassContainerImpl1map in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`)) {
-          sprintf(
-          '"io.jenkins.blueocean.service.embedded.rest.PipelineImpl":
-          %s
-          ',
-          jsonlite::toJSON(self$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl`)) {
-          sprintf(
-          '"io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl":
-          %s
-          ',
-          jsonlite::toJSON(self$`io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of ExtensionClassContainerImpl1map
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of ExtensionClassContainerImpl1map
     #'
     #' @param input_json the JSON input
     #' @return the instance of ExtensionClassContainerImpl1map
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl` <- ExtensionClassImpl$new()$fromJSON(jsonlite::toJSON(this_object$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`, auto_unbox = TRUE, digits = NA))
@@ -145,53 +136,42 @@ ExtensionClassContainerImpl1map <- R6::R6Class(
       self$`_class` <- this_object$`_class`
       self
     },
-    #' Validate JSON input with respect to ExtensionClassContainerImpl1map
-    #'
+
     #' @description
     #' Validate JSON input with respect to ExtensionClassContainerImpl1map and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of ExtensionClassContainerImpl1map
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

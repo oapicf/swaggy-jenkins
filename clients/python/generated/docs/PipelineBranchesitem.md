@@ -30,7 +30,7 @@ print(PipelineBranchesitem.to_json())
 # convert the object into a dict
 pipeline_branchesitem_dict = pipeline_branchesitem_instance.to_dict()
 # create an instance of PipelineBranchesitem from a dict
-pipeline_branchesitem_form_dict = pipeline_branchesitem.from_dict(pipeline_branchesitem_dict)
+pipeline_branchesitem_from_dict = PipelineBranchesitem.from_dict(pipeline_branchesitem_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

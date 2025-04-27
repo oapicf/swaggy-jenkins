@@ -23,7 +23,7 @@ print(ExtensionClassImpllinks.to_json())
 # convert the object into a dict
 extension_class_impllinks_dict = extension_class_impllinks_instance.to_dict()
 # create an instance of ExtensionClassImpllinks from a dict
-extension_class_impllinks_form_dict = extension_class_impllinks.from_dict(extension_class_impllinks_dict)
+extension_class_impllinks_from_dict = ExtensionClassImpllinks.from_dict(extension_class_impllinks_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

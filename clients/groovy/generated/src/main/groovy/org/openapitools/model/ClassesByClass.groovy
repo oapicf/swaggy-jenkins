@@ -9,7 +9,7 @@ import java.util.Arrays;
 @Canonical
 class ClassesByClass {
     
-    List<String> classes
+    List<String> classes = new ArrayList<>()
     
     String propertyClass
 }

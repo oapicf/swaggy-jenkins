@@ -40,5 +40,8 @@ data class ExtensionClassImpl (
     @Json(name = "classes")
     val classes: kotlin.collections.List<kotlin.String>? = null
 
-)
+) {
+
+
+}
 

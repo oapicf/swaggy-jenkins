@@ -5,7 +5,7 @@
 
 
 
-pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_create(
+static pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_create_internal(
     char *name,
     int size,
     char *url,
@@ -20,12 +20,30 @@ pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_create(
     pipelinelatest_runartifacts_local_var->url = url;
     pipelinelatest_runartifacts_local_var->_class = _class;
 
+    pipelinelatest_runartifacts_local_var->_library_owned = 1;
     return pipelinelatest_runartifacts_local_var;
 }
 
+__attribute__((deprecated)) pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_create(
+    char *name,
+    int size,
+    char *url,
+    char *_class
+    ) {
+    return pipelinelatest_runartifacts_create_internal (
+        name,
+        size,
+        url,
+        _class
+        );
+}
 
 void pipelinelatest_runartifacts_free(pipelinelatest_runartifacts_t *pipelinelatest_runartifacts) {
     if(NULL == pipelinelatest_runartifacts){
+        return ;
+    }
+    if(pipelinelatest_runartifacts->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pipelinelatest_runartifacts_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -92,6 +110,9 @@ pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_parseFromJSON(cJSON *
 
     // pipelinelatest_runartifacts->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(pipelinelatest_runartifactsJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -101,6 +122,9 @@ pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_parseFromJSON(cJSON *
 
     // pipelinelatest_runartifacts->size
     cJSON *size = cJSON_GetObjectItemCaseSensitive(pipelinelatest_runartifactsJSON, "size");
+    if (cJSON_IsNull(size)) {
+        size = NULL;
+    }
     if (size) { 
     if(!cJSON_IsNumber(size))
     {
@@ -110,6 +134,9 @@ pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_parseFromJSON(cJSON *
 
     // pipelinelatest_runartifacts->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(pipelinelatest_runartifactsJSON, "url");
+    if (cJSON_IsNull(url)) {
+        url = NULL;
+    }
     if (url) { 
     if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
@@ -119,6 +146,9 @@ pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_parseFromJSON(cJSON *
 
     // pipelinelatest_runartifacts->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipelinelatest_runartifactsJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -127,7 +157,7 @@ pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_parseFromJSON(cJSON *
     }
 
 
-    pipelinelatest_runartifacts_local_var = pipelinelatest_runartifacts_create (
+    pipelinelatest_runartifacts_local_var = pipelinelatest_runartifacts_create_internal (
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
         size ? size->valuedouble : 0,
         url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,

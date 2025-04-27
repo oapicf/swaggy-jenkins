@@ -41,8 +41,7 @@ MultibranchPipeline <- R6::R6Class(
     `totalNumberOfBranches` = NULL,
     `totalNumberOfPullRequests` = NULL,
     `_class` = NULL,
-    #' Initialize a new MultibranchPipeline class.
-    #'
+
     #' @description
     #' Initialize a new MultibranchPipeline class.
     #'
@@ -61,7 +60,6 @@ MultibranchPipeline <- R6::R6Class(
     #' @param totalNumberOfPullRequests totalNumberOfPullRequests
     #' @param _class _class
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`displayName` = NULL, `estimatedDurationInMillis` = NULL, `latestRun` = NULL, `name` = NULL, `organization` = NULL, `weatherScore` = NULL, `branchNames` = NULL, `numberOfFailingBranches` = NULL, `numberOfFailingPullRequests` = NULL, `numberOfSuccessfulBranches` = NULL, `numberOfSuccessfulPullRequests` = NULL, `totalNumberOfBranches` = NULL, `totalNumberOfPullRequests` = NULL, `_class` = NULL, ...) {
       if (!is.null(`displayName`)) {
         if (!(is.character(`displayName`) && length(`displayName`) == 1)) {
@@ -147,14 +145,37 @@ MultibranchPipeline <- R6::R6Class(
         self$`_class` <- `_class`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return MultibranchPipeline in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return MultibranchPipeline as a base R list.
+    #' @examples
+    #' # convert array of MultibranchPipeline (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert MultibranchPipeline to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       MultibranchPipelineObject <- list()
       if (!is.null(self$`displayName`)) {
         MultibranchPipelineObject[["displayName"]] <-
@@ -212,16 +233,14 @@ MultibranchPipeline <- R6::R6Class(
         MultibranchPipelineObject[["_class"]] <-
           self$`_class`
       }
-      MultibranchPipelineObject
+      return(MultibranchPipelineObject)
     },
-    #' Deserialize JSON string into an instance of MultibranchPipeline
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of MultibranchPipeline
     #'
     #' @param input_json the JSON input
     #' @return the instance of MultibranchPipeline
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`displayName`)) {
@@ -268,139 +287,23 @@ MultibranchPipeline <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return MultibranchPipeline in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`displayName`)) {
-          sprintf(
-          '"displayName":
-            "%s"
-                    ',
-          self$`displayName`
-          )
-        },
-        if (!is.null(self$`estimatedDurationInMillis`)) {
-          sprintf(
-          '"estimatedDurationInMillis":
-            %d
-                    ',
-          self$`estimatedDurationInMillis`
-          )
-        },
-        if (!is.null(self$`latestRun`)) {
-          sprintf(
-          '"latestRun":
-            "%s"
-                    ',
-          self$`latestRun`
-          )
-        },
-        if (!is.null(self$`name`)) {
-          sprintf(
-          '"name":
-            "%s"
-                    ',
-          self$`name`
-          )
-        },
-        if (!is.null(self$`organization`)) {
-          sprintf(
-          '"organization":
-            "%s"
-                    ',
-          self$`organization`
-          )
-        },
-        if (!is.null(self$`weatherScore`)) {
-          sprintf(
-          '"weatherScore":
-            %d
-                    ',
-          self$`weatherScore`
-          )
-        },
-        if (!is.null(self$`branchNames`)) {
-          sprintf(
-          '"branchNames":
-             [%s]
-          ',
-          paste(unlist(lapply(self$`branchNames`, function(x) paste0('"', x, '"'))), collapse = ",")
-          )
-        },
-        if (!is.null(self$`numberOfFailingBranches`)) {
-          sprintf(
-          '"numberOfFailingBranches":
-            %d
-                    ',
-          self$`numberOfFailingBranches`
-          )
-        },
-        if (!is.null(self$`numberOfFailingPullRequests`)) {
-          sprintf(
-          '"numberOfFailingPullRequests":
-            %d
-                    ',
-          self$`numberOfFailingPullRequests`
-          )
-        },
-        if (!is.null(self$`numberOfSuccessfulBranches`)) {
-          sprintf(
-          '"numberOfSuccessfulBranches":
-            %d
-                    ',
-          self$`numberOfSuccessfulBranches`
-          )
-        },
-        if (!is.null(self$`numberOfSuccessfulPullRequests`)) {
-          sprintf(
-          '"numberOfSuccessfulPullRequests":
-            %d
-                    ',
-          self$`numberOfSuccessfulPullRequests`
-          )
-        },
-        if (!is.null(self$`totalNumberOfBranches`)) {
-          sprintf(
-          '"totalNumberOfBranches":
-            %d
-                    ',
-          self$`totalNumberOfBranches`
-          )
-        },
-        if (!is.null(self$`totalNumberOfPullRequests`)) {
-          sprintf(
-          '"totalNumberOfPullRequests":
-            %d
-                    ',
-          self$`totalNumberOfPullRequests`
-          )
-        },
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of MultibranchPipeline
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of MultibranchPipeline
     #'
     #' @param input_json the JSON input
     #' @return the instance of MultibranchPipeline
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`displayName` <- this_object$`displayName`
@@ -419,53 +322,42 @@ MultibranchPipeline <- R6::R6Class(
       self$`_class` <- this_object$`_class`
       self
     },
-    #' Validate JSON input with respect to MultibranchPipeline
-    #'
+
     #' @description
     #' Validate JSON input with respect to MultibranchPipeline and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of MultibranchPipeline
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

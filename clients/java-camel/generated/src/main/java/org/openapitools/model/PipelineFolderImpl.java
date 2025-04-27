@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * PipelineFolderImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineFolderImpl {
 
   private String propertyClass;
@@ -43,7 +43,7 @@ public class PipelineFolderImpl {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -63,7 +63,7 @@ public class PipelineFolderImpl {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -83,7 +83,7 @@ public class PipelineFolderImpl {
   /**
    * Get fullName
    * @return fullName
-  */
+   */
   
   @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullName")
@@ -103,7 +103,7 @@ public class PipelineFolderImpl {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -123,7 +123,7 @@ public class PipelineFolderImpl {
   /**
    * Get organization
    * @return organization
-  */
+   */
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
@@ -143,7 +143,7 @@ public class PipelineFolderImpl {
   /**
    * Get numberOfFolders
    * @return numberOfFolders
-  */
+   */
   
   @Schema(name = "numberOfFolders", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numberOfFolders")
@@ -163,7 +163,7 @@ public class PipelineFolderImpl {
   /**
    * Get numberOfPipelines
    * @return numberOfPipelines
-  */
+   */
   
   @Schema(name = "numberOfPipelines", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numberOfPipelines")

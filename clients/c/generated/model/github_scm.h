@@ -26,9 +26,10 @@ typedef struct github_scm_t {
     char *id; // string
     char *uri; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } github_scm_t;
 
-github_scm_t *github_scm_create(
+__attribute__((deprecated)) github_scm_t *github_scm_create(
     char *_class,
     github_scmlinks_t *_links,
     char *credential_id,

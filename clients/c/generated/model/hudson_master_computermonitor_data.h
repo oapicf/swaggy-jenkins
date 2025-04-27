@@ -31,9 +31,10 @@ typedef struct hudson_master_computermonitor_data_t {
     struct clock_difference_t *hudson_node_monitors_clock_monitor; //model
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } hudson_master_computermonitor_data_t;
 
-hudson_master_computermonitor_data_t *hudson_master_computermonitor_data_create(
+__attribute__((deprecated)) hudson_master_computermonitor_data_t *hudson_master_computermonitor_data_create(
     swap_space_monitor_memory_usage2_t *hudson_node_monitors_swap_space_monitor,
     disk_space_monitor_descriptor_disk_space_t *hudson_node_monitors_temporary_space_monitor,
     disk_space_monitor_descriptor_disk_space_t *hudson_node_monitors_disk_space_monitor,

@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * ListView
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ListView {
 
   private String propertyClass;
@@ -30,7 +30,7 @@ public class ListView {
   private String description;
 
   @Valid
-  private List<@Valid FreeStyleProject> jobs;
+  private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
 
   private String name;
 
@@ -44,7 +44,7 @@ public class ListView {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -64,7 +64,7 @@ public class ListView {
   /**
    * Get description
    * @return description
-  */
+   */
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
@@ -92,7 +92,7 @@ public class ListView {
   /**
    * Get jobs
    * @return jobs
-  */
+   */
   @Valid 
   @Schema(name = "jobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("jobs")
@@ -112,7 +112,7 @@ public class ListView {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -132,7 +132,7 @@ public class ListView {
   /**
    * Get url
    * @return url
-  */
+   */
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")

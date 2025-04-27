@@ -748,9 +748,6 @@ use crate::{models, types::*};
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct AllView {
@@ -767,6 +764,9 @@ pub struct AllView {
     pub url: Option<String>,
 
 }
+
+
+
 
 
 impl AllView {
@@ -911,9 +911,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<AllView> {
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct BranchImpl {
@@ -970,6 +967,9 @@ pub struct BranchImpl {
     pub latest_run: Option<models::PipelineRunImpl>,
 
 }
+
+
+
 
 
 impl BranchImpl {
@@ -1219,9 +1219,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<BranchImpl> 
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct BranchImpllinks {
@@ -1246,6 +1243,9 @@ pub struct BranchImpllinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl BranchImpllinks {
@@ -1392,9 +1392,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<BranchImplli
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct BranchImplpermissions {
@@ -1419,6 +1416,9 @@ pub struct BranchImplpermissions {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl BranchImplpermissions {
@@ -1589,9 +1589,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<BranchImplpe
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct CauseAction {
@@ -1604,6 +1601,9 @@ pub struct CauseAction {
     pub causes: Option<Vec<models::CauseUserIdCause>>,
 
 }
+
+
+
 
 
 impl CauseAction {
@@ -1728,9 +1728,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<CauseAction>
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct CauseUserIdCause {
@@ -1751,6 +1748,9 @@ pub struct CauseUserIdCause {
     pub user_name: Option<String>,
 
 }
+
+
+
 
 
 impl CauseUserIdCause {
@@ -1908,9 +1908,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<CauseUserIdC
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ClassesByClass {
@@ -1923,6 +1920,9 @@ pub struct ClassesByClass {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl ClassesByClass {
@@ -2053,9 +2053,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ClassesByCla
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ClockDifference {
@@ -2068,6 +2065,9 @@ pub struct ClockDifference {
     pub diff: Option<i32>,
 
 }
+
+
+
 
 
 impl ClockDifference {
@@ -2199,9 +2199,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ClockDiffere
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ComputerSet {
@@ -2226,6 +2223,9 @@ pub struct ComputerSet {
     pub total_executors: Option<i32>,
 
 }
+
+
+
 
 
 impl ComputerSet {
@@ -2389,9 +2389,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ComputerSet>
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct DefaultCrumbIssuer {
@@ -2408,6 +2405,9 @@ pub struct DefaultCrumbIssuer {
     pub crumb_request_field: Option<String>,
 
 }
+
+
+
 
 
 impl DefaultCrumbIssuer {
@@ -2552,9 +2552,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<DefaultCrumb
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct DiskSpaceMonitorDescriptorDiskSpace {
@@ -2575,6 +2572,9 @@ pub struct DiskSpaceMonitorDescriptorDiskSpace {
     pub size: Option<i32>,
 
 }
+
+
+
 
 
 impl DiskSpaceMonitorDescriptorDiskSpace {
@@ -2732,9 +2732,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<DiskSpaceMon
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct EmptyChangeLogSet {
@@ -2747,6 +2744,9 @@ pub struct EmptyChangeLogSet {
     pub kind: Option<String>,
 
 }
+
+
+
 
 
 impl EmptyChangeLogSet {
@@ -2878,9 +2878,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<EmptyChangeL
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassContainerImpl1 {
@@ -2897,6 +2894,9 @@ pub struct ExtensionClassContainerImpl1 {
     pub map: Option<models::ExtensionClassContainerImpl1map>,
 
 }
+
+
+
 
 
 impl ExtensionClassContainerImpl1 {
@@ -3029,9 +3029,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassContainerImpl1links {
@@ -3044,6 +3041,9 @@ pub struct ExtensionClassContainerImpl1links {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl ExtensionClassContainerImpl1links {
@@ -3169,9 +3169,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassContainerImpl1map {
@@ -3188,6 +3185,9 @@ pub struct ExtensionClassContainerImpl1map {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl ExtensionClassContainerImpl1map {
@@ -3320,9 +3320,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassImpl {
@@ -3339,6 +3336,9 @@ pub struct ExtensionClassImpl {
     pub classes: Option<Vec<String>>,
 
 }
+
+
+
 
 
 impl ExtensionClassImpl {
@@ -3476,9 +3476,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassImpllinks {
@@ -3491,6 +3488,9 @@ pub struct ExtensionClassImpllinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl ExtensionClassImpllinks {
@@ -3616,9 +3616,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FavoriteImpl {
@@ -3635,6 +3632,9 @@ pub struct FavoriteImpl {
     pub item: Option<models::PipelineImpl>,
 
 }
+
+
+
 
 
 impl FavoriteImpl {
@@ -3767,9 +3767,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FavoriteImpl
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FavoriteImpllinks {
@@ -3782,6 +3779,9 @@ pub struct FavoriteImpllinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl FavoriteImpllinks {
@@ -3907,9 +3907,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FavoriteImpl
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleBuild {
@@ -3986,6 +3983,9 @@ pub struct FreeStyleBuild {
     pub change_set: Option<models::EmptyChangeLogSet>,
 
 }
+
+
+
 
 
 impl FreeStyleBuild {
@@ -4312,9 +4312,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStyleBui
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleProject {
@@ -4427,6 +4424,9 @@ pub struct FreeStyleProject {
     pub scm: Option<models::NullScm>,
 
 }
+
+
+
 
 
 impl FreeStyleProject {
@@ -4826,9 +4826,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStylePro
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleProjectactions {
@@ -4837,6 +4834,9 @@ pub struct FreeStyleProjectactions {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl FreeStyleProjectactions {
@@ -4955,9 +4955,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStylePro
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleProjecthealthReport {
@@ -4982,6 +4979,9 @@ pub struct FreeStyleProjecthealthReport {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl FreeStyleProjecthealthReport {
@@ -5152,9 +5152,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStylePro
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GenericResource {
@@ -5183,6 +5180,9 @@ pub struct GenericResource {
     pub start_time: Option<String>,
 
 }
+
+
+
 
 
 impl GenericResource {
@@ -5366,9 +5366,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GenericResou
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubContent {
@@ -5405,6 +5402,9 @@ pub struct GithubContent {
     pub base64_data: Option<String>,
 
 }
+
+
+
 
 
 impl GithubContent {
@@ -5614,9 +5614,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubConten
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubFile {
@@ -5629,6 +5626,9 @@ pub struct GithubFile {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl GithubFile {
@@ -5754,9 +5754,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubFile> 
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubOrganization {
@@ -5777,6 +5774,9 @@ pub struct GithubOrganization {
     pub name: Option<String>,
 
 }
+
+
+
 
 
 impl GithubOrganization {
@@ -5928,9 +5928,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubOrgani
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubOrganizationlinks {
@@ -5947,6 +5944,9 @@ pub struct GithubOrganizationlinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl GithubOrganizationlinks {
@@ -6079,9 +6079,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubOrgani
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositories {
@@ -6110,6 +6107,9 @@ pub struct GithubRepositories {
     pub page_size: Option<i32>,
 
 }
+
+
+
 
 
 impl GithubRepositories {
@@ -6280,9 +6280,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositorieslinks {
@@ -6295,6 +6292,9 @@ pub struct GithubRepositorieslinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl GithubRepositorieslinks {
@@ -6420,9 +6420,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepository {
@@ -6459,6 +6456,9 @@ pub struct GithubRepository {
     pub full_name: Option<String>,
 
 }
+
+
+
 
 
 impl GithubRepository {
@@ -6656,9 +6656,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositorylinks {
@@ -6671,6 +6668,9 @@ pub struct GithubRepositorylinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl GithubRepositorylinks {
@@ -6796,9 +6796,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositorypermissions {
@@ -6819,6 +6816,9 @@ pub struct GithubRepositorypermissions {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl GithubRepositorypermissions {
@@ -6976,9 +6976,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRespositoryContainer {
@@ -6995,6 +6992,9 @@ pub struct GithubRespositoryContainer {
     pub repositories: Option<models::GithubRepositories>,
 
 }
+
+
+
 
 
 impl GithubRespositoryContainer {
@@ -7127,9 +7127,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubRespos
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRespositoryContainerlinks {
@@ -7142,6 +7139,9 @@ pub struct GithubRespositoryContainerlinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl GithubRespositoryContainerlinks {
@@ -7267,9 +7267,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubRespos
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubScm {
@@ -7294,6 +7291,9 @@ pub struct GithubScm {
     pub uri: Option<String>,
 
 }
+
+
+
 
 
 impl GithubScm {
@@ -7458,9 +7458,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubScm> {
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubScmlinks {
@@ -7473,6 +7470,9 @@ pub struct GithubScmlinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl GithubScmlinks {
@@ -7598,9 +7598,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubScmlin
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Hudson {
@@ -7665,6 +7662,9 @@ pub struct Hudson {
     pub views: Option<Vec<models::AllView>>,
 
 }
+
+
+
 
 
 impl Hudson {
@@ -7932,9 +7932,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Hudson> {
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonMasterComputer {
@@ -8003,6 +8000,9 @@ pub struct HudsonMasterComputer {
     pub temporarily_offline: Option<bool>,
 
 }
+
+
+
 
 
 impl HudsonMasterComputer {
@@ -8297,9 +8297,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<HudsonMaster
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonMasterComputerexecutors {
@@ -8328,6 +8325,9 @@ pub struct HudsonMasterComputerexecutors {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl HudsonMasterComputerexecutors {
@@ -8505,9 +8505,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<HudsonMaster
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonMasterComputermonitorData {
@@ -8540,6 +8537,9 @@ pub struct HudsonMasterComputermonitorData {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl HudsonMasterComputermonitorData {
@@ -8706,9 +8706,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<HudsonMaster
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonassignedLabels {
@@ -8717,6 +8714,9 @@ pub struct HudsonassignedLabels {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl HudsonassignedLabels {
@@ -8835,9 +8835,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Hudsonassign
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct InputStepImpl {
@@ -8870,6 +8867,9 @@ pub struct InputStepImpl {
     pub submitter: Option<String>,
 
 }
+
+
+
 
 
 impl InputStepImpl {
@@ -9053,9 +9053,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<InputStepImp
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct InputStepImpllinks {
@@ -9068,6 +9065,9 @@ pub struct InputStepImpllinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl InputStepImpllinks {
@@ -9193,9 +9193,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<InputStepImp
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Label1 {
@@ -9204,6 +9201,9 @@ pub struct Label1 {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl Label1 {
@@ -9322,9 +9322,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Label1> {
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Link {
@@ -9337,6 +9334,9 @@ pub struct Link {
     pub href: Option<String>,
 
 }
+
+
+
 
 
 impl Link {
@@ -9468,9 +9468,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Link> {
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ListView {
@@ -9495,6 +9492,9 @@ pub struct ListView {
     pub url: Option<String>,
 
 }
+
+
+
 
 
 impl ListView {
@@ -9658,9 +9658,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ListView> {
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct MultibranchPipeline {
@@ -9721,6 +9718,9 @@ pub struct MultibranchPipeline {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl MultibranchPipeline {
@@ -10007,9 +10007,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<MultibranchP
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct NullScm {
@@ -10018,6 +10015,9 @@ pub struct NullScm {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl NullScm {
@@ -10136,9 +10136,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<NullScm> {
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Organisation {
@@ -10151,6 +10148,9 @@ pub struct Organisation {
     pub name: Option<String>,
 
 }
+
+
+
 
 
 impl Organisation {
@@ -10282,9 +10282,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Organisation
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Pipeline {
@@ -10321,6 +10318,9 @@ pub struct Pipeline {
     pub latest_run: Option<models::PipelinelatestRun>,
 
 }
+
+
+
 
 
 impl Pipeline {
@@ -10524,9 +10524,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Pipeline> {
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineActivity {
@@ -10591,6 +10588,9 @@ pub struct PipelineActivity {
     pub commit_id: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineActivity {
@@ -10884,9 +10884,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineActi
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineActivityartifacts {
@@ -10907,6 +10904,9 @@ pub struct PipelineActivityartifacts {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineActivityartifacts {
@@ -11064,9 +11064,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineActi
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitem {
@@ -11107,6 +11104,9 @@ pub struct PipelineBranchesitem {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineBranchesitem {
@@ -11317,9 +11317,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitemlatestRun {
@@ -11380,6 +11377,9 @@ pub struct PipelineBranchesitemlatestRun {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineBranchesitemlatestRun {
@@ -11667,9 +11667,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitempullRequest {
@@ -11698,6 +11695,9 @@ pub struct PipelineBranchesitempullRequest {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineBranchesitempullRequest {
@@ -11875,9 +11875,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitempullRequestlinks {
@@ -11890,6 +11887,9 @@ pub struct PipelineBranchesitempullRequestlinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineBranchesitempullRequestlinks {
@@ -12021,9 +12021,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineFolderImpl {
@@ -12056,6 +12053,9 @@ pub struct PipelineFolderImpl {
     pub number_of_pipelines: Option<i32>,
 
 }
+
+
+
 
 
 impl PipelineFolderImpl {
@@ -12252,9 +12252,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineFold
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineImpl {
@@ -12295,6 +12292,9 @@ pub struct PipelineImpl {
     pub _links: Option<models::PipelineImpllinks>,
 
 }
+
+
+
 
 
 impl PipelineImpl {
@@ -12511,9 +12511,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineImpl
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineImpllinks {
@@ -12538,6 +12535,9 @@ pub struct PipelineImpllinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineImpllinks {
@@ -12684,9 +12684,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineImpl
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRun {
@@ -12751,6 +12748,9 @@ pub struct PipelineRun {
     pub commit_id: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineRun {
@@ -13044,9 +13044,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRun>
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunImpl {
@@ -13111,6 +13108,9 @@ pub struct PipelineRunImpl {
     pub commit_id: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineRunImpl {
@@ -13405,9 +13405,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunI
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunImpllinks {
@@ -13436,6 +13433,9 @@ pub struct PipelineRunImpllinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineRunImpllinks {
@@ -13589,9 +13589,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunI
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunNode {
@@ -13628,6 +13625,9 @@ pub struct PipelineRunNode {
     pub state: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineRunNode {
@@ -13830,9 +13830,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunN
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunNodeedges {
@@ -13845,6 +13842,9 @@ pub struct PipelineRunNodeedges {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineRunNodeedges {
@@ -13976,9 +13976,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunN
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunartifacts {
@@ -13999,6 +13996,9 @@ pub struct PipelineRunartifacts {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineRunartifacts {
@@ -14156,9 +14156,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRuna
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineStepImpl {
@@ -14199,6 +14196,9 @@ pub struct PipelineStepImpl {
     pub state: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineStepImpl {
@@ -14409,9 +14409,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineStep
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineStepImpllinks {
@@ -14428,6 +14425,9 @@ pub struct PipelineStepImpllinks {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelineStepImpllinks {
@@ -14560,9 +14560,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineStep
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelinelatestRun {
@@ -14627,6 +14624,9 @@ pub struct PipelinelatestRun {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelinelatestRun {
@@ -14920,9 +14920,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Pipelinelate
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelinelatestRunartifacts {
@@ -14943,6 +14940,9 @@ pub struct PipelinelatestRunartifacts {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl PipelinelatestRunartifacts {
@@ -15100,9 +15100,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Pipelinelate
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Queue {
@@ -15115,6 +15112,9 @@ pub struct Queue {
     pub items: Option<Vec<models::QueueBlockedItem>>,
 
 }
+
+
+
 
 
 impl Queue {
@@ -15239,9 +15239,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Queue> {
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct QueueBlockedItem {
@@ -15294,6 +15291,9 @@ pub struct QueueBlockedItem {
     pub buildable_start_milliseconds: Option<i32>,
 
 }
+
+
+
 
 
 impl QueueBlockedItem {
@@ -15542,9 +15542,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<QueueBlocked
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct QueueItemImpl {
@@ -15569,6 +15566,9 @@ pub struct QueueItemImpl {
     pub queued_time: Option<i32>,
 
 }
+
+
+
 
 
 impl QueueItemImpl {
@@ -15739,9 +15739,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<QueueItemImp
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct QueueLeftItem {
@@ -15798,6 +15795,9 @@ pub struct QueueLeftItem {
     pub executable: Option<models::FreeStyleBuild>,
 
 }
+
+
+
 
 
 impl QueueLeftItem {
@@ -16053,9 +16053,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<QueueLeftIte
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ResponseTimeMonitorData {
@@ -16072,6 +16069,9 @@ pub struct ResponseTimeMonitorData {
     pub average: Option<i32>,
 
 }
+
+
+
 
 
 impl ResponseTimeMonitorData {
@@ -16216,9 +16216,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ResponseTime
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct StringParameterDefinition {
@@ -16243,6 +16240,9 @@ pub struct StringParameterDefinition {
     pub r#type: Option<String>,
 
 }
+
+
+
 
 
 impl StringParameterDefinition {
@@ -16407,9 +16407,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<StringParame
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct StringParameterValue {
@@ -16426,6 +16423,9 @@ pub struct StringParameterValue {
     pub value: Option<String>,
 
 }
+
+
+
 
 
 impl StringParameterValue {
@@ -16570,9 +16570,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<StringParame
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct SwapSpaceMonitorMemoryUsage2 {
@@ -16597,6 +16594,9 @@ pub struct SwapSpaceMonitorMemoryUsage2 {
     pub total_swap_space: Option<i32>,
 
 }
+
+
+
 
 
 impl SwapSpaceMonitorMemoryUsage2 {
@@ -16767,9 +16767,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<SwapSpaceMon
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct UnlabeledLoadStatistics {
@@ -16778,6 +16775,9 @@ pub struct UnlabeledLoadStatistics {
     pub _class: Option<String>,
 
 }
+
+
+
 
 
 impl UnlabeledLoadStatistics {
@@ -16896,9 +16896,6 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<UnlabeledLoa
 
 
 
-
-
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct User {
@@ -16923,6 +16920,9 @@ pub struct User {
     pub name: Option<String>,
 
 }
+
+
+
 
 
 impl User {

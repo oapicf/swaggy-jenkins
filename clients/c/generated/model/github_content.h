@@ -28,9 +28,10 @@ typedef struct github_content_t {
     char *path; // string
     char *base64_data; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } github_content_t;
 
-github_content_t *github_content_create(
+__attribute__((deprecated)) github_content_t *github_content_create(
     char *name,
     char *sha,
     char *_class,

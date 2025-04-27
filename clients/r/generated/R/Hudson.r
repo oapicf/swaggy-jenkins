@@ -43,8 +43,7 @@ Hudson <- R6::R6Class(
     `useCrumbs` = NULL,
     `useSecurity` = NULL,
     `views` = NULL,
-    #' Initialize a new Hudson class.
-    #'
+
     #' @description
     #' Initialize a new Hudson class.
     #'
@@ -64,7 +63,6 @@ Hudson <- R6::R6Class(
     #' @param useSecurity useSecurity
     #' @param views views
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, `assignedLabels` = NULL, `mode` = NULL, `nodeDescription` = NULL, `nodeName` = NULL, `numExecutors` = NULL, `description` = NULL, `jobs` = NULL, `primaryView` = NULL, `quietingDown` = NULL, `slaveAgentPort` = NULL, `unlabeledLoad` = NULL, `useCrumbs` = NULL, `useSecurity` = NULL, `views` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -150,14 +148,37 @@ Hudson <- R6::R6Class(
         self$`views` <- `views`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return Hudson in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return Hudson as a base R list.
+    #' @examples
+    #' # convert array of Hudson (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert Hudson to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       HudsonObject <- list()
       if (!is.null(self$`_class`)) {
         HudsonObject[["_class"]] <-
@@ -165,7 +186,7 @@ Hudson <- R6::R6Class(
       }
       if (!is.null(self$`assignedLabels`)) {
         HudsonObject[["assignedLabels"]] <-
-          lapply(self$`assignedLabels`, function(x) x$toJSON())
+          lapply(self$`assignedLabels`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`mode`)) {
         HudsonObject[["mode"]] <-
@@ -189,11 +210,11 @@ Hudson <- R6::R6Class(
       }
       if (!is.null(self$`jobs`)) {
         HudsonObject[["jobs"]] <-
-          lapply(self$`jobs`, function(x) x$toJSON())
+          lapply(self$`jobs`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`primaryView`)) {
         HudsonObject[["primaryView"]] <-
-          self$`primaryView`$toJSON()
+          self$`primaryView`$toSimpleType()
       }
       if (!is.null(self$`quietingDown`)) {
         HudsonObject[["quietingDown"]] <-
@@ -205,7 +226,7 @@ Hudson <- R6::R6Class(
       }
       if (!is.null(self$`unlabeledLoad`)) {
         HudsonObject[["unlabeledLoad"]] <-
-          self$`unlabeledLoad`$toJSON()
+          self$`unlabeledLoad`$toSimpleType()
       }
       if (!is.null(self$`useCrumbs`)) {
         HudsonObject[["useCrumbs"]] <-
@@ -217,18 +238,16 @@ Hudson <- R6::R6Class(
       }
       if (!is.null(self$`views`)) {
         HudsonObject[["views"]] <-
-          lapply(self$`views`, function(x) x$toJSON())
+          lapply(self$`views`, function(x) x$toSimpleType())
       }
-      HudsonObject
+      return(HudsonObject)
     },
-    #' Deserialize JSON string into an instance of Hudson
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of Hudson
     #'
     #' @param input_json the JSON input
     #' @return the instance of Hudson
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -282,147 +301,23 @@ Hudson <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return Hudson in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        },
-        if (!is.null(self$`assignedLabels`)) {
-          sprintf(
-          '"assignedLabels":
-          [%s]
-',
-          paste(sapply(self$`assignedLabels`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`mode`)) {
-          sprintf(
-          '"mode":
-            "%s"
-                    ',
-          self$`mode`
-          )
-        },
-        if (!is.null(self$`nodeDescription`)) {
-          sprintf(
-          '"nodeDescription":
-            "%s"
-                    ',
-          self$`nodeDescription`
-          )
-        },
-        if (!is.null(self$`nodeName`)) {
-          sprintf(
-          '"nodeName":
-            "%s"
-                    ',
-          self$`nodeName`
-          )
-        },
-        if (!is.null(self$`numExecutors`)) {
-          sprintf(
-          '"numExecutors":
-            %d
-                    ',
-          self$`numExecutors`
-          )
-        },
-        if (!is.null(self$`description`)) {
-          sprintf(
-          '"description":
-            "%s"
-                    ',
-          self$`description`
-          )
-        },
-        if (!is.null(self$`jobs`)) {
-          sprintf(
-          '"jobs":
-          [%s]
-',
-          paste(sapply(self$`jobs`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`primaryView`)) {
-          sprintf(
-          '"primaryView":
-          %s
-          ',
-          jsonlite::toJSON(self$`primaryView`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`quietingDown`)) {
-          sprintf(
-          '"quietingDown":
-            %s
-                    ',
-          tolower(self$`quietingDown`)
-          )
-        },
-        if (!is.null(self$`slaveAgentPort`)) {
-          sprintf(
-          '"slaveAgentPort":
-            %d
-                    ',
-          self$`slaveAgentPort`
-          )
-        },
-        if (!is.null(self$`unlabeledLoad`)) {
-          sprintf(
-          '"unlabeledLoad":
-          %s
-          ',
-          jsonlite::toJSON(self$`unlabeledLoad`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`useCrumbs`)) {
-          sprintf(
-          '"useCrumbs":
-            %s
-                    ',
-          tolower(self$`useCrumbs`)
-          )
-        },
-        if (!is.null(self$`useSecurity`)) {
-          sprintf(
-          '"useSecurity":
-            %s
-                    ',
-          tolower(self$`useSecurity`)
-          )
-        },
-        if (!is.null(self$`views`)) {
-          sprintf(
-          '"views":
-          [%s]
-',
-          paste(sapply(self$`views`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of Hudson
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of Hudson
     #'
     #' @param input_json the JSON input
     #' @return the instance of Hudson
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
@@ -442,53 +337,42 @@ Hudson <- R6::R6Class(
       self$`views` <- ApiClient$new()$deserializeObj(this_object$`views`, "array[AllView]", loadNamespace("openapi"))
       self
     },
-    #' Validate JSON input with respect to Hudson
-    #'
+
     #' @description
     #' Validate JSON input with respect to Hudson and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of Hudson
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

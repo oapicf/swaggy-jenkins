@@ -16,13 +16,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("BranchImpllinks")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class BranchImpllinks   {
-  private @Valid Link self;
-  private @Valid Link actions;
-  private @Valid Link runs;
-  private @Valid Link queue;
-  private @Valid String propertyClass;
+  private Link self;
+  private Link actions;
+  private Link runs;
+  private Link queue;
+  private String propertyClass;
+
+  public BranchImpllinks() {
+  }
 
   /**
    **/
@@ -34,7 +37,7 @@ public class BranchImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("self")
-  public Link getSelf() {
+  @Valid public Link getSelf() {
     return self;
   }
 
@@ -53,7 +56,7 @@ public class BranchImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  public Link getActions() {
+  @Valid public Link getActions() {
     return actions;
   }
 
@@ -72,7 +75,7 @@ public class BranchImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("runs")
-  public Link getRuns() {
+  @Valid public Link getRuns() {
     return runs;
   }
 
@@ -91,7 +94,7 @@ public class BranchImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("queue")
-  public Link getQueue() {
+  @Valid public Link getQueue() {
     return queue;
   }
 

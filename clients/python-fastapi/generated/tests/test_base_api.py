@@ -3,6 +3,7 @@
 from fastapi.testclient import TestClient
 
 
+from typing import Any  # noqa: F401
 from openapi_server.models.default_crumb_issuer import DefaultCrumbIssuer  # noqa: F401
 
 

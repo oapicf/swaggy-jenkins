@@ -27,7 +27,7 @@ print(GithubRepositories.to_json())
 # convert the object into a dict
 github_repositories_dict = github_repositories_instance.to_dict()
 # create an instance of GithubRepositories from a dict
-github_repositories_form_dict = github_repositories.from_dict(github_repositories_dict)
+github_repositories_from_dict = GithubRepositories.from_dict(github_repositories_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

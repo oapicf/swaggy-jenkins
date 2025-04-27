@@ -30,9 +30,10 @@ typedef struct github_repository_t {
     int _private; //boolean
     char *full_name; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } github_repository_t;
 
-github_repository_t *github_repository_create(
+__attribute__((deprecated)) github_repository_t *github_repository_create(
     char *_class,
     github_repositorylinks_t *_links,
     char *default_branch,

@@ -64,5 +64,8 @@ data class PipelineImpl (
     @Json(name = "_links")
     val links: PipelineImpllinks? = null
 
-)
+) {
+
+
+}
 

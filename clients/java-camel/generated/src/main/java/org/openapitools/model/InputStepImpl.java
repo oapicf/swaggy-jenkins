@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * InputStepImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class InputStepImpl {
 
   private String propertyClass;
@@ -37,7 +37,7 @@ public class InputStepImpl {
   private String ok;
 
   @Valid
-  private List<@Valid StringParameterDefinition> parameters;
+  private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
   private String submitter;
 
@@ -49,7 +49,7 @@ public class InputStepImpl {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -69,7 +69,7 @@ public class InputStepImpl {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -89,7 +89,7 @@ public class InputStepImpl {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -109,7 +109,7 @@ public class InputStepImpl {
   /**
    * Get message
    * @return message
-  */
+   */
   
   @Schema(name = "message", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("message")
@@ -129,7 +129,7 @@ public class InputStepImpl {
   /**
    * Get ok
    * @return ok
-  */
+   */
   
   @Schema(name = "ok", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("ok")
@@ -157,7 +157,7 @@ public class InputStepImpl {
   /**
    * Get parameters
    * @return parameters
-  */
+   */
   @Valid 
   @Schema(name = "parameters", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("parameters")
@@ -177,7 +177,7 @@ public class InputStepImpl {
   /**
    * Get submitter
    * @return submitter
-  */
+   */
   
   @Schema(name = "submitter", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("submitter")

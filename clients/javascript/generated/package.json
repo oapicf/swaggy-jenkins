@@ -1,6 +1,6 @@
 {
   "name": "swaggy-jenkins",
-  "version": "2.0.1",
+  "version": "3.0.2-pre.0",
   "description": "Jenkins API clients generated from Swagger / Open API specification",
   "license": "Unlicense",
   "main": "dist/index.js",

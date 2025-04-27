@@ -5,7 +5,7 @@
 
 
 
-pipeline_t *pipeline_create(
+static pipeline_t *pipeline_create_internal(
     char *_class,
     char *organization,
     char *name,
@@ -28,12 +28,38 @@ pipeline_t *pipeline_create(
     pipeline_local_var->estimated_duration_in_millis = estimated_duration_in_millis;
     pipeline_local_var->latest_run = latest_run;
 
+    pipeline_local_var->_library_owned = 1;
     return pipeline_local_var;
 }
 
+__attribute__((deprecated)) pipeline_t *pipeline_create(
+    char *_class,
+    char *organization,
+    char *name,
+    char *display_name,
+    char *full_name,
+    int weather_score,
+    int estimated_duration_in_millis,
+    pipelinelatest_run_t *latest_run
+    ) {
+    return pipeline_create_internal (
+        _class,
+        organization,
+        name,
+        display_name,
+        full_name,
+        weather_score,
+        estimated_duration_in_millis,
+        latest_run
+        );
+}
 
 void pipeline_free(pipeline_t *pipeline) {
     if(NULL == pipeline){
+        return ;
+    }
+    if(pipeline->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pipeline_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -152,6 +178,9 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
 
     // pipeline->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -161,6 +190,9 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
 
     // pipeline->organization
     cJSON *organization = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "organization");
+    if (cJSON_IsNull(organization)) {
+        organization = NULL;
+    }
     if (organization) { 
     if(!cJSON_IsString(organization) && !cJSON_IsNull(organization))
     {
@@ -170,6 +202,9 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
 
     // pipeline->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -179,6 +214,9 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
 
     // pipeline->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "displayName");
+    if (cJSON_IsNull(display_name)) {
+        display_name = NULL;
+    }
     if (display_name) { 
     if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
@@ -188,6 +226,9 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
 
     // pipeline->full_name
     cJSON *full_name = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "fullName");
+    if (cJSON_IsNull(full_name)) {
+        full_name = NULL;
+    }
     if (full_name) { 
     if(!cJSON_IsString(full_name) && !cJSON_IsNull(full_name))
     {
@@ -197,6 +238,9 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
 
     // pipeline->weather_score
     cJSON *weather_score = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "weatherScore");
+    if (cJSON_IsNull(weather_score)) {
+        weather_score = NULL;
+    }
     if (weather_score) { 
     if(!cJSON_IsNumber(weather_score))
     {
@@ -206,6 +250,9 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
 
     // pipeline->estimated_duration_in_millis
     cJSON *estimated_duration_in_millis = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "estimatedDurationInMillis");
+    if (cJSON_IsNull(estimated_duration_in_millis)) {
+        estimated_duration_in_millis = NULL;
+    }
     if (estimated_duration_in_millis) { 
     if(!cJSON_IsNumber(estimated_duration_in_millis))
     {
@@ -215,12 +262,15 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
 
     // pipeline->latest_run
     cJSON *latest_run = cJSON_GetObjectItemCaseSensitive(pipelineJSON, "latestRun");
+    if (cJSON_IsNull(latest_run)) {
+        latest_run = NULL;
+    }
     if (latest_run) { 
     latest_run_local_nonprim = pipelinelatest_run_parseFromJSON(latest_run); //nonprimitive
     }
 
 
-    pipeline_local_var = pipeline_create (
+    pipeline_local_var = pipeline_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,

@@ -1,363 +1,456 @@
 -module(openapi_router).
 
--export([get_paths/1, get_validator_state/0]).
+-export([get_paths/1]).
 
--type operations() :: #{
-    Method :: binary() => openapi_api:operation_id()
-}.
-
--type init_opts()  :: {
-    Operations :: operations(),
-    LogicHandler :: atom(),
-    ValidatorMod :: module()
-}.
+-type method() :: binary().
+-type operations() :: #{method() => openapi_api:operation_id()}.
+-type init_opts()  :: {operations(), module()}.
 
 -export_type([init_opts/0]).
 
--spec get_paths(LogicHandler :: atom()) ->  [{'_',[{
-    Path :: string(),
-    Handler :: atom(),
-    InitOpts :: init_opts()
-}]}].
-
+-spec get_paths(LogicHandler :: module()) -> cowboy_router:routes().
 get_paths(LogicHandler) ->
-    ValidatorState = prepare_validator(),
     PreparedPaths = maps:fold(
-        fun(Path, #{operations := Operations, handler := Handler}, Acc) ->
-            [{Path, Handler, Operations} | Acc]
-        end,
-        [],
-        group_paths()
-    ),
-    [
-        {'_',
-            [{P, H, {O, LogicHandler, ValidatorState}} || {P, H, O} <- PreparedPaths]
-        }
-    ].
+                      fun(Path, #{operations := Operations, handler := Handler}, Acc) ->
+                              [{Path, Handler, Operations} | Acc]
+                      end, [], group_paths()
+                     ),
+    [{'_', [{P, H, {O, LogicHandler}} || {P, H, O} <- PreparedPaths]}].
 
 group_paths() ->
     maps:fold(
-        fun(OperationID, #{path := Path, method := Method, handler := Handler}, Acc) ->
-            case maps:find(Path, Acc) of
-                {ok, PathInfo0 = #{operations := Operations0}} ->
-                    Operations = Operations0#{Method => OperationID},
-                    PathInfo = PathInfo0#{operations => Operations},
-                    Acc#{Path => PathInfo};
-                error ->
-                    Operations = #{Method => OperationID},
-                    PathInfo = #{handler => Handler, operations => Operations},
-                    Acc#{Path => PathInfo}
-            end
-        end,
-        #{},
-        get_operations()
-    ).
+      fun(OperationID, #{servers := Servers, base_path := BasePath, path := Path,
+                         method := Method, handler := Handler}, Acc) ->
+              FullPaths = build_full_paths(Servers, BasePath, Path),
+              merge_paths(FullPaths, OperationID, Method, Handler, Acc)
+      end, #{}, get_operations()).
+
+build_full_paths([], BasePath, Path) ->
+    [lists:append([BasePath, Path])];
+build_full_paths(Servers, _BasePath, Path) ->
+    [lists:append([Server, Path]) || Server <- Servers ].
+
+merge_paths(FullPaths, OperationID, Method, Handler, Acc) ->
+    lists:foldl(
+      fun(Path, Acc0) ->
+              case maps:find(Path, Acc0) of
+                  {ok, PathInfo0 = #{operations := Operations0}} ->
+                      Operations = Operations0#{Method => OperationID},
+                      PathInfo = PathInfo0#{operations => Operations},
+                      Acc0#{Path => PathInfo};
+                  error ->
+                      Operations = #{Method => OperationID},
+                      PathInfo = #{handler => Handler, operations => Operations},
+                      Acc0#{Path => PathInfo}
+              end
+      end, Acc, FullPaths).
 
 get_operations() ->
     #{ 
-        'GetCrumb' => #{
+       'getCrumb' => #{
+            servers => [],
+            base_path => "",
             path => "/crumbIssuer/api/json",
             method => <<"GET">>,
             handler => 'openapi_base_handler'
         },
-        'DeletePipelineQueueItem' => #{
+       'deletePipelineQueueItem' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/queue/:queue",
             method => <<"DELETE">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetAuthenticatedUser' => #{
+       'getAuthenticatedUser' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/user/",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetClasses' => #{
+       'getClasses' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/classes/:class",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetJsonWebKey' => #{
+       'getJsonWebKey' => #{
+            servers => [],
+            base_path => "",
             path => "/jwt-auth/jwks/:key",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetJsonWebToken' => #{
+       'getJsonWebToken' => #{
+            servers => [],
+            base_path => "",
             path => "/jwt-auth/token",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetOrganisation' => #{
+       'getOrganisation' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetOrganisations' => #{
+       'getOrganisations' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipeline' => #{
+       'getPipeline' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineActivities' => #{
+       'getPipelineActivities' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/activities",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineBranch' => #{
+       'getPipelineBranch' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineBranchRun' => #{
+       'getPipelineBranchRun' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/runs/:run",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineBranches' => #{
+       'getPipelineBranches' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/branches",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineFolder' => #{
+       'getPipelineFolder' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:folder/",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineFolderPipeline' => #{
+       'getPipelineFolderPipeline' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:folder/pipelines/:pipeline",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineQueue' => #{
+       'getPipelineQueue' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/queue",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineRun' => #{
+       'getPipelineRun' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineRunLog' => #{
+       'getPipelineRunLog' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/log",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineRunNode' => #{
+       'getPipelineRunNode' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineRunNodeStep' => #{
+       'getPipelineRunNodeStep' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineRunNodeStepLog' => #{
+       'getPipelineRunNodeStepLog' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step/log",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineRunNodeSteps' => #{
+       'getPipelineRunNodeSteps' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineRunNodes' => #{
+       'getPipelineRunNodes' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelineRuns' => #{
+       'getPipelineRuns' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetPipelines' => #{
+       'getPipelines' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetSCM' => #{
+       'getSCM' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/scm/:scm",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetSCMOrganisationRepositories' => #{
+       'getSCMOrganisationRepositories' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetSCMOrganisationRepository' => #{
+       'getSCMOrganisationRepository' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories/:repository",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetSCMOrganisations' => #{
+       'getSCMOrganisations' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/scm/:scm/organizations",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetUser' => #{
+       'getUser' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/users/:user",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetUserFavorites' => #{
+       'getUserFavorites' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/users/:user/favorites",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetUsers' => #{
+       'getUsers' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/users/",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'PostPipelineRun' => #{
+       'postPipelineRun' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/replay",
             method => <<"POST">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'PostPipelineRuns' => #{
+       'postPipelineRuns' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs",
             method => <<"POST">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'PutPipelineFavorite' => #{
+       'putPipelineFavorite' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/favorite",
             method => <<"PUT">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'PutPipelineRun' => #{
+       'putPipelineRun' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/stop",
             method => <<"PUT">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'Search' => #{
+       'search' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/search/",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'SearchClasses' => #{
+       'searchClasses' => #{
+            servers => [],
+            base_path => "",
             path => "/blue/rest/classes/",
             method => <<"GET">>,
             handler => 'openapi_blue_ocean_handler'
         },
-        'GetComputer' => #{
+       'getComputer' => #{
+            servers => [],
+            base_path => "",
             path => "/computer/api/json",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },
-        'GetJenkins' => #{
+       'getJenkins' => #{
+            servers => [],
+            base_path => "",
             path => "/api/json",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },
-        'GetJob' => #{
+       'getJob' => #{
+            servers => [],
+            base_path => "",
             path => "/job/:name/api/json",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },
-        'GetJobConfig' => #{
+       'getJobConfig' => #{
+            servers => [],
+            base_path => "",
             path => "/job/:name/config.xml",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },
-        'GetJobLastBuild' => #{
+       'getJobLastBuild' => #{
+            servers => [],
+            base_path => "",
             path => "/job/:name/lastBuild/api/json",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },
-        'GetJobProgressiveText' => #{
+       'getJobProgressiveText' => #{
+            servers => [],
+            base_path => "",
             path => "/job/:name/:number/logText/progressiveText",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },
-        'GetQueue' => #{
+       'getQueue' => #{
+            servers => [],
+            base_path => "",
             path => "/queue/api/json",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },
-        'GetQueueItem' => #{
+       'getQueueItem' => #{
+            servers => [],
+            base_path => "",
             path => "/queue/item/:number/api/json",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },
-        'GetView' => #{
+       'getView' => #{
+            servers => [],
+            base_path => "",
             path => "/view/:name/api/json",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },
-        'GetViewConfig' => #{
+       'getViewConfig' => #{
+            servers => [],
+            base_path => "",
             path => "/view/:name/config.xml",
             method => <<"GET">>,
             handler => 'openapi_remote_access_handler'
         },
-        'HeadJenkins' => #{
+       'headJenkins' => #{
+            servers => [],
+            base_path => "",
             path => "/api/json",
             method => <<"HEAD">>,
             handler => 'openapi_remote_access_handler'
         },
-        'PostCreateItem' => #{
+       'postCreateItem' => #{
+            servers => [],
+            base_path => "",
             path => "/createItem",
             method => <<"POST">>,
             handler => 'openapi_remote_access_handler'
         },
-        'PostCreateView' => #{
+       'postCreateView' => #{
+            servers => [],
+            base_path => "",
             path => "/createView",
             method => <<"POST">>,
             handler => 'openapi_remote_access_handler'
         },
-        'PostJobBuild' => #{
+       'postJobBuild' => #{
+            servers => [],
+            base_path => "",
             path => "/job/:name/build",
             method => <<"POST">>,
             handler => 'openapi_remote_access_handler'
         },
-        'PostJobConfig' => #{
+       'postJobConfig' => #{
+            servers => [],
+            base_path => "",
             path => "/job/:name/config.xml",
             method => <<"POST">>,
             handler => 'openapi_remote_access_handler'
         },
-        'PostJobDelete' => #{
+       'postJobDelete' => #{
+            servers => [],
+            base_path => "",
             path => "/job/:name/doDelete",
             method => <<"POST">>,
             handler => 'openapi_remote_access_handler'
         },
-        'PostJobDisable' => #{
+       'postJobDisable' => #{
+            servers => [],
+            base_path => "",
             path => "/job/:name/disable",
             method => <<"POST">>,
             handler => 'openapi_remote_access_handler'
         },
-        'PostJobEnable' => #{
+       'postJobEnable' => #{
+            servers => [],
+            base_path => "",
             path => "/job/:name/enable",
             method => <<"POST">>,
             handler => 'openapi_remote_access_handler'
         },
-        'PostJobLastBuildStop' => #{
+       'postJobLastBuildStop' => #{
+            servers => [],
+            base_path => "",
             path => "/job/:name/lastBuild/stop",
             method => <<"POST">>,
             handler => 'openapi_remote_access_handler'
         },
-        'PostViewConfig' => #{
+       'postViewConfig' => #{
+            servers => [],
+            base_path => "",
             path => "/view/:name/config.xml",
             method => <<"POST">>,
             handler => 'openapi_remote_access_handler'
         }
     }.
-
-get_validator_state() ->
-    persistent_term:get({?MODULE, validator_state}).
-
-
-prepare_validator() ->
-    R = jsx:decode(element(2, file:read_file(get_openapi_path()))),
-    JesseState = jesse_state:new(R, [{default_schema_ver, <<"http://json-schema.org/draft-04/schema#">>}]),
-    persistent_term:put({?MODULE, validator_state}, JesseState),
-    ?MODULE.
-
-
-get_openapi_path() ->
-    {ok, AppName} = application:get_application(?MODULE),
-    filename:join(openapi_utils:priv_dir(AppName), "openapi.json").

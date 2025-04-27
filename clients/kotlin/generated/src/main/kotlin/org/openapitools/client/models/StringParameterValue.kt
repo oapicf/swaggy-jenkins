@@ -39,5 +39,8 @@ data class StringParameterValue (
     @Json(name = "value")
     val `value`: kotlin.String? = null
 
-)
+) {
+
+
+}
 

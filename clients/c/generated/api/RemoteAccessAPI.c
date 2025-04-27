@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve computer details
@@ -23,11 +18,14 @@ RemoteAccessAPI_getComputer(apiClient_t *apiClient, int *depth)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/computer/api/json")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/computer/api/json");
+    char *localVarPath = strdup("/computer/api/json");
+
 
 
 
@@ -53,6 +51,7 @@ RemoteAccessAPI_getComputer(apiClient_t *apiClient, int *depth)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -68,11 +67,14 @@ RemoteAccessAPI_getComputer(apiClient_t *apiClient, int *depth)
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    computer_set_t *elementToReturn = computer_set_parseFromJSON(RemoteAccessAPIlocalVarJSON);
-    cJSON_Delete(RemoteAccessAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    computer_set_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = computer_set_parseFromJSON(RemoteAccessAPIlocalVarJSON);
+        cJSON_Delete(RemoteAccessAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -117,11 +119,14 @@ RemoteAccessAPI_getJenkins(apiClient_t *apiClient)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/api/json")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/api/json");
+    char *localVarPath = strdup("/api/json");
+
 
 
 
@@ -134,6 +139,7 @@ RemoteAccessAPI_getJenkins(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -149,11 +155,14 @@ RemoteAccessAPI_getJenkins(apiClient_t *apiClient)
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    hudson_t *elementToReturn = hudson_parseFromJSON(RemoteAccessAPIlocalVarJSON);
-    cJSON_Delete(RemoteAccessAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    hudson_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = hudson_parseFromJSON(RemoteAccessAPIlocalVarJSON);
+        cJSON_Delete(RemoteAccessAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -186,15 +195,20 @@ RemoteAccessAPI_getJob(apiClient_t *apiClient, char *name)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/job/{name}/api/json")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/job/{name}/api/json");
+    char *localVarPath = strdup("/job/{name}/api/json");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -213,6 +227,7 @@ RemoteAccessAPI_getJob(apiClient_t *apiClient, char *name)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -232,11 +247,14 @@ RemoteAccessAPI_getJob(apiClient_t *apiClient, char *name)
     //    printf("%s\n","Job cannot be found on Jenkins instance");
     //}
     //nonprimitive not container
-    cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    free_style_project_t *elementToReturn = free_style_project_parseFromJSON(RemoteAccessAPIlocalVarJSON);
-    cJSON_Delete(RemoteAccessAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    free_style_project_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = free_style_project_parseFromJSON(RemoteAccessAPIlocalVarJSON);
+        cJSON_Delete(RemoteAccessAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -270,15 +288,20 @@ RemoteAccessAPI_getJobConfig(apiClient_t *apiClient, char *name)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/job/{name}/config.xml")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/job/{name}/config.xml");
+    char *localVarPath = strdup("/job/{name}/config.xml");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -297,6 +320,7 @@ RemoteAccessAPI_getJobConfig(apiClient_t *apiClient, char *name)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -315,8 +339,10 @@ RemoteAccessAPI_getJobConfig(apiClient_t *apiClient, char *name)
     //if (apiClient->response_code == 404) {
     //    printf("%s\n","Job cannot be found on Jenkins instance");
     //}
-    //primitive return type simple
-    char* elementToReturn =  strdup((char*)apiClient->dataReceived);
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -348,15 +374,20 @@ RemoteAccessAPI_getJobLastBuild(apiClient_t *apiClient, char *name)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/job/{name}/lastBuild/api/json")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/job/{name}/lastBuild/api/json");
+    char *localVarPath = strdup("/job/{name}/lastBuild/api/json");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -375,6 +406,7 @@ RemoteAccessAPI_getJobLastBuild(apiClient_t *apiClient, char *name)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -394,11 +426,14 @@ RemoteAccessAPI_getJobLastBuild(apiClient_t *apiClient, char *name)
     //    printf("%s\n","Job cannot be found on Jenkins instance");
     //}
     //nonprimitive not container
-    cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    free_style_build_t *elementToReturn = free_style_build_parseFromJSON(RemoteAccessAPIlocalVarJSON);
-    cJSON_Delete(RemoteAccessAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    free_style_build_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = free_style_build_parseFromJSON(RemoteAccessAPIlocalVarJSON);
+        cJSON_Delete(RemoteAccessAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -432,15 +467,22 @@ RemoteAccessAPI_getJobProgressiveText(apiClient_t *apiClient, char *name, char *
     list_t *localVarHeaderType = NULL;
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/job/{name}/{number}/logText/progressiveText")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/job/{name}/{number}/logText/progressiveText");
+    char *localVarPath = strdup("/job/{name}/{number}/logText/progressiveText");
+
+    if(!name)
+        goto end;
+    if(!number)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen(number)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + strlen(number)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -450,7 +492,7 @@ RemoteAccessAPI_getJobProgressiveText(apiClient_t *apiClient, char *name, char *
     localVarPath = strReplace(localVarPath, localVarToReplace_name, name);
 
     // Path Params
-    long sizeOfPathParams_number = strlen(name)+3 + strlen(number)+3 + strlen("{ number }");
+    long sizeOfPathParams_number = strlen(name)+3 + strlen(number)+3 + sizeof("{ number }") - 1;
     if(number == NULL) {
         goto end;
     }
@@ -480,6 +522,7 @@ RemoteAccessAPI_getJobProgressiveText(apiClient_t *apiClient, char *name, char *
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -547,11 +590,14 @@ RemoteAccessAPI_getQueue(apiClient_t *apiClient)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/queue/api/json")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/queue/api/json");
+    char *localVarPath = strdup("/queue/api/json");
+
 
 
 
@@ -564,6 +610,7 @@ RemoteAccessAPI_getQueue(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -579,11 +626,14 @@ RemoteAccessAPI_getQueue(apiClient_t *apiClient)
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    queue_t *elementToReturn = queue_parseFromJSON(RemoteAccessAPIlocalVarJSON);
-    cJSON_Delete(RemoteAccessAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    queue_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = queue_parseFromJSON(RemoteAccessAPIlocalVarJSON);
+        cJSON_Delete(RemoteAccessAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -616,15 +666,20 @@ RemoteAccessAPI_getQueueItem(apiClient_t *apiClient, char *number)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/queue/item/{number}/api/json")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/queue/item/{number}/api/json");
+    char *localVarPath = strdup("/queue/item/{number}/api/json");
+
+    if(!number)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_number = strlen(number)+3 + strlen("{ number }");
+    long sizeOfPathParams_number = strlen(number)+3 + sizeof("{ number }") - 1;
     if(number == NULL) {
         goto end;
     }
@@ -643,6 +698,7 @@ RemoteAccessAPI_getQueueItem(apiClient_t *apiClient, char *number)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -658,11 +714,14 @@ RemoteAccessAPI_getQueueItem(apiClient_t *apiClient, char *number)
     //    printf("%s\n","Jenkins requires authentication - please set username and password");
     //}
     //nonprimitive not container
-    cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    queue_t *elementToReturn = queue_parseFromJSON(RemoteAccessAPIlocalVarJSON);
-    cJSON_Delete(RemoteAccessAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    queue_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = queue_parseFromJSON(RemoteAccessAPIlocalVarJSON);
+        cJSON_Delete(RemoteAccessAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -696,15 +755,20 @@ RemoteAccessAPI_getView(apiClient_t *apiClient, char *name)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/view/{name}/api/json")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/view/{name}/api/json");
+    char *localVarPath = strdup("/view/{name}/api/json");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -723,6 +787,7 @@ RemoteAccessAPI_getView(apiClient_t *apiClient, char *name)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -742,11 +807,14 @@ RemoteAccessAPI_getView(apiClient_t *apiClient, char *name)
     //    printf("%s\n","View cannot be found on Jenkins instance");
     //}
     //nonprimitive not container
-    cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    list_view_t *elementToReturn = list_view_parseFromJSON(RemoteAccessAPIlocalVarJSON);
-    cJSON_Delete(RemoteAccessAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    list_view_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *RemoteAccessAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = list_view_parseFromJSON(RemoteAccessAPIlocalVarJSON);
+        cJSON_Delete(RemoteAccessAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -780,15 +848,20 @@ RemoteAccessAPI_getViewConfig(apiClient_t *apiClient, char *name)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/view/{name}/config.xml")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/view/{name}/config.xml");
+    char *localVarPath = strdup("/view/{name}/config.xml");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -807,6 +880,7 @@ RemoteAccessAPI_getViewConfig(apiClient_t *apiClient, char *name)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -825,8 +899,10 @@ RemoteAccessAPI_getViewConfig(apiClient_t *apiClient, char *name)
     //if (apiClient->response_code == 404) {
     //    printf("%s\n","View cannot be found on Jenkins instance");
     //}
-    //primitive return type simple
-    char* elementToReturn =  strdup((char*)apiClient->dataReceived);
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -858,11 +934,14 @@ RemoteAccessAPI_headJenkins(apiClient_t *apiClient)
     list_t *localVarHeaderType = NULL;
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/api/json")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/api/json");
+    char *localVarPath = strdup("/api/json");
+
 
 
 
@@ -874,6 +953,7 @@ RemoteAccessAPI_headJenkins(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "HEAD");
 
     // uncomment below to debug the error response
@@ -915,11 +995,14 @@ RemoteAccessAPI_postCreateItem(apiClient_t *apiClient, char *name, char *from, c
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/createItem")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/createItem");
+    char *localVarPath = strdup("/createItem");
+
 
 
 
@@ -985,13 +1068,8 @@ RemoteAccessAPI_postCreateItem(apiClient_t *apiClient, char *name, char *from, c
     }
 
     // Body Param
-    cJSON *localVarSingleItemJSON_body = NULL;
-    if (body != NULL)
-    {
-        //string
-        localVarSingleItemJSON_body = char_convertToJSON(body);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
-    }
+    localVarBodyParameters = strdup(body);
+    localVarBodyLength = strlen(localVarBodyParameters);
     list_addElement(localVarHeaderType,"*/*"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
     apiClient_invoke(apiClient,
@@ -1002,6 +1080,7 @@ RemoteAccessAPI_postCreateItem(apiClient_t *apiClient, char *name, char *from, c
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1130,11 +1209,14 @@ RemoteAccessAPI_postCreateView(apiClient_t *apiClient, char *name, char *Jenkins
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/createView")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/createView");
+    char *localVarPath = strdup("/createView");
+
 
 
 
@@ -1176,13 +1258,8 @@ RemoteAccessAPI_postCreateView(apiClient_t *apiClient, char *name, char *Jenkins
     }
 
     // Body Param
-    cJSON *localVarSingleItemJSON_body = NULL;
-    if (body != NULL)
-    {
-        //string
-        localVarSingleItemJSON_body = char_convertToJSON(body);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
-    }
+    localVarBodyParameters = strdup(body);
+    localVarBodyLength = strlen(localVarBodyParameters);
     list_addElement(localVarHeaderType,"*/*"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
     apiClient_invoke(apiClient,
@@ -1193,6 +1270,7 @@ RemoteAccessAPI_postCreateView(apiClient_t *apiClient, char *name, char *Jenkins
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1281,15 +1359,20 @@ RemoteAccessAPI_postJobBuild(apiClient_t *apiClient, char *name, char *json, cha
     list_t *localVarHeaderType = NULL;
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/job/{name}/build")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/job/{name}/build");
+    char *localVarPath = strdup("/job/{name}/build");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -1343,6 +1426,7 @@ RemoteAccessAPI_postJobBuild(apiClient_t *apiClient, char *name, char *json, cha
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1442,15 +1526,20 @@ RemoteAccessAPI_postJobConfig(apiClient_t *apiClient, char *name, char *body, ch
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/job/{name}/config.xml")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/job/{name}/config.xml");
+    char *localVarPath = strdup("/job/{name}/config.xml");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -1474,13 +1563,8 @@ RemoteAccessAPI_postJobConfig(apiClient_t *apiClient, char *name, char *body, ch
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_body = NULL;
-    if (body != NULL)
-    {
-        //string
-        localVarSingleItemJSON_body = char_convertToJSON(body);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
-    }
+    localVarBodyParameters = strdup(body);
+    localVarBodyLength = strlen(localVarBodyParameters);
     list_addElement(localVarHeaderType,"*/*"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
     apiClient_invoke(apiClient,
@@ -1491,6 +1575,7 @@ RemoteAccessAPI_postJobConfig(apiClient_t *apiClient, char *name, char *body, ch
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1555,15 +1640,20 @@ RemoteAccessAPI_postJobDelete(apiClient_t *apiClient, char *name, char *Jenkins_
     list_t *localVarHeaderType = NULL;
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/job/{name}/doDelete")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/job/{name}/doDelete");
+    char *localVarPath = strdup("/job/{name}/doDelete");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -1593,6 +1683,7 @@ RemoteAccessAPI_postJobDelete(apiClient_t *apiClient, char *name, char *Jenkins_
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1648,15 +1739,20 @@ RemoteAccessAPI_postJobDisable(apiClient_t *apiClient, char *name, char *Jenkins
     list_t *localVarHeaderType = NULL;
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/job/{name}/disable")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/job/{name}/disable");
+    char *localVarPath = strdup("/job/{name}/disable");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -1686,6 +1782,7 @@ RemoteAccessAPI_postJobDisable(apiClient_t *apiClient, char *name, char *Jenkins
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1741,15 +1838,20 @@ RemoteAccessAPI_postJobEnable(apiClient_t *apiClient, char *name, char *Jenkins_
     list_t *localVarHeaderType = NULL;
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/job/{name}/enable")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/job/{name}/enable");
+    char *localVarPath = strdup("/job/{name}/enable");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -1779,6 +1881,7 @@ RemoteAccessAPI_postJobEnable(apiClient_t *apiClient, char *name, char *Jenkins_
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1834,15 +1937,20 @@ RemoteAccessAPI_postJobLastBuildStop(apiClient_t *apiClient, char *name, char *J
     list_t *localVarHeaderType = NULL;
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/job/{name}/lastBuild/stop")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/job/{name}/lastBuild/stop");
+    char *localVarPath = strdup("/job/{name}/lastBuild/stop");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -1872,6 +1980,7 @@ RemoteAccessAPI_postJobLastBuildStop(apiClient_t *apiClient, char *name, char *J
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1927,15 +2036,20 @@ RemoteAccessAPI_postViewConfig(apiClient_t *apiClient, char *name, char *body, c
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/view/{name}/config.xml")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/view/{name}/config.xml");
+    char *localVarPath = strdup("/view/{name}/config.xml");
+
+    if(!name)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_name = strlen(name)+3 + strlen("{ name }");
+    long sizeOfPathParams_name = strlen(name)+3 + sizeof("{ name }") - 1;
     if(name == NULL) {
         goto end;
     }
@@ -1959,13 +2073,8 @@ RemoteAccessAPI_postViewConfig(apiClient_t *apiClient, char *name, char *body, c
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_body = NULL;
-    if (body != NULL)
-    {
-        //string
-        localVarSingleItemJSON_body = char_convertToJSON(body);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
-    }
+    localVarBodyParameters = strdup(body);
+    localVarBodyLength = strlen(localVarBodyParameters);
     list_addElement(localVarHeaderType,"*/*"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
     apiClient_invoke(apiClient,
@@ -1976,6 +2085,7 @@ RemoteAccessAPI_postViewConfig(apiClient_t *apiClient, char *name, char *body, c
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response

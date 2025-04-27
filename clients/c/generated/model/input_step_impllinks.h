@@ -23,9 +23,10 @@ typedef struct input_step_impllinks_t {
     struct link_t *self; //model
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } input_step_impllinks_t;
 
-input_step_impllinks_t *input_step_impllinks_create(
+__attribute__((deprecated)) input_step_impllinks_t *input_step_impllinks_create(
     link_t *self,
     char *_class
 );

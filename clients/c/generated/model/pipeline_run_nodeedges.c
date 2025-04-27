@@ -5,7 +5,7 @@
 
 
 
-pipeline_run_nodeedges_t *pipeline_run_nodeedges_create(
+static pipeline_run_nodeedges_t *pipeline_run_nodeedges_create_internal(
     char *id,
     char *_class
     ) {
@@ -16,12 +16,26 @@ pipeline_run_nodeedges_t *pipeline_run_nodeedges_create(
     pipeline_run_nodeedges_local_var->id = id;
     pipeline_run_nodeedges_local_var->_class = _class;
 
+    pipeline_run_nodeedges_local_var->_library_owned = 1;
     return pipeline_run_nodeedges_local_var;
 }
 
+__attribute__((deprecated)) pipeline_run_nodeedges_t *pipeline_run_nodeedges_create(
+    char *id,
+    char *_class
+    ) {
+    return pipeline_run_nodeedges_create_internal (
+        id,
+        _class
+        );
+}
 
 void pipeline_run_nodeedges_free(pipeline_run_nodeedges_t *pipeline_run_nodeedges) {
     if(NULL == pipeline_run_nodeedges){
+        return ;
+    }
+    if(pipeline_run_nodeedges->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pipeline_run_nodeedges_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ pipeline_run_nodeedges_t *pipeline_run_nodeedges_parseFromJSON(cJSON *pipeline_r
 
     // pipeline_run_nodeedges->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeedgesJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (id) { 
     if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
@@ -77,6 +94,9 @@ pipeline_run_nodeedges_t *pipeline_run_nodeedges_parseFromJSON(cJSON *pipeline_r
 
     // pipeline_run_nodeedges->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeedgesJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -85,7 +105,7 @@ pipeline_run_nodeedges_t *pipeline_run_nodeedges_parseFromJSON(cJSON *pipeline_r
     }
 
 
-    pipeline_run_nodeedges_local_var = pipeline_run_nodeedges_create (
+    pipeline_run_nodeedges_local_var = pipeline_run_nodeedges_create_internal (
         id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

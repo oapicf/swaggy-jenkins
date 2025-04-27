@@ -53,5 +53,8 @@ data class GithubRepositories (
     @Json(name = "pageSize")
     val pageSize: kotlin.Int? = null
 
-)
+) {
+
+
+}
 

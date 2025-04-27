@@ -12,5 +12,5 @@ class Queue {
     
     String propertyClass
     
-    List<QueueBlockedItem> items
+    List<QueueBlockedItem> items = new ArrayList<>()
 }

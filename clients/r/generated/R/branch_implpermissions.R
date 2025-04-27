@@ -23,8 +23,7 @@ BranchImplpermissions <- R6::R6Class(
     `start` = NULL,
     `stop` = NULL,
     `_class` = NULL,
-    #' Initialize a new BranchImplpermissions class.
-    #'
+
     #' @description
     #' Initialize a new BranchImplpermissions class.
     #'
@@ -34,7 +33,6 @@ BranchImplpermissions <- R6::R6Class(
     #' @param stop stop
     #' @param _class _class
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`create` = NULL, `read` = NULL, `start` = NULL, `stop` = NULL, `_class` = NULL, ...) {
       if (!is.null(`create`)) {
         if (!(is.logical(`create`) && length(`create`) == 1)) {
@@ -67,14 +65,37 @@ BranchImplpermissions <- R6::R6Class(
         self$`_class` <- `_class`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return BranchImplpermissions in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return BranchImplpermissions as a base R list.
+    #' @examples
+    #' # convert array of BranchImplpermissions (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert BranchImplpermissions to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       BranchImplpermissionsObject <- list()
       if (!is.null(self$`create`)) {
         BranchImplpermissionsObject[["create"]] <-
@@ -96,16 +117,14 @@ BranchImplpermissions <- R6::R6Class(
         BranchImplpermissionsObject[["_class"]] <-
           self$`_class`
       }
-      BranchImplpermissionsObject
+      return(BranchImplpermissionsObject)
     },
-    #' Deserialize JSON string into an instance of BranchImplpermissions
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of BranchImplpermissions
     #'
     #' @param input_json the JSON input
     #' @return the instance of BranchImplpermissions
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`create`)) {
@@ -125,67 +144,23 @@ BranchImplpermissions <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return BranchImplpermissions in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`create`)) {
-          sprintf(
-          '"create":
-            %s
-                    ',
-          tolower(self$`create`)
-          )
-        },
-        if (!is.null(self$`read`)) {
-          sprintf(
-          '"read":
-            %s
-                    ',
-          tolower(self$`read`)
-          )
-        },
-        if (!is.null(self$`start`)) {
-          sprintf(
-          '"start":
-            %s
-                    ',
-          tolower(self$`start`)
-          )
-        },
-        if (!is.null(self$`stop`)) {
-          sprintf(
-          '"stop":
-            %s
-                    ',
-          tolower(self$`stop`)
-          )
-        },
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of BranchImplpermissions
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of BranchImplpermissions
     #'
     #' @param input_json the JSON input
     #' @return the instance of BranchImplpermissions
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`create` <- this_object$`create`
@@ -195,53 +170,42 @@ BranchImplpermissions <- R6::R6Class(
       self$`_class` <- this_object$`_class`
       self
     },
-    #' Validate JSON input with respect to BranchImplpermissions
-    #'
+
     #' @description
     #' Validate JSON input with respect to BranchImplpermissions and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of BranchImplpermissions
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

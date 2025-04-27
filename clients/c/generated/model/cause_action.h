@@ -23,9 +23,10 @@ typedef struct cause_action_t {
     char *_class; // string
     list_t *causes; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } cause_action_t;
 
-cause_action_t *cause_action_create(
+__attribute__((deprecated)) cause_action_t *cause_action_create(
     char *_class,
     list_t *causes
 );

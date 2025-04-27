@@ -39,8 +39,7 @@ BranchImpl <- R6::R6Class(
     `pullRequest` = NULL,
     `_links` = NULL,
     `latestRun` = NULL,
-    #' Initialize a new BranchImpl class.
-    #'
+
     #' @description
     #' Initialize a new BranchImpl class.
     #'
@@ -58,7 +57,6 @@ BranchImpl <- R6::R6Class(
     #' @param _links _links
     #' @param latestRun latestRun
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, `displayName` = NULL, `estimatedDurationInMillis` = NULL, `fullDisplayName` = NULL, `fullName` = NULL, `name` = NULL, `organization` = NULL, `parameters` = NULL, `permissions` = NULL, `weatherScore` = NULL, `pullRequest` = NULL, `_links` = NULL, `latestRun` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -132,14 +130,37 @@ BranchImpl <- R6::R6Class(
         self$`latestRun` <- `latestRun`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return BranchImpl in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return BranchImpl as a base R list.
+    #' @examples
+    #' # convert array of BranchImpl (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert BranchImpl to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       BranchImplObject <- list()
       if (!is.null(self$`_class`)) {
         BranchImplObject[["_class"]] <-
@@ -171,11 +192,11 @@ BranchImpl <- R6::R6Class(
       }
       if (!is.null(self$`parameters`)) {
         BranchImplObject[["parameters"]] <-
-          lapply(self$`parameters`, function(x) x$toJSON())
+          lapply(self$`parameters`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`permissions`)) {
         BranchImplObject[["permissions"]] <-
-          self$`permissions`$toJSON()
+          self$`permissions`$toSimpleType()
       }
       if (!is.null(self$`weatherScore`)) {
         BranchImplObject[["weatherScore"]] <-
@@ -187,22 +208,20 @@ BranchImpl <- R6::R6Class(
       }
       if (!is.null(self$`_links`)) {
         BranchImplObject[["_links"]] <-
-          self$`_links`$toJSON()
+          self$`_links`$toSimpleType()
       }
       if (!is.null(self$`latestRun`)) {
         BranchImplObject[["latestRun"]] <-
-          self$`latestRun`$toJSON()
+          self$`latestRun`$toSimpleType()
       }
-      BranchImplObject
+      return(BranchImplObject)
     },
-    #' Deserialize JSON string into an instance of BranchImpl
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of BranchImpl
     #'
     #' @param input_json the JSON input
     #' @return the instance of BranchImpl
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -252,131 +271,23 @@ BranchImpl <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return BranchImpl in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        },
-        if (!is.null(self$`displayName`)) {
-          sprintf(
-          '"displayName":
-            "%s"
-                    ',
-          self$`displayName`
-          )
-        },
-        if (!is.null(self$`estimatedDurationInMillis`)) {
-          sprintf(
-          '"estimatedDurationInMillis":
-            %d
-                    ',
-          self$`estimatedDurationInMillis`
-          )
-        },
-        if (!is.null(self$`fullDisplayName`)) {
-          sprintf(
-          '"fullDisplayName":
-            "%s"
-                    ',
-          self$`fullDisplayName`
-          )
-        },
-        if (!is.null(self$`fullName`)) {
-          sprintf(
-          '"fullName":
-            "%s"
-                    ',
-          self$`fullName`
-          )
-        },
-        if (!is.null(self$`name`)) {
-          sprintf(
-          '"name":
-            "%s"
-                    ',
-          self$`name`
-          )
-        },
-        if (!is.null(self$`organization`)) {
-          sprintf(
-          '"organization":
-            "%s"
-                    ',
-          self$`organization`
-          )
-        },
-        if (!is.null(self$`parameters`)) {
-          sprintf(
-          '"parameters":
-          [%s]
-',
-          paste(sapply(self$`parameters`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`permissions`)) {
-          sprintf(
-          '"permissions":
-          %s
-          ',
-          jsonlite::toJSON(self$`permissions`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`weatherScore`)) {
-          sprintf(
-          '"weatherScore":
-            %d
-                    ',
-          self$`weatherScore`
-          )
-        },
-        if (!is.null(self$`pullRequest`)) {
-          sprintf(
-          '"pullRequest":
-            "%s"
-                    ',
-          self$`pullRequest`
-          )
-        },
-        if (!is.null(self$`_links`)) {
-          sprintf(
-          '"_links":
-          %s
-          ',
-          jsonlite::toJSON(self$`_links`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`latestRun`)) {
-          sprintf(
-          '"latestRun":
-          %s
-          ',
-          jsonlite::toJSON(self$`latestRun`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of BranchImpl
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of BranchImpl
     #'
     #' @param input_json the JSON input
     #' @return the instance of BranchImpl
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
@@ -394,53 +305,42 @@ BranchImpl <- R6::R6Class(
       self$`latestRun` <- PipelineRunImpl$new()$fromJSON(jsonlite::toJSON(this_object$`latestRun`, auto_unbox = TRUE, digits = NA))
       self
     },
-    #' Validate JSON input with respect to BranchImpl
-    #'
+
     #' @description
     #' Validate JSON input with respect to BranchImpl and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of BranchImpl
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

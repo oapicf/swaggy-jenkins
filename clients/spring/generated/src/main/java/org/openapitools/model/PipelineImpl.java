@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.PipelineImpllinks;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -19,26 +20,26 @@ import javax.annotation.Generated;
  * PipelineImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineImpl {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private String displayName;
+  private @Nullable String displayName;
 
-  private Integer estimatedDurationInMillis;
+  private @Nullable Integer estimatedDurationInMillis;
 
-  private String fullName;
+  private @Nullable String fullName;
 
-  private String latestRun;
+  private @Nullable String latestRun;
 
-  private String name;
+  private @Nullable String name;
 
-  private String organization;
+  private @Nullable String organization;
 
-  private Integer weatherScore;
+  private @Nullable Integer weatherScore;
 
-  private PipelineImpllinks links;
+  private @Nullable PipelineImpllinks links;
 
   public PipelineImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -48,7 +49,7 @@ public class PipelineImpl {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -68,7 +69,7 @@ public class PipelineImpl {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -88,7 +89,7 @@ public class PipelineImpl {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  */
+   */
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
@@ -108,7 +109,7 @@ public class PipelineImpl {
   /**
    * Get fullName
    * @return fullName
-  */
+   */
   
   @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullName")
@@ -128,7 +129,7 @@ public class PipelineImpl {
   /**
    * Get latestRun
    * @return latestRun
-  */
+   */
   
   @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("latestRun")
@@ -148,7 +149,7 @@ public class PipelineImpl {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -168,7 +169,7 @@ public class PipelineImpl {
   /**
    * Get organization
    * @return organization
-  */
+   */
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
@@ -188,7 +189,7 @@ public class PipelineImpl {
   /**
    * Get weatherScore
    * @return weatherScore
-  */
+   */
   
   @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("weatherScore")
@@ -208,7 +209,7 @@ public class PipelineImpl {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")

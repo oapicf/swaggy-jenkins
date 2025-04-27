@@ -5,7 +5,7 @@
 
 
 
-organisation_t *organisation_create(
+static organisation_t *organisation_create_internal(
     char *_class,
     char *name
     ) {
@@ -16,12 +16,26 @@ organisation_t *organisation_create(
     organisation_local_var->_class = _class;
     organisation_local_var->name = name;
 
+    organisation_local_var->_library_owned = 1;
     return organisation_local_var;
 }
 
+__attribute__((deprecated)) organisation_t *organisation_create(
+    char *_class,
+    char *name
+    ) {
+    return organisation_create_internal (
+        _class,
+        name
+        );
+}
 
 void organisation_free(organisation_t *organisation) {
     if(NULL == organisation){
+        return ;
+    }
+    if(organisation->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "organisation_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ organisation_t *organisation_parseFromJSON(cJSON *organisationJSON){
 
     // organisation->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(organisationJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -77,6 +94,9 @@ organisation_t *organisation_parseFromJSON(cJSON *organisationJSON){
 
     // organisation->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(organisationJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -85,7 +105,7 @@ organisation_t *organisation_parseFromJSON(cJSON *organisationJSON){
     }
 
 
-    organisation_local_var = organisation_create (
+    organisation_local_var = organisation_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL
         );

@@ -65,5 +65,8 @@ data class PipelineStepImpl (
     @Json(name = "state")
     val state: kotlin.String? = null
 
-)
+) {
+
+
+}
 

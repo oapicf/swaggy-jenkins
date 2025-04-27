@@ -5,7 +5,7 @@
 
 
 
-queue_item_impl_t *queue_item_impl_create(
+static queue_item_impl_t *queue_item_impl_create_internal(
     char *_class,
     int expected_build_number,
     char *id,
@@ -22,12 +22,32 @@ queue_item_impl_t *queue_item_impl_create(
     queue_item_impl_local_var->pipeline = pipeline;
     queue_item_impl_local_var->queued_time = queued_time;
 
+    queue_item_impl_local_var->_library_owned = 1;
     return queue_item_impl_local_var;
 }
 
+__attribute__((deprecated)) queue_item_impl_t *queue_item_impl_create(
+    char *_class,
+    int expected_build_number,
+    char *id,
+    char *pipeline,
+    int queued_time
+    ) {
+    return queue_item_impl_create_internal (
+        _class,
+        expected_build_number,
+        id,
+        pipeline,
+        queued_time
+        );
+}
 
 void queue_item_impl_free(queue_item_impl_t *queue_item_impl) {
     if(NULL == queue_item_impl){
+        return ;
+    }
+    if(queue_item_impl->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "queue_item_impl_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -102,6 +122,9 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
 
     // queue_item_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(queue_item_implJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -111,6 +134,9 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
 
     // queue_item_impl->expected_build_number
     cJSON *expected_build_number = cJSON_GetObjectItemCaseSensitive(queue_item_implJSON, "expectedBuildNumber");
+    if (cJSON_IsNull(expected_build_number)) {
+        expected_build_number = NULL;
+    }
     if (expected_build_number) { 
     if(!cJSON_IsNumber(expected_build_number))
     {
@@ -120,6 +146,9 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
 
     // queue_item_impl->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(queue_item_implJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (id) { 
     if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
@@ -129,6 +158,9 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
 
     // queue_item_impl->pipeline
     cJSON *pipeline = cJSON_GetObjectItemCaseSensitive(queue_item_implJSON, "pipeline");
+    if (cJSON_IsNull(pipeline)) {
+        pipeline = NULL;
+    }
     if (pipeline) { 
     if(!cJSON_IsString(pipeline) && !cJSON_IsNull(pipeline))
     {
@@ -138,6 +170,9 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
 
     // queue_item_impl->queued_time
     cJSON *queued_time = cJSON_GetObjectItemCaseSensitive(queue_item_implJSON, "queuedTime");
+    if (cJSON_IsNull(queued_time)) {
+        queued_time = NULL;
+    }
     if (queued_time) { 
     if(!cJSON_IsNumber(queued_time))
     {
@@ -146,7 +181,7 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
     }
 
 
-    queue_item_impl_local_var = queue_item_impl_create (
+    queue_item_impl_local_var = queue_item_impl_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         expected_build_number ? expected_build_number->valuedouble : 0,
         id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,

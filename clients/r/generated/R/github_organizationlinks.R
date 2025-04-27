@@ -19,8 +19,7 @@ GithubOrganizationlinks <- R6::R6Class(
     `repositories` = NULL,
     `item_self` = NULL,
     `_class` = NULL,
-    #' Initialize a new GithubOrganizationlinks class.
-    #'
+
     #' @description
     #' Initialize a new GithubOrganizationlinks class.
     #'
@@ -28,7 +27,6 @@ GithubOrganizationlinks <- R6::R6Class(
     #' @param item_self item_self
     #' @param _class _class
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`repositories` = NULL, `item_self` = NULL, `_class` = NULL, ...) {
       if (!is.null(`repositories`)) {
         stopifnot(R6::is.R6(`repositories`))
@@ -45,37 +43,58 @@ GithubOrganizationlinks <- R6::R6Class(
         self$`_class` <- `_class`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return GithubOrganizationlinks in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return GithubOrganizationlinks as a base R list.
+    #' @examples
+    #' # convert array of GithubOrganizationlinks (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert GithubOrganizationlinks to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       GithubOrganizationlinksObject <- list()
       if (!is.null(self$`repositories`)) {
         GithubOrganizationlinksObject[["repositories"]] <-
-          self$`repositories`$toJSON()
+          self$`repositories`$toSimpleType()
       }
       if (!is.null(self$`item_self`)) {
         GithubOrganizationlinksObject[["self"]] <-
-          self$`item_self`$toJSON()
+          self$`item_self`$toSimpleType()
       }
       if (!is.null(self$`_class`)) {
         GithubOrganizationlinksObject[["_class"]] <-
           self$`_class`
       }
-      GithubOrganizationlinksObject
+      return(GithubOrganizationlinksObject)
     },
-    #' Deserialize JSON string into an instance of GithubOrganizationlinks
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of GithubOrganizationlinks
     #'
     #' @param input_json the JSON input
     #' @return the instance of GithubOrganizationlinks
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`repositories`)) {
@@ -93,51 +112,23 @@ GithubOrganizationlinks <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return GithubOrganizationlinks in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`repositories`)) {
-          sprintf(
-          '"repositories":
-          %s
-          ',
-          jsonlite::toJSON(self$`repositories`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`item_self`)) {
-          sprintf(
-          '"self":
-          %s
-          ',
-          jsonlite::toJSON(self$`item_self`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of GithubOrganizationlinks
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of GithubOrganizationlinks
     #'
     #' @param input_json the JSON input
     #' @return the instance of GithubOrganizationlinks
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`repositories` <- Link$new()$fromJSON(jsonlite::toJSON(this_object$`repositories`, auto_unbox = TRUE, digits = NA))
@@ -145,53 +136,42 @@ GithubOrganizationlinks <- R6::R6Class(
       self$`_class` <- this_object$`_class`
       self
     },
-    #' Validate JSON input with respect to GithubOrganizationlinks
-    #'
+
     #' @description
     #' Validate JSON input with respect to GithubOrganizationlinks and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of GithubOrganizationlinks
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class PipelinelatestRun   {
   
-  private List<@Valid PipelinelatestRunartifacts> artifacts;
+  private List<@Valid PipelinelatestRunartifacts> artifacts = new ArrayList<>();
 
   private Integer durationInMillis;
 

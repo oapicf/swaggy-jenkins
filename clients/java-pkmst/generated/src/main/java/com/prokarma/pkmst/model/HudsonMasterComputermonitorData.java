@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  * HudsonMasterComputermonitorData
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputermonitorData   {
   @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
   private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
@@ -46,10 +46,10 @@ public class HudsonMasterComputermonitorData   {
     return this;
   }
 
-   /**
+  /**
    * Get hudsonNodeMonitorsSwapSpaceMonitor
    * @return hudsonNodeMonitorsSwapSpaceMonitor
-  **/
+   */
   @ApiModelProperty(value = "")
   public SwapSpaceMonitorMemoryUsage2 getHudsonNodeMonitorsSwapSpaceMonitor() {
     return hudsonNodeMonitorsSwapSpaceMonitor;
@@ -64,10 +64,10 @@ public class HudsonMasterComputermonitorData   {
     return this;
   }
 
-   /**
+  /**
    * Get hudsonNodeMonitorsTemporarySpaceMonitor
    * @return hudsonNodeMonitorsTemporarySpaceMonitor
-  **/
+   */
   @ApiModelProperty(value = "")
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsTemporarySpaceMonitor() {
     return hudsonNodeMonitorsTemporarySpaceMonitor;
@@ -82,10 +82,10 @@ public class HudsonMasterComputermonitorData   {
     return this;
   }
 
-   /**
+  /**
    * Get hudsonNodeMonitorsDiskSpaceMonitor
    * @return hudsonNodeMonitorsDiskSpaceMonitor
-  **/
+   */
   @ApiModelProperty(value = "")
   public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsDiskSpaceMonitor() {
     return hudsonNodeMonitorsDiskSpaceMonitor;
@@ -100,10 +100,10 @@ public class HudsonMasterComputermonitorData   {
     return this;
   }
 
-   /**
+  /**
    * Get hudsonNodeMonitorsArchitectureMonitor
    * @return hudsonNodeMonitorsArchitectureMonitor
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getHudsonNodeMonitorsArchitectureMonitor() {
     return hudsonNodeMonitorsArchitectureMonitor;
@@ -118,10 +118,10 @@ public class HudsonMasterComputermonitorData   {
     return this;
   }
 
-   /**
+  /**
    * Get hudsonNodeMonitorsResponseTimeMonitor
    * @return hudsonNodeMonitorsResponseTimeMonitor
-  **/
+   */
   @ApiModelProperty(value = "")
   public ResponseTimeMonitorData getHudsonNodeMonitorsResponseTimeMonitor() {
     return hudsonNodeMonitorsResponseTimeMonitor;
@@ -136,10 +136,10 @@ public class HudsonMasterComputermonitorData   {
     return this;
   }
 
-   /**
+  /**
    * Get hudsonNodeMonitorsClockMonitor
    * @return hudsonNodeMonitorsClockMonitor
-  **/
+   */
   @ApiModelProperty(value = "")
   public ClockDifference getHudsonNodeMonitorsClockMonitor() {
     return hudsonNodeMonitorsClockMonitor;
@@ -154,10 +154,10 @@ public class HudsonMasterComputermonitorData   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;

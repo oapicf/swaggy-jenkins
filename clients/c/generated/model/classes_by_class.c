@@ -5,7 +5,7 @@
 
 
 
-classes_by_class_t *classes_by_class_create(
+static classes_by_class_t *classes_by_class_create_internal(
     list_t *classes,
     char *_class
     ) {
@@ -16,12 +16,26 @@ classes_by_class_t *classes_by_class_create(
     classes_by_class_local_var->classes = classes;
     classes_by_class_local_var->_class = _class;
 
+    classes_by_class_local_var->_library_owned = 1;
     return classes_by_class_local_var;
 }
 
+__attribute__((deprecated)) classes_by_class_t *classes_by_class_create(
+    list_t *classes,
+    char *_class
+    ) {
+    return classes_by_class_create_internal (
+        classes,
+        _class
+        );
+}
 
 void classes_by_class_free(classes_by_class_t *classes_by_class) {
     if(NULL == classes_by_class){
+        return ;
+    }
+    if(classes_by_class->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "classes_by_class_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -51,7 +65,7 @@ cJSON *classes_by_class_convertToJSON(classes_by_class_t *classes_by_class) {
 
     listEntry_t *classesListEntry;
     list_ForEach(classesListEntry, classes_by_class->classes) {
-    if(cJSON_AddStringToObject(classes, "", (char*)classesListEntry->data) == NULL)
+    if(cJSON_AddStringToObject(classes, "", classesListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -83,6 +97,9 @@ classes_by_class_t *classes_by_class_parseFromJSON(cJSON *classes_by_classJSON){
 
     // classes_by_class->classes
     cJSON *classes = cJSON_GetObjectItemCaseSensitive(classes_by_classJSON, "classes");
+    if (cJSON_IsNull(classes)) {
+        classes = NULL;
+    }
     if (classes) { 
     cJSON *classes_local = NULL;
     if(!cJSON_IsArray(classes)) {
@@ -102,6 +119,9 @@ classes_by_class_t *classes_by_class_parseFromJSON(cJSON *classes_by_classJSON){
 
     // classes_by_class->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(classes_by_classJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -110,7 +130,7 @@ classes_by_class_t *classes_by_class_parseFromJSON(cJSON *classes_by_classJSON){
     }
 
 
-    classes_by_class_local_var = classes_by_class_create (
+    classes_by_class_local_var = classes_by_class_create_internal (
         classes ? classesList : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

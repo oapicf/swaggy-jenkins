@@ -19,7 +19,7 @@ public class ListView  {
   private String description;
 
   @ApiModelProperty(value = "")
-  private List<FreeStyleProject> jobs;
+  private List<FreeStyleProject> jobs = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private String name;

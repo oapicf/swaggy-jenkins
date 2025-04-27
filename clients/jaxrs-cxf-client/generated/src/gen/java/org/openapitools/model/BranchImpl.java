@@ -37,7 +37,7 @@ public class BranchImpl  {
   private String organization;
 
   @ApiModelProperty(value = "")
-  private List<StringParameterDefinition> parameters;
+  private List<StringParameterDefinition> parameters = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private BranchImplpermissions permissions;

@@ -1,5 +1,6 @@
 .openapi-generator-ignore
 CMakeLists.txt
+Config.cmake.in
 Packing.cmake
 README.md
 api/BaseAPI.c
@@ -101,6 +102,7 @@ include/list.h
 libcurl.licence
 model/all_view.c
 model/all_view.h
+model/any_type.h
 model/branch_impl.c
 model/branch_impl.h
 model/branch_impllinks.c

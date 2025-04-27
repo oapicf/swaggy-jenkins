@@ -25,9 +25,10 @@ typedef struct swap_space_monitor_memory_usage2_t {
     int total_physical_memory; //numeric
     int total_swap_space; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } swap_space_monitor_memory_usage2_t;
 
-swap_space_monitor_memory_usage2_t *swap_space_monitor_memory_usage2_create(
+__attribute__((deprecated)) swap_space_monitor_memory_usage2_t *swap_space_monitor_memory_usage2_create(
     char *_class,
     int available_physical_memory,
     int available_swap_space,

@@ -21,7 +21,7 @@ public class PipelineActivity   {
   
   private String propertyClass;
 
-  private List<@Valid PipelineActivityartifacts> artifacts;
+  private List<@Valid PipelineActivityartifacts> artifacts = new ArrayList<>();
 
   private Integer durationInMillis;
 

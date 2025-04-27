@@ -5,7 +5,7 @@
 
 
 
-pipeline_step_impllinks_t *pipeline_step_impllinks_create(
+static pipeline_step_impllinks_t *pipeline_step_impllinks_create_internal(
     link_t *self,
     link_t *actions,
     char *_class
@@ -18,12 +18,28 @@ pipeline_step_impllinks_t *pipeline_step_impllinks_create(
     pipeline_step_impllinks_local_var->actions = actions;
     pipeline_step_impllinks_local_var->_class = _class;
 
+    pipeline_step_impllinks_local_var->_library_owned = 1;
     return pipeline_step_impllinks_local_var;
 }
 
+__attribute__((deprecated)) pipeline_step_impllinks_t *pipeline_step_impllinks_create(
+    link_t *self,
+    link_t *actions,
+    char *_class
+    ) {
+    return pipeline_step_impllinks_create_internal (
+        self,
+        actions,
+        _class
+        );
+}
 
 void pipeline_step_impllinks_free(pipeline_step_impllinks_t *pipeline_step_impllinks) {
     if(NULL == pipeline_step_impllinks){
+        return ;
+    }
+    if(pipeline_step_impllinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pipeline_step_impllinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -98,18 +114,27 @@ pipeline_step_impllinks_t *pipeline_step_impllinks_parseFromJSON(cJSON *pipeline
 
     // pipeline_step_impllinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(pipeline_step_impllinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // pipeline_step_impllinks->actions
     cJSON *actions = cJSON_GetObjectItemCaseSensitive(pipeline_step_impllinksJSON, "actions");
+    if (cJSON_IsNull(actions)) {
+        actions = NULL;
+    }
     if (actions) { 
     actions_local_nonprim = link_parseFromJSON(actions); //nonprimitive
     }
 
     // pipeline_step_impllinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_step_impllinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -118,7 +143,7 @@ pipeline_step_impllinks_t *pipeline_step_impllinks_parseFromJSON(cJSON *pipeline
     }
 
 
-    pipeline_step_impllinks_local_var = pipeline_step_impllinks_create (
+    pipeline_step_impllinks_local_var = pipeline_step_impllinks_create_internal (
         self ? self_local_nonprim : NULL,
         actions ? actions_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL

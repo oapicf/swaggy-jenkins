@@ -23,9 +23,10 @@ typedef struct default_crumb_issuer_t {
     char *crumb; // string
     char *crumb_request_field; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } default_crumb_issuer_t;
 
-default_crumb_issuer_t *default_crumb_issuer_create(
+__attribute__((deprecated)) default_crumb_issuer_t *default_crumb_issuer_create(
     char *_class,
     char *crumb,
     char *crumb_request_field

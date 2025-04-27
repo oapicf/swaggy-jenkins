@@ -23,7 +23,7 @@ print(GithubScmlinks.to_json())
 # convert the object into a dict
 github_scmlinks_dict = github_scmlinks_instance.to_dict()
 # create an instance of GithubScmlinks from a dict
-github_scmlinks_form_dict = github_scmlinks.from_dict(github_scmlinks_dict)
+github_scmlinks_from_dict = GithubScmlinks.from_dict(github_scmlinks_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

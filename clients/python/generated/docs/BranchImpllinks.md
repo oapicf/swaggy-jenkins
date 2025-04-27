@@ -26,7 +26,7 @@ print(BranchImpllinks.to_json())
 # convert the object into a dict
 branch_impllinks_dict = branch_impllinks_instance.to_dict()
 # create an instance of BranchImpllinks from a dict
-branch_impllinks_form_dict = branch_impllinks.from_dict(branch_impllinks_dict)
+branch_impllinks_from_dict = BranchImpllinks.from_dict(branch_impllinks_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

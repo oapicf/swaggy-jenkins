@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -21,13 +22,13 @@ import javax.annotation.Generated;
  * ClassesByClass
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ClassesByClass {
 
   @Valid
-  private List<String> classes;
+  private List<String> classes = new ArrayList<>();
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public ClassesByClass classes(List<String> classes) {
     this.classes = classes;
@@ -45,7 +46,7 @@ public class ClassesByClass {
   /**
    * Get classes
    * @return classes
-  */
+   */
   
   @Schema(name = "classes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("classes")
@@ -65,7 +66,7 @@ public class ClassesByClass {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

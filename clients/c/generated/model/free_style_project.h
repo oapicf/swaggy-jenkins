@@ -51,9 +51,10 @@ typedef struct free_style_project_t {
     int concurrent_build; //boolean
     struct null_scm_t *scm; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } free_style_project_t;
 
-free_style_project_t *free_style_project_create(
+__attribute__((deprecated)) free_style_project_t *free_style_project_create(
     char *_class,
     char *name,
     char *url,

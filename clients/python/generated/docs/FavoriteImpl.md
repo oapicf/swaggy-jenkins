@@ -24,7 +24,7 @@ print(FavoriteImpl.to_json())
 # convert the object into a dict
 favorite_impl_dict = favorite_impl_instance.to_dict()
 # create an instance of FavoriteImpl from a dict
-favorite_impl_form_dict = favorite_impl.from_dict(favorite_impl_dict)
+favorite_impl_from_dict = FavoriteImpl.from_dict(favorite_impl_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

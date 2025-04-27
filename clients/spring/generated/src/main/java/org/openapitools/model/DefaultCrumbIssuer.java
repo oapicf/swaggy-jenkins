@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,14 +19,14 @@ import javax.annotation.Generated;
  * DefaultCrumbIssuer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class DefaultCrumbIssuer {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private String crumb;
+  private @Nullable String crumb;
 
-  private String crumbRequestField;
+  private @Nullable String crumbRequestField;
 
   public DefaultCrumbIssuer propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -35,7 +36,7 @@ public class DefaultCrumbIssuer {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -55,7 +56,7 @@ public class DefaultCrumbIssuer {
   /**
    * Get crumb
    * @return crumb
-  */
+   */
   
   @Schema(name = "crumb", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("crumb")
@@ -75,7 +76,7 @@ public class DefaultCrumbIssuer {
   /**
    * Get crumbRequestField
    * @return crumbRequestField
-  */
+   */
   
   @Schema(name = "crumbRequestField", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("crumbRequestField")

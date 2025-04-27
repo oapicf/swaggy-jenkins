@@ -27,9 +27,10 @@ typedef struct hudson_master_computerexecutors_t {
     int progress; //numeric
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } hudson_master_computerexecutors_t;
 
-hudson_master_computerexecutors_t *hudson_master_computerexecutors_create(
+__attribute__((deprecated)) hudson_master_computerexecutors_t *hudson_master_computerexecutors_create(
     free_style_build_t *current_executable,
     int idle,
     int likely_stuck,

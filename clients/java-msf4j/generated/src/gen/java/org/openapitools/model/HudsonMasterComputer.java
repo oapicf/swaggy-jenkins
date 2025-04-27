@@ -15,7 +15,7 @@ import org.openapitools.model.Label1;
 /**
  * HudsonMasterComputer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2025-04-27T08:09:22.488100288Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputer   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -108,7 +108,7 @@ public class HudsonMasterComputer   {
 
   public HudsonMasterComputer addExecutorsItem(HudsonMasterComputerexecutors executorsItem) {
     if (this.executors == null) {
-      this.executors = ;
+      this.executors = new ArrayList<>();
     }
     this.executors.add(executorsItem);
     return this;

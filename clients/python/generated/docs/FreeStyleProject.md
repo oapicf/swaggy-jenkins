@@ -48,7 +48,7 @@ print(FreeStyleProject.to_json())
 # convert the object into a dict
 free_style_project_dict = free_style_project_instance.to_dict()
 # create an instance of FreeStyleProject from a dict
-free_style_project_form_dict = free_style_project.from_dict(free_style_project_dict)
+free_style_project_from_dict = FreeStyleProject.from_dict(free_style_project_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

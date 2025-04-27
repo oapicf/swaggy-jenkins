@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,14 +19,14 @@ import javax.annotation.Generated;
  * ResponseTimeMonitorData
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ResponseTimeMonitorData {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private Integer timestamp;
+  private @Nullable Integer timestamp;
 
-  private Integer average;
+  private @Nullable Integer average;
 
   public ResponseTimeMonitorData propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -35,7 +36,7 @@ public class ResponseTimeMonitorData {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -55,7 +56,7 @@ public class ResponseTimeMonitorData {
   /**
    * Get timestamp
    * @return timestamp
-  */
+   */
   
   @Schema(name = "timestamp", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("timestamp")
@@ -75,7 +76,7 @@ public class ResponseTimeMonitorData {
   /**
    * Get average
    * @return average
-  */
+   */
   
   @Schema(name = "average", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("average")

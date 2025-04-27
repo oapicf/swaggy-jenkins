@@ -22,7 +22,7 @@ public class Hudson  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<@Valid HudsonassignedLabels> assignedLabels;
+  private List<@Valid HudsonassignedLabels> assignedLabels = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private String mode;
@@ -41,7 +41,7 @@ public class Hudson  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<@Valid FreeStyleProject> jobs;
+  private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   @Valid
@@ -65,7 +65,7 @@ public class Hudson  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<@Valid AllView> views;
+  private List<@Valid AllView> views = new ArrayList<>();
  /**
   * Get propertyClass
   * @return propertyClass

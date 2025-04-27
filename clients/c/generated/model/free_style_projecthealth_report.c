@@ -5,7 +5,7 @@
 
 
 
-free_style_projecthealth_report_t *free_style_projecthealth_report_create(
+static free_style_projecthealth_report_t *free_style_projecthealth_report_create_internal(
     char *description,
     char *icon_class_name,
     char *icon_url,
@@ -22,12 +22,32 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_create(
     free_style_projecthealth_report_local_var->score = score;
     free_style_projecthealth_report_local_var->_class = _class;
 
+    free_style_projecthealth_report_local_var->_library_owned = 1;
     return free_style_projecthealth_report_local_var;
 }
 
+__attribute__((deprecated)) free_style_projecthealth_report_t *free_style_projecthealth_report_create(
+    char *description,
+    char *icon_class_name,
+    char *icon_url,
+    int score,
+    char *_class
+    ) {
+    return free_style_projecthealth_report_create_internal (
+        description,
+        icon_class_name,
+        icon_url,
+        score,
+        _class
+        );
+}
 
 void free_style_projecthealth_report_free(free_style_projecthealth_report_t *free_style_projecthealth_report) {
     if(NULL == free_style_projecthealth_report){
+        return ;
+    }
+    if(free_style_projecthealth_report->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "free_style_projecthealth_report_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -106,6 +126,9 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
 
     // free_style_projecthealth_report->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(free_style_projecthealth_reportJSON, "description");
+    if (cJSON_IsNull(description)) {
+        description = NULL;
+    }
     if (description) { 
     if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
@@ -115,6 +138,9 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
 
     // free_style_projecthealth_report->icon_class_name
     cJSON *icon_class_name = cJSON_GetObjectItemCaseSensitive(free_style_projecthealth_reportJSON, "iconClassName");
+    if (cJSON_IsNull(icon_class_name)) {
+        icon_class_name = NULL;
+    }
     if (icon_class_name) { 
     if(!cJSON_IsString(icon_class_name) && !cJSON_IsNull(icon_class_name))
     {
@@ -124,6 +150,9 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
 
     // free_style_projecthealth_report->icon_url
     cJSON *icon_url = cJSON_GetObjectItemCaseSensitive(free_style_projecthealth_reportJSON, "iconUrl");
+    if (cJSON_IsNull(icon_url)) {
+        icon_url = NULL;
+    }
     if (icon_url) { 
     if(!cJSON_IsString(icon_url) && !cJSON_IsNull(icon_url))
     {
@@ -133,6 +162,9 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
 
     // free_style_projecthealth_report->score
     cJSON *score = cJSON_GetObjectItemCaseSensitive(free_style_projecthealth_reportJSON, "score");
+    if (cJSON_IsNull(score)) {
+        score = NULL;
+    }
     if (score) { 
     if(!cJSON_IsNumber(score))
     {
@@ -142,6 +174,9 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
 
     // free_style_projecthealth_report->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(free_style_projecthealth_reportJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -150,7 +185,7 @@ free_style_projecthealth_report_t *free_style_projecthealth_report_parseFromJSON
     }
 
 
-    free_style_projecthealth_report_local_var = free_style_projecthealth_report_create (
+    free_style_projecthealth_report_local_var = free_style_projecthealth_report_create_internal (
         description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
         icon_class_name && !cJSON_IsNull(icon_class_name) ? strdup(icon_class_name->valuestring) : NULL,
         icon_url && !cJSON_IsNull(icon_url) ? strdup(icon_url->valuestring) : NULL,

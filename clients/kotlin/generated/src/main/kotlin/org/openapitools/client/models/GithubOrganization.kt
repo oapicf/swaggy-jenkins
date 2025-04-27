@@ -44,5 +44,8 @@ data class GithubOrganization (
     @Json(name = "name")
     val name: kotlin.String? = null
 
-)
+) {
+
+
+}
 

@@ -21,9 +21,10 @@ typedef struct hudsonassigned_labels_t hudsonassigned_labels_t;
 typedef struct hudsonassigned_labels_t {
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } hudsonassigned_labels_t;
 
-hudsonassigned_labels_t *hudsonassigned_labels_create(
+__attribute__((deprecated)) hudsonassigned_labels_t *hudsonassigned_labels_create(
     char *_class
 );
 

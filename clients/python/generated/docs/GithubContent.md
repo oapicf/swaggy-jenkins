@@ -29,7 +29,7 @@ print(GithubContent.to_json())
 # convert the object into a dict
 github_content_dict = github_content_instance.to_dict()
 # create an instance of GithubContent from a dict
-github_content_form_dict = github_content.from_dict(github_content_dict)
+github_content_from_dict = GithubContent.from_dict(github_content_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

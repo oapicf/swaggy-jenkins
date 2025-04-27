@@ -1,3 +1,4 @@
+.gitattributes
 .gitignore
 .openapi-generator-ignore
 BaseApi.md

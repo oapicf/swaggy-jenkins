@@ -16,11 +16,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubOrganizationlinks")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubOrganizationlinks   {
-  private @Valid Link repositories;
-  private @Valid Link self;
-  private @Valid String propertyClass;
+  private Link repositories;
+  private Link self;
+  private String propertyClass;
+
+  public GithubOrganizationlinks() {
+  }
 
   /**
    **/
@@ -32,7 +35,7 @@ public class GithubOrganizationlinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("repositories")
-  public Link getRepositories() {
+  @Valid public Link getRepositories() {
     return repositories;
   }
 
@@ -51,7 +54,7 @@ public class GithubOrganizationlinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("self")
-  public Link getSelf() {
+  @Valid public Link getSelf() {
     return self;
   }
 

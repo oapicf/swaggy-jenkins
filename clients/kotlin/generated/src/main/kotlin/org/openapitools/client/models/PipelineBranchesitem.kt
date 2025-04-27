@@ -65,5 +65,8 @@ data class PipelineBranchesitem (
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null
 
-)
+) {
+
+
+}
 

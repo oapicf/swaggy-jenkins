@@ -27,7 +27,7 @@ print(GenericResource.to_json())
 # convert the object into a dict
 generic_resource_dict = generic_resource_instance.to_dict()
 # create an instance of GenericResource from a dict
-generic_resource_form_dict = generic_resource.from_dict(generic_resource_dict)
+generic_resource_from_dict = GenericResource.from_dict(generic_resource_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

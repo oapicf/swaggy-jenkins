@@ -45,8 +45,7 @@ HudsonMasterComputer <- R6::R6Class(
     `offlineCause` = NULL,
     `offlineCauseReason` = NULL,
     `temporarilyOffline` = NULL,
-    #' Initialize a new HudsonMasterComputer class.
-    #'
+
     #' @description
     #' Initialize a new HudsonMasterComputer class.
     #'
@@ -67,7 +66,6 @@ HudsonMasterComputer <- R6::R6Class(
     #' @param offlineCauseReason offlineCauseReason
     #' @param temporarilyOffline temporarilyOffline
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, `displayName` = NULL, `executors` = NULL, `icon` = NULL, `iconClassName` = NULL, `idle` = NULL, `jnlpAgent` = NULL, `launchSupported` = NULL, `loadStatistics` = NULL, `manualLaunchAllowed` = NULL, `monitorData` = NULL, `numExecutors` = NULL, `offline` = NULL, `offlineCause` = NULL, `offlineCauseReason` = NULL, `temporarilyOffline` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -161,14 +159,37 @@ HudsonMasterComputer <- R6::R6Class(
         self$`temporarilyOffline` <- `temporarilyOffline`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return HudsonMasterComputer in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return HudsonMasterComputer as a base R list.
+    #' @examples
+    #' # convert array of HudsonMasterComputer (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert HudsonMasterComputer to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       HudsonMasterComputerObject <- list()
       if (!is.null(self$`_class`)) {
         HudsonMasterComputerObject[["_class"]] <-
@@ -180,7 +201,7 @@ HudsonMasterComputer <- R6::R6Class(
       }
       if (!is.null(self$`executors`)) {
         HudsonMasterComputerObject[["executors"]] <-
-          lapply(self$`executors`, function(x) x$toJSON())
+          lapply(self$`executors`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`icon`)) {
         HudsonMasterComputerObject[["icon"]] <-
@@ -204,7 +225,7 @@ HudsonMasterComputer <- R6::R6Class(
       }
       if (!is.null(self$`loadStatistics`)) {
         HudsonMasterComputerObject[["loadStatistics"]] <-
-          self$`loadStatistics`$toJSON()
+          self$`loadStatistics`$toSimpleType()
       }
       if (!is.null(self$`manualLaunchAllowed`)) {
         HudsonMasterComputerObject[["manualLaunchAllowed"]] <-
@@ -212,7 +233,7 @@ HudsonMasterComputer <- R6::R6Class(
       }
       if (!is.null(self$`monitorData`)) {
         HudsonMasterComputerObject[["monitorData"]] <-
-          self$`monitorData`$toJSON()
+          self$`monitorData`$toSimpleType()
       }
       if (!is.null(self$`numExecutors`)) {
         HudsonMasterComputerObject[["numExecutors"]] <-
@@ -234,16 +255,14 @@ HudsonMasterComputer <- R6::R6Class(
         HudsonMasterComputerObject[["temporarilyOffline"]] <-
           self$`temporarilyOffline`
       }
-      HudsonMasterComputerObject
+      return(HudsonMasterComputerObject)
     },
-    #' Deserialize JSON string into an instance of HudsonMasterComputer
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of HudsonMasterComputer
     #'
     #' @param input_json the JSON input
     #' @return the instance of HudsonMasterComputer
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -300,155 +319,23 @@ HudsonMasterComputer <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return HudsonMasterComputer in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        },
-        if (!is.null(self$`displayName`)) {
-          sprintf(
-          '"displayName":
-            "%s"
-                    ',
-          self$`displayName`
-          )
-        },
-        if (!is.null(self$`executors`)) {
-          sprintf(
-          '"executors":
-          [%s]
-',
-          paste(sapply(self$`executors`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`icon`)) {
-          sprintf(
-          '"icon":
-            "%s"
-                    ',
-          self$`icon`
-          )
-        },
-        if (!is.null(self$`iconClassName`)) {
-          sprintf(
-          '"iconClassName":
-            "%s"
-                    ',
-          self$`iconClassName`
-          )
-        },
-        if (!is.null(self$`idle`)) {
-          sprintf(
-          '"idle":
-            %s
-                    ',
-          tolower(self$`idle`)
-          )
-        },
-        if (!is.null(self$`jnlpAgent`)) {
-          sprintf(
-          '"jnlpAgent":
-            %s
-                    ',
-          tolower(self$`jnlpAgent`)
-          )
-        },
-        if (!is.null(self$`launchSupported`)) {
-          sprintf(
-          '"launchSupported":
-            %s
-                    ',
-          tolower(self$`launchSupported`)
-          )
-        },
-        if (!is.null(self$`loadStatistics`)) {
-          sprintf(
-          '"loadStatistics":
-          %s
-          ',
-          jsonlite::toJSON(self$`loadStatistics`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`manualLaunchAllowed`)) {
-          sprintf(
-          '"manualLaunchAllowed":
-            %s
-                    ',
-          tolower(self$`manualLaunchAllowed`)
-          )
-        },
-        if (!is.null(self$`monitorData`)) {
-          sprintf(
-          '"monitorData":
-          %s
-          ',
-          jsonlite::toJSON(self$`monitorData`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`numExecutors`)) {
-          sprintf(
-          '"numExecutors":
-            %d
-                    ',
-          self$`numExecutors`
-          )
-        },
-        if (!is.null(self$`offline`)) {
-          sprintf(
-          '"offline":
-            %s
-                    ',
-          tolower(self$`offline`)
-          )
-        },
-        if (!is.null(self$`offlineCause`)) {
-          sprintf(
-          '"offlineCause":
-            "%s"
-                    ',
-          self$`offlineCause`
-          )
-        },
-        if (!is.null(self$`offlineCauseReason`)) {
-          sprintf(
-          '"offlineCauseReason":
-            "%s"
-                    ',
-          self$`offlineCauseReason`
-          )
-        },
-        if (!is.null(self$`temporarilyOffline`)) {
-          sprintf(
-          '"temporarilyOffline":
-            %s
-                    ',
-          tolower(self$`temporarilyOffline`)
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of HudsonMasterComputer
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of HudsonMasterComputer
     #'
     #' @param input_json the JSON input
     #' @return the instance of HudsonMasterComputer
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
@@ -469,53 +356,42 @@ HudsonMasterComputer <- R6::R6Class(
       self$`temporarilyOffline` <- this_object$`temporarilyOffline`
       self
     },
-    #' Validate JSON input with respect to HudsonMasterComputer
-    #'
+
     #' @description
     #' Validate JSON input with respect to HudsonMasterComputer and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of HudsonMasterComputer
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

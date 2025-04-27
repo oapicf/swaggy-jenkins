@@ -27,7 +27,7 @@ class BranchImpl {
     
     String organization
     
-    List<StringParameterDefinition> parameters
+    List<StringParameterDefinition> parameters = new ArrayList<>()
     
     BranchImplpermissions permissions
     

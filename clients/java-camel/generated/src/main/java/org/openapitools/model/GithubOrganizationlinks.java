@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * GithubOrganizationlinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubOrganizationlinks {
 
   private Link repositories;
@@ -36,7 +36,7 @@ public class GithubOrganizationlinks {
   /**
    * Get repositories
    * @return repositories
-  */
+   */
   @Valid 
   @Schema(name = "repositories", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("repositories")
@@ -56,7 +56,7 @@ public class GithubOrganizationlinks {
   /**
    * Get self
    * @return self
-  */
+   */
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
@@ -76,7 +76,7 @@ public class GithubOrganizationlinks {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

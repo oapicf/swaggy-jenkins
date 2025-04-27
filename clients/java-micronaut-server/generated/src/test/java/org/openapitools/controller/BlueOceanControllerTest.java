@@ -101,7 +101,7 @@ public class BlueOceanControllerTest {
             put("queue", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.DELETE(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@50f4b83d");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request); // To retrieve body you must specify required type (e.g. Map.class) as second argument 
@@ -147,7 +147,7 @@ public class BlueOceanControllerTest {
             put("organization", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@10131289");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, User.class);
@@ -193,7 +193,7 @@ public class BlueOceanControllerTest {
             put("class", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@c5e69a5");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, String.class);
@@ -239,7 +239,7 @@ public class BlueOceanControllerTest {
             put("key", 56);
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@64a1116a");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, String.class);
@@ -283,7 +283,7 @@ public class BlueOceanControllerTest {
         // given
         String uri = UriTemplate.of("/jwt-auth/token").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@11e17893");
         request.getParameters()
             .add("expiryTimeInMins", String.valueOf(56)) // The query parameter format should be 
             .add("maxExpiryTimeInMins", String.valueOf(56)); // The query parameter format should be 
@@ -332,7 +332,7 @@ public class BlueOceanControllerTest {
             put("organization", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@19eea77c");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Organisation.class);
@@ -374,7 +374,7 @@ public class BlueOceanControllerTest {
         // given
         String uri = UriTemplate.of("/blue/rest/organizations/").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@6682e6a5");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Argument.of(List.class, Organisation.class));
@@ -422,7 +422,7 @@ public class BlueOceanControllerTest {
             put("pipeline", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@ac4915e");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Pipeline.class);
@@ -470,7 +470,7 @@ public class BlueOceanControllerTest {
             put("pipeline", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@10fb4575");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Argument.of(List.class, PipelineActivity.class));
@@ -520,7 +520,7 @@ public class BlueOceanControllerTest {
             put("branch", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@7cc2c551");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, BranchImpl.class);
@@ -572,7 +572,7 @@ public class BlueOceanControllerTest {
             put("run", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@d84b3a2");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, PipelineRun.class);
@@ -620,7 +620,7 @@ public class BlueOceanControllerTest {
             put("pipeline", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@23648d2d");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, MultibranchPipeline.class);
@@ -668,7 +668,7 @@ public class BlueOceanControllerTest {
             put("folder", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@69feb4d9");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, PipelineFolderImpl.class);
@@ -718,7 +718,7 @@ public class BlueOceanControllerTest {
             put("folder", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@37c1cfa");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, PipelineImpl.class);
@@ -766,7 +766,7 @@ public class BlueOceanControllerTest {
             put("pipeline", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@2bcda694");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Argument.of(List.class, QueueItemImpl.class));
@@ -816,7 +816,7 @@ public class BlueOceanControllerTest {
             put("run", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@2cc75b25");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, PipelineRun.class);
@@ -868,7 +868,7 @@ public class BlueOceanControllerTest {
             put("run", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@30036a18");
         request.getParameters()
             .add("start", String.valueOf(56)) // The query parameter format should be 
             .add("download", String.valueOf(false)); // The query parameter format should be 
@@ -923,7 +923,7 @@ public class BlueOceanControllerTest {
             put("node", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@537b3b2e");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, PipelineRunNode.class);
@@ -977,7 +977,7 @@ public class BlueOceanControllerTest {
             put("step", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@1544ded3");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, PipelineStepImpl.class);
@@ -1031,7 +1031,7 @@ public class BlueOceanControllerTest {
             put("step", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@3ccb12d");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, String.class);
@@ -1083,7 +1083,7 @@ public class BlueOceanControllerTest {
             put("node", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@28b458e6");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Argument.of(List.class, PipelineStepImpl.class));
@@ -1133,7 +1133,7 @@ public class BlueOceanControllerTest {
             put("run", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@221ca495");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Argument.of(List.class, PipelineRunNode.class));
@@ -1181,7 +1181,7 @@ public class BlueOceanControllerTest {
             put("pipeline", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@119d4443");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Argument.of(List.class, PipelineRun.class));
@@ -1227,7 +1227,7 @@ public class BlueOceanControllerTest {
             put("organization", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@773eca84");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Argument.of(List.class, Pipeline.class));
@@ -1275,7 +1275,7 @@ public class BlueOceanControllerTest {
             put("scm", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@7d47dfed");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, GithubScm.class);
@@ -1328,7 +1328,7 @@ public class BlueOceanControllerTest {
             put("scmOrganisation", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@3a38e4dc");
         request.getParameters()
             .add("credentialId", "example") // The query parameter format should be 
             .add("pageSize", String.valueOf(56)) // The query parameter format should be 
@@ -1385,7 +1385,7 @@ public class BlueOceanControllerTest {
             put("repository", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@41fc0084");
         request.getParameters()
             .add("credentialId", "example"); // The query parameter format should be 
 
@@ -1436,7 +1436,7 @@ public class BlueOceanControllerTest {
             put("scm", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@7e0f9528");
         request.getParameters()
             .add("credentialId", "example"); // The query parameter format should be 
 
@@ -1486,7 +1486,7 @@ public class BlueOceanControllerTest {
             put("user", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@5f56424d");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, User.class);
@@ -1532,7 +1532,7 @@ public class BlueOceanControllerTest {
             put("user", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@237b2852");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Argument.of(List.class, FavoriteImpl.class));
@@ -1578,7 +1578,7 @@ public class BlueOceanControllerTest {
             put("organization", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@448cdb47");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, User.class);
@@ -1628,7 +1628,7 @@ public class BlueOceanControllerTest {
             put("run", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, null)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@4628a02b");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, QueueItemImpl.class);
@@ -1676,7 +1676,7 @@ public class BlueOceanControllerTest {
             put("pipeline", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, null)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@2b01c689");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, QueueItemImpl.class);
@@ -1726,7 +1726,7 @@ public class BlueOceanControllerTest {
             put("pipeline", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.PUT(uri, body)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@51424203");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, FavoriteImpl.class);
@@ -1778,7 +1778,7 @@ public class BlueOceanControllerTest {
             put("run", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.PUT(uri, null)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@7336fd8f");
         request.getParameters()
             .add("blocking", "example") // The query parameter format should be 
             .add("timeOutInSecs", String.valueOf(56)); // The query parameter format should be 
@@ -1824,7 +1824,7 @@ public class BlueOceanControllerTest {
         // given
         String uri = UriTemplate.of("/blue/rest/search/").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@701c223a");
         request.getParameters()
             .add("q", "example"); // The query parameter format should be 
 
@@ -1869,7 +1869,7 @@ public class BlueOceanControllerTest {
         // given
         String uri = UriTemplate.of("/blue/rest/classes/").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("application/json");
+            .accept("[Ljava.lang.String;@550c973e");
         request.getParameters()
             .add("q", "example"); // The query parameter format should be 
 

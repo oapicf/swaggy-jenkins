@@ -46,8 +46,6 @@ Method | HTTP request | Description
 # **delete_pipeline_queue_item**
 > delete_pipeline_queue_item(organization, pipeline, queue)
 
-
-
 Delete queue item from an organization pipeline queue
 
 ### Example
@@ -127,8 +125,6 @@ void (empty response body)
 # **get_authenticated_user**
 > User get_authenticated_user(organization)
 
-
-
 Retrieve authenticated user details for an organization
 
 ### Example
@@ -207,8 +203,6 @@ Name | Type | Description  | Notes
 # **get_classes**
 > str get_classes(var_class)
 
-
-
 Get a list of class names supported by a given class
 
 ### Example
@@ -286,8 +280,6 @@ Name | Type | Description  | Notes
 # **get_json_web_key**
 > str get_json_web_key(key)
 
-
-
 Retrieve JSON Web Key
 
 ### Example
@@ -353,8 +345,6 @@ No authorization required
 
 # **get_json_web_token**
 > str get_json_web_token(expiry_time_in_mins=expiry_time_in_mins, max_expiry_time_in_mins=max_expiry_time_in_mins)
-
-
 
 Retrieve JSON Web Token
 
@@ -423,8 +413,6 @@ No authorization required
 
 # **get_organisation**
 > Organisation get_organisation(organization)
-
-
 
 Retrieve organization details
 
@@ -505,8 +493,6 @@ Name | Type | Description  | Notes
 # **get_organisations**
 > List[Organisation] get_organisations()
 
-
-
 Retrieve all organizations details
 
 ### Example
@@ -580,8 +566,6 @@ This endpoint does not need any parameter.
 
 # **get_pipeline**
 > Pipeline get_pipeline(organization, pipeline)
-
-
 
 Retrieve pipeline details for an organization
 
@@ -664,8 +648,6 @@ Name | Type | Description  | Notes
 # **get_pipeline_activities**
 > List[PipelineActivity] get_pipeline_activities(organization, pipeline)
 
-
-
 Retrieve all activities details for an organization pipeline
 
 ### Example
@@ -745,8 +727,6 @@ Name | Type | Description  | Notes
 
 # **get_pipeline_branch**
 > BranchImpl get_pipeline_branch(organization, pipeline, branch)
-
-
 
 Retrieve branch details for an organization pipeline
 
@@ -829,8 +809,6 @@ Name | Type | Description  | Notes
 
 # **get_pipeline_branch_run**
 > PipelineRun get_pipeline_branch_run(organization, pipeline, branch, run)
-
-
 
 Retrieve branch run details for an organization pipeline
 
@@ -916,8 +894,6 @@ Name | Type | Description  | Notes
 # **get_pipeline_branches**
 > MultibranchPipeline get_pipeline_branches(organization, pipeline)
 
-
-
 Retrieve all branches details for an organization pipeline
 
 ### Example
@@ -998,8 +974,6 @@ Name | Type | Description  | Notes
 # **get_pipeline_folder**
 > PipelineFolderImpl get_pipeline_folder(organization, folder)
 
-
-
 Retrieve pipeline folder for an organization
 
 ### Example
@@ -1079,8 +1053,6 @@ Name | Type | Description  | Notes
 
 # **get_pipeline_folder_pipeline**
 > PipelineImpl get_pipeline_folder_pipeline(organization, pipeline, folder)
-
-
 
 Retrieve pipeline details for an organization folder
 
@@ -1164,8 +1136,6 @@ Name | Type | Description  | Notes
 # **get_pipeline_queue**
 > List[QueueItemImpl] get_pipeline_queue(organization, pipeline)
 
-
-
 Retrieve queue details for an organization pipeline
 
 ### Example
@@ -1245,8 +1215,6 @@ Name | Type | Description  | Notes
 
 # **get_pipeline_run**
 > PipelineRun get_pipeline_run(organization, pipeline, run)
-
-
 
 Retrieve run details for an organization pipeline
 
@@ -1329,8 +1297,6 @@ Name | Type | Description  | Notes
 
 # **get_pipeline_run_log**
 > str get_pipeline_run_log(organization, pipeline, run, start=start, download=download)
-
-
 
 Get log for a pipeline run
 
@@ -1417,8 +1383,6 @@ Name | Type | Description  | Notes
 # **get_pipeline_run_node**
 > PipelineRunNode get_pipeline_run_node(organization, pipeline, run, node)
 
-
-
 Retrieve run node details for an organization pipeline
 
 ### Example
@@ -1502,8 +1466,6 @@ Name | Type | Description  | Notes
 
 # **get_pipeline_run_node_step**
 > PipelineStepImpl get_pipeline_run_node_step(organization, pipeline, run, node, step)
-
-
 
 Retrieve run node details for an organization pipeline
 
@@ -1591,8 +1553,6 @@ Name | Type | Description  | Notes
 # **get_pipeline_run_node_step_log**
 > str get_pipeline_run_node_step_log(organization, pipeline, run, node, step)
 
-
-
 Get log for a pipeline run node step
 
 ### Example
@@ -1678,8 +1638,6 @@ Name | Type | Description  | Notes
 # **get_pipeline_run_node_steps**
 > List[PipelineStepImpl] get_pipeline_run_node_steps(organization, pipeline, run, node)
 
-
-
 Retrieve run node steps details for an organization pipeline
 
 ### Example
@@ -1764,8 +1722,6 @@ Name | Type | Description  | Notes
 # **get_pipeline_run_nodes**
 > List[PipelineRunNode] get_pipeline_run_nodes(organization, pipeline, run)
 
-
-
 Retrieve run nodes details for an organization pipeline
 
 ### Example
@@ -1848,8 +1804,6 @@ Name | Type | Description  | Notes
 # **get_pipeline_runs**
 > List[PipelineRun] get_pipeline_runs(organization, pipeline)
 
-
-
 Retrieve all runs details for an organization pipeline
 
 ### Example
@@ -1930,8 +1884,6 @@ Name | Type | Description  | Notes
 # **get_pipelines**
 > List[Pipeline] get_pipelines(organization)
 
-
-
 Retrieve all pipelines details for an organization
 
 ### Example
@@ -2009,8 +1961,6 @@ Name | Type | Description  | Notes
 
 # **get_scm**
 > GithubScm get_scm(organization, scm)
-
-
 
 Retrieve SCM details for an organization
 
@@ -2091,8 +2041,6 @@ Name | Type | Description  | Notes
 
 # **get_scm_organisation_repositories**
 > List[GithubOrganization] get_scm_organisation_repositories(organization, scm, scm_organisation, credential_id=credential_id, page_size=page_size, page_number=page_number)
-
-
 
 Retrieve SCM organization repositories details for an organization
 
@@ -2182,8 +2130,6 @@ Name | Type | Description  | Notes
 # **get_scm_organisation_repository**
 > List[GithubOrganization] get_scm_organisation_repository(organization, scm, scm_organisation, repository, credential_id=credential_id)
 
-
-
 Retrieve SCM organization repository details for an organization
 
 ### Example
@@ -2270,8 +2216,6 @@ Name | Type | Description  | Notes
 # **get_scm_organisations**
 > List[GithubOrganization] get_scm_organisations(organization, scm, credential_id=credential_id)
 
-
-
 Retrieve SCM organizations details for an organization
 
 ### Example
@@ -2354,8 +2298,6 @@ Name | Type | Description  | Notes
 # **get_user**
 > User get_user(organization, user)
 
-
-
 Retrieve user details for an organization
 
 ### Example
@@ -2436,8 +2378,6 @@ Name | Type | Description  | Notes
 # **get_user_favorites**
 > List[FavoriteImpl] get_user_favorites(user)
 
-
-
 Retrieve user favorites details for an organization
 
 ### Example
@@ -2516,8 +2456,6 @@ Name | Type | Description  | Notes
 # **get_users**
 > User get_users(organization)
 
-
-
 Retrieve users details for an organization
 
 ### Example
@@ -2595,8 +2533,6 @@ Name | Type | Description  | Notes
 
 # **post_pipeline_run**
 > QueueItemImpl post_pipeline_run(organization, pipeline, run)
-
-
 
 Replay an organization pipeline run
 
@@ -2680,8 +2616,6 @@ Name | Type | Description  | Notes
 # **post_pipeline_runs**
 > QueueItemImpl post_pipeline_runs(organization, pipeline)
 
-
-
 Start a build for an organization pipeline
 
 ### Example
@@ -2761,8 +2695,6 @@ Name | Type | Description  | Notes
 
 # **put_pipeline_favorite**
 > FavoriteImpl put_pipeline_favorite(organization, pipeline, body)
-
-
 
 Favorite/unfavorite a pipeline
 
@@ -2845,8 +2777,6 @@ Name | Type | Description  | Notes
 
 # **put_pipeline_run**
 > PipelineRun put_pipeline_run(organization, pipeline, run, blocking=blocking, time_out_in_secs=time_out_in_secs)
-
-
 
 Stop a build of an organization pipeline
 
@@ -2934,8 +2864,6 @@ Name | Type | Description  | Notes
 # **search**
 > str search(q)
 
-
-
 Search for any resource details
 
 ### Example
@@ -3012,8 +2940,6 @@ Name | Type | Description  | Notes
 
 # **search_classes**
 > str search_classes(q)
-
-
 
 Get classes details
 

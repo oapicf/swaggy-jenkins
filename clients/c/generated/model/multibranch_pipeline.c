@@ -5,7 +5,7 @@
 
 
 
-multibranch_pipeline_t *multibranch_pipeline_create(
+static multibranch_pipeline_t *multibranch_pipeline_create_internal(
     char *display_name,
     int estimated_duration_in_millis,
     char *latest_run,
@@ -40,12 +40,50 @@ multibranch_pipeline_t *multibranch_pipeline_create(
     multibranch_pipeline_local_var->total_number_of_pull_requests = total_number_of_pull_requests;
     multibranch_pipeline_local_var->_class = _class;
 
+    multibranch_pipeline_local_var->_library_owned = 1;
     return multibranch_pipeline_local_var;
 }
 
+__attribute__((deprecated)) multibranch_pipeline_t *multibranch_pipeline_create(
+    char *display_name,
+    int estimated_duration_in_millis,
+    char *latest_run,
+    char *name,
+    char *organization,
+    int weather_score,
+    list_t *branch_names,
+    int number_of_failing_branches,
+    int number_of_failing_pull_requests,
+    int number_of_successful_branches,
+    int number_of_successful_pull_requests,
+    int total_number_of_branches,
+    int total_number_of_pull_requests,
+    char *_class
+    ) {
+    return multibranch_pipeline_create_internal (
+        display_name,
+        estimated_duration_in_millis,
+        latest_run,
+        name,
+        organization,
+        weather_score,
+        branch_names,
+        number_of_failing_branches,
+        number_of_failing_pull_requests,
+        number_of_successful_branches,
+        number_of_successful_pull_requests,
+        total_number_of_branches,
+        total_number_of_pull_requests,
+        _class
+        );
+}
 
 void multibranch_pipeline_free(multibranch_pipeline_t *multibranch_pipeline) {
     if(NULL == multibranch_pipeline){
+        return ;
+    }
+    if(multibranch_pipeline->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multibranch_pipeline_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -139,7 +177,7 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
 
     listEntry_t *branch_namesListEntry;
     list_ForEach(branch_namesListEntry, multibranch_pipeline->branch_names) {
-    if(cJSON_AddStringToObject(branch_names, "", (char*)branch_namesListEntry->data) == NULL)
+    if(cJSON_AddStringToObject(branch_names, "", branch_namesListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -219,6 +257,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "displayName");
+    if (cJSON_IsNull(display_name)) {
+        display_name = NULL;
+    }
     if (display_name) { 
     if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
@@ -228,6 +269,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->estimated_duration_in_millis
     cJSON *estimated_duration_in_millis = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "estimatedDurationInMillis");
+    if (cJSON_IsNull(estimated_duration_in_millis)) {
+        estimated_duration_in_millis = NULL;
+    }
     if (estimated_duration_in_millis) { 
     if(!cJSON_IsNumber(estimated_duration_in_millis))
     {
@@ -237,6 +281,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->latest_run
     cJSON *latest_run = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "latestRun");
+    if (cJSON_IsNull(latest_run)) {
+        latest_run = NULL;
+    }
     if (latest_run) { 
     if(!cJSON_IsString(latest_run) && !cJSON_IsNull(latest_run))
     {
@@ -246,6 +293,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -255,6 +305,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->organization
     cJSON *organization = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "organization");
+    if (cJSON_IsNull(organization)) {
+        organization = NULL;
+    }
     if (organization) { 
     if(!cJSON_IsString(organization) && !cJSON_IsNull(organization))
     {
@@ -264,6 +317,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->weather_score
     cJSON *weather_score = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "weatherScore");
+    if (cJSON_IsNull(weather_score)) {
+        weather_score = NULL;
+    }
     if (weather_score) { 
     if(!cJSON_IsNumber(weather_score))
     {
@@ -273,6 +329,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->branch_names
     cJSON *branch_names = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "branchNames");
+    if (cJSON_IsNull(branch_names)) {
+        branch_names = NULL;
+    }
     if (branch_names) { 
     cJSON *branch_names_local = NULL;
     if(!cJSON_IsArray(branch_names)) {
@@ -292,6 +351,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->number_of_failing_branches
     cJSON *number_of_failing_branches = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "numberOfFailingBranches");
+    if (cJSON_IsNull(number_of_failing_branches)) {
+        number_of_failing_branches = NULL;
+    }
     if (number_of_failing_branches) { 
     if(!cJSON_IsNumber(number_of_failing_branches))
     {
@@ -301,6 +363,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->number_of_failing_pull_requests
     cJSON *number_of_failing_pull_requests = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "numberOfFailingPullRequests");
+    if (cJSON_IsNull(number_of_failing_pull_requests)) {
+        number_of_failing_pull_requests = NULL;
+    }
     if (number_of_failing_pull_requests) { 
     if(!cJSON_IsNumber(number_of_failing_pull_requests))
     {
@@ -310,6 +375,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->number_of_successful_branches
     cJSON *number_of_successful_branches = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "numberOfSuccessfulBranches");
+    if (cJSON_IsNull(number_of_successful_branches)) {
+        number_of_successful_branches = NULL;
+    }
     if (number_of_successful_branches) { 
     if(!cJSON_IsNumber(number_of_successful_branches))
     {
@@ -319,6 +387,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->number_of_successful_pull_requests
     cJSON *number_of_successful_pull_requests = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "numberOfSuccessfulPullRequests");
+    if (cJSON_IsNull(number_of_successful_pull_requests)) {
+        number_of_successful_pull_requests = NULL;
+    }
     if (number_of_successful_pull_requests) { 
     if(!cJSON_IsNumber(number_of_successful_pull_requests))
     {
@@ -328,6 +399,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->total_number_of_branches
     cJSON *total_number_of_branches = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "totalNumberOfBranches");
+    if (cJSON_IsNull(total_number_of_branches)) {
+        total_number_of_branches = NULL;
+    }
     if (total_number_of_branches) { 
     if(!cJSON_IsNumber(total_number_of_branches))
     {
@@ -337,6 +411,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->total_number_of_pull_requests
     cJSON *total_number_of_pull_requests = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "totalNumberOfPullRequests");
+    if (cJSON_IsNull(total_number_of_pull_requests)) {
+        total_number_of_pull_requests = NULL;
+    }
     if (total_number_of_pull_requests) { 
     if(!cJSON_IsNumber(total_number_of_pull_requests))
     {
@@ -346,6 +423,9 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     // multibranch_pipeline->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -354,7 +434,7 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
     }
 
 
-    multibranch_pipeline_local_var = multibranch_pipeline_create (
+    multibranch_pipeline_local_var = multibranch_pipeline_create_internal (
         display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
         latest_run && !cJSON_IsNull(latest_run) ? strdup(latest_run->valuestring) : NULL,

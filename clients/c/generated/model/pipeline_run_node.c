@@ -5,7 +5,7 @@
 
 
 
-pipeline_run_node_t *pipeline_run_node_create(
+static pipeline_run_node_t *pipeline_run_node_create_internal(
     char *_class,
     char *display_name,
     int duration_in_millis,
@@ -28,12 +28,38 @@ pipeline_run_node_t *pipeline_run_node_create(
     pipeline_run_node_local_var->start_time = start_time;
     pipeline_run_node_local_var->state = state;
 
+    pipeline_run_node_local_var->_library_owned = 1;
     return pipeline_run_node_local_var;
 }
 
+__attribute__((deprecated)) pipeline_run_node_t *pipeline_run_node_create(
+    char *_class,
+    char *display_name,
+    int duration_in_millis,
+    list_t *edges,
+    char *id,
+    char *result,
+    char *start_time,
+    char *state
+    ) {
+    return pipeline_run_node_create_internal (
+        _class,
+        display_name,
+        duration_in_millis,
+        edges,
+        id,
+        result,
+        start_time,
+        state
+        );
+}
 
 void pipeline_run_node_free(pipeline_run_node_t *pipeline_run_node) {
     if(NULL == pipeline_run_node){
+        return ;
+    }
+    if(pipeline_run_node->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pipeline_run_node_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -166,6 +192,9 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     // pipeline_run_node->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -175,6 +204,9 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     // pipeline_run_node->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "displayName");
+    if (cJSON_IsNull(display_name)) {
+        display_name = NULL;
+    }
     if (display_name) { 
     if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
@@ -184,6 +216,9 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     // pipeline_run_node->duration_in_millis
     cJSON *duration_in_millis = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "durationInMillis");
+    if (cJSON_IsNull(duration_in_millis)) {
+        duration_in_millis = NULL;
+    }
     if (duration_in_millis) { 
     if(!cJSON_IsNumber(duration_in_millis))
     {
@@ -193,6 +228,9 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     // pipeline_run_node->edges
     cJSON *edges = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "edges");
+    if (cJSON_IsNull(edges)) {
+        edges = NULL;
+    }
     if (edges) { 
     cJSON *edges_local_nonprimitive = NULL;
     if(!cJSON_IsArray(edges)){
@@ -214,6 +252,9 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     // pipeline_run_node->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (id) { 
     if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
@@ -223,6 +264,9 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     // pipeline_run_node->result
     cJSON *result = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "result");
+    if (cJSON_IsNull(result)) {
+        result = NULL;
+    }
     if (result) { 
     if(!cJSON_IsString(result) && !cJSON_IsNull(result))
     {
@@ -232,6 +276,9 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     // pipeline_run_node->start_time
     cJSON *start_time = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "startTime");
+    if (cJSON_IsNull(start_time)) {
+        start_time = NULL;
+    }
     if (start_time) { 
     if(!cJSON_IsString(start_time) && !cJSON_IsNull(start_time))
     {
@@ -241,6 +288,9 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     // pipeline_run_node->state
     cJSON *state = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "state");
+    if (cJSON_IsNull(state)) {
+        state = NULL;
+    }
     if (state) { 
     if(!cJSON_IsString(state) && !cJSON_IsNull(state))
     {
@@ -249,7 +299,7 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
     }
 
 
-    pipeline_run_node_local_var = pipeline_run_node_create (
+    pipeline_run_node_local_var = pipeline_run_node_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         duration_in_millis ? duration_in_millis->valuedouble : 0,

@@ -5,7 +5,7 @@
 
 
 
-input_step_impllinks_t *input_step_impllinks_create(
+static input_step_impllinks_t *input_step_impllinks_create_internal(
     link_t *self,
     char *_class
     ) {
@@ -16,12 +16,26 @@ input_step_impllinks_t *input_step_impllinks_create(
     input_step_impllinks_local_var->self = self;
     input_step_impllinks_local_var->_class = _class;
 
+    input_step_impllinks_local_var->_library_owned = 1;
     return input_step_impllinks_local_var;
 }
 
+__attribute__((deprecated)) input_step_impllinks_t *input_step_impllinks_create(
+    link_t *self,
+    char *_class
+    ) {
+    return input_step_impllinks_create_internal (
+        self,
+        _class
+        );
+}
 
 void input_step_impllinks_free(input_step_impllinks_t *input_step_impllinks) {
     if(NULL == input_step_impllinks){
+        return ;
+    }
+    if(input_step_impllinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "input_step_impllinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -76,12 +90,18 @@ input_step_impllinks_t *input_step_impllinks_parseFromJSON(cJSON *input_step_imp
 
     // input_step_impllinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(input_step_impllinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // input_step_impllinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(input_step_impllinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -90,7 +110,7 @@ input_step_impllinks_t *input_step_impllinks_parseFromJSON(cJSON *input_step_imp
     }
 
 
-    input_step_impllinks_local_var = input_step_impllinks_create (
+    input_step_impllinks_local_var = input_step_impllinks_create_internal (
         self ? self_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

@@ -48,5 +48,8 @@ data class ListView (
     @Json(name = "url")
     val url: kotlin.String? = null
 
-)
+) {
+
+
+}
 

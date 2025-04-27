@@ -23,7 +23,7 @@ print(FavoriteImpllinks.to_json())
 # convert the object into a dict
 favorite_impllinks_dict = favorite_impllinks_instance.to_dict()
 # create an instance of FavoriteImpllinks from a dict
-favorite_impllinks_form_dict = favorite_impllinks.from_dict(favorite_impllinks_dict)
+favorite_impllinks_from_dict = FavoriteImpllinks.from_dict(favorite_impllinks_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

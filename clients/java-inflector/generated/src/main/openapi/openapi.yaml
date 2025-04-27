@@ -6,7 +6,7 @@ info:
     url: https://github.com/oapicf/swaggy-jenkins
   description: Jenkins API clients generated from Swagger / Open API specification
   title: Swaggy Jenkins
-  version: 2.0.1-pre.0
+  version: 3.0.2-pre.0
 servers:
 - url: /
 paths:
@@ -29,7 +29,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     head:
       description: Retrieve Jenkins headers
       operationId: headJenkins
@@ -51,7 +52,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /computer/api/json:
     get:
       description: Retrieve computer details
@@ -80,7 +82,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /createItem:
     post:
       description: "Create a new job using job configuration, or copied from an existing\
@@ -152,7 +155,8 @@ paths:
       tags:
       - remoteAccess
       x-content-type: application/json
-      x-accepts: '*/*'
+      x-accepts:
+      - '*/*'
   /createView:
     post:
       description: Create a new view using view configuration
@@ -207,7 +211,8 @@ paths:
       tags:
       - remoteAccess
       x-content-type: application/json
-      x-accepts: '*/*'
+      x-accepts:
+      - '*/*'
   /crumbIssuer/api/json:
     get:
       description: Retrieve CSRF protection token
@@ -227,7 +232,8 @@ paths:
       - jenkins_auth: []
       tags:
       - base
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /job/{name}/api/json:
     get:
       description: Retrieve job details
@@ -258,7 +264,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /job/{name}/build:
     post:
       description: Build a job
@@ -310,7 +317,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /job/{name}/config.xml:
     get:
       description: Retrieve job configuration
@@ -341,7 +349,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: text/xml
+      x-accepts:
+      - text/xml
     post:
       description: Update job configuration
       operationId: postJobConfig
@@ -390,7 +399,8 @@ paths:
       tags:
       - remoteAccess
       x-content-type: application/json
-      x-accepts: '*/*'
+      x-accepts:
+      - '*/*'
   /job/{name}/doDelete:
     post:
       description: Delete a job
@@ -425,7 +435,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /job/{name}/disable:
     post:
       description: Disable a job
@@ -460,7 +471,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /job/{name}/enable:
     post:
       description: Enable a job
@@ -495,7 +507,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /job/{name}/lastBuild/api/json:
     get:
       description: Retrieve job's last build details
@@ -526,7 +539,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /job/{name}/lastBuild/stop:
     post:
       description: Stop a job
@@ -561,7 +575,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /job/{name}/{number}/logText/progressiveText:
     get:
       description: Retrieve job's build progressive text output
@@ -604,7 +619,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /queue/api/json:
     get:
       description: Retrieve queue details
@@ -624,7 +640,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /queue/item/{number}/api/json:
     get:
       description: Retrieve queued item details
@@ -653,7 +670,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /view/{name}/api/json:
     get:
       description: Retrieve view details
@@ -684,7 +702,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /view/{name}/config.xml:
     get:
       description: Retrieve view configuration
@@ -715,7 +734,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: text/xml
+      x-accepts:
+      - text/xml
     post:
       description: Update view configuration
       operationId: postViewConfig
@@ -764,7 +784,8 @@ paths:
       tags:
       - remoteAccess
       x-content-type: application/json
-      x-accepts: '*/*'
+      x-accepts:
+      - '*/*'
   /jwt-auth/token:
     get:
       description: Retrieve JSON Web Token
@@ -799,7 +820,8 @@ paths:
           description: Jenkins requires authentication - please set username and password
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /jwt-auth/jwks/{key}:
     get:
       description: Retrieve JSON Web Key
@@ -826,7 +848,8 @@ paths:
           description: Jenkins requires authentication - please set username and password
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/classes/:
     get:
       description: Get classes details
@@ -855,7 +878,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/classes/{class}:
     get:
       description: Get a list of class names supported by a given class
@@ -884,7 +908,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/search/:
     get:
       description: Search for any resource details
@@ -913,7 +938,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/:
     get:
       description: Retrieve all organizations details
@@ -933,7 +959,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}:
     get:
       description: Retrieve organization details
@@ -964,7 +991,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/:
     get:
       description: Retrieve all pipelines details for an organization
@@ -993,7 +1021,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}:
     get:
       description: Retrieve pipeline details for an organization
@@ -1032,7 +1061,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities:
     get:
       description: Retrieve all activities details for an organization pipeline
@@ -1069,7 +1099,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches:
     get:
       description: Retrieve all branches details for an organization pipeline
@@ -1106,7 +1137,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/:
     get:
       description: Retrieve branch details for an organization pipeline
@@ -1151,7 +1183,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}:
     get:
       description: Retrieve branch run details for an organization pipeline
@@ -1204,7 +1237,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{folder}/:
     get:
       description: Retrieve pipeline folder for an organization
@@ -1241,7 +1275,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}:
     get:
       description: Retrieve pipeline details for an organization folder
@@ -1286,7 +1321,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite:
     put:
       description: Favorite/unfavorite a pipeline
@@ -1332,7 +1368,8 @@ paths:
       tags:
       - blueOcean
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue:
     get:
       description: Retrieve queue details for an organization pipeline
@@ -1369,7 +1406,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}:
     delete:
       description: Delete queue item from an organization pipeline queue
@@ -1410,7 +1448,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs:
     get:
       description: Retrieve all runs details for an organization pipeline
@@ -1447,7 +1486,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Start a build for an organization pipeline
       operationId: postPipelineRuns
@@ -1483,7 +1523,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}:
     get:
       description: Retrieve run details for an organization pipeline
@@ -1528,7 +1569,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes:
     get:
       description: Retrieve run nodes details for an organization pipeline
@@ -1573,7 +1615,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}:
     get:
       description: Retrieve run node details for an organization pipeline
@@ -1626,7 +1669,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps:
     get:
       description: Retrieve run node steps details for an organization pipeline
@@ -1679,7 +1723,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}:
     get:
       description: Retrieve run node details for an organization pipeline
@@ -1740,7 +1785,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log:
     get:
       description: Get log for a pipeline run node step
@@ -1801,7 +1847,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log:
     get:
       description: Get log for a pipeline run
@@ -1863,7 +1910,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay:
     post:
       description: Replay an organization pipeline run
@@ -1908,7 +1956,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop:
     put:
       description: Stop a build of an organization pipeline
@@ -1969,7 +2018,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/scm/{scm}:
     get:
       description: Retrieve SCM details for an organization
@@ -2006,7 +2056,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/scm/{scm}/organizations:
     get:
       description: Retrieve SCM organizations details for an organization
@@ -2051,7 +2102,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories:
     get:
       description: Retrieve SCM organization repositories details for an organization
@@ -2120,7 +2172,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}:
     get:
       description: Retrieve SCM organization repository details for an organization
@@ -2181,7 +2234,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/user/:
     get:
       description: Retrieve authenticated user details for an organization
@@ -2210,7 +2264,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/users/:
     get:
       description: Retrieve users details for an organization
@@ -2239,7 +2294,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/organizations/{organization}/users/{user}:
     get:
       description: Retrieve user details for an organization
@@ -2276,7 +2332,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /blue/rest/users/{user}/favorites:
     get:
       description: Retrieve user favorites details for an organization
@@ -2305,7 +2362,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
 components:
   parameters:
     jobName:

@@ -4,8 +4,8 @@
 
 Swaggy Jenkins
 
-- API version: 2.0.1-pre.0
-- Generator version: 7.4.0
+- API version: 3.0.2-pre.0
+- Generator version: 7.12.0
 
 Jenkins API clients generated from Swagger / Open API specification
 

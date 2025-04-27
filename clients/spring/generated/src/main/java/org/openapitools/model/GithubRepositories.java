@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.GithubRepositorieslinks;
 import org.openapitools.model.GithubRepository;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -23,21 +24,21 @@ import javax.annotation.Generated;
  * GithubRepositories
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubRepositories {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private GithubRepositorieslinks links;
+  private @Nullable GithubRepositorieslinks links;
 
   @Valid
-  private List<@Valid GithubRepository> items;
+  private List<@Valid GithubRepository> items = new ArrayList<>();
 
-  private Integer lastPage;
+  private @Nullable Integer lastPage;
 
-  private Integer nextPage;
+  private @Nullable Integer nextPage;
 
-  private Integer pageSize;
+  private @Nullable Integer pageSize;
 
   public GithubRepositories propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -47,7 +48,7 @@ public class GithubRepositories {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -67,7 +68,7 @@ public class GithubRepositories {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -95,7 +96,7 @@ public class GithubRepositories {
   /**
    * Get items
    * @return items
-  */
+   */
   @Valid 
   @Schema(name = "items", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("items")
@@ -115,7 +116,7 @@ public class GithubRepositories {
   /**
    * Get lastPage
    * @return lastPage
-  */
+   */
   
   @Schema(name = "lastPage", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("lastPage")
@@ -135,7 +136,7 @@ public class GithubRepositories {
   /**
    * Get nextPage
    * @return nextPage
-  */
+   */
   
   @Schema(name = "nextPage", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("nextPage")
@@ -155,7 +156,7 @@ public class GithubRepositories {
   /**
    * Get pageSize
    * @return pageSize
-  */
+   */
   
   @Schema(name = "pageSize", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pageSize")

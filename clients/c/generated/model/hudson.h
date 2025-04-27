@@ -39,9 +39,10 @@ typedef struct hudson_t {
     int use_security; //boolean
     list_t *views; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } hudson_t;
 
-hudson_t *hudson_create(
+__attribute__((deprecated)) hudson_t *hudson_create(
     char *_class,
     list_t *assigned_labels,
     char *mode,

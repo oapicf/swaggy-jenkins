@@ -86,7 +86,7 @@ data class Hudson(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("views") val views: kotlin.collections.List<AllView>? = null
-) {
+    ) {
 
 }
 

@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,16 +19,16 @@ import javax.annotation.Generated;
  * GithubRepositorypermissions
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubRepositorypermissions {
 
-  private Boolean admin;
+  private @Nullable Boolean admin;
 
-  private Boolean push;
+  private @Nullable Boolean push;
 
-  private Boolean pull;
+  private @Nullable Boolean pull;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public GithubRepositorypermissions admin(Boolean admin) {
     this.admin = admin;
@@ -37,7 +38,7 @@ public class GithubRepositorypermissions {
   /**
    * Get admin
    * @return admin
-  */
+   */
   
   @Schema(name = "admin", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("admin")
@@ -57,7 +58,7 @@ public class GithubRepositorypermissions {
   /**
    * Get push
    * @return push
-  */
+   */
   
   @Schema(name = "push", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("push")
@@ -77,7 +78,7 @@ public class GithubRepositorypermissions {
   /**
    * Get pull
    * @return pull
-  */
+   */
   
   @Schema(name = "pull", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pull")
@@ -97,7 +98,7 @@ public class GithubRepositorypermissions {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

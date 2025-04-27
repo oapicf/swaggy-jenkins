@@ -31,5 +31,8 @@ data class Label1 (
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null
 
-)
+) {
+
+
+}
 

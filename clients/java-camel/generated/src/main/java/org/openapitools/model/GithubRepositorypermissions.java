@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * GithubRepositorypermissions
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubRepositorypermissions {
 
   private Boolean admin;
@@ -37,7 +37,7 @@ public class GithubRepositorypermissions {
   /**
    * Get admin
    * @return admin
-  */
+   */
   
   @Schema(name = "admin", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("admin")
@@ -57,7 +57,7 @@ public class GithubRepositorypermissions {
   /**
    * Get push
    * @return push
-  */
+   */
   
   @Schema(name = "push", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("push")
@@ -77,7 +77,7 @@ public class GithubRepositorypermissions {
   /**
    * Get pull
    * @return pull
-  */
+   */
   
   @Schema(name = "pull", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pull")
@@ -97,7 +97,7 @@ public class GithubRepositorypermissions {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

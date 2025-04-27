@@ -5,7 +5,7 @@
 
 
 
-favorite_impl_t *favorite_impl_create(
+static favorite_impl_t *favorite_impl_create_internal(
     char *_class,
     favorite_impllinks_t *_links,
     pipeline_impl_t *item
@@ -18,12 +18,28 @@ favorite_impl_t *favorite_impl_create(
     favorite_impl_local_var->_links = _links;
     favorite_impl_local_var->item = item;
 
+    favorite_impl_local_var->_library_owned = 1;
     return favorite_impl_local_var;
 }
 
+__attribute__((deprecated)) favorite_impl_t *favorite_impl_create(
+    char *_class,
+    favorite_impllinks_t *_links,
+    pipeline_impl_t *item
+    ) {
+    return favorite_impl_create_internal (
+        _class,
+        _links,
+        item
+        );
+}
 
 void favorite_impl_free(favorite_impl_t *favorite_impl) {
     if(NULL == favorite_impl){
+        return ;
+    }
+    if(favorite_impl->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "favorite_impl_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -98,6 +114,9 @@ favorite_impl_t *favorite_impl_parseFromJSON(cJSON *favorite_implJSON){
 
     // favorite_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(favorite_implJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -107,18 +126,24 @@ favorite_impl_t *favorite_impl_parseFromJSON(cJSON *favorite_implJSON){
 
     // favorite_impl->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(favorite_implJSON, "_links");
+    if (cJSON_IsNull(_links)) {
+        _links = NULL;
+    }
     if (_links) { 
     _links_local_nonprim = favorite_impllinks_parseFromJSON(_links); //nonprimitive
     }
 
     // favorite_impl->item
     cJSON *item = cJSON_GetObjectItemCaseSensitive(favorite_implJSON, "item");
+    if (cJSON_IsNull(item)) {
+        item = NULL;
+    }
     if (item) { 
     item_local_nonprim = pipeline_impl_parseFromJSON(item); //nonprimitive
     }
 
 
-    favorite_impl_local_var = favorite_impl_create (
+    favorite_impl_local_var = favorite_impl_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         item ? item_local_nonprim : NULL

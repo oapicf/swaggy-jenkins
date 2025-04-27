@@ -17,11 +17,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ExtensionClassContainerImpl1")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ExtensionClassContainerImpl1   {
-  private @Valid String propertyClass;
-  private @Valid ExtensionClassContainerImpl1links links;
-  private @Valid ExtensionClassContainerImpl1map map;
+  private String propertyClass;
+  private ExtensionClassContainerImpl1links links;
+  private ExtensionClassContainerImpl1map map;
+
+  public ExtensionClassContainerImpl1() {
+  }
 
   /**
    **/
@@ -52,7 +55,7 @@ public class ExtensionClassContainerImpl1   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public ExtensionClassContainerImpl1links getLinks() {
+  @Valid public ExtensionClassContainerImpl1links getLinks() {
     return links;
   }
 
@@ -71,7 +74,7 @@ public class ExtensionClassContainerImpl1   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("map")
-  public ExtensionClassContainerImpl1map getMap() {
+  @Valid public ExtensionClassContainerImpl1map getMap() {
     return map;
   }
 

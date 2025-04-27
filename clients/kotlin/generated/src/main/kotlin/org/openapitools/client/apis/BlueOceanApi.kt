@@ -16,7 +16,7 @@
 package org.openapitools.client.apis
 
 import java.io.IOException
-import okhttp3.OkHttpClient
+import okhttp3.Call
 import okhttp3.HttpUrl
 
 import org.openapitools.client.models.BranchImpl
@@ -51,7 +51,7 @@ import org.openapitools.client.infrastructure.ResponseType
 import org.openapitools.client.infrastructure.Success
 import org.openapitools.client.infrastructure.toMultiValue
 
-class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath, client) {
+class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory = ApiClient.defaultClient) : ApiClient(basePath, client) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -60,6 +60,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * DELETE /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}
      * 
      * Delete queue item from an organization pipeline queue
      * @param organization Name of the organization
@@ -92,6 +93,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * DELETE /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}
      * 
      * Delete queue item from an organization pipeline queue
      * @param organization Name of the organization
@@ -134,6 +136,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/user/
      * 
      * Retrieve authenticated user details for an organization
      * @param organization Name of the organization
@@ -165,6 +168,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/user/
      * 
      * Retrieve authenticated user details for an organization
      * @param organization Name of the organization
@@ -205,6 +209,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/classes/{class}
      * 
      * Get a list of class names supported by a given class
      * @param propertyClass Name of the class
@@ -236,6 +241,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/classes/{class}
      * 
      * Get a list of class names supported by a given class
      * @param propertyClass Name of the class
@@ -276,6 +282,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /jwt-auth/jwks/{key}
      * 
      * Retrieve JSON Web Key
      * @param key Key ID received as part of JWT header field kid
@@ -307,6 +314,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /jwt-auth/jwks/{key}
      * 
      * Retrieve JSON Web Key
      * @param key Key ID received as part of JWT header field kid
@@ -347,6 +355,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /jwt-auth/token
      * 
      * Retrieve JSON Web Token
      * @param expiryTimeInMins Token expiry time in minutes, default: 30 minutes (optional)
@@ -379,6 +388,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /jwt-auth/token
      * 
      * Retrieve JSON Web Token
      * @param expiryTimeInMins Token expiry time in minutes, default: 30 minutes (optional)
@@ -429,6 +439,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}
      * 
      * Retrieve organization details
      * @param organization Name of the organization
@@ -460,6 +471,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}
      * 
      * Retrieve organization details
      * @param organization Name of the organization
@@ -500,6 +512,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/
      * 
      * Retrieve all organizations details
      * @return kotlin.collections.List<Organisation>
@@ -530,6 +543,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/
      * 
      * Retrieve all organizations details
      * @return ApiResponse<kotlin.collections.List<Organisation>?>
@@ -568,6 +582,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}
      * 
      * Retrieve pipeline details for an organization
      * @param organization Name of the organization
@@ -600,6 +615,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}
      * 
      * Retrieve pipeline details for an organization
      * @param organization Name of the organization
@@ -642,6 +658,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities
      * 
      * Retrieve all activities details for an organization pipeline
      * @param organization Name of the organization
@@ -674,6 +691,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities
      * 
      * Retrieve all activities details for an organization pipeline
      * @param organization Name of the organization
@@ -716,6 +734,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/
      * 
      * Retrieve branch details for an organization pipeline
      * @param organization Name of the organization
@@ -749,6 +768,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/
      * 
      * Retrieve branch details for an organization pipeline
      * @param organization Name of the organization
@@ -793,6 +813,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}
      * 
      * Retrieve branch run details for an organization pipeline
      * @param organization Name of the organization
@@ -827,6 +848,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}
      * 
      * Retrieve branch run details for an organization pipeline
      * @param organization Name of the organization
@@ -873,6 +895,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches
      * 
      * Retrieve all branches details for an organization pipeline
      * @param organization Name of the organization
@@ -905,6 +928,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches
      * 
      * Retrieve all branches details for an organization pipeline
      * @param organization Name of the organization
@@ -947,6 +971,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{folder}/
      * 
      * Retrieve pipeline folder for an organization
      * @param organization Name of the organization
@@ -979,6 +1004,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{folder}/
      * 
      * Retrieve pipeline folder for an organization
      * @param organization Name of the organization
@@ -1021,6 +1047,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}
      * 
      * Retrieve pipeline details for an organization folder
      * @param organization Name of the organization
@@ -1054,6 +1081,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}
      * 
      * Retrieve pipeline details for an organization folder
      * @param organization Name of the organization
@@ -1098,6 +1126,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue
      * 
      * Retrieve queue details for an organization pipeline
      * @param organization Name of the organization
@@ -1130,6 +1159,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue
      * 
      * Retrieve queue details for an organization pipeline
      * @param organization Name of the organization
@@ -1172,6 +1202,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}
      * 
      * Retrieve run details for an organization pipeline
      * @param organization Name of the organization
@@ -1205,6 +1236,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}
      * 
      * Retrieve run details for an organization pipeline
      * @param organization Name of the organization
@@ -1249,6 +1281,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log
      * 
      * Get log for a pipeline run
      * @param organization Name of the organization
@@ -1284,6 +1317,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log
      * 
      * Get log for a pipeline run
      * @param organization Name of the organization
@@ -1340,6 +1374,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}
      * 
      * Retrieve run node details for an organization pipeline
      * @param organization Name of the organization
@@ -1374,6 +1409,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}
      * 
      * Retrieve run node details for an organization pipeline
      * @param organization Name of the organization
@@ -1420,6 +1456,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}
      * 
      * Retrieve run node details for an organization pipeline
      * @param organization Name of the organization
@@ -1455,6 +1492,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}
      * 
      * Retrieve run node details for an organization pipeline
      * @param organization Name of the organization
@@ -1503,6 +1541,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log
      * 
      * Get log for a pipeline run node step
      * @param organization Name of the organization
@@ -1538,6 +1577,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log
      * 
      * Get log for a pipeline run node step
      * @param organization Name of the organization
@@ -1586,6 +1626,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps
      * 
      * Retrieve run node steps details for an organization pipeline
      * @param organization Name of the organization
@@ -1620,6 +1661,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps
      * 
      * Retrieve run node steps details for an organization pipeline
      * @param organization Name of the organization
@@ -1666,6 +1708,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes
      * 
      * Retrieve run nodes details for an organization pipeline
      * @param organization Name of the organization
@@ -1699,6 +1742,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes
      * 
      * Retrieve run nodes details for an organization pipeline
      * @param organization Name of the organization
@@ -1743,6 +1787,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
      * 
      * Retrieve all runs details for an organization pipeline
      * @param organization Name of the organization
@@ -1775,6 +1820,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
      * 
      * Retrieve all runs details for an organization pipeline
      * @param organization Name of the organization
@@ -1817,6 +1863,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/
      * 
      * Retrieve all pipelines details for an organization
      * @param organization Name of the organization
@@ -1848,6 +1895,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/pipelines/
      * 
      * Retrieve all pipelines details for an organization
      * @param organization Name of the organization
@@ -1888,6 +1936,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/scm/{scm}
      * 
      * Retrieve SCM details for an organization
      * @param organization Name of the organization
@@ -1920,6 +1969,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/scm/{scm}
      * 
      * Retrieve SCM details for an organization
      * @param organization Name of the organization
@@ -1962,6 +2012,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
      * 
      * Retrieve SCM organization repositories details for an organization
      * @param organization Name of the organization
@@ -1998,6 +2049,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
      * 
      * Retrieve SCM organization repositories details for an organization
      * @param organization Name of the organization
@@ -2059,6 +2111,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
      * 
      * Retrieve SCM organization repository details for an organization
      * @param organization Name of the organization
@@ -2094,6 +2147,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
      * 
      * Retrieve SCM organization repository details for an organization
      * @param organization Name of the organization
@@ -2147,6 +2201,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/scm/{scm}/organizations
      * 
      * Retrieve SCM organizations details for an organization
      * @param organization Name of the organization
@@ -2180,6 +2235,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/scm/{scm}/organizations
      * 
      * Retrieve SCM organizations details for an organization
      * @param organization Name of the organization
@@ -2229,6 +2285,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/users/{user}
      * 
      * Retrieve user details for an organization
      * @param organization Name of the organization
@@ -2261,6 +2318,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/users/{user}
      * 
      * Retrieve user details for an organization
      * @param organization Name of the organization
@@ -2303,6 +2361,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/users/{user}/favorites
      * 
      * Retrieve user favorites details for an organization
      * @param user Name of the user
@@ -2334,6 +2393,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/users/{user}/favorites
      * 
      * Retrieve user favorites details for an organization
      * @param user Name of the user
@@ -2374,6 +2434,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/users/
      * 
      * Retrieve users details for an organization
      * @param organization Name of the organization
@@ -2405,6 +2466,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/organizations/{organization}/users/
      * 
      * Retrieve users details for an organization
      * @param organization Name of the organization
@@ -2445,6 +2507,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay
      * 
      * Replay an organization pipeline run
      * @param organization Name of the organization
@@ -2478,6 +2541,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay
      * 
      * Replay an organization pipeline run
      * @param organization Name of the organization
@@ -2522,6 +2586,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
      * 
      * Start a build for an organization pipeline
      * @param organization Name of the organization
@@ -2554,6 +2619,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
      * 
      * Start a build for an organization pipeline
      * @param organization Name of the organization
@@ -2596,6 +2662,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite
      * 
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization
@@ -2629,6 +2696,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite
      * 
      * Favorite/unfavorite a pipeline
      * @param organization Name of the organization
@@ -2674,6 +2742,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop
      * 
      * Stop a build of an organization pipeline
      * @param organization Name of the organization
@@ -2709,6 +2778,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop
      * 
      * Stop a build of an organization pipeline
      * @param organization Name of the organization
@@ -2765,6 +2835,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/search/
      * 
      * Search for any resource details
      * @param q Query string
@@ -2796,6 +2867,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/search/
      * 
      * Search for any resource details
      * @param q Query string
@@ -2839,6 +2911,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/classes/
      * 
      * Get classes details
      * @param q Query string containing an array of class names
@@ -2870,6 +2943,7 @@ class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClie
     }
 
     /**
+     * GET /blue/rest/classes/
      * 
      * Get classes details
      * @param q Query string containing an array of class names

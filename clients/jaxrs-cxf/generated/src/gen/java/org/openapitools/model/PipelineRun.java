@@ -19,7 +19,7 @@ public class PipelineRun  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<@Valid PipelineRunartifacts> artifacts;
+  private List<@Valid PipelineRunartifacts> artifacts = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private Integer durationInMillis;

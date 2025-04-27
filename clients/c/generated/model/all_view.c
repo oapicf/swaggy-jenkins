@@ -5,7 +5,7 @@
 
 
 
-all_view_t *all_view_create(
+static all_view_t *all_view_create_internal(
     char *_class,
     char *name,
     char *url
@@ -18,12 +18,28 @@ all_view_t *all_view_create(
     all_view_local_var->name = name;
     all_view_local_var->url = url;
 
+    all_view_local_var->_library_owned = 1;
     return all_view_local_var;
 }
 
+__attribute__((deprecated)) all_view_t *all_view_create(
+    char *_class,
+    char *name,
+    char *url
+    ) {
+    return all_view_create_internal (
+        _class,
+        name,
+        url
+        );
+}
 
 void all_view_free(all_view_t *all_view) {
     if(NULL == all_view){
+        return ;
+    }
+    if(all_view->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "all_view_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -82,6 +98,9 @@ all_view_t *all_view_parseFromJSON(cJSON *all_viewJSON){
 
     // all_view->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(all_viewJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -91,6 +110,9 @@ all_view_t *all_view_parseFromJSON(cJSON *all_viewJSON){
 
     // all_view->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(all_viewJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -100,6 +122,9 @@ all_view_t *all_view_parseFromJSON(cJSON *all_viewJSON){
 
     // all_view->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(all_viewJSON, "url");
+    if (cJSON_IsNull(url)) {
+        url = NULL;
+    }
     if (url) { 
     if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
@@ -108,7 +133,7 @@ all_view_t *all_view_parseFromJSON(cJSON *all_viewJSON){
     }
 
 
-    all_view_local_var = all_view_create (
+    all_view_local_var = all_view_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
         url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL

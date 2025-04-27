@@ -26,7 +26,7 @@ print(StringParameterDefinition.to_json())
 # convert the object into a dict
 string_parameter_definition_dict = string_parameter_definition_instance.to_dict()
 # create an instance of StringParameterDefinition from a dict
-string_parameter_definition_form_dict = string_parameter_definition.from_dict(string_parameter_definition_dict)
+string_parameter_definition_from_dict = StringParameterDefinition.from_dict(string_parameter_definition_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

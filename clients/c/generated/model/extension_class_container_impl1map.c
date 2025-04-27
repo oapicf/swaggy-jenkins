@@ -5,7 +5,7 @@
 
 
 
-extension_class_container_impl1map_t *extension_class_container_impl1map_create(
+static extension_class_container_impl1map_t *extension_class_container_impl1map_create_internal(
     extension_class_impl_t *io_jenkins_blueocean_service_embedded_rest_pipeline_impl,
     extension_class_impl_t *io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl,
     char *_class
@@ -18,12 +18,28 @@ extension_class_container_impl1map_t *extension_class_container_impl1map_create(
     extension_class_container_impl1map_local_var->io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl = io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl;
     extension_class_container_impl1map_local_var->_class = _class;
 
+    extension_class_container_impl1map_local_var->_library_owned = 1;
     return extension_class_container_impl1map_local_var;
 }
 
+__attribute__((deprecated)) extension_class_container_impl1map_t *extension_class_container_impl1map_create(
+    extension_class_impl_t *io_jenkins_blueocean_service_embedded_rest_pipeline_impl,
+    extension_class_impl_t *io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl,
+    char *_class
+    ) {
+    return extension_class_container_impl1map_create_internal (
+        io_jenkins_blueocean_service_embedded_rest_pipeline_impl,
+        io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl,
+        _class
+        );
+}
 
 void extension_class_container_impl1map_free(extension_class_container_impl1map_t *extension_class_container_impl1map) {
     if(NULL == extension_class_container_impl1map){
+        return ;
+    }
+    if(extension_class_container_impl1map->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "extension_class_container_impl1map_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -98,18 +114,27 @@ extension_class_container_impl1map_t *extension_class_container_impl1map_parseFr
 
     // extension_class_container_impl1map->io_jenkins_blueocean_service_embedded_rest_pipeline_impl
     cJSON *io_jenkins_blueocean_service_embedded_rest_pipeline_impl = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1mapJSON, "io.jenkins.blueocean.service.embedded.rest.PipelineImpl");
+    if (cJSON_IsNull(io_jenkins_blueocean_service_embedded_rest_pipeline_impl)) {
+        io_jenkins_blueocean_service_embedded_rest_pipeline_impl = NULL;
+    }
     if (io_jenkins_blueocean_service_embedded_rest_pipeline_impl) { 
     io_jenkins_blueocean_service_embedded_rest_pipeline_impl_local_nonprim = extension_class_impl_parseFromJSON(io_jenkins_blueocean_service_embedded_rest_pipeline_impl); //nonprimitive
     }
 
     // extension_class_container_impl1map->io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl
     cJSON *io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1mapJSON, "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl");
+    if (cJSON_IsNull(io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl)) {
+        io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl = NULL;
+    }
     if (io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl) { 
     io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl_local_nonprim = extension_class_impl_parseFromJSON(io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl); //nonprimitive
     }
 
     // extension_class_container_impl1map->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1mapJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -118,7 +143,7 @@ extension_class_container_impl1map_t *extension_class_container_impl1map_parseFr
     }
 
 
-    extension_class_container_impl1map_local_var = extension_class_container_impl1map_create (
+    extension_class_container_impl1map_local_var = extension_class_container_impl1map_create_internal (
         io_jenkins_blueocean_service_embedded_rest_pipeline_impl ? io_jenkins_blueocean_service_embedded_rest_pipeline_impl_local_nonprim : NULL,
         io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl ? io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL

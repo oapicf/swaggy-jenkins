@@ -25,7 +25,7 @@ print(CauseUserIdCause.to_json())
 # convert the object into a dict
 cause_user_id_cause_dict = cause_user_id_cause_instance.to_dict()
 # create an instance of CauseUserIdCause from a dict
-cause_user_id_cause_form_dict = cause_user_id_cause.from_dict(cause_user_id_cause_dict)
+cause_user_id_cause_from_dict = CauseUserIdCause.from_dict(cause_user_id_cause_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

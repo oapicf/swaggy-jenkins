@@ -16,7 +16,7 @@ class HudsonMasterComputer {
     
     String displayName
     
-    List<HudsonMasterComputerexecutors> executors
+    List<HudsonMasterComputerexecutors> executors = new ArrayList<>()
     
     String icon
     

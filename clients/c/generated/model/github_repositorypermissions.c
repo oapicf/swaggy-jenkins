@@ -5,7 +5,7 @@
 
 
 
-github_repositorypermissions_t *github_repositorypermissions_create(
+static github_repositorypermissions_t *github_repositorypermissions_create_internal(
     int admin,
     int push,
     int pull,
@@ -20,12 +20,30 @@ github_repositorypermissions_t *github_repositorypermissions_create(
     github_repositorypermissions_local_var->pull = pull;
     github_repositorypermissions_local_var->_class = _class;
 
+    github_repositorypermissions_local_var->_library_owned = 1;
     return github_repositorypermissions_local_var;
 }
 
+__attribute__((deprecated)) github_repositorypermissions_t *github_repositorypermissions_create(
+    int admin,
+    int push,
+    int pull,
+    char *_class
+    ) {
+    return github_repositorypermissions_create_internal (
+        admin,
+        push,
+        pull,
+        _class
+        );
+}
 
 void github_repositorypermissions_free(github_repositorypermissions_t *github_repositorypermissions) {
     if(NULL == github_repositorypermissions){
+        return ;
+    }
+    if(github_repositorypermissions->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_repositorypermissions_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -84,6 +102,9 @@ github_repositorypermissions_t *github_repositorypermissions_parseFromJSON(cJSON
 
     // github_repositorypermissions->admin
     cJSON *admin = cJSON_GetObjectItemCaseSensitive(github_repositorypermissionsJSON, "admin");
+    if (cJSON_IsNull(admin)) {
+        admin = NULL;
+    }
     if (admin) { 
     if(!cJSON_IsBool(admin))
     {
@@ -93,6 +114,9 @@ github_repositorypermissions_t *github_repositorypermissions_parseFromJSON(cJSON
 
     // github_repositorypermissions->push
     cJSON *push = cJSON_GetObjectItemCaseSensitive(github_repositorypermissionsJSON, "push");
+    if (cJSON_IsNull(push)) {
+        push = NULL;
+    }
     if (push) { 
     if(!cJSON_IsBool(push))
     {
@@ -102,6 +126,9 @@ github_repositorypermissions_t *github_repositorypermissions_parseFromJSON(cJSON
 
     // github_repositorypermissions->pull
     cJSON *pull = cJSON_GetObjectItemCaseSensitive(github_repositorypermissionsJSON, "pull");
+    if (cJSON_IsNull(pull)) {
+        pull = NULL;
+    }
     if (pull) { 
     if(!cJSON_IsBool(pull))
     {
@@ -111,6 +138,9 @@ github_repositorypermissions_t *github_repositorypermissions_parseFromJSON(cJSON
 
     // github_repositorypermissions->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_repositorypermissionsJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -119,7 +149,7 @@ github_repositorypermissions_t *github_repositorypermissions_parseFromJSON(cJSON
     }
 
 
-    github_repositorypermissions_local_var = github_repositorypermissions_create (
+    github_repositorypermissions_local_var = github_repositorypermissions_create_internal (
         admin ? admin->valueint : 0,
         push ? push->valueint : 0,
         pull ? pull->valueint : 0,

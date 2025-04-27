@@ -14,13 +14,13 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2025-04-27T08:09:43.773145588Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineRunNode   {
   
   private String propertyClass;
   private String displayName;
   private Integer durationInMillis;
-  private List<@Valid PipelineRunNodeedges> edges;
+  private List<@Valid PipelineRunNodeedges> edges = new ArrayList<>();
   private String id;
   private String result;
   private String startTime;

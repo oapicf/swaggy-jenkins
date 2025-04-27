@@ -94,5 +94,8 @@ data class HudsonMasterComputer (
     @Json(name = "temporarilyOffline")
     val temporarilyOffline: kotlin.Boolean? = null
 
-)
+) {
+
+
+}
 

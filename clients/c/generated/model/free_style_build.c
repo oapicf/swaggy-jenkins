@@ -5,7 +5,7 @@
 
 
 
-free_style_build_t *free_style_build_create(
+static free_style_build_t *free_style_build_create_internal(
     char *_class,
     int number,
     char *url,
@@ -48,12 +48,58 @@ free_style_build_t *free_style_build_create(
     free_style_build_local_var->built_on = built_on;
     free_style_build_local_var->change_set = change_set;
 
+    free_style_build_local_var->_library_owned = 1;
     return free_style_build_local_var;
 }
 
+__attribute__((deprecated)) free_style_build_t *free_style_build_create(
+    char *_class,
+    int number,
+    char *url,
+    list_t *actions,
+    int building,
+    char *description,
+    char *display_name,
+    int duration,
+    int estimated_duration,
+    char *executor,
+    char *full_display_name,
+    char *id,
+    int keep_log,
+    int queue_id,
+    char *result,
+    int timestamp,
+    char *built_on,
+    empty_change_log_set_t *change_set
+    ) {
+    return free_style_build_create_internal (
+        _class,
+        number,
+        url,
+        actions,
+        building,
+        description,
+        display_name,
+        duration,
+        estimated_duration,
+        executor,
+        full_display_name,
+        id,
+        keep_log,
+        queue_id,
+        result,
+        timestamp,
+        built_on,
+        change_set
+        );
+}
 
 void free_style_build_free(free_style_build_t *free_style_build) {
     if(NULL == free_style_build){
+        return ;
+    }
+    if(free_style_build->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "free_style_build_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -290,6 +336,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -299,6 +348,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->number
     cJSON *number = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "number");
+    if (cJSON_IsNull(number)) {
+        number = NULL;
+    }
     if (number) { 
     if(!cJSON_IsNumber(number))
     {
@@ -308,6 +360,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "url");
+    if (cJSON_IsNull(url)) {
+        url = NULL;
+    }
     if (url) { 
     if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
@@ -317,6 +372,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->actions
     cJSON *actions = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "actions");
+    if (cJSON_IsNull(actions)) {
+        actions = NULL;
+    }
     if (actions) { 
     cJSON *actions_local_nonprimitive = NULL;
     if(!cJSON_IsArray(actions)){
@@ -338,6 +396,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->building
     cJSON *building = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "building");
+    if (cJSON_IsNull(building)) {
+        building = NULL;
+    }
     if (building) { 
     if(!cJSON_IsBool(building))
     {
@@ -347,6 +408,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "description");
+    if (cJSON_IsNull(description)) {
+        description = NULL;
+    }
     if (description) { 
     if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
@@ -356,6 +420,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "displayName");
+    if (cJSON_IsNull(display_name)) {
+        display_name = NULL;
+    }
     if (display_name) { 
     if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
@@ -365,6 +432,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->duration
     cJSON *duration = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "duration");
+    if (cJSON_IsNull(duration)) {
+        duration = NULL;
+    }
     if (duration) { 
     if(!cJSON_IsNumber(duration))
     {
@@ -374,6 +444,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->estimated_duration
     cJSON *estimated_duration = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "estimatedDuration");
+    if (cJSON_IsNull(estimated_duration)) {
+        estimated_duration = NULL;
+    }
     if (estimated_duration) { 
     if(!cJSON_IsNumber(estimated_duration))
     {
@@ -383,6 +456,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->executor
     cJSON *executor = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "executor");
+    if (cJSON_IsNull(executor)) {
+        executor = NULL;
+    }
     if (executor) { 
     if(!cJSON_IsString(executor) && !cJSON_IsNull(executor))
     {
@@ -392,6 +468,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->full_display_name
     cJSON *full_display_name = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "fullDisplayName");
+    if (cJSON_IsNull(full_display_name)) {
+        full_display_name = NULL;
+    }
     if (full_display_name) { 
     if(!cJSON_IsString(full_display_name) && !cJSON_IsNull(full_display_name))
     {
@@ -401,6 +480,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (id) { 
     if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
@@ -410,6 +492,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->keep_log
     cJSON *keep_log = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "keepLog");
+    if (cJSON_IsNull(keep_log)) {
+        keep_log = NULL;
+    }
     if (keep_log) { 
     if(!cJSON_IsBool(keep_log))
     {
@@ -419,6 +504,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->queue_id
     cJSON *queue_id = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "queueId");
+    if (cJSON_IsNull(queue_id)) {
+        queue_id = NULL;
+    }
     if (queue_id) { 
     if(!cJSON_IsNumber(queue_id))
     {
@@ -428,6 +516,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->result
     cJSON *result = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "result");
+    if (cJSON_IsNull(result)) {
+        result = NULL;
+    }
     if (result) { 
     if(!cJSON_IsString(result) && !cJSON_IsNull(result))
     {
@@ -437,6 +528,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->timestamp
     cJSON *timestamp = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "timestamp");
+    if (cJSON_IsNull(timestamp)) {
+        timestamp = NULL;
+    }
     if (timestamp) { 
     if(!cJSON_IsNumber(timestamp))
     {
@@ -446,6 +540,9 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->built_on
     cJSON *built_on = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "builtOn");
+    if (cJSON_IsNull(built_on)) {
+        built_on = NULL;
+    }
     if (built_on) { 
     if(!cJSON_IsString(built_on) && !cJSON_IsNull(built_on))
     {
@@ -455,12 +552,15 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     // free_style_build->change_set
     cJSON *change_set = cJSON_GetObjectItemCaseSensitive(free_style_buildJSON, "changeSet");
+    if (cJSON_IsNull(change_set)) {
+        change_set = NULL;
+    }
     if (change_set) { 
     change_set_local_nonprim = empty_change_log_set_parseFromJSON(change_set); //nonprimitive
     }
 
 
-    free_style_build_local_var = free_style_build_create (
+    free_style_build_local_var = free_style_build_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         number ? number->valuedouble : 0,
         url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,

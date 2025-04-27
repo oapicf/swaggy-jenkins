@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.StringParameterValue;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -19,18 +20,18 @@ import javax.annotation.Generated;
  * StringParameterDefinition
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class StringParameterDefinition {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private StringParameterValue defaultParameterValue;
+  private @Nullable StringParameterValue defaultParameterValue;
 
-  private String description;
+  private @Nullable String description;
 
-  private String name;
+  private @Nullable String name;
 
-  private String type;
+  private @Nullable String type;
 
   public StringParameterDefinition propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -40,7 +41,7 @@ public class StringParameterDefinition {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -60,7 +61,7 @@ public class StringParameterDefinition {
   /**
    * Get defaultParameterValue
    * @return defaultParameterValue
-  */
+   */
   @Valid 
   @Schema(name = "defaultParameterValue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("defaultParameterValue")
@@ -80,7 +81,7 @@ public class StringParameterDefinition {
   /**
    * Get description
    * @return description
-  */
+   */
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
@@ -100,7 +101,7 @@ public class StringParameterDefinition {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -120,7 +121,7 @@ public class StringParameterDefinition {
   /**
    * Get type
    * @return type
-  */
+   */
   
   @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("type")

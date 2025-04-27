@@ -36,5 +36,8 @@ data class InputStepImpllinks (
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null
 
-)
+) {
+
+
+}
 

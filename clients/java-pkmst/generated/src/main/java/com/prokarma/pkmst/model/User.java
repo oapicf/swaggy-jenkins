@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * User
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class User   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -36,10 +36,10 @@ public class User   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -54,10 +54,10 @@ public class User   {
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getId() {
     return id;
@@ -72,10 +72,10 @@ public class User   {
     return this;
   }
 
-   /**
+  /**
    * Get fullName
    * @return fullName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getFullName() {
     return fullName;
@@ -90,10 +90,10 @@ public class User   {
     return this;
   }
 
-   /**
+  /**
    * Get email
    * @return email
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getEmail() {
     return email;
@@ -108,10 +108,10 @@ public class User   {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getName() {
     return name;

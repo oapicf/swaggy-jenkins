@@ -25,7 +25,7 @@ data class EmptyChangeLogSet(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("kind") val kind: kotlin.String? = null
-) {
+    ) {
 
 }
 

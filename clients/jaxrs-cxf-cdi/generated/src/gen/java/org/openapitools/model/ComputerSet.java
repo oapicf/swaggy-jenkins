@@ -23,7 +23,7 @@ public class ComputerSet   {
 
   private Integer busyExecutors;
 
-  private List<@Valid HudsonMasterComputer> computer;
+  private List<@Valid HudsonMasterComputer> computer = new ArrayList<>();
 
   private String displayName;
 

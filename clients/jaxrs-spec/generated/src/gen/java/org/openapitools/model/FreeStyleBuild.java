@@ -20,26 +20,29 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("FreeStyleBuild")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class FreeStyleBuild   {
-  private @Valid String propertyClass;
-  private @Valid Integer number;
-  private @Valid String url;
-  private @Valid List<@Valid CauseAction> actions;
-  private @Valid Boolean building;
-  private @Valid String description;
-  private @Valid String displayName;
-  private @Valid Integer duration;
-  private @Valid Integer estimatedDuration;
-  private @Valid String executor;
-  private @Valid String fullDisplayName;
-  private @Valid String id;
-  private @Valid Boolean keepLog;
-  private @Valid Integer queueId;
-  private @Valid String result;
-  private @Valid Integer timestamp;
-  private @Valid String builtOn;
-  private @Valid EmptyChangeLogSet changeSet;
+  private String propertyClass;
+  private Integer number;
+  private String url;
+  private @Valid List<@Valid CauseAction> actions = new ArrayList<>();
+  private Boolean building;
+  private String description;
+  private String displayName;
+  private Integer duration;
+  private Integer estimatedDuration;
+  private String executor;
+  private String fullDisplayName;
+  private String id;
+  private Boolean keepLog;
+  private Integer queueId;
+  private String result;
+  private Integer timestamp;
+  private String builtOn;
+  private EmptyChangeLogSet changeSet;
+
+  public FreeStyleBuild() {
+  }
 
   /**
    **/
@@ -108,7 +111,7 @@ public class FreeStyleBuild   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  public List<CauseAction> getActions() {
+  @Valid public List<@Valid CauseAction> getActions() {
     return actions;
   }
 
@@ -390,7 +393,7 @@ public class FreeStyleBuild   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("changeSet")
-  public EmptyChangeLogSet getChangeSet() {
+  @Valid public EmptyChangeLogSet getChangeSet() {
     return changeSet;
   }
 

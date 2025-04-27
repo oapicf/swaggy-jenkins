@@ -25,7 +25,7 @@ data class ClockDifference(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("diff") val diff: kotlin.Int? = null
-) {
+    ) {
 
 }
 

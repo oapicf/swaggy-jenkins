@@ -25,13 +25,13 @@ import javax.annotation.Generated;
  * Hudson
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class Hudson {
 
   private String propertyClass;
 
   @Valid
-  private List<@Valid HudsonassignedLabels> assignedLabels;
+  private List<@Valid HudsonassignedLabels> assignedLabels = new ArrayList<>();
 
   private String mode;
 
@@ -44,7 +44,7 @@ public class Hudson {
   private String description;
 
   @Valid
-  private List<@Valid FreeStyleProject> jobs;
+  private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
 
   private AllView primaryView;
 
@@ -59,7 +59,7 @@ public class Hudson {
   private Boolean useSecurity;
 
   @Valid
-  private List<@Valid AllView> views;
+  private List<@Valid AllView> views = new ArrayList<>();
 
   public Hudson propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -69,7 +69,7 @@ public class Hudson {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -97,7 +97,7 @@ public class Hudson {
   /**
    * Get assignedLabels
    * @return assignedLabels
-  */
+   */
   @Valid 
   @Schema(name = "assignedLabels", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("assignedLabels")
@@ -117,7 +117,7 @@ public class Hudson {
   /**
    * Get mode
    * @return mode
-  */
+   */
   
   @Schema(name = "mode", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("mode")
@@ -137,7 +137,7 @@ public class Hudson {
   /**
    * Get nodeDescription
    * @return nodeDescription
-  */
+   */
   
   @Schema(name = "nodeDescription", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("nodeDescription")
@@ -157,7 +157,7 @@ public class Hudson {
   /**
    * Get nodeName
    * @return nodeName
-  */
+   */
   
   @Schema(name = "nodeName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("nodeName")
@@ -177,7 +177,7 @@ public class Hudson {
   /**
    * Get numExecutors
    * @return numExecutors
-  */
+   */
   
   @Schema(name = "numExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numExecutors")
@@ -197,7 +197,7 @@ public class Hudson {
   /**
    * Get description
    * @return description
-  */
+   */
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
@@ -225,7 +225,7 @@ public class Hudson {
   /**
    * Get jobs
    * @return jobs
-  */
+   */
   @Valid 
   @Schema(name = "jobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("jobs")
@@ -245,7 +245,7 @@ public class Hudson {
   /**
    * Get primaryView
    * @return primaryView
-  */
+   */
   @Valid 
   @Schema(name = "primaryView", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("primaryView")
@@ -265,7 +265,7 @@ public class Hudson {
   /**
    * Get quietingDown
    * @return quietingDown
-  */
+   */
   
   @Schema(name = "quietingDown", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("quietingDown")
@@ -285,7 +285,7 @@ public class Hudson {
   /**
    * Get slaveAgentPort
    * @return slaveAgentPort
-  */
+   */
   
   @Schema(name = "slaveAgentPort", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("slaveAgentPort")
@@ -305,7 +305,7 @@ public class Hudson {
   /**
    * Get unlabeledLoad
    * @return unlabeledLoad
-  */
+   */
   @Valid 
   @Schema(name = "unlabeledLoad", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("unlabeledLoad")
@@ -325,7 +325,7 @@ public class Hudson {
   /**
    * Get useCrumbs
    * @return useCrumbs
-  */
+   */
   
   @Schema(name = "useCrumbs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("useCrumbs")
@@ -345,7 +345,7 @@ public class Hudson {
   /**
    * Get useSecurity
    * @return useSecurity
-  */
+   */
   
   @Schema(name = "useSecurity", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("useSecurity")
@@ -373,7 +373,7 @@ public class Hudson {
   /**
    * Get views
    * @return views
-  */
+   */
   @Valid 
   @Schema(name = "views", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("views")

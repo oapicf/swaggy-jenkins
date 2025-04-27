@@ -5,7 +5,7 @@
 
 
 
-hudsonassigned_labels_t *hudsonassigned_labels_create(
+static hudsonassigned_labels_t *hudsonassigned_labels_create_internal(
     char *_class
     ) {
     hudsonassigned_labels_t *hudsonassigned_labels_local_var = malloc(sizeof(hudsonassigned_labels_t));
@@ -14,12 +14,24 @@ hudsonassigned_labels_t *hudsonassigned_labels_create(
     }
     hudsonassigned_labels_local_var->_class = _class;
 
+    hudsonassigned_labels_local_var->_library_owned = 1;
     return hudsonassigned_labels_local_var;
 }
 
+__attribute__((deprecated)) hudsonassigned_labels_t *hudsonassigned_labels_create(
+    char *_class
+    ) {
+    return hudsonassigned_labels_create_internal (
+        _class
+        );
+}
 
 void hudsonassigned_labels_free(hudsonassigned_labels_t *hudsonassigned_labels) {
     if(NULL == hudsonassigned_labels){
+        return ;
+    }
+    if(hudsonassigned_labels->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "hudsonassigned_labels_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -54,6 +66,9 @@ hudsonassigned_labels_t *hudsonassigned_labels_parseFromJSON(cJSON *hudsonassign
 
     // hudsonassigned_labels->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudsonassigned_labelsJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -62,7 +77,7 @@ hudsonassigned_labels_t *hudsonassigned_labels_parseFromJSON(cJSON *hudsonassign
     }
 
 
-    hudsonassigned_labels_local_var = hudsonassigned_labels_create (
+    hudsonassigned_labels_local_var = hudsonassigned_labels_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 

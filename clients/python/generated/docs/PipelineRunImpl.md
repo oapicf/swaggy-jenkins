@@ -36,7 +36,7 @@ print(PipelineRunImpl.to_json())
 # convert the object into a dict
 pipeline_run_impl_dict = pipeline_run_impl_instance.to_dict()
 # create an instance of PipelineRunImpl from a dict
-pipeline_run_impl_form_dict = pipeline_run_impl.from_dict(pipeline_run_impl_dict)
+pipeline_run_impl_from_dict = PipelineRunImpl.from_dict(pipeline_run_impl_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

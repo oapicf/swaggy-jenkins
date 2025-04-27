@@ -11,9 +11,9 @@ server, you can easily generate a server stub.
 
 To see how to make this your own, look here: [README]((https://openapi-generator.tech))
 
-- API version: 2.0.1-pre.0
-- Build date: 2024-03-15T14:22:11.972211371Z[Etc/UTC]
-- Generator version: 7.4.0
+- API version: 3.0.2-pre.0
+- Build date: 2025-04-27T08:11:46.396601463Z[Etc/UTC]
+- Generator version: 7.12.0
 
 For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)
 
@@ -44,9 +44,11 @@ struct ServerImpl {
 
 #[allow(unused_variables)]
 #[async_trait]
-impl openapi::Api for ServerImpl {
+impl openapi::apis::default::Api for ServerImpl {
   // API implementation goes here
 }
+
+impl openapi::apis::ErrorHandler for ServerImpl {}
 
 pub async fn start_server(addr: &str) {
     // initialize tracing

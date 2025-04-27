@@ -5,7 +5,7 @@
 
 
 
-github_scmlinks_t *github_scmlinks_create(
+static github_scmlinks_t *github_scmlinks_create_internal(
     link_t *self,
     char *_class
     ) {
@@ -16,12 +16,26 @@ github_scmlinks_t *github_scmlinks_create(
     github_scmlinks_local_var->self = self;
     github_scmlinks_local_var->_class = _class;
 
+    github_scmlinks_local_var->_library_owned = 1;
     return github_scmlinks_local_var;
 }
 
+__attribute__((deprecated)) github_scmlinks_t *github_scmlinks_create(
+    link_t *self,
+    char *_class
+    ) {
+    return github_scmlinks_create_internal (
+        self,
+        _class
+        );
+}
 
 void github_scmlinks_free(github_scmlinks_t *github_scmlinks) {
     if(NULL == github_scmlinks){
+        return ;
+    }
+    if(github_scmlinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_scmlinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -76,12 +90,18 @@ github_scmlinks_t *github_scmlinks_parseFromJSON(cJSON *github_scmlinksJSON){
 
     // github_scmlinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(github_scmlinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // github_scmlinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_scmlinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -90,7 +110,7 @@ github_scmlinks_t *github_scmlinks_parseFromJSON(cJSON *github_scmlinksJSON){
     }
 
 
-    github_scmlinks_local_var = github_scmlinks_create (
+    github_scmlinks_local_var = github_scmlinks_create_internal (
         self ? self_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

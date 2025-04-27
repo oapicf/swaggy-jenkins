@@ -41,5 +41,8 @@ data class ExtensionClassContainerImpl1 (
     @Json(name = "map")
     val map: ExtensionClassContainerImpl1map? = null
 
-)
+) {
+
+
+}
 

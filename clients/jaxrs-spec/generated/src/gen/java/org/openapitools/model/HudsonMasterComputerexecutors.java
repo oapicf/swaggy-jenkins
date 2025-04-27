@@ -16,14 +16,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("HudsonMasterComputerexecutors")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputerexecutors   {
-  private @Valid FreeStyleBuild currentExecutable;
-  private @Valid Boolean idle;
-  private @Valid Boolean likelyStuck;
-  private @Valid Integer number;
-  private @Valid Integer progress;
-  private @Valid String propertyClass;
+  private FreeStyleBuild currentExecutable;
+  private Boolean idle;
+  private Boolean likelyStuck;
+  private Integer number;
+  private Integer progress;
+  private String propertyClass;
+
+  public HudsonMasterComputerexecutors() {
+  }
 
   /**
    **/
@@ -35,7 +38,7 @@ public class HudsonMasterComputerexecutors   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("currentExecutable")
-  public FreeStyleBuild getCurrentExecutable() {
+  @Valid public FreeStyleBuild getCurrentExecutable() {
     return currentExecutable;
   }
 

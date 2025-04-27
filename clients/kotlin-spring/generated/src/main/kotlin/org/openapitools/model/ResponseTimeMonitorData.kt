@@ -29,7 +29,7 @@ data class ResponseTimeMonitorData(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("average") val average: kotlin.Int? = null
-) {
+    ) {
 
 }
 

@@ -19,7 +19,7 @@ public class ComputerSet  {
   private Integer busyExecutors;
 
   @ApiModelProperty(value = "")
-  private List<HudsonMasterComputer> computer;
+  private List<HudsonMasterComputer> computer = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private String displayName;

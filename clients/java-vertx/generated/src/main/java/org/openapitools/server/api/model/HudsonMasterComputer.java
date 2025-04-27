@@ -15,7 +15,7 @@ public class HudsonMasterComputer   {
   
   private String propertyClass;
   private String displayName;
-  private List<HudsonMasterComputerexecutors> executors;
+  private List<HudsonMasterComputerexecutors> executors = new ArrayList<>();
   private String icon;
   private String iconClassName;
   private Boolean idle;

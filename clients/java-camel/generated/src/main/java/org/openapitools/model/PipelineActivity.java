@@ -22,13 +22,13 @@ import javax.annotation.Generated;
  * PipelineActivity
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineActivity {
 
   private String propertyClass;
 
   @Valid
-  private List<@Valid PipelineActivityartifacts> artifacts;
+  private List<@Valid PipelineActivityartifacts> artifacts = new ArrayList<>();
 
   private Integer durationInMillis;
 
@@ -64,7 +64,7 @@ public class PipelineActivity {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -92,7 +92,7 @@ public class PipelineActivity {
   /**
    * Get artifacts
    * @return artifacts
-  */
+   */
   @Valid 
   @Schema(name = "artifacts", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("artifacts")
@@ -112,7 +112,7 @@ public class PipelineActivity {
   /**
    * Get durationInMillis
    * @return durationInMillis
-  */
+   */
   
   @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("durationInMillis")
@@ -132,7 +132,7 @@ public class PipelineActivity {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  */
+   */
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
@@ -152,7 +152,7 @@ public class PipelineActivity {
   /**
    * Get enQueueTime
    * @return enQueueTime
-  */
+   */
   
   @Schema(name = "enQueueTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("enQueueTime")
@@ -172,7 +172,7 @@ public class PipelineActivity {
   /**
    * Get endTime
    * @return endTime
-  */
+   */
   
   @Schema(name = "endTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("endTime")
@@ -192,7 +192,7 @@ public class PipelineActivity {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -212,7 +212,7 @@ public class PipelineActivity {
   /**
    * Get organization
    * @return organization
-  */
+   */
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
@@ -232,7 +232,7 @@ public class PipelineActivity {
   /**
    * Get pipeline
    * @return pipeline
-  */
+   */
   
   @Schema(name = "pipeline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pipeline")
@@ -252,7 +252,7 @@ public class PipelineActivity {
   /**
    * Get result
    * @return result
-  */
+   */
   
   @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("result")
@@ -272,7 +272,7 @@ public class PipelineActivity {
   /**
    * Get runSummary
    * @return runSummary
-  */
+   */
   
   @Schema(name = "runSummary", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("runSummary")
@@ -292,7 +292,7 @@ public class PipelineActivity {
   /**
    * Get startTime
    * @return startTime
-  */
+   */
   
   @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("startTime")
@@ -312,7 +312,7 @@ public class PipelineActivity {
   /**
    * Get state
    * @return state
-  */
+   */
   
   @Schema(name = "state", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("state")
@@ -332,7 +332,7 @@ public class PipelineActivity {
   /**
    * Get type
    * @return type
-  */
+   */
   
   @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("type")
@@ -352,7 +352,7 @@ public class PipelineActivity {
   /**
    * Get commitId
    * @return commitId
-  */
+   */
   
   @Schema(name = "commitId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("commitId")

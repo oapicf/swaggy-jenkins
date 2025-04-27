@@ -48,5 +48,8 @@ data class StringParameterDefinition (
     @Json(name = "type")
     val type: kotlin.String? = null
 
-)
+) {
+
+
+}
 

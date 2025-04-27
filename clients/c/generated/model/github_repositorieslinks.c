@@ -5,7 +5,7 @@
 
 
 
-github_repositorieslinks_t *github_repositorieslinks_create(
+static github_repositorieslinks_t *github_repositorieslinks_create_internal(
     link_t *self,
     char *_class
     ) {
@@ -16,12 +16,26 @@ github_repositorieslinks_t *github_repositorieslinks_create(
     github_repositorieslinks_local_var->self = self;
     github_repositorieslinks_local_var->_class = _class;
 
+    github_repositorieslinks_local_var->_library_owned = 1;
     return github_repositorieslinks_local_var;
 }
 
+__attribute__((deprecated)) github_repositorieslinks_t *github_repositorieslinks_create(
+    link_t *self,
+    char *_class
+    ) {
+    return github_repositorieslinks_create_internal (
+        self,
+        _class
+        );
+}
 
 void github_repositorieslinks_free(github_repositorieslinks_t *github_repositorieslinks) {
     if(NULL == github_repositorieslinks){
+        return ;
+    }
+    if(github_repositorieslinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_repositorieslinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -76,12 +90,18 @@ github_repositorieslinks_t *github_repositorieslinks_parseFromJSON(cJSON *github
 
     // github_repositorieslinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(github_repositorieslinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // github_repositorieslinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_repositorieslinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -90,7 +110,7 @@ github_repositorieslinks_t *github_repositorieslinks_parseFromJSON(cJSON *github
     }
 
 
-    github_repositorieslinks_local_var = github_repositorieslinks_create (
+    github_repositorieslinks_local_var = github_repositorieslinks_create_internal (
         self ? self_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

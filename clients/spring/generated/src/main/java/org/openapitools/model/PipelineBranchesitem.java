@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.PipelineBranchesitemlatestRun;
 import org.openapitools.model.PipelineBranchesitempullRequest;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -20,26 +21,26 @@ import javax.annotation.Generated;
  * PipelineBranchesitem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineBranchesitem {
 
-  private String displayName;
+  private @Nullable String displayName;
 
-  private Integer estimatedDurationInMillis;
+  private @Nullable Integer estimatedDurationInMillis;
 
-  private String name;
+  private @Nullable String name;
 
-  private Integer weatherScore;
+  private @Nullable Integer weatherScore;
 
-  private PipelineBranchesitemlatestRun latestRun;
+  private @Nullable PipelineBranchesitemlatestRun latestRun;
 
-  private String organization;
+  private @Nullable String organization;
 
-  private PipelineBranchesitempullRequest pullRequest;
+  private @Nullable PipelineBranchesitempullRequest pullRequest;
 
-  private Integer totalNumberOfPullRequests;
+  private @Nullable Integer totalNumberOfPullRequests;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public PipelineBranchesitem displayName(String displayName) {
     this.displayName = displayName;
@@ -49,7 +50,7 @@ public class PipelineBranchesitem {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -69,7 +70,7 @@ public class PipelineBranchesitem {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  */
+   */
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
@@ -89,7 +90,7 @@ public class PipelineBranchesitem {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -109,7 +110,7 @@ public class PipelineBranchesitem {
   /**
    * Get weatherScore
    * @return weatherScore
-  */
+   */
   
   @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("weatherScore")
@@ -129,7 +130,7 @@ public class PipelineBranchesitem {
   /**
    * Get latestRun
    * @return latestRun
-  */
+   */
   @Valid 
   @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("latestRun")
@@ -149,7 +150,7 @@ public class PipelineBranchesitem {
   /**
    * Get organization
    * @return organization
-  */
+   */
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
@@ -169,7 +170,7 @@ public class PipelineBranchesitem {
   /**
    * Get pullRequest
    * @return pullRequest
-  */
+   */
   @Valid 
   @Schema(name = "pullRequest", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pullRequest")
@@ -189,7 +190,7 @@ public class PipelineBranchesitem {
   /**
    * Get totalNumberOfPullRequests
    * @return totalNumberOfPullRequests
-  */
+   */
   
   @Schema(name = "totalNumberOfPullRequests", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalNumberOfPullRequests")
@@ -209,7 +210,7 @@ public class PipelineBranchesitem {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

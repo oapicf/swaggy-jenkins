@@ -14,7 +14,7 @@ public class GithubRepositories   {
   
   private String propertyClass;
   private GithubRepositorieslinks links;
-  private List<GithubRepository> items;
+  private List<GithubRepository> items = new ArrayList<>();
   private Integer lastPage;
   private Integer nextPage;
   private Integer pageSize;

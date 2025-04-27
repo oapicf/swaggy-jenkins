@@ -22,35 +22,38 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("FreeStyleProject")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class FreeStyleProject   {
-  private @Valid String propertyClass;
-  private @Valid String name;
-  private @Valid String url;
-  private @Valid String color;
-  private @Valid List<@Valid FreeStyleProjectactions> actions;
-  private @Valid String description;
-  private @Valid String displayName;
-  private @Valid String displayNameOrNull;
-  private @Valid String fullDisplayName;
-  private @Valid String fullName;
-  private @Valid Boolean buildable;
-  private @Valid List<@Valid FreeStyleBuild> builds;
-  private @Valid FreeStyleBuild firstBuild;
-  private @Valid List<@Valid FreeStyleProjecthealthReport> healthReport;
-  private @Valid Boolean inQueue;
-  private @Valid Boolean keepDependencies;
-  private @Valid FreeStyleBuild lastBuild;
-  private @Valid FreeStyleBuild lastCompletedBuild;
-  private @Valid String lastFailedBuild;
-  private @Valid FreeStyleBuild lastStableBuild;
-  private @Valid FreeStyleBuild lastSuccessfulBuild;
-  private @Valid String lastUnstableBuild;
-  private @Valid String lastUnsuccessfulBuild;
-  private @Valid Integer nextBuildNumber;
-  private @Valid String queueItem;
-  private @Valid Boolean concurrentBuild;
-  private @Valid NullSCM scm;
+  private String propertyClass;
+  private String name;
+  private String url;
+  private String color;
+  private @Valid List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
+  private String description;
+  private String displayName;
+  private String displayNameOrNull;
+  private String fullDisplayName;
+  private String fullName;
+  private Boolean buildable;
+  private @Valid List<@Valid FreeStyleBuild> builds = new ArrayList<>();
+  private FreeStyleBuild firstBuild;
+  private @Valid List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
+  private Boolean inQueue;
+  private Boolean keepDependencies;
+  private FreeStyleBuild lastBuild;
+  private FreeStyleBuild lastCompletedBuild;
+  private String lastFailedBuild;
+  private FreeStyleBuild lastStableBuild;
+  private FreeStyleBuild lastSuccessfulBuild;
+  private String lastUnstableBuild;
+  private String lastUnsuccessfulBuild;
+  private Integer nextBuildNumber;
+  private String queueItem;
+  private Boolean concurrentBuild;
+  private NullSCM scm;
+
+  public FreeStyleProject() {
+  }
 
   /**
    **/
@@ -138,7 +141,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  public List<FreeStyleProjectactions> getActions() {
+  @Valid public List<@Valid FreeStyleProjectactions> getActions() {
     return actions;
   }
 
@@ -287,7 +290,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("builds")
-  public List<FreeStyleBuild> getBuilds() {
+  @Valid public List<@Valid FreeStyleBuild> getBuilds() {
     return builds;
   }
 
@@ -322,7 +325,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("firstBuild")
-  public FreeStyleBuild getFirstBuild() {
+  @Valid public FreeStyleBuild getFirstBuild() {
     return firstBuild;
   }
 
@@ -341,7 +344,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("healthReport")
-  public List<FreeStyleProjecthealthReport> getHealthReport() {
+  @Valid public List<@Valid FreeStyleProjecthealthReport> getHealthReport() {
     return healthReport;
   }
 
@@ -414,7 +417,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("lastBuild")
-  public FreeStyleBuild getLastBuild() {
+  @Valid public FreeStyleBuild getLastBuild() {
     return lastBuild;
   }
 
@@ -433,7 +436,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("lastCompletedBuild")
-  public FreeStyleBuild getLastCompletedBuild() {
+  @Valid public FreeStyleBuild getLastCompletedBuild() {
     return lastCompletedBuild;
   }
 
@@ -471,7 +474,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("lastStableBuild")
-  public FreeStyleBuild getLastStableBuild() {
+  @Valid public FreeStyleBuild getLastStableBuild() {
     return lastStableBuild;
   }
 
@@ -490,7 +493,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("lastSuccessfulBuild")
-  public FreeStyleBuild getLastSuccessfulBuild() {
+  @Valid public FreeStyleBuild getLastSuccessfulBuild() {
     return lastSuccessfulBuild;
   }
 
@@ -604,7 +607,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("scm")
-  public NullSCM getScm() {
+  @Valid public NullSCM getScm() {
     return scm;
   }
 

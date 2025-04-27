@@ -20,7 +20,7 @@ import java.util.List;
  * QueueLeftItem
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class QueueLeftItem   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -67,10 +67,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -93,10 +93,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get actions
    * @return actions
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<CauseAction> getActions() {
     return actions;
@@ -111,10 +111,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get blocked
    * @return blocked
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getBlocked() {
     return blocked;
@@ -129,10 +129,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get buildable
    * @return buildable
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getBuildable() {
     return buildable;
@@ -147,10 +147,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getId() {
     return id;
@@ -165,10 +165,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get inQueueSince
    * @return inQueueSince
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getInQueueSince() {
     return inQueueSince;
@@ -183,10 +183,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get params
    * @return params
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getParams() {
     return params;
@@ -201,10 +201,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get stuck
    * @return stuck
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getStuck() {
     return stuck;
@@ -219,10 +219,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get task
    * @return task
-  **/
+   */
   @ApiModelProperty(value = "")
   public FreeStyleProject getTask() {
     return task;
@@ -237,10 +237,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get url
    * @return url
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getUrl() {
     return url;
@@ -255,10 +255,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get why
    * @return why
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getWhy() {
     return why;
@@ -273,10 +273,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get cancelled
    * @return cancelled
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getCancelled() {
     return cancelled;
@@ -291,10 +291,10 @@ public class QueueLeftItem   {
     return this;
   }
 
-   /**
+  /**
    * Get executable
    * @return executable
-  **/
+   */
   @ApiModelProperty(value = "")
   public FreeStyleBuild getExecutable() {
     return executable;

@@ -35,5 +35,8 @@ data class PipelineRunNodeedges (
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null
 
-)
+) {
+
+
+}
 

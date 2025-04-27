@@ -16,7 +16,7 @@ import org.openapitools.model.NullSCM;
 /**
  * FreeStyleProject
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2025-04-27T08:09:22.488100288Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class FreeStyleProject   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -178,7 +178,7 @@ public class FreeStyleProject   {
 
   public FreeStyleProject addActionsItem(FreeStyleProjectactions actionsItem) {
     if (this.actions == null) {
-      this.actions = ;
+      this.actions = new ArrayList<>();
     }
     this.actions.add(actionsItem);
     return this;
@@ -312,7 +312,7 @@ public class FreeStyleProject   {
 
   public FreeStyleProject addBuildsItem(FreeStyleBuild buildsItem) {
     if (this.builds == null) {
-      this.builds = ;
+      this.builds = new ArrayList<>();
     }
     this.builds.add(buildsItem);
     return this;
@@ -356,7 +356,7 @@ public class FreeStyleProject   {
 
   public FreeStyleProject addHealthReportItem(FreeStyleProjecthealthReport healthReportItem) {
     if (this.healthReport == null) {
-      this.healthReport = ;
+      this.healthReport = new ArrayList<>();
     }
     this.healthReport.add(healthReportItem);
     return this;

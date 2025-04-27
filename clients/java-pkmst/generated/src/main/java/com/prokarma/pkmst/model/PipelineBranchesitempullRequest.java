@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * PipelineBranchesitempullRequest
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineBranchesitempullRequest   {
   @JsonProperty("_links")
   private PipelineBranchesitempullRequestlinks links;
@@ -40,10 +40,10 @@ public class PipelineBranchesitempullRequest   {
     return this;
   }
 
-   /**
+  /**
    * Get links
    * @return links
-  **/
+   */
   @ApiModelProperty(value = "")
   public PipelineBranchesitempullRequestlinks getLinks() {
     return links;
@@ -58,10 +58,10 @@ public class PipelineBranchesitempullRequest   {
     return this;
   }
 
-   /**
+  /**
    * Get author
    * @return author
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getAuthor() {
     return author;
@@ -76,10 +76,10 @@ public class PipelineBranchesitempullRequest   {
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getId() {
     return id;
@@ -94,10 +94,10 @@ public class PipelineBranchesitempullRequest   {
     return this;
   }
 
-   /**
+  /**
    * Get title
    * @return title
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getTitle() {
     return title;
@@ -112,10 +112,10 @@ public class PipelineBranchesitempullRequest   {
     return this;
   }
 
-   /**
+  /**
    * Get url
    * @return url
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getUrl() {
     return url;
@@ -130,10 +130,10 @@ public class PipelineBranchesitempullRequest   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;

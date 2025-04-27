@@ -30,7 +30,7 @@ public class MultibranchPipeline  {
   private Integer weatherScore;
 
   @ApiModelProperty(value = "")
-  private List<String> branchNames;
+  private List<String> branchNames = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private Integer numberOfFailingBranches;

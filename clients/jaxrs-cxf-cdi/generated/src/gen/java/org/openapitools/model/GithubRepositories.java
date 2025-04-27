@@ -24,7 +24,7 @@ public class GithubRepositories   {
 
   private GithubRepositorieslinks links;
 
-  private List<@Valid GithubRepository> items;
+  private List<@Valid GithubRepository> items = new ArrayList<>();
 
   private Integer lastPage;
 

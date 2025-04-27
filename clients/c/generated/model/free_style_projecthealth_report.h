@@ -25,9 +25,10 @@ typedef struct free_style_projecthealth_report_t {
     int score; //numeric
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } free_style_projecthealth_report_t;
 
-free_style_projecthealth_report_t *free_style_projecthealth_report_create(
+__attribute__((deprecated)) free_style_projecthealth_report_t *free_style_projecthealth_report_create(
     char *description,
     char *icon_class_name,
     char *icon_url,

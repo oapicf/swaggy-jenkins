@@ -5,7 +5,7 @@
 
 
 
-cause_user_id_cause_t *cause_user_id_cause_create(
+static cause_user_id_cause_t *cause_user_id_cause_create_internal(
     char *_class,
     char *short_description,
     char *user_id,
@@ -20,12 +20,30 @@ cause_user_id_cause_t *cause_user_id_cause_create(
     cause_user_id_cause_local_var->user_id = user_id;
     cause_user_id_cause_local_var->user_name = user_name;
 
+    cause_user_id_cause_local_var->_library_owned = 1;
     return cause_user_id_cause_local_var;
 }
 
+__attribute__((deprecated)) cause_user_id_cause_t *cause_user_id_cause_create(
+    char *_class,
+    char *short_description,
+    char *user_id,
+    char *user_name
+    ) {
+    return cause_user_id_cause_create_internal (
+        _class,
+        short_description,
+        user_id,
+        user_name
+        );
+}
 
 void cause_user_id_cause_free(cause_user_id_cause_t *cause_user_id_cause) {
     if(NULL == cause_user_id_cause){
+        return ;
+    }
+    if(cause_user_id_cause->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "cause_user_id_cause_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -96,6 +114,9 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
 
     // cause_user_id_cause->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(cause_user_id_causeJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -105,6 +126,9 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
 
     // cause_user_id_cause->short_description
     cJSON *short_description = cJSON_GetObjectItemCaseSensitive(cause_user_id_causeJSON, "shortDescription");
+    if (cJSON_IsNull(short_description)) {
+        short_description = NULL;
+    }
     if (short_description) { 
     if(!cJSON_IsString(short_description) && !cJSON_IsNull(short_description))
     {
@@ -114,6 +138,9 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
 
     // cause_user_id_cause->user_id
     cJSON *user_id = cJSON_GetObjectItemCaseSensitive(cause_user_id_causeJSON, "userId");
+    if (cJSON_IsNull(user_id)) {
+        user_id = NULL;
+    }
     if (user_id) { 
     if(!cJSON_IsString(user_id) && !cJSON_IsNull(user_id))
     {
@@ -123,6 +150,9 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
 
     // cause_user_id_cause->user_name
     cJSON *user_name = cJSON_GetObjectItemCaseSensitive(cause_user_id_causeJSON, "userName");
+    if (cJSON_IsNull(user_name)) {
+        user_name = NULL;
+    }
     if (user_name) { 
     if(!cJSON_IsString(user_name) && !cJSON_IsNull(user_name))
     {
@@ -131,7 +161,7 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
     }
 
 
-    cause_user_id_cause_local_var = cause_user_id_cause_create (
+    cause_user_id_cause_local_var = cause_user_id_cause_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         short_description && !cJSON_IsNull(short_description) ? strdup(short_description->valuestring) : NULL,
         user_id && !cJSON_IsNull(user_id) ? strdup(user_id->valuestring) : NULL,

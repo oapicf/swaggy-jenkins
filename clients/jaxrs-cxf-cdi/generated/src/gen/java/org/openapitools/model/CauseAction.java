@@ -21,7 +21,7 @@ public class CauseAction   {
   
   private String propertyClass;
 
-  private List<@Valid CauseUserIdCause> causes;
+  private List<@Valid CauseUserIdCause> causes = new ArrayList<>();
 
   /**
    **/

@@ -38,6 +38,6 @@ library
                      , http-types
                      , swagger2
                      , uuid
-                     , wai-extra
                      , bytestring
+                     , wai-extra
   default-language:    Haskell2010

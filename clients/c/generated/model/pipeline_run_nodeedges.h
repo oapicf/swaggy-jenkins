@@ -22,9 +22,10 @@ typedef struct pipeline_run_nodeedges_t {
     char *id; // string
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_run_nodeedges_t;
 
-pipeline_run_nodeedges_t *pipeline_run_nodeedges_create(
+__attribute__((deprecated)) pipeline_run_nodeedges_t *pipeline_run_nodeedges_create(
     char *id,
     char *_class
 );

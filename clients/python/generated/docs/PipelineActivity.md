@@ -36,7 +36,7 @@ print(PipelineActivity.to_json())
 # convert the object into a dict
 pipeline_activity_dict = pipeline_activity_instance.to_dict()
 # create an instance of PipelineActivity from a dict
-pipeline_activity_form_dict = pipeline_activity.from_dict(pipeline_activity_dict)
+pipeline_activity_from_dict = PipelineActivity.from_dict(pipeline_activity_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

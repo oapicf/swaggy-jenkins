@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2024-03-15T14:11:48.924355048Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2025-04-27T08:09:15.793738019Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class DiskSpaceMonitorDescriptorDiskSpace   {
   @JsonProperty("_class")
   private String propertyClass;

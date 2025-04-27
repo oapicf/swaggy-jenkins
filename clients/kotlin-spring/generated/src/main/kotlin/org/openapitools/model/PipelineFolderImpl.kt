@@ -45,7 +45,7 @@ data class PipelineFolderImpl(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("numberOfPipelines") val numberOfPipelines: kotlin.Int? = null
-) {
+    ) {
 
 }
 

@@ -23,9 +23,10 @@ typedef struct github_file_t {
     struct github_content_t *content; //model
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } github_file_t;
 
-github_file_t *github_file_create(
+__attribute__((deprecated)) github_file_t *github_file_create(
     github_content_t *content,
     char *_class
 );

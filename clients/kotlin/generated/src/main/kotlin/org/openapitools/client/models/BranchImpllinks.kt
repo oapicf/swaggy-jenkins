@@ -48,5 +48,8 @@ data class BranchImpllinks (
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null
 
-)
+) {
+
+
+}
 

@@ -36,5 +36,8 @@ data class CauseAction (
     @Json(name = "causes")
     val causes: kotlin.collections.List<CauseUserIdCause>? = null
 
-)
+) {
+
+
+}
 

@@ -25,9 +25,10 @@ typedef struct extension_class_container_impl1_t {
     struct extension_class_container_impl1links_t *_links; //model
     struct extension_class_container_impl1map_t *map; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } extension_class_container_impl1_t;
 
-extension_class_container_impl1_t *extension_class_container_impl1_create(
+__attribute__((deprecated)) extension_class_container_impl1_t *extension_class_container_impl1_create(
     char *_class,
     extension_class_container_impl1links_t *_links,
     extension_class_container_impl1map_t *map

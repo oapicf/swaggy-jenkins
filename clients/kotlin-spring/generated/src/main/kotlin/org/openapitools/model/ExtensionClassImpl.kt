@@ -31,7 +31,7 @@ data class ExtensionClassImpl(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("classes") val classes: kotlin.collections.List<kotlin.String>? = null
-) {
+    ) {
 
 }
 

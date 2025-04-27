@@ -12,7 +12,7 @@ import org.openapitools.server.api.model.PipelineActivityartifacts;
 public class PipelineActivity   {
   
   private String propertyClass;
-  private List<PipelineActivityartifacts> artifacts;
+  private List<PipelineActivityartifacts> artifacts = new ArrayList<>();
   private Integer durationInMillis;
   private Integer estimatedDurationInMillis;
   private String enQueueTime;

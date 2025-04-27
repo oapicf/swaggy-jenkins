@@ -36,5 +36,8 @@ data class Queue (
     @Json(name = "items")
     val items: kotlin.collections.List<QueueBlockedItem>? = null
 
-)
+) {
+
+
+}
 

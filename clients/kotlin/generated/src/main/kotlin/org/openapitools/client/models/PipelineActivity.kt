@@ -88,5 +88,8 @@ data class PipelineActivity (
     @Json(name = "commitId")
     val commitId: kotlin.String? = null
 
-)
+) {
+
+
+}
 

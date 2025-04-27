@@ -5,7 +5,7 @@
 
 
 
-default_crumb_issuer_t *default_crumb_issuer_create(
+static default_crumb_issuer_t *default_crumb_issuer_create_internal(
     char *_class,
     char *crumb,
     char *crumb_request_field
@@ -18,12 +18,28 @@ default_crumb_issuer_t *default_crumb_issuer_create(
     default_crumb_issuer_local_var->crumb = crumb;
     default_crumb_issuer_local_var->crumb_request_field = crumb_request_field;
 
+    default_crumb_issuer_local_var->_library_owned = 1;
     return default_crumb_issuer_local_var;
 }
 
+__attribute__((deprecated)) default_crumb_issuer_t *default_crumb_issuer_create(
+    char *_class,
+    char *crumb,
+    char *crumb_request_field
+    ) {
+    return default_crumb_issuer_create_internal (
+        _class,
+        crumb,
+        crumb_request_field
+        );
+}
 
 void default_crumb_issuer_free(default_crumb_issuer_t *default_crumb_issuer) {
     if(NULL == default_crumb_issuer){
+        return ;
+    }
+    if(default_crumb_issuer->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "default_crumb_issuer_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -82,6 +98,9 @@ default_crumb_issuer_t *default_crumb_issuer_parseFromJSON(cJSON *default_crumb_
 
     // default_crumb_issuer->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(default_crumb_issuerJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -91,6 +110,9 @@ default_crumb_issuer_t *default_crumb_issuer_parseFromJSON(cJSON *default_crumb_
 
     // default_crumb_issuer->crumb
     cJSON *crumb = cJSON_GetObjectItemCaseSensitive(default_crumb_issuerJSON, "crumb");
+    if (cJSON_IsNull(crumb)) {
+        crumb = NULL;
+    }
     if (crumb) { 
     if(!cJSON_IsString(crumb) && !cJSON_IsNull(crumb))
     {
@@ -100,6 +122,9 @@ default_crumb_issuer_t *default_crumb_issuer_parseFromJSON(cJSON *default_crumb_
 
     // default_crumb_issuer->crumb_request_field
     cJSON *crumb_request_field = cJSON_GetObjectItemCaseSensitive(default_crumb_issuerJSON, "crumbRequestField");
+    if (cJSON_IsNull(crumb_request_field)) {
+        crumb_request_field = NULL;
+    }
     if (crumb_request_field) { 
     if(!cJSON_IsString(crumb_request_field) && !cJSON_IsNull(crumb_request_field))
     {
@@ -108,7 +133,7 @@ default_crumb_issuer_t *default_crumb_issuer_parseFromJSON(cJSON *default_crumb_
     }
 
 
-    default_crumb_issuer_local_var = default_crumb_issuer_create (
+    default_crumb_issuer_local_var = default_crumb_issuer_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         crumb && !cJSON_IsNull(crumb) ? strdup(crumb->valuestring) : NULL,
         crumb_request_field && !cJSON_IsNull(crumb_request_field) ? strdup(crumb_request_field->valuestring) : NULL

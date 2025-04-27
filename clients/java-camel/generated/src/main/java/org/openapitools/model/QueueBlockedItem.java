@@ -23,13 +23,13 @@ import javax.annotation.Generated;
  * QueueBlockedItem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class QueueBlockedItem {
 
   private String propertyClass;
 
   @Valid
-  private List<@Valid CauseAction> actions;
+  private List<@Valid CauseAction> actions = new ArrayList<>();
 
   private Boolean blocked;
 
@@ -59,7 +59,7 @@ public class QueueBlockedItem {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -87,7 +87,7 @@ public class QueueBlockedItem {
   /**
    * Get actions
    * @return actions
-  */
+   */
   @Valid 
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
@@ -107,7 +107,7 @@ public class QueueBlockedItem {
   /**
    * Get blocked
    * @return blocked
-  */
+   */
   
   @Schema(name = "blocked", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("blocked")
@@ -127,7 +127,7 @@ public class QueueBlockedItem {
   /**
    * Get buildable
    * @return buildable
-  */
+   */
   
   @Schema(name = "buildable", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("buildable")
@@ -147,7 +147,7 @@ public class QueueBlockedItem {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -167,7 +167,7 @@ public class QueueBlockedItem {
   /**
    * Get inQueueSince
    * @return inQueueSince
-  */
+   */
   
   @Schema(name = "inQueueSince", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("inQueueSince")
@@ -187,7 +187,7 @@ public class QueueBlockedItem {
   /**
    * Get params
    * @return params
-  */
+   */
   
   @Schema(name = "params", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("params")
@@ -207,7 +207,7 @@ public class QueueBlockedItem {
   /**
    * Get stuck
    * @return stuck
-  */
+   */
   
   @Schema(name = "stuck", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("stuck")
@@ -227,7 +227,7 @@ public class QueueBlockedItem {
   /**
    * Get task
    * @return task
-  */
+   */
   @Valid 
   @Schema(name = "task", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("task")
@@ -247,7 +247,7 @@ public class QueueBlockedItem {
   /**
    * Get url
    * @return url
-  */
+   */
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")
@@ -267,7 +267,7 @@ public class QueueBlockedItem {
   /**
    * Get why
    * @return why
-  */
+   */
   
   @Schema(name = "why", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("why")
@@ -287,7 +287,7 @@ public class QueueBlockedItem {
   /**
    * Get buildableStartMilliseconds
    * @return buildableStartMilliseconds
-  */
+   */
   
   @Schema(name = "buildableStartMilliseconds", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("buildableStartMilliseconds")

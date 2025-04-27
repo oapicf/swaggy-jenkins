@@ -12,7 +12,7 @@ import org.openapitools.server.api.model.QueueBlockedItem;
 public class Queue   {
   
   private String propertyClass;
-  private List<QueueBlockedItem> items;
+  private List<QueueBlockedItem> items = new ArrayList<>();
 
   public Queue () {
 

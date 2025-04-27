@@ -3,6 +3,9 @@
 from fastapi.testclient import TestClient
 
 
+from pydantic import Field, StrictInt, StrictStr  # noqa: F401
+from typing import Any, Optional  # noqa: F401
+from typing_extensions import Annotated  # noqa: F401
 from openapi_server.models.computer_set import ComputerSet  # noqa: F401
 from openapi_server.models.free_style_build import FreeStyleBuild  # noqa: F401
 from openapi_server.models.free_style_project import FreeStyleProject  # noqa: F401
@@ -239,7 +242,7 @@ def test_post_create_item(client: TestClient):
     
     """
     body = 'body_example'
-    params = [("name", 'name_example'),     ("_from", '_from_example'),     ("mode", 'mode_example')]
+    params = [("name", 'name_example'),     ("var_from", 'var_from_example'),     ("mode", 'mode_example')]
     headers = {
         "jenkins_crumb": 'jenkins_crumb_example',
         "content_type": 'content_type_example',
@@ -288,7 +291,7 @@ def test_post_job_build(client: TestClient):
 
     
     """
-    params = [("_json", '_json_example'),     ("token", 'token_example')]
+    params = [("var_json", 'var_json_example'),     ("token", 'token_example')]
     headers = {
         "jenkins_crumb": 'jenkins_crumb_example',
         "Authorization": "BasicZm9vOmJhcg==",

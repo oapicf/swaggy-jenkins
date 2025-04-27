@@ -23,9 +23,10 @@ typedef struct all_view_t {
     char *name; // string
     char *url; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } all_view_t;
 
-all_view_t *all_view_create(
+__attribute__((deprecated)) all_view_t *all_view_create(
     char *_class,
     char *name,
     char *url

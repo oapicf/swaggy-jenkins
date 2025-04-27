@@ -25,7 +25,7 @@ print(DiskSpaceMonitorDescriptorDiskSpace.to_json())
 # convert the object into a dict
 disk_space_monitor_descriptor_disk_space_dict = disk_space_monitor_descriptor_disk_space_instance.to_dict()
 # create an instance of DiskSpaceMonitorDescriptorDiskSpace from a dict
-disk_space_monitor_descriptor_disk_space_form_dict = disk_space_monitor_descriptor_disk_space.from_dict(disk_space_monitor_descriptor_disk_space_dict)
+disk_space_monitor_descriptor_disk_space_from_dict = DiskSpaceMonitorDescriptorDiskSpace.from_dict(disk_space_monitor_descriptor_disk_space_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

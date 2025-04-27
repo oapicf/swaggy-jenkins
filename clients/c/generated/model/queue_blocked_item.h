@@ -34,9 +34,10 @@ typedef struct queue_blocked_item_t {
     char *why; // string
     int buildable_start_milliseconds; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } queue_blocked_item_t;
 
-queue_blocked_item_t *queue_blocked_item_create(
+__attribute__((deprecated)) queue_blocked_item_t *queue_blocked_item_create(
     char *_class,
     list_t *actions,
     int blocked,

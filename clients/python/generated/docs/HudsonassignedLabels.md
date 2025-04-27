@@ -22,7 +22,7 @@ print(HudsonassignedLabels.to_json())
 # convert the object into a dict
 hudsonassigned_labels_dict = hudsonassigned_labels_instance.to_dict()
 # create an instance of HudsonassignedLabels from a dict
-hudsonassigned_labels_form_dict = hudsonassigned_labels.from_dict(hudsonassigned_labels_dict)
+hudsonassigned_labels_from_dict = HudsonassignedLabels.from_dict(hudsonassigned_labels_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

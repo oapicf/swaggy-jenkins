@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:swaggy_jenkins, "~> 2.0.1-pre.0"}]
+  [{:swaggy_jenkins, "~> 1.0.0"}]
 end
 ```
 

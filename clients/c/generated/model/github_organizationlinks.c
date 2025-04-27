@@ -5,7 +5,7 @@
 
 
 
-github_organizationlinks_t *github_organizationlinks_create(
+static github_organizationlinks_t *github_organizationlinks_create_internal(
     link_t *repositories,
     link_t *self,
     char *_class
@@ -18,12 +18,28 @@ github_organizationlinks_t *github_organizationlinks_create(
     github_organizationlinks_local_var->self = self;
     github_organizationlinks_local_var->_class = _class;
 
+    github_organizationlinks_local_var->_library_owned = 1;
     return github_organizationlinks_local_var;
 }
 
+__attribute__((deprecated)) github_organizationlinks_t *github_organizationlinks_create(
+    link_t *repositories,
+    link_t *self,
+    char *_class
+    ) {
+    return github_organizationlinks_create_internal (
+        repositories,
+        self,
+        _class
+        );
+}
 
 void github_organizationlinks_free(github_organizationlinks_t *github_organizationlinks) {
     if(NULL == github_organizationlinks){
+        return ;
+    }
+    if(github_organizationlinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_organizationlinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -98,18 +114,27 @@ github_organizationlinks_t *github_organizationlinks_parseFromJSON(cJSON *github
 
     // github_organizationlinks->repositories
     cJSON *repositories = cJSON_GetObjectItemCaseSensitive(github_organizationlinksJSON, "repositories");
+    if (cJSON_IsNull(repositories)) {
+        repositories = NULL;
+    }
     if (repositories) { 
     repositories_local_nonprim = link_parseFromJSON(repositories); //nonprimitive
     }
 
     // github_organizationlinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(github_organizationlinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // github_organizationlinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_organizationlinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -118,7 +143,7 @@ github_organizationlinks_t *github_organizationlinks_parseFromJSON(cJSON *github
     }
 
 
-    github_organizationlinks_local_var = github_organizationlinks_create (
+    github_organizationlinks_local_var = github_organizationlinks_create_internal (
         repositories ? repositories_local_nonprim : NULL,
         self ? self_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL

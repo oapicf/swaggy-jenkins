@@ -16,14 +16,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineRunImpllinks")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineRunImpllinks   {
-  private @Valid Link nodes;
-  private @Valid Link log;
-  private @Valid Link self;
-  private @Valid Link actions;
-  private @Valid Link steps;
-  private @Valid String propertyClass;
+  private Link nodes;
+  private Link log;
+  private Link self;
+  private Link actions;
+  private Link steps;
+  private String propertyClass;
+
+  public PipelineRunImpllinks() {
+  }
 
   /**
    **/
@@ -35,7 +38,7 @@ public class PipelineRunImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("nodes")
-  public Link getNodes() {
+  @Valid public Link getNodes() {
     return nodes;
   }
 
@@ -54,7 +57,7 @@ public class PipelineRunImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("log")
-  public Link getLog() {
+  @Valid public Link getLog() {
     return log;
   }
 
@@ -73,7 +76,7 @@ public class PipelineRunImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("self")
-  public Link getSelf() {
+  @Valid public Link getSelf() {
     return self;
   }
 
@@ -92,7 +95,7 @@ public class PipelineRunImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  public Link getActions() {
+  @Valid public Link getActions() {
     return actions;
   }
 
@@ -111,7 +114,7 @@ public class PipelineRunImpllinks   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("steps")
-  public Link getSteps() {
+  @Valid public Link getSteps() {
     return steps;
   }
 

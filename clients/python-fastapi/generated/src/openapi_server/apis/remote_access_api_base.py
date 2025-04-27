@@ -2,6 +2,9 @@
 
 from typing import ClassVar, Dict, List, Tuple  # noqa: F401
 
+from pydantic import Field, StrictInt, StrictStr
+from typing import Any, Optional
+from typing_extensions import Annotated
 from openapi_server.models.computer_set import ComputerSet
 from openapi_server.models.free_style_build import FreeStyleBuild
 from openapi_server.models.free_style_project import FreeStyleProject
@@ -16,179 +19,179 @@ class BaseRemoteAccessApi:
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
         BaseRemoteAccessApi.subclasses = BaseRemoteAccessApi.subclasses + (cls,)
-    def get_computer(
+    async def get_computer(
         self,
-        depth: int,
+        depth: Annotated[StrictInt, Field(description="Recursion depth in response model")],
     ) -> ComputerSet:
         """Retrieve computer details"""
         ...
 
 
-    def get_jenkins(
+    async def get_jenkins(
         self,
     ) -> Hudson:
         """Retrieve Jenkins details"""
         ...
 
 
-    def get_job(
+    async def get_job(
         self,
-        name: str,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
     ) -> FreeStyleProject:
         """Retrieve job details"""
         ...
 
 
-    def get_job_config(
+    async def get_job_config(
         self,
-        name: str,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
     ) -> str:
         """Retrieve job configuration"""
         ...
 
 
-    def get_job_last_build(
+    async def get_job_last_build(
         self,
-        name: str,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
     ) -> FreeStyleBuild:
         """Retrieve job&#39;s last build details"""
         ...
 
 
-    def get_job_progressive_text(
+    async def get_job_progressive_text(
         self,
-        name: str,
-        number: str,
-        start: str,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        number: Annotated[StrictStr, Field(description="Build number")],
+        start: Annotated[StrictStr, Field(description="Starting point of progressive text output")],
     ) -> None:
         """Retrieve job&#39;s build progressive text output"""
         ...
 
 
-    def get_queue(
+    async def get_queue(
         self,
     ) -> Queue:
         """Retrieve queue details"""
         ...
 
 
-    def get_queue_item(
+    async def get_queue_item(
         self,
-        number: str,
+        number: Annotated[StrictStr, Field(description="Queue number")],
     ) -> Queue:
         """Retrieve queued item details"""
         ...
 
 
-    def get_view(
+    async def get_view(
         self,
-        name: str,
+        name: Annotated[StrictStr, Field(description="Name of the view")],
     ) -> ListView:
         """Retrieve view details"""
         ...
 
 
-    def get_view_config(
+    async def get_view_config(
         self,
-        name: str,
+        name: Annotated[StrictStr, Field(description="Name of the view")],
     ) -> str:
         """Retrieve view configuration"""
         ...
 
 
-    def head_jenkins(
+    async def head_jenkins(
         self,
     ) -> None:
         """Retrieve Jenkins headers"""
         ...
 
 
-    def post_create_item(
+    async def post_create_item(
         self,
-        name: str,
-        _from: str,
-        mode: str,
-        jenkins_crumb: str,
-        content_type: str,
-        body: str,
+        name: Annotated[StrictStr, Field(description="Name of the new job")],
+        var_from: Annotated[Optional[StrictStr], Field(description="Existing job to copy from")],
+        mode: Annotated[Optional[StrictStr], Field(description="Set to 'copy' for copying an existing job")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
+        content_type: Annotated[Optional[StrictStr], Field(description="Content type header application/xml")],
+        body: Annotated[Optional[StrictStr], Field(description="Job configuration in config.xml format")],
     ) -> None:
         """Create a new job using job configuration, or copied from an existing job"""
         ...
 
 
-    def post_create_view(
+    async def post_create_view(
         self,
-        name: str,
-        jenkins_crumb: str,
-        content_type: str,
-        body: str,
+        name: Annotated[StrictStr, Field(description="Name of the new view")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
+        content_type: Annotated[Optional[StrictStr], Field(description="Content type header application/xml")],
+        body: Annotated[Optional[StrictStr], Field(description="View configuration in config.xml format")],
     ) -> None:
         """Create a new view using view configuration"""
         ...
 
 
-    def post_job_build(
+    async def post_job_build(
         self,
-        name: str,
-        _json: str,
-        token: str,
-        jenkins_crumb: str,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        var_json: StrictStr,
+        token: Optional[StrictStr],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
     ) -> None:
         """Build a job"""
         ...
 
 
-    def post_job_config(
+    async def post_job_config(
         self,
-        name: str,
-        body: str,
-        jenkins_crumb: str,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        body: Annotated[StrictStr, Field(description="Job configuration in config.xml format")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
     ) -> None:
         """Update job configuration"""
         ...
 
 
-    def post_job_delete(
+    async def post_job_delete(
         self,
-        name: str,
-        jenkins_crumb: str,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
     ) -> None:
         """Delete a job"""
         ...
 
 
-    def post_job_disable(
+    async def post_job_disable(
         self,
-        name: str,
-        jenkins_crumb: str,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
     ) -> None:
         """Disable a job"""
         ...
 
 
-    def post_job_enable(
+    async def post_job_enable(
         self,
-        name: str,
-        jenkins_crumb: str,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
     ) -> None:
         """Enable a job"""
         ...
 
 
-    def post_job_last_build_stop(
+    async def post_job_last_build_stop(
         self,
-        name: str,
-        jenkins_crumb: str,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
     ) -> None:
         """Stop a job"""
         ...
 
 
-    def post_view_config(
+    async def post_view_config(
         self,
-        name: str,
-        body: str,
-        jenkins_crumb: str,
+        name: Annotated[StrictStr, Field(description="Name of the view")],
+        body: Annotated[StrictStr, Field(description="View configuration in config.xml format")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
     ) -> None:
         """Update view configuration"""
         ...

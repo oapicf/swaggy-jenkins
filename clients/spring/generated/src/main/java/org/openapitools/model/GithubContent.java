@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,24 +19,24 @@ import javax.annotation.Generated;
  * GithubContent
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubContent {
 
-  private String name;
+  private @Nullable String name;
 
-  private String sha;
+  private @Nullable String sha;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private String repo;
+  private @Nullable String repo;
 
-  private Integer size;
+  private @Nullable Integer size;
 
-  private String owner;
+  private @Nullable String owner;
 
-  private String path;
+  private @Nullable String path;
 
-  private String base64Data;
+  private @Nullable String base64Data;
 
   public GithubContent name(String name) {
     this.name = name;
@@ -45,7 +46,7 @@ public class GithubContent {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -65,7 +66,7 @@ public class GithubContent {
   /**
    * Get sha
    * @return sha
-  */
+   */
   
   @Schema(name = "sha", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("sha")
@@ -85,7 +86,7 @@ public class GithubContent {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -105,7 +106,7 @@ public class GithubContent {
   /**
    * Get repo
    * @return repo
-  */
+   */
   
   @Schema(name = "repo", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("repo")
@@ -125,7 +126,7 @@ public class GithubContent {
   /**
    * Get size
    * @return size
-  */
+   */
   
   @Schema(name = "size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("size")
@@ -145,7 +146,7 @@ public class GithubContent {
   /**
    * Get owner
    * @return owner
-  */
+   */
   
   @Schema(name = "owner", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("owner")
@@ -165,7 +166,7 @@ public class GithubContent {
   /**
    * Get path
    * @return path
-  */
+   */
   
   @Schema(name = "path", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("path")
@@ -185,7 +186,7 @@ public class GithubContent {
   /**
    * Get base64Data
    * @return base64Data
-  */
+   */
   
   @Schema(name = "base64Data", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("base64Data")

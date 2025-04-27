@@ -16,7 +16,7 @@ import org.openapitools.model.UnlabeledLoadStatistics;
 /**
  * Hudson
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2025-04-27T08:09:22.488100288Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class Hudson   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -88,7 +88,7 @@ public class Hudson   {
 
   public Hudson addAssignedLabelsItem(HudsonassignedLabels assignedLabelsItem) {
     if (this.assignedLabels == null) {
-      this.assignedLabels = ;
+      this.assignedLabels = new ArrayList<>();
     }
     this.assignedLabels.add(assignedLabelsItem);
     return this;
@@ -204,7 +204,7 @@ public class Hudson   {
 
   public Hudson addJobsItem(FreeStyleProject jobsItem) {
     if (this.jobs == null) {
-      this.jobs = ;
+      this.jobs = new ArrayList<>();
     }
     this.jobs.add(jobsItem);
     return this;
@@ -338,7 +338,7 @@ public class Hudson   {
 
   public Hudson addViewsItem(AllView viewsItem) {
     if (this.views == null) {
-      this.views = ;
+      this.views = new ArrayList<>();
     }
     this.views.add(viewsItem);
     return this;

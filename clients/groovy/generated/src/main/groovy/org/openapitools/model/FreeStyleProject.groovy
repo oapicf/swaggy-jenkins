@@ -21,7 +21,7 @@ class FreeStyleProject {
     
     String color
     
-    List<FreeStyleProjectactions> actions
+    List<FreeStyleProjectactions> actions = new ArrayList<>()
     
     String description
     
@@ -35,11 +35,11 @@ class FreeStyleProject {
     
     Boolean buildable
     
-    List<FreeStyleBuild> builds
+    List<FreeStyleBuild> builds = new ArrayList<>()
     
     FreeStyleBuild firstBuild
     
-    List<FreeStyleProjecthealthReport> healthReport
+    List<FreeStyleProjecthealthReport> healthReport = new ArrayList<>()
     
     Boolean inQueue
     

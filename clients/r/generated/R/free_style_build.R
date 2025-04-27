@@ -49,8 +49,7 @@ FreeStyleBuild <- R6::R6Class(
     `timestamp` = NULL,
     `builtOn` = NULL,
     `changeSet` = NULL,
-    #' Initialize a new FreeStyleBuild class.
-    #'
+
     #' @description
     #' Initialize a new FreeStyleBuild class.
     #'
@@ -73,7 +72,6 @@ FreeStyleBuild <- R6::R6Class(
     #' @param builtOn builtOn
     #' @param changeSet changeSet
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, `number` = NULL, `url` = NULL, `actions` = NULL, `building` = NULL, `description` = NULL, `displayName` = NULL, `duration` = NULL, `estimatedDuration` = NULL, `executor` = NULL, `fullDisplayName` = NULL, `id` = NULL, `keepLog` = NULL, `queueId` = NULL, `result` = NULL, `timestamp` = NULL, `builtOn` = NULL, `changeSet` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -181,14 +179,37 @@ FreeStyleBuild <- R6::R6Class(
         self$`changeSet` <- `changeSet`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return FreeStyleBuild in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return FreeStyleBuild as a base R list.
+    #' @examples
+    #' # convert array of FreeStyleBuild (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert FreeStyleBuild to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       FreeStyleBuildObject <- list()
       if (!is.null(self$`_class`)) {
         FreeStyleBuildObject[["_class"]] <-
@@ -204,7 +225,7 @@ FreeStyleBuild <- R6::R6Class(
       }
       if (!is.null(self$`actions`)) {
         FreeStyleBuildObject[["actions"]] <-
-          lapply(self$`actions`, function(x) x$toJSON())
+          lapply(self$`actions`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`building`)) {
         FreeStyleBuildObject[["building"]] <-
@@ -260,18 +281,16 @@ FreeStyleBuild <- R6::R6Class(
       }
       if (!is.null(self$`changeSet`)) {
         FreeStyleBuildObject[["changeSet"]] <-
-          self$`changeSet`$toJSON()
+          self$`changeSet`$toSimpleType()
       }
-      FreeStyleBuildObject
+      return(FreeStyleBuildObject)
     },
-    #' Deserialize JSON string into an instance of FreeStyleBuild
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of FreeStyleBuild
     #'
     #' @param input_json the JSON input
     #' @return the instance of FreeStyleBuild
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -332,171 +351,23 @@ FreeStyleBuild <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return FreeStyleBuild in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        },
-        if (!is.null(self$`number`)) {
-          sprintf(
-          '"number":
-            %d
-                    ',
-          self$`number`
-          )
-        },
-        if (!is.null(self$`url`)) {
-          sprintf(
-          '"url":
-            "%s"
-                    ',
-          self$`url`
-          )
-        },
-        if (!is.null(self$`actions`)) {
-          sprintf(
-          '"actions":
-          [%s]
-',
-          paste(sapply(self$`actions`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`building`)) {
-          sprintf(
-          '"building":
-            %s
-                    ',
-          tolower(self$`building`)
-          )
-        },
-        if (!is.null(self$`description`)) {
-          sprintf(
-          '"description":
-            "%s"
-                    ',
-          self$`description`
-          )
-        },
-        if (!is.null(self$`displayName`)) {
-          sprintf(
-          '"displayName":
-            "%s"
-                    ',
-          self$`displayName`
-          )
-        },
-        if (!is.null(self$`duration`)) {
-          sprintf(
-          '"duration":
-            %d
-                    ',
-          self$`duration`
-          )
-        },
-        if (!is.null(self$`estimatedDuration`)) {
-          sprintf(
-          '"estimatedDuration":
-            %d
-                    ',
-          self$`estimatedDuration`
-          )
-        },
-        if (!is.null(self$`executor`)) {
-          sprintf(
-          '"executor":
-            "%s"
-                    ',
-          self$`executor`
-          )
-        },
-        if (!is.null(self$`fullDisplayName`)) {
-          sprintf(
-          '"fullDisplayName":
-            "%s"
-                    ',
-          self$`fullDisplayName`
-          )
-        },
-        if (!is.null(self$`id`)) {
-          sprintf(
-          '"id":
-            "%s"
-                    ',
-          self$`id`
-          )
-        },
-        if (!is.null(self$`keepLog`)) {
-          sprintf(
-          '"keepLog":
-            %s
-                    ',
-          tolower(self$`keepLog`)
-          )
-        },
-        if (!is.null(self$`queueId`)) {
-          sprintf(
-          '"queueId":
-            %d
-                    ',
-          self$`queueId`
-          )
-        },
-        if (!is.null(self$`result`)) {
-          sprintf(
-          '"result":
-            "%s"
-                    ',
-          self$`result`
-          )
-        },
-        if (!is.null(self$`timestamp`)) {
-          sprintf(
-          '"timestamp":
-            %d
-                    ',
-          self$`timestamp`
-          )
-        },
-        if (!is.null(self$`builtOn`)) {
-          sprintf(
-          '"builtOn":
-            "%s"
-                    ',
-          self$`builtOn`
-          )
-        },
-        if (!is.null(self$`changeSet`)) {
-          sprintf(
-          '"changeSet":
-          %s
-          ',
-          jsonlite::toJSON(self$`changeSet`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of FreeStyleBuild
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of FreeStyleBuild
     #'
     #' @param input_json the JSON input
     #' @return the instance of FreeStyleBuild
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
@@ -519,53 +390,42 @@ FreeStyleBuild <- R6::R6Class(
       self$`changeSet` <- EmptyChangeLogSet$new()$fromJSON(jsonlite::toJSON(this_object$`changeSet`, auto_unbox = TRUE, digits = NA))
       self
     },
-    #' Validate JSON input with respect to FreeStyleBuild
-    #'
+
     #' @description
     #' Validate JSON input with respect to FreeStyleBuild and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of FreeStyleBuild
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

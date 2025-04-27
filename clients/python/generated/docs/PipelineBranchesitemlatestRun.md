@@ -35,7 +35,7 @@ print(PipelineBranchesitemlatestRun.to_json())
 # convert the object into a dict
 pipeline_branchesitemlatest_run_dict = pipeline_branchesitemlatest_run_instance.to_dict()
 # create an instance of PipelineBranchesitemlatestRun from a dict
-pipeline_branchesitemlatest_run_form_dict = pipeline_branchesitemlatest_run.from_dict(pipeline_branchesitemlatest_run_dict)
+pipeline_branchesitemlatest_run_from_dict = PipelineBranchesitemlatestRun.from_dict(pipeline_branchesitemlatest_run_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

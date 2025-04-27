@@ -1,18 +1,24 @@
-#![allow(missing_docs, trivial_casts, unused_variables, unused_mut, unused_imports, unused_extern_crates, non_camel_case_types)]
-#![allow(unused_imports, unused_attributes)]
+#![allow(missing_docs, trivial_casts, unused_variables, unused_mut, unused_imports, unused_extern_crates, unused_attributes, non_camel_case_types)]
 #![allow(clippy::derive_partial_eq_without_eq, clippy::disallowed_names)]
 
 use async_trait::async_trait;
 use futures::Stream;
 use std::error::Error;
+use std::collections::BTreeSet;
 use std::task::{Poll, Context};
 use swagger::{ApiError, ContextWrapper};
 use serde::{Serialize, Deserialize};
+use crate::server::Authorization;
+
 
 type ServiceError = Box<dyn Error + Send + Sync + 'static>;
 
 pub const BASE_PATH: &str = "";
-pub const API_VERSION: &str = "2.0.1-pre.0";
+pub const API_VERSION: &str = "3.0.2-pre.0";
+
+mod auth;
+pub use auth::{AuthenticationApi, Claims};
+
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
@@ -30,9 +36,52 @@ pub enum GetCrumbResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum DeletePipelineQueueItemResponse {
-    /// Successfully deleted queue item
-    SuccessfullyDeletedQueueItem
+pub enum GetJsonWebTokenResponse {
+    /// Successfully retrieved JWT token
+    SuccessfullyRetrievedJWTToken
+    (String)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetOrganisationsResponse {
+    /// Successfully retrieved pipelines details
+    SuccessfullyRetrievedPipelinesDetails
+    (Vec<models::Organisation>)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum SearchResponse {
+    /// Successfully retrieved search result
+    SuccessfullyRetrievedSearchResult
+    (String)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum SearchClassesResponse {
+    /// Successfully retrieved search result
+    SuccessfullyRetrievedSearchResult
+    (String)
     ,
     /// Authentication failed - incorrect username and/or password
     AuthenticationFailed
@@ -85,20 +134,6 @@ pub enum GetJsonWebKeyResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetJsonWebTokenResponse {
-    /// Successfully retrieved JWT token
-    SuccessfullyRetrievedJWTToken
-    (String)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
 pub enum GetOrganisationResponse {
     /// Successfully retrieved pipeline details
     SuccessfullyRetrievedPipelineDetails
@@ -116,10 +151,38 @@ pub enum GetOrganisationResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetOrganisationsResponse {
+pub enum GetPipelinesResponse {
     /// Successfully retrieved pipelines details
     SuccessfullyRetrievedPipelinesDetails
-    (Vec<models::Organisation>)
+    (Vec<models::Pipeline>)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetUserFavoritesResponse {
+    /// Successfully retrieved users favorites details
+    SuccessfullyRetrievedUsersFavoritesDetails
+    (Vec<models::FavoriteImpl>)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetUsersResponse {
+    /// Successfully retrieved users details
+    SuccessfullyRetrievedUsersDetails
+    (models::User)
     ,
     /// Authentication failed - incorrect username and/or password
     AuthenticationFailed
@@ -161,34 +224,6 @@ pub enum GetPipelineActivitiesResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetPipelineBranchResponse {
-    /// Successfully retrieved branch details
-    SuccessfullyRetrievedBranchDetails
-    (models::BranchImpl)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetPipelineBranchRunResponse {
-    /// Successfully retrieved run details
-    SuccessfullyRetrievedRunDetails
-    (models::PipelineRun)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
 pub enum GetPipelineBranchesResponse {
     /// Successfully retrieved all branches details
     SuccessfullyRetrievedAllBranchesDetails
@@ -217,122 +252,10 @@ pub enum GetPipelineFolderResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetPipelineFolderPipelineResponse {
-    /// Successfully retrieved pipeline details
-    SuccessfullyRetrievedPipelineDetails
-    (models::PipelineImpl)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
 pub enum GetPipelineQueueResponse {
     /// Successfully retrieved queue details
     SuccessfullyRetrievedQueueDetails
     (Vec<models::QueueItemImpl>)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetPipelineRunResponse {
-    /// Successfully retrieved run details
-    SuccessfullyRetrievedRunDetails
-    (models::PipelineRun)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetPipelineRunLogResponse {
-    /// Successfully retrieved pipeline run log
-    SuccessfullyRetrievedPipelineRunLog
-    (String)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetPipelineRunNodeResponse {
-    /// Successfully retrieved run node details
-    SuccessfullyRetrievedRunNodeDetails
-    (models::PipelineRunNode)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetPipelineRunNodeStepResponse {
-    /// Successfully retrieved run node step details
-    SuccessfullyRetrievedRunNodeStepDetails
-    (models::PipelineStepImpl)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetPipelineRunNodeStepLogResponse {
-    /// Successfully retrieved pipeline run node step log
-    SuccessfullyRetrievedPipelineRunNodeStepLog
-    (String)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetPipelineRunNodeStepsResponse {
-    /// Successfully retrieved run node steps details
-    SuccessfullyRetrievedRunNodeStepsDetails
-    (Vec<models::PipelineStepImpl>)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetPipelineRunNodesResponse {
-    /// Successfully retrieved run nodes details
-    SuccessfullyRetrievedRunNodesDetails
-    (Vec<models::PipelineRunNode>)
     ,
     /// Authentication failed - incorrect username and/or password
     AuthenticationFailed
@@ -357,52 +280,10 @@ pub enum GetPipelineRunsResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetPipelinesResponse {
-    /// Successfully retrieved pipelines details
-    SuccessfullyRetrievedPipelinesDetails
-    (Vec<models::Pipeline>)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
 pub enum GetScmResponse {
     /// Successfully retrieved SCM details
     SuccessfullyRetrievedSCMDetails
     (models::GithubScm)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetScmOrganisationRepositoriesResponse {
-    /// Successfully retrieved SCM organization repositories details
-    SuccessfullyRetrievedSCMOrganizationRepositoriesDetails
-    (Vec<models::GithubOrganization>)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetScmOrganisationRepositoryResponse {
-    /// Successfully retrieved SCM organizations details
-    SuccessfullyRetrievedSCMOrganizationsDetails
-    (Vec<models::GithubOrganization>)
     ,
     /// Authentication failed - incorrect username and/or password
     AuthenticationFailed
@@ -441,48 +322,6 @@ pub enum GetUserResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetUserFavoritesResponse {
-    /// Successfully retrieved users favorites details
-    SuccessfullyRetrievedUsersFavoritesDetails
-    (Vec<models::FavoriteImpl>)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetUsersResponse {
-    /// Successfully retrieved users details
-    SuccessfullyRetrievedUsersDetails
-    (models::User)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum PostPipelineRunResponse {
-    /// Successfully replayed a pipeline run
-    SuccessfullyReplayedAPipelineRun
-    (models::QueueItemImpl)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
 pub enum PostPipelineRunsResponse {
     /// Successfully started a build
     SuccessfullyStartedABuild
@@ -511,6 +350,117 @@ pub enum PutPipelineFavoriteResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
+pub enum DeletePipelineQueueItemResponse {
+    /// Successfully deleted queue item
+    SuccessfullyDeletedQueueItem
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetPipelineBranchResponse {
+    /// Successfully retrieved branch details
+    SuccessfullyRetrievedBranchDetails
+    (models::BranchImpl)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetPipelineFolderPipelineResponse {
+    /// Successfully retrieved pipeline details
+    SuccessfullyRetrievedPipelineDetails
+    (models::PipelineImpl)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetPipelineRunResponse {
+    /// Successfully retrieved run details
+    SuccessfullyRetrievedRunDetails
+    (models::PipelineRun)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetPipelineRunLogResponse {
+    /// Successfully retrieved pipeline run log
+    SuccessfullyRetrievedPipelineRunLog
+    (String)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetPipelineRunNodesResponse {
+    /// Successfully retrieved run nodes details
+    SuccessfullyRetrievedRunNodesDetails
+    (Vec<models::PipelineRunNode>)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetScmOrganisationRepositoriesResponse {
+    /// Successfully retrieved SCM organization repositories details
+    SuccessfullyRetrievedSCMOrganizationRepositoriesDetails
+    (Vec<models::GithubOrganization>)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum PostPipelineRunResponse {
+    /// Successfully replayed a pipeline run
+    SuccessfullyReplayedAPipelineRun
+    (models::QueueItemImpl)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
 pub enum PutPipelineRunResponse {
     /// Successfully stopped a build
     SuccessfullyStoppedABuild
@@ -525,10 +475,10 @@ pub enum PutPipelineRunResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum SearchResponse {
-    /// Successfully retrieved search result
-    SuccessfullyRetrievedSearchResult
-    (String)
+pub enum GetPipelineBranchRunResponse {
+    /// Successfully retrieved run details
+    SuccessfullyRetrievedRunDetails
+    (models::PipelineRun)
     ,
     /// Authentication failed - incorrect username and/or password
     AuthenticationFailed
@@ -539,9 +489,65 @@ pub enum SearchResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum SearchClassesResponse {
-    /// Successfully retrieved search result
-    SuccessfullyRetrievedSearchResult
+pub enum GetPipelineRunNodeResponse {
+    /// Successfully retrieved run node details
+    SuccessfullyRetrievedRunNodeDetails
+    (models::PipelineRunNode)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetPipelineRunNodeStepsResponse {
+    /// Successfully retrieved run node steps details
+    SuccessfullyRetrievedRunNodeStepsDetails
+    (Vec<models::PipelineStepImpl>)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetScmOrganisationRepositoryResponse {
+    /// Successfully retrieved SCM organizations details
+    SuccessfullyRetrievedSCMOrganizationsDetails
+    (Vec<models::GithubOrganization>)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetPipelineRunNodeStepResponse {
+    /// Successfully retrieved run node step details
+    SuccessfullyRetrievedRunNodeStepDetails
+    (models::PipelineStepImpl)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetPipelineRunNodeStepLogResponse {
+    /// Successfully retrieved pipeline run node step log
+    SuccessfullyRetrievedPipelineRunNodeStepLog
     (String)
     ,
     /// Authentication failed - incorrect username and/or password
@@ -571,6 +577,73 @@ pub enum GetJenkinsResponse {
     /// Successfully retrieved Jenkins details
     SuccessfullyRetrievedJenkinsDetails
     (models::Hudson)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetQueueResponse {
+    /// Successfully retrieved queue details
+    SuccessfullyRetrievedQueueDetails
+    (models::Queue)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum HeadJenkinsResponse {
+    /// Successfully retrieved Jenkins headers
+    SuccessfullyRetrievedJenkinsHeaders
+    {
+        x_jenkins:
+        Option<
+        String
+        >
+    }
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum PostCreateItemResponse {
+    /// Successfully created a new job
+    SuccessfullyCreatedANewJob
+    ,
+    /// An error has occurred - error message is embedded inside the HTML response
+    AnErrorHasOccurred
+    (String)
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+}
+
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum PostCreateViewResponse {
+    /// Successfully created the view
+    SuccessfullyCreatedTheView
+    ,
+    /// An error has occurred - error message is embedded inside the HTML response
+    AnErrorHasOccurred
+    (String)
     ,
     /// Authentication failed - incorrect username and/or password
     AuthenticationFailed
@@ -632,36 +705,6 @@ pub enum GetJobLastBuildResponse {
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 #[must_use]
-pub enum GetJobProgressiveTextResponse {
-    /// Successfully retrieved job's build progressive text output
-    SuccessfullyRetrievedJob
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-    ,
-    /// Job cannot be found on Jenkins instance
-    JobCannotBeFoundOnJenkinsInstance
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum GetQueueResponse {
-    /// Successfully retrieved queue details
-    SuccessfullyRetrievedQueueDetails
-    (models::Queue)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
 pub enum GetQueueItemResponse {
     /// Successfully retrieved queued item details
     SuccessfullyRetrievedQueuedItemDetails
@@ -706,59 +749,6 @@ pub enum GetViewConfigResponse {
     ,
     /// View cannot be found on Jenkins instance
     ViewCannotBeFoundOnJenkinsInstance
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum HeadJenkinsResponse {
-    /// Successfully retrieved Jenkins headers
-    SuccessfullyRetrievedJenkinsHeaders
-    {
-        x_jenkins:
-        Option<
-        String
-        >
-    }
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum PostCreateItemResponse {
-    /// Successfully created a new job
-    SuccessfullyCreatedANewJob
-    ,
-    /// An error has occurred - error message is embedded inside the HTML response
-    AnErrorHasOccurred
-    (String)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
-}
-
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-#[must_use]
-pub enum PostCreateViewResponse {
-    /// Successfully created the view
-    SuccessfullyCreatedTheView
-    ,
-    /// An error has occurred - error message is embedded inside the HTML response
-    AnErrorHasOccurred
-    (String)
-    ,
-    /// Authentication failed - incorrect username and/or password
-    AuthenticationFailed
-    ,
-    /// Jenkins requires authentication - please set username and password
-    JenkinsRequiresAuthentication
 }
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
@@ -884,6 +874,22 @@ pub enum PostViewConfigResponse {
     ViewCannotBeFoundOnJenkinsInstance
 }
 
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
+#[must_use]
+pub enum GetJobProgressiveTextResponse {
+    /// Successfully retrieved job's build progressive text output
+    SuccessfullyRetrievedJob
+    ,
+    /// Authentication failed - incorrect username and/or password
+    AuthenticationFailed
+    ,
+    /// Jenkins requires authentication - please set username and password
+    JenkinsRequiresAuthentication
+    ,
+    /// Job cannot be found on Jenkins instance
+    JobCannotBeFoundOnJenkinsInstance
+}
+
 /// API
 #[async_trait]
 #[allow(clippy::too_many_arguments, clippy::ptr_arg)]
@@ -896,12 +902,25 @@ pub trait Api<C: Send + Sync> {
         &self,
         context: &C) -> Result<GetCrumbResponse, ApiError>;
 
-    async fn delete_pipeline_queue_item(
+    async fn get_json_web_token(
         &self,
-        organization: String,
-        pipeline: String,
-        queue: String,
-        context: &C) -> Result<DeletePipelineQueueItemResponse, ApiError>;
+        expiry_time_in_mins: Option<i32>,
+        max_expiry_time_in_mins: Option<i32>,
+        context: &C) -> Result<GetJsonWebTokenResponse, ApiError>;
+
+    async fn get_organisations(
+        &self,
+        context: &C) -> Result<GetOrganisationsResponse, ApiError>;
+
+    async fn search(
+        &self,
+        q: String,
+        context: &C) -> Result<SearchResponse, ApiError>;
+
+    async fn search_classes(
+        &self,
+        q: String,
+        context: &C) -> Result<SearchClassesResponse, ApiError>;
 
     async fn get_authenticated_user(
         &self,
@@ -918,20 +937,25 @@ pub trait Api<C: Send + Sync> {
         key: i32,
         context: &C) -> Result<GetJsonWebKeyResponse, ApiError>;
 
-    async fn get_json_web_token(
-        &self,
-        expiry_time_in_mins: Option<i32>,
-        max_expiry_time_in_mins: Option<i32>,
-        context: &C) -> Result<GetJsonWebTokenResponse, ApiError>;
-
     async fn get_organisation(
         &self,
         organization: String,
         context: &C) -> Result<GetOrganisationResponse, ApiError>;
 
-    async fn get_organisations(
+    async fn get_pipelines(
         &self,
-        context: &C) -> Result<GetOrganisationsResponse, ApiError>;
+        organization: String,
+        context: &C) -> Result<GetPipelinesResponse, ApiError>;
+
+    async fn get_user_favorites(
+        &self,
+        user: String,
+        context: &C) -> Result<GetUserFavoritesResponse, ApiError>;
+
+    async fn get_users(
+        &self,
+        organization: String,
+        context: &C) -> Result<GetUsersResponse, ApiError>;
 
     async fn get_pipeline(
         &self,
@@ -945,21 +969,6 @@ pub trait Api<C: Send + Sync> {
         pipeline: String,
         context: &C) -> Result<GetPipelineActivitiesResponse, ApiError>;
 
-    async fn get_pipeline_branch(
-        &self,
-        organization: String,
-        pipeline: String,
-        branch: String,
-        context: &C) -> Result<GetPipelineBranchResponse, ApiError>;
-
-    async fn get_pipeline_branch_run(
-        &self,
-        organization: String,
-        pipeline: String,
-        branch: String,
-        run: String,
-        context: &C) -> Result<GetPipelineBranchRunResponse, ApiError>;
-
     async fn get_pipeline_branches(
         &self,
         organization: String,
@@ -972,18 +981,70 @@ pub trait Api<C: Send + Sync> {
         folder: String,
         context: &C) -> Result<GetPipelineFolderResponse, ApiError>;
 
+    async fn get_pipeline_queue(
+        &self,
+        organization: String,
+        pipeline: String,
+        context: &C) -> Result<GetPipelineQueueResponse, ApiError>;
+
+    async fn get_pipeline_runs(
+        &self,
+        organization: String,
+        pipeline: String,
+        context: &C) -> Result<GetPipelineRunsResponse, ApiError>;
+
+    async fn get_scm(
+        &self,
+        organization: String,
+        scm: String,
+        context: &C) -> Result<GetScmResponse, ApiError>;
+
+    async fn get_scm_organisations(
+        &self,
+        organization: String,
+        scm: String,
+        credential_id: Option<String>,
+        context: &C) -> Result<GetScmOrganisationsResponse, ApiError>;
+
+    async fn get_user(
+        &self,
+        organization: String,
+        user: String,
+        context: &C) -> Result<GetUserResponse, ApiError>;
+
+    async fn post_pipeline_runs(
+        &self,
+        organization: String,
+        pipeline: String,
+        context: &C) -> Result<PostPipelineRunsResponse, ApiError>;
+
+    async fn put_pipeline_favorite(
+        &self,
+        organization: String,
+        pipeline: String,
+        body: bool,
+        context: &C) -> Result<PutPipelineFavoriteResponse, ApiError>;
+
+    async fn delete_pipeline_queue_item(
+        &self,
+        organization: String,
+        pipeline: String,
+        queue: String,
+        context: &C) -> Result<DeletePipelineQueueItemResponse, ApiError>;
+
+    async fn get_pipeline_branch(
+        &self,
+        organization: String,
+        pipeline: String,
+        branch: String,
+        context: &C) -> Result<GetPipelineBranchResponse, ApiError>;
+
     async fn get_pipeline_folder_pipeline(
         &self,
         organization: String,
         pipeline: String,
         folder: String,
         context: &C) -> Result<GetPipelineFolderPipelineResponse, ApiError>;
-
-    async fn get_pipeline_queue(
-        &self,
-        organization: String,
-        pipeline: String,
-        context: &C) -> Result<GetPipelineQueueResponse, ApiError>;
 
     async fn get_pipeline_run(
         &self,
@@ -1001,6 +1062,47 @@ pub trait Api<C: Send + Sync> {
         download: Option<bool>,
         context: &C) -> Result<GetPipelineRunLogResponse, ApiError>;
 
+    async fn get_pipeline_run_nodes(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        context: &C) -> Result<GetPipelineRunNodesResponse, ApiError>;
+
+    async fn get_scm_organisation_repositories(
+        &self,
+        organization: String,
+        scm: String,
+        scm_organisation: String,
+        credential_id: Option<String>,
+        page_size: Option<i32>,
+        page_number: Option<i32>,
+        context: &C) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>;
+
+    async fn post_pipeline_run(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        context: &C) -> Result<PostPipelineRunResponse, ApiError>;
+
+    async fn put_pipeline_run(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        blocking: Option<String>,
+        time_out_in_secs: Option<i32>,
+        context: &C) -> Result<PutPipelineRunResponse, ApiError>;
+
+    async fn get_pipeline_branch_run(
+        &self,
+        organization: String,
+        pipeline: String,
+        branch: String,
+        run: String,
+        context: &C) -> Result<GetPipelineBranchRunResponse, ApiError>;
+
     async fn get_pipeline_run_node(
         &self,
         organization: String,
@@ -1008,6 +1110,23 @@ pub trait Api<C: Send + Sync> {
         run: String,
         node: String,
         context: &C) -> Result<GetPipelineRunNodeResponse, ApiError>;
+
+    async fn get_pipeline_run_node_steps(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        node: String,
+        context: &C) -> Result<GetPipelineRunNodeStepsResponse, ApiError>;
+
+    async fn get_scm_organisation_repository(
+        &self,
+        organization: String,
+        scm: String,
+        scm_organisation: String,
+        repository: String,
+        credential_id: Option<String>,
+        context: &C) -> Result<GetScmOrganisationRepositoryResponse, ApiError>;
 
     async fn get_pipeline_run_node_step(
         &self,
@@ -1027,119 +1146,6 @@ pub trait Api<C: Send + Sync> {
         step: String,
         context: &C) -> Result<GetPipelineRunNodeStepLogResponse, ApiError>;
 
-    async fn get_pipeline_run_node_steps(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        node: String,
-        context: &C) -> Result<GetPipelineRunNodeStepsResponse, ApiError>;
-
-    async fn get_pipeline_run_nodes(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        context: &C) -> Result<GetPipelineRunNodesResponse, ApiError>;
-
-    async fn get_pipeline_runs(
-        &self,
-        organization: String,
-        pipeline: String,
-        context: &C) -> Result<GetPipelineRunsResponse, ApiError>;
-
-    async fn get_pipelines(
-        &self,
-        organization: String,
-        context: &C) -> Result<GetPipelinesResponse, ApiError>;
-
-    async fn get_scm(
-        &self,
-        organization: String,
-        scm: String,
-        context: &C) -> Result<GetScmResponse, ApiError>;
-
-    async fn get_scm_organisation_repositories(
-        &self,
-        organization: String,
-        scm: String,
-        scm_organisation: String,
-        credential_id: Option<String>,
-        page_size: Option<i32>,
-        page_number: Option<i32>,
-        context: &C) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>;
-
-    async fn get_scm_organisation_repository(
-        &self,
-        organization: String,
-        scm: String,
-        scm_organisation: String,
-        repository: String,
-        credential_id: Option<String>,
-        context: &C) -> Result<GetScmOrganisationRepositoryResponse, ApiError>;
-
-    async fn get_scm_organisations(
-        &self,
-        organization: String,
-        scm: String,
-        credential_id: Option<String>,
-        context: &C) -> Result<GetScmOrganisationsResponse, ApiError>;
-
-    async fn get_user(
-        &self,
-        organization: String,
-        user: String,
-        context: &C) -> Result<GetUserResponse, ApiError>;
-
-    async fn get_user_favorites(
-        &self,
-        user: String,
-        context: &C) -> Result<GetUserFavoritesResponse, ApiError>;
-
-    async fn get_users(
-        &self,
-        organization: String,
-        context: &C) -> Result<GetUsersResponse, ApiError>;
-
-    async fn post_pipeline_run(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        context: &C) -> Result<PostPipelineRunResponse, ApiError>;
-
-    async fn post_pipeline_runs(
-        &self,
-        organization: String,
-        pipeline: String,
-        context: &C) -> Result<PostPipelineRunsResponse, ApiError>;
-
-    async fn put_pipeline_favorite(
-        &self,
-        organization: String,
-        pipeline: String,
-        body: bool,
-        context: &C) -> Result<PutPipelineFavoriteResponse, ApiError>;
-
-    async fn put_pipeline_run(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        blocking: Option<String>,
-        time_out_in_secs: Option<i32>,
-        context: &C) -> Result<PutPipelineRunResponse, ApiError>;
-
-    async fn search(
-        &self,
-        q: String,
-        context: &C) -> Result<SearchResponse, ApiError>;
-
-    async fn search_classes(
-        &self,
-        q: String,
-        context: &C) -> Result<SearchClassesResponse, ApiError>;
-
     async fn get_computer(
         &self,
         depth: i32,
@@ -1149,46 +1155,9 @@ pub trait Api<C: Send + Sync> {
         &self,
         context: &C) -> Result<GetJenkinsResponse, ApiError>;
 
-    async fn get_job(
-        &self,
-        name: String,
-        context: &C) -> Result<GetJobResponse, ApiError>;
-
-    async fn get_job_config(
-        &self,
-        name: String,
-        context: &C) -> Result<GetJobConfigResponse, ApiError>;
-
-    async fn get_job_last_build(
-        &self,
-        name: String,
-        context: &C) -> Result<GetJobLastBuildResponse, ApiError>;
-
-    async fn get_job_progressive_text(
-        &self,
-        name: String,
-        number: String,
-        start: String,
-        context: &C) -> Result<GetJobProgressiveTextResponse, ApiError>;
-
     async fn get_queue(
         &self,
         context: &C) -> Result<GetQueueResponse, ApiError>;
-
-    async fn get_queue_item(
-        &self,
-        number: String,
-        context: &C) -> Result<GetQueueItemResponse, ApiError>;
-
-    async fn get_view(
-        &self,
-        name: String,
-        context: &C) -> Result<GetViewResponse, ApiError>;
-
-    async fn get_view_config(
-        &self,
-        name: String,
-        context: &C) -> Result<GetViewConfigResponse, ApiError>;
 
     async fn head_jenkins(
         &self,
@@ -1211,6 +1180,36 @@ pub trait Api<C: Send + Sync> {
         content_type: Option<String>,
         body: Option<String>,
         context: &C) -> Result<PostCreateViewResponse, ApiError>;
+
+    async fn get_job(
+        &self,
+        name: String,
+        context: &C) -> Result<GetJobResponse, ApiError>;
+
+    async fn get_job_config(
+        &self,
+        name: String,
+        context: &C) -> Result<GetJobConfigResponse, ApiError>;
+
+    async fn get_job_last_build(
+        &self,
+        name: String,
+        context: &C) -> Result<GetJobLastBuildResponse, ApiError>;
+
+    async fn get_queue_item(
+        &self,
+        number: String,
+        context: &C) -> Result<GetQueueItemResponse, ApiError>;
+
+    async fn get_view(
+        &self,
+        name: String,
+        context: &C) -> Result<GetViewResponse, ApiError>;
+
+    async fn get_view_config(
+        &self,
+        name: String,
+        context: &C) -> Result<GetViewConfigResponse, ApiError>;
 
     async fn post_job_build(
         &self,
@@ -1258,6 +1257,13 @@ pub trait Api<C: Send + Sync> {
         jenkins_crumb: Option<String>,
         context: &C) -> Result<PostViewConfigResponse, ApiError>;
 
+    async fn get_job_progressive_text(
+        &self,
+        name: String,
+        number: String,
+        start: String,
+        context: &C) -> Result<GetJobProgressiveTextResponse, ApiError>;
+
 }
 
 /// API where `Context` isn't passed on every API call
@@ -1273,12 +1279,25 @@ pub trait ApiNoContext<C: Send + Sync> {
         &self,
         ) -> Result<GetCrumbResponse, ApiError>;
 
-    async fn delete_pipeline_queue_item(
+    async fn get_json_web_token(
         &self,
-        organization: String,
-        pipeline: String,
-        queue: String,
-        ) -> Result<DeletePipelineQueueItemResponse, ApiError>;
+        expiry_time_in_mins: Option<i32>,
+        max_expiry_time_in_mins: Option<i32>,
+        ) -> Result<GetJsonWebTokenResponse, ApiError>;
+
+    async fn get_organisations(
+        &self,
+        ) -> Result<GetOrganisationsResponse, ApiError>;
+
+    async fn search(
+        &self,
+        q: String,
+        ) -> Result<SearchResponse, ApiError>;
+
+    async fn search_classes(
+        &self,
+        q: String,
+        ) -> Result<SearchClassesResponse, ApiError>;
 
     async fn get_authenticated_user(
         &self,
@@ -1295,20 +1314,25 @@ pub trait ApiNoContext<C: Send + Sync> {
         key: i32,
         ) -> Result<GetJsonWebKeyResponse, ApiError>;
 
-    async fn get_json_web_token(
-        &self,
-        expiry_time_in_mins: Option<i32>,
-        max_expiry_time_in_mins: Option<i32>,
-        ) -> Result<GetJsonWebTokenResponse, ApiError>;
-
     async fn get_organisation(
         &self,
         organization: String,
         ) -> Result<GetOrganisationResponse, ApiError>;
 
-    async fn get_organisations(
+    async fn get_pipelines(
         &self,
-        ) -> Result<GetOrganisationsResponse, ApiError>;
+        organization: String,
+        ) -> Result<GetPipelinesResponse, ApiError>;
+
+    async fn get_user_favorites(
+        &self,
+        user: String,
+        ) -> Result<GetUserFavoritesResponse, ApiError>;
+
+    async fn get_users(
+        &self,
+        organization: String,
+        ) -> Result<GetUsersResponse, ApiError>;
 
     async fn get_pipeline(
         &self,
@@ -1322,21 +1346,6 @@ pub trait ApiNoContext<C: Send + Sync> {
         pipeline: String,
         ) -> Result<GetPipelineActivitiesResponse, ApiError>;
 
-    async fn get_pipeline_branch(
-        &self,
-        organization: String,
-        pipeline: String,
-        branch: String,
-        ) -> Result<GetPipelineBranchResponse, ApiError>;
-
-    async fn get_pipeline_branch_run(
-        &self,
-        organization: String,
-        pipeline: String,
-        branch: String,
-        run: String,
-        ) -> Result<GetPipelineBranchRunResponse, ApiError>;
-
     async fn get_pipeline_branches(
         &self,
         organization: String,
@@ -1349,18 +1358,70 @@ pub trait ApiNoContext<C: Send + Sync> {
         folder: String,
         ) -> Result<GetPipelineFolderResponse, ApiError>;
 
+    async fn get_pipeline_queue(
+        &self,
+        organization: String,
+        pipeline: String,
+        ) -> Result<GetPipelineQueueResponse, ApiError>;
+
+    async fn get_pipeline_runs(
+        &self,
+        organization: String,
+        pipeline: String,
+        ) -> Result<GetPipelineRunsResponse, ApiError>;
+
+    async fn get_scm(
+        &self,
+        organization: String,
+        scm: String,
+        ) -> Result<GetScmResponse, ApiError>;
+
+    async fn get_scm_organisations(
+        &self,
+        organization: String,
+        scm: String,
+        credential_id: Option<String>,
+        ) -> Result<GetScmOrganisationsResponse, ApiError>;
+
+    async fn get_user(
+        &self,
+        organization: String,
+        user: String,
+        ) -> Result<GetUserResponse, ApiError>;
+
+    async fn post_pipeline_runs(
+        &self,
+        organization: String,
+        pipeline: String,
+        ) -> Result<PostPipelineRunsResponse, ApiError>;
+
+    async fn put_pipeline_favorite(
+        &self,
+        organization: String,
+        pipeline: String,
+        body: bool,
+        ) -> Result<PutPipelineFavoriteResponse, ApiError>;
+
+    async fn delete_pipeline_queue_item(
+        &self,
+        organization: String,
+        pipeline: String,
+        queue: String,
+        ) -> Result<DeletePipelineQueueItemResponse, ApiError>;
+
+    async fn get_pipeline_branch(
+        &self,
+        organization: String,
+        pipeline: String,
+        branch: String,
+        ) -> Result<GetPipelineBranchResponse, ApiError>;
+
     async fn get_pipeline_folder_pipeline(
         &self,
         organization: String,
         pipeline: String,
         folder: String,
         ) -> Result<GetPipelineFolderPipelineResponse, ApiError>;
-
-    async fn get_pipeline_queue(
-        &self,
-        organization: String,
-        pipeline: String,
-        ) -> Result<GetPipelineQueueResponse, ApiError>;
 
     async fn get_pipeline_run(
         &self,
@@ -1378,6 +1439,47 @@ pub trait ApiNoContext<C: Send + Sync> {
         download: Option<bool>,
         ) -> Result<GetPipelineRunLogResponse, ApiError>;
 
+    async fn get_pipeline_run_nodes(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        ) -> Result<GetPipelineRunNodesResponse, ApiError>;
+
+    async fn get_scm_organisation_repositories(
+        &self,
+        organization: String,
+        scm: String,
+        scm_organisation: String,
+        credential_id: Option<String>,
+        page_size: Option<i32>,
+        page_number: Option<i32>,
+        ) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>;
+
+    async fn post_pipeline_run(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        ) -> Result<PostPipelineRunResponse, ApiError>;
+
+    async fn put_pipeline_run(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        blocking: Option<String>,
+        time_out_in_secs: Option<i32>,
+        ) -> Result<PutPipelineRunResponse, ApiError>;
+
+    async fn get_pipeline_branch_run(
+        &self,
+        organization: String,
+        pipeline: String,
+        branch: String,
+        run: String,
+        ) -> Result<GetPipelineBranchRunResponse, ApiError>;
+
     async fn get_pipeline_run_node(
         &self,
         organization: String,
@@ -1385,6 +1487,23 @@ pub trait ApiNoContext<C: Send + Sync> {
         run: String,
         node: String,
         ) -> Result<GetPipelineRunNodeResponse, ApiError>;
+
+    async fn get_pipeline_run_node_steps(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        node: String,
+        ) -> Result<GetPipelineRunNodeStepsResponse, ApiError>;
+
+    async fn get_scm_organisation_repository(
+        &self,
+        organization: String,
+        scm: String,
+        scm_organisation: String,
+        repository: String,
+        credential_id: Option<String>,
+        ) -> Result<GetScmOrganisationRepositoryResponse, ApiError>;
 
     async fn get_pipeline_run_node_step(
         &self,
@@ -1404,119 +1523,6 @@ pub trait ApiNoContext<C: Send + Sync> {
         step: String,
         ) -> Result<GetPipelineRunNodeStepLogResponse, ApiError>;
 
-    async fn get_pipeline_run_node_steps(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        node: String,
-        ) -> Result<GetPipelineRunNodeStepsResponse, ApiError>;
-
-    async fn get_pipeline_run_nodes(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        ) -> Result<GetPipelineRunNodesResponse, ApiError>;
-
-    async fn get_pipeline_runs(
-        &self,
-        organization: String,
-        pipeline: String,
-        ) -> Result<GetPipelineRunsResponse, ApiError>;
-
-    async fn get_pipelines(
-        &self,
-        organization: String,
-        ) -> Result<GetPipelinesResponse, ApiError>;
-
-    async fn get_scm(
-        &self,
-        organization: String,
-        scm: String,
-        ) -> Result<GetScmResponse, ApiError>;
-
-    async fn get_scm_organisation_repositories(
-        &self,
-        organization: String,
-        scm: String,
-        scm_organisation: String,
-        credential_id: Option<String>,
-        page_size: Option<i32>,
-        page_number: Option<i32>,
-        ) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>;
-
-    async fn get_scm_organisation_repository(
-        &self,
-        organization: String,
-        scm: String,
-        scm_organisation: String,
-        repository: String,
-        credential_id: Option<String>,
-        ) -> Result<GetScmOrganisationRepositoryResponse, ApiError>;
-
-    async fn get_scm_organisations(
-        &self,
-        organization: String,
-        scm: String,
-        credential_id: Option<String>,
-        ) -> Result<GetScmOrganisationsResponse, ApiError>;
-
-    async fn get_user(
-        &self,
-        organization: String,
-        user: String,
-        ) -> Result<GetUserResponse, ApiError>;
-
-    async fn get_user_favorites(
-        &self,
-        user: String,
-        ) -> Result<GetUserFavoritesResponse, ApiError>;
-
-    async fn get_users(
-        &self,
-        organization: String,
-        ) -> Result<GetUsersResponse, ApiError>;
-
-    async fn post_pipeline_run(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        ) -> Result<PostPipelineRunResponse, ApiError>;
-
-    async fn post_pipeline_runs(
-        &self,
-        organization: String,
-        pipeline: String,
-        ) -> Result<PostPipelineRunsResponse, ApiError>;
-
-    async fn put_pipeline_favorite(
-        &self,
-        organization: String,
-        pipeline: String,
-        body: bool,
-        ) -> Result<PutPipelineFavoriteResponse, ApiError>;
-
-    async fn put_pipeline_run(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        blocking: Option<String>,
-        time_out_in_secs: Option<i32>,
-        ) -> Result<PutPipelineRunResponse, ApiError>;
-
-    async fn search(
-        &self,
-        q: String,
-        ) -> Result<SearchResponse, ApiError>;
-
-    async fn search_classes(
-        &self,
-        q: String,
-        ) -> Result<SearchClassesResponse, ApiError>;
-
     async fn get_computer(
         &self,
         depth: i32,
@@ -1526,46 +1532,9 @@ pub trait ApiNoContext<C: Send + Sync> {
         &self,
         ) -> Result<GetJenkinsResponse, ApiError>;
 
-    async fn get_job(
-        &self,
-        name: String,
-        ) -> Result<GetJobResponse, ApiError>;
-
-    async fn get_job_config(
-        &self,
-        name: String,
-        ) -> Result<GetJobConfigResponse, ApiError>;
-
-    async fn get_job_last_build(
-        &self,
-        name: String,
-        ) -> Result<GetJobLastBuildResponse, ApiError>;
-
-    async fn get_job_progressive_text(
-        &self,
-        name: String,
-        number: String,
-        start: String,
-        ) -> Result<GetJobProgressiveTextResponse, ApiError>;
-
     async fn get_queue(
         &self,
         ) -> Result<GetQueueResponse, ApiError>;
-
-    async fn get_queue_item(
-        &self,
-        number: String,
-        ) -> Result<GetQueueItemResponse, ApiError>;
-
-    async fn get_view(
-        &self,
-        name: String,
-        ) -> Result<GetViewResponse, ApiError>;
-
-    async fn get_view_config(
-        &self,
-        name: String,
-        ) -> Result<GetViewConfigResponse, ApiError>;
 
     async fn head_jenkins(
         &self,
@@ -1588,6 +1557,36 @@ pub trait ApiNoContext<C: Send + Sync> {
         content_type: Option<String>,
         body: Option<String>,
         ) -> Result<PostCreateViewResponse, ApiError>;
+
+    async fn get_job(
+        &self,
+        name: String,
+        ) -> Result<GetJobResponse, ApiError>;
+
+    async fn get_job_config(
+        &self,
+        name: String,
+        ) -> Result<GetJobConfigResponse, ApiError>;
+
+    async fn get_job_last_build(
+        &self,
+        name: String,
+        ) -> Result<GetJobLastBuildResponse, ApiError>;
+
+    async fn get_queue_item(
+        &self,
+        number: String,
+        ) -> Result<GetQueueItemResponse, ApiError>;
+
+    async fn get_view(
+        &self,
+        name: String,
+        ) -> Result<GetViewResponse, ApiError>;
+
+    async fn get_view_config(
+        &self,
+        name: String,
+        ) -> Result<GetViewConfigResponse, ApiError>;
 
     async fn post_job_build(
         &self,
@@ -1635,6 +1634,13 @@ pub trait ApiNoContext<C: Send + Sync> {
         jenkins_crumb: Option<String>,
         ) -> Result<PostViewConfigResponse, ApiError>;
 
+    async fn get_job_progressive_text(
+        &self,
+        name: String,
+        number: String,
+        start: String,
+        ) -> Result<GetJobProgressiveTextResponse, ApiError>;
+
 }
 
 /// Trait to extend an API to make it easy to bind it to a context.
@@ -1668,15 +1674,40 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().get_crumb(&context).await
     }
 
-    async fn delete_pipeline_queue_item(
+    async fn get_json_web_token(
         &self,
-        organization: String,
-        pipeline: String,
-        queue: String,
-        ) -> Result<DeletePipelineQueueItemResponse, ApiError>
+        expiry_time_in_mins: Option<i32>,
+        max_expiry_time_in_mins: Option<i32>,
+        ) -> Result<GetJsonWebTokenResponse, ApiError>
     {
         let context = self.context().clone();
-        self.api().delete_pipeline_queue_item(organization, pipeline, queue, &context).await
+        self.api().get_json_web_token(expiry_time_in_mins, max_expiry_time_in_mins, &context).await
+    }
+
+    async fn get_organisations(
+        &self,
+        ) -> Result<GetOrganisationsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_organisations(&context).await
+    }
+
+    async fn search(
+        &self,
+        q: String,
+        ) -> Result<SearchResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().search(q, &context).await
+    }
+
+    async fn search_classes(
+        &self,
+        q: String,
+        ) -> Result<SearchClassesResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().search_classes(q, &context).await
     }
 
     async fn get_authenticated_user(
@@ -1706,16 +1737,6 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().get_json_web_key(key, &context).await
     }
 
-    async fn get_json_web_token(
-        &self,
-        expiry_time_in_mins: Option<i32>,
-        max_expiry_time_in_mins: Option<i32>,
-        ) -> Result<GetJsonWebTokenResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_json_web_token(expiry_time_in_mins, max_expiry_time_in_mins, &context).await
-    }
-
     async fn get_organisation(
         &self,
         organization: String,
@@ -1725,12 +1746,31 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().get_organisation(organization, &context).await
     }
 
-    async fn get_organisations(
+    async fn get_pipelines(
         &self,
-        ) -> Result<GetOrganisationsResponse, ApiError>
+        organization: String,
+        ) -> Result<GetPipelinesResponse, ApiError>
     {
         let context = self.context().clone();
-        self.api().get_organisations(&context).await
+        self.api().get_pipelines(organization, &context).await
+    }
+
+    async fn get_user_favorites(
+        &self,
+        user: String,
+        ) -> Result<GetUserFavoritesResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_user_favorites(user, &context).await
+    }
+
+    async fn get_users(
+        &self,
+        organization: String,
+        ) -> Result<GetUsersResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_users(organization, &context).await
     }
 
     async fn get_pipeline(
@@ -1753,29 +1793,6 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().get_pipeline_activities(organization, pipeline, &context).await
     }
 
-    async fn get_pipeline_branch(
-        &self,
-        organization: String,
-        pipeline: String,
-        branch: String,
-        ) -> Result<GetPipelineBranchResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_pipeline_branch(organization, pipeline, branch, &context).await
-    }
-
-    async fn get_pipeline_branch_run(
-        &self,
-        organization: String,
-        pipeline: String,
-        branch: String,
-        run: String,
-        ) -> Result<GetPipelineBranchRunResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_pipeline_branch_run(organization, pipeline, branch, run, &context).await
-    }
-
     async fn get_pipeline_branches(
         &self,
         organization: String,
@@ -1796,6 +1813,100 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().get_pipeline_folder(organization, folder, &context).await
     }
 
+    async fn get_pipeline_queue(
+        &self,
+        organization: String,
+        pipeline: String,
+        ) -> Result<GetPipelineQueueResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_pipeline_queue(organization, pipeline, &context).await
+    }
+
+    async fn get_pipeline_runs(
+        &self,
+        organization: String,
+        pipeline: String,
+        ) -> Result<GetPipelineRunsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_pipeline_runs(organization, pipeline, &context).await
+    }
+
+    async fn get_scm(
+        &self,
+        organization: String,
+        scm: String,
+        ) -> Result<GetScmResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_scm(organization, scm, &context).await
+    }
+
+    async fn get_scm_organisations(
+        &self,
+        organization: String,
+        scm: String,
+        credential_id: Option<String>,
+        ) -> Result<GetScmOrganisationsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_scm_organisations(organization, scm, credential_id, &context).await
+    }
+
+    async fn get_user(
+        &self,
+        organization: String,
+        user: String,
+        ) -> Result<GetUserResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_user(organization, user, &context).await
+    }
+
+    async fn post_pipeline_runs(
+        &self,
+        organization: String,
+        pipeline: String,
+        ) -> Result<PostPipelineRunsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().post_pipeline_runs(organization, pipeline, &context).await
+    }
+
+    async fn put_pipeline_favorite(
+        &self,
+        organization: String,
+        pipeline: String,
+        body: bool,
+        ) -> Result<PutPipelineFavoriteResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().put_pipeline_favorite(organization, pipeline, body, &context).await
+    }
+
+    async fn delete_pipeline_queue_item(
+        &self,
+        organization: String,
+        pipeline: String,
+        queue: String,
+        ) -> Result<DeletePipelineQueueItemResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().delete_pipeline_queue_item(organization, pipeline, queue, &context).await
+    }
+
+    async fn get_pipeline_branch(
+        &self,
+        organization: String,
+        pipeline: String,
+        branch: String,
+        ) -> Result<GetPipelineBranchResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_pipeline_branch(organization, pipeline, branch, &context).await
+    }
+
     async fn get_pipeline_folder_pipeline(
         &self,
         organization: String,
@@ -1805,16 +1916,6 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
     {
         let context = self.context().clone();
         self.api().get_pipeline_folder_pipeline(organization, pipeline, folder, &context).await
-    }
-
-    async fn get_pipeline_queue(
-        &self,
-        organization: String,
-        pipeline: String,
-        ) -> Result<GetPipelineQueueResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_pipeline_queue(organization, pipeline, &context).await
     }
 
     async fn get_pipeline_run(
@@ -1841,6 +1942,67 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().get_pipeline_run_log(organization, pipeline, run, start, download, &context).await
     }
 
+    async fn get_pipeline_run_nodes(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        ) -> Result<GetPipelineRunNodesResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_pipeline_run_nodes(organization, pipeline, run, &context).await
+    }
+
+    async fn get_scm_organisation_repositories(
+        &self,
+        organization: String,
+        scm: String,
+        scm_organisation: String,
+        credential_id: Option<String>,
+        page_size: Option<i32>,
+        page_number: Option<i32>,
+        ) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_scm_organisation_repositories(organization, scm, scm_organisation, credential_id, page_size, page_number, &context).await
+    }
+
+    async fn post_pipeline_run(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        ) -> Result<PostPipelineRunResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().post_pipeline_run(organization, pipeline, run, &context).await
+    }
+
+    async fn put_pipeline_run(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        blocking: Option<String>,
+        time_out_in_secs: Option<i32>,
+        ) -> Result<PutPipelineRunResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().put_pipeline_run(organization, pipeline, run, blocking, time_out_in_secs, &context).await
+    }
+
+    async fn get_pipeline_branch_run(
+        &self,
+        organization: String,
+        pipeline: String,
+        branch: String,
+        run: String,
+        ) -> Result<GetPipelineBranchRunResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_pipeline_branch_run(organization, pipeline, branch, run, &context).await
+    }
+
     async fn get_pipeline_run_node(
         &self,
         organization: String,
@@ -1851,6 +2013,31 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
     {
         let context = self.context().clone();
         self.api().get_pipeline_run_node(organization, pipeline, run, node, &context).await
+    }
+
+    async fn get_pipeline_run_node_steps(
+        &self,
+        organization: String,
+        pipeline: String,
+        run: String,
+        node: String,
+        ) -> Result<GetPipelineRunNodeStepsResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_pipeline_run_node_steps(organization, pipeline, run, node, &context).await
+    }
+
+    async fn get_scm_organisation_repository(
+        &self,
+        organization: String,
+        scm: String,
+        scm_organisation: String,
+        repository: String,
+        credential_id: Option<String>,
+        ) -> Result<GetScmOrganisationRepositoryResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_scm_organisation_repository(organization, scm, scm_organisation, repository, credential_id, &context).await
     }
 
     async fn get_pipeline_run_node_step(
@@ -1879,187 +2066,6 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().get_pipeline_run_node_step_log(organization, pipeline, run, node, step, &context).await
     }
 
-    async fn get_pipeline_run_node_steps(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        node: String,
-        ) -> Result<GetPipelineRunNodeStepsResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_pipeline_run_node_steps(organization, pipeline, run, node, &context).await
-    }
-
-    async fn get_pipeline_run_nodes(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        ) -> Result<GetPipelineRunNodesResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_pipeline_run_nodes(organization, pipeline, run, &context).await
-    }
-
-    async fn get_pipeline_runs(
-        &self,
-        organization: String,
-        pipeline: String,
-        ) -> Result<GetPipelineRunsResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_pipeline_runs(organization, pipeline, &context).await
-    }
-
-    async fn get_pipelines(
-        &self,
-        organization: String,
-        ) -> Result<GetPipelinesResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_pipelines(organization, &context).await
-    }
-
-    async fn get_scm(
-        &self,
-        organization: String,
-        scm: String,
-        ) -> Result<GetScmResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_scm(organization, scm, &context).await
-    }
-
-    async fn get_scm_organisation_repositories(
-        &self,
-        organization: String,
-        scm: String,
-        scm_organisation: String,
-        credential_id: Option<String>,
-        page_size: Option<i32>,
-        page_number: Option<i32>,
-        ) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_scm_organisation_repositories(organization, scm, scm_organisation, credential_id, page_size, page_number, &context).await
-    }
-
-    async fn get_scm_organisation_repository(
-        &self,
-        organization: String,
-        scm: String,
-        scm_organisation: String,
-        repository: String,
-        credential_id: Option<String>,
-        ) -> Result<GetScmOrganisationRepositoryResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_scm_organisation_repository(organization, scm, scm_organisation, repository, credential_id, &context).await
-    }
-
-    async fn get_scm_organisations(
-        &self,
-        organization: String,
-        scm: String,
-        credential_id: Option<String>,
-        ) -> Result<GetScmOrganisationsResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_scm_organisations(organization, scm, credential_id, &context).await
-    }
-
-    async fn get_user(
-        &self,
-        organization: String,
-        user: String,
-        ) -> Result<GetUserResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_user(organization, user, &context).await
-    }
-
-    async fn get_user_favorites(
-        &self,
-        user: String,
-        ) -> Result<GetUserFavoritesResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_user_favorites(user, &context).await
-    }
-
-    async fn get_users(
-        &self,
-        organization: String,
-        ) -> Result<GetUsersResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_users(organization, &context).await
-    }
-
-    async fn post_pipeline_run(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        ) -> Result<PostPipelineRunResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().post_pipeline_run(organization, pipeline, run, &context).await
-    }
-
-    async fn post_pipeline_runs(
-        &self,
-        organization: String,
-        pipeline: String,
-        ) -> Result<PostPipelineRunsResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().post_pipeline_runs(organization, pipeline, &context).await
-    }
-
-    async fn put_pipeline_favorite(
-        &self,
-        organization: String,
-        pipeline: String,
-        body: bool,
-        ) -> Result<PutPipelineFavoriteResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().put_pipeline_favorite(organization, pipeline, body, &context).await
-    }
-
-    async fn put_pipeline_run(
-        &self,
-        organization: String,
-        pipeline: String,
-        run: String,
-        blocking: Option<String>,
-        time_out_in_secs: Option<i32>,
-        ) -> Result<PutPipelineRunResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().put_pipeline_run(organization, pipeline, run, blocking, time_out_in_secs, &context).await
-    }
-
-    async fn search(
-        &self,
-        q: String,
-        ) -> Result<SearchResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().search(q, &context).await
-    }
-
-    async fn search_classes(
-        &self,
-        q: String,
-        ) -> Result<SearchClassesResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().search_classes(q, &context).await
-    }
-
     async fn get_computer(
         &self,
         depth: i32,
@@ -2077,77 +2083,12 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
         self.api().get_jenkins(&context).await
     }
 
-    async fn get_job(
-        &self,
-        name: String,
-        ) -> Result<GetJobResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_job(name, &context).await
-    }
-
-    async fn get_job_config(
-        &self,
-        name: String,
-        ) -> Result<GetJobConfigResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_job_config(name, &context).await
-    }
-
-    async fn get_job_last_build(
-        &self,
-        name: String,
-        ) -> Result<GetJobLastBuildResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_job_last_build(name, &context).await
-    }
-
-    async fn get_job_progressive_text(
-        &self,
-        name: String,
-        number: String,
-        start: String,
-        ) -> Result<GetJobProgressiveTextResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_job_progressive_text(name, number, start, &context).await
-    }
-
     async fn get_queue(
         &self,
         ) -> Result<GetQueueResponse, ApiError>
     {
         let context = self.context().clone();
         self.api().get_queue(&context).await
-    }
-
-    async fn get_queue_item(
-        &self,
-        number: String,
-        ) -> Result<GetQueueItemResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_queue_item(number, &context).await
-    }
-
-    async fn get_view(
-        &self,
-        name: String,
-        ) -> Result<GetViewResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_view(name, &context).await
-    }
-
-    async fn get_view_config(
-        &self,
-        name: String,
-        ) -> Result<GetViewConfigResponse, ApiError>
-    {
-        let context = self.context().clone();
-        self.api().get_view_config(name, &context).await
     }
 
     async fn head_jenkins(
@@ -2182,6 +2123,60 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
     {
         let context = self.context().clone();
         self.api().post_create_view(name, jenkins_crumb, content_type, body, &context).await
+    }
+
+    async fn get_job(
+        &self,
+        name: String,
+        ) -> Result<GetJobResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_job(name, &context).await
+    }
+
+    async fn get_job_config(
+        &self,
+        name: String,
+        ) -> Result<GetJobConfigResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_job_config(name, &context).await
+    }
+
+    async fn get_job_last_build(
+        &self,
+        name: String,
+        ) -> Result<GetJobLastBuildResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_job_last_build(name, &context).await
+    }
+
+    async fn get_queue_item(
+        &self,
+        number: String,
+        ) -> Result<GetQueueItemResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_queue_item(number, &context).await
+    }
+
+    async fn get_view(
+        &self,
+        name: String,
+        ) -> Result<GetViewResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_view(name, &context).await
+    }
+
+    async fn get_view_config(
+        &self,
+        name: String,
+        ) -> Result<GetViewConfigResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_view_config(name, &context).await
     }
 
     async fn post_job_build(
@@ -2256,6 +2251,17 @@ impl<T: Api<C> + Send + Sync, C: Clone + Send + Sync> ApiNoContext<C> for Contex
     {
         let context = self.context().clone();
         self.api().post_view_config(name, body, jenkins_crumb, &context).await
+    }
+
+    async fn get_job_progressive_text(
+        &self,
+        name: String,
+        number: String,
+        start: String,
+        ) -> Result<GetJobProgressiveTextResponse, ApiError>
+    {
+        let context = self.context().clone();
+        self.api().get_job_progressive_text(name, number, start, &context).await
     }
 
 }

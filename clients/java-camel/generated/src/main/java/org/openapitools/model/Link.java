@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * Link
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class Link {
 
   private String propertyClass;
@@ -33,7 +33,7 @@ public class Link {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -53,7 +53,7 @@ public class Link {
   /**
    * Get href
    * @return href
-  */
+   */
   
   @Schema(name = "href", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("href")

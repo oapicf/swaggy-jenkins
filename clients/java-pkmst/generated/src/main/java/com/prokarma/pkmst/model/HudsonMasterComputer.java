@@ -20,7 +20,7 @@ import java.util.List;
  * HudsonMasterComputer
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputer   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -76,10 +76,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -94,10 +94,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get displayName
    * @return displayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayName() {
     return displayName;
@@ -120,10 +120,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get executors
    * @return executors
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<HudsonMasterComputerexecutors> getExecutors() {
     return executors;
@@ -138,10 +138,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get icon
    * @return icon
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getIcon() {
     return icon;
@@ -156,10 +156,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get iconClassName
    * @return iconClassName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getIconClassName() {
     return iconClassName;
@@ -174,10 +174,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get idle
    * @return idle
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getIdle() {
     return idle;
@@ -192,10 +192,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get jnlpAgent
    * @return jnlpAgent
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getJnlpAgent() {
     return jnlpAgent;
@@ -210,10 +210,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get launchSupported
    * @return launchSupported
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getLaunchSupported() {
     return launchSupported;
@@ -228,10 +228,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get loadStatistics
    * @return loadStatistics
-  **/
+   */
   @ApiModelProperty(value = "")
   public Label1 getLoadStatistics() {
     return loadStatistics;
@@ -246,10 +246,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get manualLaunchAllowed
    * @return manualLaunchAllowed
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getManualLaunchAllowed() {
     return manualLaunchAllowed;
@@ -264,10 +264,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get monitorData
    * @return monitorData
-  **/
+   */
   @ApiModelProperty(value = "")
   public HudsonMasterComputermonitorData getMonitorData() {
     return monitorData;
@@ -282,10 +282,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get numExecutors
    * @return numExecutors
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNumExecutors() {
     return numExecutors;
@@ -300,10 +300,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get offline
    * @return offline
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getOffline() {
     return offline;
@@ -318,10 +318,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get offlineCause
    * @return offlineCause
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getOfflineCause() {
     return offlineCause;
@@ -336,10 +336,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get offlineCauseReason
    * @return offlineCauseReason
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getOfflineCauseReason() {
     return offlineCauseReason;
@@ -354,10 +354,10 @@ public class HudsonMasterComputer   {
     return this;
   }
 
-   /**
+  /**
    * Get temporarilyOffline
    * @return temporarilyOffline
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getTemporarilyOffline() {
     return temporarilyOffline;

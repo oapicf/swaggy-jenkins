@@ -15,14 +15,12 @@ Label1 <- R6::R6Class(
   "Label1",
   public = list(
     `_class` = NULL,
-    #' Initialize a new Label1 class.
-    #'
+
     #' @description
     #' Initialize a new Label1 class.
     #'
     #' @param _class _class
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -31,29 +29,50 @@ Label1 <- R6::R6Class(
         self$`_class` <- `_class`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return Label1 in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return Label1 as a base R list.
+    #' @examples
+    #' # convert array of Label1 (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert Label1 to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       Label1Object <- list()
       if (!is.null(self$`_class`)) {
         Label1Object[["_class"]] <-
           self$`_class`
       }
-      Label1Object
+      return(Label1Object)
     },
-    #' Deserialize JSON string into an instance of Label1
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of Label1
     #'
     #' @param input_json the JSON input
     #' @return the instance of Label1
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -61,87 +80,64 @@ Label1 <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return Label1 in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of Label1
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of Label1
     #'
     #' @param input_json the JSON input
     #' @return the instance of Label1
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
       self
     },
-    #' Validate JSON input with respect to Label1
-    #'
+
     #' @description
     #' Validate JSON input with respect to Label1 and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of Label1
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

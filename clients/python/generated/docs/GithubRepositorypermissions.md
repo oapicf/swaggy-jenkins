@@ -25,7 +25,7 @@ print(GithubRepositorypermissions.to_json())
 # convert the object into a dict
 github_repositorypermissions_dict = github_repositorypermissions_instance.to_dict()
 # create an instance of GithubRepositorypermissions from a dict
-github_repositorypermissions_form_dict = github_repositorypermissions.from_dict(github_repositorypermissions_dict)
+github_repositorypermissions_from_dict = GithubRepositorypermissions.from_dict(github_repositorypermissions_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

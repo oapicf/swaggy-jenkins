@@ -23,9 +23,10 @@ typedef struct github_repositorieslinks_t {
     struct link_t *self; //model
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } github_repositorieslinks_t;
 
-github_repositorieslinks_t *github_repositorieslinks_create(
+__attribute__((deprecated)) github_repositorieslinks_t *github_repositorieslinks_create(
     link_t *self,
     char *_class
 );

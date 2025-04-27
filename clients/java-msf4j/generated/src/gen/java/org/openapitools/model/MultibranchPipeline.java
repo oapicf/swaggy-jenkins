@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * MultibranchPipeline
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2025-04-27T08:09:22.488100288Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class MultibranchPipeline   {
   @JsonProperty("displayName")
   private String displayName;
@@ -171,7 +171,7 @@ public class MultibranchPipeline   {
 
   public MultibranchPipeline addBranchNamesItem(String branchNamesItem) {
     if (this.branchNames == null) {
-      this.branchNames = ;
+      this.branchNames = new ArrayList<>();
     }
     this.branchNames.add(branchNamesItem);
     return this;

@@ -10,8 +10,6 @@ Method | HTTP request | Description
 # **get_crumb**
 > DefaultCrumbIssuer get_crumb()
 
-
-
 Retrieve CSRF protection token
 
 ### Example

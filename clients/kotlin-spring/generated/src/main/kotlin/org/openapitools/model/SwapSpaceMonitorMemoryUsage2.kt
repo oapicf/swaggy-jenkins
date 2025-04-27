@@ -37,7 +37,7 @@ data class SwapSpaceMonitorMemoryUsage2(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("totalSwapSpace") val totalSwapSpace: kotlin.Int? = null
-) {
+    ) {
 
 }
 

@@ -25,9 +25,10 @@ typedef struct branch_implpermissions_t {
     int stop; //boolean
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } branch_implpermissions_t;
 
-branch_implpermissions_t *branch_implpermissions_create(
+__attribute__((deprecated)) branch_implpermissions_t *branch_implpermissions_create(
     int create,
     int read,
     int start,

@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * DiskSpaceMonitorDescriptorDiskSpace
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class DiskSpaceMonitorDescriptorDiskSpace   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -33,10 +33,10 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -51,10 +51,10 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
     return this;
   }
 
-   /**
+  /**
    * Get timestamp
    * @return timestamp
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getTimestamp() {
     return timestamp;
@@ -69,10 +69,10 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
     return this;
   }
 
-   /**
+  /**
    * Get path
    * @return path
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPath() {
     return path;
@@ -87,10 +87,10 @@ public class DiskSpaceMonitorDescriptorDiskSpace   {
     return this;
   }
 
-   /**
+  /**
    * Get size
    * @return size
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getSize() {
     return size;

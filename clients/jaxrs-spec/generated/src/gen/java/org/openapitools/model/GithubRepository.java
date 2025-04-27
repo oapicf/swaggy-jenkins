@@ -17,16 +17,19 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubRepository")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubRepository   {
-  private @Valid String propertyClass;
-  private @Valid GithubRepositorylinks links;
-  private @Valid String defaultBranch;
-  private @Valid String description;
-  private @Valid String name;
-  private @Valid GithubRepositorypermissions permissions;
-  private @Valid Boolean _private;
-  private @Valid String fullName;
+  private String propertyClass;
+  private GithubRepositorylinks links;
+  private String defaultBranch;
+  private String description;
+  private String name;
+  private GithubRepositorypermissions permissions;
+  private Boolean _private;
+  private String fullName;
+
+  public GithubRepository() {
+  }
 
   /**
    **/
@@ -57,7 +60,7 @@ public class GithubRepository   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public GithubRepositorylinks getLinks() {
+  @Valid public GithubRepositorylinks getLinks() {
     return links;
   }
 
@@ -133,7 +136,7 @@ public class GithubRepository   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("permissions")
-  public GithubRepositorypermissions getPermissions() {
+  @Valid public GithubRepositorypermissions getPermissions() {
     return permissions;
   }
 

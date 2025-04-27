@@ -15,13 +15,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("User")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class User   {
-  private @Valid String propertyClass;
-  private @Valid String id;
-  private @Valid String fullName;
-  private @Valid String email;
-  private @Valid String name;
+  private String propertyClass;
+  private String id;
+  private String fullName;
+  private String email;
+  private String name;
+
+  public User() {
+  }
 
   /**
    **/

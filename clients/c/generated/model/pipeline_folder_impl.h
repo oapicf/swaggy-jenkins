@@ -27,9 +27,10 @@ typedef struct pipeline_folder_impl_t {
     int number_of_folders; //numeric
     int number_of_pipelines; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_folder_impl_t;
 
-pipeline_folder_impl_t *pipeline_folder_impl_create(
+__attribute__((deprecated)) pipeline_folder_impl_t *pipeline_folder_impl_create(
     char *_class,
     char *display_name,
     char *full_name,

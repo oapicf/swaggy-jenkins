@@ -5,7 +5,7 @@
 
 
 
-empty_change_log_set_t *empty_change_log_set_create(
+static empty_change_log_set_t *empty_change_log_set_create_internal(
     char *_class,
     char *kind
     ) {
@@ -16,12 +16,26 @@ empty_change_log_set_t *empty_change_log_set_create(
     empty_change_log_set_local_var->_class = _class;
     empty_change_log_set_local_var->kind = kind;
 
+    empty_change_log_set_local_var->_library_owned = 1;
     return empty_change_log_set_local_var;
 }
 
+__attribute__((deprecated)) empty_change_log_set_t *empty_change_log_set_create(
+    char *_class,
+    char *kind
+    ) {
+    return empty_change_log_set_create_internal (
+        _class,
+        kind
+        );
+}
 
 void empty_change_log_set_free(empty_change_log_set_t *empty_change_log_set) {
     if(NULL == empty_change_log_set){
+        return ;
+    }
+    if(empty_change_log_set->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "empty_change_log_set_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ empty_change_log_set_t *empty_change_log_set_parseFromJSON(cJSON *empty_change_l
 
     // empty_change_log_set->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(empty_change_log_setJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -77,6 +94,9 @@ empty_change_log_set_t *empty_change_log_set_parseFromJSON(cJSON *empty_change_l
 
     // empty_change_log_set->kind
     cJSON *kind = cJSON_GetObjectItemCaseSensitive(empty_change_log_setJSON, "kind");
+    if (cJSON_IsNull(kind)) {
+        kind = NULL;
+    }
     if (kind) { 
     if(!cJSON_IsString(kind) && !cJSON_IsNull(kind))
     {
@@ -85,7 +105,7 @@ empty_change_log_set_t *empty_change_log_set_parseFromJSON(cJSON *empty_change_l
     }
 
 
-    empty_change_log_set_local_var = empty_change_log_set_create (
+    empty_change_log_set_local_var = empty_change_log_set_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         kind && !cJSON_IsNull(kind) ? strdup(kind->valuestring) : NULL
         );

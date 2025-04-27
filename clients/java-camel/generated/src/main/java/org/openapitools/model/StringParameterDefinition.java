@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * StringParameterDefinition
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class StringParameterDefinition {
 
   private String propertyClass;
@@ -40,7 +40,7 @@ public class StringParameterDefinition {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -60,7 +60,7 @@ public class StringParameterDefinition {
   /**
    * Get defaultParameterValue
    * @return defaultParameterValue
-  */
+   */
   @Valid 
   @Schema(name = "defaultParameterValue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("defaultParameterValue")
@@ -80,7 +80,7 @@ public class StringParameterDefinition {
   /**
    * Get description
    * @return description
-  */
+   */
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
@@ -100,7 +100,7 @@ public class StringParameterDefinition {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -120,7 +120,7 @@ public class StringParameterDefinition {
   /**
    * Get type
    * @return type
-  */
+   */
   
   @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("type")

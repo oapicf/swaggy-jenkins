@@ -40,7 +40,7 @@ public class BranchImpl  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<@Valid StringParameterDefinition> parameters;
+  private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   @Valid

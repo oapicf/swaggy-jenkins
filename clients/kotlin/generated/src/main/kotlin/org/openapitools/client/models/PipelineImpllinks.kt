@@ -48,5 +48,8 @@ data class PipelineImpllinks (
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null
 
-)
+) {
+
+
+}
 

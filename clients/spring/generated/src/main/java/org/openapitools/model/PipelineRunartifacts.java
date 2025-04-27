@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,16 +19,16 @@ import javax.annotation.Generated;
  * PipelineRunartifacts
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineRunartifacts {
 
-  private String name;
+  private @Nullable String name;
 
-  private Integer size;
+  private @Nullable Integer size;
 
-  private String url;
+  private @Nullable String url;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public PipelineRunartifacts name(String name) {
     this.name = name;
@@ -37,7 +38,7 @@ public class PipelineRunartifacts {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -57,7 +58,7 @@ public class PipelineRunartifacts {
   /**
    * Get size
    * @return size
-  */
+   */
   
   @Schema(name = "size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("size")
@@ -77,7 +78,7 @@ public class PipelineRunartifacts {
   /**
    * Get url
    * @return url
-  */
+   */
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")
@@ -97,7 +98,7 @@ public class PipelineRunartifacts {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

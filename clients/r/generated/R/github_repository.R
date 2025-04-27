@@ -29,8 +29,7 @@ GithubRepository <- R6::R6Class(
     `permissions` = NULL,
     `item_private` = NULL,
     `fullName` = NULL,
-    #' Initialize a new GithubRepository class.
-    #'
+
     #' @description
     #' Initialize a new GithubRepository class.
     #'
@@ -43,7 +42,6 @@ GithubRepository <- R6::R6Class(
     #' @param item_private item_private
     #' @param fullName fullName
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, `_links` = NULL, `defaultBranch` = NULL, `description` = NULL, `name` = NULL, `permissions` = NULL, `item_private` = NULL, `fullName` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -90,14 +88,37 @@ GithubRepository <- R6::R6Class(
         self$`fullName` <- `fullName`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return GithubRepository in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return GithubRepository as a base R list.
+    #' @examples
+    #' # convert array of GithubRepository (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert GithubRepository to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       GithubRepositoryObject <- list()
       if (!is.null(self$`_class`)) {
         GithubRepositoryObject[["_class"]] <-
@@ -105,7 +126,7 @@ GithubRepository <- R6::R6Class(
       }
       if (!is.null(self$`_links`)) {
         GithubRepositoryObject[["_links"]] <-
-          self$`_links`$toJSON()
+          self$`_links`$toSimpleType()
       }
       if (!is.null(self$`defaultBranch`)) {
         GithubRepositoryObject[["defaultBranch"]] <-
@@ -121,7 +142,7 @@ GithubRepository <- R6::R6Class(
       }
       if (!is.null(self$`permissions`)) {
         GithubRepositoryObject[["permissions"]] <-
-          self$`permissions`$toJSON()
+          self$`permissions`$toSimpleType()
       }
       if (!is.null(self$`item_private`)) {
         GithubRepositoryObject[["private"]] <-
@@ -131,16 +152,14 @@ GithubRepository <- R6::R6Class(
         GithubRepositoryObject[["fullName"]] <-
           self$`fullName`
       }
-      GithubRepositoryObject
+      return(GithubRepositoryObject)
     },
-    #' Deserialize JSON string into an instance of GithubRepository
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of GithubRepository
     #'
     #' @param input_json the JSON input
     #' @return the instance of GithubRepository
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -173,91 +192,23 @@ GithubRepository <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return GithubRepository in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        },
-        if (!is.null(self$`_links`)) {
-          sprintf(
-          '"_links":
-          %s
-          ',
-          jsonlite::toJSON(self$`_links`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`defaultBranch`)) {
-          sprintf(
-          '"defaultBranch":
-            "%s"
-                    ',
-          self$`defaultBranch`
-          )
-        },
-        if (!is.null(self$`description`)) {
-          sprintf(
-          '"description":
-            "%s"
-                    ',
-          self$`description`
-          )
-        },
-        if (!is.null(self$`name`)) {
-          sprintf(
-          '"name":
-            "%s"
-                    ',
-          self$`name`
-          )
-        },
-        if (!is.null(self$`permissions`)) {
-          sprintf(
-          '"permissions":
-          %s
-          ',
-          jsonlite::toJSON(self$`permissions`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`item_private`)) {
-          sprintf(
-          '"private":
-            %s
-                    ',
-          tolower(self$`item_private`)
-          )
-        },
-        if (!is.null(self$`fullName`)) {
-          sprintf(
-          '"fullName":
-            "%s"
-                    ',
-          self$`fullName`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of GithubRepository
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of GithubRepository
     #'
     #' @param input_json the JSON input
     #' @return the instance of GithubRepository
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
@@ -270,53 +221,42 @@ GithubRepository <- R6::R6Class(
       self$`fullName` <- this_object$`fullName`
       self
     },
-    #' Validate JSON input with respect to GithubRepository
-    #'
+
     #' @description
     #' Validate JSON input with respect to GithubRepository and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of GithubRepository
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

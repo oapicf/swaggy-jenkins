@@ -48,5 +48,8 @@ data class ComputerSet (
     @Json(name = "totalExecutors")
     val totalExecutors: kotlin.Int? = null
 
-)
+) {
+
+
+}
 

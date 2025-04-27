@@ -15,12 +15,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineActivityartifacts")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineActivityartifacts   {
-  private @Valid String name;
-  private @Valid Integer size;
-  private @Valid String url;
-  private @Valid String propertyClass;
+  private String name;
+  private Integer size;
+  private String url;
+  private String propertyClass;
+
+  public PipelineActivityartifacts() {
+  }
 
   /**
    **/

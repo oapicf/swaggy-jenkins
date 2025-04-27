@@ -16,14 +16,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineBranchesitempullRequest")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineBranchesitempullRequest   {
-  private @Valid PipelineBranchesitempullRequestlinks links;
-  private @Valid String author;
-  private @Valid String id;
-  private @Valid String title;
-  private @Valid String url;
-  private @Valid String propertyClass;
+  private PipelineBranchesitempullRequestlinks links;
+  private String author;
+  private String id;
+  private String title;
+  private String url;
+  private String propertyClass;
+
+  public PipelineBranchesitempullRequest() {
+  }
 
   /**
    **/
@@ -35,7 +38,7 @@ public class PipelineBranchesitempullRequest   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public PipelineBranchesitempullRequestlinks getLinks() {
+  @Valid public PipelineBranchesitempullRequestlinks getLinks() {
     return links;
   }
 

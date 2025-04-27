@@ -52,5 +52,8 @@ data class PipelineRunImpllinks (
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null
 
-)
+) {
+
+
+}
 

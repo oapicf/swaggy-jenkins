@@ -8,4 +8,4 @@ script:
   - bundle install --path vendor/bundle
   - bundle exec rspec
   - gem build swaggy_jenkins.gemspec
-  - gem install ./swaggy_jenkins-2.0.1-pre.0.gem
+  - gem install ./swaggy_jenkins-3.0.2-pre.0.gem

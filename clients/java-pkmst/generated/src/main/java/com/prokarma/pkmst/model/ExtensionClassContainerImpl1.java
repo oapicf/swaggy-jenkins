@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  * ExtensionClassContainerImpl1
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ExtensionClassContainerImpl1   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -32,10 +32,10 @@ public class ExtensionClassContainerImpl1   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -50,10 +50,10 @@ public class ExtensionClassContainerImpl1   {
     return this;
   }
 
-   /**
+  /**
    * Get links
    * @return links
-  **/
+   */
   @ApiModelProperty(value = "")
   public ExtensionClassContainerImpl1links getLinks() {
     return links;
@@ -68,10 +68,10 @@ public class ExtensionClassContainerImpl1   {
     return this;
   }
 
-   /**
+  /**
    * Get map
    * @return map
-  **/
+   */
   @ApiModelProperty(value = "")
   public ExtensionClassContainerImpl1map getMap() {
     return map;

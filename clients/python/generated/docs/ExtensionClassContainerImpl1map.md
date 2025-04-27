@@ -24,7 +24,7 @@ print(ExtensionClassContainerImpl1map.to_json())
 # convert the object into a dict
 extension_class_container_impl1map_dict = extension_class_container_impl1map_instance.to_dict()
 # create an instance of ExtensionClassContainerImpl1map from a dict
-extension_class_container_impl1map_form_dict = extension_class_container_impl1map.from_dict(extension_class_container_impl1map_dict)
+extension_class_container_impl1map_from_dict = ExtensionClassContainerImpl1map.from_dict(extension_class_container_impl1map_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

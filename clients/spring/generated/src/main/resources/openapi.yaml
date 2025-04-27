@@ -6,7 +6,7 @@ info:
     url: https://github.com/oapicf/swaggy-jenkins
   description: Jenkins API clients generated from Swagger / Open API specification
   title: Swaggy Jenkins
-  version: 2.0.1-pre.0
+  version: 3.0.2-pre.0
 servers:
 - url: /
 paths:
@@ -29,7 +29,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
     head:
@@ -53,7 +54,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /computer/api/json:
@@ -84,7 +86,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /createItem:
@@ -158,7 +161,8 @@ paths:
       tags:
       - remoteAccess
       x-content-type: application/json
-      x-accepts: '*/*'
+      x-accepts:
+      - '*/*'
       x-tags:
       - tag: remoteAccess
   /createView:
@@ -215,7 +219,8 @@ paths:
       tags:
       - remoteAccess
       x-content-type: application/json
-      x-accepts: '*/*'
+      x-accepts:
+      - '*/*'
       x-tags:
       - tag: remoteAccess
   /crumbIssuer/api/json:
@@ -237,7 +242,8 @@ paths:
       - jenkins_auth: []
       tags:
       - base
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: base
   /job/{name}/api/json:
@@ -270,7 +276,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /job/{name}/build:
@@ -324,7 +331,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /job/{name}/config.xml:
@@ -357,7 +365,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: text/xml
+      x-accepts:
+      - text/xml
       x-tags:
       - tag: remoteAccess
     post:
@@ -408,7 +417,8 @@ paths:
       tags:
       - remoteAccess
       x-content-type: application/json
-      x-accepts: '*/*'
+      x-accepts:
+      - '*/*'
       x-tags:
       - tag: remoteAccess
   /job/{name}/doDelete:
@@ -445,7 +455,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /job/{name}/disable:
@@ -482,7 +493,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /job/{name}/enable:
@@ -519,7 +531,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /job/{name}/lastBuild/api/json:
@@ -552,7 +565,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /job/{name}/lastBuild/stop:
@@ -589,7 +603,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /job/{name}/{number}/logText/progressiveText:
@@ -634,7 +649,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /queue/api/json:
@@ -656,7 +672,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /queue/item/{number}/api/json:
@@ -687,7 +704,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /view/{name}/api/json:
@@ -720,7 +738,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: remoteAccess
   /view/{name}/config.xml:
@@ -753,7 +772,8 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-accepts: text/xml
+      x-accepts:
+      - text/xml
       x-tags:
       - tag: remoteAccess
     post:
@@ -804,7 +824,8 @@ paths:
       tags:
       - remoteAccess
       x-content-type: application/json
-      x-accepts: '*/*'
+      x-accepts:
+      - '*/*'
       x-tags:
       - tag: remoteAccess
   /jwt-auth/token:
@@ -841,7 +862,8 @@ paths:
           description: Jenkins requires authentication - please set username and password
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /jwt-auth/jwks/{key}:
@@ -870,7 +892,8 @@ paths:
           description: Jenkins requires authentication - please set username and password
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/classes/:
@@ -901,7 +924,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/classes/{class}:
@@ -932,7 +956,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/search/:
@@ -963,7 +988,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/:
@@ -985,7 +1011,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}:
@@ -1018,7 +1045,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/:
@@ -1049,7 +1077,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}:
@@ -1090,7 +1119,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities:
@@ -1129,7 +1159,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches:
@@ -1168,7 +1199,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/:
@@ -1215,7 +1247,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}:
@@ -1270,7 +1303,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{folder}/:
@@ -1309,7 +1343,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}:
@@ -1356,7 +1391,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite:
@@ -1404,7 +1440,8 @@ paths:
       tags:
       - blueOcean
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue:
@@ -1443,7 +1480,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}:
@@ -1486,7 +1524,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs:
@@ -1525,7 +1564,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
     post:
@@ -1563,7 +1603,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}:
@@ -1610,7 +1651,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes:
@@ -1657,7 +1699,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}:
@@ -1712,7 +1755,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps:
@@ -1767,7 +1811,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}:
@@ -1830,7 +1875,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log:
@@ -1893,7 +1939,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log:
@@ -1957,7 +2004,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay:
@@ -2004,7 +2052,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop:
@@ -2067,7 +2116,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/scm/{scm}:
@@ -2106,7 +2156,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/scm/{scm}/organizations:
@@ -2153,7 +2204,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories:
@@ -2224,7 +2276,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}:
@@ -2287,7 +2340,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/user/:
@@ -2318,7 +2372,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/users/:
@@ -2349,7 +2404,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/organizations/{organization}/users/{user}:
@@ -2388,7 +2444,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
   /blue/rest/users/{user}/favorites:
@@ -2419,7 +2476,8 @@ paths:
       - jenkins_auth: []
       tags:
       - blueOcean
-      x-accepts: application/json
+      x-accepts:
+      - application/json
       x-tags:
       - tag: blueOcean
 components:

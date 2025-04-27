@@ -17,23 +17,23 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2024-03-15T14:15:29.514273296Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2025-04-27T08:09:43.773145588Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class FreeStyleProject   {
   
   private String propertyClass;
   private String name;
   private String url;
   private String color;
-  private List<@Valid FreeStyleProjectactions> actions;
+  private List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
   private String description;
   private String displayName;
   private String displayNameOrNull;
   private String fullDisplayName;
   private String fullName;
   private Boolean buildable;
-  private List<@Valid FreeStyleBuild> builds;
+  private List<@Valid FreeStyleBuild> builds = new ArrayList<>();
   private FreeStyleBuild firstBuild;
-  private List<@Valid FreeStyleProjecthealthReport> healthReport;
+  private List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
   private Boolean inQueue;
   private Boolean keepDependencies;
   private FreeStyleBuild lastBuild;

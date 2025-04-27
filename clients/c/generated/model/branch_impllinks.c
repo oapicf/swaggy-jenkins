@@ -5,7 +5,7 @@
 
 
 
-branch_impllinks_t *branch_impllinks_create(
+static branch_impllinks_t *branch_impllinks_create_internal(
     link_t *self,
     link_t *actions,
     link_t *runs,
@@ -22,12 +22,32 @@ branch_impllinks_t *branch_impllinks_create(
     branch_impllinks_local_var->queue = queue;
     branch_impllinks_local_var->_class = _class;
 
+    branch_impllinks_local_var->_library_owned = 1;
     return branch_impllinks_local_var;
 }
 
+__attribute__((deprecated)) branch_impllinks_t *branch_impllinks_create(
+    link_t *self,
+    link_t *actions,
+    link_t *runs,
+    link_t *queue,
+    char *_class
+    ) {
+    return branch_impllinks_create_internal (
+        self,
+        actions,
+        runs,
+        queue,
+        _class
+        );
+}
 
 void branch_impllinks_free(branch_impllinks_t *branch_impllinks) {
     if(NULL == branch_impllinks){
+        return ;
+    }
+    if(branch_impllinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branch_impllinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -142,30 +162,45 @@ branch_impllinks_t *branch_impllinks_parseFromJSON(cJSON *branch_impllinksJSON){
 
     // branch_impllinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(branch_impllinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // branch_impllinks->actions
     cJSON *actions = cJSON_GetObjectItemCaseSensitive(branch_impllinksJSON, "actions");
+    if (cJSON_IsNull(actions)) {
+        actions = NULL;
+    }
     if (actions) { 
     actions_local_nonprim = link_parseFromJSON(actions); //nonprimitive
     }
 
     // branch_impllinks->runs
     cJSON *runs = cJSON_GetObjectItemCaseSensitive(branch_impllinksJSON, "runs");
+    if (cJSON_IsNull(runs)) {
+        runs = NULL;
+    }
     if (runs) { 
     runs_local_nonprim = link_parseFromJSON(runs); //nonprimitive
     }
 
     // branch_impllinks->queue
     cJSON *queue = cJSON_GetObjectItemCaseSensitive(branch_impllinksJSON, "queue");
+    if (cJSON_IsNull(queue)) {
+        queue = NULL;
+    }
     if (queue) { 
     queue_local_nonprim = link_parseFromJSON(queue); //nonprimitive
     }
 
     // branch_impllinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(branch_impllinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -174,7 +209,7 @@ branch_impllinks_t *branch_impllinks_parseFromJSON(cJSON *branch_impllinksJSON){
     }
 
 
-    branch_impllinks_local_var = branch_impllinks_create (
+    branch_impllinks_local_var = branch_impllinks_create_internal (
         self ? self_local_nonprim : NULL,
         actions ? actions_local_nonprim : NULL,
         runs ? runs_local_nonprim : NULL,

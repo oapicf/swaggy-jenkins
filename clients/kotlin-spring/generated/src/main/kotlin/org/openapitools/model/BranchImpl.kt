@@ -77,7 +77,7 @@ data class BranchImpl(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("latestRun") val latestRun: PipelineRunImpl? = null
-) {
+    ) {
 
 }
 

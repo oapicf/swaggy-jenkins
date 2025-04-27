@@ -47,5 +47,8 @@ data class QueueItemImpl (
     @Json(name = "queuedTime")
     val queuedTime: kotlin.Int? = null
 
-)
+) {
+
+
+}
 

@@ -30,9 +30,10 @@ typedef struct pipeline_impl_t {
     int weather_score; //numeric
     struct pipeline_impllinks_t *_links; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_impl_t;
 
-pipeline_impl_t *pipeline_impl_create(
+__attribute__((deprecated)) pipeline_impl_t *pipeline_impl_create(
     char *_class,
     char *display_name,
     int estimated_duration_in_millis,

@@ -51,5 +51,8 @@ data class GenericResource (
     @Json(name = "startTime")
     val startTime: kotlin.String? = null
 
-)
+) {
+
+
+}
 

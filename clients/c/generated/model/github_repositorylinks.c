@@ -5,7 +5,7 @@
 
 
 
-github_repositorylinks_t *github_repositorylinks_create(
+static github_repositorylinks_t *github_repositorylinks_create_internal(
     link_t *self,
     char *_class
     ) {
@@ -16,12 +16,26 @@ github_repositorylinks_t *github_repositorylinks_create(
     github_repositorylinks_local_var->self = self;
     github_repositorylinks_local_var->_class = _class;
 
+    github_repositorylinks_local_var->_library_owned = 1;
     return github_repositorylinks_local_var;
 }
 
+__attribute__((deprecated)) github_repositorylinks_t *github_repositorylinks_create(
+    link_t *self,
+    char *_class
+    ) {
+    return github_repositorylinks_create_internal (
+        self,
+        _class
+        );
+}
 
 void github_repositorylinks_free(github_repositorylinks_t *github_repositorylinks) {
     if(NULL == github_repositorylinks){
+        return ;
+    }
+    if(github_repositorylinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_repositorylinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -76,12 +90,18 @@ github_repositorylinks_t *github_repositorylinks_parseFromJSON(cJSON *github_rep
 
     // github_repositorylinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(github_repositorylinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // github_repositorylinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_repositorylinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -90,7 +110,7 @@ github_repositorylinks_t *github_repositorylinks_parseFromJSON(cJSON *github_rep
     }
 
 
-    github_repositorylinks_local_var = github_repositorylinks_create (
+    github_repositorylinks_local_var = github_repositorylinks_create_internal (
         self ? self_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

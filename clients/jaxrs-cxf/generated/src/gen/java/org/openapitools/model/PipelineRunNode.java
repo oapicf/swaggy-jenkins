@@ -25,7 +25,7 @@ public class PipelineRunNode  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<@Valid PipelineRunNodeedges> edges;
+  private List<@Valid PipelineRunNodeedges> edges = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private String id;

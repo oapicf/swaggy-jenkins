@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,12 +19,12 @@ import javax.annotation.Generated;
  * EmptyChangeLogSet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class EmptyChangeLogSet {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private String kind;
+  private @Nullable String kind;
 
   public EmptyChangeLogSet propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -33,7 +34,7 @@ public class EmptyChangeLogSet {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -53,7 +54,7 @@ public class EmptyChangeLogSet {
   /**
    * Get kind
    * @return kind
-  */
+   */
   
   @Schema(name = "kind", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("kind")

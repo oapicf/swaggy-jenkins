@@ -33,7 +33,7 @@ data class CauseUserIdCause(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("userName") val userName: kotlin.String? = null
-) {
+    ) {
 
 }
 

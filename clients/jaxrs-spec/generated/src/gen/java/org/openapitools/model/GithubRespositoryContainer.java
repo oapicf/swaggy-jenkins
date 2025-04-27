@@ -17,11 +17,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("GithubRespositoryContainer")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubRespositoryContainer   {
-  private @Valid String propertyClass;
-  private @Valid GithubRespositoryContainerlinks links;
-  private @Valid GithubRepositories repositories;
+  private String propertyClass;
+  private GithubRespositoryContainerlinks links;
+  private GithubRepositories repositories;
+
+  public GithubRespositoryContainer() {
+  }
 
   /**
    **/
@@ -52,7 +55,7 @@ public class GithubRespositoryContainer   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public GithubRespositoryContainerlinks getLinks() {
+  @Valid public GithubRespositoryContainerlinks getLinks() {
     return links;
   }
 
@@ -71,7 +74,7 @@ public class GithubRespositoryContainer   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("repositories")
-  public GithubRepositories getRepositories() {
+  @Valid public GithubRepositories getRepositories() {
     return repositories;
   }
 

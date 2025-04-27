@@ -16,7 +16,7 @@ public class MultibranchPipeline   {
   private String name;
   private String organization;
   private Integer weatherScore;
-  private List<String> branchNames;
+  private List<String> branchNames = new ArrayList<>();
   private Integer numberOfFailingBranches;
   private Integer numberOfFailingPullRequests;
   private Integer numberOfSuccessfulBranches;

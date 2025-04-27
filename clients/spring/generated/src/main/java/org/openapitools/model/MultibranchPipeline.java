@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -21,37 +22,37 @@ import javax.annotation.Generated;
  * MultibranchPipeline
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class MultibranchPipeline {
 
-  private String displayName;
+  private @Nullable String displayName;
 
-  private Integer estimatedDurationInMillis;
+  private @Nullable Integer estimatedDurationInMillis;
 
-  private String latestRun;
+  private @Nullable String latestRun;
 
-  private String name;
+  private @Nullable String name;
 
-  private String organization;
+  private @Nullable String organization;
 
-  private Integer weatherScore;
+  private @Nullable Integer weatherScore;
 
   @Valid
-  private List<String> branchNames;
+  private List<String> branchNames = new ArrayList<>();
 
-  private Integer numberOfFailingBranches;
+  private @Nullable Integer numberOfFailingBranches;
 
-  private Integer numberOfFailingPullRequests;
+  private @Nullable Integer numberOfFailingPullRequests;
 
-  private Integer numberOfSuccessfulBranches;
+  private @Nullable Integer numberOfSuccessfulBranches;
 
-  private Integer numberOfSuccessfulPullRequests;
+  private @Nullable Integer numberOfSuccessfulPullRequests;
 
-  private Integer totalNumberOfBranches;
+  private @Nullable Integer totalNumberOfBranches;
 
-  private Integer totalNumberOfPullRequests;
+  private @Nullable Integer totalNumberOfPullRequests;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public MultibranchPipeline displayName(String displayName) {
     this.displayName = displayName;
@@ -61,7 +62,7 @@ public class MultibranchPipeline {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -81,7 +82,7 @@ public class MultibranchPipeline {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  */
+   */
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
@@ -101,7 +102,7 @@ public class MultibranchPipeline {
   /**
    * Get latestRun
    * @return latestRun
-  */
+   */
   
   @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("latestRun")
@@ -121,7 +122,7 @@ public class MultibranchPipeline {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -141,7 +142,7 @@ public class MultibranchPipeline {
   /**
    * Get organization
    * @return organization
-  */
+   */
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
@@ -161,7 +162,7 @@ public class MultibranchPipeline {
   /**
    * Get weatherScore
    * @return weatherScore
-  */
+   */
   
   @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("weatherScore")
@@ -189,7 +190,7 @@ public class MultibranchPipeline {
   /**
    * Get branchNames
    * @return branchNames
-  */
+   */
   
   @Schema(name = "branchNames", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("branchNames")
@@ -209,7 +210,7 @@ public class MultibranchPipeline {
   /**
    * Get numberOfFailingBranches
    * @return numberOfFailingBranches
-  */
+   */
   
   @Schema(name = "numberOfFailingBranches", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numberOfFailingBranches")
@@ -229,7 +230,7 @@ public class MultibranchPipeline {
   /**
    * Get numberOfFailingPullRequests
    * @return numberOfFailingPullRequests
-  */
+   */
   
   @Schema(name = "numberOfFailingPullRequests", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numberOfFailingPullRequests")
@@ -249,7 +250,7 @@ public class MultibranchPipeline {
   /**
    * Get numberOfSuccessfulBranches
    * @return numberOfSuccessfulBranches
-  */
+   */
   
   @Schema(name = "numberOfSuccessfulBranches", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numberOfSuccessfulBranches")
@@ -269,7 +270,7 @@ public class MultibranchPipeline {
   /**
    * Get numberOfSuccessfulPullRequests
    * @return numberOfSuccessfulPullRequests
-  */
+   */
   
   @Schema(name = "numberOfSuccessfulPullRequests", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numberOfSuccessfulPullRequests")
@@ -289,7 +290,7 @@ public class MultibranchPipeline {
   /**
    * Get totalNumberOfBranches
    * @return totalNumberOfBranches
-  */
+   */
   
   @Schema(name = "totalNumberOfBranches", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalNumberOfBranches")
@@ -309,7 +310,7 @@ public class MultibranchPipeline {
   /**
    * Get totalNumberOfPullRequests
    * @return totalNumberOfPullRequests
-  */
+   */
   
   @Schema(name = "totalNumberOfPullRequests", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalNumberOfPullRequests")
@@ -329,7 +330,7 @@ public class MultibranchPipeline {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

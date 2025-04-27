@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Pipeline
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class Pipeline   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -46,10 +46,10 @@ public class Pipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -64,10 +64,10 @@ public class Pipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get organization
    * @return organization
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getOrganization() {
     return organization;
@@ -82,10 +82,10 @@ public class Pipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getName() {
     return name;
@@ -100,10 +100,10 @@ public class Pipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get displayName
    * @return displayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayName() {
     return displayName;
@@ -118,10 +118,10 @@ public class Pipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get fullName
    * @return fullName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getFullName() {
     return fullName;
@@ -136,10 +136,10 @@ public class Pipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get weatherScore
    * @return weatherScore
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getWeatherScore() {
     return weatherScore;
@@ -154,10 +154,10 @@ public class Pipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
@@ -172,10 +172,10 @@ public class Pipeline   {
     return this;
   }
 
-   /**
+  /**
    * Get latestRun
    * @return latestRun
-  **/
+   */
   @ApiModelProperty(value = "")
   public PipelinelatestRun getLatestRun() {
     return latestRun;

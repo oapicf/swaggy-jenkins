@@ -5,7 +5,7 @@
 
 
 
-branch_impl_t *branch_impl_create(
+static branch_impl_t *branch_impl_create_internal(
     char *_class,
     char *display_name,
     int estimated_duration_in_millis,
@@ -38,12 +38,48 @@ branch_impl_t *branch_impl_create(
     branch_impl_local_var->_links = _links;
     branch_impl_local_var->latest_run = latest_run;
 
+    branch_impl_local_var->_library_owned = 1;
     return branch_impl_local_var;
 }
 
+__attribute__((deprecated)) branch_impl_t *branch_impl_create(
+    char *_class,
+    char *display_name,
+    int estimated_duration_in_millis,
+    char *full_display_name,
+    char *full_name,
+    char *name,
+    char *organization,
+    list_t *parameters,
+    branch_implpermissions_t *permissions,
+    int weather_score,
+    char *pull_request,
+    branch_impllinks_t *_links,
+    pipeline_run_impl_t *latest_run
+    ) {
+    return branch_impl_create_internal (
+        _class,
+        display_name,
+        estimated_duration_in_millis,
+        full_display_name,
+        full_name,
+        name,
+        organization,
+        parameters,
+        permissions,
+        weather_score,
+        pull_request,
+        _links,
+        latest_run
+        );
+}
 
 void branch_impl_free(branch_impl_t *branch_impl) {
     if(NULL == branch_impl){
+        return ;
+    }
+    if(branch_impl->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branch_impl_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -256,6 +292,9 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -265,6 +304,9 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "displayName");
+    if (cJSON_IsNull(display_name)) {
+        display_name = NULL;
+    }
     if (display_name) { 
     if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
@@ -274,6 +316,9 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->estimated_duration_in_millis
     cJSON *estimated_duration_in_millis = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "estimatedDurationInMillis");
+    if (cJSON_IsNull(estimated_duration_in_millis)) {
+        estimated_duration_in_millis = NULL;
+    }
     if (estimated_duration_in_millis) { 
     if(!cJSON_IsNumber(estimated_duration_in_millis))
     {
@@ -283,6 +328,9 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->full_display_name
     cJSON *full_display_name = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "fullDisplayName");
+    if (cJSON_IsNull(full_display_name)) {
+        full_display_name = NULL;
+    }
     if (full_display_name) { 
     if(!cJSON_IsString(full_display_name) && !cJSON_IsNull(full_display_name))
     {
@@ -292,6 +340,9 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->full_name
     cJSON *full_name = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "fullName");
+    if (cJSON_IsNull(full_name)) {
+        full_name = NULL;
+    }
     if (full_name) { 
     if(!cJSON_IsString(full_name) && !cJSON_IsNull(full_name))
     {
@@ -301,6 +352,9 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -310,6 +364,9 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->organization
     cJSON *organization = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "organization");
+    if (cJSON_IsNull(organization)) {
+        organization = NULL;
+    }
     if (organization) { 
     if(!cJSON_IsString(organization) && !cJSON_IsNull(organization))
     {
@@ -319,6 +376,9 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->parameters
     cJSON *parameters = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "parameters");
+    if (cJSON_IsNull(parameters)) {
+        parameters = NULL;
+    }
     if (parameters) { 
     cJSON *parameters_local_nonprimitive = NULL;
     if(!cJSON_IsArray(parameters)){
@@ -340,12 +400,18 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->permissions
     cJSON *permissions = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "permissions");
+    if (cJSON_IsNull(permissions)) {
+        permissions = NULL;
+    }
     if (permissions) { 
     permissions_local_nonprim = branch_implpermissions_parseFromJSON(permissions); //nonprimitive
     }
 
     // branch_impl->weather_score
     cJSON *weather_score = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "weatherScore");
+    if (cJSON_IsNull(weather_score)) {
+        weather_score = NULL;
+    }
     if (weather_score) { 
     if(!cJSON_IsNumber(weather_score))
     {
@@ -355,6 +421,9 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->pull_request
     cJSON *pull_request = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "pullRequest");
+    if (cJSON_IsNull(pull_request)) {
+        pull_request = NULL;
+    }
     if (pull_request) { 
     if(!cJSON_IsString(pull_request) && !cJSON_IsNull(pull_request))
     {
@@ -364,18 +433,24 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     // branch_impl->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "_links");
+    if (cJSON_IsNull(_links)) {
+        _links = NULL;
+    }
     if (_links) { 
     _links_local_nonprim = branch_impllinks_parseFromJSON(_links); //nonprimitive
     }
 
     // branch_impl->latest_run
     cJSON *latest_run = cJSON_GetObjectItemCaseSensitive(branch_implJSON, "latestRun");
+    if (cJSON_IsNull(latest_run)) {
+        latest_run = NULL;
+    }
     if (latest_run) { 
     latest_run_local_nonprim = pipeline_run_impl_parseFromJSON(latest_run); //nonprimitive
     }
 
 
-    branch_impl_local_var = branch_impl_create (
+    branch_impl_local_var = branch_impl_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,

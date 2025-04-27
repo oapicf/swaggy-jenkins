@@ -39,5 +39,8 @@ data class ResponseTimeMonitorData (
     @Json(name = "average")
     val average: kotlin.Int? = null
 
-)
+) {
+
+
+}
 

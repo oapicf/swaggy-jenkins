@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * PipelineImpl
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineImpl   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -49,10 +49,10 @@ public class PipelineImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -67,10 +67,10 @@ public class PipelineImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get displayName
    * @return displayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayName() {
     return displayName;
@@ -85,10 +85,10 @@ public class PipelineImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
@@ -103,10 +103,10 @@ public class PipelineImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get fullName
    * @return fullName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getFullName() {
     return fullName;
@@ -121,10 +121,10 @@ public class PipelineImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get latestRun
    * @return latestRun
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getLatestRun() {
     return latestRun;
@@ -139,10 +139,10 @@ public class PipelineImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getName() {
     return name;
@@ -157,10 +157,10 @@ public class PipelineImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get organization
    * @return organization
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getOrganization() {
     return organization;
@@ -175,10 +175,10 @@ public class PipelineImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get weatherScore
    * @return weatherScore
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getWeatherScore() {
     return weatherScore;
@@ -193,10 +193,10 @@ public class PipelineImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get links
    * @return links
-  **/
+   */
   @ApiModelProperty(value = "")
   public PipelineImpllinks getLinks() {
     return links;

@@ -5,7 +5,7 @@
 
 
 
-list_view_t *list_view_create(
+static list_view_t *list_view_create_internal(
     char *_class,
     char *description,
     list_t *jobs,
@@ -22,12 +22,32 @@ list_view_t *list_view_create(
     list_view_local_var->name = name;
     list_view_local_var->url = url;
 
+    list_view_local_var->_library_owned = 1;
     return list_view_local_var;
 }
 
+__attribute__((deprecated)) list_view_t *list_view_create(
+    char *_class,
+    char *description,
+    list_t *jobs,
+    char *name,
+    char *url
+    ) {
+    return list_view_create_internal (
+        _class,
+        description,
+        jobs,
+        name,
+        url
+        );
+}
 
 void list_view_free(list_view_t *list_view) {
     if(NULL == list_view){
+        return ;
+    }
+    if(list_view->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "list_view_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -128,6 +148,9 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
 
     // list_view->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -137,6 +160,9 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
 
     // list_view->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "description");
+    if (cJSON_IsNull(description)) {
+        description = NULL;
+    }
     if (description) { 
     if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
@@ -146,6 +172,9 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
 
     // list_view->jobs
     cJSON *jobs = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "jobs");
+    if (cJSON_IsNull(jobs)) {
+        jobs = NULL;
+    }
     if (jobs) { 
     cJSON *jobs_local_nonprimitive = NULL;
     if(!cJSON_IsArray(jobs)){
@@ -167,6 +196,9 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
 
     // list_view->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -176,6 +208,9 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
 
     // list_view->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "url");
+    if (cJSON_IsNull(url)) {
+        url = NULL;
+    }
     if (url) { 
     if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
@@ -184,7 +219,7 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
     }
 
 
-    list_view_local_var = list_view_create (
+    list_view_local_var = list_view_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
         jobs ? jobsList : NULL,

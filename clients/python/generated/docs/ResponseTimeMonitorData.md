@@ -24,7 +24,7 @@ print(ResponseTimeMonitorData.to_json())
 # convert the object into a dict
 response_time_monitor_data_dict = response_time_monitor_data_instance.to_dict()
 # create an instance of ResponseTimeMonitorData from a dict
-response_time_monitor_data_form_dict = response_time_monitor_data.from_dict(response_time_monitor_data_dict)
+response_time_monitor_data_from_dict = ResponseTimeMonitorData.from_dict(response_time_monitor_data_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

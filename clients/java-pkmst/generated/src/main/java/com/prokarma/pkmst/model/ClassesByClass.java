@@ -17,7 +17,7 @@ import java.util.List;
  * ClassesByClass
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ClassesByClass   {
   @JsonProperty("classes")
   
@@ -39,10 +39,10 @@ public class ClassesByClass   {
     return this;
   }
 
-   /**
+  /**
    * Get classes
    * @return classes
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<String> getClasses() {
     return classes;
@@ -57,10 +57,10 @@ public class ClassesByClass   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;

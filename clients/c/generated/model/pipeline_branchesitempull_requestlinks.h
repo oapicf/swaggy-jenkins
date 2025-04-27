@@ -22,9 +22,10 @@ typedef struct pipeline_branchesitempull_requestlinks_t {
     char *self; // string
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_branchesitempull_requestlinks_t;
 
-pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks_create(
+__attribute__((deprecated)) pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks_create(
     char *self,
     char *_class
 );

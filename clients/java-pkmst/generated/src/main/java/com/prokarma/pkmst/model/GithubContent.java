@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * GithubContent
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubContent   {
   @JsonProperty("name")
   private String name;
@@ -45,10 +45,10 @@ public class GithubContent   {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getName() {
     return name;
@@ -63,10 +63,10 @@ public class GithubContent   {
     return this;
   }
 
-   /**
+  /**
    * Get sha
    * @return sha
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getSha() {
     return sha;
@@ -81,10 +81,10 @@ public class GithubContent   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -99,10 +99,10 @@ public class GithubContent   {
     return this;
   }
 
-   /**
+  /**
    * Get repo
    * @return repo
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getRepo() {
     return repo;
@@ -117,10 +117,10 @@ public class GithubContent   {
     return this;
   }
 
-   /**
+  /**
    * Get size
    * @return size
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getSize() {
     return size;
@@ -135,10 +135,10 @@ public class GithubContent   {
     return this;
   }
 
-   /**
+  /**
    * Get owner
    * @return owner
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getOwner() {
     return owner;
@@ -153,10 +153,10 @@ public class GithubContent   {
     return this;
   }
 
-   /**
+  /**
    * Get path
    * @return path
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPath() {
     return path;
@@ -171,10 +171,10 @@ public class GithubContent   {
     return this;
   }
 
-   /**
+  /**
    * Get base64Data
    * @return base64Data
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getBase64Data() {
     return base64Data;

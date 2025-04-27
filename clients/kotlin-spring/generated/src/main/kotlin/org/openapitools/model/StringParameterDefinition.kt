@@ -39,7 +39,7 @@ data class StringParameterDefinition(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("type") val type: kotlin.String? = null
-) {
+    ) {
 
 }
 

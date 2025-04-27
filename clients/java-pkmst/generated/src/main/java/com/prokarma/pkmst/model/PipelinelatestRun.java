@@ -18,7 +18,7 @@ import java.util.List;
  * PipelinelatestRun
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelinelatestRun   {
   @JsonProperty("artifacts")
   
@@ -79,10 +79,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get artifacts
    * @return artifacts
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<PipelinelatestRunartifacts> getArtifacts() {
     return artifacts;
@@ -97,10 +97,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get durationInMillis
    * @return durationInMillis
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getDurationInMillis() {
     return durationInMillis;
@@ -115,10 +115,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
@@ -133,10 +133,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get enQueueTime
    * @return enQueueTime
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getEnQueueTime() {
     return enQueueTime;
@@ -151,10 +151,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get endTime
    * @return endTime
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getEndTime() {
     return endTime;
@@ -169,10 +169,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getId() {
     return id;
@@ -187,10 +187,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get organization
    * @return organization
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getOrganization() {
     return organization;
@@ -205,10 +205,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get pipeline
    * @return pipeline
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPipeline() {
     return pipeline;
@@ -223,10 +223,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get result
    * @return result
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getResult() {
     return result;
@@ -241,10 +241,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get runSummary
    * @return runSummary
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getRunSummary() {
     return runSummary;
@@ -259,10 +259,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get startTime
    * @return startTime
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getStartTime() {
     return startTime;
@@ -277,10 +277,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get state
    * @return state
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getState() {
     return state;
@@ -295,10 +295,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get type
    * @return type
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getType() {
     return type;
@@ -313,10 +313,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get commitId
    * @return commitId
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getCommitId() {
     return commitId;
@@ -331,10 +331,10 @@ public class PipelinelatestRun   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;

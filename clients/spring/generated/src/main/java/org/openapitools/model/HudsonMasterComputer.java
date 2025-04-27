@@ -10,6 +10,7 @@ import java.util.List;
 import org.openapitools.model.HudsonMasterComputerexecutors;
 import org.openapitools.model.HudsonMasterComputermonitorData;
 import org.openapitools.model.Label1;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -24,41 +25,41 @@ import javax.annotation.Generated;
  * HudsonMasterComputer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputer {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private String displayName;
+  private @Nullable String displayName;
 
   @Valid
-  private List<@Valid HudsonMasterComputerexecutors> executors;
+  private List<@Valid HudsonMasterComputerexecutors> executors = new ArrayList<>();
 
-  private String icon;
+  private @Nullable String icon;
 
-  private String iconClassName;
+  private @Nullable String iconClassName;
 
-  private Boolean idle;
+  private @Nullable Boolean idle;
 
-  private Boolean jnlpAgent;
+  private @Nullable Boolean jnlpAgent;
 
-  private Boolean launchSupported;
+  private @Nullable Boolean launchSupported;
 
-  private Label1 loadStatistics;
+  private @Nullable Label1 loadStatistics;
 
-  private Boolean manualLaunchAllowed;
+  private @Nullable Boolean manualLaunchAllowed;
 
-  private HudsonMasterComputermonitorData monitorData;
+  private @Nullable HudsonMasterComputermonitorData monitorData;
 
-  private Integer numExecutors;
+  private @Nullable Integer numExecutors;
 
-  private Boolean offline;
+  private @Nullable Boolean offline;
 
-  private String offlineCause;
+  private @Nullable String offlineCause;
 
-  private String offlineCauseReason;
+  private @Nullable String offlineCauseReason;
 
-  private Boolean temporarilyOffline;
+  private @Nullable Boolean temporarilyOffline;
 
   public HudsonMasterComputer propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -68,7 +69,7 @@ public class HudsonMasterComputer {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -88,7 +89,7 @@ public class HudsonMasterComputer {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -116,7 +117,7 @@ public class HudsonMasterComputer {
   /**
    * Get executors
    * @return executors
-  */
+   */
   @Valid 
   @Schema(name = "executors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("executors")
@@ -136,7 +137,7 @@ public class HudsonMasterComputer {
   /**
    * Get icon
    * @return icon
-  */
+   */
   
   @Schema(name = "icon", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("icon")
@@ -156,7 +157,7 @@ public class HudsonMasterComputer {
   /**
    * Get iconClassName
    * @return iconClassName
-  */
+   */
   
   @Schema(name = "iconClassName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("iconClassName")
@@ -176,7 +177,7 @@ public class HudsonMasterComputer {
   /**
    * Get idle
    * @return idle
-  */
+   */
   
   @Schema(name = "idle", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("idle")
@@ -196,7 +197,7 @@ public class HudsonMasterComputer {
   /**
    * Get jnlpAgent
    * @return jnlpAgent
-  */
+   */
   
   @Schema(name = "jnlpAgent", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("jnlpAgent")
@@ -216,7 +217,7 @@ public class HudsonMasterComputer {
   /**
    * Get launchSupported
    * @return launchSupported
-  */
+   */
   
   @Schema(name = "launchSupported", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("launchSupported")
@@ -236,7 +237,7 @@ public class HudsonMasterComputer {
   /**
    * Get loadStatistics
    * @return loadStatistics
-  */
+   */
   @Valid 
   @Schema(name = "loadStatistics", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("loadStatistics")
@@ -256,7 +257,7 @@ public class HudsonMasterComputer {
   /**
    * Get manualLaunchAllowed
    * @return manualLaunchAllowed
-  */
+   */
   
   @Schema(name = "manualLaunchAllowed", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("manualLaunchAllowed")
@@ -276,7 +277,7 @@ public class HudsonMasterComputer {
   /**
    * Get monitorData
    * @return monitorData
-  */
+   */
   @Valid 
   @Schema(name = "monitorData", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("monitorData")
@@ -296,7 +297,7 @@ public class HudsonMasterComputer {
   /**
    * Get numExecutors
    * @return numExecutors
-  */
+   */
   
   @Schema(name = "numExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numExecutors")
@@ -316,7 +317,7 @@ public class HudsonMasterComputer {
   /**
    * Get offline
    * @return offline
-  */
+   */
   
   @Schema(name = "offline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("offline")
@@ -336,7 +337,7 @@ public class HudsonMasterComputer {
   /**
    * Get offlineCause
    * @return offlineCause
-  */
+   */
   
   @Schema(name = "offlineCause", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("offlineCause")
@@ -356,7 +357,7 @@ public class HudsonMasterComputer {
   /**
    * Get offlineCauseReason
    * @return offlineCauseReason
-  */
+   */
   
   @Schema(name = "offlineCauseReason", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("offlineCauseReason")
@@ -376,7 +377,7 @@ public class HudsonMasterComputer {
   /**
    * Get temporarilyOffline
    * @return temporarilyOffline
-  */
+   */
   
   @Schema(name = "temporarilyOffline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("temporarilyOffline")

@@ -20,20 +20,23 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("QueueBlockedItem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class QueueBlockedItem   {
-  private @Valid String propertyClass;
-  private @Valid List<@Valid CauseAction> actions;
-  private @Valid Boolean blocked;
-  private @Valid Boolean buildable;
-  private @Valid Integer id;
-  private @Valid Integer inQueueSince;
-  private @Valid String params;
-  private @Valid Boolean stuck;
-  private @Valid FreeStyleProject task;
-  private @Valid String url;
-  private @Valid String why;
-  private @Valid Integer buildableStartMilliseconds;
+  private String propertyClass;
+  private @Valid List<@Valid CauseAction> actions = new ArrayList<>();
+  private Boolean blocked;
+  private Boolean buildable;
+  private Integer id;
+  private Integer inQueueSince;
+  private String params;
+  private Boolean stuck;
+  private FreeStyleProject task;
+  private String url;
+  private String why;
+  private Integer buildableStartMilliseconds;
+
+  public QueueBlockedItem() {
+  }
 
   /**
    **/
@@ -64,7 +67,7 @@ public class QueueBlockedItem   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  public List<CauseAction> getActions() {
+  @Valid public List<@Valid CauseAction> getActions() {
     return actions;
   }
 
@@ -213,7 +216,7 @@ public class QueueBlockedItem   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("task")
-  public FreeStyleProject getTask() {
+  @Valid public FreeStyleProject getTask() {
     return task;
   }
 

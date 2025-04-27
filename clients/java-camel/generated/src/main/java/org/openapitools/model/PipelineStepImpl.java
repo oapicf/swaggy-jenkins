@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * PipelineStepImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineStepImpl {
 
   private String propertyClass;
@@ -49,7 +49,7 @@ public class PipelineStepImpl {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -69,7 +69,7 @@ public class PipelineStepImpl {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -89,7 +89,7 @@ public class PipelineStepImpl {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -109,7 +109,7 @@ public class PipelineStepImpl {
   /**
    * Get durationInMillis
    * @return durationInMillis
-  */
+   */
   
   @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("durationInMillis")
@@ -129,7 +129,7 @@ public class PipelineStepImpl {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -149,7 +149,7 @@ public class PipelineStepImpl {
   /**
    * Get input
    * @return input
-  */
+   */
   @Valid 
   @Schema(name = "input", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("input")
@@ -169,7 +169,7 @@ public class PipelineStepImpl {
   /**
    * Get result
    * @return result
-  */
+   */
   
   @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("result")
@@ -189,7 +189,7 @@ public class PipelineStepImpl {
   /**
    * Get startTime
    * @return startTime
-  */
+   */
   
   @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("startTime")
@@ -209,7 +209,7 @@ public class PipelineStepImpl {
   /**
    * Get state
    * @return state
-  */
+   */
   
   @Schema(name = "state", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("state")

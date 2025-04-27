@@ -2,6 +2,10 @@
 .openapi-generator-ignore
 Cargo.toml
 README.md
+src/apis/base.rs
+src/apis/blue_ocean.rs
+src/apis/mod.rs
+src/apis/remote_access.rs
 src/header.rs
 src/lib.rs
 src/models.rs

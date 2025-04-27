@@ -5,7 +5,7 @@
 
 
 
-computer_set_t *computer_set_create(
+static computer_set_t *computer_set_create_internal(
     char *_class,
     int busy_executors,
     list_t *computer,
@@ -22,12 +22,32 @@ computer_set_t *computer_set_create(
     computer_set_local_var->display_name = display_name;
     computer_set_local_var->total_executors = total_executors;
 
+    computer_set_local_var->_library_owned = 1;
     return computer_set_local_var;
 }
 
+__attribute__((deprecated)) computer_set_t *computer_set_create(
+    char *_class,
+    int busy_executors,
+    list_t *computer,
+    char *display_name,
+    int total_executors
+    ) {
+    return computer_set_create_internal (
+        _class,
+        busy_executors,
+        computer,
+        display_name,
+        total_executors
+        );
+}
 
 void computer_set_free(computer_set_t *computer_set) {
     if(NULL == computer_set){
+        return ;
+    }
+    if(computer_set->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "computer_set_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -120,6 +140,9 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
 
     // computer_set->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(computer_setJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -129,6 +152,9 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
 
     // computer_set->busy_executors
     cJSON *busy_executors = cJSON_GetObjectItemCaseSensitive(computer_setJSON, "busyExecutors");
+    if (cJSON_IsNull(busy_executors)) {
+        busy_executors = NULL;
+    }
     if (busy_executors) { 
     if(!cJSON_IsNumber(busy_executors))
     {
@@ -138,6 +164,9 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
 
     // computer_set->computer
     cJSON *computer = cJSON_GetObjectItemCaseSensitive(computer_setJSON, "computer");
+    if (cJSON_IsNull(computer)) {
+        computer = NULL;
+    }
     if (computer) { 
     cJSON *computer_local_nonprimitive = NULL;
     if(!cJSON_IsArray(computer)){
@@ -159,6 +188,9 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
 
     // computer_set->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(computer_setJSON, "displayName");
+    if (cJSON_IsNull(display_name)) {
+        display_name = NULL;
+    }
     if (display_name) { 
     if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
@@ -168,6 +200,9 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
 
     // computer_set->total_executors
     cJSON *total_executors = cJSON_GetObjectItemCaseSensitive(computer_setJSON, "totalExecutors");
+    if (cJSON_IsNull(total_executors)) {
+        total_executors = NULL;
+    }
     if (total_executors) { 
     if(!cJSON_IsNumber(total_executors))
     {
@@ -176,7 +211,7 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
     }
 
 
-    computer_set_local_var = computer_set_create (
+    computer_set_local_var = computer_set_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         busy_executors ? busy_executors->valuedouble : 0,
         computer ? computerList : NULL,

@@ -26,7 +26,7 @@ print(SwapSpaceMonitorMemoryUsage2.to_json())
 # convert the object into a dict
 swap_space_monitor_memory_usage2_dict = swap_space_monitor_memory_usage2_instance.to_dict()
 # create an instance of SwapSpaceMonitorMemoryUsage2 from a dict
-swap_space_monitor_memory_usage2_form_dict = swap_space_monitor_memory_usage2.from_dict(swap_space_monitor_memory_usage2_dict)
+swap_space_monitor_memory_usage2_from_dict = SwapSpaceMonitorMemoryUsage2.from_dict(swap_space_monitor_memory_usage2_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

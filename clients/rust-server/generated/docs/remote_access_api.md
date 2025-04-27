@@ -6,17 +6,16 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 **getComputer**](remote_access_api.md#getComputer) | **GET** /computer/api/json | 
 **getJenkins**](remote_access_api.md#getJenkins) | **GET** /api/json | 
-**getJob**](remote_access_api.md#getJob) | **GET** /job/{name}/api/json | 
-**getJobConfig**](remote_access_api.md#getJobConfig) | **GET** /job/{name}/config.xml | 
-**getJobLastBuild**](remote_access_api.md#getJobLastBuild) | **GET** /job/{name}/lastBuild/api/json | 
-**getJobProgressiveText**](remote_access_api.md#getJobProgressiveText) | **GET** /job/{name}/{number}/logText/progressiveText | 
 **getQueue**](remote_access_api.md#getQueue) | **GET** /queue/api/json | 
-**getQueueItem**](remote_access_api.md#getQueueItem) | **GET** /queue/item/{number}/api/json | 
-**getView**](remote_access_api.md#getView) | **GET** /view/{name}/api/json | 
-**getViewConfig**](remote_access_api.md#getViewConfig) | **GET** /view/{name}/config.xml | 
 **headJenkins**](remote_access_api.md#headJenkins) | **HEAD** /api/json | 
 **postCreateItem**](remote_access_api.md#postCreateItem) | **POST** /createItem | 
 **postCreateView**](remote_access_api.md#postCreateView) | **POST** /createView | 
+**getJob**](remote_access_api.md#getJob) | **GET** /job/{name}/api/json | 
+**getJobConfig**](remote_access_api.md#getJobConfig) | **GET** /job/{name}/config.xml | 
+**getJobLastBuild**](remote_access_api.md#getJobLastBuild) | **GET** /job/{name}/lastBuild/api/json | 
+**getQueueItem**](remote_access_api.md#getQueueItem) | **GET** /queue/item/{number}/api/json | 
+**getView**](remote_access_api.md#getView) | **GET** /view/{name}/api/json | 
+**getViewConfig**](remote_access_api.md#getViewConfig) | **GET** /view/{name}/config.xml | 
 **postJobBuild**](remote_access_api.md#postJobBuild) | **POST** /job/{name}/build | 
 **postJobConfig**](remote_access_api.md#postJobConfig) | **POST** /job/{name}/config.xml | 
 **postJobDelete**](remote_access_api.md#postJobDelete) | **POST** /job/{name}/doDelete | 
@@ -24,6 +23,7 @@ Method | HTTP request | Description
 **postJobEnable**](remote_access_api.md#postJobEnable) | **POST** /job/{name}/enable | 
 **postJobLastBuildStop**](remote_access_api.md#postJobLastBuildStop) | **POST** /job/{name}/lastBuild/stop | 
 **postViewConfig**](remote_access_api.md#postViewConfig) | **POST** /view/{name}/config.xml | 
+**getJobProgressiveText**](remote_access_api.md#getJobProgressiveText) | **GET** /job/{name}/{number}/logText/progressiveText | 
 
 
 # **getComputer**
@@ -78,120 +78,6 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getJob**
-> models::FreeStyleProject getJob(ctx, name)
-
-
-Retrieve job details
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
-
-### Return type
-
-[**models::FreeStyleProject**](FreeStyleProject.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getJobConfig**
-> String getJobConfig(ctx, name)
-
-
-Retrieve job configuration
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
-
-### Return type
-
-[**String**](string.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/xml
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getJobLastBuild**
-> models::FreeStyleBuild getJobLastBuild(ctx, name)
-
-
-Retrieve job's last build details
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
-
-### Return type
-
-[**models::FreeStyleBuild**](FreeStyleBuild.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getJobProgressiveText**
-> getJobProgressiveText(ctx, name, number, start)
-
-
-Retrieve job's build progressive text output
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the job | 
-  **number** | **String**| Build number | 
-  **start** | **String**| Starting point of progressive text output | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **getQueue**
 > models::Queue getQueue(ctx, )
 
@@ -213,90 +99,6 @@ This endpoint does not need any parameter.
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getQueueItem**
-> models::Queue getQueueItem(ctx, number)
-
-
-Retrieve queued item details
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **number** | **String**| Queue number | 
-
-### Return type
-
-[**models::Queue**](Queue.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getView**
-> models::ListView getView(ctx, name)
-
-
-Retrieve view details
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the view | 
-
-### Return type
-
-[**models::ListView**](ListView.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getViewConfig**
-> String getViewConfig(ctx, name)
-
-
-Retrieve view configuration
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context containing the authentication | nil if no authentication
-  **name** | **String**| Name of the view | 
-
-### Return type
-
-[**String**](string.md)
-
-### Authorization
-
-[jenkins_auth](../README.md#jenkins_auth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -401,6 +203,174 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getJob**
+> models::FreeStyleProject getJob(ctx, name)
+
+
+Retrieve job details
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **String**| Name of the job | 
+
+### Return type
+
+[**models::FreeStyleProject**](FreeStyleProject.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getJobConfig**
+> String getJobConfig(ctx, name)
+
+
+Retrieve job configuration
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **String**| Name of the job | 
+
+### Return type
+
+[**String**](string.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/xml
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getJobLastBuild**
+> models::FreeStyleBuild getJobLastBuild(ctx, name)
+
+
+Retrieve job's last build details
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **String**| Name of the job | 
+
+### Return type
+
+[**models::FreeStyleBuild**](FreeStyleBuild.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getQueueItem**
+> models::Queue getQueueItem(ctx, number)
+
+
+Retrieve queued item details
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **number** | **String**| Queue number | 
+
+### Return type
+
+[**models::Queue**](Queue.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getView**
+> models::ListView getView(ctx, name)
+
+
+Retrieve view details
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **String**| Name of the view | 
+
+### Return type
+
+[**models::ListView**](ListView.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getViewConfig**
+> String getViewConfig(ctx, name)
+
+
+Retrieve view configuration
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **String**| Name of the view | 
+
+### Return type
+
+[**String**](string.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -667,6 +637,36 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getJobProgressiveText**
+> getJobProgressiveText(ctx, name, number, start)
+
+
+Retrieve job's build progressive text output
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context containing the authentication | nil if no authentication
+  **name** | **String**| Name of the job | 
+  **number** | **String**| Build number | 
+  **start** | **String**| Starting point of progressive text output | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

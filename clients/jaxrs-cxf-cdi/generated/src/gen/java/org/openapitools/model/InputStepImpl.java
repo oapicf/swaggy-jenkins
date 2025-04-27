@@ -30,7 +30,7 @@ public class InputStepImpl   {
 
   private String ok;
 
-  private List<@Valid StringParameterDefinition> parameters;
+  private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
   private String submitter;
 

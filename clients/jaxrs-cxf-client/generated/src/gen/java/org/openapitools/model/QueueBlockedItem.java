@@ -17,7 +17,7 @@ public class QueueBlockedItem  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private List<CauseAction> actions;
+  private List<CauseAction> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private Boolean blocked;

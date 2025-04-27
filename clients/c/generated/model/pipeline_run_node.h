@@ -29,9 +29,10 @@ typedef struct pipeline_run_node_t {
     char *start_time; // string
     char *state; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_run_node_t;
 
-pipeline_run_node_t *pipeline_run_node_create(
+__attribute__((deprecated)) pipeline_run_node_t *pipeline_run_node_create(
     char *_class,
     char *display_name,
     int duration_in_millis,

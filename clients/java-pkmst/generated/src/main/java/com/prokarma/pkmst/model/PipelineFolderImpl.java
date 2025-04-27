@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * PipelineFolderImpl
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineFolderImpl   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -42,10 +42,10 @@ public class PipelineFolderImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -60,10 +60,10 @@ public class PipelineFolderImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get displayName
    * @return displayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayName() {
     return displayName;
@@ -78,10 +78,10 @@ public class PipelineFolderImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get fullName
    * @return fullName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getFullName() {
     return fullName;
@@ -96,10 +96,10 @@ public class PipelineFolderImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getName() {
     return name;
@@ -114,10 +114,10 @@ public class PipelineFolderImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get organization
    * @return organization
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getOrganization() {
     return organization;
@@ -132,10 +132,10 @@ public class PipelineFolderImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get numberOfFolders
    * @return numberOfFolders
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNumberOfFolders() {
     return numberOfFolders;
@@ -150,10 +150,10 @@ public class PipelineFolderImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get numberOfPipelines
    * @return numberOfPipelines
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNumberOfPipelines() {
     return numberOfPipelines;

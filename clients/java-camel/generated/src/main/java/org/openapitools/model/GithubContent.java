@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * GithubContent
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubContent {
 
   private String name;
@@ -45,7 +45,7 @@ public class GithubContent {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -65,7 +65,7 @@ public class GithubContent {
   /**
    * Get sha
    * @return sha
-  */
+   */
   
   @Schema(name = "sha", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("sha")
@@ -85,7 +85,7 @@ public class GithubContent {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -105,7 +105,7 @@ public class GithubContent {
   /**
    * Get repo
    * @return repo
-  */
+   */
   
   @Schema(name = "repo", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("repo")
@@ -125,7 +125,7 @@ public class GithubContent {
   /**
    * Get size
    * @return size
-  */
+   */
   
   @Schema(name = "size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("size")
@@ -145,7 +145,7 @@ public class GithubContent {
   /**
    * Get owner
    * @return owner
-  */
+   */
   
   @Schema(name = "owner", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("owner")
@@ -165,7 +165,7 @@ public class GithubContent {
   /**
    * Get path
    * @return path
-  */
+   */
   
   @Schema(name = "path", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("path")
@@ -185,7 +185,7 @@ public class GithubContent {
   /**
    * Get base64Data
    * @return base64Data
-  */
+   */
   
   @Schema(name = "base64Data", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("base64Data")

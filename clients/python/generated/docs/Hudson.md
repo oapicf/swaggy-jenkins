@@ -36,7 +36,7 @@ print(Hudson.to_json())
 # convert the object into a dict
 hudson_dict = hudson_instance.to_dict()
 # create an instance of Hudson from a dict
-hudson_form_dict = hudson.from_dict(hudson_dict)
+hudson_from_dict = Hudson.from_dict(hudson_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

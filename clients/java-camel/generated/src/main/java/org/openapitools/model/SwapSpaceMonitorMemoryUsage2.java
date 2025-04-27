@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * SwapSpaceMonitorMemoryUsage2
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class SwapSpaceMonitorMemoryUsage2 {
 
   private String propertyClass;
@@ -39,7 +39,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -59,7 +59,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
   /**
    * Get availablePhysicalMemory
    * @return availablePhysicalMemory
-  */
+   */
   
   @Schema(name = "availablePhysicalMemory", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("availablePhysicalMemory")
@@ -79,7 +79,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
   /**
    * Get availableSwapSpace
    * @return availableSwapSpace
-  */
+   */
   
   @Schema(name = "availableSwapSpace", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("availableSwapSpace")
@@ -99,7 +99,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
   /**
    * Get totalPhysicalMemory
    * @return totalPhysicalMemory
-  */
+   */
   
   @Schema(name = "totalPhysicalMemory", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalPhysicalMemory")
@@ -119,7 +119,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
   /**
    * Get totalSwapSpace
    * @return totalSwapSpace
-  */
+   */
   
   @Schema(name = "totalSwapSpace", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalSwapSpace")

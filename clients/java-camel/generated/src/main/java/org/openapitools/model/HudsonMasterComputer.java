@@ -24,7 +24,7 @@ import javax.annotation.Generated;
  * HudsonMasterComputer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputer {
 
   private String propertyClass;
@@ -32,7 +32,7 @@ public class HudsonMasterComputer {
   private String displayName;
 
   @Valid
-  private List<@Valid HudsonMasterComputerexecutors> executors;
+  private List<@Valid HudsonMasterComputerexecutors> executors = new ArrayList<>();
 
   private String icon;
 
@@ -68,7 +68,7 @@ public class HudsonMasterComputer {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -88,7 +88,7 @@ public class HudsonMasterComputer {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -116,7 +116,7 @@ public class HudsonMasterComputer {
   /**
    * Get executors
    * @return executors
-  */
+   */
   @Valid 
   @Schema(name = "executors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("executors")
@@ -136,7 +136,7 @@ public class HudsonMasterComputer {
   /**
    * Get icon
    * @return icon
-  */
+   */
   
   @Schema(name = "icon", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("icon")
@@ -156,7 +156,7 @@ public class HudsonMasterComputer {
   /**
    * Get iconClassName
    * @return iconClassName
-  */
+   */
   
   @Schema(name = "iconClassName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("iconClassName")
@@ -176,7 +176,7 @@ public class HudsonMasterComputer {
   /**
    * Get idle
    * @return idle
-  */
+   */
   
   @Schema(name = "idle", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("idle")
@@ -196,7 +196,7 @@ public class HudsonMasterComputer {
   /**
    * Get jnlpAgent
    * @return jnlpAgent
-  */
+   */
   
   @Schema(name = "jnlpAgent", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("jnlpAgent")
@@ -216,7 +216,7 @@ public class HudsonMasterComputer {
   /**
    * Get launchSupported
    * @return launchSupported
-  */
+   */
   
   @Schema(name = "launchSupported", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("launchSupported")
@@ -236,7 +236,7 @@ public class HudsonMasterComputer {
   /**
    * Get loadStatistics
    * @return loadStatistics
-  */
+   */
   @Valid 
   @Schema(name = "loadStatistics", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("loadStatistics")
@@ -256,7 +256,7 @@ public class HudsonMasterComputer {
   /**
    * Get manualLaunchAllowed
    * @return manualLaunchAllowed
-  */
+   */
   
   @Schema(name = "manualLaunchAllowed", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("manualLaunchAllowed")
@@ -276,7 +276,7 @@ public class HudsonMasterComputer {
   /**
    * Get monitorData
    * @return monitorData
-  */
+   */
   @Valid 
   @Schema(name = "monitorData", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("monitorData")
@@ -296,7 +296,7 @@ public class HudsonMasterComputer {
   /**
    * Get numExecutors
    * @return numExecutors
-  */
+   */
   
   @Schema(name = "numExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numExecutors")
@@ -316,7 +316,7 @@ public class HudsonMasterComputer {
   /**
    * Get offline
    * @return offline
-  */
+   */
   
   @Schema(name = "offline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("offline")
@@ -336,7 +336,7 @@ public class HudsonMasterComputer {
   /**
    * Get offlineCause
    * @return offlineCause
-  */
+   */
   
   @Schema(name = "offlineCause", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("offlineCause")
@@ -356,7 +356,7 @@ public class HudsonMasterComputer {
   /**
    * Get offlineCauseReason
    * @return offlineCauseReason
-  */
+   */
   
   @Schema(name = "offlineCauseReason", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("offlineCauseReason")
@@ -376,7 +376,7 @@ public class HudsonMasterComputer {
   /**
    * Get temporarilyOffline
    * @return temporarilyOffline
-  */
+   */
   
   @Schema(name = "temporarilyOffline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("temporarilyOffline")

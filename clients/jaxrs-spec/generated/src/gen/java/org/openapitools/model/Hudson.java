@@ -22,23 +22,26 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("Hudson")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class Hudson   {
-  private @Valid String propertyClass;
-  private @Valid List<@Valid HudsonassignedLabels> assignedLabels;
-  private @Valid String mode;
-  private @Valid String nodeDescription;
-  private @Valid String nodeName;
-  private @Valid Integer numExecutors;
-  private @Valid String description;
-  private @Valid List<@Valid FreeStyleProject> jobs;
-  private @Valid AllView primaryView;
-  private @Valid Boolean quietingDown;
-  private @Valid Integer slaveAgentPort;
-  private @Valid UnlabeledLoadStatistics unlabeledLoad;
-  private @Valid Boolean useCrumbs;
-  private @Valid Boolean useSecurity;
-  private @Valid List<@Valid AllView> views;
+  private String propertyClass;
+  private @Valid List<@Valid HudsonassignedLabels> assignedLabels = new ArrayList<>();
+  private String mode;
+  private String nodeDescription;
+  private String nodeName;
+  private Integer numExecutors;
+  private String description;
+  private @Valid List<@Valid FreeStyleProject> jobs = new ArrayList<>();
+  private AllView primaryView;
+  private Boolean quietingDown;
+  private Integer slaveAgentPort;
+  private UnlabeledLoadStatistics unlabeledLoad;
+  private Boolean useCrumbs;
+  private Boolean useSecurity;
+  private @Valid List<@Valid AllView> views = new ArrayList<>();
+
+  public Hudson() {
+  }
 
   /**
    **/
@@ -69,7 +72,7 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("assignedLabels")
-  public List<HudsonassignedLabels> getAssignedLabels() {
+  @Valid public List<@Valid HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
   }
 
@@ -199,7 +202,7 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("jobs")
-  public List<FreeStyleProject> getJobs() {
+  @Valid public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 
@@ -234,7 +237,7 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("primaryView")
-  public AllView getPrimaryView() {
+  @Valid public AllView getPrimaryView() {
     return primaryView;
   }
 
@@ -291,7 +294,7 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("unlabeledLoad")
-  public UnlabeledLoadStatistics getUnlabeledLoad() {
+  @Valid public UnlabeledLoadStatistics getUnlabeledLoad() {
     return unlabeledLoad;
   }
 
@@ -348,7 +351,7 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("views")
-  public List<AllView> getViews() {
+  @Valid public List<@Valid AllView> getViews() {
     return views;
   }
 

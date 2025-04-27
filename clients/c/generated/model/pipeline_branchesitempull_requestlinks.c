@@ -5,7 +5,7 @@
 
 
 
-pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks_create(
+static pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks_create_internal(
     char *self,
     char *_class
     ) {
@@ -16,12 +16,26 @@ pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks
     pipeline_branchesitempull_requestlinks_local_var->self = self;
     pipeline_branchesitempull_requestlinks_local_var->_class = _class;
 
+    pipeline_branchesitempull_requestlinks_local_var->_library_owned = 1;
     return pipeline_branchesitempull_requestlinks_local_var;
 }
 
+__attribute__((deprecated)) pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks_create(
+    char *self,
+    char *_class
+    ) {
+    return pipeline_branchesitempull_requestlinks_create_internal (
+        self,
+        _class
+        );
+}
 
 void pipeline_branchesitempull_requestlinks_free(pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks) {
     if(NULL == pipeline_branchesitempull_requestlinks){
+        return ;
+    }
+    if(pipeline_branchesitempull_requestlinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pipeline_branchesitempull_requestlinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks
 
     // pipeline_branchesitempull_requestlinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestlinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     if(!cJSON_IsString(self) && !cJSON_IsNull(self))
     {
@@ -77,6 +94,9 @@ pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks
 
     // pipeline_branchesitempull_requestlinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestlinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -85,7 +105,7 @@ pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks
     }
 
 
-    pipeline_branchesitempull_requestlinks_local_var = pipeline_branchesitempull_requestlinks_create (
+    pipeline_branchesitempull_requestlinks_local_var = pipeline_branchesitempull_requestlinks_create_internal (
         self && !cJSON_IsNull(self) ? strdup(self->valuestring) : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

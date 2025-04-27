@@ -19,7 +19,7 @@ public class ExtensionClassImpl  {
   private ExtensionClassImpllinks links;
 
   @ApiModelProperty(value = "")
-  private List<String> classes;
+  private List<String> classes = new ArrayList<>();
  /**
    * Get propertyClass
    * @return propertyClass

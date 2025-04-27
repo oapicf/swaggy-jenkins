@@ -23,7 +23,7 @@ print(ClockDifference.to_json())
 # convert the object into a dict
 clock_difference_dict = clock_difference_instance.to_dict()
 # create an instance of ClockDifference from a dict
-clock_difference_form_dict = clock_difference.from_dict(clock_difference_dict)
+clock_difference_from_dict = ClockDifference.from_dict(clock_difference_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

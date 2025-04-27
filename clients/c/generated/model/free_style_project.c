@@ -5,7 +5,7 @@
 
 
 
-free_style_project_t *free_style_project_create(
+static free_style_project_t *free_style_project_create_internal(
     char *_class,
     char *name,
     char *url,
@@ -66,12 +66,76 @@ free_style_project_t *free_style_project_create(
     free_style_project_local_var->concurrent_build = concurrent_build;
     free_style_project_local_var->scm = scm;
 
+    free_style_project_local_var->_library_owned = 1;
     return free_style_project_local_var;
 }
 
+__attribute__((deprecated)) free_style_project_t *free_style_project_create(
+    char *_class,
+    char *name,
+    char *url,
+    char *color,
+    list_t *actions,
+    char *description,
+    char *display_name,
+    char *display_name_or_null,
+    char *full_display_name,
+    char *full_name,
+    int buildable,
+    list_t *builds,
+    free_style_build_t *first_build,
+    list_t *health_report,
+    int in_queue,
+    int keep_dependencies,
+    free_style_build_t *last_build,
+    free_style_build_t *last_completed_build,
+    char *last_failed_build,
+    free_style_build_t *last_stable_build,
+    free_style_build_t *last_successful_build,
+    char *last_unstable_build,
+    char *last_unsuccessful_build,
+    int next_build_number,
+    char *queue_item,
+    int concurrent_build,
+    null_scm_t *scm
+    ) {
+    return free_style_project_create_internal (
+        _class,
+        name,
+        url,
+        color,
+        actions,
+        description,
+        display_name,
+        display_name_or_null,
+        full_display_name,
+        full_name,
+        buildable,
+        builds,
+        first_build,
+        health_report,
+        in_queue,
+        keep_dependencies,
+        last_build,
+        last_completed_build,
+        last_failed_build,
+        last_stable_build,
+        last_successful_build,
+        last_unstable_build,
+        last_unsuccessful_build,
+        next_build_number,
+        queue_item,
+        concurrent_build,
+        scm
+        );
+}
 
 void free_style_project_free(free_style_project_t *free_style_project) {
     if(NULL == free_style_project){
+        return ;
+    }
+    if(free_style_project->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "free_style_project_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -500,6 +564,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -509,6 +576,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -518,6 +588,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "url");
+    if (cJSON_IsNull(url)) {
+        url = NULL;
+    }
     if (url) { 
     if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
@@ -527,6 +600,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->color
     cJSON *color = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "color");
+    if (cJSON_IsNull(color)) {
+        color = NULL;
+    }
     if (color) { 
     if(!cJSON_IsString(color) && !cJSON_IsNull(color))
     {
@@ -536,6 +612,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->actions
     cJSON *actions = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "actions");
+    if (cJSON_IsNull(actions)) {
+        actions = NULL;
+    }
     if (actions) { 
     cJSON *actions_local_nonprimitive = NULL;
     if(!cJSON_IsArray(actions)){
@@ -557,6 +636,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "description");
+    if (cJSON_IsNull(description)) {
+        description = NULL;
+    }
     if (description) { 
     if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
@@ -566,6 +648,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "displayName");
+    if (cJSON_IsNull(display_name)) {
+        display_name = NULL;
+    }
     if (display_name) { 
     if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
@@ -575,6 +660,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->display_name_or_null
     cJSON *display_name_or_null = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "displayNameOrNull");
+    if (cJSON_IsNull(display_name_or_null)) {
+        display_name_or_null = NULL;
+    }
     if (display_name_or_null) { 
     if(!cJSON_IsString(display_name_or_null) && !cJSON_IsNull(display_name_or_null))
     {
@@ -584,6 +672,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->full_display_name
     cJSON *full_display_name = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "fullDisplayName");
+    if (cJSON_IsNull(full_display_name)) {
+        full_display_name = NULL;
+    }
     if (full_display_name) { 
     if(!cJSON_IsString(full_display_name) && !cJSON_IsNull(full_display_name))
     {
@@ -593,6 +684,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->full_name
     cJSON *full_name = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "fullName");
+    if (cJSON_IsNull(full_name)) {
+        full_name = NULL;
+    }
     if (full_name) { 
     if(!cJSON_IsString(full_name) && !cJSON_IsNull(full_name))
     {
@@ -602,6 +696,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->buildable
     cJSON *buildable = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "buildable");
+    if (cJSON_IsNull(buildable)) {
+        buildable = NULL;
+    }
     if (buildable) { 
     if(!cJSON_IsBool(buildable))
     {
@@ -611,6 +708,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->builds
     cJSON *builds = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "builds");
+    if (cJSON_IsNull(builds)) {
+        builds = NULL;
+    }
     if (builds) { 
     cJSON *builds_local_nonprimitive = NULL;
     if(!cJSON_IsArray(builds)){
@@ -632,12 +732,18 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->first_build
     cJSON *first_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "firstBuild");
+    if (cJSON_IsNull(first_build)) {
+        first_build = NULL;
+    }
     if (first_build) { 
     first_build_local_nonprim = free_style_build_parseFromJSON(first_build); //nonprimitive
     }
 
     // free_style_project->health_report
     cJSON *health_report = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "healthReport");
+    if (cJSON_IsNull(health_report)) {
+        health_report = NULL;
+    }
     if (health_report) { 
     cJSON *health_report_local_nonprimitive = NULL;
     if(!cJSON_IsArray(health_report)){
@@ -659,6 +765,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->in_queue
     cJSON *in_queue = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "inQueue");
+    if (cJSON_IsNull(in_queue)) {
+        in_queue = NULL;
+    }
     if (in_queue) { 
     if(!cJSON_IsBool(in_queue))
     {
@@ -668,6 +777,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->keep_dependencies
     cJSON *keep_dependencies = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "keepDependencies");
+    if (cJSON_IsNull(keep_dependencies)) {
+        keep_dependencies = NULL;
+    }
     if (keep_dependencies) { 
     if(!cJSON_IsBool(keep_dependencies))
     {
@@ -677,18 +789,27 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->last_build
     cJSON *last_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "lastBuild");
+    if (cJSON_IsNull(last_build)) {
+        last_build = NULL;
+    }
     if (last_build) { 
     last_build_local_nonprim = free_style_build_parseFromJSON(last_build); //nonprimitive
     }
 
     // free_style_project->last_completed_build
     cJSON *last_completed_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "lastCompletedBuild");
+    if (cJSON_IsNull(last_completed_build)) {
+        last_completed_build = NULL;
+    }
     if (last_completed_build) { 
     last_completed_build_local_nonprim = free_style_build_parseFromJSON(last_completed_build); //nonprimitive
     }
 
     // free_style_project->last_failed_build
     cJSON *last_failed_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "lastFailedBuild");
+    if (cJSON_IsNull(last_failed_build)) {
+        last_failed_build = NULL;
+    }
     if (last_failed_build) { 
     if(!cJSON_IsString(last_failed_build) && !cJSON_IsNull(last_failed_build))
     {
@@ -698,18 +819,27 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->last_stable_build
     cJSON *last_stable_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "lastStableBuild");
+    if (cJSON_IsNull(last_stable_build)) {
+        last_stable_build = NULL;
+    }
     if (last_stable_build) { 
     last_stable_build_local_nonprim = free_style_build_parseFromJSON(last_stable_build); //nonprimitive
     }
 
     // free_style_project->last_successful_build
     cJSON *last_successful_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "lastSuccessfulBuild");
+    if (cJSON_IsNull(last_successful_build)) {
+        last_successful_build = NULL;
+    }
     if (last_successful_build) { 
     last_successful_build_local_nonprim = free_style_build_parseFromJSON(last_successful_build); //nonprimitive
     }
 
     // free_style_project->last_unstable_build
     cJSON *last_unstable_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "lastUnstableBuild");
+    if (cJSON_IsNull(last_unstable_build)) {
+        last_unstable_build = NULL;
+    }
     if (last_unstable_build) { 
     if(!cJSON_IsString(last_unstable_build) && !cJSON_IsNull(last_unstable_build))
     {
@@ -719,6 +849,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->last_unsuccessful_build
     cJSON *last_unsuccessful_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "lastUnsuccessfulBuild");
+    if (cJSON_IsNull(last_unsuccessful_build)) {
+        last_unsuccessful_build = NULL;
+    }
     if (last_unsuccessful_build) { 
     if(!cJSON_IsString(last_unsuccessful_build) && !cJSON_IsNull(last_unsuccessful_build))
     {
@@ -728,6 +861,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->next_build_number
     cJSON *next_build_number = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "nextBuildNumber");
+    if (cJSON_IsNull(next_build_number)) {
+        next_build_number = NULL;
+    }
     if (next_build_number) { 
     if(!cJSON_IsNumber(next_build_number))
     {
@@ -737,6 +873,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->queue_item
     cJSON *queue_item = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "queueItem");
+    if (cJSON_IsNull(queue_item)) {
+        queue_item = NULL;
+    }
     if (queue_item) { 
     if(!cJSON_IsString(queue_item) && !cJSON_IsNull(queue_item))
     {
@@ -746,6 +885,9 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->concurrent_build
     cJSON *concurrent_build = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "concurrentBuild");
+    if (cJSON_IsNull(concurrent_build)) {
+        concurrent_build = NULL;
+    }
     if (concurrent_build) { 
     if(!cJSON_IsBool(concurrent_build))
     {
@@ -755,12 +897,15 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     // free_style_project->scm
     cJSON *scm = cJSON_GetObjectItemCaseSensitive(free_style_projectJSON, "scm");
+    if (cJSON_IsNull(scm)) {
+        scm = NULL;
+    }
     if (scm) { 
     scm_local_nonprim = null_scm_parseFromJSON(scm); //nonprimitive
     }
 
 
-    free_style_project_local_var = free_style_project_create (
+    free_style_project_local_var = free_style_project_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
         url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,

@@ -17,7 +17,7 @@ public class InputStepImpl   {
   private String id;
   private String message;
   private String ok;
-  private List<StringParameterDefinition> parameters;
+  private List<StringParameterDefinition> parameters = new ArrayList<>();
   private String submitter;
 
   public InputStepImpl () {

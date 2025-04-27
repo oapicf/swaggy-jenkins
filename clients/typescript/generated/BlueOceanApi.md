@@ -52,24 +52,23 @@ Delete queue item from an organization pipeline queue
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiDeletePipelineQueueItemRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiDeletePipelineQueueItemRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiDeletePipelineQueueItemRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the queue item
+    // Name of the queue item
   queue: "queue_example",
 };
 
-apiInstance.deletePipelineQueueItem(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.deletePipelineQueueItem(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -114,20 +113,19 @@ Retrieve authenticated user details for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetAuthenticatedUserRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetAuthenticatedUserRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetAuthenticatedUserRequest = {
+    // Name of the organization
   organization: "organization_example",
 };
 
-apiInstance.getAuthenticatedUser(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getAuthenticatedUser(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -170,20 +168,19 @@ Get a list of class names supported by a given class
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetClassesRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetClassesRequest = {
-  // string | Name of the class
+const request: BlueOceanApiGetClassesRequest = {
+    // Name of the class
   _class: "class_example",
 };
 
-apiInstance.getClasses(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getClasses(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -226,20 +223,19 @@ Retrieve JSON Web Key
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetJsonWebKeyRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetJsonWebKeyRequest = {
-  // number | Key ID received as part of JWT header field kid
+const request: BlueOceanApiGetJsonWebKeyRequest = {
+    // Key ID received as part of JWT header field kid
   key: 1,
 };
 
-apiInstance.getJsonWebKey(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getJsonWebKey(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -282,22 +278,21 @@ Retrieve JSON Web Token
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetJsonWebTokenRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetJsonWebTokenRequest = {
-  // number | Token expiry time in minutes, default: 30 minutes (optional)
+const request: BlueOceanApiGetJsonWebTokenRequest = {
+    // Token expiry time in minutes, default: 30 minutes (optional)
   expiryTimeInMins: 1,
-  // number | Maximum token expiry time in minutes, default: 480 minutes (optional)
+    // Maximum token expiry time in minutes, default: 480 minutes (optional)
   maxExpiryTimeInMins: 1,
 };
 
-apiInstance.getJsonWebToken(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getJsonWebToken(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -341,20 +336,19 @@ Retrieve organization details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetOrganisationRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetOrganisationRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetOrganisationRequest = {
+    // Name of the organization
   organization: "organization_example",
 };
 
-apiInstance.getOrganisation(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getOrganisation(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -398,17 +392,15 @@ Retrieve all organizations details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getOrganisations(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getOrganisations(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -448,22 +440,21 @@ Retrieve pipeline details for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
 };
 
-apiInstance.getPipeline(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipeline(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -508,22 +499,21 @@ Retrieve all activities details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineActivitiesRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineActivitiesRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineActivitiesRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
 };
 
-apiInstance.getPipelineActivities(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineActivities(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -567,24 +557,23 @@ Retrieve branch details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineBranchRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineBranchRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineBranchRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the branch
+    // Name of the branch
   branch: "branch_example",
 };
 
-apiInstance.getPipelineBranch(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineBranch(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -629,26 +618,25 @@ Retrieve branch run details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineBranchRunRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineBranchRunRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineBranchRunRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the branch
+    // Name of the branch
   branch: "branch_example",
-  // string | Name of the run
+    // Name of the run
   run: "run_example",
 };
 
-apiInstance.getPipelineBranchRun(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineBranchRun(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -694,22 +682,21 @@ Retrieve all branches details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineBranchesRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineBranchesRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineBranchesRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
 };
 
-apiInstance.getPipelineBranches(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineBranches(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -753,22 +740,21 @@ Retrieve pipeline folder for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineFolderRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineFolderRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineFolderRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the folder
+    // Name of the folder
   folder: "folder_example",
 };
 
-apiInstance.getPipelineFolder(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineFolder(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -812,24 +798,23 @@ Retrieve pipeline details for an organization folder
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineFolderPipelineRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineFolderPipelineRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineFolderPipelineRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the folder
+    // Name of the folder
   folder: "folder_example",
 };
 
-apiInstance.getPipelineFolderPipeline(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineFolderPipeline(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -874,22 +859,21 @@ Retrieve queue details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineQueueRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineQueueRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineQueueRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
 };
 
-apiInstance.getPipelineQueue(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineQueue(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -933,24 +917,23 @@ Retrieve run details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineRunRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineRunRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineRunRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the run
+    // Name of the run
   run: "run_example",
 };
 
-apiInstance.getPipelineRun(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineRun(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -995,28 +978,27 @@ Get log for a pipeline run
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineRunLogRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineRunLogRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineRunLogRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the run
+    // Name of the run
   run: "run_example",
-  // number | Start position of the log (optional)
+    // Start position of the log (optional)
   start: 1,
-  // boolean | Set to true in order to download the file, otherwise it\'s passed as a response body (optional)
+    // Set to true in order to download the file, otherwise it\'s passed as a response body (optional)
   download: true,
 };
 
-apiInstance.getPipelineRunLog(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineRunLog(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1063,26 +1045,25 @@ Retrieve run node details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineRunNodeRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineRunNodeRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineRunNodeRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the run
+    // Name of the run
   run: "run_example",
-  // string | Name of the node
+    // Name of the node
   node: "node_example",
 };
 
-apiInstance.getPipelineRunNode(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineRunNode(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1128,28 +1109,27 @@ Retrieve run node details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineRunNodeStepRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineRunNodeStepRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineRunNodeStepRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the run
+    // Name of the run
   run: "run_example",
-  // string | Name of the node
+    // Name of the node
   node: "node_example",
-  // string | Name of the step
+    // Name of the step
   step: "step_example",
 };
 
-apiInstance.getPipelineRunNodeStep(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineRunNodeStep(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1196,28 +1176,27 @@ Get log for a pipeline run node step
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineRunNodeStepLogRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineRunNodeStepLogRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineRunNodeStepLogRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the run
+    // Name of the run
   run: "run_example",
-  // string | Name of the node
+    // Name of the node
   node: "node_example",
-  // string | Name of the step
+    // Name of the step
   step: "step_example",
 };
 
-apiInstance.getPipelineRunNodeStepLog(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineRunNodeStepLog(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1264,26 +1243,25 @@ Retrieve run node steps details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineRunNodeStepsRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineRunNodeStepsRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineRunNodeStepsRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the run
+    // Name of the run
   run: "run_example",
-  // string | Name of the node
+    // Name of the node
   node: "node_example",
 };
 
-apiInstance.getPipelineRunNodeSteps(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineRunNodeSteps(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1329,24 +1307,23 @@ Retrieve run nodes details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineRunNodesRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineRunNodesRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineRunNodesRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the run
+    // Name of the run
   run: "run_example",
 };
 
-apiInstance.getPipelineRunNodes(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineRunNodes(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1391,22 +1368,21 @@ Retrieve all runs details for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelineRunsRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelineRunsRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelineRunsRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
 };
 
-apiInstance.getPipelineRuns(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelineRuns(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1450,20 +1426,19 @@ Retrieve all pipelines details for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetPipelinesRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetPipelinesRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetPipelinesRequest = {
+    // Name of the organization
   organization: "organization_example",
 };
 
-apiInstance.getPipelines(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getPipelines(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1506,22 +1481,21 @@ Retrieve SCM details for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetSCMRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetSCMRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetSCMRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of SCM
+    // Name of SCM
   scm: "scm_example",
 };
 
-apiInstance.getSCM(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getSCM(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1565,30 +1539,29 @@ Retrieve SCM organization repositories details for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetSCMOrganisationRepositoriesRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetSCMOrganisationRepositoriesRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetSCMOrganisationRepositoriesRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of SCM
+    // Name of SCM
   scm: "scm_example",
-  // string | Name of the SCM organization
+    // Name of the SCM organization
   scmOrganisation: "scmOrganisation_example",
-  // string | Credential ID (optional)
+    // Credential ID (optional)
   credentialId: "credentialId_example",
-  // number | Number of items in a page (optional)
+    // Number of items in a page (optional)
   pageSize: 1,
-  // number | Page number (optional)
+    // Page number (optional)
   pageNumber: 1,
 };
 
-apiInstance.getSCMOrganisationRepositories(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getSCMOrganisationRepositories(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1636,28 +1609,27 @@ Retrieve SCM organization repository details for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetSCMOrganisationRepositoryRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetSCMOrganisationRepositoryRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetSCMOrganisationRepositoryRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of SCM
+    // Name of SCM
   scm: "scm_example",
-  // string | Name of the SCM organization
+    // Name of the SCM organization
   scmOrganisation: "scmOrganisation_example",
-  // string | Name of the SCM repository
+    // Name of the SCM repository
   repository: "repository_example",
-  // string | Credential ID (optional)
+    // Credential ID (optional)
   credentialId: "credentialId_example",
 };
 
-apiInstance.getSCMOrganisationRepository(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getSCMOrganisationRepository(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1704,24 +1676,23 @@ Retrieve SCM organizations details for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetSCMOrganisationsRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetSCMOrganisationsRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetSCMOrganisationsRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of SCM
+    // Name of SCM
   scm: "scm_example",
-  // string | Credential ID (optional)
+    // Credential ID (optional)
   credentialId: "credentialId_example",
 };
 
-apiInstance.getSCMOrganisations(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getSCMOrganisations(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1766,22 +1737,21 @@ Retrieve user details for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetUserRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetUserRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetUserRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the user
+    // Name of the user
   user: "user_example",
 };
 
-apiInstance.getUser(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getUser(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1825,20 +1795,19 @@ Retrieve user favorites details for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetUserFavoritesRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetUserFavoritesRequest = {
-  // string | Name of the user
+const request: BlueOceanApiGetUserFavoritesRequest = {
+    // Name of the user
   user: "user_example",
 };
 
-apiInstance.getUserFavorites(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getUserFavorites(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1881,20 +1850,19 @@ Retrieve users details for an organization
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiGetUsersRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiGetUsersRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiGetUsersRequest = {
+    // Name of the organization
   organization: "organization_example",
 };
 
-apiInstance.getUsers(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getUsers(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1937,24 +1905,23 @@ Replay an organization pipeline run
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiPostPipelineRunRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiPostPipelineRunRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiPostPipelineRunRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the run
+    // Name of the run
   run: "run_example",
 };
 
-apiInstance.postPipelineRun(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postPipelineRun(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1999,22 +1966,21 @@ Start a build for an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiPostPipelineRunsRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiPostPipelineRunsRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiPostPipelineRunsRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
 };
 
-apiInstance.postPipelineRuns(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postPipelineRuns(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -2058,24 +2024,23 @@ Favorite/unfavorite a pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiPutPipelineFavoriteRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiPutPipelineFavoriteRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiPutPipelineFavoriteRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // boolean | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
+    // Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
   body: true,
 };
 
-apiInstance.putPipelineFavorite(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.putPipelineFavorite(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -2120,28 +2085,27 @@ Stop a build of an organization pipeline
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiPutPipelineRunRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiPutPipelineRunRequest = {
-  // string | Name of the organization
+const request: BlueOceanApiPutPipelineRunRequest = {
+    // Name of the organization
   organization: "organization_example",
-  // string | Name of the pipeline
+    // Name of the pipeline
   pipeline: "pipeline_example",
-  // string | Name of the run
+    // Name of the run
   run: "run_example",
-  // string | Set to true to make blocking stop, default: false (optional)
+    // Set to true to make blocking stop, default: false (optional)
   blocking: "blocking_example",
-  // number | Timeout in seconds, default: 10 seconds (optional)
+    // Timeout in seconds, default: 10 seconds (optional)
   timeOutInSecs: 1,
 };
 
-apiInstance.putPipelineRun(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.putPipelineRun(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -2188,20 +2152,19 @@ Search for any resource details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiSearchRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiSearchRequest = {
-  // string | Query string
+const request: BlueOceanApiSearchRequest = {
+    // Query string
   q: "q_example",
 };
 
-apiInstance.search(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.search(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -2244,20 +2207,19 @@ Get classes details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlueOceanApi } from '';
+import type { BlueOceanApiSearchClassesRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlueOceanApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlueOceanApi(configuration);
 
-let body:.BlueOceanApiSearchClassesRequest = {
-  // string | Query string containing an array of class names
+const request: BlueOceanApiSearchClassesRequest = {
+    // Query string containing an array of class names
   q: "q_example",
 };
 
-apiInstance.searchClasses(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.searchClasses(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

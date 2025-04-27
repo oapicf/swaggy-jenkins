@@ -5,7 +5,7 @@
 
 
 
-extension_class_container_impl1_t *extension_class_container_impl1_create(
+static extension_class_container_impl1_t *extension_class_container_impl1_create_internal(
     char *_class,
     extension_class_container_impl1links_t *_links,
     extension_class_container_impl1map_t *map
@@ -18,12 +18,28 @@ extension_class_container_impl1_t *extension_class_container_impl1_create(
     extension_class_container_impl1_local_var->_links = _links;
     extension_class_container_impl1_local_var->map = map;
 
+    extension_class_container_impl1_local_var->_library_owned = 1;
     return extension_class_container_impl1_local_var;
 }
 
+__attribute__((deprecated)) extension_class_container_impl1_t *extension_class_container_impl1_create(
+    char *_class,
+    extension_class_container_impl1links_t *_links,
+    extension_class_container_impl1map_t *map
+    ) {
+    return extension_class_container_impl1_create_internal (
+        _class,
+        _links,
+        map
+        );
+}
 
 void extension_class_container_impl1_free(extension_class_container_impl1_t *extension_class_container_impl1) {
     if(NULL == extension_class_container_impl1){
+        return ;
+    }
+    if(extension_class_container_impl1->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "extension_class_container_impl1_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -98,6 +114,9 @@ extension_class_container_impl1_t *extension_class_container_impl1_parseFromJSON
 
     // extension_class_container_impl1->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1JSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -107,18 +126,24 @@ extension_class_container_impl1_t *extension_class_container_impl1_parseFromJSON
 
     // extension_class_container_impl1->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1JSON, "_links");
+    if (cJSON_IsNull(_links)) {
+        _links = NULL;
+    }
     if (_links) { 
     _links_local_nonprim = extension_class_container_impl1links_parseFromJSON(_links); //nonprimitive
     }
 
     // extension_class_container_impl1->map
     cJSON *map = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1JSON, "map");
+    if (cJSON_IsNull(map)) {
+        map = NULL;
+    }
     if (map) { 
     map_local_nonprim = extension_class_container_impl1map_parseFromJSON(map); //nonprimitive
     }
 
 
-    extension_class_container_impl1_local_var = extension_class_container_impl1_create (
+    extension_class_container_impl1_local_var = extension_class_container_impl1_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         map ? map_local_nonprim : NULL

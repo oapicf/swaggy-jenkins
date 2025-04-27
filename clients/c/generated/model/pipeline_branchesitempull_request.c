@@ -5,7 +5,7 @@
 
 
 
-pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_create(
+static pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_create_internal(
     pipeline_branchesitempull_requestlinks_t *_links,
     char *author,
     char *id,
@@ -24,12 +24,34 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_create(
     pipeline_branchesitempull_request_local_var->url = url;
     pipeline_branchesitempull_request_local_var->_class = _class;
 
+    pipeline_branchesitempull_request_local_var->_library_owned = 1;
     return pipeline_branchesitempull_request_local_var;
 }
 
+__attribute__((deprecated)) pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_create(
+    pipeline_branchesitempull_requestlinks_t *_links,
+    char *author,
+    char *id,
+    char *title,
+    char *url,
+    char *_class
+    ) {
+    return pipeline_branchesitempull_request_create_internal (
+        _links,
+        author,
+        id,
+        title,
+        url,
+        _class
+        );
+}
 
 void pipeline_branchesitempull_request_free(pipeline_branchesitempull_request_t *pipeline_branchesitempull_request) {
     if(NULL == pipeline_branchesitempull_request){
+        return ;
+    }
+    if(pipeline_branchesitempull_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pipeline_branchesitempull_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -132,12 +154,18 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
 
     // pipeline_branchesitempull_request->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "_links");
+    if (cJSON_IsNull(_links)) {
+        _links = NULL;
+    }
     if (_links) { 
     _links_local_nonprim = pipeline_branchesitempull_requestlinks_parseFromJSON(_links); //nonprimitive
     }
 
     // pipeline_branchesitempull_request->author
     cJSON *author = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "author");
+    if (cJSON_IsNull(author)) {
+        author = NULL;
+    }
     if (author) { 
     if(!cJSON_IsString(author) && !cJSON_IsNull(author))
     {
@@ -147,6 +175,9 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
 
     // pipeline_branchesitempull_request->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (id) { 
     if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
@@ -156,6 +187,9 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
 
     // pipeline_branchesitempull_request->title
     cJSON *title = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "title");
+    if (cJSON_IsNull(title)) {
+        title = NULL;
+    }
     if (title) { 
     if(!cJSON_IsString(title) && !cJSON_IsNull(title))
     {
@@ -165,6 +199,9 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
 
     // pipeline_branchesitempull_request->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "url");
+    if (cJSON_IsNull(url)) {
+        url = NULL;
+    }
     if (url) { 
     if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
@@ -174,6 +211,9 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
 
     // pipeline_branchesitempull_request->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -182,7 +222,7 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
     }
 
 
-    pipeline_branchesitempull_request_local_var = pipeline_branchesitempull_request_create (
+    pipeline_branchesitempull_request_local_var = pipeline_branchesitempull_request_create_internal (
         _links ? _links_local_nonprim : NULL,
         author && !cJSON_IsNull(author) ? strdup(author->valuestring) : NULL,
         id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,

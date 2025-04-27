@@ -19,13 +19,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ComputerSet")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ComputerSet   {
-  private @Valid String propertyClass;
-  private @Valid Integer busyExecutors;
-  private @Valid List<@Valid HudsonMasterComputer> computer;
-  private @Valid String displayName;
-  private @Valid Integer totalExecutors;
+  private String propertyClass;
+  private Integer busyExecutors;
+  private @Valid List<@Valid HudsonMasterComputer> computer = new ArrayList<>();
+  private String displayName;
+  private Integer totalExecutors;
+
+  public ComputerSet() {
+  }
 
   /**
    **/
@@ -75,7 +78,7 @@ public class ComputerSet   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("computer")
-  public List<HudsonMasterComputer> getComputer() {
+  @Valid public List<@Valid HudsonMasterComputer> getComputer() {
     return computer;
   }
 

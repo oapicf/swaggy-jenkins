@@ -22,7 +22,7 @@ print(UnlabeledLoadStatistics.to_json())
 # convert the object into a dict
 unlabeled_load_statistics_dict = unlabeled_load_statistics_instance.to_dict()
 # create an instance of UnlabeledLoadStatistics from a dict
-unlabeled_load_statistics_form_dict = unlabeled_load_statistics.from_dict(unlabeled_load_statistics_dict)
+unlabeled_load_statistics_from_dict = UnlabeledLoadStatistics.from_dict(unlabeled_load_statistics_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

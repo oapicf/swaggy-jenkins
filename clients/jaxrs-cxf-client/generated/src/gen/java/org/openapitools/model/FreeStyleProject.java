@@ -28,7 +28,7 @@ public class FreeStyleProject  {
   private String color;
 
   @ApiModelProperty(value = "")
-  private List<FreeStyleProjectactions> actions;
+  private List<FreeStyleProjectactions> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private String description;
@@ -49,13 +49,13 @@ public class FreeStyleProject  {
   private Boolean buildable;
 
   @ApiModelProperty(value = "")
-  private List<FreeStyleBuild> builds;
+  private List<FreeStyleBuild> builds = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private FreeStyleBuild firstBuild;
 
   @ApiModelProperty(value = "")
-  private List<FreeStyleProjecthealthReport> healthReport;
+  private List<FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private Boolean inQueue;

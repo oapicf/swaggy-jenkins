@@ -41,5 +41,8 @@ data class GithubRespositoryContainer (
     @Json(name = "repositories")
     val repositories: GithubRepositories? = null
 
-)
+) {
+
+
+}
 

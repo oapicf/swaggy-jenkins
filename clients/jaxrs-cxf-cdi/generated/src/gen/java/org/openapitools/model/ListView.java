@@ -23,7 +23,7 @@ public class ListView   {
 
   private String description;
 
-  private List<@Valid FreeStyleProject> jobs;
+  private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
 
   private String name;
 

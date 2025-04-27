@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseAction;
 import org.openapitools.model.EmptyChangeLogSet;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -23,45 +24,45 @@ import javax.annotation.Generated;
  * FreeStyleBuild
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class FreeStyleBuild {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private Integer number;
+  private @Nullable Integer number;
 
-  private String url;
+  private @Nullable String url;
 
   @Valid
-  private List<@Valid CauseAction> actions;
+  private List<@Valid CauseAction> actions = new ArrayList<>();
 
-  private Boolean building;
+  private @Nullable Boolean building;
 
-  private String description;
+  private @Nullable String description;
 
-  private String displayName;
+  private @Nullable String displayName;
 
-  private Integer duration;
+  private @Nullable Integer duration;
 
-  private Integer estimatedDuration;
+  private @Nullable Integer estimatedDuration;
 
-  private String executor;
+  private @Nullable String executor;
 
-  private String fullDisplayName;
+  private @Nullable String fullDisplayName;
 
-  private String id;
+  private @Nullable String id;
 
-  private Boolean keepLog;
+  private @Nullable Boolean keepLog;
 
-  private Integer queueId;
+  private @Nullable Integer queueId;
 
-  private String result;
+  private @Nullable String result;
 
-  private Integer timestamp;
+  private @Nullable Integer timestamp;
 
-  private String builtOn;
+  private @Nullable String builtOn;
 
-  private EmptyChangeLogSet changeSet;
+  private @Nullable EmptyChangeLogSet changeSet;
 
   public FreeStyleBuild propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -71,7 +72,7 @@ public class FreeStyleBuild {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -91,7 +92,7 @@ public class FreeStyleBuild {
   /**
    * Get number
    * @return number
-  */
+   */
   
   @Schema(name = "number", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("number")
@@ -111,7 +112,7 @@ public class FreeStyleBuild {
   /**
    * Get url
    * @return url
-  */
+   */
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")
@@ -139,7 +140,7 @@ public class FreeStyleBuild {
   /**
    * Get actions
    * @return actions
-  */
+   */
   @Valid 
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
@@ -159,7 +160,7 @@ public class FreeStyleBuild {
   /**
    * Get building
    * @return building
-  */
+   */
   
   @Schema(name = "building", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("building")
@@ -179,7 +180,7 @@ public class FreeStyleBuild {
   /**
    * Get description
    * @return description
-  */
+   */
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
@@ -199,7 +200,7 @@ public class FreeStyleBuild {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -219,7 +220,7 @@ public class FreeStyleBuild {
   /**
    * Get duration
    * @return duration
-  */
+   */
   
   @Schema(name = "duration", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("duration")
@@ -239,7 +240,7 @@ public class FreeStyleBuild {
   /**
    * Get estimatedDuration
    * @return estimatedDuration
-  */
+   */
   
   @Schema(name = "estimatedDuration", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDuration")
@@ -259,7 +260,7 @@ public class FreeStyleBuild {
   /**
    * Get executor
    * @return executor
-  */
+   */
   
   @Schema(name = "executor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("executor")
@@ -279,7 +280,7 @@ public class FreeStyleBuild {
   /**
    * Get fullDisplayName
    * @return fullDisplayName
-  */
+   */
   
   @Schema(name = "fullDisplayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullDisplayName")
@@ -299,7 +300,7 @@ public class FreeStyleBuild {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -319,7 +320,7 @@ public class FreeStyleBuild {
   /**
    * Get keepLog
    * @return keepLog
-  */
+   */
   
   @Schema(name = "keepLog", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("keepLog")
@@ -339,7 +340,7 @@ public class FreeStyleBuild {
   /**
    * Get queueId
    * @return queueId
-  */
+   */
   
   @Schema(name = "queueId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("queueId")
@@ -359,7 +360,7 @@ public class FreeStyleBuild {
   /**
    * Get result
    * @return result
-  */
+   */
   
   @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("result")
@@ -379,7 +380,7 @@ public class FreeStyleBuild {
   /**
    * Get timestamp
    * @return timestamp
-  */
+   */
   
   @Schema(name = "timestamp", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("timestamp")
@@ -399,7 +400,7 @@ public class FreeStyleBuild {
   /**
    * Get builtOn
    * @return builtOn
-  */
+   */
   
   @Schema(name = "builtOn", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("builtOn")
@@ -419,7 +420,7 @@ public class FreeStyleBuild {
   /**
    * Get changeSet
    * @return changeSet
-  */
+   */
   @Valid 
   @Schema(name = "changeSet", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("changeSet")

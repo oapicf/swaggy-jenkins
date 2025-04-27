@@ -15,20 +15,20 @@ import org.openapitools.vertxweb.server.model.UnlabeledLoadStatistics;
 public class Hudson   {
   
   private String propertyClass;
-  private List<HudsonassignedLabels> assignedLabels;
+  private List<HudsonassignedLabels> assignedLabels = new ArrayList<>();
   private String mode;
   private String nodeDescription;
   private String nodeName;
   private Integer numExecutors;
   private String description;
-  private List<FreeStyleProject> jobs;
+  private List<FreeStyleProject> jobs = new ArrayList<>();
   private AllView primaryView;
   private Boolean quietingDown;
   private Integer slaveAgentPort;
   private UnlabeledLoadStatistics unlabeledLoad;
   private Boolean useCrumbs;
   private Boolean useSecurity;
-  private List<AllView> views;
+  private List<AllView> views = new ArrayList<>();
 
   public Hudson () {
 

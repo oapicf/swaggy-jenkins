@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * SwapSpaceMonitorMemoryUsage2
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class SwapSpaceMonitorMemoryUsage2   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -36,10 +36,10 @@ public class SwapSpaceMonitorMemoryUsage2   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -54,10 +54,10 @@ public class SwapSpaceMonitorMemoryUsage2   {
     return this;
   }
 
-   /**
+  /**
    * Get availablePhysicalMemory
    * @return availablePhysicalMemory
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getAvailablePhysicalMemory() {
     return availablePhysicalMemory;
@@ -72,10 +72,10 @@ public class SwapSpaceMonitorMemoryUsage2   {
     return this;
   }
 
-   /**
+  /**
    * Get availableSwapSpace
    * @return availableSwapSpace
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getAvailableSwapSpace() {
     return availableSwapSpace;
@@ -90,10 +90,10 @@ public class SwapSpaceMonitorMemoryUsage2   {
     return this;
   }
 
-   /**
+  /**
    * Get totalPhysicalMemory
    * @return totalPhysicalMemory
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getTotalPhysicalMemory() {
     return totalPhysicalMemory;
@@ -108,10 +108,10 @@ public class SwapSpaceMonitorMemoryUsage2   {
     return this;
   }
 
-   /**
+  /**
    * Get totalSwapSpace
    * @return totalSwapSpace
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getTotalSwapSpace() {
     return totalSwapSpace;

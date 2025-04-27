@@ -29,7 +29,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the crumbIssuer API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2024-03-15T14:14:47.059425590Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2025-04-27T08:09:40.083437374Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class CrumbIssuerApi  {
    private final CrumbIssuerApiService delegate;
 
@@ -40,7 +40,7 @@ public class CrumbIssuerApi  {
          String implClass = servletContext.getInitParameter("CrumbIssuerApi.implementation");
          if (implClass != null && !"".equals(implClass.trim())) {
             try {
-               delegate = (CrumbIssuerApiService) Class.forName(implClass).newInstance();
+               delegate = (CrumbIssuerApiService) Class.forName(implClass).getDeclaredConstructor().newInstance();
             } catch (Exception e) {
                throw new RuntimeException(e);
             }

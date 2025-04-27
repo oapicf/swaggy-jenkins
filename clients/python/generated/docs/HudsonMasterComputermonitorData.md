@@ -28,7 +28,7 @@ print(HudsonMasterComputermonitorData.to_json())
 # convert the object into a dict
 hudson_master_computermonitor_data_dict = hudson_master_computermonitor_data_instance.to_dict()
 # create an instance of HudsonMasterComputermonitorData from a dict
-hudson_master_computermonitor_data_form_dict = hudson_master_computermonitor_data.from_dict(hudson_master_computermonitor_data_dict)
+hudson_master_computermonitor_data_from_dict = HudsonMasterComputermonitorData.from_dict(hudson_master_computermonitor_data_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -48,5 +48,8 @@ data class GithubScm (
     @Json(name = "uri")
     val uri: kotlin.String? = null
 
-)
+) {
+
+
+}
 

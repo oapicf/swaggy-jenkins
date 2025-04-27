@@ -23,7 +23,7 @@ print(Queue.to_json())
 # convert the object into a dict
 queue_dict = queue_instance.to_dict()
 # create an instance of Queue from a dict
-queue_form_dict = queue.from_dict(queue_dict)
+queue_from_dict = Queue.from_dict(queue_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

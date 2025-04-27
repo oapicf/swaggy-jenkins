@@ -40,9 +40,10 @@ typedef struct free_style_build_t {
     char *built_on; // string
     struct empty_change_log_set_t *change_set; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } free_style_build_t;
 
-free_style_build_t *free_style_build_create(
+__attribute__((deprecated)) free_style_build_t *free_style_build_create(
     char *_class,
     int number,
     char *url,

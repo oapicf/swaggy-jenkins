@@ -24,7 +24,7 @@ print(ExtensionClassImpl.to_json())
 # convert the object into a dict
 extension_class_impl_dict = extension_class_impl_instance.to_dict()
 # create an instance of ExtensionClassImpl from a dict
-extension_class_impl_form_dict = extension_class_impl.from_dict(extension_class_impl_dict)
+extension_class_impl_from_dict = ExtensionClassImpl.from_dict(extension_class_impl_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

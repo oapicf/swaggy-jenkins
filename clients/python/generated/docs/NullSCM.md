@@ -22,7 +22,7 @@ print(NullSCM.to_json())
 # convert the object into a dict
 null_scm_dict = null_scm_instance.to_dict()
 # create an instance of NullSCM from a dict
-null_scm_form_dict = null_scm.from_dict(null_scm_dict)
+null_scm_from_dict = NullSCM.from_dict(null_scm_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -31,7 +31,7 @@ public class FreeStyleProject  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<@Valid FreeStyleProjectactions> actions;
+  private List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private String description;
@@ -53,7 +53,7 @@ public class FreeStyleProject  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<@Valid FreeStyleBuild> builds;
+  private List<@Valid FreeStyleBuild> builds = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   @Valid
@@ -61,7 +61,7 @@ public class FreeStyleProject  {
 
   @ApiModelProperty(value = "")
   @Valid
-  private List<@Valid FreeStyleProjecthealthReport> healthReport;
+  private List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private Boolean inQueue;

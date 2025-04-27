@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,16 +19,16 @@ import javax.annotation.Generated;
  * CauseUserIdCause
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class CauseUserIdCause {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private String shortDescription;
+  private @Nullable String shortDescription;
 
-  private String userId;
+  private @Nullable String userId;
 
-  private String userName;
+  private @Nullable String userName;
 
   public CauseUserIdCause propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -37,7 +38,7 @@ public class CauseUserIdCause {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -57,7 +58,7 @@ public class CauseUserIdCause {
   /**
    * Get shortDescription
    * @return shortDescription
-  */
+   */
   
   @Schema(name = "shortDescription", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("shortDescription")
@@ -77,7 +78,7 @@ public class CauseUserIdCause {
   /**
    * Get userId
    * @return userId
-  */
+   */
   
   @Schema(name = "userId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("userId")
@@ -97,7 +98,7 @@ public class CauseUserIdCause {
   /**
    * Get userName
    * @return userName
-  */
+   */
   
   @Schema(name = "userName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("userName")

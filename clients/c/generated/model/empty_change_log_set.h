@@ -22,9 +22,10 @@ typedef struct empty_change_log_set_t {
     char *_class; // string
     char *kind; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } empty_change_log_set_t;
 
-empty_change_log_set_t *empty_change_log_set_create(
+__attribute__((deprecated)) empty_change_log_set_t *empty_change_log_set_create(
     char *_class,
     char *kind
 );

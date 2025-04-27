@@ -17,17 +17,20 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineStepImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineStepImpl   {
-  private @Valid String propertyClass;
-  private @Valid PipelineStepImpllinks links;
-  private @Valid String displayName;
-  private @Valid Integer durationInMillis;
-  private @Valid String id;
-  private @Valid InputStepImpl input;
-  private @Valid String result;
-  private @Valid String startTime;
-  private @Valid String state;
+  private String propertyClass;
+  private PipelineStepImpllinks links;
+  private String displayName;
+  private Integer durationInMillis;
+  private String id;
+  private InputStepImpl input;
+  private String result;
+  private String startTime;
+  private String state;
+
+  public PipelineStepImpl() {
+  }
 
   /**
    **/
@@ -58,7 +61,7 @@ public class PipelineStepImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public PipelineStepImpllinks getLinks() {
+  @Valid public PipelineStepImpllinks getLinks() {
     return links;
   }
 
@@ -134,7 +137,7 @@ public class PipelineStepImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("input")
-  public InputStepImpl getInput() {
+  @Valid public InputStepImpl getInput() {
     return input;
   }
 

@@ -16,16 +16,19 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("Pipeline")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class Pipeline   {
-  private @Valid String propertyClass;
-  private @Valid String organization;
-  private @Valid String name;
-  private @Valid String displayName;
-  private @Valid String fullName;
-  private @Valid Integer weatherScore;
-  private @Valid Integer estimatedDurationInMillis;
-  private @Valid PipelinelatestRun latestRun;
+  private String propertyClass;
+  private String organization;
+  private String name;
+  private String displayName;
+  private String fullName;
+  private Integer weatherScore;
+  private Integer estimatedDurationInMillis;
+  private PipelinelatestRun latestRun;
+
+  public Pipeline() {
+  }
 
   /**
    **/
@@ -170,7 +173,7 @@ public class Pipeline   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("latestRun")
-  public PipelinelatestRun getLatestRun() {
+  @Valid public PipelinelatestRun getLatestRun() {
     return latestRun;
   }
 

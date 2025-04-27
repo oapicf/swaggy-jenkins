@@ -47,5 +47,8 @@ data class SwapSpaceMonitorMemoryUsage2 (
     @Json(name = "totalSwapSpace")
     val totalSwapSpace: kotlin.Int? = null
 
-)
+) {
+
+
+}
 

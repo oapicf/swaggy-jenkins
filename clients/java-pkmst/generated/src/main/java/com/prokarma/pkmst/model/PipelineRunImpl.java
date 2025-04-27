@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * PipelineRunImpl
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineRunImpl   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -67,10 +67,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -85,10 +85,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get links
    * @return links
-  **/
+   */
   @ApiModelProperty(value = "")
   public PipelineRunImpllinks getLinks() {
     return links;
@@ -103,10 +103,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get durationInMillis
    * @return durationInMillis
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getDurationInMillis() {
     return durationInMillis;
@@ -121,10 +121,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get enQueueTime
    * @return enQueueTime
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getEnQueueTime() {
     return enQueueTime;
@@ -139,10 +139,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get endTime
    * @return endTime
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getEndTime() {
     return endTime;
@@ -157,10 +157,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
@@ -175,10 +175,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getId() {
     return id;
@@ -193,10 +193,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get organization
    * @return organization
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getOrganization() {
     return organization;
@@ -211,10 +211,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get pipeline
    * @return pipeline
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPipeline() {
     return pipeline;
@@ -229,10 +229,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get result
    * @return result
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getResult() {
     return result;
@@ -247,10 +247,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get runSummary
    * @return runSummary
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getRunSummary() {
     return runSummary;
@@ -265,10 +265,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get startTime
    * @return startTime
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getStartTime() {
     return startTime;
@@ -283,10 +283,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get state
    * @return state
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getState() {
     return state;
@@ -301,10 +301,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get type
    * @return type
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getType() {
     return type;
@@ -319,10 +319,10 @@ public class PipelineRunImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get commitId
    * @return commitId
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getCommitId() {
     return commitId;

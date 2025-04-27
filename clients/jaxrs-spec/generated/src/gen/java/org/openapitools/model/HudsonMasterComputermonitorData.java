@@ -19,15 +19,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("HudsonMasterComputermonitorData")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputermonitorData   {
-  private @Valid SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
-  private @Valid DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
-  private @Valid DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
-  private @Valid String hudsonNodeMonitorsArchitectureMonitor;
-  private @Valid ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
-  private @Valid ClockDifference hudsonNodeMonitorsClockMonitor;
-  private @Valid String propertyClass;
+  private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
+  private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
+  private String hudsonNodeMonitorsArchitectureMonitor;
+  private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
+  private ClockDifference hudsonNodeMonitorsClockMonitor;
+  private String propertyClass;
+
+  public HudsonMasterComputermonitorData() {
+  }
 
   /**
    **/
@@ -39,7 +42,7 @@ public class HudsonMasterComputermonitorData   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
-  public SwapSpaceMonitorMemoryUsage2 getHudsonNodeMonitorsSwapSpaceMonitor() {
+  @Valid public SwapSpaceMonitorMemoryUsage2 getHudsonNodeMonitorsSwapSpaceMonitor() {
     return hudsonNodeMonitorsSwapSpaceMonitor;
   }
 
@@ -58,7 +61,7 @@ public class HudsonMasterComputermonitorData   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.TemporarySpaceMonitor")
-  public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsTemporarySpaceMonitor() {
+  @Valid public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsTemporarySpaceMonitor() {
     return hudsonNodeMonitorsTemporarySpaceMonitor;
   }
 
@@ -77,7 +80,7 @@ public class HudsonMasterComputermonitorData   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.DiskSpaceMonitor")
-  public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsDiskSpaceMonitor() {
+  @Valid public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsDiskSpaceMonitor() {
     return hudsonNodeMonitorsDiskSpaceMonitor;
   }
 
@@ -115,7 +118,7 @@ public class HudsonMasterComputermonitorData   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.ResponseTimeMonitor")
-  public ResponseTimeMonitorData getHudsonNodeMonitorsResponseTimeMonitor() {
+  @Valid public ResponseTimeMonitorData getHudsonNodeMonitorsResponseTimeMonitor() {
     return hudsonNodeMonitorsResponseTimeMonitor;
   }
 
@@ -134,7 +137,7 @@ public class HudsonMasterComputermonitorData   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("hudson.node_monitors.ClockMonitor")
-  public ClockDifference getHudsonNodeMonitorsClockMonitor() {
+  @Valid public ClockDifference getHudsonNodeMonitorsClockMonitor() {
     return hudsonNodeMonitorsClockMonitor;
   }
 

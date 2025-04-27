@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,18 +19,18 @@ import javax.annotation.Generated;
  * BranchImplpermissions
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class BranchImplpermissions {
 
-  private Boolean create;
+  private @Nullable Boolean create;
 
-  private Boolean read;
+  private @Nullable Boolean read;
 
-  private Boolean start;
+  private @Nullable Boolean start;
 
-  private Boolean stop;
+  private @Nullable Boolean stop;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public BranchImplpermissions create(Boolean create) {
     this.create = create;
@@ -39,7 +40,7 @@ public class BranchImplpermissions {
   /**
    * Get create
    * @return create
-  */
+   */
   
   @Schema(name = "create", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("create")
@@ -59,7 +60,7 @@ public class BranchImplpermissions {
   /**
    * Get read
    * @return read
-  */
+   */
   
   @Schema(name = "read", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("read")
@@ -79,7 +80,7 @@ public class BranchImplpermissions {
   /**
    * Get start
    * @return start
-  */
+   */
   
   @Schema(name = "start", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("start")
@@ -99,7 +100,7 @@ public class BranchImplpermissions {
   /**
    * Get stop
    * @return stop
-  */
+   */
   
   @Schema(name = "stop", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("stop")
@@ -119,7 +120,7 @@ public class BranchImplpermissions {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

@@ -47,5 +47,8 @@ data class User (
     @Json(name = "name")
     val name: kotlin.String? = null
 
-)
+) {
+
+
+}
 

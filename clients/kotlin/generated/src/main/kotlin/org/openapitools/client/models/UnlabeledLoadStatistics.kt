@@ -31,5 +31,8 @@ data class UnlabeledLoadStatistics (
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null
 
-)
+) {
+
+
+}
 

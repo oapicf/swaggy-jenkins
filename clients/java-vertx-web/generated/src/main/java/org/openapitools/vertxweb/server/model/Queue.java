@@ -12,7 +12,7 @@ import org.openapitools.vertxweb.server.model.QueueBlockedItem;
 public class Queue   {
   
   private String propertyClass;
-  private List<QueueBlockedItem> items;
+  private List<QueueBlockedItem> items = new ArrayList<>();
 
   public Queue () {
 

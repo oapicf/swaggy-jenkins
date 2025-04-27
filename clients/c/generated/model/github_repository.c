@@ -5,7 +5,7 @@
 
 
 
-github_repository_t *github_repository_create(
+static github_repository_t *github_repository_create_internal(
     char *_class,
     github_repositorylinks_t *_links,
     char *default_branch,
@@ -28,12 +28,38 @@ github_repository_t *github_repository_create(
     github_repository_local_var->_private = _private;
     github_repository_local_var->full_name = full_name;
 
+    github_repository_local_var->_library_owned = 1;
     return github_repository_local_var;
 }
 
+__attribute__((deprecated)) github_repository_t *github_repository_create(
+    char *_class,
+    github_repositorylinks_t *_links,
+    char *default_branch,
+    char *description,
+    char *name,
+    github_repositorypermissions_t *permissions,
+    int _private,
+    char *full_name
+    ) {
+    return github_repository_create_internal (
+        _class,
+        _links,
+        default_branch,
+        description,
+        name,
+        permissions,
+        _private,
+        full_name
+        );
+}
 
 void github_repository_free(github_repository_t *github_repository) {
     if(NULL == github_repository){
+        return ;
+    }
+    if(github_repository->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_repository_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -164,6 +190,9 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
 
     // github_repository->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -173,12 +202,18 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
 
     // github_repository->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "_links");
+    if (cJSON_IsNull(_links)) {
+        _links = NULL;
+    }
     if (_links) { 
     _links_local_nonprim = github_repositorylinks_parseFromJSON(_links); //nonprimitive
     }
 
     // github_repository->default_branch
     cJSON *default_branch = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "defaultBranch");
+    if (cJSON_IsNull(default_branch)) {
+        default_branch = NULL;
+    }
     if (default_branch) { 
     if(!cJSON_IsString(default_branch) && !cJSON_IsNull(default_branch))
     {
@@ -188,6 +223,9 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
 
     // github_repository->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "description");
+    if (cJSON_IsNull(description)) {
+        description = NULL;
+    }
     if (description) { 
     if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
@@ -197,6 +235,9 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
 
     // github_repository->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -206,12 +247,18 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
 
     // github_repository->permissions
     cJSON *permissions = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "permissions");
+    if (cJSON_IsNull(permissions)) {
+        permissions = NULL;
+    }
     if (permissions) { 
     permissions_local_nonprim = github_repositorypermissions_parseFromJSON(permissions); //nonprimitive
     }
 
     // github_repository->_private
     cJSON *_private = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "private");
+    if (cJSON_IsNull(_private)) {
+        _private = NULL;
+    }
     if (_private) { 
     if(!cJSON_IsBool(_private))
     {
@@ -221,6 +268,9 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
 
     // github_repository->full_name
     cJSON *full_name = cJSON_GetObjectItemCaseSensitive(github_repositoryJSON, "fullName");
+    if (cJSON_IsNull(full_name)) {
+        full_name = NULL;
+    }
     if (full_name) { 
     if(!cJSON_IsString(full_name) && !cJSON_IsNull(full_name))
     {
@@ -229,7 +279,7 @@ github_repository_t *github_repository_parseFromJSON(cJSON *github_repositoryJSO
     }
 
 
-    github_repository_local_var = github_repository_create (
+    github_repository_local_var = github_repository_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         default_branch && !cJSON_IsNull(default_branch) ? strdup(default_branch->valuestring) : NULL,

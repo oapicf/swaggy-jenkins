@@ -26,9 +26,10 @@ typedef struct generic_resource_t {
     char *result; // string
     char *start_time; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } generic_resource_t;
 
-generic_resource_t *generic_resource_create(
+__attribute__((deprecated)) generic_resource_t *generic_resource_create(
     char *_class,
     char *display_name,
     int duration_in_millis,

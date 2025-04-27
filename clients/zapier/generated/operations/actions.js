@@ -1,7 +1,7 @@
 const BaseApi = require('../apis/BaseApi');
 const BlueOceanApi = require('../apis/BlueOceanApi');
 const RemoteAccessApi = require('../apis/RemoteAccessApi');
-const { searchMiddleware, hasSearchRequisites, isSearchAction } = require('../utils/utils');
+const { triggerMiddleware, isTrigger, searchMiddleware, hasSearchRequisites, isSearchAction, isCreateAction, createMiddleware } = require('../utils/utils');
 
 const actions = {
     [BaseApi.getCrumb.key]: BaseApi.getCrumb,
@@ -66,5 +66,6 @@ const actions = {
 
 module.exports = {
     searchActions: () => Object.entries(actions).reduce((actions, [key, value]) => isSearchAction(key) && hasSearchRequisites(value) ? {...actions, [key]: searchMiddleware(value)} : actions, {}),
-    createActions: () => Object.entries(actions).reduce((actions, [key, value]) => !isSearchAction(key) ? {...actions, [key]: value} : actions, {}),
+    createActions: () => Object.entries(actions).reduce((actions, [key, value]) => isCreateAction(key) ? {...actions, [key]: createMiddleware(value)} : actions, {}),
+    triggers: () => Object.entries(actions).reduce((actions, [key, value]) => isTrigger(key) ? {...actions, [key]: triggerMiddleware(value)} : actions, {}),
 }

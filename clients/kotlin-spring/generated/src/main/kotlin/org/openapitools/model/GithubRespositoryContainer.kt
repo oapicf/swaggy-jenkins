@@ -33,7 +33,7 @@ data class GithubRespositoryContainer(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("repositories") val repositories: GithubRepositories? = null
-) {
+    ) {
 
 }
 

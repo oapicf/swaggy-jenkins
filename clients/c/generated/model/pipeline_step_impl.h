@@ -31,9 +31,10 @@ typedef struct pipeline_step_impl_t {
     char *start_time; // string
     char *state; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_step_impl_t;
 
-pipeline_step_impl_t *pipeline_step_impl_create(
+__attribute__((deprecated)) pipeline_step_impl_t *pipeline_step_impl_create(
     char *_class,
     pipeline_step_impllinks_t *_links,
     char *display_name,

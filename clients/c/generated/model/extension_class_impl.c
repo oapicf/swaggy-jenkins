@@ -5,7 +5,7 @@
 
 
 
-extension_class_impl_t *extension_class_impl_create(
+static extension_class_impl_t *extension_class_impl_create_internal(
     char *_class,
     extension_class_impllinks_t *_links,
     list_t *classes
@@ -18,12 +18,28 @@ extension_class_impl_t *extension_class_impl_create(
     extension_class_impl_local_var->_links = _links;
     extension_class_impl_local_var->classes = classes;
 
+    extension_class_impl_local_var->_library_owned = 1;
     return extension_class_impl_local_var;
 }
 
+__attribute__((deprecated)) extension_class_impl_t *extension_class_impl_create(
+    char *_class,
+    extension_class_impllinks_t *_links,
+    list_t *classes
+    ) {
+    return extension_class_impl_create_internal (
+        _class,
+        _links,
+        classes
+        );
+}
 
 void extension_class_impl_free(extension_class_impl_t *extension_class_impl) {
     if(NULL == extension_class_impl){
+        return ;
+    }
+    if(extension_class_impl->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "extension_class_impl_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -78,7 +94,7 @@ cJSON *extension_class_impl_convertToJSON(extension_class_impl_t *extension_clas
 
     listEntry_t *classesListEntry;
     list_ForEach(classesListEntry, extension_class_impl->classes) {
-    if(cJSON_AddStringToObject(classes, "", (char*)classesListEntry->data) == NULL)
+    if(cJSON_AddStringToObject(classes, "", classesListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -105,6 +121,9 @@ extension_class_impl_t *extension_class_impl_parseFromJSON(cJSON *extension_clas
 
     // extension_class_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(extension_class_implJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -114,12 +133,18 @@ extension_class_impl_t *extension_class_impl_parseFromJSON(cJSON *extension_clas
 
     // extension_class_impl->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(extension_class_implJSON, "_links");
+    if (cJSON_IsNull(_links)) {
+        _links = NULL;
+    }
     if (_links) { 
     _links_local_nonprim = extension_class_impllinks_parseFromJSON(_links); //nonprimitive
     }
 
     // extension_class_impl->classes
     cJSON *classes = cJSON_GetObjectItemCaseSensitive(extension_class_implJSON, "classes");
+    if (cJSON_IsNull(classes)) {
+        classes = NULL;
+    }
     if (classes) { 
     cJSON *classes_local = NULL;
     if(!cJSON_IsArray(classes)) {
@@ -138,7 +163,7 @@ extension_class_impl_t *extension_class_impl_parseFromJSON(cJSON *extension_clas
     }
 
 
-    extension_class_impl_local_var = extension_class_impl_create (
+    extension_class_impl_local_var = extension_class_impl_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         classes ? classesList : NULL

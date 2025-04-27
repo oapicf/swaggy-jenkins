@@ -25,7 +25,7 @@ import javax.annotation.Generated;
  * BranchImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class BranchImpl {
 
   private String propertyClass;
@@ -43,7 +43,7 @@ public class BranchImpl {
   private String organization;
 
   @Valid
-  private List<@Valid StringParameterDefinition> parameters;
+  private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
   private BranchImplpermissions permissions;
 
@@ -63,7 +63,7 @@ public class BranchImpl {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -83,7 +83,7 @@ public class BranchImpl {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -103,7 +103,7 @@ public class BranchImpl {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  */
+   */
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
@@ -123,7 +123,7 @@ public class BranchImpl {
   /**
    * Get fullDisplayName
    * @return fullDisplayName
-  */
+   */
   
   @Schema(name = "fullDisplayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullDisplayName")
@@ -143,7 +143,7 @@ public class BranchImpl {
   /**
    * Get fullName
    * @return fullName
-  */
+   */
   
   @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullName")
@@ -163,7 +163,7 @@ public class BranchImpl {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -183,7 +183,7 @@ public class BranchImpl {
   /**
    * Get organization
    * @return organization
-  */
+   */
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
@@ -211,7 +211,7 @@ public class BranchImpl {
   /**
    * Get parameters
    * @return parameters
-  */
+   */
   @Valid 
   @Schema(name = "parameters", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("parameters")
@@ -231,7 +231,7 @@ public class BranchImpl {
   /**
    * Get permissions
    * @return permissions
-  */
+   */
   @Valid 
   @Schema(name = "permissions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("permissions")
@@ -251,7 +251,7 @@ public class BranchImpl {
   /**
    * Get weatherScore
    * @return weatherScore
-  */
+   */
   
   @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("weatherScore")
@@ -271,7 +271,7 @@ public class BranchImpl {
   /**
    * Get pullRequest
    * @return pullRequest
-  */
+   */
   
   @Schema(name = "pullRequest", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pullRequest")
@@ -291,7 +291,7 @@ public class BranchImpl {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -311,7 +311,7 @@ public class BranchImpl {
   /**
    * Get latestRun
    * @return latestRun
-  */
+   */
   @Valid 
   @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("latestRun")

@@ -18,7 +18,7 @@ import java.util.Objects;
 
 public class ClassesByClass   {
   
-  private List<String> classes;
+  private List<String> classes = new ArrayList<>();
 
   private String propertyClass;
 

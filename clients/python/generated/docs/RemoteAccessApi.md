@@ -29,8 +29,6 @@ Method | HTTP request | Description
 # **get_computer**
 > ComputerSet get_computer(depth)
 
-
-
 Retrieve computer details
 
 ### Example
@@ -109,8 +107,6 @@ Name | Type | Description  | Notes
 # **get_jenkins**
 > Hudson get_jenkins()
 
-
-
 Retrieve Jenkins details
 
 ### Example
@@ -184,8 +180,6 @@ This endpoint does not need any parameter.
 
 # **get_job**
 > FreeStyleProject get_job(name)
-
-
 
 Retrieve job details
 
@@ -266,8 +260,6 @@ Name | Type | Description  | Notes
 # **get_job_config**
 > str get_job_config(name)
 
-
-
 Retrieve job configuration
 
 ### Example
@@ -345,8 +337,6 @@ Name | Type | Description  | Notes
 
 # **get_job_last_build**
 > FreeStyleBuild get_job_last_build(name)
-
-
 
 Retrieve job's last build details
 
@@ -426,8 +416,6 @@ Name | Type | Description  | Notes
 
 # **get_job_progressive_text**
 > get_job_progressive_text(name, number, start)
-
-
 
 Retrieve job's build progressive text output
 
@@ -509,8 +497,6 @@ void (empty response body)
 # **get_queue**
 > Queue get_queue()
 
-
-
 Retrieve queue details
 
 ### Example
@@ -584,8 +570,6 @@ This endpoint does not need any parameter.
 
 # **get_queue_item**
 > Queue get_queue_item(number)
-
-
 
 Retrieve queued item details
 
@@ -664,8 +648,6 @@ Name | Type | Description  | Notes
 
 # **get_view**
 > ListView get_view(name)
-
-
 
 Retrieve view details
 
@@ -746,8 +728,6 @@ Name | Type | Description  | Notes
 # **get_view_config**
 > str get_view_config(name)
 
-
-
 Retrieve view configuration
 
 ### Example
@@ -826,8 +806,6 @@ Name | Type | Description  | Notes
 # **head_jenkins**
 > head_jenkins()
 
-
-
 Retrieve Jenkins headers
 
 ### Example
@@ -898,8 +876,6 @@ void (empty response body)
 
 # **post_create_item**
 > post_create_item(name, var_from=var_from, mode=mode, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
-
-
 
 Create a new job using job configuration, or copied from an existing job
 
@@ -987,8 +963,6 @@ void (empty response body)
 # **post_create_view**
 > post_create_view(name, jenkins_crumb=jenkins_crumb, content_type=content_type, body=body)
 
-
-
 Create a new view using view configuration
 
 ### Example
@@ -1070,8 +1044,6 @@ void (empty response body)
 
 # **post_job_build**
 > post_job_build(name, var_json, token=token, jenkins_crumb=jenkins_crumb)
-
-
 
 Build a job
 
@@ -1156,8 +1128,6 @@ void (empty response body)
 # **post_job_config**
 > post_job_config(name, body, jenkins_crumb=jenkins_crumb)
 
-
-
 Update job configuration
 
 ### Example
@@ -1239,8 +1209,6 @@ void (empty response body)
 # **post_job_delete**
 > post_job_delete(name, jenkins_crumb=jenkins_crumb)
 
-
-
 Delete a job
 
 ### Example
@@ -1318,8 +1286,6 @@ void (empty response body)
 
 # **post_job_disable**
 > post_job_disable(name, jenkins_crumb=jenkins_crumb)
-
-
 
 Disable a job
 
@@ -1399,8 +1365,6 @@ void (empty response body)
 # **post_job_enable**
 > post_job_enable(name, jenkins_crumb=jenkins_crumb)
 
-
-
 Enable a job
 
 ### Example
@@ -1479,8 +1443,6 @@ void (empty response body)
 # **post_job_last_build_stop**
 > post_job_last_build_stop(name, jenkins_crumb=jenkins_crumb)
 
-
-
 Stop a job
 
 ### Example
@@ -1558,8 +1520,6 @@ void (empty response body)
 
 # **post_view_config**
 > post_view_config(name, body, jenkins_crumb=jenkins_crumb)
-
-
 
 Update view configuration
 

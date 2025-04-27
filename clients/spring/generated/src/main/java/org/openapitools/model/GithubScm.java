@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.GithubScmlinks;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -19,18 +20,18 @@ import javax.annotation.Generated;
  * GithubScm
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubScm {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private GithubScmlinks links;
+  private @Nullable GithubScmlinks links;
 
-  private String credentialId;
+  private @Nullable String credentialId;
 
-  private String id;
+  private @Nullable String id;
 
-  private String uri;
+  private @Nullable String uri;
 
   public GithubScm propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -40,7 +41,7 @@ public class GithubScm {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -60,7 +61,7 @@ public class GithubScm {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -80,7 +81,7 @@ public class GithubScm {
   /**
    * Get credentialId
    * @return credentialId
-  */
+   */
   
   @Schema(name = "credentialId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("credentialId")
@@ -100,7 +101,7 @@ public class GithubScm {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -120,7 +121,7 @@ public class GithubScm {
   /**
    * Get uri
    * @return uri
-  */
+   */
   
   @Schema(name = "uri", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("uri")

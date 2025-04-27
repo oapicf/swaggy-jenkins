@@ -8,11 +8,11 @@ description:    .
                 .
                 base path: http://localhost
                 .
-                Swaggy Jenkins API version: 2.0.1-pre.0
+                Swaggy Jenkins API version: 3.0.2-pre.0
                 .
                 OpenAPI version: 3.0.0
                 .
-                Generator version: 7.4.0
+                Generator version: 7.12.0
                 .
 category:       Web
 homepage:       https://openapi-generator.tech

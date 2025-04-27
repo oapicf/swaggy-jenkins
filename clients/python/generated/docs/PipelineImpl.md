@@ -30,7 +30,7 @@ print(PipelineImpl.to_json())
 # convert the object into a dict
 pipeline_impl_dict = pipeline_impl_instance.to_dict()
 # create an instance of PipelineImpl from a dict
-pipeline_impl_form_dict = pipeline_impl.from_dict(pipeline_impl_dict)
+pipeline_impl_from_dict = PipelineImpl.from_dict(pipeline_impl_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -39,8 +39,7 @@ QueueLeftItem <- R6::R6Class(
     `why` = NULL,
     `cancelled` = NULL,
     `executable` = NULL,
-    #' Initialize a new QueueLeftItem class.
-    #'
+
     #' @description
     #' Initialize a new QueueLeftItem class.
     #'
@@ -58,7 +57,6 @@ QueueLeftItem <- R6::R6Class(
     #' @param cancelled cancelled
     #' @param executable executable
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, `actions` = NULL, `blocked` = NULL, `buildable` = NULL, `id` = NULL, `inQueueSince` = NULL, `params` = NULL, `stuck` = NULL, `task` = NULL, `url` = NULL, `why` = NULL, `cancelled` = NULL, `executable` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -134,14 +132,37 @@ QueueLeftItem <- R6::R6Class(
         self$`executable` <- `executable`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return QueueLeftItem in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return QueueLeftItem as a base R list.
+    #' @examples
+    #' # convert array of QueueLeftItem (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert QueueLeftItem to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       QueueLeftItemObject <- list()
       if (!is.null(self$`_class`)) {
         QueueLeftItemObject[["_class"]] <-
@@ -149,7 +170,7 @@ QueueLeftItem <- R6::R6Class(
       }
       if (!is.null(self$`actions`)) {
         QueueLeftItemObject[["actions"]] <-
-          lapply(self$`actions`, function(x) x$toJSON())
+          lapply(self$`actions`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`blocked`)) {
         QueueLeftItemObject[["blocked"]] <-
@@ -177,7 +198,7 @@ QueueLeftItem <- R6::R6Class(
       }
       if (!is.null(self$`task`)) {
         QueueLeftItemObject[["task"]] <-
-          self$`task`$toJSON()
+          self$`task`$toSimpleType()
       }
       if (!is.null(self$`url`)) {
         QueueLeftItemObject[["url"]] <-
@@ -193,18 +214,16 @@ QueueLeftItem <- R6::R6Class(
       }
       if (!is.null(self$`executable`)) {
         QueueLeftItemObject[["executable"]] <-
-          self$`executable`$toJSON()
+          self$`executable`$toSimpleType()
       }
-      QueueLeftItemObject
+      return(QueueLeftItemObject)
     },
-    #' Deserialize JSON string into an instance of QueueLeftItem
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of QueueLeftItem
     #'
     #' @param input_json the JSON input
     #' @return the instance of QueueLeftItem
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -252,131 +271,23 @@ QueueLeftItem <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return QueueLeftItem in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        },
-        if (!is.null(self$`actions`)) {
-          sprintf(
-          '"actions":
-          [%s]
-',
-          paste(sapply(self$`actions`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`blocked`)) {
-          sprintf(
-          '"blocked":
-            %s
-                    ',
-          tolower(self$`blocked`)
-          )
-        },
-        if (!is.null(self$`buildable`)) {
-          sprintf(
-          '"buildable":
-            %s
-                    ',
-          tolower(self$`buildable`)
-          )
-        },
-        if (!is.null(self$`id`)) {
-          sprintf(
-          '"id":
-            %d
-                    ',
-          self$`id`
-          )
-        },
-        if (!is.null(self$`inQueueSince`)) {
-          sprintf(
-          '"inQueueSince":
-            %d
-                    ',
-          self$`inQueueSince`
-          )
-        },
-        if (!is.null(self$`params`)) {
-          sprintf(
-          '"params":
-            "%s"
-                    ',
-          self$`params`
-          )
-        },
-        if (!is.null(self$`stuck`)) {
-          sprintf(
-          '"stuck":
-            %s
-                    ',
-          tolower(self$`stuck`)
-          )
-        },
-        if (!is.null(self$`task`)) {
-          sprintf(
-          '"task":
-          %s
-          ',
-          jsonlite::toJSON(self$`task`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`url`)) {
-          sprintf(
-          '"url":
-            "%s"
-                    ',
-          self$`url`
-          )
-        },
-        if (!is.null(self$`why`)) {
-          sprintf(
-          '"why":
-            "%s"
-                    ',
-          self$`why`
-          )
-        },
-        if (!is.null(self$`cancelled`)) {
-          sprintf(
-          '"cancelled":
-            %s
-                    ',
-          tolower(self$`cancelled`)
-          )
-        },
-        if (!is.null(self$`executable`)) {
-          sprintf(
-          '"executable":
-          %s
-          ',
-          jsonlite::toJSON(self$`executable`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of QueueLeftItem
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of QueueLeftItem
     #'
     #' @param input_json the JSON input
     #' @return the instance of QueueLeftItem
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
@@ -394,53 +305,42 @@ QueueLeftItem <- R6::R6Class(
       self$`executable` <- FreeStyleBuild$new()$fromJSON(jsonlite::toJSON(this_object$`executable`, auto_unbox = TRUE, digits = NA))
       self
     },
-    #' Validate JSON input with respect to QueueLeftItem
-    #'
+
     #' @description
     #' Validate JSON input with respect to QueueLeftItem and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of QueueLeftItem
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * CauseUserIdCause
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class CauseUserIdCause {
 
   private String propertyClass;
@@ -37,7 +37,7 @@ public class CauseUserIdCause {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -57,7 +57,7 @@ public class CauseUserIdCause {
   /**
    * Get shortDescription
    * @return shortDescription
-  */
+   */
   
   @Schema(name = "shortDescription", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("shortDescription")
@@ -77,7 +77,7 @@ public class CauseUserIdCause {
   /**
    * Get userId
    * @return userId
-  */
+   */
   
   @Schema(name = "userId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("userId")
@@ -97,7 +97,7 @@ public class CauseUserIdCause {
   /**
    * Get userName
    * @return userName
-  */
+   */
   
   @Schema(name = "userName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("userName")

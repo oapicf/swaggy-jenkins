@@ -23,7 +23,7 @@ print(GithubFile.to_json())
 # convert the object into a dict
 github_file_dict = github_file_instance.to_dict()
 # create an instance of GithubFile from a dict
-github_file_form_dict = github_file.from_dict(github_file_dict)
+github_file_from_dict = GithubFile.from_dict(github_file_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

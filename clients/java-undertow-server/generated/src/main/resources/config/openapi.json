@@ -8,7 +8,7 @@
     },
     "description" : "Jenkins API clients generated from Swagger / Open API specification",
     "title" : "Swaggy Jenkins",
-    "version" : "2.0.1-pre.0"
+    "version" : "3.0.2-pre.0"
   },
   "servers" : [ {
     "url" : "/"
@@ -40,7 +40,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       },
       "head" : {
         "description" : "Retrieve Jenkins headers",
@@ -70,7 +70,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/computer/api/json" : {
@@ -110,7 +110,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/createItem" : {
@@ -204,7 +204,7 @@
         } ],
         "tags" : [ "remoteAccess" ],
         "x-content-type" : "application/json",
-        "x-accepts" : "*/*"
+        "x-accepts" : [ "*/*" ]
       }
     },
     "/createView" : {
@@ -278,7 +278,7 @@
         } ],
         "tags" : [ "remoteAccess" ],
         "x-content-type" : "application/json",
-        "x-accepts" : "*/*"
+        "x-accepts" : [ "*/*" ]
       }
     },
     "/crumbIssuer/api/json" : {
@@ -307,7 +307,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "base" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/job/{name}/api/json" : {
@@ -350,7 +350,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/job/{name}/build" : {
@@ -417,7 +417,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/job/{name}/config.xml" : {
@@ -460,7 +460,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "text/xml"
+        "x-accepts" : [ "text/xml" ]
       },
       "post" : {
         "description" : "Update job configuration",
@@ -526,7 +526,7 @@
         } ],
         "tags" : [ "remoteAccess" ],
         "x-content-type" : "application/json",
-        "x-accepts" : "*/*"
+        "x-accepts" : [ "*/*" ]
       }
     },
     "/job/{name}/doDelete" : {
@@ -572,7 +572,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/job/{name}/disable" : {
@@ -618,7 +618,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/job/{name}/enable" : {
@@ -664,7 +664,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/job/{name}/lastBuild/api/json" : {
@@ -707,7 +707,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/job/{name}/lastBuild/stop" : {
@@ -753,7 +753,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/job/{name}/{number}/logText/progressiveText" : {
@@ -809,7 +809,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/queue/api/json" : {
@@ -838,7 +838,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/queue/item/{number}/api/json" : {
@@ -878,7 +878,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/view/{name}/api/json" : {
@@ -921,7 +921,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/view/{name}/config.xml" : {
@@ -964,7 +964,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "text/xml"
+        "x-accepts" : [ "text/xml" ]
       },
       "post" : {
         "description" : "Update view configuration",
@@ -1030,7 +1030,7 @@
         } ],
         "tags" : [ "remoteAccess" ],
         "x-content-type" : "application/json",
-        "x-accepts" : "*/*"
+        "x-accepts" : [ "*/*" ]
       }
     },
     "/jwt-auth/token" : {
@@ -1077,7 +1077,7 @@
           }
         },
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/jwt-auth/jwks/{key}" : {
@@ -1114,7 +1114,7 @@
           }
         },
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/classes/" : {
@@ -1154,7 +1154,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/classes/{class}" : {
@@ -1194,7 +1194,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/search/" : {
@@ -1234,7 +1234,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/" : {
@@ -1263,7 +1263,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}" : {
@@ -1306,7 +1306,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/" : {
@@ -1346,7 +1346,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}" : {
@@ -1399,7 +1399,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities" : {
@@ -1449,7 +1449,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches" : {
@@ -1499,7 +1499,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/" : {
@@ -1559,7 +1559,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}" : {
@@ -1629,7 +1629,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{folder}/" : {
@@ -1679,7 +1679,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}" : {
@@ -1739,7 +1739,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" : {
@@ -1801,7 +1801,7 @@
         } ],
         "tags" : [ "blueOcean" ],
         "x-content-type" : "application/json",
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue" : {
@@ -1851,7 +1851,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}" : {
@@ -1904,7 +1904,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" : {
@@ -1954,7 +1954,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       },
       "post" : {
         "description" : "Start a build for an organization pipeline",
@@ -2002,7 +2002,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}" : {
@@ -2062,7 +2062,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes" : {
@@ -2122,7 +2122,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}" : {
@@ -2192,7 +2192,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps" : {
@@ -2262,7 +2262,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}" : {
@@ -2342,7 +2342,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log" : {
@@ -2422,7 +2422,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log" : {
@@ -2502,7 +2502,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay" : {
@@ -2562,7 +2562,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop" : {
@@ -2642,7 +2642,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/scm/{scm}" : {
@@ -2692,7 +2692,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/scm/{scm}/organizations" : {
@@ -2752,7 +2752,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories" : {
@@ -2842,7 +2842,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}" : {
@@ -2922,7 +2922,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/user/" : {
@@ -2962,7 +2962,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/users/" : {
@@ -3002,7 +3002,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/organizations/{organization}/users/{user}" : {
@@ -3052,7 +3052,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     },
     "/blue/rest/users/{user}/favorites" : {
@@ -3092,7 +3092,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json"
+        "x-accepts" : [ "application/json" ]
       }
     }
   },

@@ -34,7 +34,7 @@ print(BranchImpl.to_json())
 # convert the object into a dict
 branch_impl_dict = branch_impl_instance.to_dict()
 # create an instance of BranchImpl from a dict
-branch_impl_form_dict = branch_impl.from_dict(branch_impl_dict)
+branch_impl_from_dict = BranchImpl.from_dict(branch_impl_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

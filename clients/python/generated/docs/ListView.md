@@ -26,7 +26,7 @@ print(ListView.to_json())
 # convert the object into a dict
 list_view_dict = list_view_instance.to_dict()
 # create an instance of ListView from a dict
-list_view_form_dict = list_view.from_dict(list_view_dict)
+list_view_from_dict = ListView.from_dict(list_view_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

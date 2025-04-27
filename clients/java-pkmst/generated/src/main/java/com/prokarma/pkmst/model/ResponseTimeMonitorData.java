@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * ResponseTimeMonitorData
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ResponseTimeMonitorData   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -30,10 +30,10 @@ public class ResponseTimeMonitorData   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -48,10 +48,10 @@ public class ResponseTimeMonitorData   {
     return this;
   }
 
-   /**
+  /**
    * Get timestamp
    * @return timestamp
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getTimestamp() {
     return timestamp;
@@ -66,10 +66,10 @@ public class ResponseTimeMonitorData   {
     return this;
   }
 
-   /**
+  /**
    * Get average
    * @return average
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getAverage() {
     return average;

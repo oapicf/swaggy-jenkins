@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.FreeStyleProject;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,19 +23,19 @@ import javax.annotation.Generated;
  * ListView
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ListView {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private String description;
+  private @Nullable String description;
 
   @Valid
-  private List<@Valid FreeStyleProject> jobs;
+  private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
 
-  private String name;
+  private @Nullable String name;
 
-  private String url;
+  private @Nullable String url;
 
   public ListView propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -44,7 +45,7 @@ public class ListView {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -64,7 +65,7 @@ public class ListView {
   /**
    * Get description
    * @return description
-  */
+   */
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
@@ -92,7 +93,7 @@ public class ListView {
   /**
    * Get jobs
    * @return jobs
-  */
+   */
   @Valid 
   @Schema(name = "jobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("jobs")
@@ -112,7 +113,7 @@ public class ListView {
   /**
    * Get name
    * @return name
-  */
+   */
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
@@ -132,7 +133,7 @@ public class ListView {
   /**
    * Get url
    * @return url
-  */
+   */
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")

@@ -36,7 +36,7 @@ print(PipelinelatestRun.to_json())
 # convert the object into a dict
 pipelinelatest_run_dict = pipelinelatest_run_instance.to_dict()
 # create an instance of PipelinelatestRun from a dict
-pipelinelatest_run_form_dict = pipelinelatest_run.from_dict(pipelinelatest_run_dict)
+pipelinelatest_run_from_dict = PipelinelatestRun.from_dict(pipelinelatest_run_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

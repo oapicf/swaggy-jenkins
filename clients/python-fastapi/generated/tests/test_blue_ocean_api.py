@@ -3,6 +3,9 @@
 from fastapi.testclient import TestClient
 
 
+from pydantic import Field, StrictBool, StrictInt, StrictStr  # noqa: F401
+from typing import Any, List, Optional  # noqa: F401
+from typing_extensions import Annotated  # noqa: F401
 from openapi_server.models.branch_impl import BranchImpl  # noqa: F401
 from openapi_server.models.favorite_impl import FavoriteImpl  # noqa: F401
 from openapi_server.models.github_organization import GithubOrganization  # noqa: F401
@@ -72,7 +75,7 @@ def test_get_classes(client: TestClient):
     # uncomment below to make a request
     #response = client.request(
     #    "GET",
-    #    "/blue/rest/classes/{class}".format(class='_class_example'),
+    #    "/blue/rest/classes/{class}".format(class='var_class_example'),
     #    headers=headers,
     #)
 

@@ -5,7 +5,7 @@
 
 
 
-github_organization_t *github_organization_create(
+static github_organization_t *github_organization_create_internal(
     char *_class,
     github_organizationlinks_t *_links,
     int jenkins_organization_pipeline,
@@ -20,12 +20,30 @@ github_organization_t *github_organization_create(
     github_organization_local_var->jenkins_organization_pipeline = jenkins_organization_pipeline;
     github_organization_local_var->name = name;
 
+    github_organization_local_var->_library_owned = 1;
     return github_organization_local_var;
 }
 
+__attribute__((deprecated)) github_organization_t *github_organization_create(
+    char *_class,
+    github_organizationlinks_t *_links,
+    int jenkins_organization_pipeline,
+    char *name
+    ) {
+    return github_organization_create_internal (
+        _class,
+        _links,
+        jenkins_organization_pipeline,
+        name
+        );
+}
 
 void github_organization_free(github_organization_t *github_organization) {
     if(NULL == github_organization){
+        return ;
+    }
+    if(github_organization->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_organization_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -100,6 +118,9 @@ github_organization_t *github_organization_parseFromJSON(cJSON *github_organizat
 
     // github_organization->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_organizationJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -109,12 +130,18 @@ github_organization_t *github_organization_parseFromJSON(cJSON *github_organizat
 
     // github_organization->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(github_organizationJSON, "_links");
+    if (cJSON_IsNull(_links)) {
+        _links = NULL;
+    }
     if (_links) { 
     _links_local_nonprim = github_organizationlinks_parseFromJSON(_links); //nonprimitive
     }
 
     // github_organization->jenkins_organization_pipeline
     cJSON *jenkins_organization_pipeline = cJSON_GetObjectItemCaseSensitive(github_organizationJSON, "jenkinsOrganizationPipeline");
+    if (cJSON_IsNull(jenkins_organization_pipeline)) {
+        jenkins_organization_pipeline = NULL;
+    }
     if (jenkins_organization_pipeline) { 
     if(!cJSON_IsBool(jenkins_organization_pipeline))
     {
@@ -124,6 +151,9 @@ github_organization_t *github_organization_parseFromJSON(cJSON *github_organizat
 
     // github_organization->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(github_organizationJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -132,7 +162,7 @@ github_organization_t *github_organization_parseFromJSON(cJSON *github_organizat
     }
 
 
-    github_organization_local_var = github_organization_create (
+    github_organization_local_var = github_organization_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         _links ? _links_local_nonprim : NULL,
         jenkins_organization_pipeline ? jenkins_organization_pipeline->valueint : 0,

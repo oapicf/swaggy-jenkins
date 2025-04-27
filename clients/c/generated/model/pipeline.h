@@ -29,9 +29,10 @@ typedef struct pipeline_t {
     int estimated_duration_in_millis; //numeric
     struct pipelinelatest_run_t *latest_run; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_t;
 
-pipeline_t *pipeline_create(
+__attribute__((deprecated)) pipeline_t *pipeline_create(
     char *_class,
     char *organization,
     char *name,

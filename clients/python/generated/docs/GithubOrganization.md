@@ -25,7 +25,7 @@ print(GithubOrganization.to_json())
 # convert the object into a dict
 github_organization_dict = github_organization_instance.to_dict()
 # create an instance of GithubOrganization from a dict
-github_organization_form_dict = github_organization.from_dict(github_organization_dict)
+github_organization_from_dict = GithubOrganization.from_dict(github_organization_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

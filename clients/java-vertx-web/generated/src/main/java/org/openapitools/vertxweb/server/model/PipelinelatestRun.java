@@ -11,7 +11,7 @@ import org.openapitools.vertxweb.server.model.PipelinelatestRunartifacts;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PipelinelatestRun   {
   
-  private List<PipelinelatestRunartifacts> artifacts;
+  private List<PipelinelatestRunartifacts> artifacts = new ArrayList<>();
   private Integer durationInMillis;
   private Integer estimatedDurationInMillis;
   private String enQueueTime;

@@ -21,7 +21,7 @@ public class PipelineRun   {
   
   private String propertyClass;
 
-  private List<@Valid PipelineRunartifacts> artifacts;
+  private List<@Valid PipelineRunartifacts> artifacts = new ArrayList<>();
 
   private Integer durationInMillis;
 

@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.PipelineBranchesitempullRequestlinks;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -19,20 +20,20 @@ import javax.annotation.Generated;
  * PipelineBranchesitempullRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineBranchesitempullRequest {
 
-  private PipelineBranchesitempullRequestlinks links;
+  private @Nullable PipelineBranchesitempullRequestlinks links;
 
-  private String author;
+  private @Nullable String author;
 
-  private String id;
+  private @Nullable String id;
 
-  private String title;
+  private @Nullable String title;
 
-  private String url;
+  private @Nullable String url;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public PipelineBranchesitempullRequest links(PipelineBranchesitempullRequestlinks links) {
     this.links = links;
@@ -42,7 +43,7 @@ public class PipelineBranchesitempullRequest {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -62,7 +63,7 @@ public class PipelineBranchesitempullRequest {
   /**
    * Get author
    * @return author
-  */
+   */
   
   @Schema(name = "author", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("author")
@@ -82,7 +83,7 @@ public class PipelineBranchesitempullRequest {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -102,7 +103,7 @@ public class PipelineBranchesitempullRequest {
   /**
    * Get title
    * @return title
-  */
+   */
   
   @Schema(name = "title", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("title")
@@ -122,7 +123,7 @@ public class PipelineBranchesitempullRequest {
   /**
    * Get url
    * @return url
-  */
+   */
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")
@@ -142,7 +143,7 @@ public class PipelineBranchesitempullRequest {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

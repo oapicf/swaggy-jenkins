@@ -26,7 +26,7 @@ print(GithubScm.to_json())
 # convert the object into a dict
 github_scm_dict = github_scm_instance.to_dict()
 # create an instance of GithubScm from a dict
-github_scm_form_dict = github_scm.from_dict(github_scm_dict)
+github_scm_from_dict = GithubScm.from_dict(github_scm_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

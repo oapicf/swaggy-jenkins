@@ -5,7 +5,7 @@
 
 
 
-branch_implpermissions_t *branch_implpermissions_create(
+static branch_implpermissions_t *branch_implpermissions_create_internal(
     int create,
     int read,
     int start,
@@ -22,12 +22,32 @@ branch_implpermissions_t *branch_implpermissions_create(
     branch_implpermissions_local_var->stop = stop;
     branch_implpermissions_local_var->_class = _class;
 
+    branch_implpermissions_local_var->_library_owned = 1;
     return branch_implpermissions_local_var;
 }
 
+__attribute__((deprecated)) branch_implpermissions_t *branch_implpermissions_create(
+    int create,
+    int read,
+    int start,
+    int stop,
+    char *_class
+    ) {
+    return branch_implpermissions_create_internal (
+        create,
+        read,
+        start,
+        stop,
+        _class
+        );
+}
 
 void branch_implpermissions_free(branch_implpermissions_t *branch_implpermissions) {
     if(NULL == branch_implpermissions){
+        return ;
+    }
+    if(branch_implpermissions->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branch_implpermissions_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -94,6 +114,9 @@ branch_implpermissions_t *branch_implpermissions_parseFromJSON(cJSON *branch_imp
 
     // branch_implpermissions->create
     cJSON *create = cJSON_GetObjectItemCaseSensitive(branch_implpermissionsJSON, "create");
+    if (cJSON_IsNull(create)) {
+        create = NULL;
+    }
     if (create) { 
     if(!cJSON_IsBool(create))
     {
@@ -103,6 +126,9 @@ branch_implpermissions_t *branch_implpermissions_parseFromJSON(cJSON *branch_imp
 
     // branch_implpermissions->read
     cJSON *read = cJSON_GetObjectItemCaseSensitive(branch_implpermissionsJSON, "read");
+    if (cJSON_IsNull(read)) {
+        read = NULL;
+    }
     if (read) { 
     if(!cJSON_IsBool(read))
     {
@@ -112,6 +138,9 @@ branch_implpermissions_t *branch_implpermissions_parseFromJSON(cJSON *branch_imp
 
     // branch_implpermissions->start
     cJSON *start = cJSON_GetObjectItemCaseSensitive(branch_implpermissionsJSON, "start");
+    if (cJSON_IsNull(start)) {
+        start = NULL;
+    }
     if (start) { 
     if(!cJSON_IsBool(start))
     {
@@ -121,6 +150,9 @@ branch_implpermissions_t *branch_implpermissions_parseFromJSON(cJSON *branch_imp
 
     // branch_implpermissions->stop
     cJSON *stop = cJSON_GetObjectItemCaseSensitive(branch_implpermissionsJSON, "stop");
+    if (cJSON_IsNull(stop)) {
+        stop = NULL;
+    }
     if (stop) { 
     if(!cJSON_IsBool(stop))
     {
@@ -130,6 +162,9 @@ branch_implpermissions_t *branch_implpermissions_parseFromJSON(cJSON *branch_imp
 
     // branch_implpermissions->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(branch_implpermissionsJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -138,7 +173,7 @@ branch_implpermissions_t *branch_implpermissions_parseFromJSON(cJSON *branch_imp
     }
 
 
-    branch_implpermissions_local_var = branch_implpermissions_create (
+    branch_implpermissions_local_var = branch_implpermissions_create_internal (
         create ? create->valueint : 0,
         read ? read->valueint : 0,
         start ? start->valueint : 0,

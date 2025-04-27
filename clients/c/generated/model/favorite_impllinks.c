@@ -5,7 +5,7 @@
 
 
 
-favorite_impllinks_t *favorite_impllinks_create(
+static favorite_impllinks_t *favorite_impllinks_create_internal(
     link_t *self,
     char *_class
     ) {
@@ -16,12 +16,26 @@ favorite_impllinks_t *favorite_impllinks_create(
     favorite_impllinks_local_var->self = self;
     favorite_impllinks_local_var->_class = _class;
 
+    favorite_impllinks_local_var->_library_owned = 1;
     return favorite_impllinks_local_var;
 }
 
+__attribute__((deprecated)) favorite_impllinks_t *favorite_impllinks_create(
+    link_t *self,
+    char *_class
+    ) {
+    return favorite_impllinks_create_internal (
+        self,
+        _class
+        );
+}
 
 void favorite_impllinks_free(favorite_impllinks_t *favorite_impllinks) {
     if(NULL == favorite_impllinks){
+        return ;
+    }
+    if(favorite_impllinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "favorite_impllinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -76,12 +90,18 @@ favorite_impllinks_t *favorite_impllinks_parseFromJSON(cJSON *favorite_impllinks
 
     // favorite_impllinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(favorite_impllinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // favorite_impllinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(favorite_impllinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -90,7 +110,7 @@ favorite_impllinks_t *favorite_impllinks_parseFromJSON(cJSON *favorite_impllinks
     }
 
 
-    favorite_impllinks_local_var = favorite_impllinks_create (
+    favorite_impllinks_local_var = favorite_impllinks_create_internal (
         self ? self_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

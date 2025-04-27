@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * PipelineImpllinks
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineImpllinks   {
   @JsonProperty("runs")
   private Link runs;
@@ -37,10 +37,10 @@ public class PipelineImpllinks   {
     return this;
   }
 
-   /**
+  /**
    * Get runs
    * @return runs
-  **/
+   */
   @ApiModelProperty(value = "")
   public Link getRuns() {
     return runs;
@@ -55,10 +55,10 @@ public class PipelineImpllinks   {
     return this;
   }
 
-   /**
+  /**
    * Get self
    * @return self
-  **/
+   */
   @ApiModelProperty(value = "")
   public Link getSelf() {
     return self;
@@ -73,10 +73,10 @@ public class PipelineImpllinks   {
     return this;
   }
 
-   /**
+  /**
    * Get queue
    * @return queue
-  **/
+   */
   @ApiModelProperty(value = "")
   public Link getQueue() {
     return queue;
@@ -91,10 +91,10 @@ public class PipelineImpllinks   {
     return this;
   }
 
-   /**
+  /**
    * Get actions
    * @return actions
-  **/
+   */
   @ApiModelProperty(value = "")
   public Link getActions() {
     return actions;
@@ -109,10 +109,10 @@ public class PipelineImpllinks   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;

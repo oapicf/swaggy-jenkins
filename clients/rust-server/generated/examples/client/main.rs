@@ -4,58 +4,57 @@
 #[allow(unused_imports)]
 use futures::{future, Stream, stream};
 #[allow(unused_imports)]
-use openapi_client::{Api, ApiNoContext, Client, ContextWrapperExt, models,
+use openapi_client::{Api, ApiNoContext, Claims, Client, ContextWrapperExt, models,
                       GetCrumbResponse,
-                      DeletePipelineQueueItemResponse,
+                      GetJsonWebTokenResponse,
+                      GetOrganisationsResponse,
+                      SearchResponse,
+                      SearchClassesResponse,
                       GetAuthenticatedUserResponse,
                       GetClassesResponse,
                       GetJsonWebKeyResponse,
-                      GetJsonWebTokenResponse,
                       GetOrganisationResponse,
-                      GetOrganisationsResponse,
-                      GetPipelineResponse,
-                      GetPipelineActivitiesResponse,
-                      GetPipelineBranchResponse,
-                      GetPipelineBranchRunResponse,
-                      GetPipelineBranchesResponse,
-                      GetPipelineFolderResponse,
-                      GetPipelineFolderPipelineResponse,
-                      GetPipelineQueueResponse,
-                      GetPipelineRunResponse,
-                      GetPipelineRunLogResponse,
-                      GetPipelineRunNodeResponse,
-                      GetPipelineRunNodeStepResponse,
-                      GetPipelineRunNodeStepLogResponse,
-                      GetPipelineRunNodeStepsResponse,
-                      GetPipelineRunNodesResponse,
-                      GetPipelineRunsResponse,
                       GetPipelinesResponse,
-                      GetScmResponse,
-                      GetScmOrganisationRepositoriesResponse,
-                      GetScmOrganisationRepositoryResponse,
-                      GetScmOrganisationsResponse,
-                      GetUserResponse,
                       GetUserFavoritesResponse,
                       GetUsersResponse,
-                      PostPipelineRunResponse,
+                      GetPipelineResponse,
+                      GetPipelineActivitiesResponse,
+                      GetPipelineBranchesResponse,
+                      GetPipelineFolderResponse,
+                      GetPipelineQueueResponse,
+                      GetPipelineRunsResponse,
+                      GetScmResponse,
+                      GetScmOrganisationsResponse,
+                      GetUserResponse,
                       PostPipelineRunsResponse,
                       PutPipelineFavoriteResponse,
+                      DeletePipelineQueueItemResponse,
+                      GetPipelineBranchResponse,
+                      GetPipelineFolderPipelineResponse,
+                      GetPipelineRunResponse,
+                      GetPipelineRunLogResponse,
+                      GetPipelineRunNodesResponse,
+                      GetScmOrganisationRepositoriesResponse,
+                      PostPipelineRunResponse,
                       PutPipelineRunResponse,
-                      SearchResponse,
-                      SearchClassesResponse,
+                      GetPipelineBranchRunResponse,
+                      GetPipelineRunNodeResponse,
+                      GetPipelineRunNodeStepsResponse,
+                      GetScmOrganisationRepositoryResponse,
+                      GetPipelineRunNodeStepResponse,
+                      GetPipelineRunNodeStepLogResponse,
                       GetComputerResponse,
                       GetJenkinsResponse,
-                      GetJobResponse,
-                      GetJobConfigResponse,
-                      GetJobLastBuildResponse,
-                      GetJobProgressiveTextResponse,
                       GetQueueResponse,
-                      GetQueueItemResponse,
-                      GetViewResponse,
-                      GetViewConfigResponse,
                       HeadJenkinsResponse,
                       PostCreateItemResponse,
                       PostCreateViewResponse,
+                      GetJobResponse,
+                      GetJobConfigResponse,
+                      GetJobLastBuildResponse,
+                      GetQueueItemResponse,
+                      GetViewResponse,
+                      GetViewConfigResponse,
                       PostJobBuildResponse,
                       PostJobConfigResponse,
                       PostJobDeleteResponse,
@@ -63,8 +62,12 @@ use openapi_client::{Api, ApiNoContext, Client, ContextWrapperExt, models,
                       PostJobEnableResponse,
                       PostJobLastBuildStopResponse,
                       PostViewConfigResponse,
+                      GetJobProgressiveTextResponse,
                      };
 use clap::{App, Arg};
+
+// NOTE: Set environment variable RUST_LOG to the name of the executable (or "cargo run") to activate console logging for all loglevels.
+//     See https://docs.rs/env_logger/latest/env_logger/  for more details
 
 #[allow(unused_imports)]
 use log::info;
@@ -74,6 +77,10 @@ use log::info;
 use swagger::{AuthData, ContextBuilder, EmptyContext, Has, Push, XSpanIdString};
 
 type ClientContext = swagger::make_context_ty!(ContextBuilder, EmptyContext, Option<AuthData>, XSpanIdString);
+
+mod client_auth;
+use client_auth::build_token;
+
 
 // rt may be unused if there are no examples
 #[allow(unused_mut)]
@@ -85,56 +92,55 @@ fn main() {
             .help("Sets the operation to run")
             .possible_values(&[
                 "GetCrumb",
-                "DeletePipelineQueueItem",
+                "GetJsonWebToken",
+                "GetOrganisations",
+                "Search",
+                "SearchClasses",
                 "GetAuthenticatedUser",
                 "GetClasses",
                 "GetJsonWebKey",
-                "GetJsonWebToken",
                 "GetOrganisation",
-                "GetOrganisations",
-                "GetPipeline",
-                "GetPipelineActivities",
-                "GetPipelineBranch",
-                "GetPipelineBranchRun",
-                "GetPipelineBranches",
-                "GetPipelineFolder",
-                "GetPipelineFolderPipeline",
-                "GetPipelineQueue",
-                "GetPipelineRun",
-                "GetPipelineRunLog",
-                "GetPipelineRunNode",
-                "GetPipelineRunNodeStep",
-                "GetPipelineRunNodeStepLog",
-                "GetPipelineRunNodeSteps",
-                "GetPipelineRunNodes",
-                "GetPipelineRuns",
                 "GetPipelines",
-                "GetScm",
-                "GetScmOrganisationRepositories",
-                "GetScmOrganisationRepository",
-                "GetScmOrganisations",
-                "GetUser",
                 "GetUserFavorites",
                 "GetUsers",
-                "PostPipelineRun",
+                "GetPipeline",
+                "GetPipelineActivities",
+                "GetPipelineBranches",
+                "GetPipelineFolder",
+                "GetPipelineQueue",
+                "GetPipelineRuns",
+                "GetScm",
+                "GetScmOrganisations",
+                "GetUser",
                 "PostPipelineRuns",
                 "PutPipelineFavorite",
+                "DeletePipelineQueueItem",
+                "GetPipelineBranch",
+                "GetPipelineFolderPipeline",
+                "GetPipelineRun",
+                "GetPipelineRunLog",
+                "GetPipelineRunNodes",
+                "GetScmOrganisationRepositories",
+                "PostPipelineRun",
                 "PutPipelineRun",
-                "Search",
-                "SearchClasses",
+                "GetPipelineBranchRun",
+                "GetPipelineRunNode",
+                "GetPipelineRunNodeSteps",
+                "GetScmOrganisationRepository",
+                "GetPipelineRunNodeStep",
+                "GetPipelineRunNodeStepLog",
                 "GetComputer",
                 "GetJenkins",
-                "GetJob",
-                "GetJobConfig",
-                "GetJobLastBuild",
-                "GetJobProgressiveText",
                 "GetQueue",
-                "GetQueueItem",
-                "GetView",
-                "GetViewConfig",
                 "HeadJenkins",
                 "PostCreateItem",
                 "PostCreateView",
+                "GetJob",
+                "GetJobConfig",
+                "GetJobLastBuild",
+                "GetQueueItem",
+                "GetView",
+                "GetViewConfig",
                 "PostJobBuild",
                 "PostJobConfig",
                 "PostJobDelete",
@@ -142,6 +148,7 @@ fn main() {
                 "PostJobEnable",
                 "PostJobLastBuildStop",
                 "PostViewConfig",
+                "GetJobProgressiveText",
             ])
             .required(true)
             .index(1))
@@ -160,14 +167,39 @@ fn main() {
             .help("Port to contact"))
         .get_matches();
 
+    // Create Bearer-token with a fixed key (secret) for test purposes.
+    // In a real (production) system this Bearer token should be obtained via an external Identity/Authentication-server
+    // Ensure that you set the correct algorithm and encodingkey that matches what is used on the server side.
+    // See https://github.com/Keats/jsonwebtoken for more information
+    let auth_token = build_token(
+            Claims {
+                sub: "tester@acme.com".to_owned(),
+                company: "ACME".to_owned(),
+                iss: "my_identity_provider".to_owned(),
+                // added a very long expiry time
+                aud: "org.acme.Resource_Server".to_string(),
+                exp: 10000000000,
+                // In this example code all available Scopes are added, so the current Bearer Token gets fully authorization.
+                scopes:
+                  "".to_owned()
+            },
+            b"secret").unwrap();
+
+    let auth_data = if !auth_token.is_empty() {
+        Some(AuthData::Bearer(swagger::auth::Bearer { token: auth_token}))
+    } else {
+        // No Bearer-token available, so return None
+        None
+    };
+
     let is_https = matches.is_present("https");
     let base_url = format!("{}://{}:{}",
-                           if is_https { "https" } else { "http" },
-                           matches.value_of("host").unwrap(),
-                           matches.value_of("port").unwrap());
+        if is_https { "https" } else { "http" },
+        matches.value_of("host").unwrap(),
+        matches.value_of("port").unwrap());
 
     let context: ClientContext =
-        swagger::make_context!(ContextBuilder, EmptyContext, None as Option<AuthData>, XSpanIdString::default());
+        swagger::make_context!(ContextBuilder, EmptyContext, auth_data, XSpanIdString::default());
 
     let mut client : Box<dyn ApiNoContext<ClientContext>> = if matches.is_present("https") {
         // Using Simple HTTPS
@@ -190,11 +222,27 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        Some("DeletePipelineQueueItem") => {
-            let result = rt.block_on(client.delete_pipeline_queue_item(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "queue_example".to_string()
+        Some("GetJsonWebToken") => {
+            let result = rt.block_on(client.get_json_web_token(
+                  Some(56),
+                  Some(56)
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetOrganisations") => {
+            let result = rt.block_on(client.get_organisations(
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("Search") => {
+            let result = rt.block_on(client.search(
+                  "q_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("SearchClasses") => {
+            let result = rt.block_on(client.search_classes(
+                  "q_example".to_string()
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -216,21 +264,27 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        Some("GetJsonWebToken") => {
-            let result = rt.block_on(client.get_json_web_token(
-                  Some(56),
-                  Some(56)
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
         Some("GetOrganisation") => {
             let result = rt.block_on(client.get_organisation(
                   "organization_example".to_string()
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        Some("GetOrganisations") => {
-            let result = rt.block_on(client.get_organisations(
+        Some("GetPipelines") => {
+            let result = rt.block_on(client.get_pipelines(
+                  "organization_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetUserFavorites") => {
+            let result = rt.block_on(client.get_user_favorites(
+                  "user_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetUsers") => {
+            let result = rt.block_on(client.get_users(
+                  "organization_example".to_string()
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -248,23 +302,6 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        Some("GetPipelineBranch") => {
-            let result = rt.block_on(client.get_pipeline_branch(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "branch_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetPipelineBranchRun") => {
-            let result = rt.block_on(client.get_pipeline_branch_run(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "branch_example".to_string(),
-                  "run_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
         Some("GetPipelineBranches") => {
             let result = rt.block_on(client.get_pipeline_branches(
                   "organization_example".to_string(),
@@ -279,18 +316,78 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        Some("GetPipelineQueue") => {
+            let result = rt.block_on(client.get_pipeline_queue(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetPipelineRuns") => {
+            let result = rt.block_on(client.get_pipeline_runs(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetScm") => {
+            let result = rt.block_on(client.get_scm(
+                  "organization_example".to_string(),
+                  "scm_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetScmOrganisations") => {
+            let result = rt.block_on(client.get_scm_organisations(
+                  "organization_example".to_string(),
+                  "scm_example".to_string(),
+                  Some("credential_id_example".to_string())
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetUser") => {
+            let result = rt.block_on(client.get_user(
+                  "organization_example".to_string(),
+                  "user_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("PostPipelineRuns") => {
+            let result = rt.block_on(client.post_pipeline_runs(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("PutPipelineFavorite") => {
+            let result = rt.block_on(client.put_pipeline_favorite(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string(),
+                  true
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("DeletePipelineQueueItem") => {
+            let result = rt.block_on(client.delete_pipeline_queue_item(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string(),
+                  "queue_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetPipelineBranch") => {
+            let result = rt.block_on(client.get_pipeline_branch(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string(),
+                  "branch_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
         Some("GetPipelineFolderPipeline") => {
             let result = rt.block_on(client.get_pipeline_folder_pipeline(
                   "organization_example".to_string(),
                   "pipeline_example".to_string(),
                   "folder_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetPipelineQueue") => {
-            let result = rt.block_on(client.get_pipeline_queue(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string()
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -312,12 +409,77 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        Some("GetPipelineRunNodes") => {
+            let result = rt.block_on(client.get_pipeline_run_nodes(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string(),
+                  "run_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetScmOrganisationRepositories") => {
+            let result = rt.block_on(client.get_scm_organisation_repositories(
+                  "organization_example".to_string(),
+                  "scm_example".to_string(),
+                  "scm_organisation_example".to_string(),
+                  Some("credential_id_example".to_string()),
+                  Some(56),
+                  Some(56)
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("PostPipelineRun") => {
+            let result = rt.block_on(client.post_pipeline_run(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string(),
+                  "run_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("PutPipelineRun") => {
+            let result = rt.block_on(client.put_pipeline_run(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string(),
+                  "run_example".to_string(),
+                  Some("blocking_example".to_string()),
+                  Some(56)
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetPipelineBranchRun") => {
+            let result = rt.block_on(client.get_pipeline_branch_run(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string(),
+                  "branch_example".to_string(),
+                  "run_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
         Some("GetPipelineRunNode") => {
             let result = rt.block_on(client.get_pipeline_run_node(
                   "organization_example".to_string(),
                   "pipeline_example".to_string(),
                   "run_example".to_string(),
                   "node_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetPipelineRunNodeSteps") => {
+            let result = rt.block_on(client.get_pipeline_run_node_steps(
+                  "organization_example".to_string(),
+                  "pipeline_example".to_string(),
+                  "run_example".to_string(),
+                  "node_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetScmOrganisationRepository") => {
+            let result = rt.block_on(client.get_scm_organisation_repository(
+                  "organization_example".to_string(),
+                  "scm_example".to_string(),
+                  "scm_organisation_example".to_string(),
+                  "repository_example".to_string(),
+                  Some("credential_id_example".to_string())
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -341,136 +503,6 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        Some("GetPipelineRunNodeSteps") => {
-            let result = rt.block_on(client.get_pipeline_run_node_steps(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string(),
-                  "node_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetPipelineRunNodes") => {
-            let result = rt.block_on(client.get_pipeline_run_nodes(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetPipelineRuns") => {
-            let result = rt.block_on(client.get_pipeline_runs(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetPipelines") => {
-            let result = rt.block_on(client.get_pipelines(
-                  "organization_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetScm") => {
-            let result = rt.block_on(client.get_scm(
-                  "organization_example".to_string(),
-                  "scm_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetScmOrganisationRepositories") => {
-            let result = rt.block_on(client.get_scm_organisation_repositories(
-                  "organization_example".to_string(),
-                  "scm_example".to_string(),
-                  "scm_organisation_example".to_string(),
-                  Some("credential_id_example".to_string()),
-                  Some(56),
-                  Some(56)
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetScmOrganisationRepository") => {
-            let result = rt.block_on(client.get_scm_organisation_repository(
-                  "organization_example".to_string(),
-                  "scm_example".to_string(),
-                  "scm_organisation_example".to_string(),
-                  "repository_example".to_string(),
-                  Some("credential_id_example".to_string())
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetScmOrganisations") => {
-            let result = rt.block_on(client.get_scm_organisations(
-                  "organization_example".to_string(),
-                  "scm_example".to_string(),
-                  Some("credential_id_example".to_string())
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetUser") => {
-            let result = rt.block_on(client.get_user(
-                  "organization_example".to_string(),
-                  "user_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetUserFavorites") => {
-            let result = rt.block_on(client.get_user_favorites(
-                  "user_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetUsers") => {
-            let result = rt.block_on(client.get_users(
-                  "organization_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("PostPipelineRun") => {
-            let result = rt.block_on(client.post_pipeline_run(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("PostPipelineRuns") => {
-            let result = rt.block_on(client.post_pipeline_runs(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("PutPipelineFavorite") => {
-            let result = rt.block_on(client.put_pipeline_favorite(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  true
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("PutPipelineRun") => {
-            let result = rt.block_on(client.put_pipeline_run(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string(),
-                  Some("blocking_example".to_string()),
-                  Some(56)
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("Search") => {
-            let result = rt.block_on(client.search(
-                  "q_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("SearchClasses") => {
-            let result = rt.block_on(client.search_classes(
-                  "q_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
         Some("GetComputer") => {
             let result = rt.block_on(client.get_computer(
                   56
@@ -482,52 +514,8 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
-        Some("GetJob") => {
-            let result = rt.block_on(client.get_job(
-                  "name_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetJobConfig") => {
-            let result = rt.block_on(client.get_job_config(
-                  "name_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetJobLastBuild") => {
-            let result = rt.block_on(client.get_job_last_build(
-                  "name_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetJobProgressiveText") => {
-            let result = rt.block_on(client.get_job_progressive_text(
-                  "name_example".to_string(),
-                  "number_example".to_string(),
-                  "start_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
         Some("GetQueue") => {
             let result = rt.block_on(client.get_queue(
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetQueueItem") => {
-            let result = rt.block_on(client.get_queue_item(
-                  "number_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetView") => {
-            let result = rt.block_on(client.get_view(
-                  "name_example".to_string()
-            ));
-            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
-        },
-        Some("GetViewConfig") => {
-            let result = rt.block_on(client.get_view_config(
-                  "name_example".to_string()
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -553,6 +541,42 @@ fn main() {
                   Some("jenkins_crumb_example".to_string()),
                   Some("content_type_example".to_string()),
                   Some("body_example".to_string())
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetJob") => {
+            let result = rt.block_on(client.get_job(
+                  "name_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetJobConfig") => {
+            let result = rt.block_on(client.get_job_config(
+                  "name_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetJobLastBuild") => {
+            let result = rt.block_on(client.get_job_last_build(
+                  "name_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetQueueItem") => {
+            let result = rt.block_on(client.get_queue_item(
+                  "number_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetView") => {
+            let result = rt.block_on(client.get_view(
+                  "name_example".to_string()
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetViewConfig") => {
+            let result = rt.block_on(client.get_view_config(
+                  "name_example".to_string()
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -606,6 +630,14 @@ fn main() {
                   "name_example".to_string(),
                   "body_example".to_string(),
                   Some("jenkins_crumb_example".to_string())
+            ));
+            info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
+        },
+        Some("GetJobProgressiveText") => {
+            let result = rt.block_on(client.get_job_progressive_text(
+                  "name_example".to_string(),
+                  "number_example".to_string(),
+                  "start_example".to_string()
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },

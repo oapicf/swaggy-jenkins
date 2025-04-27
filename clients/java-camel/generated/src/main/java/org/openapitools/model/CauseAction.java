@@ -22,13 +22,13 @@ import javax.annotation.Generated;
  * CauseAction
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class CauseAction {
 
   private String propertyClass;
 
   @Valid
-  private List<@Valid CauseUserIdCause> causes;
+  private List<@Valid CauseUserIdCause> causes = new ArrayList<>();
 
   public CauseAction propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -38,7 +38,7 @@ public class CauseAction {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -66,7 +66,7 @@ public class CauseAction {
   /**
    * Get causes
    * @return causes
-  */
+   */
   @Valid 
   @Schema(name = "causes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("causes")

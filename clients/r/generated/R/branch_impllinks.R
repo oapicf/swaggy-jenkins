@@ -23,8 +23,7 @@ BranchImpllinks <- R6::R6Class(
     `runs` = NULL,
     `queue` = NULL,
     `_class` = NULL,
-    #' Initialize a new BranchImpllinks class.
-    #'
+
     #' @description
     #' Initialize a new BranchImpllinks class.
     #'
@@ -34,7 +33,6 @@ BranchImpllinks <- R6::R6Class(
     #' @param queue queue
     #' @param _class _class
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`item_self` = NULL, `actions` = NULL, `runs` = NULL, `queue` = NULL, `_class` = NULL, ...) {
       if (!is.null(`item_self`)) {
         stopifnot(R6::is.R6(`item_self`))
@@ -59,45 +57,66 @@ BranchImpllinks <- R6::R6Class(
         self$`_class` <- `_class`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return BranchImpllinks in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return BranchImpllinks as a base R list.
+    #' @examples
+    #' # convert array of BranchImpllinks (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert BranchImpllinks to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       BranchImpllinksObject <- list()
       if (!is.null(self$`item_self`)) {
         BranchImpllinksObject[["self"]] <-
-          self$`item_self`$toJSON()
+          self$`item_self`$toSimpleType()
       }
       if (!is.null(self$`actions`)) {
         BranchImpllinksObject[["actions"]] <-
-          self$`actions`$toJSON()
+          self$`actions`$toSimpleType()
       }
       if (!is.null(self$`runs`)) {
         BranchImpllinksObject[["runs"]] <-
-          self$`runs`$toJSON()
+          self$`runs`$toSimpleType()
       }
       if (!is.null(self$`queue`)) {
         BranchImpllinksObject[["queue"]] <-
-          self$`queue`$toJSON()
+          self$`queue`$toSimpleType()
       }
       if (!is.null(self$`_class`)) {
         BranchImpllinksObject[["_class"]] <-
           self$`_class`
       }
-      BranchImpllinksObject
+      return(BranchImpllinksObject)
     },
-    #' Deserialize JSON string into an instance of BranchImpllinks
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of BranchImpllinks
     #'
     #' @param input_json the JSON input
     #' @return the instance of BranchImpllinks
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`self`)) {
@@ -125,67 +144,23 @@ BranchImpllinks <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return BranchImpllinks in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`item_self`)) {
-          sprintf(
-          '"self":
-          %s
-          ',
-          jsonlite::toJSON(self$`item_self`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`actions`)) {
-          sprintf(
-          '"actions":
-          %s
-          ',
-          jsonlite::toJSON(self$`actions`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`runs`)) {
-          sprintf(
-          '"runs":
-          %s
-          ',
-          jsonlite::toJSON(self$`runs`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`queue`)) {
-          sprintf(
-          '"queue":
-          %s
-          ',
-          jsonlite::toJSON(self$`queue`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of BranchImpllinks
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of BranchImpllinks
     #'
     #' @param input_json the JSON input
     #' @return the instance of BranchImpllinks
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`item_self` <- Link$new()$fromJSON(jsonlite::toJSON(this_object$`item_self`, auto_unbox = TRUE, digits = NA))
@@ -195,53 +170,42 @@ BranchImpllinks <- R6::R6Class(
       self$`_class` <- this_object$`_class`
       self
     },
-    #' Validate JSON input with respect to BranchImpllinks
-    #'
+
     #' @description
     #' Validate JSON input with respect to BranchImpllinks and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of BranchImpllinks
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

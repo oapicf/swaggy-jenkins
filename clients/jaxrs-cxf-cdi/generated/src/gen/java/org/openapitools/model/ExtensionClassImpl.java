@@ -23,7 +23,7 @@ public class ExtensionClassImpl   {
 
   private ExtensionClassImpllinks links;
 
-  private List<String> classes;
+  private List<String> classes = new ArrayList<>();
 
   /**
    **/

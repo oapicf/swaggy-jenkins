@@ -24,7 +24,7 @@ print(GithubRespositoryContainer.to_json())
 # convert the object into a dict
 github_respository_container_dict = github_respository_container_instance.to_dict()
 # create an instance of GithubRespositoryContainer from a dict
-github_respository_container_form_dict = github_respository_container.from_dict(github_respository_container_dict)
+github_respository_container_from_dict = GithubRespositoryContainer.from_dict(github_respository_container_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

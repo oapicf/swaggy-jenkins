@@ -23,7 +23,7 @@ print(PipelineBranchesitempullRequestlinks.to_json())
 # convert the object into a dict
 pipeline_branchesitempull_requestlinks_dict = pipeline_branchesitempull_requestlinks_instance.to_dict()
 # create an instance of PipelineBranchesitempullRequestlinks from a dict
-pipeline_branchesitempull_requestlinks_form_dict = pipeline_branchesitempull_requestlinks.from_dict(pipeline_branchesitempull_requestlinks_dict)
+pipeline_branchesitempull_requestlinks_from_dict = PipelineBranchesitempullRequestlinks.from_dict(pipeline_branchesitempull_requestlinks_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -23,7 +23,7 @@ print(GithubRepositorieslinks.to_json())
 # convert the object into a dict
 github_repositorieslinks_dict = github_repositorieslinks_instance.to_dict()
 # create an instance of GithubRepositorieslinks from a dict
-github_repositorieslinks_form_dict = github_repositorieslinks.from_dict(github_repositorieslinks_dict)
+github_repositorieslinks_from_dict = GithubRepositorieslinks.from_dict(github_repositorieslinks_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

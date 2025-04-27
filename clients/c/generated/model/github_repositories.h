@@ -28,9 +28,10 @@ typedef struct github_repositories_t {
     int next_page; //numeric
     int page_size; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } github_repositories_t;
 
-github_repositories_t *github_repositories_create(
+__attribute__((deprecated)) github_repositories_t *github_repositories_create(
     char *_class,
     github_repositorieslinks_t *_links,
     list_t *items,

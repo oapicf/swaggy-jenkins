@@ -23,7 +23,7 @@ print(Organisation.to_json())
 # convert the object into a dict
 organisation_dict = organisation_instance.to_dict()
 # create an instance of Organisation from a dict
-organisation_form_dict = organisation.from_dict(organisation_dict)
+organisation_from_dict = Organisation.from_dict(organisation_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

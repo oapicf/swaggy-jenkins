@@ -34,9 +34,10 @@ typedef struct multibranch_pipeline_t {
     int total_number_of_pull_requests; //numeric
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } multibranch_pipeline_t;
 
-multibranch_pipeline_t *multibranch_pipeline_create(
+__attribute__((deprecated)) multibranch_pipeline_t *multibranch_pipeline_create(
     char *display_name,
     int estimated_duration_in_millis,
     char *latest_run,

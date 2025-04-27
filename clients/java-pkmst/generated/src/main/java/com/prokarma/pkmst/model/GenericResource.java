@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * GenericResource
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GenericResource   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -39,10 +39,10 @@ public class GenericResource   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -57,10 +57,10 @@ public class GenericResource   {
     return this;
   }
 
-   /**
+  /**
    * Get displayName
    * @return displayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayName() {
     return displayName;
@@ -75,10 +75,10 @@ public class GenericResource   {
     return this;
   }
 
-   /**
+  /**
    * Get durationInMillis
    * @return durationInMillis
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getDurationInMillis() {
     return durationInMillis;
@@ -93,10 +93,10 @@ public class GenericResource   {
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getId() {
     return id;
@@ -111,10 +111,10 @@ public class GenericResource   {
     return this;
   }
 
-   /**
+  /**
    * Get result
    * @return result
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getResult() {
     return result;
@@ -129,10 +129,10 @@ public class GenericResource   {
     return this;
   }
 
-   /**
+  /**
    * Get startTime
    * @return startTime
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getStartTime() {
     return startTime;

@@ -5,7 +5,7 @@
 
 
 
-link_t *link_create(
+static link_t *link_create_internal(
     char *_class,
     char *href
     ) {
@@ -16,12 +16,26 @@ link_t *link_create(
     link_local_var->_class = _class;
     link_local_var->href = href;
 
+    link_local_var->_library_owned = 1;
     return link_local_var;
 }
 
+__attribute__((deprecated)) link_t *link_create(
+    char *_class,
+    char *href
+    ) {
+    return link_create_internal (
+        _class,
+        href
+        );
+}
 
 void link_free(link_t *link) {
     if(NULL == link){
+        return ;
+    }
+    if(link->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "link_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ link_t *link_parseFromJSON(cJSON *linkJSON){
 
     // link->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(linkJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -77,6 +94,9 @@ link_t *link_parseFromJSON(cJSON *linkJSON){
 
     // link->href
     cJSON *href = cJSON_GetObjectItemCaseSensitive(linkJSON, "href");
+    if (cJSON_IsNull(href)) {
+        href = NULL;
+    }
     if (href) { 
     if(!cJSON_IsString(href) && !cJSON_IsNull(href))
     {
@@ -85,7 +105,7 @@ link_t *link_parseFromJSON(cJSON *linkJSON){
     }
 
 
-    link_local_var = link_create (
+    link_local_var = link_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         href && !cJSON_IsNull(href) ? strdup(href->valuestring) : NULL
         );

@@ -25,8 +25,7 @@ PipelineRunImpllinks <- R6::R6Class(
     `actions` = NULL,
     `steps` = NULL,
     `_class` = NULL,
-    #' Initialize a new PipelineRunImpllinks class.
-    #'
+
     #' @description
     #' Initialize a new PipelineRunImpllinks class.
     #'
@@ -37,7 +36,6 @@ PipelineRunImpllinks <- R6::R6Class(
     #' @param steps steps
     #' @param _class _class
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`nodes` = NULL, `log` = NULL, `item_self` = NULL, `actions` = NULL, `steps` = NULL, `_class` = NULL, ...) {
       if (!is.null(`nodes`)) {
         stopifnot(R6::is.R6(`nodes`))
@@ -66,49 +64,70 @@ PipelineRunImpllinks <- R6::R6Class(
         self$`_class` <- `_class`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return PipelineRunImpllinks in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return PipelineRunImpllinks as a base R list.
+    #' @examples
+    #' # convert array of PipelineRunImpllinks (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert PipelineRunImpllinks to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       PipelineRunImpllinksObject <- list()
       if (!is.null(self$`nodes`)) {
         PipelineRunImpllinksObject[["nodes"]] <-
-          self$`nodes`$toJSON()
+          self$`nodes`$toSimpleType()
       }
       if (!is.null(self$`log`)) {
         PipelineRunImpllinksObject[["log"]] <-
-          self$`log`$toJSON()
+          self$`log`$toSimpleType()
       }
       if (!is.null(self$`item_self`)) {
         PipelineRunImpllinksObject[["self"]] <-
-          self$`item_self`$toJSON()
+          self$`item_self`$toSimpleType()
       }
       if (!is.null(self$`actions`)) {
         PipelineRunImpllinksObject[["actions"]] <-
-          self$`actions`$toJSON()
+          self$`actions`$toSimpleType()
       }
       if (!is.null(self$`steps`)) {
         PipelineRunImpllinksObject[["steps"]] <-
-          self$`steps`$toJSON()
+          self$`steps`$toSimpleType()
       }
       if (!is.null(self$`_class`)) {
         PipelineRunImpllinksObject[["_class"]] <-
           self$`_class`
       }
-      PipelineRunImpllinksObject
+      return(PipelineRunImpllinksObject)
     },
-    #' Deserialize JSON string into an instance of PipelineRunImpllinks
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of PipelineRunImpllinks
     #'
     #' @param input_json the JSON input
     #' @return the instance of PipelineRunImpllinks
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`nodes`)) {
@@ -141,75 +160,23 @@ PipelineRunImpllinks <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return PipelineRunImpllinks in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`nodes`)) {
-          sprintf(
-          '"nodes":
-          %s
-          ',
-          jsonlite::toJSON(self$`nodes`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`log`)) {
-          sprintf(
-          '"log":
-          %s
-          ',
-          jsonlite::toJSON(self$`log`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`item_self`)) {
-          sprintf(
-          '"self":
-          %s
-          ',
-          jsonlite::toJSON(self$`item_self`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`actions`)) {
-          sprintf(
-          '"actions":
-          %s
-          ',
-          jsonlite::toJSON(self$`actions`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`steps`)) {
-          sprintf(
-          '"steps":
-          %s
-          ',
-          jsonlite::toJSON(self$`steps`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of PipelineRunImpllinks
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of PipelineRunImpllinks
     #'
     #' @param input_json the JSON input
     #' @return the instance of PipelineRunImpllinks
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`nodes` <- Link$new()$fromJSON(jsonlite::toJSON(this_object$`nodes`, auto_unbox = TRUE, digits = NA))
@@ -220,53 +187,42 @@ PipelineRunImpllinks <- R6::R6Class(
       self$`_class` <- this_object$`_class`
       self
     },
-    #' Validate JSON input with respect to PipelineRunImpllinks
-    #'
+
     #' @description
     #' Validate JSON input with respect to PipelineRunImpllinks and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of PipelineRunImpllinks
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

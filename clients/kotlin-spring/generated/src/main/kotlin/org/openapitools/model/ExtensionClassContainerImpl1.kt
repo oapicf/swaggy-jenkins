@@ -33,7 +33,7 @@ data class ExtensionClassContainerImpl1(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("map") val map: ExtensionClassContainerImpl1map? = null
-) {
+    ) {
 
 }
 

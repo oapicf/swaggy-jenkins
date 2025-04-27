@@ -21,7 +21,7 @@ import java.util.List;
  * Hudson
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class Hudson   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -76,10 +76,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -102,10 +102,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get assignedLabels
    * @return assignedLabels
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
@@ -120,10 +120,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get mode
    * @return mode
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getMode() {
     return mode;
@@ -138,10 +138,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get nodeDescription
    * @return nodeDescription
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getNodeDescription() {
     return nodeDescription;
@@ -156,10 +156,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get nodeName
    * @return nodeName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getNodeName() {
     return nodeName;
@@ -174,10 +174,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get numExecutors
    * @return numExecutors
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNumExecutors() {
     return numExecutors;
@@ -192,10 +192,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get description
    * @return description
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDescription() {
     return description;
@@ -218,10 +218,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get jobs
    * @return jobs
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<FreeStyleProject> getJobs() {
     return jobs;
@@ -236,10 +236,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get primaryView
    * @return primaryView
-  **/
+   */
   @ApiModelProperty(value = "")
   public AllView getPrimaryView() {
     return primaryView;
@@ -254,10 +254,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get quietingDown
    * @return quietingDown
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getQuietingDown() {
     return quietingDown;
@@ -272,10 +272,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get slaveAgentPort
    * @return slaveAgentPort
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getSlaveAgentPort() {
     return slaveAgentPort;
@@ -290,10 +290,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get unlabeledLoad
    * @return unlabeledLoad
-  **/
+   */
   @ApiModelProperty(value = "")
   public UnlabeledLoadStatistics getUnlabeledLoad() {
     return unlabeledLoad;
@@ -308,10 +308,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get useCrumbs
    * @return useCrumbs
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getUseCrumbs() {
     return useCrumbs;
@@ -326,10 +326,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get useSecurity
    * @return useSecurity
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getUseSecurity() {
     return useSecurity;
@@ -352,10 +352,10 @@ public class Hudson   {
     return this;
   }
 
-   /**
+  /**
    * Get views
    * @return views
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<AllView> getViews() {
     return views;

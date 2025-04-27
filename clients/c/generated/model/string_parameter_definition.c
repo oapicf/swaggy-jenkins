@@ -5,7 +5,7 @@
 
 
 
-string_parameter_definition_t *string_parameter_definition_create(
+static string_parameter_definition_t *string_parameter_definition_create_internal(
     char *_class,
     string_parameter_value_t *default_parameter_value,
     char *description,
@@ -22,12 +22,32 @@ string_parameter_definition_t *string_parameter_definition_create(
     string_parameter_definition_local_var->name = name;
     string_parameter_definition_local_var->type = type;
 
+    string_parameter_definition_local_var->_library_owned = 1;
     return string_parameter_definition_local_var;
 }
 
+__attribute__((deprecated)) string_parameter_definition_t *string_parameter_definition_create(
+    char *_class,
+    string_parameter_value_t *default_parameter_value,
+    char *description,
+    char *name,
+    char *type
+    ) {
+    return string_parameter_definition_create_internal (
+        _class,
+        default_parameter_value,
+        description,
+        name,
+        type
+        );
+}
 
 void string_parameter_definition_free(string_parameter_definition_t *string_parameter_definition) {
     if(NULL == string_parameter_definition){
+        return ;
+    }
+    if(string_parameter_definition->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "string_parameter_definition_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -118,6 +138,9 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
 
     // string_parameter_definition->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(string_parameter_definitionJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -127,12 +150,18 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
 
     // string_parameter_definition->default_parameter_value
     cJSON *default_parameter_value = cJSON_GetObjectItemCaseSensitive(string_parameter_definitionJSON, "defaultParameterValue");
+    if (cJSON_IsNull(default_parameter_value)) {
+        default_parameter_value = NULL;
+    }
     if (default_parameter_value) { 
     default_parameter_value_local_nonprim = string_parameter_value_parseFromJSON(default_parameter_value); //nonprimitive
     }
 
     // string_parameter_definition->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(string_parameter_definitionJSON, "description");
+    if (cJSON_IsNull(description)) {
+        description = NULL;
+    }
     if (description) { 
     if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
@@ -142,6 +171,9 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
 
     // string_parameter_definition->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(string_parameter_definitionJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -151,6 +183,9 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
 
     // string_parameter_definition->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(string_parameter_definitionJSON, "type");
+    if (cJSON_IsNull(type)) {
+        type = NULL;
+    }
     if (type) { 
     if(!cJSON_IsString(type) && !cJSON_IsNull(type))
     {
@@ -159,7 +194,7 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
     }
 
 
-    string_parameter_definition_local_var = string_parameter_definition_create (
+    string_parameter_definition_local_var = string_parameter_definition_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         default_parameter_value ? default_parameter_value_local_nonprim : NULL,
         description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,

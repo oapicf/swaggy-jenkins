@@ -5,7 +5,7 @@
 
 
 
-queue_blocked_item_t *queue_blocked_item_create(
+static queue_blocked_item_t *queue_blocked_item_create_internal(
     char *_class,
     list_t *actions,
     int blocked,
@@ -36,12 +36,46 @@ queue_blocked_item_t *queue_blocked_item_create(
     queue_blocked_item_local_var->why = why;
     queue_blocked_item_local_var->buildable_start_milliseconds = buildable_start_milliseconds;
 
+    queue_blocked_item_local_var->_library_owned = 1;
     return queue_blocked_item_local_var;
 }
 
+__attribute__((deprecated)) queue_blocked_item_t *queue_blocked_item_create(
+    char *_class,
+    list_t *actions,
+    int blocked,
+    int buildable,
+    int id,
+    int in_queue_since,
+    char *params,
+    int stuck,
+    free_style_project_t *task,
+    char *url,
+    char *why,
+    int buildable_start_milliseconds
+    ) {
+    return queue_blocked_item_create_internal (
+        _class,
+        actions,
+        blocked,
+        buildable,
+        id,
+        in_queue_since,
+        params,
+        stuck,
+        task,
+        url,
+        why,
+        buildable_start_milliseconds
+        );
+}
 
 void queue_blocked_item_free(queue_blocked_item_t *queue_blocked_item) {
     if(NULL == queue_blocked_item){
+        return ;
+    }
+    if(queue_blocked_item->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "queue_blocked_item_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -210,6 +244,9 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -219,6 +256,9 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->actions
     cJSON *actions = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "actions");
+    if (cJSON_IsNull(actions)) {
+        actions = NULL;
+    }
     if (actions) { 
     cJSON *actions_local_nonprimitive = NULL;
     if(!cJSON_IsArray(actions)){
@@ -240,6 +280,9 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->blocked
     cJSON *blocked = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "blocked");
+    if (cJSON_IsNull(blocked)) {
+        blocked = NULL;
+    }
     if (blocked) { 
     if(!cJSON_IsBool(blocked))
     {
@@ -249,6 +292,9 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->buildable
     cJSON *buildable = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "buildable");
+    if (cJSON_IsNull(buildable)) {
+        buildable = NULL;
+    }
     if (buildable) { 
     if(!cJSON_IsBool(buildable))
     {
@@ -258,6 +304,9 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (id) { 
     if(!cJSON_IsNumber(id))
     {
@@ -267,6 +316,9 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->in_queue_since
     cJSON *in_queue_since = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "inQueueSince");
+    if (cJSON_IsNull(in_queue_since)) {
+        in_queue_since = NULL;
+    }
     if (in_queue_since) { 
     if(!cJSON_IsNumber(in_queue_since))
     {
@@ -276,6 +328,9 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->params
     cJSON *params = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "params");
+    if (cJSON_IsNull(params)) {
+        params = NULL;
+    }
     if (params) { 
     if(!cJSON_IsString(params) && !cJSON_IsNull(params))
     {
@@ -285,6 +340,9 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->stuck
     cJSON *stuck = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "stuck");
+    if (cJSON_IsNull(stuck)) {
+        stuck = NULL;
+    }
     if (stuck) { 
     if(!cJSON_IsBool(stuck))
     {
@@ -294,12 +352,18 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->task
     cJSON *task = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "task");
+    if (cJSON_IsNull(task)) {
+        task = NULL;
+    }
     if (task) { 
     task_local_nonprim = free_style_project_parseFromJSON(task); //nonprimitive
     }
 
     // queue_blocked_item->url
     cJSON *url = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "url");
+    if (cJSON_IsNull(url)) {
+        url = NULL;
+    }
     if (url) { 
     if(!cJSON_IsString(url) && !cJSON_IsNull(url))
     {
@@ -309,6 +373,9 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->why
     cJSON *why = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "why");
+    if (cJSON_IsNull(why)) {
+        why = NULL;
+    }
     if (why) { 
     if(!cJSON_IsString(why) && !cJSON_IsNull(why))
     {
@@ -318,6 +385,9 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
 
     // queue_blocked_item->buildable_start_milliseconds
     cJSON *buildable_start_milliseconds = cJSON_GetObjectItemCaseSensitive(queue_blocked_itemJSON, "buildableStartMilliseconds");
+    if (cJSON_IsNull(buildable_start_milliseconds)) {
+        buildable_start_milliseconds = NULL;
+    }
     if (buildable_start_milliseconds) { 
     if(!cJSON_IsNumber(buildable_start_milliseconds))
     {
@@ -326,7 +396,7 @@ queue_blocked_item_t *queue_blocked_item_parseFromJSON(cJSON *queue_blocked_item
     }
 
 
-    queue_blocked_item_local_var = queue_blocked_item_create (
+    queue_blocked_item_local_var = queue_blocked_item_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         actions ? actionsList : NULL,
         blocked ? blocked->valueint : 0,

@@ -59,5 +59,8 @@ data class GithubContent (
     @Json(name = "base64Data")
     val base64Data: kotlin.String? = null
 
-)
+) {
+
+
+}
 

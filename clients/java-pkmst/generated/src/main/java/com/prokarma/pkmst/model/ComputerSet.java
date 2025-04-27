@@ -18,7 +18,7 @@ import java.util.List;
  * ComputerSet
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ComputerSet   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -41,10 +41,10 @@ public class ComputerSet   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -59,10 +59,10 @@ public class ComputerSet   {
     return this;
   }
 
-   /**
+  /**
    * Get busyExecutors
    * @return busyExecutors
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getBusyExecutors() {
     return busyExecutors;
@@ -85,10 +85,10 @@ public class ComputerSet   {
     return this;
   }
 
-   /**
+  /**
    * Get computer
    * @return computer
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<HudsonMasterComputer> getComputer() {
     return computer;
@@ -103,10 +103,10 @@ public class ComputerSet   {
     return this;
   }
 
-   /**
+  /**
    * Get displayName
    * @return displayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayName() {
     return displayName;
@@ -121,10 +121,10 @@ public class ComputerSet   {
     return this;
   }
 
-   /**
+  /**
    * Get totalExecutors
    * @return totalExecutors
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getTotalExecutors() {
     return totalExecutors;

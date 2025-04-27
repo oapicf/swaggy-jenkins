@@ -21,7 +21,7 @@ import java.util.List;
  * FreeStyleProject
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class FreeStyleProject   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -112,10 +112,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -130,10 +130,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getName() {
     return name;
@@ -148,10 +148,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get url
    * @return url
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getUrl() {
     return url;
@@ -166,10 +166,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get color
    * @return color
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getColor() {
     return color;
@@ -192,10 +192,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get actions
    * @return actions
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<FreeStyleProjectactions> getActions() {
     return actions;
@@ -210,10 +210,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get description
    * @return description
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDescription() {
     return description;
@@ -228,10 +228,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get displayName
    * @return displayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayName() {
     return displayName;
@@ -246,10 +246,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get displayNameOrNull
    * @return displayNameOrNull
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayNameOrNull() {
     return displayNameOrNull;
@@ -264,10 +264,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get fullDisplayName
    * @return fullDisplayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getFullDisplayName() {
     return fullDisplayName;
@@ -282,10 +282,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get fullName
    * @return fullName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getFullName() {
     return fullName;
@@ -300,10 +300,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get buildable
    * @return buildable
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getBuildable() {
     return buildable;
@@ -326,10 +326,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get builds
    * @return builds
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<FreeStyleBuild> getBuilds() {
     return builds;
@@ -344,10 +344,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get firstBuild
    * @return firstBuild
-  **/
+   */
   @ApiModelProperty(value = "")
   public FreeStyleBuild getFirstBuild() {
     return firstBuild;
@@ -370,10 +370,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get healthReport
    * @return healthReport
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<FreeStyleProjecthealthReport> getHealthReport() {
     return healthReport;
@@ -388,10 +388,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get inQueue
    * @return inQueue
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getInQueue() {
     return inQueue;
@@ -406,10 +406,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get keepDependencies
    * @return keepDependencies
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getKeepDependencies() {
     return keepDependencies;
@@ -424,10 +424,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get lastBuild
    * @return lastBuild
-  **/
+   */
   @ApiModelProperty(value = "")
   public FreeStyleBuild getLastBuild() {
     return lastBuild;
@@ -442,10 +442,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get lastCompletedBuild
    * @return lastCompletedBuild
-  **/
+   */
   @ApiModelProperty(value = "")
   public FreeStyleBuild getLastCompletedBuild() {
     return lastCompletedBuild;
@@ -460,10 +460,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get lastFailedBuild
    * @return lastFailedBuild
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getLastFailedBuild() {
     return lastFailedBuild;
@@ -478,10 +478,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get lastStableBuild
    * @return lastStableBuild
-  **/
+   */
   @ApiModelProperty(value = "")
   public FreeStyleBuild getLastStableBuild() {
     return lastStableBuild;
@@ -496,10 +496,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get lastSuccessfulBuild
    * @return lastSuccessfulBuild
-  **/
+   */
   @ApiModelProperty(value = "")
   public FreeStyleBuild getLastSuccessfulBuild() {
     return lastSuccessfulBuild;
@@ -514,10 +514,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get lastUnstableBuild
    * @return lastUnstableBuild
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getLastUnstableBuild() {
     return lastUnstableBuild;
@@ -532,10 +532,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get lastUnsuccessfulBuild
    * @return lastUnsuccessfulBuild
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getLastUnsuccessfulBuild() {
     return lastUnsuccessfulBuild;
@@ -550,10 +550,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get nextBuildNumber
    * @return nextBuildNumber
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNextBuildNumber() {
     return nextBuildNumber;
@@ -568,10 +568,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get queueItem
    * @return queueItem
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getQueueItem() {
     return queueItem;
@@ -586,10 +586,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get concurrentBuild
    * @return concurrentBuild
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getConcurrentBuild() {
     return concurrentBuild;
@@ -604,10 +604,10 @@ public class FreeStyleProject   {
     return this;
   }
 
-   /**
+  /**
    * Get scm
    * @return scm
-  **/
+   */
   @ApiModelProperty(value = "")
   public NullSCM getScm() {
     return scm;

@@ -14,7 +14,7 @@ import org.openapitools.model.GithubRepository;
 /**
  * GithubRepositories
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2025-04-27T08:09:22.488100288Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubRepositories   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -77,7 +77,7 @@ public class GithubRepositories   {
 
   public GithubRepositories addItemsItem(GithubRepository itemsItem) {
     if (this.items == null) {
-      this.items = ;
+      this.items = new ArrayList<>();
     }
     this.items.add(itemsItem);
     return this;

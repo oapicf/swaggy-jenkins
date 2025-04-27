@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * PipelineRunNode
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineRunNode {
 
   private String propertyClass;
@@ -32,7 +32,7 @@ public class PipelineRunNode {
   private Integer durationInMillis;
 
   @Valid
-  private List<@Valid PipelineRunNodeedges> edges;
+  private List<@Valid PipelineRunNodeedges> edges = new ArrayList<>();
 
   private String id;
 
@@ -50,7 +50,7 @@ public class PipelineRunNode {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -70,7 +70,7 @@ public class PipelineRunNode {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -90,7 +90,7 @@ public class PipelineRunNode {
   /**
    * Get durationInMillis
    * @return durationInMillis
-  */
+   */
   
   @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("durationInMillis")
@@ -118,7 +118,7 @@ public class PipelineRunNode {
   /**
    * Get edges
    * @return edges
-  */
+   */
   @Valid 
   @Schema(name = "edges", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("edges")
@@ -138,7 +138,7 @@ public class PipelineRunNode {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -158,7 +158,7 @@ public class PipelineRunNode {
   /**
    * Get result
    * @return result
-  */
+   */
   
   @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("result")
@@ -178,7 +178,7 @@ public class PipelineRunNode {
   /**
    * Get startTime
    * @return startTime
-  */
+   */
   
   @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("startTime")
@@ -198,7 +198,7 @@ public class PipelineRunNode {
   /**
    * Get state
    * @return state
-  */
+   */
   
   @Schema(name = "state", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("state")

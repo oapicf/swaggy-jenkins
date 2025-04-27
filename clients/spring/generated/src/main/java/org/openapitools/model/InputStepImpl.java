@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.InputStepImpllinks;
 import org.openapitools.model.StringParameterDefinition;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -23,23 +24,23 @@ import javax.annotation.Generated;
  * InputStepImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class InputStepImpl {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private InputStepImpllinks links;
+  private @Nullable InputStepImpllinks links;
 
-  private String id;
+  private @Nullable String id;
 
-  private String message;
+  private @Nullable String message;
 
-  private String ok;
+  private @Nullable String ok;
 
   @Valid
-  private List<@Valid StringParameterDefinition> parameters;
+  private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
-  private String submitter;
+  private @Nullable String submitter;
 
   public InputStepImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -49,7 +50,7 @@ public class InputStepImpl {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -69,7 +70,7 @@ public class InputStepImpl {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -89,7 +90,7 @@ public class InputStepImpl {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -109,7 +110,7 @@ public class InputStepImpl {
   /**
    * Get message
    * @return message
-  */
+   */
   
   @Schema(name = "message", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("message")
@@ -129,7 +130,7 @@ public class InputStepImpl {
   /**
    * Get ok
    * @return ok
-  */
+   */
   
   @Schema(name = "ok", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("ok")
@@ -157,7 +158,7 @@ public class InputStepImpl {
   /**
    * Get parameters
    * @return parameters
-  */
+   */
   @Valid 
   @Schema(name = "parameters", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("parameters")
@@ -177,7 +178,7 @@ public class InputStepImpl {
   /**
    * Get submitter
    * @return submitter
-  */
+   */
   
   @Schema(name = "submitter", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("submitter")

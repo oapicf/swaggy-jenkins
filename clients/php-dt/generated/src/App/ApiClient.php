@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Swaggy Jenkins
  * Jenkins API clients generated from Swagger / Open API specification
- * The version of the OpenAPI document: 2.0.1-pre.0
+ * The version of the OpenAPI document: 3.0.2-pre.0
  */
 class ApiClient extends OAGAC\AbstractApiClient
 {

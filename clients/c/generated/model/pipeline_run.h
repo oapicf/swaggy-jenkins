@@ -36,9 +36,10 @@ typedef struct pipeline_run_t {
     char *type; // string
     char *commit_id; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_run_t;
 
-pipeline_run_t *pipeline_run_create(
+__attribute__((deprecated)) pipeline_run_t *pipeline_run_create(
     char *_class,
     list_t *artifacts,
     int duration_in_millis,

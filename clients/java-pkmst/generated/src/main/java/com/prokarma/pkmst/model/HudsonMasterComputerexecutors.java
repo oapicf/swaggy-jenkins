@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * HudsonMasterComputerexecutors
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputerexecutors   {
   @JsonProperty("currentExecutable")
   private FreeStyleBuild currentExecutable;
@@ -40,10 +40,10 @@ public class HudsonMasterComputerexecutors   {
     return this;
   }
 
-   /**
+  /**
    * Get currentExecutable
    * @return currentExecutable
-  **/
+   */
   @ApiModelProperty(value = "")
   public FreeStyleBuild getCurrentExecutable() {
     return currentExecutable;
@@ -58,10 +58,10 @@ public class HudsonMasterComputerexecutors   {
     return this;
   }
 
-   /**
+  /**
    * Get idle
    * @return idle
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getIdle() {
     return idle;
@@ -76,10 +76,10 @@ public class HudsonMasterComputerexecutors   {
     return this;
   }
 
-   /**
+  /**
    * Get likelyStuck
    * @return likelyStuck
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getLikelyStuck() {
     return likelyStuck;
@@ -94,10 +94,10 @@ public class HudsonMasterComputerexecutors   {
     return this;
   }
 
-   /**
+  /**
    * Get number
    * @return number
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNumber() {
     return number;
@@ -112,10 +112,10 @@ public class HudsonMasterComputerexecutors   {
     return this;
   }
 
-   /**
+  /**
    * Get progress
    * @return progress
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getProgress() {
     return progress;
@@ -130,10 +130,10 @@ public class HudsonMasterComputerexecutors   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;

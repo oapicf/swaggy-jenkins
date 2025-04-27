@@ -21,9 +21,10 @@ typedef struct null_scm_t null_scm_t;
 typedef struct null_scm_t {
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } null_scm_t;
 
-null_scm_t *null_scm_create(
+__attribute__((deprecated)) null_scm_t *null_scm_create(
     char *_class
 );
 

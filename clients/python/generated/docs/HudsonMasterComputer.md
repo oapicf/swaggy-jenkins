@@ -37,7 +37,7 @@ print(HudsonMasterComputer.to_json())
 # convert the object into a dict
 hudson_master_computer_dict = hudson_master_computer_instance.to_dict()
 # create an instance of HudsonMasterComputer from a dict
-hudson_master_computer_form_dict = hudson_master_computer.from_dict(hudson_master_computer_dict)
+hudson_master_computer_from_dict = HudsonMasterComputer.from_dict(hudson_master_computer_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

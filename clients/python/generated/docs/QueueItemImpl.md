@@ -26,7 +26,7 @@ print(QueueItemImpl.to_json())
 # convert the object into a dict
 queue_item_impl_dict = queue_item_impl_instance.to_dict()
 # create an instance of QueueItemImpl from a dict
-queue_item_impl_form_dict = queue_item_impl.from_dict(queue_item_impl_dict)
+queue_item_impl_from_dict = QueueItemImpl.from_dict(queue_item_impl_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

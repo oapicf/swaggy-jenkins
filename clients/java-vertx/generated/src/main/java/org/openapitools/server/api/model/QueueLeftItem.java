@@ -14,7 +14,7 @@ import org.openapitools.server.api.model.FreeStyleProject;
 public class QueueLeftItem   {
   
   private String propertyClass;
-  private List<CauseAction> actions;
+  private List<CauseAction> actions = new ArrayList<>();
   private Boolean blocked;
   private Boolean buildable;
   private Integer id;

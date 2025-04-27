@@ -29,9 +29,10 @@ typedef struct input_step_impl_t {
     list_t *parameters; //nonprimitive container
     char *submitter; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } input_step_impl_t;
 
-input_step_impl_t *input_step_impl_create(
+__attribute__((deprecated)) input_step_impl_t *input_step_impl_create(
     char *_class,
     input_step_impllinks_t *_links,
     char *id,

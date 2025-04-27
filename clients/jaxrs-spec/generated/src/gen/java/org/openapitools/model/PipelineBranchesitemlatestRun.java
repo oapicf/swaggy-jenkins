@@ -15,22 +15,25 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineBranchesitemlatestRun")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineBranchesitemlatestRun   {
-  private @Valid Integer durationInMillis;
-  private @Valid Integer estimatedDurationInMillis;
-  private @Valid String enQueueTime;
-  private @Valid String endTime;
-  private @Valid String id;
-  private @Valid String organization;
-  private @Valid String pipeline;
-  private @Valid String result;
-  private @Valid String runSummary;
-  private @Valid String startTime;
-  private @Valid String state;
-  private @Valid String type;
-  private @Valid String commitId;
-  private @Valid String propertyClass;
+  private Integer durationInMillis;
+  private Integer estimatedDurationInMillis;
+  private String enQueueTime;
+  private String endTime;
+  private String id;
+  private String organization;
+  private String pipeline;
+  private String result;
+  private String runSummary;
+  private String startTime;
+  private String state;
+  private String type;
+  private String commitId;
+  private String propertyClass;
+
+  public PipelineBranchesitemlatestRun() {
+  }
 
   /**
    **/

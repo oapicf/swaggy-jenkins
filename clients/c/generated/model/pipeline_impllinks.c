@@ -5,7 +5,7 @@
 
 
 
-pipeline_impllinks_t *pipeline_impllinks_create(
+static pipeline_impllinks_t *pipeline_impllinks_create_internal(
     link_t *runs,
     link_t *self,
     link_t *queue,
@@ -22,12 +22,32 @@ pipeline_impllinks_t *pipeline_impllinks_create(
     pipeline_impllinks_local_var->actions = actions;
     pipeline_impllinks_local_var->_class = _class;
 
+    pipeline_impllinks_local_var->_library_owned = 1;
     return pipeline_impllinks_local_var;
 }
 
+__attribute__((deprecated)) pipeline_impllinks_t *pipeline_impllinks_create(
+    link_t *runs,
+    link_t *self,
+    link_t *queue,
+    link_t *actions,
+    char *_class
+    ) {
+    return pipeline_impllinks_create_internal (
+        runs,
+        self,
+        queue,
+        actions,
+        _class
+        );
+}
 
 void pipeline_impllinks_free(pipeline_impllinks_t *pipeline_impllinks) {
     if(NULL == pipeline_impllinks){
+        return ;
+    }
+    if(pipeline_impllinks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pipeline_impllinks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -142,30 +162,45 @@ pipeline_impllinks_t *pipeline_impllinks_parseFromJSON(cJSON *pipeline_impllinks
 
     // pipeline_impllinks->runs
     cJSON *runs = cJSON_GetObjectItemCaseSensitive(pipeline_impllinksJSON, "runs");
+    if (cJSON_IsNull(runs)) {
+        runs = NULL;
+    }
     if (runs) { 
     runs_local_nonprim = link_parseFromJSON(runs); //nonprimitive
     }
 
     // pipeline_impllinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(pipeline_impllinksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // pipeline_impllinks->queue
     cJSON *queue = cJSON_GetObjectItemCaseSensitive(pipeline_impllinksJSON, "queue");
+    if (cJSON_IsNull(queue)) {
+        queue = NULL;
+    }
     if (queue) { 
     queue_local_nonprim = link_parseFromJSON(queue); //nonprimitive
     }
 
     // pipeline_impllinks->actions
     cJSON *actions = cJSON_GetObjectItemCaseSensitive(pipeline_impllinksJSON, "actions");
+    if (cJSON_IsNull(actions)) {
+        actions = NULL;
+    }
     if (actions) { 
     actions_local_nonprim = link_parseFromJSON(actions); //nonprimitive
     }
 
     // pipeline_impllinks->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_impllinksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -174,7 +209,7 @@ pipeline_impllinks_t *pipeline_impllinks_parseFromJSON(cJSON *pipeline_impllinks
     }
 
 
-    pipeline_impllinks_local_var = pipeline_impllinks_create (
+    pipeline_impllinks_local_var = pipeline_impllinks_create_internal (
         runs ? runs_local_nonprim : NULL,
         self ? self_local_nonprim : NULL,
         queue ? queue_local_nonprim : NULL,

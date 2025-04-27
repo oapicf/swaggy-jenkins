@@ -5,7 +5,7 @@
 
 
 
-github_content_t *github_content_create(
+static github_content_t *github_content_create_internal(
     char *name,
     char *sha,
     char *_class,
@@ -28,12 +28,38 @@ github_content_t *github_content_create(
     github_content_local_var->path = path;
     github_content_local_var->base64_data = base64_data;
 
+    github_content_local_var->_library_owned = 1;
     return github_content_local_var;
 }
 
+__attribute__((deprecated)) github_content_t *github_content_create(
+    char *name,
+    char *sha,
+    char *_class,
+    char *repo,
+    int size,
+    char *owner,
+    char *path,
+    char *base64_data
+    ) {
+    return github_content_create_internal (
+        name,
+        sha,
+        _class,
+        repo,
+        size,
+        owner,
+        path,
+        base64_data
+        );
+}
 
 void github_content_free(github_content_t *github_content) {
     if(NULL == github_content){
+        return ;
+    }
+    if(github_content->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_content_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -148,6 +174,9 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
 
     // github_content->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -157,6 +186,9 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
 
     // github_content->sha
     cJSON *sha = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "sha");
+    if (cJSON_IsNull(sha)) {
+        sha = NULL;
+    }
     if (sha) { 
     if(!cJSON_IsString(sha) && !cJSON_IsNull(sha))
     {
@@ -166,6 +198,9 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
 
     // github_content->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -175,6 +210,9 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
 
     // github_content->repo
     cJSON *repo = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "repo");
+    if (cJSON_IsNull(repo)) {
+        repo = NULL;
+    }
     if (repo) { 
     if(!cJSON_IsString(repo) && !cJSON_IsNull(repo))
     {
@@ -184,6 +222,9 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
 
     // github_content->size
     cJSON *size = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "size");
+    if (cJSON_IsNull(size)) {
+        size = NULL;
+    }
     if (size) { 
     if(!cJSON_IsNumber(size))
     {
@@ -193,6 +234,9 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
 
     // github_content->owner
     cJSON *owner = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "owner");
+    if (cJSON_IsNull(owner)) {
+        owner = NULL;
+    }
     if (owner) { 
     if(!cJSON_IsString(owner) && !cJSON_IsNull(owner))
     {
@@ -202,6 +246,9 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
 
     // github_content->path
     cJSON *path = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "path");
+    if (cJSON_IsNull(path)) {
+        path = NULL;
+    }
     if (path) { 
     if(!cJSON_IsString(path) && !cJSON_IsNull(path))
     {
@@ -211,6 +258,9 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
 
     // github_content->base64_data
     cJSON *base64_data = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "base64Data");
+    if (cJSON_IsNull(base64_data)) {
+        base64_data = NULL;
+    }
     if (base64_data) { 
     if(!cJSON_IsString(base64_data) && !cJSON_IsNull(base64_data))
     {
@@ -219,7 +269,7 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
     }
 
 
-    github_content_local_var = github_content_create (
+    github_content_local_var = github_content_create_internal (
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
         sha && !cJSON_IsNull(sha) ? strdup(sha->valuestring) : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,

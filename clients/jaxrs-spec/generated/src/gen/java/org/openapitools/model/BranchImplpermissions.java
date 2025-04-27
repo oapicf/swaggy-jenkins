@@ -15,13 +15,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("BranchImplpermissions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class BranchImplpermissions   {
-  private @Valid Boolean create;
-  private @Valid Boolean read;
-  private @Valid Boolean start;
-  private @Valid Boolean stop;
-  private @Valid String propertyClass;
+  private Boolean create;
+  private Boolean read;
+  private Boolean start;
+  private Boolean stop;
+  private String propertyClass;
+
+  public BranchImplpermissions() {
+  }
 
   /**
    **/

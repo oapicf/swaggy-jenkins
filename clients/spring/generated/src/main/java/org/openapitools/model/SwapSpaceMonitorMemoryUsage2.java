@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -18,18 +19,18 @@ import javax.annotation.Generated;
  * SwapSpaceMonitorMemoryUsage2
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class SwapSpaceMonitorMemoryUsage2 {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private Integer availablePhysicalMemory;
+  private @Nullable Integer availablePhysicalMemory;
 
-  private Integer availableSwapSpace;
+  private @Nullable Integer availableSwapSpace;
 
-  private Integer totalPhysicalMemory;
+  private @Nullable Integer totalPhysicalMemory;
 
-  private Integer totalSwapSpace;
+  private @Nullable Integer totalSwapSpace;
 
   public SwapSpaceMonitorMemoryUsage2 propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -39,7 +40,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -59,7 +60,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
   /**
    * Get availablePhysicalMemory
    * @return availablePhysicalMemory
-  */
+   */
   
   @Schema(name = "availablePhysicalMemory", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("availablePhysicalMemory")
@@ -79,7 +80,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
   /**
    * Get availableSwapSpace
    * @return availableSwapSpace
-  */
+   */
   
   @Schema(name = "availableSwapSpace", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("availableSwapSpace")
@@ -99,7 +100,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
   /**
    * Get totalPhysicalMemory
    * @return totalPhysicalMemory
-  */
+   */
   
   @Schema(name = "totalPhysicalMemory", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalPhysicalMemory")
@@ -119,7 +120,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
   /**
    * Get totalSwapSpace
    * @return totalSwapSpace
-  */
+   */
   
   @Schema(name = "totalSwapSpace", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalSwapSpace")

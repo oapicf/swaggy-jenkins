@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.Link;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -19,12 +20,12 @@ import javax.annotation.Generated;
  * InputStepImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class InputStepImpllinks {
 
-  private Link self;
+  private @Nullable Link self;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public InputStepImpllinks self(Link self) {
     this.self = self;
@@ -34,7 +35,7 @@ public class InputStepImpllinks {
   /**
    * Get self
    * @return self
-  */
+   */
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
@@ -54,7 +55,7 @@ public class InputStepImpllinks {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

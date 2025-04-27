@@ -88,5 +88,8 @@ data class PipelineRun (
     @Json(name = "commitId")
     val commitId: kotlin.String? = null
 
-)
+) {
+
+
+}
 

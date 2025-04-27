@@ -25,9 +25,10 @@ typedef struct favorite_impl_t {
     struct favorite_impllinks_t *_links; //model
     struct pipeline_impl_t *item; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } favorite_impl_t;
 
-favorite_impl_t *favorite_impl_create(
+__attribute__((deprecated)) favorite_impl_t *favorite_impl_create(
     char *_class,
     favorite_impllinks_t *_links,
     pipeline_impl_t *item

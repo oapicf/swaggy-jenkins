@@ -36,9 +36,10 @@ typedef struct queue_left_item_t {
     int cancelled; //boolean
     struct free_style_build_t *executable; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } queue_left_item_t;
 
-queue_left_item_t *queue_left_item_create(
+__attribute__((deprecated)) queue_left_item_t *queue_left_item_create(
     char *_class,
     list_t *actions,
     int blocked,

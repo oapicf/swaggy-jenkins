@@ -8,7 +8,7 @@
     },
     "description" : "Jenkins API clients generated from Swagger / Open API specification",
     "title" : "Swaggy Jenkins",
-    "version" : "2.0.1-pre.0"
+    "version" : "3.0.2-pre.0"
   },
   "servers" : [ {
     "url" : "/"
@@ -40,7 +40,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getJenkins",
         "x-serviceid-varname" : "GETJENKINS_SERVICE_ID"
       },
@@ -72,7 +72,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "headJenkins",
         "x-serviceid-varname" : "HEADJENKINS_SERVICE_ID"
       }
@@ -114,7 +114,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getComputer",
         "x-serviceid-varname" : "GETCOMPUTER_SERVICE_ID"
       }
@@ -210,7 +210,7 @@
         } ],
         "tags" : [ "remoteAccess" ],
         "x-content-type" : "application/json",
-        "x-accepts" : "*/*",
+        "x-accepts" : [ "*/*" ],
         "x-serviceid" : "postCreateItem",
         "x-serviceid-varname" : "POSTCREATEITEM_SERVICE_ID"
       }
@@ -286,7 +286,7 @@
         } ],
         "tags" : [ "remoteAccess" ],
         "x-content-type" : "application/json",
-        "x-accepts" : "*/*",
+        "x-accepts" : [ "*/*" ],
         "x-serviceid" : "postCreateView",
         "x-serviceid-varname" : "POSTCREATEVIEW_SERVICE_ID"
       }
@@ -317,7 +317,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "base" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getCrumb",
         "x-serviceid-varname" : "GETCRUMB_SERVICE_ID"
       }
@@ -362,7 +362,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getJob",
         "x-serviceid-varname" : "GETJOB_SERVICE_ID"
       }
@@ -431,7 +431,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "postJobBuild",
         "x-serviceid-varname" : "POSTJOBBUILD_SERVICE_ID"
       }
@@ -476,7 +476,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "text/xml",
+        "x-accepts" : [ "text/xml" ],
         "x-serviceid" : "getJobConfig",
         "x-serviceid-varname" : "GETJOBCONFIG_SERVICE_ID"
       },
@@ -544,7 +544,7 @@
         } ],
         "tags" : [ "remoteAccess" ],
         "x-content-type" : "application/json",
-        "x-accepts" : "*/*",
+        "x-accepts" : [ "*/*" ],
         "x-serviceid" : "postJobConfig",
         "x-serviceid-varname" : "POSTJOBCONFIG_SERVICE_ID"
       }
@@ -592,7 +592,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "postJobDelete",
         "x-serviceid-varname" : "POSTJOBDELETE_SERVICE_ID"
       }
@@ -640,7 +640,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "postJobDisable",
         "x-serviceid-varname" : "POSTJOBDISABLE_SERVICE_ID"
       }
@@ -688,7 +688,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "postJobEnable",
         "x-serviceid-varname" : "POSTJOBENABLE_SERVICE_ID"
       }
@@ -733,7 +733,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getJobLastBuild",
         "x-serviceid-varname" : "GETJOBLASTBUILD_SERVICE_ID"
       }
@@ -781,7 +781,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "postJobLastBuildStop",
         "x-serviceid-varname" : "POSTJOBLASTBUILDSTOP_SERVICE_ID"
       }
@@ -839,7 +839,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getJobProgressiveText",
         "x-serviceid-varname" : "GETJOBPROGRESSIVETEXT_SERVICE_ID"
       }
@@ -870,7 +870,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getQueue",
         "x-serviceid-varname" : "GETQUEUE_SERVICE_ID"
       }
@@ -912,7 +912,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getQueueItem",
         "x-serviceid-varname" : "GETQUEUEITEM_SERVICE_ID"
       }
@@ -957,7 +957,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getView",
         "x-serviceid-varname" : "GETVIEW_SERVICE_ID"
       }
@@ -1002,7 +1002,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-accepts" : "text/xml",
+        "x-accepts" : [ "text/xml" ],
         "x-serviceid" : "getViewConfig",
         "x-serviceid-varname" : "GETVIEWCONFIG_SERVICE_ID"
       },
@@ -1070,7 +1070,7 @@
         } ],
         "tags" : [ "remoteAccess" ],
         "x-content-type" : "application/json",
-        "x-accepts" : "*/*",
+        "x-accepts" : [ "*/*" ],
         "x-serviceid" : "postViewConfig",
         "x-serviceid-varname" : "POSTVIEWCONFIG_SERVICE_ID"
       }
@@ -1119,7 +1119,7 @@
           }
         },
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getJsonWebToken",
         "x-serviceid-varname" : "GETJSONWEBTOKEN_SERVICE_ID"
       }
@@ -1158,7 +1158,7 @@
           }
         },
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getJsonWebKey",
         "x-serviceid-varname" : "GETJSONWEBKEY_SERVICE_ID"
       }
@@ -1200,7 +1200,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "searchClasses",
         "x-serviceid-varname" : "SEARCHCLASSES_SERVICE_ID"
       }
@@ -1242,7 +1242,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getClasses",
         "x-serviceid-varname" : "GETCLASSES_SERVICE_ID"
       }
@@ -1284,7 +1284,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "search",
         "x-serviceid-varname" : "SEARCH_SERVICE_ID"
       }
@@ -1315,7 +1315,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getOrganisations",
         "x-serviceid-varname" : "GETORGANISATIONS_SERVICE_ID"
       }
@@ -1360,7 +1360,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getOrganisation",
         "x-serviceid-varname" : "GETORGANISATION_SERVICE_ID"
       }
@@ -1402,7 +1402,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelines",
         "x-serviceid-varname" : "GETPIPELINES_SERVICE_ID"
       }
@@ -1457,7 +1457,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipeline",
         "x-serviceid-varname" : "GETPIPELINE_SERVICE_ID"
       }
@@ -1509,7 +1509,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineActivities",
         "x-serviceid-varname" : "GETPIPELINEACTIVITIES_SERVICE_ID"
       }
@@ -1561,7 +1561,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineBranches",
         "x-serviceid-varname" : "GETPIPELINEBRANCHES_SERVICE_ID"
       }
@@ -1623,7 +1623,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineBranch",
         "x-serviceid-varname" : "GETPIPELINEBRANCH_SERVICE_ID"
       }
@@ -1695,7 +1695,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineBranchRun",
         "x-serviceid-varname" : "GETPIPELINEBRANCHRUN_SERVICE_ID"
       }
@@ -1747,7 +1747,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineFolder",
         "x-serviceid-varname" : "GETPIPELINEFOLDER_SERVICE_ID"
       }
@@ -1809,7 +1809,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineFolderPipeline",
         "x-serviceid-varname" : "GETPIPELINEFOLDERPIPELINE_SERVICE_ID"
       }
@@ -1873,7 +1873,7 @@
         } ],
         "tags" : [ "blueOcean" ],
         "x-content-type" : "application/json",
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "putPipelineFavorite",
         "x-serviceid-varname" : "PUTPIPELINEFAVORITE_SERVICE_ID"
       }
@@ -1925,7 +1925,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineQueue",
         "x-serviceid-varname" : "GETPIPELINEQUEUE_SERVICE_ID"
       }
@@ -1980,7 +1980,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "deletePipelineQueueItem",
         "x-serviceid-varname" : "DELETEPIPELINEQUEUEITEM_SERVICE_ID"
       }
@@ -2032,7 +2032,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineRuns",
         "x-serviceid-varname" : "GETPIPELINERUNS_SERVICE_ID"
       },
@@ -2082,7 +2082,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "postPipelineRuns",
         "x-serviceid-varname" : "POSTPIPELINERUNS_SERVICE_ID"
       }
@@ -2144,7 +2144,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineRun",
         "x-serviceid-varname" : "GETPIPELINERUN_SERVICE_ID"
       }
@@ -2206,7 +2206,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineRunNodes",
         "x-serviceid-varname" : "GETPIPELINERUNNODES_SERVICE_ID"
       }
@@ -2278,7 +2278,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineRunNode",
         "x-serviceid-varname" : "GETPIPELINERUNNODE_SERVICE_ID"
       }
@@ -2350,7 +2350,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineRunNodeSteps",
         "x-serviceid-varname" : "GETPIPELINERUNNODESTEPS_SERVICE_ID"
       }
@@ -2432,7 +2432,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineRunNodeStep",
         "x-serviceid-varname" : "GETPIPELINERUNNODESTEP_SERVICE_ID"
       }
@@ -2514,7 +2514,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineRunNodeStepLog",
         "x-serviceid-varname" : "GETPIPELINERUNNODESTEPLOG_SERVICE_ID"
       }
@@ -2596,7 +2596,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getPipelineRunLog",
         "x-serviceid-varname" : "GETPIPELINERUNLOG_SERVICE_ID"
       }
@@ -2658,7 +2658,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "postPipelineRun",
         "x-serviceid-varname" : "POSTPIPELINERUN_SERVICE_ID"
       }
@@ -2740,7 +2740,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "putPipelineRun",
         "x-serviceid-varname" : "PUTPIPELINERUN_SERVICE_ID"
       }
@@ -2792,7 +2792,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getSCM",
         "x-serviceid-varname" : "GETSCM_SERVICE_ID"
       }
@@ -2854,7 +2854,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getSCMOrganisations",
         "x-serviceid-varname" : "GETSCMORGANISATIONS_SERVICE_ID"
       }
@@ -2946,7 +2946,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getSCMOrganisationRepositories",
         "x-serviceid-varname" : "GETSCMORGANISATIONREPOSITORIES_SERVICE_ID"
       }
@@ -3028,7 +3028,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getSCMOrganisationRepository",
         "x-serviceid-varname" : "GETSCMORGANISATIONREPOSITORY_SERVICE_ID"
       }
@@ -3070,7 +3070,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getAuthenticatedUser",
         "x-serviceid-varname" : "GETAUTHENTICATEDUSER_SERVICE_ID"
       }
@@ -3112,7 +3112,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getUsers",
         "x-serviceid-varname" : "GETUSERS_SERVICE_ID"
       }
@@ -3164,7 +3164,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getUser",
         "x-serviceid-varname" : "GETUSER_SERVICE_ID"
       }
@@ -3206,7 +3206,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "blueOcean" ],
-        "x-accepts" : "application/json",
+        "x-accepts" : [ "application/json" ],
         "x-serviceid" : "getUserFavorites",
         "x-serviceid-varname" : "GETUSERFAVORITES_SERVICE_ID"
       }

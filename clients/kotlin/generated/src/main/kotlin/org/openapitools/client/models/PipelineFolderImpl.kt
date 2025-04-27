@@ -55,5 +55,8 @@ data class PipelineFolderImpl (
     @Json(name = "numberOfPipelines")
     val numberOfPipelines: kotlin.Int? = null
 
-)
+) {
+
+
+}
 

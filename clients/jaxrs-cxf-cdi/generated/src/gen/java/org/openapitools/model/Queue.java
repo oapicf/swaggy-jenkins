@@ -21,7 +21,7 @@ public class Queue   {
   
   private String propertyClass;
 
-  private List<@Valid QueueBlockedItem> items;
+  private List<@Valid QueueBlockedItem> items = new ArrayList<>();
 
   /**
    **/

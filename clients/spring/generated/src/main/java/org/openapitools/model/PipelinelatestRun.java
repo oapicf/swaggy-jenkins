@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.PipelinelatestRunartifacts;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,39 +23,39 @@ import javax.annotation.Generated;
  * PipelinelatestRun
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelinelatestRun {
 
   @Valid
-  private List<@Valid PipelinelatestRunartifacts> artifacts;
+  private List<@Valid PipelinelatestRunartifacts> artifacts = new ArrayList<>();
 
-  private Integer durationInMillis;
+  private @Nullable Integer durationInMillis;
 
-  private Integer estimatedDurationInMillis;
+  private @Nullable Integer estimatedDurationInMillis;
 
-  private String enQueueTime;
+  private @Nullable String enQueueTime;
 
-  private String endTime;
+  private @Nullable String endTime;
 
-  private String id;
+  private @Nullable String id;
 
-  private String organization;
+  private @Nullable String organization;
 
-  private String pipeline;
+  private @Nullable String pipeline;
 
-  private String result;
+  private @Nullable String result;
 
-  private String runSummary;
+  private @Nullable String runSummary;
 
-  private String startTime;
+  private @Nullable String startTime;
 
-  private String state;
+  private @Nullable String state;
 
-  private String type;
+  private @Nullable String type;
 
-  private String commitId;
+  private @Nullable String commitId;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public PipelinelatestRun artifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
@@ -72,7 +73,7 @@ public class PipelinelatestRun {
   /**
    * Get artifacts
    * @return artifacts
-  */
+   */
   @Valid 
   @Schema(name = "artifacts", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("artifacts")
@@ -92,7 +93,7 @@ public class PipelinelatestRun {
   /**
    * Get durationInMillis
    * @return durationInMillis
-  */
+   */
   
   @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("durationInMillis")
@@ -112,7 +113,7 @@ public class PipelinelatestRun {
   /**
    * Get estimatedDurationInMillis
    * @return estimatedDurationInMillis
-  */
+   */
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
@@ -132,7 +133,7 @@ public class PipelinelatestRun {
   /**
    * Get enQueueTime
    * @return enQueueTime
-  */
+   */
   
   @Schema(name = "enQueueTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("enQueueTime")
@@ -152,7 +153,7 @@ public class PipelinelatestRun {
   /**
    * Get endTime
    * @return endTime
-  */
+   */
   
   @Schema(name = "endTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("endTime")
@@ -172,7 +173,7 @@ public class PipelinelatestRun {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -192,7 +193,7 @@ public class PipelinelatestRun {
   /**
    * Get organization
    * @return organization
-  */
+   */
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
@@ -212,7 +213,7 @@ public class PipelinelatestRun {
   /**
    * Get pipeline
    * @return pipeline
-  */
+   */
   
   @Schema(name = "pipeline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pipeline")
@@ -232,7 +233,7 @@ public class PipelinelatestRun {
   /**
    * Get result
    * @return result
-  */
+   */
   
   @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("result")
@@ -252,7 +253,7 @@ public class PipelinelatestRun {
   /**
    * Get runSummary
    * @return runSummary
-  */
+   */
   
   @Schema(name = "runSummary", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("runSummary")
@@ -272,7 +273,7 @@ public class PipelinelatestRun {
   /**
    * Get startTime
    * @return startTime
-  */
+   */
   
   @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("startTime")
@@ -292,7 +293,7 @@ public class PipelinelatestRun {
   /**
    * Get state
    * @return state
-  */
+   */
   
   @Schema(name = "state", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("state")
@@ -312,7 +313,7 @@ public class PipelinelatestRun {
   /**
    * Get type
    * @return type
-  */
+   */
   
   @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("type")
@@ -332,7 +333,7 @@ public class PipelinelatestRun {
   /**
    * Get commitId
    * @return commitId
-  */
+   */
   
   @Schema(name = "commitId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("commitId")
@@ -352,7 +353,7 @@ public class PipelinelatestRun {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

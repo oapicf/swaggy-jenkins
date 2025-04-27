@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.ExtensionClassContainerImpl1links;
 import org.openapitools.model.ExtensionClassContainerImpl1map;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -20,14 +21,14 @@ import javax.annotation.Generated;
  * ExtensionClassContainerImpl1
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ExtensionClassContainerImpl1 {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private ExtensionClassContainerImpl1links links;
+  private @Nullable ExtensionClassContainerImpl1links links;
 
-  private ExtensionClassContainerImpl1map map;
+  private @Nullable ExtensionClassContainerImpl1map map;
 
   public ExtensionClassContainerImpl1 propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -37,7 +38,7 @@ public class ExtensionClassContainerImpl1 {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -57,7 +58,7 @@ public class ExtensionClassContainerImpl1 {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -77,7 +78,7 @@ public class ExtensionClassContainerImpl1 {
   /**
    * Get map
    * @return map
-  */
+   */
   @Valid 
   @Schema(name = "map", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("map")

@@ -5,7 +5,7 @@
 
 
 
-hudson_master_computerexecutors_t *hudson_master_computerexecutors_create(
+static hudson_master_computerexecutors_t *hudson_master_computerexecutors_create_internal(
     free_style_build_t *current_executable,
     int idle,
     int likely_stuck,
@@ -24,12 +24,34 @@ hudson_master_computerexecutors_t *hudson_master_computerexecutors_create(
     hudson_master_computerexecutors_local_var->progress = progress;
     hudson_master_computerexecutors_local_var->_class = _class;
 
+    hudson_master_computerexecutors_local_var->_library_owned = 1;
     return hudson_master_computerexecutors_local_var;
 }
 
+__attribute__((deprecated)) hudson_master_computerexecutors_t *hudson_master_computerexecutors_create(
+    free_style_build_t *current_executable,
+    int idle,
+    int likely_stuck,
+    int number,
+    int progress,
+    char *_class
+    ) {
+    return hudson_master_computerexecutors_create_internal (
+        current_executable,
+        idle,
+        likely_stuck,
+        number,
+        progress,
+        _class
+        );
+}
 
 void hudson_master_computerexecutors_free(hudson_master_computerexecutors_t *hudson_master_computerexecutors) {
     if(NULL == hudson_master_computerexecutors){
+        return ;
+    }
+    if(hudson_master_computerexecutors->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "hudson_master_computerexecutors_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -116,12 +138,18 @@ hudson_master_computerexecutors_t *hudson_master_computerexecutors_parseFromJSON
 
     // hudson_master_computerexecutors->current_executable
     cJSON *current_executable = cJSON_GetObjectItemCaseSensitive(hudson_master_computerexecutorsJSON, "currentExecutable");
+    if (cJSON_IsNull(current_executable)) {
+        current_executable = NULL;
+    }
     if (current_executable) { 
     current_executable_local_nonprim = free_style_build_parseFromJSON(current_executable); //nonprimitive
     }
 
     // hudson_master_computerexecutors->idle
     cJSON *idle = cJSON_GetObjectItemCaseSensitive(hudson_master_computerexecutorsJSON, "idle");
+    if (cJSON_IsNull(idle)) {
+        idle = NULL;
+    }
     if (idle) { 
     if(!cJSON_IsBool(idle))
     {
@@ -131,6 +159,9 @@ hudson_master_computerexecutors_t *hudson_master_computerexecutors_parseFromJSON
 
     // hudson_master_computerexecutors->likely_stuck
     cJSON *likely_stuck = cJSON_GetObjectItemCaseSensitive(hudson_master_computerexecutorsJSON, "likelyStuck");
+    if (cJSON_IsNull(likely_stuck)) {
+        likely_stuck = NULL;
+    }
     if (likely_stuck) { 
     if(!cJSON_IsBool(likely_stuck))
     {
@@ -140,6 +171,9 @@ hudson_master_computerexecutors_t *hudson_master_computerexecutors_parseFromJSON
 
     // hudson_master_computerexecutors->number
     cJSON *number = cJSON_GetObjectItemCaseSensitive(hudson_master_computerexecutorsJSON, "number");
+    if (cJSON_IsNull(number)) {
+        number = NULL;
+    }
     if (number) { 
     if(!cJSON_IsNumber(number))
     {
@@ -149,6 +183,9 @@ hudson_master_computerexecutors_t *hudson_master_computerexecutors_parseFromJSON
 
     // hudson_master_computerexecutors->progress
     cJSON *progress = cJSON_GetObjectItemCaseSensitive(hudson_master_computerexecutorsJSON, "progress");
+    if (cJSON_IsNull(progress)) {
+        progress = NULL;
+    }
     if (progress) { 
     if(!cJSON_IsNumber(progress))
     {
@@ -158,6 +195,9 @@ hudson_master_computerexecutors_t *hudson_master_computerexecutors_parseFromJSON
 
     // hudson_master_computerexecutors->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudson_master_computerexecutorsJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -166,7 +206,7 @@ hudson_master_computerexecutors_t *hudson_master_computerexecutors_parseFromJSON
     }
 
 
-    hudson_master_computerexecutors_local_var = hudson_master_computerexecutors_create (
+    hudson_master_computerexecutors_local_var = hudson_master_computerexecutors_create_internal (
         current_executable ? current_executable_local_nonprim : NULL,
         idle ? idle->valueint : 0,
         likely_stuck ? likely_stuck->valueint : 0,

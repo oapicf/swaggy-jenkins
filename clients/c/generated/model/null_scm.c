@@ -5,7 +5,7 @@
 
 
 
-null_scm_t *null_scm_create(
+static null_scm_t *null_scm_create_internal(
     char *_class
     ) {
     null_scm_t *null_scm_local_var = malloc(sizeof(null_scm_t));
@@ -14,12 +14,24 @@ null_scm_t *null_scm_create(
     }
     null_scm_local_var->_class = _class;
 
+    null_scm_local_var->_library_owned = 1;
     return null_scm_local_var;
 }
 
+__attribute__((deprecated)) null_scm_t *null_scm_create(
+    char *_class
+    ) {
+    return null_scm_create_internal (
+        _class
+        );
+}
 
 void null_scm_free(null_scm_t *null_scm) {
     if(NULL == null_scm){
+        return ;
+    }
+    if(null_scm->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "null_scm_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -54,6 +66,9 @@ null_scm_t *null_scm_parseFromJSON(cJSON *null_scmJSON){
 
     // null_scm->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(null_scmJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -62,7 +77,7 @@ null_scm_t *null_scm_parseFromJSON(cJSON *null_scmJSON){
     }
 
 
-    null_scm_local_var = null_scm_create (
+    null_scm_local_var = null_scm_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 

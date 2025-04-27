@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.FreeStyleBuild;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -19,20 +20,20 @@ import javax.annotation.Generated;
  * HudsonMasterComputerexecutors
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputerexecutors {
 
-  private FreeStyleBuild currentExecutable;
+  private @Nullable FreeStyleBuild currentExecutable;
 
-  private Boolean idle;
+  private @Nullable Boolean idle;
 
-  private Boolean likelyStuck;
+  private @Nullable Boolean likelyStuck;
 
-  private Integer number;
+  private @Nullable Integer number;
 
-  private Integer progress;
+  private @Nullable Integer progress;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public HudsonMasterComputerexecutors currentExecutable(FreeStyleBuild currentExecutable) {
     this.currentExecutable = currentExecutable;
@@ -42,7 +43,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get currentExecutable
    * @return currentExecutable
-  */
+   */
   @Valid 
   @Schema(name = "currentExecutable", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("currentExecutable")
@@ -62,7 +63,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get idle
    * @return idle
-  */
+   */
   
   @Schema(name = "idle", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("idle")
@@ -82,7 +83,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get likelyStuck
    * @return likelyStuck
-  */
+   */
   
   @Schema(name = "likelyStuck", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("likelyStuck")
@@ -102,7 +103,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get number
    * @return number
-  */
+   */
   
   @Schema(name = "number", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("number")
@@ -122,7 +123,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get progress
    * @return progress
-  */
+   */
   
   @Schema(name = "progress", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("progress")
@@ -142,7 +143,7 @@ public class HudsonMasterComputerexecutors {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

@@ -19,7 +19,7 @@ public class Hudson  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  private List<HudsonassignedLabels> assignedLabels;
+  private List<HudsonassignedLabels> assignedLabels = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private String mode;
@@ -37,7 +37,7 @@ public class Hudson  {
   private String description;
 
   @ApiModelProperty(value = "")
-  private List<FreeStyleProject> jobs;
+  private List<FreeStyleProject> jobs = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private AllView primaryView;
@@ -58,7 +58,7 @@ public class Hudson  {
   private Boolean useSecurity;
 
   @ApiModelProperty(value = "")
-  private List<AllView> views;
+  private List<AllView> views = new ArrayList<>();
  /**
    * Get propertyClass
    * @return propertyClass

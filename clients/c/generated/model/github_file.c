@@ -5,7 +5,7 @@
 
 
 
-github_file_t *github_file_create(
+static github_file_t *github_file_create_internal(
     github_content_t *content,
     char *_class
     ) {
@@ -16,12 +16,26 @@ github_file_t *github_file_create(
     github_file_local_var->content = content;
     github_file_local_var->_class = _class;
 
+    github_file_local_var->_library_owned = 1;
     return github_file_local_var;
 }
 
+__attribute__((deprecated)) github_file_t *github_file_create(
+    github_content_t *content,
+    char *_class
+    ) {
+    return github_file_create_internal (
+        content,
+        _class
+        );
+}
 
 void github_file_free(github_file_t *github_file) {
     if(NULL == github_file){
+        return ;
+    }
+    if(github_file->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "github_file_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -76,12 +90,18 @@ github_file_t *github_file_parseFromJSON(cJSON *github_fileJSON){
 
     // github_file->content
     cJSON *content = cJSON_GetObjectItemCaseSensitive(github_fileJSON, "content");
+    if (cJSON_IsNull(content)) {
+        content = NULL;
+    }
     if (content) { 
     content_local_nonprim = github_content_parseFromJSON(content); //nonprimitive
     }
 
     // github_file->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_fileJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -90,7 +110,7 @@ github_file_t *github_file_parseFromJSON(cJSON *github_fileJSON){
     }
 
 
-    github_file_local_var = github_file_create (
+    github_file_local_var = github_file_create_internal (
         content ? content_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

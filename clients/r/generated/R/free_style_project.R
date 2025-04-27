@@ -67,8 +67,7 @@ FreeStyleProject <- R6::R6Class(
     `queueItem` = NULL,
     `concurrentBuild` = NULL,
     `scm` = NULL,
-    #' Initialize a new FreeStyleProject class.
-    #'
+
     #' @description
     #' Initialize a new FreeStyleProject class.
     #'
@@ -100,7 +99,6 @@ FreeStyleProject <- R6::R6Class(
     #' @param concurrentBuild concurrentBuild
     #' @param scm scm
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, `name` = NULL, `url` = NULL, `color` = NULL, `actions` = NULL, `description` = NULL, `displayName` = NULL, `displayNameOrNull` = NULL, `fullDisplayName` = NULL, `fullName` = NULL, `buildable` = NULL, `builds` = NULL, `firstBuild` = NULL, `healthReport` = NULL, `inQueue` = NULL, `keepDependencies` = NULL, `lastBuild` = NULL, `lastCompletedBuild` = NULL, `lastFailedBuild` = NULL, `lastStableBuild` = NULL, `lastSuccessfulBuild` = NULL, `lastUnstableBuild` = NULL, `lastUnsuccessfulBuild` = NULL, `nextBuildNumber` = NULL, `queueItem` = NULL, `concurrentBuild` = NULL, `scm` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -250,14 +248,37 @@ FreeStyleProject <- R6::R6Class(
         self$`scm` <- `scm`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return FreeStyleProject in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return FreeStyleProject as a base R list.
+    #' @examples
+    #' # convert array of FreeStyleProject (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert FreeStyleProject to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       FreeStyleProjectObject <- list()
       if (!is.null(self$`_class`)) {
         FreeStyleProjectObject[["_class"]] <-
@@ -277,7 +298,7 @@ FreeStyleProject <- R6::R6Class(
       }
       if (!is.null(self$`actions`)) {
         FreeStyleProjectObject[["actions"]] <-
-          lapply(self$`actions`, function(x) x$toJSON())
+          lapply(self$`actions`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`description`)) {
         FreeStyleProjectObject[["description"]] <-
@@ -305,15 +326,15 @@ FreeStyleProject <- R6::R6Class(
       }
       if (!is.null(self$`builds`)) {
         FreeStyleProjectObject[["builds"]] <-
-          lapply(self$`builds`, function(x) x$toJSON())
+          lapply(self$`builds`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`firstBuild`)) {
         FreeStyleProjectObject[["firstBuild"]] <-
-          self$`firstBuild`$toJSON()
+          self$`firstBuild`$toSimpleType()
       }
       if (!is.null(self$`healthReport`)) {
         FreeStyleProjectObject[["healthReport"]] <-
-          lapply(self$`healthReport`, function(x) x$toJSON())
+          lapply(self$`healthReport`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`inQueue`)) {
         FreeStyleProjectObject[["inQueue"]] <-
@@ -325,11 +346,11 @@ FreeStyleProject <- R6::R6Class(
       }
       if (!is.null(self$`lastBuild`)) {
         FreeStyleProjectObject[["lastBuild"]] <-
-          self$`lastBuild`$toJSON()
+          self$`lastBuild`$toSimpleType()
       }
       if (!is.null(self$`lastCompletedBuild`)) {
         FreeStyleProjectObject[["lastCompletedBuild"]] <-
-          self$`lastCompletedBuild`$toJSON()
+          self$`lastCompletedBuild`$toSimpleType()
       }
       if (!is.null(self$`lastFailedBuild`)) {
         FreeStyleProjectObject[["lastFailedBuild"]] <-
@@ -337,11 +358,11 @@ FreeStyleProject <- R6::R6Class(
       }
       if (!is.null(self$`lastStableBuild`)) {
         FreeStyleProjectObject[["lastStableBuild"]] <-
-          self$`lastStableBuild`$toJSON()
+          self$`lastStableBuild`$toSimpleType()
       }
       if (!is.null(self$`lastSuccessfulBuild`)) {
         FreeStyleProjectObject[["lastSuccessfulBuild"]] <-
-          self$`lastSuccessfulBuild`$toJSON()
+          self$`lastSuccessfulBuild`$toSimpleType()
       }
       if (!is.null(self$`lastUnstableBuild`)) {
         FreeStyleProjectObject[["lastUnstableBuild"]] <-
@@ -365,18 +386,16 @@ FreeStyleProject <- R6::R6Class(
       }
       if (!is.null(self$`scm`)) {
         FreeStyleProjectObject[["scm"]] <-
-          self$`scm`$toJSON()
+          self$`scm`$toSimpleType()
       }
-      FreeStyleProjectObject
+      return(FreeStyleProjectObject)
     },
-    #' Deserialize JSON string into an instance of FreeStyleProject
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of FreeStyleProject
     #'
     #' @param input_json the JSON input
     #' @return the instance of FreeStyleProject
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -474,243 +493,23 @@ FreeStyleProject <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return FreeStyleProject in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        },
-        if (!is.null(self$`name`)) {
-          sprintf(
-          '"name":
-            "%s"
-                    ',
-          self$`name`
-          )
-        },
-        if (!is.null(self$`url`)) {
-          sprintf(
-          '"url":
-            "%s"
-                    ',
-          self$`url`
-          )
-        },
-        if (!is.null(self$`color`)) {
-          sprintf(
-          '"color":
-            "%s"
-                    ',
-          self$`color`
-          )
-        },
-        if (!is.null(self$`actions`)) {
-          sprintf(
-          '"actions":
-          [%s]
-',
-          paste(sapply(self$`actions`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`description`)) {
-          sprintf(
-          '"description":
-            "%s"
-                    ',
-          self$`description`
-          )
-        },
-        if (!is.null(self$`displayName`)) {
-          sprintf(
-          '"displayName":
-            "%s"
-                    ',
-          self$`displayName`
-          )
-        },
-        if (!is.null(self$`displayNameOrNull`)) {
-          sprintf(
-          '"displayNameOrNull":
-            "%s"
-                    ',
-          self$`displayNameOrNull`
-          )
-        },
-        if (!is.null(self$`fullDisplayName`)) {
-          sprintf(
-          '"fullDisplayName":
-            "%s"
-                    ',
-          self$`fullDisplayName`
-          )
-        },
-        if (!is.null(self$`fullName`)) {
-          sprintf(
-          '"fullName":
-            "%s"
-                    ',
-          self$`fullName`
-          )
-        },
-        if (!is.null(self$`buildable`)) {
-          sprintf(
-          '"buildable":
-            %s
-                    ',
-          tolower(self$`buildable`)
-          )
-        },
-        if (!is.null(self$`builds`)) {
-          sprintf(
-          '"builds":
-          [%s]
-',
-          paste(sapply(self$`builds`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`firstBuild`)) {
-          sprintf(
-          '"firstBuild":
-          %s
-          ',
-          jsonlite::toJSON(self$`firstBuild`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`healthReport`)) {
-          sprintf(
-          '"healthReport":
-          [%s]
-',
-          paste(sapply(self$`healthReport`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`inQueue`)) {
-          sprintf(
-          '"inQueue":
-            %s
-                    ',
-          tolower(self$`inQueue`)
-          )
-        },
-        if (!is.null(self$`keepDependencies`)) {
-          sprintf(
-          '"keepDependencies":
-            %s
-                    ',
-          tolower(self$`keepDependencies`)
-          )
-        },
-        if (!is.null(self$`lastBuild`)) {
-          sprintf(
-          '"lastBuild":
-          %s
-          ',
-          jsonlite::toJSON(self$`lastBuild`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`lastCompletedBuild`)) {
-          sprintf(
-          '"lastCompletedBuild":
-          %s
-          ',
-          jsonlite::toJSON(self$`lastCompletedBuild`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`lastFailedBuild`)) {
-          sprintf(
-          '"lastFailedBuild":
-            "%s"
-                    ',
-          self$`lastFailedBuild`
-          )
-        },
-        if (!is.null(self$`lastStableBuild`)) {
-          sprintf(
-          '"lastStableBuild":
-          %s
-          ',
-          jsonlite::toJSON(self$`lastStableBuild`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`lastSuccessfulBuild`)) {
-          sprintf(
-          '"lastSuccessfulBuild":
-          %s
-          ',
-          jsonlite::toJSON(self$`lastSuccessfulBuild`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`lastUnstableBuild`)) {
-          sprintf(
-          '"lastUnstableBuild":
-            "%s"
-                    ',
-          self$`lastUnstableBuild`
-          )
-        },
-        if (!is.null(self$`lastUnsuccessfulBuild`)) {
-          sprintf(
-          '"lastUnsuccessfulBuild":
-            "%s"
-                    ',
-          self$`lastUnsuccessfulBuild`
-          )
-        },
-        if (!is.null(self$`nextBuildNumber`)) {
-          sprintf(
-          '"nextBuildNumber":
-            %d
-                    ',
-          self$`nextBuildNumber`
-          )
-        },
-        if (!is.null(self$`queueItem`)) {
-          sprintf(
-          '"queueItem":
-            "%s"
-                    ',
-          self$`queueItem`
-          )
-        },
-        if (!is.null(self$`concurrentBuild`)) {
-          sprintf(
-          '"concurrentBuild":
-            %s
-                    ',
-          tolower(self$`concurrentBuild`)
-          )
-        },
-        if (!is.null(self$`scm`)) {
-          sprintf(
-          '"scm":
-          %s
-          ',
-          jsonlite::toJSON(self$`scm`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of FreeStyleProject
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of FreeStyleProject
     #'
     #' @param input_json the JSON input
     #' @return the instance of FreeStyleProject
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
@@ -742,53 +541,42 @@ FreeStyleProject <- R6::R6Class(
       self$`scm` <- NullSCM$new()$fromJSON(jsonlite::toJSON(this_object$`scm`, auto_unbox = TRUE, digits = NA))
       self
     },
-    #' Validate JSON input with respect to FreeStyleProject
-    #'
+
     #' @description
     #' Validate JSON input with respect to FreeStyleProject and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of FreeStyleProject
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

@@ -2,45 +2,45 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deletePipelineQueueItem**](BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} | 
-[**getAuthenticatedUser**](BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ | 
-[**getClasses**](BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} | 
-[**getJsonWebKey**](BlueOceanApi.md#getJsonWebKey) | **GET** /jwt-auth/jwks/{key} | 
-[**getJsonWebToken**](BlueOceanApi.md#getJsonWebToken) | **GET** /jwt-auth/token | 
-[**getOrganisation**](BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organization} | 
-[**getOrganisations**](BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ | 
-[**getPipeline**](BlueOceanApi.md#getPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} | 
-[**getPipelineActivities**](BlueOceanApi.md#getPipelineActivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities | 
-[**getPipelineBranch**](BlueOceanApi.md#getPipelineBranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ | 
-[**getPipelineBranchRun**](BlueOceanApi.md#getPipelineBranchRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} | 
-[**getPipelineBranches**](BlueOceanApi.md#getPipelineBranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches | 
-[**getPipelineFolder**](BlueOceanApi.md#getPipelineFolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ | 
-[**getPipelineFolderPipeline**](BlueOceanApi.md#getPipelineFolderPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} | 
-[**getPipelineQueue**](BlueOceanApi.md#getPipelineQueue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue | 
-[**getPipelineRun**](BlueOceanApi.md#getPipelineRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} | 
-[**getPipelineRunLog**](BlueOceanApi.md#getPipelineRunLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log | 
-[**getPipelineRunNode**](BlueOceanApi.md#getPipelineRunNode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} | 
-[**getPipelineRunNodeStep**](BlueOceanApi.md#getPipelineRunNodeStep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} | 
-[**getPipelineRunNodeStepLog**](BlueOceanApi.md#getPipelineRunNodeStepLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log | 
-[**getPipelineRunNodeSteps**](BlueOceanApi.md#getPipelineRunNodeSteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps | 
-[**getPipelineRunNodes**](BlueOceanApi.md#getPipelineRunNodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes | 
-[**getPipelineRuns**](BlueOceanApi.md#getPipelineRuns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-[**getPipelines**](BlueOceanApi.md#getPipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ | 
-[**getSCM**](BlueOceanApi.md#getSCM) | **GET** /blue/rest/organizations/{organization}/scm/{scm} | 
-[**getSCMOrganisationRepositories**](BlueOceanApi.md#getSCMOrganisationRepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories | 
-[**getSCMOrganisationRepository**](BlueOceanApi.md#getSCMOrganisationRepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} | 
-[**getSCMOrganisations**](BlueOceanApi.md#getSCMOrganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations | 
-[**getUser**](BlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organization}/users/{user} | 
-[**getUserFavorites**](BlueOceanApi.md#getUserFavorites) | **GET** /blue/rest/users/{user}/favorites | 
-[**getUsers**](BlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organization}/users/ | 
-[**postPipelineRun**](BlueOceanApi.md#postPipelineRun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay | 
-[**postPipelineRuns**](BlueOceanApi.md#postPipelineRuns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs | 
-[**putPipelineFavorite**](BlueOceanApi.md#putPipelineFavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite | 
-[**putPipelineRun**](BlueOceanApi.md#putPipelineRun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop | 
-[**search**](BlueOceanApi.md#search) | **GET** /blue/rest/search/ | 
-[**searchClasses**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ | 
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deletePipelineQueueItem**](BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} |  |
+| [**getAuthenticatedUser**](BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ |  |
+| [**getClasses**](BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} |  |
+| [**getJsonWebKey**](BlueOceanApi.md#getJsonWebKey) | **GET** /jwt-auth/jwks/{key} |  |
+| [**getJsonWebToken**](BlueOceanApi.md#getJsonWebToken) | **GET** /jwt-auth/token |  |
+| [**getOrganisation**](BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organization} |  |
+| [**getOrganisations**](BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ |  |
+| [**getPipeline**](BlueOceanApi.md#getPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} |  |
+| [**getPipelineActivities**](BlueOceanApi.md#getPipelineActivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities |  |
+| [**getPipelineBranch**](BlueOceanApi.md#getPipelineBranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ |  |
+| [**getPipelineBranchRun**](BlueOceanApi.md#getPipelineBranchRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} |  |
+| [**getPipelineBranches**](BlueOceanApi.md#getPipelineBranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches |  |
+| [**getPipelineFolder**](BlueOceanApi.md#getPipelineFolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ |  |
+| [**getPipelineFolderPipeline**](BlueOceanApi.md#getPipelineFolderPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} |  |
+| [**getPipelineQueue**](BlueOceanApi.md#getPipelineQueue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue |  |
+| [**getPipelineRun**](BlueOceanApi.md#getPipelineRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} |  |
+| [**getPipelineRunLog**](BlueOceanApi.md#getPipelineRunLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log |  |
+| [**getPipelineRunNode**](BlueOceanApi.md#getPipelineRunNode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} |  |
+| [**getPipelineRunNodeStep**](BlueOceanApi.md#getPipelineRunNodeStep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} |  |
+| [**getPipelineRunNodeStepLog**](BlueOceanApi.md#getPipelineRunNodeStepLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log |  |
+| [**getPipelineRunNodeSteps**](BlueOceanApi.md#getPipelineRunNodeSteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps |  |
+| [**getPipelineRunNodes**](BlueOceanApi.md#getPipelineRunNodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes |  |
+| [**getPipelineRuns**](BlueOceanApi.md#getPipelineRuns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs |  |
+| [**getPipelines**](BlueOceanApi.md#getPipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ |  |
+| [**getSCM**](BlueOceanApi.md#getSCM) | **GET** /blue/rest/organizations/{organization}/scm/{scm} |  |
+| [**getSCMOrganisationRepositories**](BlueOceanApi.md#getSCMOrganisationRepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories |  |
+| [**getSCMOrganisationRepository**](BlueOceanApi.md#getSCMOrganisationRepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} |  |
+| [**getSCMOrganisations**](BlueOceanApi.md#getSCMOrganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations |  |
+| [**getUser**](BlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organization}/users/{user} |  |
+| [**getUserFavorites**](BlueOceanApi.md#getUserFavorites) | **GET** /blue/rest/users/{user}/favorites |  |
+| [**getUsers**](BlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organization}/users/ |  |
+| [**postPipelineRun**](BlueOceanApi.md#postPipelineRun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay |  |
+| [**postPipelineRuns**](BlueOceanApi.md#postPipelineRuns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs |  |
+| [**putPipelineFavorite**](BlueOceanApi.md#putPipelineFavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite |  |
+| [**putPipelineRun**](BlueOceanApi.md#putPipelineRun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop |  |
+| [**search**](BlueOceanApi.md#search) | **GET** /blue/rest/search/ |  |
+| [**searchClasses**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ |  |
 
 
 <a id="deletePipelineQueueItem"></a>
@@ -73,12 +73,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **queue** | **kotlin.String**| Name of the queue item |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **queue** | **kotlin.String**| Name of the queue item | |
 
 ### Return type
 
@@ -125,10 +124,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organization** | **kotlin.String**| Name of the organization | |
 
 ### Return type
 
@@ -175,10 +173,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **propertyClass** | **kotlin.String**| Name of the class |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **propertyClass** | **kotlin.String**| Name of the class | |
 
 ### Return type
 
@@ -225,10 +222,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **key** | **kotlin.Int**| Key ID received as part of JWT header field kid |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **key** | **kotlin.Int**| Key ID received as part of JWT header field kid | |
 
 ### Return type
 
@@ -273,11 +269,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **expiryTimeInMins** | **kotlin.Int**| Token expiry time in minutes, default: 30 minutes | [optional]
- **maxExpiryTimeInMins** | **kotlin.Int**| Maximum token expiry time in minutes, default: 480 minutes | [optional]
+| **expiryTimeInMins** | **kotlin.Int**| Token expiry time in minutes, default: 30 minutes | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **maxExpiryTimeInMins** | **kotlin.Int**| Maximum token expiry time in minutes, default: 480 minutes | [optional] |
 
 ### Return type
 
@@ -321,10 +316,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organization** | **kotlin.String**| Name of the organization | |
 
 ### Return type
 
@@ -418,11 +412,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
+| **organization** | **kotlin.String**| Name of the organization | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
 
 ### Return type
 
@@ -470,11 +463,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
+| **organization** | **kotlin.String**| Name of the organization | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
 
 ### Return type
 
@@ -523,12 +515,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **branch** | **kotlin.String**| Name of the branch |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **branch** | **kotlin.String**| Name of the branch | |
 
 ### Return type
 
@@ -578,13 +569,12 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **branch** | **kotlin.String**| Name of the branch |
- **run** | **kotlin.String**| Name of the run |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| **branch** | **kotlin.String**| Name of the branch | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **run** | **kotlin.String**| Name of the run | |
 
 ### Return type
 
@@ -632,11 +622,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
+| **organization** | **kotlin.String**| Name of the organization | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
 
 ### Return type
 
@@ -684,11 +673,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **folder** | **kotlin.String**| Name of the folder |
+| **organization** | **kotlin.String**| Name of the organization | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folder** | **kotlin.String**| Name of the folder | |
 
 ### Return type
 
@@ -737,12 +725,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **folder** | **kotlin.String**| Name of the folder |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **folder** | **kotlin.String**| Name of the folder | |
 
 ### Return type
 
@@ -790,11 +777,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
+| **organization** | **kotlin.String**| Name of the organization | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
 
 ### Return type
 
@@ -843,12 +829,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **run** | **kotlin.String**| Name of the run |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **run** | **kotlin.String**| Name of the run | |
 
 ### Return type
 
@@ -899,14 +884,13 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **run** | **kotlin.String**| Name of the run |
- **start** | **kotlin.Int**| Start position of the log | [optional]
- **download** | **kotlin.Boolean**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional]
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| **run** | **kotlin.String**| Name of the run | |
+| **start** | **kotlin.Int**| Start position of the log | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **download** | **kotlin.Boolean**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional] |
 
 ### Return type
 
@@ -956,13 +940,12 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **run** | **kotlin.String**| Name of the run |
- **node** | **kotlin.String**| Name of the node |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| **run** | **kotlin.String**| Name of the run | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **node** | **kotlin.String**| Name of the node | |
 
 ### Return type
 
@@ -1013,14 +996,13 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **run** | **kotlin.String**| Name of the run |
- **node** | **kotlin.String**| Name of the node |
- **step** | **kotlin.String**| Name of the step |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| **run** | **kotlin.String**| Name of the run | |
+| **node** | **kotlin.String**| Name of the node | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **step** | **kotlin.String**| Name of the step | |
 
 ### Return type
 
@@ -1071,14 +1053,13 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **run** | **kotlin.String**| Name of the run |
- **node** | **kotlin.String**| Name of the node |
- **step** | **kotlin.String**| Name of the step |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| **run** | **kotlin.String**| Name of the run | |
+| **node** | **kotlin.String**| Name of the node | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **step** | **kotlin.String**| Name of the step | |
 
 ### Return type
 
@@ -1128,13 +1109,12 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **run** | **kotlin.String**| Name of the run |
- **node** | **kotlin.String**| Name of the node |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| **run** | **kotlin.String**| Name of the run | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **node** | **kotlin.String**| Name of the node | |
 
 ### Return type
 
@@ -1183,12 +1163,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **run** | **kotlin.String**| Name of the run |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **run** | **kotlin.String**| Name of the run | |
 
 ### Return type
 
@@ -1236,11 +1215,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
+| **organization** | **kotlin.String**| Name of the organization | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
 
 ### Return type
 
@@ -1287,10 +1265,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organization** | **kotlin.String**| Name of the organization | |
 
 ### Return type
 
@@ -1338,11 +1315,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **scm** | **kotlin.String**| Name of SCM |
+| **organization** | **kotlin.String**| Name of the organization | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **scm** | **kotlin.String**| Name of SCM | |
 
 ### Return type
 
@@ -1394,15 +1370,14 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **scm** | **kotlin.String**| Name of SCM |
- **scmOrganisation** | **kotlin.String**| Name of the SCM organization |
- **credentialId** | **kotlin.String**| Credential ID | [optional]
- **pageSize** | **kotlin.Int**| Number of items in a page | [optional]
- **pageNumber** | **kotlin.Int**| Page number | [optional]
+| **organization** | **kotlin.String**| Name of the organization | |
+| **scm** | **kotlin.String**| Name of SCM | |
+| **scmOrganisation** | **kotlin.String**| Name of the SCM organization | |
+| **credentialId** | **kotlin.String**| Credential ID | [optional] |
+| **pageSize** | **kotlin.Int**| Number of items in a page | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pageNumber** | **kotlin.Int**| Page number | [optional] |
 
 ### Return type
 
@@ -1453,14 +1428,13 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **scm** | **kotlin.String**| Name of SCM |
- **scmOrganisation** | **kotlin.String**| Name of the SCM organization |
- **repository** | **kotlin.String**| Name of the SCM repository |
- **credentialId** | **kotlin.String**| Credential ID | [optional]
+| **organization** | **kotlin.String**| Name of the organization | |
+| **scm** | **kotlin.String**| Name of SCM | |
+| **scmOrganisation** | **kotlin.String**| Name of the SCM organization | |
+| **repository** | **kotlin.String**| Name of the SCM repository | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **credentialId** | **kotlin.String**| Credential ID | [optional] |
 
 ### Return type
 
@@ -1509,12 +1483,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **scm** | **kotlin.String**| Name of SCM |
- **credentialId** | **kotlin.String**| Credential ID | [optional]
+| **organization** | **kotlin.String**| Name of the organization | |
+| **scm** | **kotlin.String**| Name of SCM | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **credentialId** | **kotlin.String**| Credential ID | [optional] |
 
 ### Return type
 
@@ -1562,11 +1535,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **user** | **kotlin.String**| Name of the user |
+| **organization** | **kotlin.String**| Name of the organization | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **user** | **kotlin.String**| Name of the user | |
 
 ### Return type
 
@@ -1613,10 +1585,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user** | **kotlin.String**| Name of the user |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **user** | **kotlin.String**| Name of the user | |
 
 ### Return type
 
@@ -1663,10 +1634,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organization** | **kotlin.String**| Name of the organization | |
 
 ### Return type
 
@@ -1715,12 +1685,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **run** | **kotlin.String**| Name of the run |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **run** | **kotlin.String**| Name of the run | |
 
 ### Return type
 
@@ -1768,11 +1737,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
+| **organization** | **kotlin.String**| Name of the organization | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
 
 ### Return type
 
@@ -1821,12 +1789,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **body** | **kotlin.Boolean**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite |
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | **kotlin.Boolean**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | |
 
 ### Return type
 
@@ -1877,14 +1844,13 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organization** | **kotlin.String**| Name of the organization |
- **pipeline** | **kotlin.String**| Name of the pipeline |
- **run** | **kotlin.String**| Name of the run |
- **blocking** | **kotlin.String**| Set to true to make blocking stop, default: false | [optional]
- **timeOutInSecs** | **kotlin.Int**| Timeout in seconds, default: 10 seconds | [optional]
+| **organization** | **kotlin.String**| Name of the organization | |
+| **pipeline** | **kotlin.String**| Name of the pipeline | |
+| **run** | **kotlin.String**| Name of the run | |
+| **blocking** | **kotlin.String**| Set to true to make blocking stop, default: false | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **timeOutInSecs** | **kotlin.Int**| Timeout in seconds, default: 10 seconds | [optional] |
 
 ### Return type
 
@@ -1931,10 +1897,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **q** | **kotlin.String**| Query string |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **q** | **kotlin.String**| Query string | |
 
 ### Return type
 
@@ -1981,10 +1946,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **q** | **kotlin.String**| Query string containing an array of class names |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **q** | **kotlin.String**| Query string containing an array of class names | |
 
 ### Return type
 

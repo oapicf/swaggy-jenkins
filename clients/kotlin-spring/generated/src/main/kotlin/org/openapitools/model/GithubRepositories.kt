@@ -45,7 +45,7 @@ data class GithubRepositories(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("pageSize") val pageSize: kotlin.Int? = null
-) {
+    ) {
 
 }
 

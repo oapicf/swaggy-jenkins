@@ -22,9 +22,10 @@ typedef struct link_t {
     char *_class; // string
     char *href; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } link_t;
 
-link_t *link_create(
+__attribute__((deprecated)) link_t *link_create(
     char *_class,
     char *href
 );

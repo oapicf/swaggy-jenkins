@@ -24,7 +24,7 @@ print(DefaultCrumbIssuer.to_json())
 # convert the object into a dict
 default_crumb_issuer_dict = default_crumb_issuer_instance.to_dict()
 # create an instance of DefaultCrumbIssuer from a dict
-default_crumb_issuer_form_dict = default_crumb_issuer.from_dict(default_crumb_issuer_dict)
+default_crumb_issuer_from_dict = DefaultCrumbIssuer.from_dict(default_crumb_issuer_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

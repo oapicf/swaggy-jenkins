@@ -22,9 +22,10 @@ typedef struct organisation_t {
     char *_class; // string
     char *name; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } organisation_t;
 
-organisation_t *organisation_create(
+__attribute__((deprecated)) organisation_t *organisation_create(
     char *_class,
     char *name
 );

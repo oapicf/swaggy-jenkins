@@ -29,7 +29,7 @@ public class InputStepImpl  {
   private String ok;
 
   @ApiModelProperty(value = "")
-  private List<StringParameterDefinition> parameters;
+  private List<StringParameterDefinition> parameters = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private String submitter;

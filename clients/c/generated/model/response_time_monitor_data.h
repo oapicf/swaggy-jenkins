@@ -23,9 +23,10 @@ typedef struct response_time_monitor_data_t {
     int timestamp; //numeric
     int average; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } response_time_monitor_data_t;
 
-response_time_monitor_data_t *response_time_monitor_data_create(
+__attribute__((deprecated)) response_time_monitor_data_t *response_time_monitor_data_create(
     char *_class,
     int timestamp,
     int average

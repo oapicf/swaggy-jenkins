@@ -61,5 +61,8 @@ data class GithubRepository (
     @Json(name = "fullName")
     val fullName: kotlin.String? = null
 
-)
+) {
+
+
+}
 

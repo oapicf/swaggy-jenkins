@@ -41,7 +41,7 @@ data class GenericResource(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("startTime") val startTime: kotlin.String? = null
-) {
+    ) {
 
 }
 

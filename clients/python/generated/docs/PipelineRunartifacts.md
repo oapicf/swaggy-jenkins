@@ -25,7 +25,7 @@ print(PipelineRunartifacts.to_json())
 # convert the object into a dict
 pipeline_runartifacts_dict = pipeline_runartifacts_instance.to_dict()
 # create an instance of PipelineRunartifacts from a dict
-pipeline_runartifacts_form_dict = pipeline_runartifacts.from_dict(pipeline_runartifacts_dict)
+pipeline_runartifacts_from_dict = PipelineRunartifacts.from_dict(pipeline_runartifacts_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

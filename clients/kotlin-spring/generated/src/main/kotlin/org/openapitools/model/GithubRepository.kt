@@ -53,7 +53,7 @@ data class GithubRepository(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("fullName") val fullName: kotlin.String? = null
-) {
+    ) {
 
 }
 

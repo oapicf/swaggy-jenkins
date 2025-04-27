@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * StringParameterDefinition
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class StringParameterDefinition   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -37,10 +37,10 @@ public class StringParameterDefinition   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -55,10 +55,10 @@ public class StringParameterDefinition   {
     return this;
   }
 
-   /**
+  /**
    * Get defaultParameterValue
    * @return defaultParameterValue
-  **/
+   */
   @ApiModelProperty(value = "")
   public StringParameterValue getDefaultParameterValue() {
     return defaultParameterValue;
@@ -73,10 +73,10 @@ public class StringParameterDefinition   {
     return this;
   }
 
-   /**
+  /**
    * Get description
    * @return description
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDescription() {
     return description;
@@ -91,10 +91,10 @@ public class StringParameterDefinition   {
     return this;
   }
 
-   /**
+  /**
    * Get name
    * @return name
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getName() {
     return name;
@@ -109,10 +109,10 @@ public class StringParameterDefinition   {
     return this;
   }
 
-   /**
+  /**
    * Get type
    * @return type
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getType() {
     return type;

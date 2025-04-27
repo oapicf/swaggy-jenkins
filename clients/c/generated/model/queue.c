@@ -5,7 +5,7 @@
 
 
 
-queue_t *queue_create(
+static queue_t *queue_create_internal(
     char *_class,
     list_t *items
     ) {
@@ -16,12 +16,26 @@ queue_t *queue_create(
     queue_local_var->_class = _class;
     queue_local_var->items = items;
 
+    queue_local_var->_library_owned = 1;
     return queue_local_var;
 }
 
+__attribute__((deprecated)) queue_t *queue_create(
+    char *_class,
+    list_t *items
+    ) {
+    return queue_create_internal (
+        _class,
+        items
+        );
+}
 
 void queue_free(queue_t *queue) {
     if(NULL == queue){
+        return ;
+    }
+    if(queue->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "queue_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -86,6 +100,9 @@ queue_t *queue_parseFromJSON(cJSON *queueJSON){
 
     // queue->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(queueJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -95,6 +112,9 @@ queue_t *queue_parseFromJSON(cJSON *queueJSON){
 
     // queue->items
     cJSON *items = cJSON_GetObjectItemCaseSensitive(queueJSON, "items");
+    if (cJSON_IsNull(items)) {
+        items = NULL;
+    }
     if (items) { 
     cJSON *items_local_nonprimitive = NULL;
     if(!cJSON_IsArray(items)){
@@ -115,7 +135,7 @@ queue_t *queue_parseFromJSON(cJSON *queueJSON){
     }
 
 
-    queue_local_var = queue_create (
+    queue_local_var = queue_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         items ? itemsList : NULL
         );

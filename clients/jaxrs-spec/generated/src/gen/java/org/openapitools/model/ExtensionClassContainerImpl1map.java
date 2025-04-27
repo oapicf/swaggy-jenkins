@@ -16,11 +16,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("ExtensionClassContainerImpl1map")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ExtensionClassContainerImpl1map   {
-  private @Valid ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
-  private @Valid ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
-  private @Valid String propertyClass;
+  private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
+  private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
+  private String propertyClass;
+
+  public ExtensionClassContainerImpl1map() {
+  }
 
   /**
    **/
@@ -32,7 +35,7 @@ public class ExtensionClassContainerImpl1map   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
-  public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl() {
+  @Valid public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl() {
     return ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
   }
 
@@ -51,7 +54,7 @@ public class ExtensionClassContainerImpl1map   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl")
-  public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl() {
+  @Valid public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl() {
     return ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
   }
 

@@ -39,7 +39,7 @@ print(FreeStyleBuild.to_json())
 # convert the object into a dict
 free_style_build_dict = free_style_build_instance.to_dict()
 # create an instance of FreeStyleBuild from a dict
-free_style_build_form_dict = free_style_build.from_dict(free_style_build_dict)
+free_style_build_from_dict = FreeStyleBuild.from_dict(free_style_build_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -17,11 +17,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("FavoriteImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class FavoriteImpl   {
-  private @Valid String propertyClass;
-  private @Valid FavoriteImpllinks links;
-  private @Valid PipelineImpl item;
+  private String propertyClass;
+  private FavoriteImpllinks links;
+  private PipelineImpl item;
+
+  public FavoriteImpl() {
+  }
 
   /**
    **/
@@ -52,7 +55,7 @@ public class FavoriteImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public FavoriteImpllinks getLinks() {
+  @Valid public FavoriteImpllinks getLinks() {
     return links;
   }
 
@@ -71,7 +74,7 @@ public class FavoriteImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("item")
-  public PipelineImpl getItem() {
+  @Valid public PipelineImpl getItem() {
     return item;
   }
 

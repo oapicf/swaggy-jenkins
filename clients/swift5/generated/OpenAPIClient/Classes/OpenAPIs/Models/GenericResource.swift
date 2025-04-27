@@ -50,3 +50,6 @@ public struct GenericResource: Codable, JSONEncodable, Hashable {
     }
 }
 
+
+@available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
+extension GenericResource: Identifiable {}

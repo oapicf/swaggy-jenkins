@@ -21,7 +21,7 @@ public class BranchImpl   {
   private String fullName;
   private String name;
   private String organization;
-  private List<StringParameterDefinition> parameters;
+  private List<StringParameterDefinition> parameters = new ArrayList<>();
   private BranchImplpermissions permissions;
   private Integer weatherScore;
   private String pullRequest;

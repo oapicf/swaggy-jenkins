@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.HudsonMasterComputer;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,19 +23,19 @@ import javax.annotation.Generated;
  * ComputerSet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ComputerSet {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
-  private Integer busyExecutors;
+  private @Nullable Integer busyExecutors;
 
   @Valid
-  private List<@Valid HudsonMasterComputer> computer;
+  private List<@Valid HudsonMasterComputer> computer = new ArrayList<>();
 
-  private String displayName;
+  private @Nullable String displayName;
 
-  private Integer totalExecutors;
+  private @Nullable Integer totalExecutors;
 
   public ComputerSet propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -44,7 +45,7 @@ public class ComputerSet {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -64,7 +65,7 @@ public class ComputerSet {
   /**
    * Get busyExecutors
    * @return busyExecutors
-  */
+   */
   
   @Schema(name = "busyExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("busyExecutors")
@@ -92,7 +93,7 @@ public class ComputerSet {
   /**
    * Get computer
    * @return computer
-  */
+   */
   @Valid 
   @Schema(name = "computer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("computer")
@@ -112,7 +113,7 @@ public class ComputerSet {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -132,7 +133,7 @@ public class ComputerSet {
   /**
    * Get totalExecutors
    * @return totalExecutors
-  */
+   */
   
   @Schema(name = "totalExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalExecutors")

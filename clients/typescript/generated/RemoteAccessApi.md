@@ -35,20 +35,19 @@ Retrieve computer details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiGetComputerRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiGetComputerRequest = {
-  // number | Recursion depth in response model
+const request: RemoteAccessApiGetComputerRequest = {
+    // Recursion depth in response model
   depth: 1,
 };
 
-apiInstance.getComputer(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getComputer(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -91,17 +90,15 @@ Retrieve Jenkins details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getJenkins(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getJenkins(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -141,20 +138,19 @@ Retrieve job details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiGetJobRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiGetJobRequest = {
-  // string | Name of the job
+const request: RemoteAccessApiGetJobRequest = {
+    // Name of the job
   name: "name_example",
 };
 
-apiInstance.getJob(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getJob(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -198,20 +194,19 @@ Retrieve job configuration
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiGetJobConfigRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiGetJobConfigRequest = {
-  // string | Name of the job
+const request: RemoteAccessApiGetJobConfigRequest = {
+    // Name of the job
   name: "name_example",
 };
 
-apiInstance.getJobConfig(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getJobConfig(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -255,20 +250,19 @@ Retrieve job\'s last build details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiGetJobLastBuildRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiGetJobLastBuildRequest = {
-  // string | Name of the job
+const request: RemoteAccessApiGetJobLastBuildRequest = {
+    // Name of the job
   name: "name_example",
 };
 
-apiInstance.getJobLastBuild(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getJobLastBuild(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -312,24 +306,23 @@ Retrieve job\'s build progressive text output
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiGetJobProgressiveTextRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiGetJobProgressiveTextRequest = {
-  // string | Name of the job
+const request: RemoteAccessApiGetJobProgressiveTextRequest = {
+    // Name of the job
   name: "name_example",
-  // string | Build number
+    // Build number
   number: "number_example",
-  // string | Starting point of progressive text output
+    // Starting point of progressive text output
   start: "start_example",
 };
 
-apiInstance.getJobProgressiveText(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getJobProgressiveText(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -375,17 +368,15 @@ Retrieve queue details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getQueue(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getQueue(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -425,20 +416,19 @@ Retrieve queued item details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiGetQueueItemRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiGetQueueItemRequest = {
-  // string | Queue number
+const request: RemoteAccessApiGetQueueItemRequest = {
+    // Queue number
   number: "number_example",
 };
 
-apiInstance.getQueueItem(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getQueueItem(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -481,20 +471,19 @@ Retrieve view details
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiGetViewRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiGetViewRequest = {
-  // string | Name of the view
+const request: RemoteAccessApiGetViewRequest = {
+    // Name of the view
   name: "name_example",
 };
 
-apiInstance.getView(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getView(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -538,20 +527,19 @@ Retrieve view configuration
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiGetViewConfigRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiGetViewConfigRequest = {
-  // string | Name of the view
+const request: RemoteAccessApiGetViewConfigRequest = {
+    // Name of the view
   name: "name_example",
 };
 
-apiInstance.getViewConfig(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getViewConfig(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -595,17 +583,15 @@ Retrieve Jenkins headers
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.headJenkins(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.headJenkins(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -645,30 +631,29 @@ Create a new job using job configuration, or copied from an existing job
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiPostCreateItemRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiPostCreateItemRequest = {
-  // string | Name of the new job
+const request: RemoteAccessApiPostCreateItemRequest = {
+    // Name of the new job
   name: "name_example",
-  // string | Existing job to copy from (optional)
+    // Existing job to copy from (optional)
   _from: "from_example",
-  // string | Set to \'copy\' for copying an existing job (optional)
+    // Set to \'copy\' for copying an existing job (optional)
   mode: "mode_example",
-  // string | CSRF protection token (optional)
+    // CSRF protection token (optional)
   jenkinsCrumb: "Jenkins-Crumb_example",
-  // string | Content type header application/xml (optional)
+    // Content type header application/xml (optional)
   contentType: "Content-Type_example",
-  // string | Job configuration in config.xml format (optional)
+    // Job configuration in config.xml format (optional)
   body: "body_example",
 };
 
-apiInstance.postCreateItem(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postCreateItem(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -717,26 +702,25 @@ Create a new view using view configuration
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiPostCreateViewRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiPostCreateViewRequest = {
-  // string | Name of the new view
+const request: RemoteAccessApiPostCreateViewRequest = {
+    // Name of the new view
   name: "name_example",
-  // string | CSRF protection token (optional)
+    // CSRF protection token (optional)
   jenkinsCrumb: "Jenkins-Crumb_example",
-  // string | Content type header application/xml (optional)
+    // Content type header application/xml (optional)
   contentType: "Content-Type_example",
-  // string | View configuration in config.xml format (optional)
+    // View configuration in config.xml format (optional)
   body: "body_example",
 };
 
-apiInstance.postCreateView(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postCreateView(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -783,26 +767,25 @@ Build a job
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiPostJobBuildRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiPostJobBuildRequest = {
-  // string | Name of the job
+const request: RemoteAccessApiPostJobBuildRequest = {
+    // Name of the job
   name: "name_example",
-  // string
+  
   json: "json_example",
-  // string (optional)
+  
   token: "token_example",
-  // string | CSRF protection token (optional)
+    // CSRF protection token (optional)
   jenkinsCrumb: "Jenkins-Crumb_example",
 };
 
-apiInstance.postJobBuild(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postJobBuild(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -850,24 +833,23 @@ Update job configuration
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiPostJobConfigRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiPostJobConfigRequest = {
-  // string | Name of the job
+const request: RemoteAccessApiPostJobConfigRequest = {
+    // Name of the job
   name: "name_example",
-  // string | Job configuration in config.xml format
+    // Job configuration in config.xml format
   body: "body_example",
-  // string | CSRF protection token (optional)
+    // CSRF protection token (optional)
   jenkinsCrumb: "Jenkins-Crumb_example",
 };
 
-apiInstance.postJobConfig(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postJobConfig(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -914,22 +896,21 @@ Delete a job
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiPostJobDeleteRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiPostJobDeleteRequest = {
-  // string | Name of the job
+const request: RemoteAccessApiPostJobDeleteRequest = {
+    // Name of the job
   name: "name_example",
-  // string | CSRF protection token (optional)
+    // CSRF protection token (optional)
   jenkinsCrumb: "Jenkins-Crumb_example",
 };
 
-apiInstance.postJobDelete(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postJobDelete(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -974,22 +955,21 @@ Disable a job
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiPostJobDisableRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiPostJobDisableRequest = {
-  // string | Name of the job
+const request: RemoteAccessApiPostJobDisableRequest = {
+    // Name of the job
   name: "name_example",
-  // string | CSRF protection token (optional)
+    // CSRF protection token (optional)
   jenkinsCrumb: "Jenkins-Crumb_example",
 };
 
-apiInstance.postJobDisable(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postJobDisable(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1034,22 +1014,21 @@ Enable a job
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiPostJobEnableRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiPostJobEnableRequest = {
-  // string | Name of the job
+const request: RemoteAccessApiPostJobEnableRequest = {
+    // Name of the job
   name: "name_example",
-  // string | CSRF protection token (optional)
+    // CSRF protection token (optional)
   jenkinsCrumb: "Jenkins-Crumb_example",
 };
 
-apiInstance.postJobEnable(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postJobEnable(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1094,22 +1073,21 @@ Stop a job
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiPostJobLastBuildStopRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiPostJobLastBuildStopRequest = {
-  // string | Name of the job
+const request: RemoteAccessApiPostJobLastBuildStopRequest = {
+    // Name of the job
   name: "name_example",
-  // string | CSRF protection token (optional)
+    // CSRF protection token (optional)
   jenkinsCrumb: "Jenkins-Crumb_example",
 };
 
-apiInstance.postJobLastBuildStop(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postJobLastBuildStop(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -1154,24 +1132,23 @@ Update view configuration
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, RemoteAccessApi } from '';
+import type { RemoteAccessApiPostViewConfigRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .RemoteAccessApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new RemoteAccessApi(configuration);
 
-let body:.RemoteAccessApiPostViewConfigRequest = {
-  // string | Name of the view
+const request: RemoteAccessApiPostViewConfigRequest = {
+    // Name of the view
   name: "name_example",
-  // string | View configuration in config.xml format
+    // View configuration in config.xml format
   body: "body_example",
-  // string | CSRF protection token (optional)
+    // CSRF protection token (optional)
   jenkinsCrumb: "Jenkins-Crumb_example",
 };
 
-apiInstance.postViewConfig(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.postViewConfig(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

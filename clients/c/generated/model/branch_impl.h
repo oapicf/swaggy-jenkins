@@ -37,9 +37,10 @@ typedef struct branch_impl_t {
     struct branch_impllinks_t *_links; //model
     struct pipeline_run_impl_t *latest_run; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } branch_impl_t;
 
-branch_impl_t *branch_impl_create(
+__attribute__((deprecated)) branch_impl_t *branch_impl_create(
     char *_class,
     char *display_name,
     int estimated_duration_in_millis,

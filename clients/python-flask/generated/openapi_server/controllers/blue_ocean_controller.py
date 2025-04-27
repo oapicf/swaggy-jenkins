@@ -570,6 +570,7 @@ def put_pipeline_favorite(organization, pipeline, body):  # noqa: E501
 
     :rtype: Union[FavoriteImpl, Tuple[FavoriteImpl, int], Tuple[FavoriteImpl, int, Dict[str, str]]
     """
+    body = body
     return 'do some magic!'
 
 

@@ -26,9 +26,10 @@ typedef struct list_view_t {
     char *name; // string
     char *url; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } list_view_t;
 
-list_view_t *list_view_create(
+__attribute__((deprecated)) list_view_t *list_view_create(
     char *_class,
     char *description,
     list_t *jobs,

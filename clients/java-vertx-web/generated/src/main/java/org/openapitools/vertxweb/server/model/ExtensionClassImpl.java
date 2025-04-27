@@ -13,7 +13,7 @@ public class ExtensionClassImpl   {
   
   private String propertyClass;
   private ExtensionClassImpllinks links;
-  private List<String> classes;
+  private List<String> classes = new ArrayList<>();
 
   public ExtensionClassImpl () {
 

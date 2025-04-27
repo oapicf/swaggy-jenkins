@@ -17,17 +17,20 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("PipelineBranchesitem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineBranchesitem   {
-  private @Valid String displayName;
-  private @Valid Integer estimatedDurationInMillis;
-  private @Valid String name;
-  private @Valid Integer weatherScore;
-  private @Valid PipelineBranchesitemlatestRun latestRun;
-  private @Valid String organization;
-  private @Valid PipelineBranchesitempullRequest pullRequest;
-  private @Valid Integer totalNumberOfPullRequests;
-  private @Valid String propertyClass;
+  private String displayName;
+  private Integer estimatedDurationInMillis;
+  private String name;
+  private Integer weatherScore;
+  private PipelineBranchesitemlatestRun latestRun;
+  private String organization;
+  private PipelineBranchesitempullRequest pullRequest;
+  private Integer totalNumberOfPullRequests;
+  private String propertyClass;
+
+  public PipelineBranchesitem() {
+  }
 
   /**
    **/
@@ -115,7 +118,7 @@ public class PipelineBranchesitem   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("latestRun")
-  public PipelineBranchesitemlatestRun getLatestRun() {
+  @Valid public PipelineBranchesitemlatestRun getLatestRun() {
     return latestRun;
   }
 
@@ -153,7 +156,7 @@ public class PipelineBranchesitem   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("pullRequest")
-  public PipelineBranchesitempullRequest getPullRequest() {
+  @Valid public PipelineBranchesitempullRequest getPullRequest() {
     return pullRequest;
   }
 

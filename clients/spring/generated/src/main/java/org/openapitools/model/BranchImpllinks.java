@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.Link;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -19,18 +20,18 @@ import javax.annotation.Generated;
  * BranchImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class BranchImpllinks {
 
-  private Link self;
+  private @Nullable Link self;
 
-  private Link actions;
+  private @Nullable Link actions;
 
-  private Link runs;
+  private @Nullable Link runs;
 
-  private Link queue;
+  private @Nullable Link queue;
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   public BranchImpllinks self(Link self) {
     this.self = self;
@@ -40,7 +41,7 @@ public class BranchImpllinks {
   /**
    * Get self
    * @return self
-  */
+   */
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
@@ -60,7 +61,7 @@ public class BranchImpllinks {
   /**
    * Get actions
    * @return actions
-  */
+   */
   @Valid 
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
@@ -80,7 +81,7 @@ public class BranchImpllinks {
   /**
    * Get runs
    * @return runs
-  */
+   */
   @Valid 
   @Schema(name = "runs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("runs")
@@ -100,7 +101,7 @@ public class BranchImpllinks {
   /**
    * Get queue
    * @return queue
-  */
+   */
   @Valid 
   @Schema(name = "queue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("queue")
@@ -120,7 +121,7 @@ public class BranchImpllinks {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

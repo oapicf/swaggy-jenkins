@@ -5,7 +5,7 @@
 
 
 
-hudson_t *hudson_create(
+static hudson_t *hudson_create_internal(
     char *_class,
     list_t *assigned_labels,
     char *mode,
@@ -42,12 +42,52 @@ hudson_t *hudson_create(
     hudson_local_var->use_security = use_security;
     hudson_local_var->views = views;
 
+    hudson_local_var->_library_owned = 1;
     return hudson_local_var;
 }
 
+__attribute__((deprecated)) hudson_t *hudson_create(
+    char *_class,
+    list_t *assigned_labels,
+    char *mode,
+    char *node_description,
+    char *node_name,
+    int num_executors,
+    char *description,
+    list_t *jobs,
+    all_view_t *primary_view,
+    int quieting_down,
+    int slave_agent_port,
+    unlabeled_load_statistics_t *unlabeled_load,
+    int use_crumbs,
+    int use_security,
+    list_t *views
+    ) {
+    return hudson_create_internal (
+        _class,
+        assigned_labels,
+        mode,
+        node_description,
+        node_name,
+        num_executors,
+        description,
+        jobs,
+        primary_view,
+        quieting_down,
+        slave_agent_port,
+        unlabeled_load,
+        use_crumbs,
+        use_security,
+        views
+        );
+}
 
 void hudson_free(hudson_t *hudson) {
     if(NULL == hudson){
+        return ;
+    }
+    if(hudson->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "hudson_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -300,6 +340,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -309,6 +352,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->assigned_labels
     cJSON *assigned_labels = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "assignedLabels");
+    if (cJSON_IsNull(assigned_labels)) {
+        assigned_labels = NULL;
+    }
     if (assigned_labels) { 
     cJSON *assigned_labels_local_nonprimitive = NULL;
     if(!cJSON_IsArray(assigned_labels)){
@@ -330,6 +376,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->mode
     cJSON *mode = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "mode");
+    if (cJSON_IsNull(mode)) {
+        mode = NULL;
+    }
     if (mode) { 
     if(!cJSON_IsString(mode) && !cJSON_IsNull(mode))
     {
@@ -339,6 +388,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->node_description
     cJSON *node_description = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "nodeDescription");
+    if (cJSON_IsNull(node_description)) {
+        node_description = NULL;
+    }
     if (node_description) { 
     if(!cJSON_IsString(node_description) && !cJSON_IsNull(node_description))
     {
@@ -348,6 +400,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->node_name
     cJSON *node_name = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "nodeName");
+    if (cJSON_IsNull(node_name)) {
+        node_name = NULL;
+    }
     if (node_name) { 
     if(!cJSON_IsString(node_name) && !cJSON_IsNull(node_name))
     {
@@ -357,6 +412,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->num_executors
     cJSON *num_executors = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "numExecutors");
+    if (cJSON_IsNull(num_executors)) {
+        num_executors = NULL;
+    }
     if (num_executors) { 
     if(!cJSON_IsNumber(num_executors))
     {
@@ -366,6 +424,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->description
     cJSON *description = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "description");
+    if (cJSON_IsNull(description)) {
+        description = NULL;
+    }
     if (description) { 
     if(!cJSON_IsString(description) && !cJSON_IsNull(description))
     {
@@ -375,6 +436,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->jobs
     cJSON *jobs = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "jobs");
+    if (cJSON_IsNull(jobs)) {
+        jobs = NULL;
+    }
     if (jobs) { 
     cJSON *jobs_local_nonprimitive = NULL;
     if(!cJSON_IsArray(jobs)){
@@ -396,12 +460,18 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->primary_view
     cJSON *primary_view = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "primaryView");
+    if (cJSON_IsNull(primary_view)) {
+        primary_view = NULL;
+    }
     if (primary_view) { 
     primary_view_local_nonprim = all_view_parseFromJSON(primary_view); //nonprimitive
     }
 
     // hudson->quieting_down
     cJSON *quieting_down = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "quietingDown");
+    if (cJSON_IsNull(quieting_down)) {
+        quieting_down = NULL;
+    }
     if (quieting_down) { 
     if(!cJSON_IsBool(quieting_down))
     {
@@ -411,6 +481,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->slave_agent_port
     cJSON *slave_agent_port = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "slaveAgentPort");
+    if (cJSON_IsNull(slave_agent_port)) {
+        slave_agent_port = NULL;
+    }
     if (slave_agent_port) { 
     if(!cJSON_IsNumber(slave_agent_port))
     {
@@ -420,12 +493,18 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->unlabeled_load
     cJSON *unlabeled_load = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "unlabeledLoad");
+    if (cJSON_IsNull(unlabeled_load)) {
+        unlabeled_load = NULL;
+    }
     if (unlabeled_load) { 
     unlabeled_load_local_nonprim = unlabeled_load_statistics_parseFromJSON(unlabeled_load); //nonprimitive
     }
 
     // hudson->use_crumbs
     cJSON *use_crumbs = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "useCrumbs");
+    if (cJSON_IsNull(use_crumbs)) {
+        use_crumbs = NULL;
+    }
     if (use_crumbs) { 
     if(!cJSON_IsBool(use_crumbs))
     {
@@ -435,6 +514,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->use_security
     cJSON *use_security = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "useSecurity");
+    if (cJSON_IsNull(use_security)) {
+        use_security = NULL;
+    }
     if (use_security) { 
     if(!cJSON_IsBool(use_security))
     {
@@ -444,6 +526,9 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     // hudson->views
     cJSON *views = cJSON_GetObjectItemCaseSensitive(hudsonJSON, "views");
+    if (cJSON_IsNull(views)) {
+        views = NULL;
+    }
     if (views) { 
     cJSON *views_local_nonprimitive = NULL;
     if(!cJSON_IsArray(views)){
@@ -464,7 +549,7 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     }
 
 
-    hudson_local_var = hudson_create (
+    hudson_local_var = hudson_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         assigned_labels ? assigned_labelsList : NULL,
         mode && !cJSON_IsNull(mode) ? strdup(mode->valuestring) : NULL,

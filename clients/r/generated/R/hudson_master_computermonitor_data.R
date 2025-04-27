@@ -27,8 +27,7 @@ HudsonMasterComputermonitorData <- R6::R6Class(
     `hudson.node_monitors.ResponseTimeMonitor` = NULL,
     `hudson.node_monitors.ClockMonitor` = NULL,
     `_class` = NULL,
-    #' Initialize a new HudsonMasterComputermonitorData class.
-    #'
+
     #' @description
     #' Initialize a new HudsonMasterComputermonitorData class.
     #'
@@ -40,7 +39,6 @@ HudsonMasterComputermonitorData <- R6::R6Class(
     #' @param hudson.node_monitors.ClockMonitor hudson.node_monitors.ClockMonitor
     #' @param _class _class
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`hudson.node_monitors.SwapSpaceMonitor` = NULL, `hudson.node_monitors.TemporarySpaceMonitor` = NULL, `hudson.node_monitors.DiskSpaceMonitor` = NULL, `hudson.node_monitors.ArchitectureMonitor` = NULL, `hudson.node_monitors.ResponseTimeMonitor` = NULL, `hudson.node_monitors.ClockMonitor` = NULL, `_class` = NULL, ...) {
       if (!is.null(`hudson.node_monitors.SwapSpaceMonitor`)) {
         stopifnot(R6::is.R6(`hudson.node_monitors.SwapSpaceMonitor`))
@@ -75,26 +73,49 @@ HudsonMasterComputermonitorData <- R6::R6Class(
         self$`_class` <- `_class`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return HudsonMasterComputermonitorData in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return HudsonMasterComputermonitorData as a base R list.
+    #' @examples
+    #' # convert array of HudsonMasterComputermonitorData (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert HudsonMasterComputermonitorData to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       HudsonMasterComputermonitorDataObject <- list()
       if (!is.null(self$`hudson.node_monitors.SwapSpaceMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.SwapSpaceMonitor"]] <-
-          self$`hudson.node_monitors.SwapSpaceMonitor`$toJSON()
+          self$`hudson.node_monitors.SwapSpaceMonitor`$toSimpleType()
       }
       if (!is.null(self$`hudson.node_monitors.TemporarySpaceMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.TemporarySpaceMonitor"]] <-
-          self$`hudson.node_monitors.TemporarySpaceMonitor`$toJSON()
+          self$`hudson.node_monitors.TemporarySpaceMonitor`$toSimpleType()
       }
       if (!is.null(self$`hudson.node_monitors.DiskSpaceMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.DiskSpaceMonitor"]] <-
-          self$`hudson.node_monitors.DiskSpaceMonitor`$toJSON()
+          self$`hudson.node_monitors.DiskSpaceMonitor`$toSimpleType()
       }
       if (!is.null(self$`hudson.node_monitors.ArchitectureMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.ArchitectureMonitor"]] <-
@@ -102,26 +123,24 @@ HudsonMasterComputermonitorData <- R6::R6Class(
       }
       if (!is.null(self$`hudson.node_monitors.ResponseTimeMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.ResponseTimeMonitor"]] <-
-          self$`hudson.node_monitors.ResponseTimeMonitor`$toJSON()
+          self$`hudson.node_monitors.ResponseTimeMonitor`$toSimpleType()
       }
       if (!is.null(self$`hudson.node_monitors.ClockMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.ClockMonitor"]] <-
-          self$`hudson.node_monitors.ClockMonitor`$toJSON()
+          self$`hudson.node_monitors.ClockMonitor`$toSimpleType()
       }
       if (!is.null(self$`_class`)) {
         HudsonMasterComputermonitorDataObject[["_class"]] <-
           self$`_class`
       }
-      HudsonMasterComputermonitorDataObject
+      return(HudsonMasterComputermonitorDataObject)
     },
-    #' Deserialize JSON string into an instance of HudsonMasterComputermonitorData
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of HudsonMasterComputermonitorData
     #'
     #' @param input_json the JSON input
     #' @return the instance of HudsonMasterComputermonitorData
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`hudson.node_monitors.SwapSpaceMonitor`)) {
@@ -157,83 +176,23 @@ HudsonMasterComputermonitorData <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return HudsonMasterComputermonitorData in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`hudson.node_monitors.SwapSpaceMonitor`)) {
-          sprintf(
-          '"hudson.node_monitors.SwapSpaceMonitor":
-          %s
-          ',
-          jsonlite::toJSON(self$`hudson.node_monitors.SwapSpaceMonitor`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`hudson.node_monitors.TemporarySpaceMonitor`)) {
-          sprintf(
-          '"hudson.node_monitors.TemporarySpaceMonitor":
-          %s
-          ',
-          jsonlite::toJSON(self$`hudson.node_monitors.TemporarySpaceMonitor`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`hudson.node_monitors.DiskSpaceMonitor`)) {
-          sprintf(
-          '"hudson.node_monitors.DiskSpaceMonitor":
-          %s
-          ',
-          jsonlite::toJSON(self$`hudson.node_monitors.DiskSpaceMonitor`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`hudson.node_monitors.ArchitectureMonitor`)) {
-          sprintf(
-          '"hudson.node_monitors.ArchitectureMonitor":
-            "%s"
-                    ',
-          self$`hudson.node_monitors.ArchitectureMonitor`
-          )
-        },
-        if (!is.null(self$`hudson.node_monitors.ResponseTimeMonitor`)) {
-          sprintf(
-          '"hudson.node_monitors.ResponseTimeMonitor":
-          %s
-          ',
-          jsonlite::toJSON(self$`hudson.node_monitors.ResponseTimeMonitor`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`hudson.node_monitors.ClockMonitor`)) {
-          sprintf(
-          '"hudson.node_monitors.ClockMonitor":
-          %s
-          ',
-          jsonlite::toJSON(self$`hudson.node_monitors.ClockMonitor`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of HudsonMasterComputermonitorData
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of HudsonMasterComputermonitorData
     #'
     #' @param input_json the JSON input
     #' @return the instance of HudsonMasterComputermonitorData
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`hudson.node_monitors.SwapSpaceMonitor` <- SwapSpaceMonitorMemoryUsage2$new()$fromJSON(jsonlite::toJSON(this_object$`hudson.node_monitors.SwapSpaceMonitor`, auto_unbox = TRUE, digits = NA))
@@ -245,53 +204,42 @@ HudsonMasterComputermonitorData <- R6::R6Class(
       self$`_class` <- this_object$`_class`
       self
     },
-    #' Validate JSON input with respect to HudsonMasterComputermonitorData
-    #'
+
     #' @description
     #' Validate JSON input with respect to HudsonMasterComputermonitorData and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of HudsonMasterComputermonitorData
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

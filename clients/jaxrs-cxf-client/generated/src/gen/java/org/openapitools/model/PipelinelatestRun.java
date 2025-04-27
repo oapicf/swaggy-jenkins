@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelinelatestRun  {
   
   @ApiModelProperty(value = "")
-  private List<PipelinelatestRunartifacts> artifacts;
+  private List<PipelinelatestRunartifacts> artifacts = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private Integer durationInMillis;

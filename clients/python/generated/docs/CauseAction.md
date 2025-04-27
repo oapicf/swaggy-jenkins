@@ -23,7 +23,7 @@ print(CauseAction.to_json())
 # convert the object into a dict
 cause_action_dict = cause_action_instance.to_dict()
 # create an instance of CauseAction from a dict
-cause_action_form_dict = cause_action.from_dict(cause_action_dict)
+cause_action_from_dict = CauseAction.from_dict(cause_action_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

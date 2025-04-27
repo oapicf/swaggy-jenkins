@@ -5,7 +5,7 @@
 
 
 
-unlabeled_load_statistics_t *unlabeled_load_statistics_create(
+static unlabeled_load_statistics_t *unlabeled_load_statistics_create_internal(
     char *_class
     ) {
     unlabeled_load_statistics_t *unlabeled_load_statistics_local_var = malloc(sizeof(unlabeled_load_statistics_t));
@@ -14,12 +14,24 @@ unlabeled_load_statistics_t *unlabeled_load_statistics_create(
     }
     unlabeled_load_statistics_local_var->_class = _class;
 
+    unlabeled_load_statistics_local_var->_library_owned = 1;
     return unlabeled_load_statistics_local_var;
 }
 
+__attribute__((deprecated)) unlabeled_load_statistics_t *unlabeled_load_statistics_create(
+    char *_class
+    ) {
+    return unlabeled_load_statistics_create_internal (
+        _class
+        );
+}
 
 void unlabeled_load_statistics_free(unlabeled_load_statistics_t *unlabeled_load_statistics) {
     if(NULL == unlabeled_load_statistics){
+        return ;
+    }
+    if(unlabeled_load_statistics->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "unlabeled_load_statistics_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -54,6 +66,9 @@ unlabeled_load_statistics_t *unlabeled_load_statistics_parseFromJSON(cJSON *unla
 
     // unlabeled_load_statistics->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(unlabeled_load_statisticsJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -62,7 +77,7 @@ unlabeled_load_statistics_t *unlabeled_load_statistics_parseFromJSON(cJSON *unla
     }
 
 
-    unlabeled_load_statistics_local_var = unlabeled_load_statistics_create (
+    unlabeled_load_statistics_local_var = unlabeled_load_statistics_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 

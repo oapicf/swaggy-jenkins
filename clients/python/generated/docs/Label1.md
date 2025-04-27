@@ -22,7 +22,7 @@ print(Label1.to_json())
 # convert the object into a dict
 label1_dict = label1_instance.to_dict()
 # create an instance of Label1 from a dict
-label1_form_dict = label1.from_dict(label1_dict)
+label1_from_dict = Label1.from_dict(label1_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -27,9 +27,10 @@ typedef struct pipeline_branchesitempull_request_t {
     char *url; // string
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_branchesitempull_request_t;
 
-pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_create(
+__attribute__((deprecated)) pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_create(
     pipeline_branchesitempull_requestlinks_t *_links,
     char *author,
     char *id,

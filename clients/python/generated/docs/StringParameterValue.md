@@ -24,7 +24,7 @@ print(StringParameterValue.to_json())
 # convert the object into a dict
 string_parameter_value_dict = string_parameter_value_instance.to_dict()
 # create an instance of StringParameterValue from a dict
-string_parameter_value_form_dict = string_parameter_value.from_dict(string_parameter_value_dict)
+string_parameter_value_from_dict = StringParameterValue.from_dict(string_parameter_value_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -10,7 +10,7 @@ import org.openapitools.model.PipelinelatestRunartifacts;
 @Canonical
 class PipelinelatestRun {
     
-    List<PipelinelatestRunartifacts> artifacts
+    List<PipelinelatestRunartifacts> artifacts = new ArrayList<>()
     
     Integer durationInMillis
     

@@ -12,7 +12,7 @@ import org.openapitools.vertxweb.server.model.PipelineRunartifacts;
 public class PipelineRun   {
   
   private String propertyClass;
-  private List<PipelineRunartifacts> artifacts;
+  private List<PipelineRunartifacts> artifacts = new ArrayList<>();
   private Integer durationInMillis;
   private Integer estimatedDurationInMillis;
   private String enQueueTime;

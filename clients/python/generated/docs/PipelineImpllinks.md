@@ -26,7 +26,7 @@ print(PipelineImpllinks.to_json())
 # convert the object into a dict
 pipeline_impllinks_dict = pipeline_impllinks_instance.to_dict()
 # create an instance of PipelineImpllinks from a dict
-pipeline_impllinks_form_dict = pipeline_impllinks.from_dict(pipeline_impllinks_dict)
+pipeline_impllinks_from_dict = PipelineImpllinks.from_dict(pipeline_impllinks_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

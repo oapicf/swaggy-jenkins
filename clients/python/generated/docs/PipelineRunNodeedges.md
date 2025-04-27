@@ -23,7 +23,7 @@ print(PipelineRunNodeedges.to_json())
 # convert the object into a dict
 pipeline_run_nodeedges_dict = pipeline_run_nodeedges_instance.to_dict()
 # create an instance of PipelineRunNodeedges from a dict
-pipeline_run_nodeedges_form_dict = pipeline_run_nodeedges.from_dict(pipeline_run_nodeedges_dict)
+pipeline_run_nodeedges_from_dict = PipelineRunNodeedges.from_dict(pipeline_run_nodeedges_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

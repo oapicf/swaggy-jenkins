@@ -16,7 +16,7 @@
 package org.openapitools.client.apis
 
 import java.io.IOException
-import okhttp3.OkHttpClient
+import okhttp3.Call
 import okhttp3.HttpUrl
 
 import org.openapitools.client.models.ComputerSet
@@ -42,7 +42,7 @@ import org.openapitools.client.infrastructure.ResponseType
 import org.openapitools.client.infrastructure.Success
 import org.openapitools.client.infrastructure.toMultiValue
 
-class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath, client) {
+class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory = ApiClient.defaultClient) : ApiClient(basePath, client) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -51,6 +51,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /computer/api/json
      * 
      * Retrieve computer details
      * @param depth Recursion depth in response model
@@ -82,6 +83,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /computer/api/json
      * 
      * Retrieve computer details
      * @param depth Recursion depth in response model
@@ -125,6 +127,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /api/json
      * 
      * Retrieve Jenkins details
      * @return Hudson
@@ -155,6 +158,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /api/json
      * 
      * Retrieve Jenkins details
      * @return ApiResponse<Hudson?>
@@ -193,6 +197,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /job/{name}/api/json
      * 
      * Retrieve job details
      * @param name Name of the job
@@ -224,6 +229,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /job/{name}/api/json
      * 
      * Retrieve job details
      * @param name Name of the job
@@ -264,6 +270,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /job/{name}/config.xml
      * 
      * Retrieve job configuration
      * @param name Name of the job
@@ -295,6 +302,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /job/{name}/config.xml
      * 
      * Retrieve job configuration
      * @param name Name of the job
@@ -334,6 +342,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /job/{name}/lastBuild/api/json
      * 
      * Retrieve job&#39;s last build details
      * @param name Name of the job
@@ -365,6 +374,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /job/{name}/lastBuild/api/json
      * 
      * Retrieve job&#39;s last build details
      * @param name Name of the job
@@ -405,6 +415,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /job/{name}/{number}/logText/progressiveText
      * 
      * Retrieve job&#39;s build progressive text output
      * @param name Name of the job
@@ -437,6 +448,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /job/{name}/{number}/logText/progressiveText
      * 
      * Retrieve job&#39;s build progressive text output
      * @param name Name of the job
@@ -482,6 +494,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /queue/api/json
      * 
      * Retrieve queue details
      * @return Queue
@@ -512,6 +525,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /queue/api/json
      * 
      * Retrieve queue details
      * @return ApiResponse<Queue?>
@@ -550,6 +564,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /queue/item/{number}/api/json
      * 
      * Retrieve queued item details
      * @param number Queue number
@@ -581,6 +596,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /queue/item/{number}/api/json
      * 
      * Retrieve queued item details
      * @param number Queue number
@@ -621,6 +637,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /view/{name}/api/json
      * 
      * Retrieve view details
      * @param name Name of the view
@@ -652,6 +669,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /view/{name}/api/json
      * 
      * Retrieve view details
      * @param name Name of the view
@@ -692,6 +710,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /view/{name}/config.xml
      * 
      * Retrieve view configuration
      * @param name Name of the view
@@ -723,6 +742,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * GET /view/{name}/config.xml
      * 
      * Retrieve view configuration
      * @param name Name of the view
@@ -762,6 +782,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * HEAD /api/json
      * 
      * Retrieve Jenkins headers
      * @return void
@@ -791,6 +812,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * HEAD /api/json
      * 
      * Retrieve Jenkins headers
      * @return ApiResponse<Unit?>
@@ -827,6 +849,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /createItem
      * 
      * Create a new job using job configuration, or copied from an existing job
      * @param name Name of the new job
@@ -862,6 +885,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /createItem
      * 
      * Create a new job using job configuration, or copied from an existing job
      * @param name Name of the new job
@@ -922,6 +946,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /createView
      * 
      * Create a new view using view configuration
      * @param name Name of the new view
@@ -955,6 +980,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /createView
      * 
      * Create a new view using view configuration
      * @param name Name of the new view
@@ -1005,6 +1031,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/build
      * 
      * Build a job
      * @param name Name of the job
@@ -1038,6 +1065,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/build
      * 
      * Build a job
      * @param name Name of the job
@@ -1089,6 +1117,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/config.xml
      * 
      * Update job configuration
      * @param name Name of the job
@@ -1121,6 +1150,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/config.xml
      * 
      * Update job configuration
      * @param name Name of the job
@@ -1165,6 +1195,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/doDelete
      * 
      * Delete a job
      * @param name Name of the job
@@ -1196,6 +1227,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/doDelete
      * 
      * Delete a job
      * @param name Name of the job
@@ -1237,6 +1269,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/disable
      * 
      * Disable a job
      * @param name Name of the job
@@ -1268,6 +1301,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/disable
      * 
      * Disable a job
      * @param name Name of the job
@@ -1309,6 +1343,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/enable
      * 
      * Enable a job
      * @param name Name of the job
@@ -1340,6 +1375,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/enable
      * 
      * Enable a job
      * @param name Name of the job
@@ -1381,6 +1417,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/lastBuild/stop
      * 
      * Stop a job
      * @param name Name of the job
@@ -1412,6 +1449,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /job/{name}/lastBuild/stop
      * 
      * Stop a job
      * @param name Name of the job
@@ -1453,6 +1491,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /view/{name}/config.xml
      * 
      * Update view configuration
      * @param name Name of the view
@@ -1485,6 +1524,7 @@ class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: OkHttpC
     }
 
     /**
+     * POST /view/{name}/config.xml
      * 
      * Update view configuration
      * @param name Name of the view

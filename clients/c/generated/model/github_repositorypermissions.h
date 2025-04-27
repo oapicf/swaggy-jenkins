@@ -24,9 +24,10 @@ typedef struct github_repositorypermissions_t {
     int pull; //boolean
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } github_repositorypermissions_t;
 
-github_repositorypermissions_t *github_repositorypermissions_create(
+__attribute__((deprecated)) github_repositorypermissions_t *github_repositorypermissions_create(
     int admin,
     int push,
     int pull,

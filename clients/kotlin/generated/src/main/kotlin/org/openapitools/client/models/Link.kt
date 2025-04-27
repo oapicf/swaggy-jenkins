@@ -35,5 +35,8 @@ data class Link (
     @Json(name = "href")
     val href: kotlin.String? = null
 
-)
+) {
+
+
+}
 

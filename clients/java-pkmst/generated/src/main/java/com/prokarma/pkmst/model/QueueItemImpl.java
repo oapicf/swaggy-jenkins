@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * QueueItemImpl
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class QueueItemImpl   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -36,10 +36,10 @@ public class QueueItemImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -54,10 +54,10 @@ public class QueueItemImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get expectedBuildNumber
    * @return expectedBuildNumber
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getExpectedBuildNumber() {
     return expectedBuildNumber;
@@ -72,10 +72,10 @@ public class QueueItemImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getId() {
     return id;
@@ -90,10 +90,10 @@ public class QueueItemImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get pipeline
    * @return pipeline
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPipeline() {
     return pipeline;
@@ -108,10 +108,10 @@ public class QueueItemImpl   {
     return this;
   }
 
-   /**
+  /**
    * Get queuedTime
    * @return queuedTime
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getQueuedTime() {
     return queuedTime;

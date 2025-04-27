@@ -47,5 +47,8 @@ data class BranchImplpermissions (
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null
 
-)
+) {
+
+
+}
 

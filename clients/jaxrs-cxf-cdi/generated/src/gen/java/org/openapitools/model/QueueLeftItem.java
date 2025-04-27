@@ -23,7 +23,7 @@ public class QueueLeftItem   {
   
   private String propertyClass;
 
-  private List<@Valid CauseAction> actions;
+  private List<@Valid CauseAction> actions = new ArrayList<>();
 
   private Boolean blocked;
 

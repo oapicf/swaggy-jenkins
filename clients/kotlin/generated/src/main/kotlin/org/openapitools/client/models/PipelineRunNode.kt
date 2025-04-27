@@ -60,5 +60,8 @@ data class PipelineRunNode (
     @Json(name = "state")
     val state: kotlin.String? = null
 
-)
+) {
+
+
+}
 

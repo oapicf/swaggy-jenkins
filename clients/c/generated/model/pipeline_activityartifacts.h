@@ -24,9 +24,10 @@ typedef struct pipeline_activityartifacts_t {
     char *url; // string
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_activityartifacts_t;
 
-pipeline_activityartifacts_t *pipeline_activityartifacts_create(
+__attribute__((deprecated)) pipeline_activityartifacts_t *pipeline_activityartifacts_create(
     char *name,
     int size,
     char *url,

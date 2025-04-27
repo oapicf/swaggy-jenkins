@@ -18,22 +18,25 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("MultibranchPipeline")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class MultibranchPipeline   {
-  private @Valid String displayName;
-  private @Valid Integer estimatedDurationInMillis;
-  private @Valid String latestRun;
-  private @Valid String name;
-  private @Valid String organization;
-  private @Valid Integer weatherScore;
-  private @Valid List<String> branchNames;
-  private @Valid Integer numberOfFailingBranches;
-  private @Valid Integer numberOfFailingPullRequests;
-  private @Valid Integer numberOfSuccessfulBranches;
-  private @Valid Integer numberOfSuccessfulPullRequests;
-  private @Valid Integer totalNumberOfBranches;
-  private @Valid Integer totalNumberOfPullRequests;
-  private @Valid String propertyClass;
+  private String displayName;
+  private Integer estimatedDurationInMillis;
+  private String latestRun;
+  private String name;
+  private String organization;
+  private Integer weatherScore;
+  private @Valid List<String> branchNames = new ArrayList<>();
+  private Integer numberOfFailingBranches;
+  private Integer numberOfFailingPullRequests;
+  private Integer numberOfSuccessfulBranches;
+  private Integer numberOfSuccessfulPullRequests;
+  private Integer totalNumberOfBranches;
+  private Integer totalNumberOfPullRequests;
+  private String propertyClass;
+
+  public MultibranchPipeline() {
+  }
 
   /**
    **/

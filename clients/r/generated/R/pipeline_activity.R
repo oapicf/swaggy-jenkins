@@ -43,8 +43,7 @@ PipelineActivity <- R6::R6Class(
     `state` = NULL,
     `type` = NULL,
     `commitId` = NULL,
-    #' Initialize a new PipelineActivity class.
-    #'
+
     #' @description
     #' Initialize a new PipelineActivity class.
     #'
@@ -64,7 +63,6 @@ PipelineActivity <- R6::R6Class(
     #' @param type type
     #' @param commitId commitId
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, `artifacts` = NULL, `durationInMillis` = NULL, `estimatedDurationInMillis` = NULL, `enQueueTime` = NULL, `endTime` = NULL, `id` = NULL, `organization` = NULL, `pipeline` = NULL, `result` = NULL, `runSummary` = NULL, `startTime` = NULL, `state` = NULL, `type` = NULL, `commitId` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -156,14 +154,37 @@ PipelineActivity <- R6::R6Class(
         self$`commitId` <- `commitId`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return PipelineActivity in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return PipelineActivity as a base R list.
+    #' @examples
+    #' # convert array of PipelineActivity (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert PipelineActivity to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       PipelineActivityObject <- list()
       if (!is.null(self$`_class`)) {
         PipelineActivityObject[["_class"]] <-
@@ -171,7 +192,7 @@ PipelineActivity <- R6::R6Class(
       }
       if (!is.null(self$`artifacts`)) {
         PipelineActivityObject[["artifacts"]] <-
-          lapply(self$`artifacts`, function(x) x$toJSON())
+          lapply(self$`artifacts`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`durationInMillis`)) {
         PipelineActivityObject[["durationInMillis"]] <-
@@ -225,16 +246,14 @@ PipelineActivity <- R6::R6Class(
         PipelineActivityObject[["commitId"]] <-
           self$`commitId`
       }
-      PipelineActivityObject
+      return(PipelineActivityObject)
     },
-    #' Deserialize JSON string into an instance of PipelineActivity
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of PipelineActivity
     #'
     #' @param input_json the JSON input
     #' @return the instance of PipelineActivity
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -284,147 +303,23 @@ PipelineActivity <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return PipelineActivity in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        },
-        if (!is.null(self$`artifacts`)) {
-          sprintf(
-          '"artifacts":
-          [%s]
-',
-          paste(sapply(self$`artifacts`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`durationInMillis`)) {
-          sprintf(
-          '"durationInMillis":
-            %d
-                    ',
-          self$`durationInMillis`
-          )
-        },
-        if (!is.null(self$`estimatedDurationInMillis`)) {
-          sprintf(
-          '"estimatedDurationInMillis":
-            %d
-                    ',
-          self$`estimatedDurationInMillis`
-          )
-        },
-        if (!is.null(self$`enQueueTime`)) {
-          sprintf(
-          '"enQueueTime":
-            "%s"
-                    ',
-          self$`enQueueTime`
-          )
-        },
-        if (!is.null(self$`endTime`)) {
-          sprintf(
-          '"endTime":
-            "%s"
-                    ',
-          self$`endTime`
-          )
-        },
-        if (!is.null(self$`id`)) {
-          sprintf(
-          '"id":
-            "%s"
-                    ',
-          self$`id`
-          )
-        },
-        if (!is.null(self$`organization`)) {
-          sprintf(
-          '"organization":
-            "%s"
-                    ',
-          self$`organization`
-          )
-        },
-        if (!is.null(self$`pipeline`)) {
-          sprintf(
-          '"pipeline":
-            "%s"
-                    ',
-          self$`pipeline`
-          )
-        },
-        if (!is.null(self$`result`)) {
-          sprintf(
-          '"result":
-            "%s"
-                    ',
-          self$`result`
-          )
-        },
-        if (!is.null(self$`runSummary`)) {
-          sprintf(
-          '"runSummary":
-            "%s"
-                    ',
-          self$`runSummary`
-          )
-        },
-        if (!is.null(self$`startTime`)) {
-          sprintf(
-          '"startTime":
-            "%s"
-                    ',
-          self$`startTime`
-          )
-        },
-        if (!is.null(self$`state`)) {
-          sprintf(
-          '"state":
-            "%s"
-                    ',
-          self$`state`
-          )
-        },
-        if (!is.null(self$`type`)) {
-          sprintf(
-          '"type":
-            "%s"
-                    ',
-          self$`type`
-          )
-        },
-        if (!is.null(self$`commitId`)) {
-          sprintf(
-          '"commitId":
-            "%s"
-                    ',
-          self$`commitId`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of PipelineActivity
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of PipelineActivity
     #'
     #' @param input_json the JSON input
     #' @return the instance of PipelineActivity
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
@@ -444,53 +339,42 @@ PipelineActivity <- R6::R6Class(
       self$`commitId` <- this_object$`commitId`
       self
     },
-    #' Validate JSON input with respect to PipelineActivity
-    #'
+
     #' @description
     #' Validate JSON input with respect to PipelineActivity and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of PipelineActivity
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

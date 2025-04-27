@@ -26,7 +26,7 @@ public class FreeStyleBuild   {
 
   private String url;
 
-  private List<@Valid CauseAction> actions;
+  private List<@Valid CauseAction> actions = new ArrayList<>();
 
   private Boolean building;
 

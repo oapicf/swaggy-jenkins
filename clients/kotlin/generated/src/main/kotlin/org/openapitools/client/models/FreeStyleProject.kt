@@ -139,5 +139,8 @@ data class FreeStyleProject (
     @Json(name = "scm")
     val scm: NullSCM? = null
 
-)
+) {
+
+
+}
 

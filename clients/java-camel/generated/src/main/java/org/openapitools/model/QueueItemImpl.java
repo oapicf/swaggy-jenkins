@@ -18,7 +18,7 @@ import javax.annotation.Generated;
  * QueueItemImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class QueueItemImpl {
 
   private String propertyClass;
@@ -39,7 +39,7 @@ public class QueueItemImpl {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -59,7 +59,7 @@ public class QueueItemImpl {
   /**
    * Get expectedBuildNumber
    * @return expectedBuildNumber
-  */
+   */
   
   @Schema(name = "expectedBuildNumber", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("expectedBuildNumber")
@@ -79,7 +79,7 @@ public class QueueItemImpl {
   /**
    * Get id
    * @return id
-  */
+   */
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -99,7 +99,7 @@ public class QueueItemImpl {
   /**
    * Get pipeline
    * @return pipeline
-  */
+   */
   
   @Schema(name = "pipeline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pipeline")
@@ -119,7 +119,7 @@ public class QueueItemImpl {
   /**
    * Get queuedTime
    * @return queuedTime
-  */
+   */
   
   @Schema(name = "queuedTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("queuedTime")

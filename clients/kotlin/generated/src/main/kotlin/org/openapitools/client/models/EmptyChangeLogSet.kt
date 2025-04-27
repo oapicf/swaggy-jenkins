@@ -35,5 +35,8 @@ data class EmptyChangeLogSet (
     @Json(name = "kind")
     val kind: kotlin.String? = null
 
-)
+) {
+
+
+}
 

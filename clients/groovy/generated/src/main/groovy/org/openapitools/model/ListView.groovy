@@ -14,7 +14,7 @@ class ListView {
     
     String description
     
-    List<FreeStyleProject> jobs
+    List<FreeStyleProject> jobs = new ArrayList<>()
     
     String name
     

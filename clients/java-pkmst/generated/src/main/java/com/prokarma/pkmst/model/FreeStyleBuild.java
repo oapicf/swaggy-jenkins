@@ -19,7 +19,7 @@ import java.util.List;
  * FreeStyleBuild
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class FreeStyleBuild   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -81,10 +81,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -99,10 +99,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get number
    * @return number
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getNumber() {
     return number;
@@ -117,10 +117,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get url
    * @return url
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getUrl() {
     return url;
@@ -143,10 +143,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get actions
    * @return actions
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<CauseAction> getActions() {
     return actions;
@@ -161,10 +161,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get building
    * @return building
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getBuilding() {
     return building;
@@ -179,10 +179,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get description
    * @return description
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDescription() {
     return description;
@@ -197,10 +197,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get displayName
    * @return displayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayName() {
     return displayName;
@@ -215,10 +215,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get duration
    * @return duration
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getDuration() {
     return duration;
@@ -233,10 +233,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get estimatedDuration
    * @return estimatedDuration
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getEstimatedDuration() {
     return estimatedDuration;
@@ -251,10 +251,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get executor
    * @return executor
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getExecutor() {
     return executor;
@@ -269,10 +269,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get fullDisplayName
    * @return fullDisplayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getFullDisplayName() {
     return fullDisplayName;
@@ -287,10 +287,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getId() {
     return id;
@@ -305,10 +305,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get keepLog
    * @return keepLog
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getKeepLog() {
     return keepLog;
@@ -323,10 +323,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get queueId
    * @return queueId
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getQueueId() {
     return queueId;
@@ -341,10 +341,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get result
    * @return result
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getResult() {
     return result;
@@ -359,10 +359,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get timestamp
    * @return timestamp
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getTimestamp() {
     return timestamp;
@@ -377,10 +377,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get builtOn
    * @return builtOn
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getBuiltOn() {
     return builtOn;
@@ -395,10 +395,10 @@ public class FreeStyleBuild   {
     return this;
   }
 
-   /**
+  /**
    * Get changeSet
    * @return changeSet
-  **/
+   */
   @ApiModelProperty(value = "")
   public EmptyChangeLogSet getChangeSet() {
     return changeSet;

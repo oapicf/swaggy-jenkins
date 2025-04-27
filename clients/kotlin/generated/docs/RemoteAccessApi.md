@@ -2,28 +2,28 @@
 
 All URIs are relative to *http://localhost*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json | 
-[**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json | 
-[**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json | 
-[**getJobConfig**](RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml | 
-[**getJobLastBuild**](RemoteAccessApi.md#getJobLastBuild) | **GET** /job/{name}/lastBuild/api/json | 
-[**getJobProgressiveText**](RemoteAccessApi.md#getJobProgressiveText) | **GET** /job/{name}/{number}/logText/progressiveText | 
-[**getQueue**](RemoteAccessApi.md#getQueue) | **GET** /queue/api/json | 
-[**getQueueItem**](RemoteAccessApi.md#getQueueItem) | **GET** /queue/item/{number}/api/json | 
-[**getView**](RemoteAccessApi.md#getView) | **GET** /view/{name}/api/json | 
-[**getViewConfig**](RemoteAccessApi.md#getViewConfig) | **GET** /view/{name}/config.xml | 
-[**headJenkins**](RemoteAccessApi.md#headJenkins) | **HEAD** /api/json | 
-[**postCreateItem**](RemoteAccessApi.md#postCreateItem) | **POST** /createItem | 
-[**postCreateView**](RemoteAccessApi.md#postCreateView) | **POST** /createView | 
-[**postJobBuild**](RemoteAccessApi.md#postJobBuild) | **POST** /job/{name}/build | 
-[**postJobConfig**](RemoteAccessApi.md#postJobConfig) | **POST** /job/{name}/config.xml | 
-[**postJobDelete**](RemoteAccessApi.md#postJobDelete) | **POST** /job/{name}/doDelete | 
-[**postJobDisable**](RemoteAccessApi.md#postJobDisable) | **POST** /job/{name}/disable | 
-[**postJobEnable**](RemoteAccessApi.md#postJobEnable) | **POST** /job/{name}/enable | 
-[**postJobLastBuildStop**](RemoteAccessApi.md#postJobLastBuildStop) | **POST** /job/{name}/lastBuild/stop | 
-[**postViewConfig**](RemoteAccessApi.md#postViewConfig) | **POST** /view/{name}/config.xml | 
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getComputer**](RemoteAccessApi.md#getComputer) | **GET** /computer/api/json |  |
+| [**getJenkins**](RemoteAccessApi.md#getJenkins) | **GET** /api/json |  |
+| [**getJob**](RemoteAccessApi.md#getJob) | **GET** /job/{name}/api/json |  |
+| [**getJobConfig**](RemoteAccessApi.md#getJobConfig) | **GET** /job/{name}/config.xml |  |
+| [**getJobLastBuild**](RemoteAccessApi.md#getJobLastBuild) | **GET** /job/{name}/lastBuild/api/json |  |
+| [**getJobProgressiveText**](RemoteAccessApi.md#getJobProgressiveText) | **GET** /job/{name}/{number}/logText/progressiveText |  |
+| [**getQueue**](RemoteAccessApi.md#getQueue) | **GET** /queue/api/json |  |
+| [**getQueueItem**](RemoteAccessApi.md#getQueueItem) | **GET** /queue/item/{number}/api/json |  |
+| [**getView**](RemoteAccessApi.md#getView) | **GET** /view/{name}/api/json |  |
+| [**getViewConfig**](RemoteAccessApi.md#getViewConfig) | **GET** /view/{name}/config.xml |  |
+| [**headJenkins**](RemoteAccessApi.md#headJenkins) | **HEAD** /api/json |  |
+| [**postCreateItem**](RemoteAccessApi.md#postCreateItem) | **POST** /createItem |  |
+| [**postCreateView**](RemoteAccessApi.md#postCreateView) | **POST** /createView |  |
+| [**postJobBuild**](RemoteAccessApi.md#postJobBuild) | **POST** /job/{name}/build |  |
+| [**postJobConfig**](RemoteAccessApi.md#postJobConfig) | **POST** /job/{name}/config.xml |  |
+| [**postJobDelete**](RemoteAccessApi.md#postJobDelete) | **POST** /job/{name}/doDelete |  |
+| [**postJobDisable**](RemoteAccessApi.md#postJobDisable) | **POST** /job/{name}/disable |  |
+| [**postJobEnable**](RemoteAccessApi.md#postJobEnable) | **POST** /job/{name}/enable |  |
+| [**postJobLastBuildStop**](RemoteAccessApi.md#postJobLastBuildStop) | **POST** /job/{name}/lastBuild/stop |  |
+| [**postViewConfig**](RemoteAccessApi.md#postViewConfig) | **POST** /view/{name}/config.xml |  |
 
 
 <a id="getComputer"></a>
@@ -55,10 +55,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **depth** | **kotlin.Int**| Recursion depth in response model |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **depth** | **kotlin.Int**| Recursion depth in response model | |
 
 ### Return type
 
@@ -151,10 +150,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the job |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the job | |
 
 ### Return type
 
@@ -201,10 +199,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the job |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the job | |
 
 ### Return type
 
@@ -251,10 +248,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the job |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the job | |
 
 ### Return type
 
@@ -302,12 +298,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the job |
- **number** | **kotlin.String**| Build number |
- **start** | **kotlin.String**| Starting point of progressive text output |
+| **name** | **kotlin.String**| Name of the job | |
+| **number** | **kotlin.String**| Build number | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **start** | **kotlin.String**| Starting point of progressive text output | |
 
 ### Return type
 
@@ -400,10 +395,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **number** | **kotlin.String**| Queue number |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **number** | **kotlin.String**| Queue number | |
 
 ### Return type
 
@@ -450,10 +444,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the view |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the view | |
 
 ### Return type
 
@@ -500,10 +493,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the view |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the view | |
 
 ### Return type
 
@@ -599,15 +591,14 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the new job |
- **from** | **kotlin.String**| Existing job to copy from | [optional]
- **mode** | **kotlin.String**| Set to &#39;copy&#39; for copying an existing job | [optional]
- **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional]
- **contentType** | **kotlin.String**| Content type header application/xml | [optional]
- **body** | **kotlin.String**| Job configuration in config.xml format | [optional]
+| **name** | **kotlin.String**| Name of the new job | |
+| **from** | **kotlin.String**| Existing job to copy from | [optional] |
+| **mode** | **kotlin.String**| Set to &#39;copy&#39; for copying an existing job | [optional] |
+| **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
+| **contentType** | **kotlin.String**| Content type header application/xml | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | **kotlin.String**| Job configuration in config.xml format | [optional] |
 
 ### Return type
 
@@ -656,13 +647,12 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the new view |
- **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional]
- **contentType** | **kotlin.String**| Content type header application/xml | [optional]
- **body** | **kotlin.String**| View configuration in config.xml format | [optional]
+| **name** | **kotlin.String**| Name of the new view | |
+| **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
+| **contentType** | **kotlin.String**| Content type header application/xml | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | **kotlin.String**| View configuration in config.xml format | [optional] |
 
 ### Return type
 
@@ -711,13 +701,12 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the job |
- **json** | **kotlin.String**|  |
- **token** | **kotlin.String**|  | [optional]
- **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional]
+| **name** | **kotlin.String**| Name of the job | |
+| **json** | **kotlin.String**|  | |
+| **token** | **kotlin.String**|  | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -765,12 +754,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the job |
- **body** | **kotlin.String**| Job configuration in config.xml format |
- **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional]
+| **name** | **kotlin.String**| Name of the job | |
+| **body** | **kotlin.String**| Job configuration in config.xml format | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -817,11 +805,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the job |
- **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional]
+| **name** | **kotlin.String**| Name of the job | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -868,11 +855,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the job |
- **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional]
+| **name** | **kotlin.String**| Name of the job | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -919,11 +905,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the job |
- **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional]
+| **name** | **kotlin.String**| Name of the job | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -970,11 +955,10 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the job |
- **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional]
+| **name** | **kotlin.String**| Name of the job | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
 
@@ -1022,12 +1006,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **kotlin.String**| Name of the view |
- **body** | **kotlin.String**| View configuration in config.xml format |
- **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional]
+| **name** | **kotlin.String**| Name of the view | |
+| **body** | **kotlin.String**| View configuration in config.xml format | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
 

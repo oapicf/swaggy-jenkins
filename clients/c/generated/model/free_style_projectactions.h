@@ -21,9 +21,10 @@ typedef struct free_style_projectactions_t free_style_projectactions_t;
 typedef struct free_style_projectactions_t {
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } free_style_projectactions_t;
 
-free_style_projectactions_t *free_style_projectactions_create(
+__attribute__((deprecated)) free_style_projectactions_t *free_style_projectactions_create(
     char *_class
 );
 

@@ -18,7 +18,7 @@ import java.util.List;
  * PipelineRunNode
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineRunNode   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -50,10 +50,10 @@ public class PipelineRunNode   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;
@@ -68,10 +68,10 @@ public class PipelineRunNode   {
     return this;
   }
 
-   /**
+  /**
    * Get displayName
    * @return displayName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDisplayName() {
     return displayName;
@@ -86,10 +86,10 @@ public class PipelineRunNode   {
     return this;
   }
 
-   /**
+  /**
    * Get durationInMillis
    * @return durationInMillis
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getDurationInMillis() {
     return durationInMillis;
@@ -112,10 +112,10 @@ public class PipelineRunNode   {
     return this;
   }
 
-   /**
+  /**
    * Get edges
    * @return edges
-  **/
+   */
   @ApiModelProperty(value = "")
   public List<PipelineRunNodeedges> getEdges() {
     return edges;
@@ -130,10 +130,10 @@ public class PipelineRunNode   {
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getId() {
     return id;
@@ -148,10 +148,10 @@ public class PipelineRunNode   {
     return this;
   }
 
-   /**
+  /**
    * Get result
    * @return result
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getResult() {
     return result;
@@ -166,10 +166,10 @@ public class PipelineRunNode   {
     return this;
   }
 
-   /**
+  /**
    * Get startTime
    * @return startTime
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getStartTime() {
     return startTime;
@@ -184,10 +184,10 @@ public class PipelineRunNode   {
     return this;
   }
 
-   /**
+  /**
    * Get state
    * @return state
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getState() {
     return state;

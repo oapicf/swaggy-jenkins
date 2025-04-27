@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * BranchImplpermissions
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class BranchImplpermissions   {
   @JsonProperty("create")
   private Boolean create;
@@ -36,10 +36,10 @@ public class BranchImplpermissions   {
     return this;
   }
 
-   /**
+  /**
    * Get create
    * @return create
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getCreate() {
     return create;
@@ -54,10 +54,10 @@ public class BranchImplpermissions   {
     return this;
   }
 
-   /**
+  /**
    * Get read
    * @return read
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getRead() {
     return read;
@@ -72,10 +72,10 @@ public class BranchImplpermissions   {
     return this;
   }
 
-   /**
+  /**
    * Get start
    * @return start
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getStart() {
     return start;
@@ -90,10 +90,10 @@ public class BranchImplpermissions   {
     return this;
   }
 
-   /**
+  /**
    * Get stop
    * @return stop
-  **/
+   */
   @ApiModelProperty(value = "")
   public Boolean getStop() {
     return stop;
@@ -108,10 +108,10 @@ public class BranchImplpermissions   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;

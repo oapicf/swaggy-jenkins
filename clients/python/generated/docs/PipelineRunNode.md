@@ -29,7 +29,7 @@ print(PipelineRunNode.to_json())
 # convert the object into a dict
 pipeline_run_node_dict = pipeline_run_node_instance.to_dict()
 # create an instance of PipelineRunNode from a dict
-pipeline_run_node_form_dict = pipeline_run_node.from_dict(pipeline_run_node_dict)
+pipeline_run_node_from_dict = PipelineRunNode.from_dict(pipeline_run_node_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

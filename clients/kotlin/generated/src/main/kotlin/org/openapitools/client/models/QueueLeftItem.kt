@@ -82,5 +82,8 @@ data class QueueLeftItem (
     @Json(name = "executable")
     val executable: FreeStyleBuild? = null
 
-)
+) {
+
+
+}
 

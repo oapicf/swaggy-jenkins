@@ -35,5 +35,8 @@ data class ClockDifference (
     @Json(name = "diff")
     val diff: kotlin.Int? = null
 
-)
+) {
+
+
+}
 

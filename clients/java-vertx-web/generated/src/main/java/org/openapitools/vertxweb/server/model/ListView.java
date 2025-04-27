@@ -13,7 +13,7 @@ public class ListView   {
   
   private String propertyClass;
   private String description;
-  private List<FreeStyleProject> jobs;
+  private List<FreeStyleProject> jobs = new ArrayList<>();
   private String name;
   private String url;
 

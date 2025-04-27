@@ -22,21 +22,24 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("BranchImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class BranchImpl   {
-  private @Valid String propertyClass;
-  private @Valid String displayName;
-  private @Valid Integer estimatedDurationInMillis;
-  private @Valid String fullDisplayName;
-  private @Valid String fullName;
-  private @Valid String name;
-  private @Valid String organization;
-  private @Valid List<@Valid StringParameterDefinition> parameters;
-  private @Valid BranchImplpermissions permissions;
-  private @Valid Integer weatherScore;
-  private @Valid String pullRequest;
-  private @Valid BranchImpllinks links;
-  private @Valid PipelineRunImpl latestRun;
+  private String propertyClass;
+  private String displayName;
+  private Integer estimatedDurationInMillis;
+  private String fullDisplayName;
+  private String fullName;
+  private String name;
+  private String organization;
+  private @Valid List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
+  private BranchImplpermissions permissions;
+  private Integer weatherScore;
+  private String pullRequest;
+  private BranchImpllinks links;
+  private PipelineRunImpl latestRun;
+
+  public BranchImpl() {
+  }
 
   /**
    **/
@@ -181,7 +184,7 @@ public class BranchImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("parameters")
-  public List<StringParameterDefinition> getParameters() {
+  @Valid public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
 
@@ -216,7 +219,7 @@ public class BranchImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("permissions")
-  public BranchImplpermissions getPermissions() {
+  @Valid public BranchImplpermissions getPermissions() {
     return permissions;
   }
 
@@ -273,7 +276,7 @@ public class BranchImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("_links")
-  public BranchImpllinks getLinks() {
+  @Valid public BranchImpllinks getLinks() {
     return links;
   }
 
@@ -292,7 +295,7 @@ public class BranchImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("latestRun")
-  public PipelineRunImpl getLatestRun() {
+  @Valid public PipelineRunImpl getLatestRun() {
     return latestRun;
   }
 

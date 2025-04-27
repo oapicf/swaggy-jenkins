@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.CauseUserIdCause;
+import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
 import javax.validation.Valid;
@@ -22,13 +23,13 @@ import javax.annotation.Generated;
  * CauseAction
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-03-15T14:20:32.264295314Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class CauseAction {
 
-  private String propertyClass;
+  private @Nullable String propertyClass;
 
   @Valid
-  private List<@Valid CauseUserIdCause> causes;
+  private List<@Valid CauseUserIdCause> causes = new ArrayList<>();
 
   public CauseAction propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -38,7 +39,7 @@ public class CauseAction {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -66,7 +67,7 @@ public class CauseAction {
   /**
    * Get causes
    * @return causes
-  */
+   */
   @Valid 
   @Schema(name = "causes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("causes")

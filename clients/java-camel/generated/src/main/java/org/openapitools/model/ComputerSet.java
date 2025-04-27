@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * ComputerSet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ComputerSet {
 
   private String propertyClass;
@@ -30,7 +30,7 @@ public class ComputerSet {
   private Integer busyExecutors;
 
   @Valid
-  private List<@Valid HudsonMasterComputer> computer;
+  private List<@Valid HudsonMasterComputer> computer = new ArrayList<>();
 
   private String displayName;
 
@@ -44,7 +44,7 @@ public class ComputerSet {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -64,7 +64,7 @@ public class ComputerSet {
   /**
    * Get busyExecutors
    * @return busyExecutors
-  */
+   */
   
   @Schema(name = "busyExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("busyExecutors")
@@ -92,7 +92,7 @@ public class ComputerSet {
   /**
    * Get computer
    * @return computer
-  */
+   */
   @Valid 
   @Schema(name = "computer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("computer")
@@ -112,7 +112,7 @@ public class ComputerSet {
   /**
    * Get displayName
    * @return displayName
-  */
+   */
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
@@ -132,7 +132,7 @@ public class ComputerSet {
   /**
    * Get totalExecutors
    * @return totalExecutors
-  */
+   */
   
   @Schema(name = "totalExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalExecutors")

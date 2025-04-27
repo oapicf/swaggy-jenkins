@@ -19,8 +19,7 @@ ExtensionClassImpl <- R6::R6Class(
     `_class` = NULL,
     `_links` = NULL,
     `classes` = NULL,
-    #' Initialize a new ExtensionClassImpl class.
-    #'
+
     #' @description
     #' Initialize a new ExtensionClassImpl class.
     #'
@@ -28,7 +27,6 @@ ExtensionClassImpl <- R6::R6Class(
     #' @param _links _links
     #' @param classes classes
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, `_links` = NULL, `classes` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -46,14 +44,37 @@ ExtensionClassImpl <- R6::R6Class(
         self$`classes` <- `classes`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return ExtensionClassImpl in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return ExtensionClassImpl as a base R list.
+    #' @examples
+    #' # convert array of ExtensionClassImpl (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert ExtensionClassImpl to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       ExtensionClassImplObject <- list()
       if (!is.null(self$`_class`)) {
         ExtensionClassImplObject[["_class"]] <-
@@ -61,22 +82,20 @@ ExtensionClassImpl <- R6::R6Class(
       }
       if (!is.null(self$`_links`)) {
         ExtensionClassImplObject[["_links"]] <-
-          self$`_links`$toJSON()
+          self$`_links`$toSimpleType()
       }
       if (!is.null(self$`classes`)) {
         ExtensionClassImplObject[["classes"]] <-
           self$`classes`
       }
-      ExtensionClassImplObject
+      return(ExtensionClassImplObject)
     },
-    #' Deserialize JSON string into an instance of ExtensionClassImpl
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of ExtensionClassImpl
     #'
     #' @param input_json the JSON input
     #' @return the instance of ExtensionClassImpl
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -92,51 +111,23 @@ ExtensionClassImpl <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return ExtensionClassImpl in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        },
-        if (!is.null(self$`_links`)) {
-          sprintf(
-          '"_links":
-          %s
-          ',
-          jsonlite::toJSON(self$`_links`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`classes`)) {
-          sprintf(
-          '"classes":
-             [%s]
-          ',
-          paste(unlist(lapply(self$`classes`, function(x) paste0('"', x, '"'))), collapse = ",")
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of ExtensionClassImpl
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of ExtensionClassImpl
     #'
     #' @param input_json the JSON input
     #' @return the instance of ExtensionClassImpl
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
@@ -144,53 +135,42 @@ ExtensionClassImpl <- R6::R6Class(
       self$`classes` <- ApiClient$new()$deserializeObj(this_object$`classes`, "array[character]", loadNamespace("openapi"))
       self
     },
-    #' Validate JSON input with respect to ExtensionClassImpl
-    #'
+
     #' @description
     #' Validate JSON input with respect to ExtensionClassImpl and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of ExtensionClassImpl
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

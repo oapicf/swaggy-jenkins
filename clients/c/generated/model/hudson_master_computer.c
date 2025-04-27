@@ -5,7 +5,7 @@
 
 
 
-hudson_master_computer_t *hudson_master_computer_create(
+static hudson_master_computer_t *hudson_master_computer_create_internal(
     char *_class,
     char *display_name,
     list_t *executors,
@@ -44,12 +44,54 @@ hudson_master_computer_t *hudson_master_computer_create(
     hudson_master_computer_local_var->offline_cause_reason = offline_cause_reason;
     hudson_master_computer_local_var->temporarily_offline = temporarily_offline;
 
+    hudson_master_computer_local_var->_library_owned = 1;
     return hudson_master_computer_local_var;
 }
 
+__attribute__((deprecated)) hudson_master_computer_t *hudson_master_computer_create(
+    char *_class,
+    char *display_name,
+    list_t *executors,
+    char *icon,
+    char *icon_class_name,
+    int idle,
+    int jnlp_agent,
+    int launch_supported,
+    label1_t *load_statistics,
+    int manual_launch_allowed,
+    hudson_master_computermonitor_data_t *monitor_data,
+    int num_executors,
+    int offline,
+    char *offline_cause,
+    char *offline_cause_reason,
+    int temporarily_offline
+    ) {
+    return hudson_master_computer_create_internal (
+        _class,
+        display_name,
+        executors,
+        icon,
+        icon_class_name,
+        idle,
+        jnlp_agent,
+        launch_supported,
+        load_statistics,
+        manual_launch_allowed,
+        monitor_data,
+        num_executors,
+        offline,
+        offline_cause,
+        offline_cause_reason,
+        temporarily_offline
+        );
+}
 
 void hudson_master_computer_free(hudson_master_computer_t *hudson_master_computer) {
     if(NULL == hudson_master_computer){
+        return ;
+    }
+    if(hudson_master_computer->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "hudson_master_computer_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -270,6 +312,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -279,6 +324,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "displayName");
+    if (cJSON_IsNull(display_name)) {
+        display_name = NULL;
+    }
     if (display_name) { 
     if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
@@ -288,6 +336,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->executors
     cJSON *executors = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "executors");
+    if (cJSON_IsNull(executors)) {
+        executors = NULL;
+    }
     if (executors) { 
     cJSON *executors_local_nonprimitive = NULL;
     if(!cJSON_IsArray(executors)){
@@ -309,6 +360,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->icon
     cJSON *icon = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "icon");
+    if (cJSON_IsNull(icon)) {
+        icon = NULL;
+    }
     if (icon) { 
     if(!cJSON_IsString(icon) && !cJSON_IsNull(icon))
     {
@@ -318,6 +372,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->icon_class_name
     cJSON *icon_class_name = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "iconClassName");
+    if (cJSON_IsNull(icon_class_name)) {
+        icon_class_name = NULL;
+    }
     if (icon_class_name) { 
     if(!cJSON_IsString(icon_class_name) && !cJSON_IsNull(icon_class_name))
     {
@@ -327,6 +384,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->idle
     cJSON *idle = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "idle");
+    if (cJSON_IsNull(idle)) {
+        idle = NULL;
+    }
     if (idle) { 
     if(!cJSON_IsBool(idle))
     {
@@ -336,6 +396,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->jnlp_agent
     cJSON *jnlp_agent = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "jnlpAgent");
+    if (cJSON_IsNull(jnlp_agent)) {
+        jnlp_agent = NULL;
+    }
     if (jnlp_agent) { 
     if(!cJSON_IsBool(jnlp_agent))
     {
@@ -345,6 +408,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->launch_supported
     cJSON *launch_supported = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "launchSupported");
+    if (cJSON_IsNull(launch_supported)) {
+        launch_supported = NULL;
+    }
     if (launch_supported) { 
     if(!cJSON_IsBool(launch_supported))
     {
@@ -354,12 +420,18 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->load_statistics
     cJSON *load_statistics = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "loadStatistics");
+    if (cJSON_IsNull(load_statistics)) {
+        load_statistics = NULL;
+    }
     if (load_statistics) { 
     load_statistics_local_nonprim = label1_parseFromJSON(load_statistics); //nonprimitive
     }
 
     // hudson_master_computer->manual_launch_allowed
     cJSON *manual_launch_allowed = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "manualLaunchAllowed");
+    if (cJSON_IsNull(manual_launch_allowed)) {
+        manual_launch_allowed = NULL;
+    }
     if (manual_launch_allowed) { 
     if(!cJSON_IsBool(manual_launch_allowed))
     {
@@ -369,12 +441,18 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->monitor_data
     cJSON *monitor_data = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "monitorData");
+    if (cJSON_IsNull(monitor_data)) {
+        monitor_data = NULL;
+    }
     if (monitor_data) { 
     monitor_data_local_nonprim = hudson_master_computermonitor_data_parseFromJSON(monitor_data); //nonprimitive
     }
 
     // hudson_master_computer->num_executors
     cJSON *num_executors = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "numExecutors");
+    if (cJSON_IsNull(num_executors)) {
+        num_executors = NULL;
+    }
     if (num_executors) { 
     if(!cJSON_IsNumber(num_executors))
     {
@@ -384,6 +462,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->offline
     cJSON *offline = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "offline");
+    if (cJSON_IsNull(offline)) {
+        offline = NULL;
+    }
     if (offline) { 
     if(!cJSON_IsBool(offline))
     {
@@ -393,6 +474,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->offline_cause
     cJSON *offline_cause = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "offlineCause");
+    if (cJSON_IsNull(offline_cause)) {
+        offline_cause = NULL;
+    }
     if (offline_cause) { 
     if(!cJSON_IsString(offline_cause) && !cJSON_IsNull(offline_cause))
     {
@@ -402,6 +486,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->offline_cause_reason
     cJSON *offline_cause_reason = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "offlineCauseReason");
+    if (cJSON_IsNull(offline_cause_reason)) {
+        offline_cause_reason = NULL;
+    }
     if (offline_cause_reason) { 
     if(!cJSON_IsString(offline_cause_reason) && !cJSON_IsNull(offline_cause_reason))
     {
@@ -411,6 +498,9 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     // hudson_master_computer->temporarily_offline
     cJSON *temporarily_offline = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "temporarilyOffline");
+    if (cJSON_IsNull(temporarily_offline)) {
+        temporarily_offline = NULL;
+    }
     if (temporarily_offline) { 
     if(!cJSON_IsBool(temporarily_offline))
     {
@@ -419,7 +509,7 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     }
 
 
-    hudson_master_computer_local_var = hudson_master_computer_create (
+    hudson_master_computer_local_var = hudson_master_computer_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
         display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
         executors ? executorsList : NULL,

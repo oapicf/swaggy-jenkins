@@ -13,7 +13,7 @@ import org.openapitools.model.PipelinelatestRunartifacts;
 /**
  * PipelinelatestRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2024-03-15T14:12:30.252284764Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2025-04-27T08:09:22.488100288Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelinelatestRun   {
   @JsonProperty("artifacts")
   private List<@Valid PipelinelatestRunartifacts> artifacts = null;
@@ -67,7 +67,7 @@ public class PipelinelatestRun   {
 
   public PipelinelatestRun addArtifactsItem(PipelinelatestRunartifacts artifactsItem) {
     if (this.artifacts == null) {
-      this.artifacts = ;
+      this.artifacts = new ArrayList<>();
     }
     this.artifacts.add(artifactsItem);
     return this;

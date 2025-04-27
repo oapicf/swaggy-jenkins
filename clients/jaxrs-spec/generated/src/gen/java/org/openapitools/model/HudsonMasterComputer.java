@@ -21,24 +21,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 
 @JsonTypeName("HudsonMasterComputer")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2024-03-15T14:15:46.626169068Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-04-27T08:09:45.633008592Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class HudsonMasterComputer   {
-  private @Valid String propertyClass;
-  private @Valid String displayName;
-  private @Valid List<@Valid HudsonMasterComputerexecutors> executors;
-  private @Valid String icon;
-  private @Valid String iconClassName;
-  private @Valid Boolean idle;
-  private @Valid Boolean jnlpAgent;
-  private @Valid Boolean launchSupported;
-  private @Valid Label1 loadStatistics;
-  private @Valid Boolean manualLaunchAllowed;
-  private @Valid HudsonMasterComputermonitorData monitorData;
-  private @Valid Integer numExecutors;
-  private @Valid Boolean offline;
-  private @Valid String offlineCause;
-  private @Valid String offlineCauseReason;
-  private @Valid Boolean temporarilyOffline;
+  private String propertyClass;
+  private String displayName;
+  private @Valid List<@Valid HudsonMasterComputerexecutors> executors = new ArrayList<>();
+  private String icon;
+  private String iconClassName;
+  private Boolean idle;
+  private Boolean jnlpAgent;
+  private Boolean launchSupported;
+  private Label1 loadStatistics;
+  private Boolean manualLaunchAllowed;
+  private HudsonMasterComputermonitorData monitorData;
+  private Integer numExecutors;
+  private Boolean offline;
+  private String offlineCause;
+  private String offlineCauseReason;
+  private Boolean temporarilyOffline;
+
+  public HudsonMasterComputer() {
+  }
 
   /**
    **/
@@ -88,7 +91,7 @@ public class HudsonMasterComputer   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("executors")
-  public List<HudsonMasterComputerexecutors> getExecutors() {
+  @Valid public List<@Valid HudsonMasterComputerexecutors> getExecutors() {
     return executors;
   }
 
@@ -218,7 +221,7 @@ public class HudsonMasterComputer   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("loadStatistics")
-  public Label1 getLoadStatistics() {
+  @Valid public Label1 getLoadStatistics() {
     return loadStatistics;
   }
 
@@ -256,7 +259,7 @@ public class HudsonMasterComputer   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("monitorData")
-  public HudsonMasterComputermonitorData getMonitorData() {
+  @Valid public HudsonMasterComputermonitorData getMonitorData() {
     return monitorData;
   }
 

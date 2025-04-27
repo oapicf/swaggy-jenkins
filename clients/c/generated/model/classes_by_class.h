@@ -22,9 +22,10 @@ typedef struct classes_by_class_t {
     list_t *classes; //primitive container
     char *_class; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } classes_by_class_t;
 
-classes_by_class_t *classes_by_class_create(
+__attribute__((deprecated)) classes_by_class_t *classes_by_class_create(
     list_t *classes,
     char *_class
 );

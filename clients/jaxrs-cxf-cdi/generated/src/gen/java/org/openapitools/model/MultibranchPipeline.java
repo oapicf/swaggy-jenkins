@@ -30,7 +30,7 @@ public class MultibranchPipeline   {
 
   private Integer weatherScore;
 
-  private List<String> branchNames;
+  private List<String> branchNames = new ArrayList<>();
 
   private Integer numberOfFailingBranches;
 

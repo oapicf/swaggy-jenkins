@@ -5,7 +5,7 @@
 
 
 
-label1_t *label1_create(
+static label1_t *label1_create_internal(
     char *_class
     ) {
     label1_t *label1_local_var = malloc(sizeof(label1_t));
@@ -14,12 +14,24 @@ label1_t *label1_create(
     }
     label1_local_var->_class = _class;
 
+    label1_local_var->_library_owned = 1;
     return label1_local_var;
 }
 
+__attribute__((deprecated)) label1_t *label1_create(
+    char *_class
+    ) {
+    return label1_create_internal (
+        _class
+        );
+}
 
 void label1_free(label1_t *label1) {
     if(NULL == label1){
+        return ;
+    }
+    if(label1->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "label1_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -54,6 +66,9 @@ label1_t *label1_parseFromJSON(cJSON *label1JSON){
 
     // label1->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(label1JSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -62,7 +77,7 @@ label1_t *label1_parseFromJSON(cJSON *label1JSON){
     }
 
 
-    label1_local_var = label1_create (
+    label1_local_var = label1_create_internal (
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );
 

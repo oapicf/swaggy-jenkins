@@ -41,5 +41,8 @@ data class FavoriteImpl (
     @Json(name = "item")
     val item: PipelineImpl? = null
 
-)
+) {
+
+
+}
 

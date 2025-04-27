@@ -14,6 +14,7 @@ from fastapi import (  # noqa: F401
     Depends,
     Form,
     Header,
+    HTTPException,
     Path,
     Query,
     Response,
@@ -22,6 +23,7 @@ from fastapi import (  # noqa: F401
 )
 
 from openapi_server.models.extra_models import TokenModel  # noqa: F401
+from typing import Any
 from openapi_server.models.default_crumb_issuer import DefaultCrumbIssuer
 from openapi_server.security_api import get_token_jenkins_auth
 
@@ -48,4 +50,6 @@ async def get_crumb(
     ),
 ) -> DefaultCrumbIssuer:
     """Retrieve CSRF protection token"""
-    return BaseBaseApi.subclasses[0]().get_crumb()
+    if not BaseBaseApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseBaseApi.subclasses[0]().get_crumb()

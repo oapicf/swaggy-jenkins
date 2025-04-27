@@ -23,9 +23,10 @@ typedef struct queue_t {
     char *_class; // string
     list_t *items; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } queue_t;
 
-queue_t *queue_create(
+__attribute__((deprecated)) queue_t *queue_create(
     char *_class,
     list_t *items
 );

@@ -26,7 +26,7 @@ print(BranchImplpermissions.to_json())
 # convert the object into a dict
 branch_implpermissions_dict = branch_implpermissions_instance.to_dict()
 # create an instance of BranchImplpermissions from a dict
-branch_implpermissions_form_dict = branch_implpermissions.from_dict(branch_implpermissions_dict)
+branch_implpermissions_from_dict = BranchImplpermissions.from_dict(branch_implpermissions_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

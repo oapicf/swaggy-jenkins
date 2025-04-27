@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * PipelineImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class PipelineImpllinks {
 
   private Link runs;
@@ -40,7 +40,7 @@ public class PipelineImpllinks {
   /**
    * Get runs
    * @return runs
-  */
+   */
   @Valid 
   @Schema(name = "runs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("runs")
@@ -60,7 +60,7 @@ public class PipelineImpllinks {
   /**
    * Get self
    * @return self
-  */
+   */
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
@@ -80,7 +80,7 @@ public class PipelineImpllinks {
   /**
    * Get queue
    * @return queue
-  */
+   */
   @Valid 
   @Schema(name = "queue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("queue")
@@ -100,7 +100,7 @@ public class PipelineImpllinks {
   /**
    * Get actions
    * @return actions
-  */
+   */
   @Valid 
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
@@ -120,7 +120,7 @@ public class PipelineImpllinks {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")

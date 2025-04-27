@@ -22,7 +22,7 @@ import javax.annotation.Generated;
  * ExtensionClassImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2024-03-15T14:13:46.253868088Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class ExtensionClassImpl {
 
   private String propertyClass;
@@ -30,7 +30,7 @@ public class ExtensionClassImpl {
   private ExtensionClassImpllinks links;
 
   @Valid
-  private List<String> classes;
+  private List<String> classes = new ArrayList<>();
 
   public ExtensionClassImpl propertyClass(String propertyClass) {
     this.propertyClass = propertyClass;
@@ -40,7 +40,7 @@ public class ExtensionClassImpl {
   /**
    * Get propertyClass
    * @return propertyClass
-  */
+   */
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
@@ -60,7 +60,7 @@ public class ExtensionClassImpl {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -88,7 +88,7 @@ public class ExtensionClassImpl {
   /**
    * Get classes
    * @return classes
-  */
+   */
   
   @Schema(name = "classes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("classes")

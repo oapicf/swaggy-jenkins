@@ -23,8 +23,7 @@ QueueItemImpl <- R6::R6Class(
     `id` = NULL,
     `pipeline` = NULL,
     `queuedTime` = NULL,
-    #' Initialize a new QueueItemImpl class.
-    #'
+
     #' @description
     #' Initialize a new QueueItemImpl class.
     #'
@@ -34,7 +33,6 @@ QueueItemImpl <- R6::R6Class(
     #' @param pipeline pipeline
     #' @param queuedTime queuedTime
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_class` = NULL, `expectedBuildNumber` = NULL, `id` = NULL, `pipeline` = NULL, `queuedTime` = NULL, ...) {
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -67,14 +65,37 @@ QueueItemImpl <- R6::R6Class(
         self$`queuedTime` <- `queuedTime`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return QueueItemImpl in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return QueueItemImpl as a base R list.
+    #' @examples
+    #' # convert array of QueueItemImpl (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert QueueItemImpl to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       QueueItemImplObject <- list()
       if (!is.null(self$`_class`)) {
         QueueItemImplObject[["_class"]] <-
@@ -96,16 +117,14 @@ QueueItemImpl <- R6::R6Class(
         QueueItemImplObject[["queuedTime"]] <-
           self$`queuedTime`
       }
-      QueueItemImplObject
+      return(QueueItemImplObject)
     },
-    #' Deserialize JSON string into an instance of QueueItemImpl
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of QueueItemImpl
     #'
     #' @param input_json the JSON input
     #' @return the instance of QueueItemImpl
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_class`)) {
@@ -125,67 +144,23 @@ QueueItemImpl <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return QueueItemImpl in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_class`)) {
-          sprintf(
-          '"_class":
-            "%s"
-                    ',
-          self$`_class`
-          )
-        },
-        if (!is.null(self$`expectedBuildNumber`)) {
-          sprintf(
-          '"expectedBuildNumber":
-            %d
-                    ',
-          self$`expectedBuildNumber`
-          )
-        },
-        if (!is.null(self$`id`)) {
-          sprintf(
-          '"id":
-            "%s"
-                    ',
-          self$`id`
-          )
-        },
-        if (!is.null(self$`pipeline`)) {
-          sprintf(
-          '"pipeline":
-            "%s"
-                    ',
-          self$`pipeline`
-          )
-        },
-        if (!is.null(self$`queuedTime`)) {
-          sprintf(
-          '"queuedTime":
-            %d
-                    ',
-          self$`queuedTime`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of QueueItemImpl
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of QueueItemImpl
     #'
     #' @param input_json the JSON input
     #' @return the instance of QueueItemImpl
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_class` <- this_object$`_class`
@@ -195,53 +170,42 @@ QueueItemImpl <- R6::R6Class(
       self$`queuedTime` <- this_object$`queuedTime`
       self
     },
-    #' Validate JSON input with respect to QueueItemImpl
-    #'
+
     #' @description
     #' Validate JSON input with respect to QueueItemImpl and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of QueueItemImpl
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

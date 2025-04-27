@@ -20,7 +20,7 @@ public class GithubRepositories  {
   private GithubRepositorieslinks links;
 
   @ApiModelProperty(value = "")
-  private List<GithubRepository> items;
+  private List<GithubRepository> items = new ArrayList<>();
 
   @ApiModelProperty(value = "")
   private Integer lastPage;

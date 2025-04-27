@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * FreeStyleProjecthealthReport
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2024-03-15T14:12:42.279581335Z[Etc/UTC]", comments = "Generator version: 7.4.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class FreeStyleProjecthealthReport   {
   @JsonProperty("description")
   private String description;
@@ -36,10 +36,10 @@ public class FreeStyleProjecthealthReport   {
     return this;
   }
 
-   /**
+  /**
    * Get description
    * @return description
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getDescription() {
     return description;
@@ -54,10 +54,10 @@ public class FreeStyleProjecthealthReport   {
     return this;
   }
 
-   /**
+  /**
    * Get iconClassName
    * @return iconClassName
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getIconClassName() {
     return iconClassName;
@@ -72,10 +72,10 @@ public class FreeStyleProjecthealthReport   {
     return this;
   }
 
-   /**
+  /**
    * Get iconUrl
    * @return iconUrl
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getIconUrl() {
     return iconUrl;
@@ -90,10 +90,10 @@ public class FreeStyleProjecthealthReport   {
     return this;
   }
 
-   /**
+  /**
    * Get score
    * @return score
-  **/
+   */
   @ApiModelProperty(value = "")
   public Integer getScore() {
     return score;
@@ -108,10 +108,10 @@ public class FreeStyleProjecthealthReport   {
     return this;
   }
 
-   /**
+  /**
    * Get propertyClass
    * @return propertyClass
-  **/
+   */
   @ApiModelProperty(value = "")
   public String getPropertyClass() {
     return propertyClass;

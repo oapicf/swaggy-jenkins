@@ -39,9 +39,10 @@ typedef struct hudson_master_computer_t {
     char *offline_cause_reason; // string
     int temporarily_offline; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } hudson_master_computer_t;
 
-hudson_master_computer_t *hudson_master_computer_create(
+__attribute__((deprecated)) hudson_master_computer_t *hudson_master_computer_create(
     char *_class,
     char *display_name,
     list_t *executors,

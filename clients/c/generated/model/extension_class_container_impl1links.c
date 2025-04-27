@@ -5,7 +5,7 @@
 
 
 
-extension_class_container_impl1links_t *extension_class_container_impl1links_create(
+static extension_class_container_impl1links_t *extension_class_container_impl1links_create_internal(
     link_t *self,
     char *_class
     ) {
@@ -16,12 +16,26 @@ extension_class_container_impl1links_t *extension_class_container_impl1links_cre
     extension_class_container_impl1links_local_var->self = self;
     extension_class_container_impl1links_local_var->_class = _class;
 
+    extension_class_container_impl1links_local_var->_library_owned = 1;
     return extension_class_container_impl1links_local_var;
 }
 
+__attribute__((deprecated)) extension_class_container_impl1links_t *extension_class_container_impl1links_create(
+    link_t *self,
+    char *_class
+    ) {
+    return extension_class_container_impl1links_create_internal (
+        self,
+        _class
+        );
+}
 
 void extension_class_container_impl1links_free(extension_class_container_impl1links_t *extension_class_container_impl1links) {
     if(NULL == extension_class_container_impl1links){
+        return ;
+    }
+    if(extension_class_container_impl1links->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "extension_class_container_impl1links_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -76,12 +90,18 @@ extension_class_container_impl1links_t *extension_class_container_impl1links_par
 
     // extension_class_container_impl1links->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1linksJSON, "self");
+    if (cJSON_IsNull(self)) {
+        self = NULL;
+    }
     if (self) { 
     self_local_nonprim = link_parseFromJSON(self); //nonprimitive
     }
 
     // extension_class_container_impl1links->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1linksJSON, "_class");
+    if (cJSON_IsNull(_class)) {
+        _class = NULL;
+    }
     if (_class) { 
     if(!cJSON_IsString(_class) && !cJSON_IsNull(_class))
     {
@@ -90,7 +110,7 @@ extension_class_container_impl1links_t *extension_class_container_impl1links_par
     }
 
 
-    extension_class_container_impl1links_local_var = extension_class_container_impl1links_create (
+    extension_class_container_impl1links_local_var = extension_class_container_impl1links_create_internal (
         self ? self_local_nonprim : NULL,
         _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
         );

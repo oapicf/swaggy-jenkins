@@ -43,5 +43,8 @@ data class PipelinelatestRunartifacts (
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null
 
-)
+) {
+
+
+}
 
