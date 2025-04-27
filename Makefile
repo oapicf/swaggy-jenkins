@@ -177,7 +177,7 @@ build-python:
 	  $(call python_venv,pip install twine wheel pytest setuptools validators) && \
 	  $(call python_venv,pip install -r requirements.txt) && \
 	  $(call python_venv,python3 setup.py sdist bdist_wheel) && \
-	  $(call python_venv,python3 setup.py install)
+	  $(call python_venv,python3 setup.py install --single-version-externally-managed --record record.txt)
 
 build-ruby:
 	apt-get install libyaml-dev
