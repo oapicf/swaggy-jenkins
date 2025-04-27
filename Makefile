@@ -200,8 +200,8 @@ test-javascript: build-javascript
 
 test-python: build-python
 	cd clients/python/generated/ && \
-	  $(call python_venv,twine check dist/*)
-	$(call python_venv,pytest -v test/python/*.py --capture=no)
+	  $(call python_venv,twine check dist/*) && \
+	  $(call python_venv,pytest -v ../../../test/python/*.py --capture=no)
 
 test-ruby: build-ruby
 
