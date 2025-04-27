@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Upgrade Swaggy C to 4.9.2
 - Upgrade OpenAPI Generator to 7.12.0
+- Update local path to use workspace-garage
 
 ## 3.0.1 - 2024-03-16
 ### Fixed

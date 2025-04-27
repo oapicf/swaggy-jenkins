@@ -9,4 +9,6 @@ scm:
   git_repo: swaggy-jenkins
 base_dir:
   github_actions: /home/runner/work/swaggy-jenkins/swaggy-jenkins
-  local: /Users/cliffano/dev/workspace-studio/swaggy-jenkins
+  local: /Users/cliffano/dev/workspace-oapicf/swaggy-jenkins
+  custom: >-
+    /home/runner/work/generator-openapi-generator/generator-openapi-generator/stage/swaggy-jenkins/
