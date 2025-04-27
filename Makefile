@@ -4,7 +4,7 @@
 ################################################################
 
 # The version of Swaggy C
-SWAGGY_C_VERSION = 4.9.1
+SWAGGY_C_VERSION = 4.9.2
 
 # The version of OpenAPI Generator (https://openapi-generator.tech/) used for generating the API clients
 OPENAPI_GENERATOR_VERSION = 7.12.0
@@ -174,7 +174,7 @@ endef
 build-python:
 	cd clients/python/generated/ && \
 	  python3 -m venv .venv && \
-	  $(call python_venv,pip install twine wheel pytest validators) && \
+	  $(call python_venv,pip install twine wheel pytest setuptools validators) && \
 	  $(call python_venv,pip install -r requirements.txt) && \
 	  $(call python_venv,python3 setup.py sdist bdist_wheel) && \
 	  $(call python_venv,python3 setup.py install)
