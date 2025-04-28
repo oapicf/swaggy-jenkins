@@ -9,7 +9,7 @@ class TestRemoteAccess(unittest.TestCase):
     def test_get_jenkins(self):
 
         configuration = swaggyjenkins.Configuration(
-            host = "http://localhost"
+            host = "https://jenkins-ccos.apache.org/"
         )
 
         with swaggyjenkins.ApiClient(configuration) as api_client:
