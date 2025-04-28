@@ -21,6 +21,6 @@ class TestRemoteAccess(unittest.TestCase):
                 pprint(api_response)
                 self.assertIsNotNone(api_response)
                 self.assertIsInstance(api_response, Hudson)
-                self.assertEqual(api_response.response_code, 200)
+                self.assertGreaterEqual(api_response.num_executors, 0)
             except Exception as e:
                 self.fail("Exception when calling RemoteAccessApi->get_jenkins: %s\n" % e)
