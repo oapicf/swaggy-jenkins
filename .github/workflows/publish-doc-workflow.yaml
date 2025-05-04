@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.OAPICF_GITHUB_TOKEN }}
-          ref: main
+          ref: 3.1.0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -18,5 +18,5 @@ jobs:
       - run: >-
           CACHE_DIR=/tmp gh-pages --dist doc/ --user "pakkunbot
           <blah+pakkun@cliffano.com>" --repo "https://cliffano:${{
-          secrets.OAPICF_GITHUB_TOKEN
-          }}@github.com/${{ github.repository }}.git"
+          secrets.OAPICF_GITHUB_TOKEN }}@github.com/${{ github.repository
+          }}.git"
