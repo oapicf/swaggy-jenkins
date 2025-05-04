@@ -5,7 +5,7 @@ name: Publish API Documentation
       - '*'
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
@@ -13,10 +13,10 @@ jobs:
           ref: main
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - run: npm install -g bootprint bootprint-openapi gh-pages
-      - run: make doc-version
+          node-version: '22'
+      - run: make deps init-spec doc-latest doc-version
       - run: >-
           CACHE_DIR=/tmp gh-pages --dist doc/ --user "pakkunbot
           <blah+pakkun@cliffano.com>" --repo "https://cliffano:${{
-          secrets.OAPICF_GITHUB_TOKEN }}@github.com/oapicf/swaggy-jenkins.git"
+          secrets.OAPICF_GITHUB_TOKEN
+          }}@github.com/${{ github.repository }}.git"

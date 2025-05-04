@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+
 export NODE_AUTH_TOKEN="${NPMJS_TOKEN}"
 make clean deps init-spec generate-primary build-javascript test-javascript
 
