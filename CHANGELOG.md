@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Changed
-- Upgrade Swaggy C to 4.9.2
+- Upgrade Swaggy C to 4.10.0
 - Upgrade OpenAPI Generator to 7.12.0
 - Update local path to use workspace-garage
 - Change Python package setup.py build to avoid .egg
