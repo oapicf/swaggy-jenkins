@@ -18,7 +18,7 @@ import StringParameterDefinition from './StringParameterDefinition';
 /**
  * The InputStepImpl model module.
  * @module model/InputStepImpl
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class InputStepImpl {
     /**

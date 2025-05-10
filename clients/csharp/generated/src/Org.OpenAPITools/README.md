@@ -177,7 +177,7 @@ Authentication schemes defined for the API:
 - packageCompany: OpenAPI
 - packageCopyright: No Copyright
 - packageDescription: A library generated from a OpenAPI doc
-- packageGuid: {A5D0C18D-371E-434A-ACDC-8E96E4AC2ADC}
+- packageGuid: {A73D7226-5E43-4674-93B2-44755F01BE41}
 - packageName: Org.OpenAPITools
 - packageTags: 
 - packageTitle: OpenAPI Library

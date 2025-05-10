@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "com.github.oapicf",
     name := "swaggyjenkins",
-    version := "3.0.2-pre.0",
+    version := "3.1.1-pre.0",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),

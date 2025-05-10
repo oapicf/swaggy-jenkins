@@ -21,7 +21,7 @@ import org.openapitools.model.GithubOrganizationlinks;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2025-04-27T08:09:27.798203651Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2025-05-10T02:40:14.671432823Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubOrganization   {
   
   private String propertyClass;

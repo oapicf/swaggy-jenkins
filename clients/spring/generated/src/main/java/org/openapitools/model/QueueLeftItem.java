@@ -25,7 +25,7 @@ import javax.annotation.Generated;
  * QueueLeftItem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class QueueLeftItem {
 
   private @Nullable String propertyClass;

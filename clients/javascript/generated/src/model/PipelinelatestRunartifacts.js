@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The PipelinelatestRunartifacts model module.
  * @module model/PipelinelatestRunartifacts
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class PipelinelatestRunartifacts {
     /**

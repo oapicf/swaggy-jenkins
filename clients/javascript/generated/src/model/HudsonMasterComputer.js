@@ -19,7 +19,7 @@ import Label1 from './Label1';
 /**
  * The HudsonMasterComputer model module.
  * @module model/HudsonMasterComputer
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class HudsonMasterComputer {
     /**

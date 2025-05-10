@@ -17,7 +17,7 @@ import GithubContent from './GithubContent';
 /**
  * The GithubFile model module.
  * @module model/GithubFile
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class GithubFile {
     /**

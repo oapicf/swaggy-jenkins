@@ -556,7 +556,7 @@ conf = swaggyjenkins.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 3.0.2-pre.0\n"\
-               "SDK Package Version: 3.0.2-pre.0".\
+               "SDK Package Version: 3.1.1-pre.0".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self) -> List[HostSetting]:

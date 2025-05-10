@@ -17,7 +17,7 @@ import PipelineRunImpllinks from './PipelineRunImpllinks';
 /**
  * The PipelineRunImpl model module.
  * @module model/PipelineRunImpl
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class PipelineRunImpl {
     /**

@@ -18,7 +18,7 @@ import PipelineStepImpllinks from './PipelineStepImpllinks';
 /**
  * The PipelineStepImpl model module.
  * @module model/PipelineStepImpl
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class PipelineStepImpl {
     /**

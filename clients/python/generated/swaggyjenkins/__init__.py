@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "3.0.2-pre.0"
+__version__ = "3.1.1-pre.0"
 
 # import apis into sdk package
 from swaggyjenkins.api.base_api import BaseApi

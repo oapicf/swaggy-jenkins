@@ -17,7 +17,7 @@ import PipelineBranchesitempullRequestlinks from './PipelineBranchesitempullRequ
 /**
  * The PipelineBranchesitempullRequest model module.
  * @module model/PipelineBranchesitempullRequest
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class PipelineBranchesitempullRequest {
     /**

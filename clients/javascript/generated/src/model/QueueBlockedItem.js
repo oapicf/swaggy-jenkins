@@ -18,7 +18,7 @@ import FreeStyleProject from './FreeStyleProject';
 /**
  * The QueueBlockedItem model module.
  * @module model/QueueBlockedItem
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class QueueBlockedItem {
     /**

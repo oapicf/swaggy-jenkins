@@ -18,7 +18,7 @@ import GithubRespositoryContainerlinks from './GithubRespositoryContainerlinks';
 /**
  * The GithubRespositoryContainer model module.
  * @module model/GithubRespositoryContainer
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class GithubRespositoryContainer {
     /**

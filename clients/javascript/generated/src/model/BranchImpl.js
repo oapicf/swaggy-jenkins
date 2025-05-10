@@ -20,7 +20,7 @@ import StringParameterDefinition from './StringParameterDefinition';
 /**
  * The BranchImpl model module.
  * @module model/BranchImpl
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class BranchImpl {
     /**

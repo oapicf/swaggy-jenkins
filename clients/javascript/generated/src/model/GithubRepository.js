@@ -18,7 +18,7 @@ import GithubRepositorypermissions from './GithubRepositorypermissions';
 /**
  * The GithubRepository model module.
  * @module model/GithubRepository
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class GithubRepository {
     /**

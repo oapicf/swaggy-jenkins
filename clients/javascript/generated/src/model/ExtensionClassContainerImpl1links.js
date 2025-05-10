@@ -17,7 +17,7 @@ import Link from './Link';
 /**
  * The ExtensionClassContainerImpl1links model module.
  * @module model/ExtensionClassContainerImpl1links
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class ExtensionClassContainerImpl1links {
     /**

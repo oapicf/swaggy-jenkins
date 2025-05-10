@@ -17,7 +17,7 @@ import PipelinelatestRun from './PipelinelatestRun';
 /**
  * The Pipeline model module.
  * @module model/Pipeline
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class Pipeline {
     /**

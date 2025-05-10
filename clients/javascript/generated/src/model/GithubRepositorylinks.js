@@ -17,7 +17,7 @@ import Link from './Link';
 /**
  * The GithubRepositorylinks model module.
  * @module model/GithubRepositorylinks
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class GithubRepositorylinks {
     /**

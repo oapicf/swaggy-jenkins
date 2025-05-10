@@ -17,7 +17,7 @@ import ExtensionClassImpllinks from './ExtensionClassImpllinks';
 /**
  * The ExtensionClassImpl model module.
  * @module model/ExtensionClassImpl
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class ExtensionClassImpl {
     /**

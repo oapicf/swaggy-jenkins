@@ -17,7 +17,7 @@ import CauseUserIdCause from './CauseUserIdCause';
 /**
  * The CauseAction model module.
  * @module model/CauseAction
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class CauseAction {
     /**

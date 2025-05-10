@@ -52,7 +52,7 @@ import com.github.oapicf.swaggyjenkins.JSON;
 /**
  * GithubRepositories
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-04-27T08:09:10.220672823Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-05-10T02:39:55.130842976Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubRepositories {
   public static final String SERIALIZED_NAME_PROPERTY_CLASS = "_class";
   @SerializedName(SERIALIZED_NAME_PROPERTY_CLASS)

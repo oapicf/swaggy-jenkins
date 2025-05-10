@@ -1,6 +1,5 @@
 .gitattributes
 .gitignore
-.openapi-generator-ignore
 BaseApi.md
 BlueOceanApi.md
 README.md

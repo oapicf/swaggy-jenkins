@@ -19,7 +19,7 @@ import java.util.List;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-04-27T08:09:24.309774695Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2025-05-10T02:40:10.134083169Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 @Api(value = "Base", description = "the Base API")
 public interface BaseApi {
 

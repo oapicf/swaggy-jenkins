@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The SwapSpaceMonitorMemoryUsage2 model module.
  * @module model/SwapSpaceMonitorMemoryUsage2
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class SwapSpaceMonitorMemoryUsage2 {
     /**

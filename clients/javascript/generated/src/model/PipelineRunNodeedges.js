@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The PipelineRunNodeedges model module.
  * @module model/PipelineRunNodeedges
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class PipelineRunNodeedges {
     /**

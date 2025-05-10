@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 Apis/BaseApi.md
 Apis/BlueOceanApi.md
 Apis/RemoteAccessApi.md

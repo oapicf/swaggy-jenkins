@@ -18,7 +18,7 @@ import PipelineBranchesitempullRequest from './PipelineBranchesitempullRequest';
 /**
  * The PipelineBranchesitem model module.
  * @module model/PipelineBranchesitem
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class PipelineBranchesitem {
     /**

@@ -12,7 +12,7 @@ server, you can easily generate a server stub.
 To see how to make this your own, look here: [README]((https://openapi-generator.tech))
 
 - API version: 3.0.2-pre.0
-- Build date: 2025-04-27T08:11:46.396601463Z[Etc/UTC]
+- Build date: 2025-05-10T02:42:44.135867446Z[Etc/UTC]
 - Generator version: 7.12.0
 
 For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)

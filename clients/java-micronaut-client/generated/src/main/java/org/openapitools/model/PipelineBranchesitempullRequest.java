@@ -34,7 +34,7 @@ import javax.annotation.Generated;
   PipelineBranchesitempullRequest.JSON_PROPERTY_PROPERTY_CLASS
 })
 @JsonTypeName("PipelineBranchesitempullRequest")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-04-27T08:09:17.647353387Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-05-10T02:40:03.838053081Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 @Introspected
 public class PipelineBranchesitempullRequest {
     public static final String JSON_PROPERTY_LINKS = "_links";

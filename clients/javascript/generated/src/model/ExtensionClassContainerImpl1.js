@@ -18,7 +18,7 @@ import ExtensionClassContainerImpl1map from './ExtensionClassContainerImpl1map';
 /**
  * The ExtensionClassContainerImpl1 model module.
  * @module model/ExtensionClassContainerImpl1
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class ExtensionClassContainerImpl1 {
     /**

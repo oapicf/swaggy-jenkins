@@ -17,7 +17,7 @@ import PipelineImpllinks from './PipelineImpllinks';
 /**
  * The PipelineImpl model module.
  * @module model/PipelineImpl
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class PipelineImpl {
     /**

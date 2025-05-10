@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * GithubOrganizationlinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-04-27T08:09:33.014925705Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-05-10T02:40:20.283295278Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class GithubOrganizationlinks {
 
   private Link repositories;

@@ -23,7 +23,7 @@ import Queue from '../model/Queue';
 /**
 * RemoteAccess service.
 * @module api/RemoteAccessApi
-* @version 3.0.2-pre.0
+* @version 3.1.1-pre.0
 */
 export default class RemoteAccessApi {
 

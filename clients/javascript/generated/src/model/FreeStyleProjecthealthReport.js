@@ -16,7 +16,7 @@ import ApiClient from '../ApiClient';
 /**
  * The FreeStyleProjecthealthReport model module.
  * @module model/FreeStyleProjecthealthReport
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class FreeStyleProjecthealthReport {
     /**

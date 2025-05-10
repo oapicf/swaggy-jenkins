@@ -17,7 +17,7 @@ import FreeStyleProject from './FreeStyleProject';
 /**
  * The ListView model module.
  * @module model/ListView
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class ListView {
     /**

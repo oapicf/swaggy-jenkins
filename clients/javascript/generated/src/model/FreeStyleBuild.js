@@ -18,7 +18,7 @@ import EmptyChangeLogSet from './EmptyChangeLogSet';
 /**
  * The FreeStyleBuild model module.
  * @module model/FreeStyleBuild
- * @version 3.0.2-pre.0
+ * @version 3.1.1-pre.0
  */
 class FreeStyleBuild {
     /**
