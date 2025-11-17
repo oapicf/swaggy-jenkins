@@ -16,6 +16,8 @@ jobs:
           file-path: '/tmp/.env'
         env:
           GITHUB_ACTIONS: true
+      - run: echo "Env file content:"
+      - run: cat /tmp/.env
       - uses: cliffano/command-docker-action@v1.4.0
         with:
           command: 'make ci'
