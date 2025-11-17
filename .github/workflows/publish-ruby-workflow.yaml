@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: 3.2.0
+          ref: main
       - uses: ./.github/actions/publish-ruby-action
         env:
           RUBYGEMS_TOKEN: ${{ secrets.RUBYGEMS_TOKEN }}
