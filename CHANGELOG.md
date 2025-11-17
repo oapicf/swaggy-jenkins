@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Regenerate all clients with OAG 7.12.0
+- Re-add modification of JavaScript client's API build URL to not encode URI component #58
 
 ## 3.1.0 - 2025-05-04
 ### Changed
