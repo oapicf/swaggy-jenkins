@@ -11,10 +11,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - uses: iamsauravsharma/create-dotenv@v4.0.0
+      - uses: iamsauravsharma/create-dotenv@v2.0.1
         with:
           file-path: '/tmp/.env'
-          write-mode: 'append'
         env:
           GITHUB_ACTIONS: true
       - run: echo "Env file content:"
