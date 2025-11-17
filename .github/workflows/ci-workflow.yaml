@@ -4,6 +4,8 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-24.04
+    env:
+      GITHUB_ACTIONS: true
     steps:
       - uses: actions/checkout@v5
         with:
@@ -14,8 +16,6 @@ jobs:
       - uses: iamsauravsharma/create-dotenv@v4.0.0
         with:
           file-path: '/tmp/.env'
-        env:
-          GITHUB_ACTIONS: true
       - run: echo "Env file content:"
       - run: cat /tmp/.env
       - uses: cliffano/command-docker-action@v1.4.0
