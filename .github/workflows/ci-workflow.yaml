@@ -5,21 +5,21 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           token: ${{ secrets.OAPICF_GITHUB_TOKEN }}
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
-      - uses: iamsauravsharma/create-dotenv@v2.0.1
+          node-version: '24'
+      - uses: iamsauravsharma/create-dotenv@v4.0.0
         with:
           file-path: '/tmp/.env'
         env:
           GITHUB_ACTIONS: ${{ env.GITHUB_ACTIONS }}
-      - uses: cliffano/command-docker-action@v1.3.0
+      - uses: cliffano/command-docker-action@v1.4.0
         with:
           command: 'make ci'
-          image: cliffano/studio:2.11.1
+          image: cliffano/studio:2.16.0
           shell: bash
           extra_path: /usr/local/go/bin:/usr/local/maven/bin:/usr/local/node/bin:/usr/local/openjdk-jdk/bin:/root/.cargo/bin:/root/go/bin
           env_file: '/tmp/.env'
