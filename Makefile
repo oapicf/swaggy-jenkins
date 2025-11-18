@@ -4,7 +4,7 @@
 ################################################################
 
 # The version of Swaggy C
-SWAGGY_C_VERSION = 4.10.0
+SWAGGY_C_VERSION = 4.10.1-pre.0
 
 # The version of OpenAPI Generator (https://openapi-generator.tech/) used for generating the API clients
 OPENAPI_GENERATOR_VERSION = 7.12.0
@@ -195,8 +195,11 @@ test-javascript: build-javascript
 	npm install -g mocha
 	npm install validator
 	cd clients/javascript/generated/ && \
+	  npm install --dev && \
 	  npm run test
-	mocha --timeout 5000 test/javascript/
+	cd test/javascript/ && \
+	  npm link ../../clients/javascript/generated/ && \
+	  mocha --timeout 5000 .
 
 test-python: build-python
 	cd clients/python/generated/ && \
