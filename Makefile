@@ -4,10 +4,10 @@
 ################################################################
 
 # The version of Swaggy C
-SWAGGY_C_VERSION = 4.10.1-pre.0
+SWAGGY_C_VERSION = 4.11.0
 
 # The version of OpenAPI Generator (https://openapi-generator.tech/) used for generating the API clients
-OPENAPI_GENERATOR_VERSION = 7.12.0
+OPENAPI_GENERATOR_VERSION = 7.17.0
 
 # LANGS_ALL lists the languages supported by the given OPENAPI_GENERATOR_VERSION
 LANGS_ALL = ada ada-server android apache2 apex asciidoc aspnetcore avro-schema bash crystal c clojure cwiki cpp-qt-client cpp-qt-qhttpengine-server cpp-pistache-server cpp-restbed-server cpp-restbed-server-deprecated cpp-restsdk cpp-tiny cpp-tizen cpp-ue4 csharp csharp-functions dart dart-dio eiffel elixir elm erlang-client erlang-proper erlang-server fsharp-functions fsharp-giraffe-server go go-echo-server go-server go-gin-server graphql-schema graphql-nodejs-express-server groovy kotlin kotlin-server kotlin-spring kotlin-vertx ktorm-schema haskell-http-client haskell haskell-yesod java jaxrs-cxf-client java-helidon-client java-helidon-server java-inflector java-micronaut-client java-micronaut-server java-msf4j java-pkmst java-play-framework java-undertow-server java-vertx java-vertx-web java-camel jaxrs-cxf jaxrs-cxf-extended jaxrs-cxf-cdi jaxrs-jersey jaxrs-resteasy jaxrs-resteasy-eap jaxrs-spec javascript javascript-apollo-deprecated javascript-flowtyped javascript-closure-angular java-wiremock jetbrains-http-client jmeter julia-client julia-server k6 lua markdown mysql-schema n4js nim nodejs-express-server objc ocaml openapi openapi-yaml plantuml perl php php-nextgen php-laravel php-lumen php-slim4 php-symfony php-mezzio-ph php-dt postman-collection powershell protobuf-schema python python-pydantic-v1 python-fastapi python-flask python-aiohttp python-blueplanet r ruby ruby-on-rails ruby-sinatra rust rust-server scalatra scala-akka scala-pekko scala-akka-http-server scala-finch scala-gatling scala-http4s-server scala-lagom-server scala-play-server scala-sttp scala-sttp4 scalaz spring dynamic-html html html2 swift5 swift-combine typescript typescript-angular typescript-aurelia typescript-axios typescript-fetch typescript-inversify typescript-jquery typescript-nestjs typescript-node typescript-redux-query typescript-rxjs wsdl-schema xojo-client zapier rust-axum
@@ -79,6 +79,9 @@ $(info - Application base directory: ${APP_BASE_DIR})
 
 # CI target to be executed by CI/CD tool
 ci: clean deps init-spec generate build-javascript build-python build-ruby test-javascript test-python test-ruby doc
+
+# All target as an alias for CI target
+all: ci
 
 # Ensure stage directory exists
 stage:
@@ -190,6 +193,9 @@ build-ruby:
 
 ################################################################
 # API clients testing targets for primary languages
+
+# Test target is a convenience target to run tests for all primary languages
+test: test-javascript test-python test-ruby
 
 test-javascript: build-javascript
 	npm install -g mocha
