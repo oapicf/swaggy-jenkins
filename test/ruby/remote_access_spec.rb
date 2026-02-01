@@ -18,7 +18,9 @@ describe 'SwaggyJenkinsClient' do
       api_instance = SwaggyJenkinsClient::RemoteAccessApi.new
 
       begin
-        result = api_instance.get_jenkins
+        # Pass empty auth_names to skip sending basic auth header without credentials
+        opts = { debug_auth_names: [] }
+        result = api_instance.get_jenkins(opts)
         expect(result).not_to be_nil
         expect(result).to be_a(SwaggyJenkinsClient::Hudson)
         expect(result.num_executors).to be >= 0
