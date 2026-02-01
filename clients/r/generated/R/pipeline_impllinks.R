@@ -7,10 +7,10 @@
 #' @title PipelineImpllinks
 #' @description PipelineImpllinks Class
 #' @format An \code{R6Class} generator object
-#' @field runs  \link{Link} [optional]
 #' @field item_self  \link{Link} [optional]
-#' @field queue  \link{Link} [optional]
 #' @field actions  \link{Link} [optional]
+#' @field runs  \link{Link} [optional]
+#' @field queue  \link{Link} [optional]
 #' @field _class  character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -18,37 +18,37 @@
 PipelineImpllinks <- R6::R6Class(
   "PipelineImpllinks",
   public = list(
-    `runs` = NULL,
     `item_self` = NULL,
-    `queue` = NULL,
     `actions` = NULL,
+    `runs` = NULL,
+    `queue` = NULL,
     `_class` = NULL,
 
     #' @description
     #' Initialize a new PipelineImpllinks class.
     #'
-    #' @param runs runs
     #' @param item_self item_self
-    #' @param queue queue
     #' @param actions actions
+    #' @param runs runs
+    #' @param queue queue
     #' @param _class _class
     #' @param ... Other optional arguments.
-    initialize = function(`runs` = NULL, `item_self` = NULL, `queue` = NULL, `actions` = NULL, `_class` = NULL, ...) {
-      if (!is.null(`runs`)) {
-        stopifnot(R6::is.R6(`runs`))
-        self$`runs` <- `runs`
-      }
+    initialize = function(`item_self` = NULL, `actions` = NULL, `runs` = NULL, `queue` = NULL, `_class` = NULL, ...) {
       if (!is.null(`item_self`)) {
         stopifnot(R6::is.R6(`item_self`))
         self$`item_self` <- `item_self`
       }
-      if (!is.null(`queue`)) {
-        stopifnot(R6::is.R6(`queue`))
-        self$`queue` <- `queue`
-      }
       if (!is.null(`actions`)) {
         stopifnot(R6::is.R6(`actions`))
         self$`actions` <- `actions`
+      }
+      if (!is.null(`runs`)) {
+        stopifnot(R6::is.R6(`runs`))
+        self$`runs` <- `runs`
+      }
+      if (!is.null(`queue`)) {
+        stopifnot(R6::is.R6(`queue`))
+        self$`queue` <- `queue`
       }
       if (!is.null(`_class`)) {
         if (!(is.character(`_class`) && length(`_class`) == 1)) {
@@ -89,21 +89,21 @@ PipelineImpllinks <- R6::R6Class(
     #' @return A base R type, e.g. a list or numeric/character array.
     toSimpleType = function() {
       PipelineImpllinksObject <- list()
-      if (!is.null(self$`runs`)) {
-        PipelineImpllinksObject[["runs"]] <-
-          self$`runs`$toSimpleType()
-      }
       if (!is.null(self$`item_self`)) {
         PipelineImpllinksObject[["self"]] <-
           self$`item_self`$toSimpleType()
       }
-      if (!is.null(self$`queue`)) {
-        PipelineImpllinksObject[["queue"]] <-
-          self$`queue`$toSimpleType()
-      }
       if (!is.null(self$`actions`)) {
         PipelineImpllinksObject[["actions"]] <-
           self$`actions`$toSimpleType()
+      }
+      if (!is.null(self$`runs`)) {
+        PipelineImpllinksObject[["runs"]] <-
+          self$`runs`$toSimpleType()
+      }
+      if (!is.null(self$`queue`)) {
+        PipelineImpllinksObject[["queue"]] <-
+          self$`queue`$toSimpleType()
       }
       if (!is.null(self$`_class`)) {
         PipelineImpllinksObject[["_class"]] <-
@@ -119,25 +119,25 @@ PipelineImpllinks <- R6::R6Class(
     #' @return the instance of PipelineImpllinks
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`runs`)) {
-        `runs_object` <- Link$new()
-        `runs_object`$fromJSON(jsonlite::toJSON(this_object$`runs`, auto_unbox = TRUE, digits = NA))
-        self$`runs` <- `runs_object`
-      }
       if (!is.null(this_object$`self`)) {
         `item_self_object` <- Link$new()
         `item_self_object`$fromJSON(jsonlite::toJSON(this_object$`self`, auto_unbox = TRUE, digits = NA))
         self$`item_self` <- `item_self_object`
       }
-      if (!is.null(this_object$`queue`)) {
-        `queue_object` <- Link$new()
-        `queue_object`$fromJSON(jsonlite::toJSON(this_object$`queue`, auto_unbox = TRUE, digits = NA))
-        self$`queue` <- `queue_object`
-      }
       if (!is.null(this_object$`actions`)) {
         `actions_object` <- Link$new()
         `actions_object`$fromJSON(jsonlite::toJSON(this_object$`actions`, auto_unbox = TRUE, digits = NA))
         self$`actions` <- `actions_object`
+      }
+      if (!is.null(this_object$`runs`)) {
+        `runs_object` <- Link$new()
+        `runs_object`$fromJSON(jsonlite::toJSON(this_object$`runs`, auto_unbox = TRUE, digits = NA))
+        self$`runs` <- `runs_object`
+      }
+      if (!is.null(this_object$`queue`)) {
+        `queue_object` <- Link$new()
+        `queue_object`$fromJSON(jsonlite::toJSON(this_object$`queue`, auto_unbox = TRUE, digits = NA))
+        self$`queue` <- `queue_object`
       }
       if (!is.null(this_object$`_class`)) {
         self$`_class` <- this_object$`_class`
@@ -163,10 +163,10 @@ PipelineImpllinks <- R6::R6Class(
     #' @return the instance of PipelineImpllinks
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`runs` <- Link$new()$fromJSON(jsonlite::toJSON(this_object$`runs`, auto_unbox = TRUE, digits = NA))
       self$`item_self` <- Link$new()$fromJSON(jsonlite::toJSON(this_object$`item_self`, auto_unbox = TRUE, digits = NA))
-      self$`queue` <- Link$new()$fromJSON(jsonlite::toJSON(this_object$`queue`, auto_unbox = TRUE, digits = NA))
       self$`actions` <- Link$new()$fromJSON(jsonlite::toJSON(this_object$`actions`, auto_unbox = TRUE, digits = NA))
+      self$`runs` <- Link$new()$fromJSON(jsonlite::toJSON(this_object$`runs`, auto_unbox = TRUE, digits = NA))
+      self$`queue` <- Link$new()$fromJSON(jsonlite::toJSON(this_object$`queue`, auto_unbox = TRUE, digits = NA))
       self$`_class` <- this_object$`_class`
       self
     },

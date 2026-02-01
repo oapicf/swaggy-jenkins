@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * ExtensionClassContainerImpl1map
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ExtensionClassContainerImpl1map {
 
   private @Nullable ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
@@ -29,7 +29,7 @@ public class ExtensionClassContainerImpl1map {
 
   private @Nullable String propertyClass;
 
-  public ExtensionClassContainerImpl1map ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl(ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl) {
+  public ExtensionClassContainerImpl1map ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl(@Nullable ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl) {
     this.ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl = ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
     return this;
   }
@@ -41,15 +41,15 @@ public class ExtensionClassContainerImpl1map {
   @Valid 
   @Schema(name = "io.jenkins.blueocean.service.embedded.rest.PipelineImpl", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
-  public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl() {
+  public @Nullable ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl() {
     return ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
   }
 
-  public void setIoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl(ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl) {
+  public void setIoJenkinsBlueoceanServiceEmbeddedRestPipelineImpl(@Nullable ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl) {
     this.ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl = ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
   }
 
-  public ExtensionClassContainerImpl1map ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl(ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl) {
+  public ExtensionClassContainerImpl1map ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl(@Nullable ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl) {
     this.ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl = ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
     return this;
   }
@@ -61,15 +61,15 @@ public class ExtensionClassContainerImpl1map {
   @Valid 
   @Schema(name = "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl")
-  public ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl() {
+  public @Nullable ExtensionClassImpl getIoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl() {
     return ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
   }
 
-  public void setIoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl(ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl) {
+  public void setIoJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl(@Nullable ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl) {
     this.ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl = ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
   }
 
-  public ExtensionClassContainerImpl1map propertyClass(String propertyClass) {
+  public ExtensionClassContainerImpl1map propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -81,11 +81,11 @@ public class ExtensionClassContainerImpl1map {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

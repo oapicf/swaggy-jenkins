@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -18,16 +18,17 @@ import public "models/free_style_build.proto";
 
 message HudsonMasterComputerexecutors {
 
-  FreeStyleBuild currentExecutable = 410147493;
+  FreeStyleBuild current_executable = 284809521;
 
   bool idle = 3227604;
 
-  bool likelyStuck = 460286104;
+  bool likely_stuck = 115968260;
 
   int32 number = 497493176;
 
   int32 progress = 464207316;
 
-  string _class = 406713225;
+  string class = 94742904;
 
 }
+

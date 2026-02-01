@@ -4,6 +4,7 @@ import org.openapitools.api.*;
 import org.openapitools.model.*;
 
 
+
 import org.openapitools.model.BranchImpl;
 import org.openapitools.model.FavoriteImpl;
 import org.openapitools.model.GithubOrganization;
@@ -30,7 +31,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2025-05-10T02:40:29.349465207Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-02-01T01:24:31.058567730Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public interface BlueApiService {
       Response deletePipelineQueueItem(String organization,String pipeline,String queue,SecurityContext securityContext)
       throws NotFoundException;
@@ -102,4 +103,6 @@ public interface BlueApiService {
       throws NotFoundException;
       Response searchClasses(String q,SecurityContext securityContext)
       throws NotFoundException;
+
+
 }

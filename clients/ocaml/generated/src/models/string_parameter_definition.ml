@@ -5,19 +5,48 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    default_parameter_value: String_parameter_value.t option [@default None];
-    description: string option [@default None];
-    name: string option [@default None];
-    _type: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    default_parameter_value = None;
-    description = None;
-    name = None;
-    _type = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              default_parameter_value: String_parameter_value.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "defaultParameterValue"]
+                                              description: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "description"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                                              _type: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "type"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            default_parameter_value = None;
+            description = None;
+            name = None;
+            _type = None;
+        }
+    
 

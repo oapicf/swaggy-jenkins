@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ClassesByClass  {
   
   @ApiModelProperty(value = "")
+
   private List<String> classes = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get classes

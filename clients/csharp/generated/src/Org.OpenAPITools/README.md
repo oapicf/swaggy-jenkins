@@ -1,57 +1,51 @@
 # Created with Openapi Generator
 
 <a id="cli"></a>
-## Run the following powershell command to generate the library
+## Creating the library
+Create a config.yaml file similar to what is below, then run the following powershell command to generate the library `java -jar "<path>/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar" generate -c config.yaml`
 
-```ps1
-$properties = @(
-    'apiName=Api',
-    'targetFramework=net9.0',
-    'validatable=true',
-    'nullableReferenceTypes=true',
-    'hideGenerationTimestamp=true',
-    'packageVersion=1.0.0',
-    'packageAuthors=OpenAPI',
-    'packageCompany=OpenAPI',
-    'packageCopyright=No Copyright',
-    'packageDescription=A library generated from a OpenAPI doc',
-    'packageName=Org.OpenAPITools',
-    'packageTags=',
-    'packageTitle=OpenAPI Library'
-) -join ","
+```yaml
+generatorName: csharp
+inputSpec: /local/stage/specification.yml
+outputDir: out
 
-$global = @(
-    'apiDocs=true',
-    'modelDocs=true',
-    'apiTests=true',
-    'modelTests=true'
-) -join ","
+# https://openapi-generator.tech/docs/generators/csharp
+additionalProperties:
+  packageGuid: '{F39E2597-AE57-4EAE-9AF1-D52A7BE54135}'
 
-java -jar "<path>/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar" generate `
-    -g csharp-netcore `
-    -i <your-swagger-file>.yaml `
-    -o <your-output-folder> `
-    --library generichost `
-    --additional-properties $properties `
-    --global-property $global `
-    --git-host "github.com" `
-    --git-repo-id "swaggy-jenkins" `
-    --git-user-id "oapicf" `
-    --release-note "Minor update"
-    # -t templates
+# https://openapi-generator.tech/docs/integrations/#github-integration
+# gitHost:
+# gitUserId:
+# gitRepoId:
+
+# https://openapi-generator.tech/docs/globals
+# globalProperties:
+
+# https://openapi-generator.tech/docs/customization/#inline-schema-naming
+# inlineSchemaOptions:
+
+# https://openapi-generator.tech/docs/customization/#name-mapping
+# modelNameMappings:
+# nameMappings:
+
+# https://openapi-generator.tech/docs/customization/#openapi-normalizer
+# openapiNormalizer:
+
+# templateDir: https://openapi-generator.tech/docs/templating/#modifying-templates
+
+# releaseNote:
 ```
 
 <a id="usage"></a>
 ## Using the library in your project
 
 ```cs
-using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Org.OpenAPITools.Api;
 using Org.OpenAPITools.Client;
 using Org.OpenAPITools.Model;
+using Org.OpenAPITools.Extensions;
 
 namespace YourProject
 {
@@ -61,30 +55,37 @@ namespace YourProject
         {
             var host = CreateHostBuilder(args).Build();
             var api = host.Services.GetRequiredService<IBaseApi>();
-            GetCrumbApiResponse apiResponse = await api.GetCrumbAsync("todo");
-            DefaultCrumbIssuer model = apiResponse.Ok();
+            IGetCrumbApiResponse apiResponse = await api.GetCrumbAsync("todo");
+            DefaultCrumbIssuer? model = apiResponse.Ok();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
-          .ConfigureApi((context, options) =>
+          .ConfigureApi((context, services, options) =>
           {
-              // the type of token here depends on the api security specifications
-              ApiKeyToken token = new("<your token>", ClientUtils.ApiKeyHeader.Authorization);
+              // The type of token here depends on the api security specifications
+              // Available token types are ApiKeyToken, BasicToken, BearerToken, HttpSigningToken, and OAuthToken.
+              BearerToken token = new("<your token>");
               options.AddTokens(token);
 
               // optionally choose the method the tokens will be provided with, default is RateLimitProvider
-              options.UseProvider<RateLimitProvider<ApiKeyToken>, ApiKeyToken>();
+              options.UseProvider<RateLimitProvider<BearerToken>, BearerToken>();
 
               options.ConfigureJsonOptions((jsonOptions) =>
               {
                   // your custom converters if any
               });
 
-              options.AddApiHttpClients(builder: builder => builder
-                .AddRetryPolicy(2)
-                .AddTimeoutPolicy(TimeSpan.FromSeconds(5))
-                .AddCircuitBreakerPolicy(10, TimeSpan.FromSeconds(30))
-                // add whatever middleware you prefer
+              options.AddApiHttpClients(client =>
+              {
+                  // client configuration
+              }, builder =>
+              {
+                  builder
+                      .AddRetryPolicy(2)
+                      .AddTimeoutPolicy(TimeSpan.FromSeconds(5))
+                      .AddCircuitBreakerPolicy(10, TimeSpan.FromSeconds(30));
+                      // add whatever middleware you prefer
+                  }
               );
           });
     }
@@ -94,103 +95,25 @@ namespace YourProject
 ## Questions
 
 - What about HttpRequest failures and retries?
-  If supportsRetry is enabled, you can configure Polly in the ConfigureClients method.
+  Configure Polly in the IHttpClientBuilder
 - How are tokens used?
   Tokens are provided by a TokenProvider class. The default is RateLimitProvider which will perform client side rate limiting.
   Other providers can be used with the UseProvider method.
 - Does an HttpRequest throw an error when the server response is not Ok?
-  It depends how you made the request. If the return type is ApiResponse<T> no error will be thrown, though the Content property will be null. 
+  It depends how you made the request. If the return type is ApiResponse<T> no error will be thrown, though the Content property will be null.
   StatusCode and ReasonPhrase will contain information about the error.
   If the return type is T, then it will throw. If the return type is TOrDefault, it will return null.
 - How do I validate requests and process responses?
-  Use the provided On and After methods in the Api class from the namespace Org.OpenAPITools.Rest.DefaultApi.
-  Or provide your own class by using the generic ConfigureApi method.
-
-<a id="dependencies"></a>
-## Dependencies
-
-- [Microsoft.Extensions.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting/) - 5.0.0 or later
-- [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) - 5.0.0 or later
-- [Microsoft.Extensions.Http.Polly](https://www.nuget.org/packages/Microsoft.Extensions.Http.Polly/) - 5.0.1 or later
-- [System.ComponentModel.Annotations](https://www.nuget.org/packages/System.ComponentModel.Annotations) - 4.7.0 or later
-
-<a id="documentation-for-authorization"></a>
-## Documentation for Authorization
-
-
-Authentication schemes defined for the API:
-<a id="jenkins_auth"></a>
-### jenkins_auth
-
-- **Type**: HTTP basic authentication
-
-<a id="jwt_auth"></a>
-### jwt_auth
-
-- **Type**: API key
-- **API key parameter name**: Authorization
-- **Location**: HTTP header
-
-
-## Build
-- SDK version: 1.0.0
-- Generator version: 7.12.0
-- Build package: org.openapitools.codegen.languages.CSharpClientCodegen
+  Use the provided On and After partial methods in the api classes.
 
 ## Api Information
 - appName: Swaggy Jenkins
-- appVersion: 3.0.2-pre.0
+- appVersion: 3.2.1-pre.0
 - appDescription: Jenkins API clients generated from Swagger / Open API specification
 
-## [OpenApi Global properties](https://openapi-generator.tech/docs/globals)
-- generateAliasAsModel: 
-- supportingFiles: 
-- models: omitted for brevity
-- apis: omitted for brevity
-- apiDocs: true
-- modelDocs: true
-- apiTests: true
-- modelTests: true
-
-## [OpenApi Generator Parameters](https://openapi-generator.tech/docs/generators/csharp-netcore)
-- allowUnicodeIdentifiers: 
-- apiName: Api
-- caseInsensitiveResponseHeaders: 
-- conditionalSerialization: false
-- disallowAdditionalPropertiesIfNotPresent: 
-- gitHost: github.com
-- gitRepoId: swaggy-jenkins
-- gitUserId: oapicf
-- hideGenerationTimestamp: true
-- interfacePrefix: I
-- library: generichost
-- licenseId: 
-- modelPropertyNaming: 
-- netCoreProjectFile: false
-- nonPublicApi: false
-- nullableReferenceTypes: true
-- optionalAssemblyInfo: 
-- optionalEmitDefaultValues: false
-- optionalMethodArgument: true
-- optionalProjectFile: 
-- packageAuthors: OpenAPI
-- packageCompany: OpenAPI
-- packageCopyright: No Copyright
-- packageDescription: A library generated from a OpenAPI doc
-- packageGuid: {A73D7226-5E43-4674-93B2-44755F01BE41}
-- packageName: Org.OpenAPITools
-- packageTags: 
-- packageTitle: OpenAPI Library
-- packageVersion: 1.0.0
-- releaseNote: Minor update
-- returnICollection: false
-- sortParamsByRequiredFlag: 
-- sourceFolder: src
-- targetFramework: net9.0
-- useCollection: false
-- useDateTimeOffset: false
-- useOneOfDiscriminatorLookup: false
-- validatable: true
-For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)
-
+## Build
 This C# SDK is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project.
+
+- SDK version: 1.0.0
+- Generator version: 7.18.0
+- Build package: org.openapitools.codegen.languages.CSharpClientCodegen

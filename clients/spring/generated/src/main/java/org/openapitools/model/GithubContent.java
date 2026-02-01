@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * GithubContent
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class GithubContent {
 
   private @Nullable String name;
@@ -38,7 +38,7 @@ public class GithubContent {
 
   private @Nullable String base64Data;
 
-  public GithubContent name(String name) {
+  public GithubContent name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -50,15 +50,15 @@ public class GithubContent {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
-  public GithubContent sha(String sha) {
+  public GithubContent sha(@Nullable String sha) {
     this.sha = sha;
     return this;
   }
@@ -70,15 +70,15 @@ public class GithubContent {
   
   @Schema(name = "sha", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("sha")
-  public String getSha() {
+  public @Nullable String getSha() {
     return sha;
   }
 
-  public void setSha(String sha) {
+  public void setSha(@Nullable String sha) {
     this.sha = sha;
   }
 
-  public GithubContent propertyClass(String propertyClass) {
+  public GithubContent propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -90,15 +90,15 @@ public class GithubContent {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public GithubContent repo(String repo) {
+  public GithubContent repo(@Nullable String repo) {
     this.repo = repo;
     return this;
   }
@@ -110,15 +110,15 @@ public class GithubContent {
   
   @Schema(name = "repo", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("repo")
-  public String getRepo() {
+  public @Nullable String getRepo() {
     return repo;
   }
 
-  public void setRepo(String repo) {
+  public void setRepo(@Nullable String repo) {
     this.repo = repo;
   }
 
-  public GithubContent size(Integer size) {
+  public GithubContent size(@Nullable Integer size) {
     this.size = size;
     return this;
   }
@@ -130,15 +130,15 @@ public class GithubContent {
   
   @Schema(name = "size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("size")
-  public Integer getSize() {
+  public @Nullable Integer getSize() {
     return size;
   }
 
-  public void setSize(Integer size) {
+  public void setSize(@Nullable Integer size) {
     this.size = size;
   }
 
-  public GithubContent owner(String owner) {
+  public GithubContent owner(@Nullable String owner) {
     this.owner = owner;
     return this;
   }
@@ -150,15 +150,15 @@ public class GithubContent {
   
   @Schema(name = "owner", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("owner")
-  public String getOwner() {
+  public @Nullable String getOwner() {
     return owner;
   }
 
-  public void setOwner(String owner) {
+  public void setOwner(@Nullable String owner) {
     this.owner = owner;
   }
 
-  public GithubContent path(String path) {
+  public GithubContent path(@Nullable String path) {
     this.path = path;
     return this;
   }
@@ -170,15 +170,15 @@ public class GithubContent {
   
   @Schema(name = "path", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("path")
-  public String getPath() {
+  public @Nullable String getPath() {
     return path;
   }
 
-  public void setPath(String path) {
+  public void setPath(@Nullable String path) {
     this.path = path;
   }
 
-  public GithubContent base64Data(String base64Data) {
+  public GithubContent base64Data(@Nullable String base64Data) {
     this.base64Data = base64Data;
     return this;
   }
@@ -190,11 +190,11 @@ public class GithubContent {
   
   @Schema(name = "base64Data", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("base64Data")
-  public String getBase64Data() {
+  public @Nullable String getBase64Data() {
     return base64Data;
   }
 
-  public void setBase64Data(String base64Data) {
+  public void setBase64Data(@Nullable String base64Data) {
     this.base64Data = base64Data;
   }
 

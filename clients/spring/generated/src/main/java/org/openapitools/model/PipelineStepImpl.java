@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  * PipelineStepImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineStepImpl {
 
   private @Nullable String propertyClass;
@@ -42,7 +42,7 @@ public class PipelineStepImpl {
 
   private @Nullable String state;
 
-  public PipelineStepImpl propertyClass(String propertyClass) {
+  public PipelineStepImpl propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -54,15 +54,15 @@ public class PipelineStepImpl {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public PipelineStepImpl links(PipelineStepImpllinks links) {
+  public PipelineStepImpl links(@Nullable PipelineStepImpllinks links) {
     this.links = links;
     return this;
   }
@@ -74,15 +74,15 @@ public class PipelineStepImpl {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public PipelineStepImpllinks getLinks() {
+  public @Nullable PipelineStepImpllinks getLinks() {
     return links;
   }
 
-  public void setLinks(PipelineStepImpllinks links) {
+  public void setLinks(@Nullable PipelineStepImpllinks links) {
     this.links = links;
   }
 
-  public PipelineStepImpl displayName(String displayName) {
+  public PipelineStepImpl displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -94,15 +94,15 @@ public class PipelineStepImpl {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
-  public PipelineStepImpl durationInMillis(Integer durationInMillis) {
+  public PipelineStepImpl durationInMillis(@Nullable Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
     return this;
   }
@@ -114,15 +114,15 @@ public class PipelineStepImpl {
   
   @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("durationInMillis")
-  public Integer getDurationInMillis() {
+  public @Nullable Integer getDurationInMillis() {
     return durationInMillis;
   }
 
-  public void setDurationInMillis(Integer durationInMillis) {
+  public void setDurationInMillis(@Nullable Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
   }
 
-  public PipelineStepImpl id(String id) {
+  public PipelineStepImpl id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -134,15 +134,15 @@ public class PipelineStepImpl {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public PipelineStepImpl input(InputStepImpl input) {
+  public PipelineStepImpl input(@Nullable InputStepImpl input) {
     this.input = input;
     return this;
   }
@@ -154,15 +154,15 @@ public class PipelineStepImpl {
   @Valid 
   @Schema(name = "input", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("input")
-  public InputStepImpl getInput() {
+  public @Nullable InputStepImpl getInput() {
     return input;
   }
 
-  public void setInput(InputStepImpl input) {
+  public void setInput(@Nullable InputStepImpl input) {
     this.input = input;
   }
 
-  public PipelineStepImpl result(String result) {
+  public PipelineStepImpl result(@Nullable String result) {
     this.result = result;
     return this;
   }
@@ -174,15 +174,15 @@ public class PipelineStepImpl {
   
   @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("result")
-  public String getResult() {
+  public @Nullable String getResult() {
     return result;
   }
 
-  public void setResult(String result) {
+  public void setResult(@Nullable String result) {
     this.result = result;
   }
 
-  public PipelineStepImpl startTime(String startTime) {
+  public PipelineStepImpl startTime(@Nullable String startTime) {
     this.startTime = startTime;
     return this;
   }
@@ -194,15 +194,15 @@ public class PipelineStepImpl {
   
   @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("startTime")
-  public String getStartTime() {
+  public @Nullable String getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(String startTime) {
+  public void setStartTime(@Nullable String startTime) {
     this.startTime = startTime;
   }
 
-  public PipelineStepImpl state(String state) {
+  public PipelineStepImpl state(@Nullable String state) {
     this.state = state;
     return this;
   }
@@ -214,11 +214,11 @@ public class PipelineStepImpl {
   
   @Schema(name = "state", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("state")
-  public String getState() {
+  public @Nullable String getState() {
     return state;
   }
 
-  public void setState(String state) {
+  public void setState(@Nullable String state) {
     this.state = state;
   }
 

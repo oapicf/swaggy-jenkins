@@ -5,45 +5,137 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    number: int32 option [@default None];
-    url: string option [@default None];
-    actions: Cause_action.t list;
-    building: bool option [@default None];
-    description: string option [@default None];
-    display_name: string option [@default None];
-    duration: int32 option [@default None];
-    estimated_duration: int32 option [@default None];
-    executor: string option [@default None];
-    full_display_name: string option [@default None];
-    id: string option [@default None];
-    keep_log: bool option [@default None];
-    queue_id: int32 option [@default None];
-    _result: string option [@default None];
-    timestamp: int32 option [@default None];
-    built_on: string option [@default None];
-    change_set: Empty_change_log_set.t option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    number = None;
-    url = None;
-    actions = [];
-    building = None;
-    description = None;
-    display_name = None;
-    duration = None;
-    estimated_duration = None;
-    executor = None;
-    full_display_name = None;
-    id = None;
-    keep_log = None;
-    queue_id = None;
-    _result = None;
-    timestamp = None;
-    built_on = None;
-    change_set = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              number: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "number"]
+                                              url: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "url"]
+                                              actions: Cause_action.t list
+                 [@default []]
+                
+                ; [@key "actions"]
+                                              building: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "building"]
+                                              description: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "description"]
+                                              display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "displayName"]
+                                              duration: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "duration"]
+                                              estimated_duration: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "estimatedDuration"]
+                                              executor: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "executor"]
+                                              full_display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "fullDisplayName"]
+                                              id: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "id"]
+                                              keep_log: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "keepLog"]
+                                              queue_id: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "queueId"]
+                                              _result: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "result"]
+                                              timestamp: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "timestamp"]
+                                              built_on: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "builtOn"]
+                                              change_set: Empty_change_log_set.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "changeSet"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            number = None;
+            url = None;
+            actions = [];
+            building = None;
+            description = None;
+            display_name = None;
+            duration = None;
+            estimated_duration = None;
+            executor = None;
+            full_display_name = None;
+            id = None;
+            keep_log = None;
+            queue_id = None;
+            _result = None;
+            timestamp = None;
+            built_on = None;
+            change_set = None;
+        }
+    
 

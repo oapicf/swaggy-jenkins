@@ -97,45 +97,13 @@ class BlueOceanApiSimulation extends Simulation {
     val scenarioBuilders: mutable.MutableList[PopulationBuilder] = new mutable.MutableList[PopulationBuilder]()
 
     // Set up CSV feeders
-    val deletePipelineQueueItemPATHFeeder = csv(userDataDirectory + File.separator + "deletePipelineQueueItem-pathParams.csv").random
-    val getAuthenticatedUserPATHFeeder = csv(userDataDirectory + File.separator + "getAuthenticatedUser-pathParams.csv").random
-    val getClassesPATHFeeder = csv(userDataDirectory + File.separator + "getClasses-pathParams.csv").random
     val getJsonWebKeyPATHFeeder = csv(userDataDirectory + File.separator + "getJsonWebKey-pathParams.csv").random
     val getJsonWebTokenQUERYFeeder = csv(userDataDirectory + File.separator + "getJsonWebToken-queryParams.csv").random
-    val getOrganisationPATHFeeder = csv(userDataDirectory + File.separator + "getOrganisation-pathParams.csv").random
-    val getPipelinePATHFeeder = csv(userDataDirectory + File.separator + "getPipeline-pathParams.csv").random
-    val getPipelineActivitiesPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineActivities-pathParams.csv").random
-    val getPipelineBranchPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineBranch-pathParams.csv").random
-    val getPipelineBranchRunPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineBranchRun-pathParams.csv").random
-    val getPipelineBranchesPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineBranches-pathParams.csv").random
-    val getPipelineFolderPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineFolder-pathParams.csv").random
-    val getPipelineFolderPipelinePATHFeeder = csv(userDataDirectory + File.separator + "getPipelineFolderPipeline-pathParams.csv").random
-    val getPipelineQueuePATHFeeder = csv(userDataDirectory + File.separator + "getPipelineQueue-pathParams.csv").random
-    val getPipelineRunPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineRun-pathParams.csv").random
     val getPipelineRunLogQUERYFeeder = csv(userDataDirectory + File.separator + "getPipelineRunLog-queryParams.csv").random
-    val getPipelineRunLogPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineRunLog-pathParams.csv").random
-    val getPipelineRunNodePATHFeeder = csv(userDataDirectory + File.separator + "getPipelineRunNode-pathParams.csv").random
-    val getPipelineRunNodeStepPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineRunNodeStep-pathParams.csv").random
-    val getPipelineRunNodeStepLogPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineRunNodeStepLog-pathParams.csv").random
-    val getPipelineRunNodeStepsPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineRunNodeSteps-pathParams.csv").random
-    val getPipelineRunNodesPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineRunNodes-pathParams.csv").random
-    val getPipelineRunsPATHFeeder = csv(userDataDirectory + File.separator + "getPipelineRuns-pathParams.csv").random
-    val getPipelinesPATHFeeder = csv(userDataDirectory + File.separator + "getPipelines-pathParams.csv").random
-    val getSCMPATHFeeder = csv(userDataDirectory + File.separator + "getSCM-pathParams.csv").random
     val getSCMOrganisationRepositoriesQUERYFeeder = csv(userDataDirectory + File.separator + "getSCMOrganisationRepositories-queryParams.csv").random
-    val getSCMOrganisationRepositoriesPATHFeeder = csv(userDataDirectory + File.separator + "getSCMOrganisationRepositories-pathParams.csv").random
     val getSCMOrganisationRepositoryQUERYFeeder = csv(userDataDirectory + File.separator + "getSCMOrganisationRepository-queryParams.csv").random
-    val getSCMOrganisationRepositoryPATHFeeder = csv(userDataDirectory + File.separator + "getSCMOrganisationRepository-pathParams.csv").random
     val getSCMOrganisationsQUERYFeeder = csv(userDataDirectory + File.separator + "getSCMOrganisations-queryParams.csv").random
-    val getSCMOrganisationsPATHFeeder = csv(userDataDirectory + File.separator + "getSCMOrganisations-pathParams.csv").random
-    val getUserPATHFeeder = csv(userDataDirectory + File.separator + "getUser-pathParams.csv").random
-    val getUserFavoritesPATHFeeder = csv(userDataDirectory + File.separator + "getUserFavorites-pathParams.csv").random
-    val getUsersPATHFeeder = csv(userDataDirectory + File.separator + "getUsers-pathParams.csv").random
-    val postPipelineRunPATHFeeder = csv(userDataDirectory + File.separator + "postPipelineRun-pathParams.csv").random
-    val postPipelineRunsPATHFeeder = csv(userDataDirectory + File.separator + "postPipelineRuns-pathParams.csv").random
-    val putPipelineFavoritePATHFeeder = csv(userDataDirectory + File.separator + "putPipelineFavorite-pathParams.csv").random
     val putPipelineRunQUERYFeeder = csv(userDataDirectory + File.separator + "putPipelineRun-queryParams.csv").random
-    val putPipelineRunPATHFeeder = csv(userDataDirectory + File.separator + "putPipelineRun-pathParams.csv").random
     val searchQUERYFeeder = csv(userDataDirectory + File.separator + "search-queryParams.csv").random
     val searchClassesQUERYFeeder = csv(userDataDirectory + File.separator + "searchClasses-queryParams.csv").random
 
@@ -143,7 +111,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scndeletePipelineQueueItem = scenario("deletePipelineQueueItemSimulation")
-        .feed(deletePipelineQueueItemPATHFeeder)
         .exec(http("deletePipelineQueueItem")
         .httpRequest("DELETE","/blue/rest/organizations/${organization}/pipelines/${pipeline}/queue/${queue}")
 )
@@ -157,7 +124,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetAuthenticatedUser = scenario("getAuthenticatedUserSimulation")
-        .feed(getAuthenticatedUserPATHFeeder)
         .exec(http("getAuthenticatedUser")
         .httpRequest("GET","/blue/rest/organizations/${organization}/user/")
 )
@@ -171,7 +137,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetClasses = scenario("getClassesSimulation")
-        .feed(getClassesPATHFeeder)
         .exec(http("getClasses")
         .httpRequest("GET","/blue/rest/classes/${class}")
 )
@@ -215,7 +180,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetOrganisation = scenario("getOrganisationSimulation")
-        .feed(getOrganisationPATHFeeder)
         .exec(http("getOrganisation")
         .httpRequest("GET","/blue/rest/organizations/${organization}")
 )
@@ -242,7 +206,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipeline = scenario("getPipelineSimulation")
-        .feed(getPipelinePATHFeeder)
         .exec(http("getPipeline")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}")
 )
@@ -256,7 +219,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineActivities = scenario("getPipelineActivitiesSimulation")
-        .feed(getPipelineActivitiesPATHFeeder)
         .exec(http("getPipelineActivities")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/activities")
 )
@@ -270,7 +232,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineBranch = scenario("getPipelineBranchSimulation")
-        .feed(getPipelineBranchPATHFeeder)
         .exec(http("getPipelineBranch")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/branches/${branch}/")
 )
@@ -284,7 +245,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineBranchRun = scenario("getPipelineBranchRunSimulation")
-        .feed(getPipelineBranchRunPATHFeeder)
         .exec(http("getPipelineBranchRun")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/branches/${branch}/runs/${run}")
 )
@@ -298,7 +258,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineBranches = scenario("getPipelineBranchesSimulation")
-        .feed(getPipelineBranchesPATHFeeder)
         .exec(http("getPipelineBranches")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/branches")
 )
@@ -312,7 +271,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineFolder = scenario("getPipelineFolderSimulation")
-        .feed(getPipelineFolderPATHFeeder)
         .exec(http("getPipelineFolder")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${folder}/")
 )
@@ -326,7 +284,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineFolderPipeline = scenario("getPipelineFolderPipelineSimulation")
-        .feed(getPipelineFolderPipelinePATHFeeder)
         .exec(http("getPipelineFolderPipeline")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${folder}/pipelines/${pipeline}")
 )
@@ -340,7 +297,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineQueue = scenario("getPipelineQueueSimulation")
-        .feed(getPipelineQueuePATHFeeder)
         .exec(http("getPipelineQueue")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/queue")
 )
@@ -354,7 +310,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineRun = scenario("getPipelineRunSimulation")
-        .feed(getPipelineRunPATHFeeder)
         .exec(http("getPipelineRun")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}")
 )
@@ -369,7 +324,6 @@ class BlueOceanApiSimulation extends Simulation {
     
     val scngetPipelineRunLog = scenario("getPipelineRunLogSimulation")
         .feed(getPipelineRunLogQUERYFeeder)
-        .feed(getPipelineRunLogPATHFeeder)
         .exec(http("getPipelineRunLog")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/log")
         .queryParam("download","${download}")
@@ -385,7 +339,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineRunNode = scenario("getPipelineRunNodeSimulation")
-        .feed(getPipelineRunNodePATHFeeder)
         .exec(http("getPipelineRunNode")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/nodes/${node}")
 )
@@ -399,7 +352,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineRunNodeStep = scenario("getPipelineRunNodeStepSimulation")
-        .feed(getPipelineRunNodeStepPATHFeeder)
         .exec(http("getPipelineRunNodeStep")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/nodes/${node}/steps/${step}")
 )
@@ -413,7 +365,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineRunNodeStepLog = scenario("getPipelineRunNodeStepLogSimulation")
-        .feed(getPipelineRunNodeStepLogPATHFeeder)
         .exec(http("getPipelineRunNodeStepLog")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/nodes/${node}/steps/${step}/log")
 )
@@ -427,7 +378,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineRunNodeSteps = scenario("getPipelineRunNodeStepsSimulation")
-        .feed(getPipelineRunNodeStepsPATHFeeder)
         .exec(http("getPipelineRunNodeSteps")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/nodes/${node}/steps")
 )
@@ -441,7 +391,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineRunNodes = scenario("getPipelineRunNodesSimulation")
-        .feed(getPipelineRunNodesPATHFeeder)
         .exec(http("getPipelineRunNodes")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/nodes")
 )
@@ -455,7 +404,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelineRuns = scenario("getPipelineRunsSimulation")
-        .feed(getPipelineRunsPATHFeeder)
         .exec(http("getPipelineRuns")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs")
 )
@@ -469,7 +417,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetPipelines = scenario("getPipelinesSimulation")
-        .feed(getPipelinesPATHFeeder)
         .exec(http("getPipelines")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/")
 )
@@ -483,7 +430,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetSCM = scenario("getSCMSimulation")
-        .feed(getSCMPATHFeeder)
         .exec(http("getSCM")
         .httpRequest("GET","/blue/rest/organizations/${organization}/scm/${scm}")
 )
@@ -498,7 +444,6 @@ class BlueOceanApiSimulation extends Simulation {
     
     val scngetSCMOrganisationRepositories = scenario("getSCMOrganisationRepositoriesSimulation")
         .feed(getSCMOrganisationRepositoriesQUERYFeeder)
-        .feed(getSCMOrganisationRepositoriesPATHFeeder)
         .exec(http("getSCMOrganisationRepositories")
         .httpRequest("GET","/blue/rest/organizations/${organization}/scm/${scm}/organizations/${scmOrganisation}/repositories")
         .queryParam("pageSize","${pageSize}")
@@ -516,7 +461,6 @@ class BlueOceanApiSimulation extends Simulation {
     
     val scngetSCMOrganisationRepository = scenario("getSCMOrganisationRepositorySimulation")
         .feed(getSCMOrganisationRepositoryQUERYFeeder)
-        .feed(getSCMOrganisationRepositoryPATHFeeder)
         .exec(http("getSCMOrganisationRepository")
         .httpRequest("GET","/blue/rest/organizations/${organization}/scm/${scm}/organizations/${scmOrganisation}/repositories/${repository}")
         .queryParam("credentialId","${credentialId}")
@@ -532,7 +476,6 @@ class BlueOceanApiSimulation extends Simulation {
     
     val scngetSCMOrganisations = scenario("getSCMOrganisationsSimulation")
         .feed(getSCMOrganisationsQUERYFeeder)
-        .feed(getSCMOrganisationsPATHFeeder)
         .exec(http("getSCMOrganisations")
         .httpRequest("GET","/blue/rest/organizations/${organization}/scm/${scm}/organizations")
         .queryParam("credentialId","${credentialId}")
@@ -547,7 +490,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetUser = scenario("getUserSimulation")
-        .feed(getUserPATHFeeder)
         .exec(http("getUser")
         .httpRequest("GET","/blue/rest/organizations/${organization}/users/${user}")
 )
@@ -561,7 +503,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetUserFavorites = scenario("getUserFavoritesSimulation")
-        .feed(getUserFavoritesPATHFeeder)
         .exec(http("getUserFavorites")
         .httpRequest("GET","/blue/rest/users/${user}/favorites")
 )
@@ -575,7 +516,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scngetUsers = scenario("getUsersSimulation")
-        .feed(getUsersPATHFeeder)
         .exec(http("getUsers")
         .httpRequest("GET","/blue/rest/organizations/${organization}/users/")
 )
@@ -589,7 +529,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scnpostPipelineRun = scenario("postPipelineRunSimulation")
-        .feed(postPipelineRunPATHFeeder)
         .exec(http("postPipelineRun")
         .httpRequest("POST","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/replay")
 )
@@ -603,7 +542,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scnpostPipelineRuns = scenario("postPipelineRunsSimulation")
-        .feed(postPipelineRunsPATHFeeder)
         .exec(http("postPipelineRuns")
         .httpRequest("POST","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs")
 )
@@ -617,7 +555,6 @@ class BlueOceanApiSimulation extends Simulation {
 
     
     val scnputPipelineFavorite = scenario("putPipelineFavoriteSimulation")
-        .feed(putPipelineFavoritePATHFeeder)
         .exec(http("putPipelineFavorite")
         .httpRequest("PUT","/blue/rest/organizations/${organization}/pipelines/${pipeline}/favorite")
 )
@@ -632,11 +569,10 @@ class BlueOceanApiSimulation extends Simulation {
     
     val scnputPipelineRun = scenario("putPipelineRunSimulation")
         .feed(putPipelineRunQUERYFeeder)
-        .feed(putPipelineRunPATHFeeder)
         .exec(http("putPipelineRun")
         .httpRequest("PUT","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/stop")
-        .queryParam("timeOutInSecs","${timeOutInSecs}")
         .queryParam("blocking","${blocking}")
+        .queryParam("timeOutInSecs","${timeOutInSecs}")
 )
 
     // Run scnputPipelineRun with warm up and reach a constant rate for entire duration

@@ -361,6 +361,8 @@ pub enum PostViewConfigResponse {
 }
 
 
+
+
 /// RemoteAccess
 #[async_trait]
 #[allow(clippy::ptr_arg)]
@@ -370,6 +372,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// GetComputer - GET /computer/api/json
     async fn get_computer(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -380,6 +383,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// GetJenkins - GET /api/json
     async fn get_jenkins(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -389,6 +393,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// GetJob - GET /job/{name}/api/json
     async fn get_job(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -399,6 +404,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// GetJobConfig - GET /job/{name}/config.xml
     async fn get_job_config(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -409,6 +415,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// GetJobLastBuild - GET /job/{name}/lastBuild/api/json
     async fn get_job_last_build(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -419,6 +426,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// GetJobProgressiveText - GET /job/{name}/{number}/logText/progressiveText
     async fn get_job_progressive_text(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -430,6 +438,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// GetQueue - GET /queue/api/json
     async fn get_queue(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -439,6 +448,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// GetQueueItem - GET /queue/item/{number}/api/json
     async fn get_queue_item(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -449,6 +459,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// GetView - GET /view/{name}/api/json
     async fn get_view(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -459,6 +470,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// GetViewConfig - GET /view/{name}/config.xml
     async fn get_view_config(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -469,6 +481,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// HeadJenkins - HEAD /api/json
     async fn head_jenkins(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -478,6 +491,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// PostCreateItem - POST /createItem
     async fn post_create_item(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -490,6 +504,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// PostCreateView - POST /createView
     async fn post_create_view(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -502,6 +517,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// PostJobBuild - POST /job/{name}/build
     async fn post_job_build(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -514,6 +530,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// PostJobConfig - POST /job/{name}/config.xml
     async fn post_job_config(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -526,6 +543,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// PostJobDelete - POST /job/{name}/doDelete
     async fn post_job_delete(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -537,6 +555,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// PostJobDisable - POST /job/{name}/disable
     async fn post_job_disable(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -548,6 +567,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// PostJobEnable - POST /job/{name}/enable
     async fn post_job_enable(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -559,6 +579,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// PostJobLastBuildStop - POST /job/{name}/lastBuild/stop
     async fn post_job_last_build_stop(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -570,6 +591,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
     /// PostViewConfig - POST /view/{name}/config.xml
     async fn post_view_config(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,

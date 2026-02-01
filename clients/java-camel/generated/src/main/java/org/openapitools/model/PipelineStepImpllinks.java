@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * PipelineStepImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-05-10T02:40:20.283295278Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-02-01T01:24:18.049500991Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineStepImpllinks {
 
   private Link self;

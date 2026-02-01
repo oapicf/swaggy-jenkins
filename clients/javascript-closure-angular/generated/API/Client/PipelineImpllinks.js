@@ -9,25 +9,25 @@ API.Client.PipelineImpllinks = function() {}
  * @type {!API.Client.Link}
  * @export
  */
-API.Client.PipelineImpllinks.prototype.runs;
-
-/**
- * @type {!API.Client.Link}
- * @export
- */
 API.Client.PipelineImpllinks.prototype.self;
 
 /**
  * @type {!API.Client.Link}
  * @export
  */
-API.Client.PipelineImpllinks.prototype.queue;
+API.Client.PipelineImpllinks.prototype.actions;
 
 /**
  * @type {!API.Client.Link}
  * @export
  */
-API.Client.PipelineImpllinks.prototype.actions;
+API.Client.PipelineImpllinks.prototype.runs;
+
+/**
+ * @type {!API.Client.Link}
+ * @export
+ */
+API.Client.PipelineImpllinks.prototype.queue;
 
 /**
  * @type {!string}

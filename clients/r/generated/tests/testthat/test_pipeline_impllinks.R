@@ -5,13 +5,6 @@ context("Test PipelineImpllinks")
 
 model_instance <- PipelineImpllinks$new()
 
-test_that("runs", {
-  # tests for the property `runs` (Link)
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`runs`, "EXPECTED_RESULT")
-})
-
 test_that("item_self", {
   # tests for the property `item_self` (Link)
 
@@ -19,18 +12,25 @@ test_that("item_self", {
   #expect_equal(model.instance$`item_self`, "EXPECTED_RESULT")
 })
 
-test_that("queue", {
-  # tests for the property `queue` (Link)
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`queue`, "EXPECTED_RESULT")
-})
-
 test_that("actions", {
   # tests for the property `actions` (Link)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`actions`, "EXPECTED_RESULT")
+})
+
+test_that("runs", {
+  # tests for the property `runs` (Link)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`runs`, "EXPECTED_RESULT")
+})
+
+test_that("queue", {
+  # tests for the property `queue` (Link)
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`queue`, "EXPECTED_RESULT")
 })
 
 test_that("_class", {

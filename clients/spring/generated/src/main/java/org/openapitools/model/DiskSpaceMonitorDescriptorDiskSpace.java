@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * DiskSpaceMonitorDescriptorDiskSpace
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class DiskSpaceMonitorDescriptorDiskSpace {
 
   private @Nullable String propertyClass;
@@ -30,7 +30,7 @@ public class DiskSpaceMonitorDescriptorDiskSpace {
 
   private @Nullable Integer size;
 
-  public DiskSpaceMonitorDescriptorDiskSpace propertyClass(String propertyClass) {
+  public DiskSpaceMonitorDescriptorDiskSpace propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -42,15 +42,15 @@ public class DiskSpaceMonitorDescriptorDiskSpace {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public DiskSpaceMonitorDescriptorDiskSpace timestamp(Integer timestamp) {
+  public DiskSpaceMonitorDescriptorDiskSpace timestamp(@Nullable Integer timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -62,15 +62,15 @@ public class DiskSpaceMonitorDescriptorDiskSpace {
   
   @Schema(name = "timestamp", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("timestamp")
-  public Integer getTimestamp() {
+  public @Nullable Integer getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(Integer timestamp) {
+  public void setTimestamp(@Nullable Integer timestamp) {
     this.timestamp = timestamp;
   }
 
-  public DiskSpaceMonitorDescriptorDiskSpace path(String path) {
+  public DiskSpaceMonitorDescriptorDiskSpace path(@Nullable String path) {
     this.path = path;
     return this;
   }
@@ -82,15 +82,15 @@ public class DiskSpaceMonitorDescriptorDiskSpace {
   
   @Schema(name = "path", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("path")
-  public String getPath() {
+  public @Nullable String getPath() {
     return path;
   }
 
-  public void setPath(String path) {
+  public void setPath(@Nullable String path) {
     this.path = path;
   }
 
-  public DiskSpaceMonitorDescriptorDiskSpace size(Integer size) {
+  public DiskSpaceMonitorDescriptorDiskSpace size(@Nullable Integer size) {
     this.size = size;
     return this;
   }
@@ -102,11 +102,11 @@ public class DiskSpaceMonitorDescriptorDiskSpace {
   
   @Schema(name = "size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("size")
-  public Integer getSize() {
+  public @Nullable Integer getSize() {
     return size;
   }
 
-  public void setSize(Integer size) {
+  public void setSize(@Nullable Integer size) {
     this.size = size;
   }
 

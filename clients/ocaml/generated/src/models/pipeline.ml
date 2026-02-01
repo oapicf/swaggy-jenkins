@@ -5,25 +5,69 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    organization: string option [@default None];
-    name: string option [@default None];
-    display_name: string option [@default None];
-    full_name: string option [@default None];
-    weather_score: int32 option [@default None];
-    estimated_duration_in_millis: int32 option [@default None];
-    latest_run: Pipelinelatest_run.t option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    organization = None;
-    name = None;
-    display_name = None;
-    full_name = None;
-    weather_score = None;
-    estimated_duration_in_millis = None;
-    latest_run = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              organization: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "organization"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                                              display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "displayName"]
+                                              full_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "fullName"]
+                                              weather_score: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "weatherScore"]
+                                              estimated_duration_in_millis: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "estimatedDurationInMillis"]
+                                              latest_run: Pipelinelatest_run.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "latestRun"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            organization = None;
+            name = None;
+            display_name = None;
+            full_name = None;
+            weather_score = None;
+            estimated_duration_in_millis = None;
+            latest_run = None;
+        }
+    
 

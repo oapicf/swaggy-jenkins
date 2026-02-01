@@ -16,22 +16,22 @@ resourceTypes {
     description = PipelineImpllinks
     derivedFrom = Root
     properties {
-        runs {
-          type = Link
-          description = ""
-          optional = false
-        }
         _self {
           type = Link
           description = ""
           optional = false
         }
-        queue {
+        actions {
           type = Link
           description = ""
           optional = false
         }
-        actions {
+        runs {
+          type = Link
+          description = ""
+          optional = false
+        }
+        queue {
           type = Link
           description = ""
           optional = false

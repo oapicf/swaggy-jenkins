@@ -19,14 +19,14 @@ import javax.annotation.Generated;
  * ClockDifference
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ClockDifference {
 
   private @Nullable String propertyClass;
 
   private @Nullable Integer diff;
 
-  public ClockDifference propertyClass(String propertyClass) {
+  public ClockDifference propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -38,15 +38,15 @@ public class ClockDifference {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public ClockDifference diff(Integer diff) {
+  public ClockDifference diff(@Nullable Integer diff) {
     this.diff = diff;
     return this;
   }
@@ -58,11 +58,11 @@ public class ClockDifference {
   
   @Schema(name = "diff", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("diff")
-  public Integer getDiff() {
+  public @Nullable Integer getDiff() {
     return diff;
   }
 
-  public void setDiff(Integer diff) {
+  public void setDiff(@Nullable Integer diff) {
     this.diff = diff;
   }
 

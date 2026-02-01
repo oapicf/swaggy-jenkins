@@ -23,6 +23,8 @@ pub enum GetCrumbResponse {
 }
 
 
+
+
 /// Base
 #[async_trait]
 #[allow(clippy::ptr_arg)]
@@ -32,6 +34,7 @@ pub trait Base<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::ErrorHan
     /// GetCrumb - GET /crumbIssuer/api/json
     async fn get_crumb(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,

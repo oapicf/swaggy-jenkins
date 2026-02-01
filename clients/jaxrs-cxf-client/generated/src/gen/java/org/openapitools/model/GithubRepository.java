@@ -11,27 +11,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GithubRepository  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private GithubRepositorylinks links;
 
   @ApiModelProperty(value = "")
+
   private String defaultBranch;
 
   @ApiModelProperty(value = "")
+
   private String description;
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private GithubRepositorypermissions permissions;
 
   @ApiModelProperty(value = "")
+
   private Boolean _private;
 
   @ApiModelProperty(value = "")
+
   private String fullName;
  /**
    * Get propertyClass

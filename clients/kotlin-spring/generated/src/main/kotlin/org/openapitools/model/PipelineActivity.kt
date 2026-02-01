@@ -79,7 +79,7 @@ data class PipelineActivity(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("commitId") val commitId: kotlin.String? = null
-    ) {
+) {
 
 }
 

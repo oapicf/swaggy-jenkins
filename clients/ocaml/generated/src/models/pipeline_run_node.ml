@@ -5,25 +5,67 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    display_name: string option [@default None];
-    duration_in_millis: int32 option [@default None];
-    edges: Pipeline_run_nodeedges.t list;
-    id: string option [@default None];
-    _result: string option [@default None];
-    start_time: string option [@default None];
-    state: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    display_name = None;
-    duration_in_millis = None;
-    edges = [];
-    id = None;
-    _result = None;
-    start_time = None;
-    state = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "displayName"]
+                                              duration_in_millis: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "durationInMillis"]
+                                              edges: Pipeline_run_nodeedges.t list
+                 [@default []]
+                
+                ; [@key "edges"]
+                                              id: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "id"]
+                                              _result: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "result"]
+                                              start_time: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "startTime"]
+                                              state: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "state"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            display_name = None;
+            duration_in_millis = None;
+            edges = [];
+            id = None;
+            _result = None;
+            start_time = None;
+            state = None;
+        }
+    
 

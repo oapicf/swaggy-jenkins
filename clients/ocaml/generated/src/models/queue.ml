@@ -5,13 +5,25 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    items: Queue_blocked_item.t list;
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    items = [];
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              items: Queue_blocked_item.t list
+                 [@default []]
+                
+                ; [@key "items"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            items = [];
+        }
+    
 

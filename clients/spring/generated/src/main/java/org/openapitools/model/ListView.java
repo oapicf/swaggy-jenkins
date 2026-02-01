@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * ListView
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ListView {
 
   private @Nullable String propertyClass;
@@ -37,7 +37,7 @@ public class ListView {
 
   private @Nullable String url;
 
-  public ListView propertyClass(String propertyClass) {
+  public ListView propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -49,15 +49,15 @@ public class ListView {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public ListView description(String description) {
+  public ListView description(@Nullable String description) {
     this.description = description;
     return this;
   }
@@ -69,11 +69,11 @@ public class ListView {
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
-  public String getDescription() {
+  public @Nullable String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@Nullable String description) {
     this.description = description;
   }
 
@@ -105,7 +105,7 @@ public class ListView {
     this.jobs = jobs;
   }
 
-  public ListView name(String name) {
+  public ListView name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -117,15 +117,15 @@ public class ListView {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
-  public ListView url(String url) {
+  public ListView url(@Nullable String url) {
     this.url = url;
     return this;
   }
@@ -137,11 +137,11 @@ public class ListView {
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")
-  public String getUrl() {
+  public @Nullable String getUrl() {
     return url;
   }
 
-  public void setUrl(String url) {
+  public void setUrl(@Nullable String url) {
     this.url = url;
   }
 

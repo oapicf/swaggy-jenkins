@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * ComputerSet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ComputerSet {
 
   private @Nullable String propertyClass;
@@ -37,7 +37,7 @@ public class ComputerSet {
 
   private @Nullable Integer totalExecutors;
 
-  public ComputerSet propertyClass(String propertyClass) {
+  public ComputerSet propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -49,15 +49,15 @@ public class ComputerSet {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public ComputerSet busyExecutors(Integer busyExecutors) {
+  public ComputerSet busyExecutors(@Nullable Integer busyExecutors) {
     this.busyExecutors = busyExecutors;
     return this;
   }
@@ -69,11 +69,11 @@ public class ComputerSet {
   
   @Schema(name = "busyExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("busyExecutors")
-  public Integer getBusyExecutors() {
+  public @Nullable Integer getBusyExecutors() {
     return busyExecutors;
   }
 
-  public void setBusyExecutors(Integer busyExecutors) {
+  public void setBusyExecutors(@Nullable Integer busyExecutors) {
     this.busyExecutors = busyExecutors;
   }
 
@@ -105,7 +105,7 @@ public class ComputerSet {
     this.computer = computer;
   }
 
-  public ComputerSet displayName(String displayName) {
+  public ComputerSet displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -117,15 +117,15 @@ public class ComputerSet {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
-  public ComputerSet totalExecutors(Integer totalExecutors) {
+  public ComputerSet totalExecutors(@Nullable Integer totalExecutors) {
     this.totalExecutors = totalExecutors;
     return this;
   }
@@ -137,11 +137,11 @@ public class ComputerSet {
   
   @Schema(name = "totalExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalExecutors")
-  public Integer getTotalExecutors() {
+  public @Nullable Integer getTotalExecutors() {
     return totalExecutors;
   }
 
-  public void setTotalExecutors(Integer totalExecutors) {
+  public void setTotalExecutors(@Nullable Integer totalExecutors) {
     this.totalExecutors = totalExecutors;
   }
 

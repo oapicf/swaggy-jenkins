@@ -81,33 +81,14 @@ class RemoteAccessApiSimulation extends Simulation {
 
     // Set up CSV feeders
     val getComputerQUERYFeeder = csv(userDataDirectory + File.separator + "getComputer-queryParams.csv").random
-    val getJobPATHFeeder = csv(userDataDirectory + File.separator + "getJob-pathParams.csv").random
-    val getJobConfigPATHFeeder = csv(userDataDirectory + File.separator + "getJobConfig-pathParams.csv").random
-    val getJobLastBuildPATHFeeder = csv(userDataDirectory + File.separator + "getJobLastBuild-pathParams.csv").random
     val getJobProgressiveTextQUERYFeeder = csv(userDataDirectory + File.separator + "getJobProgressiveText-queryParams.csv").random
     val getJobProgressiveTextPATHFeeder = csv(userDataDirectory + File.separator + "getJobProgressiveText-pathParams.csv").random
     val getQueueItemPATHFeeder = csv(userDataDirectory + File.separator + "getQueueItem-pathParams.csv").random
-    val getViewPATHFeeder = csv(userDataDirectory + File.separator + "getView-pathParams.csv").random
-    val getViewConfigPATHFeeder = csv(userDataDirectory + File.separator + "getViewConfig-pathParams.csv").random
     val postCreateItemQUERYFeeder = csv(userDataDirectory + File.separator + "postCreateItem-queryParams.csv").random
     val postCreateItemHEADERFeeder = csv(userDataDirectory + File.separator + "postCreateItem-headerParams.csv").random
     val postCreateViewQUERYFeeder = csv(userDataDirectory + File.separator + "postCreateView-queryParams.csv").random
     val postCreateViewHEADERFeeder = csv(userDataDirectory + File.separator + "postCreateView-headerParams.csv").random
     val postJobBuildQUERYFeeder = csv(userDataDirectory + File.separator + "postJobBuild-queryParams.csv").random
-    val postJobBuildHEADERFeeder = csv(userDataDirectory + File.separator + "postJobBuild-headerParams.csv").random
-    val postJobBuildPATHFeeder = csv(userDataDirectory + File.separator + "postJobBuild-pathParams.csv").random
-    val postJobConfigHEADERFeeder = csv(userDataDirectory + File.separator + "postJobConfig-headerParams.csv").random
-    val postJobConfigPATHFeeder = csv(userDataDirectory + File.separator + "postJobConfig-pathParams.csv").random
-    val postJobDeleteHEADERFeeder = csv(userDataDirectory + File.separator + "postJobDelete-headerParams.csv").random
-    val postJobDeletePATHFeeder = csv(userDataDirectory + File.separator + "postJobDelete-pathParams.csv").random
-    val postJobDisableHEADERFeeder = csv(userDataDirectory + File.separator + "postJobDisable-headerParams.csv").random
-    val postJobDisablePATHFeeder = csv(userDataDirectory + File.separator + "postJobDisable-pathParams.csv").random
-    val postJobEnableHEADERFeeder = csv(userDataDirectory + File.separator + "postJobEnable-headerParams.csv").random
-    val postJobEnablePATHFeeder = csv(userDataDirectory + File.separator + "postJobEnable-pathParams.csv").random
-    val postJobLastBuildStopHEADERFeeder = csv(userDataDirectory + File.separator + "postJobLastBuildStop-headerParams.csv").random
-    val postJobLastBuildStopPATHFeeder = csv(userDataDirectory + File.separator + "postJobLastBuildStop-pathParams.csv").random
-    val postViewConfigHEADERFeeder = csv(userDataDirectory + File.separator + "postViewConfig-headerParams.csv").random
-    val postViewConfigPATHFeeder = csv(userDataDirectory + File.separator + "postViewConfig-pathParams.csv").random
 
     // Setup all scenarios
 
@@ -141,7 +122,6 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scngetJob = scenario("getJobSimulation")
-        .feed(getJobPATHFeeder)
         .exec(http("getJob")
         .httpRequest("GET","/job/${name}/api/json")
 )
@@ -155,7 +135,6 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scngetJobConfig = scenario("getJobConfigSimulation")
-        .feed(getJobConfigPATHFeeder)
         .exec(http("getJobConfig")
         .httpRequest("GET","/job/${name}/config.xml")
 )
@@ -169,7 +148,6 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scngetJobLastBuild = scenario("getJobLastBuildSimulation")
-        .feed(getJobLastBuildPATHFeeder)
         .exec(http("getJobLastBuild")
         .httpRequest("GET","/job/${name}/lastBuild/api/json")
 )
@@ -226,7 +204,6 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scngetView = scenario("getViewSimulation")
-        .feed(getViewPATHFeeder)
         .exec(http("getView")
         .httpRequest("GET","/view/${name}/api/json")
 )
@@ -240,7 +217,6 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scngetViewConfig = scenario("getViewConfigSimulation")
-        .feed(getViewConfigPATHFeeder)
         .exec(http("getViewConfig")
         .httpRequest("GET","/view/${name}/config.xml")
 )
@@ -271,10 +247,9 @@ class RemoteAccessApiSimulation extends Simulation {
         .feed(postCreateItemHEADERFeeder)
         .exec(http("postCreateItem")
         .httpRequest("POST","/createItem")
-        .queryParam("name","${name}")
         .queryParam("from","${from}")
+        .queryParam("name","${name}")
         .queryParam("mode","${mode}")
-        .header("Jenkins-Crumb","${Jenkins-Crumb}")
         .header("Content-Type","${Content-Type}")
 )
 
@@ -292,7 +267,6 @@ class RemoteAccessApiSimulation extends Simulation {
         .exec(http("postCreateView")
         .httpRequest("POST","/createView")
         .queryParam("name","${name}")
-        .header("Jenkins-Crumb","${Jenkins-Crumb}")
         .header("Content-Type","${Content-Type}")
 )
 
@@ -306,13 +280,10 @@ class RemoteAccessApiSimulation extends Simulation {
     
     val scnpostJobBuild = scenario("postJobBuildSimulation")
         .feed(postJobBuildQUERYFeeder)
-        .feed(postJobBuildHEADERFeeder)
-        .feed(postJobBuildPATHFeeder)
         .exec(http("postJobBuild")
         .httpRequest("POST","/job/${name}/build")
-        .queryParam("json","${json}")
         .queryParam("token","${token}")
-        .header("Jenkins-Crumb","${Jenkins-Crumb}")
+        .queryParam("json","${json}")
 )
 
     // Run scnpostJobBuild with warm up and reach a constant rate for entire duration
@@ -324,11 +295,8 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scnpostJobConfig = scenario("postJobConfigSimulation")
-        .feed(postJobConfigHEADERFeeder)
-        .feed(postJobConfigPATHFeeder)
         .exec(http("postJobConfig")
         .httpRequest("POST","/job/${name}/config.xml")
-        .header("Jenkins-Crumb","${Jenkins-Crumb}")
 )
 
     // Run scnpostJobConfig with warm up and reach a constant rate for entire duration
@@ -340,11 +308,8 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scnpostJobDelete = scenario("postJobDeleteSimulation")
-        .feed(postJobDeleteHEADERFeeder)
-        .feed(postJobDeletePATHFeeder)
         .exec(http("postJobDelete")
         .httpRequest("POST","/job/${name}/doDelete")
-        .header("Jenkins-Crumb","${Jenkins-Crumb}")
 )
 
     // Run scnpostJobDelete with warm up and reach a constant rate for entire duration
@@ -356,11 +321,8 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scnpostJobDisable = scenario("postJobDisableSimulation")
-        .feed(postJobDisableHEADERFeeder)
-        .feed(postJobDisablePATHFeeder)
         .exec(http("postJobDisable")
         .httpRequest("POST","/job/${name}/disable")
-        .header("Jenkins-Crumb","${Jenkins-Crumb}")
 )
 
     // Run scnpostJobDisable with warm up and reach a constant rate for entire duration
@@ -372,11 +334,8 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scnpostJobEnable = scenario("postJobEnableSimulation")
-        .feed(postJobEnableHEADERFeeder)
-        .feed(postJobEnablePATHFeeder)
         .exec(http("postJobEnable")
         .httpRequest("POST","/job/${name}/enable")
-        .header("Jenkins-Crumb","${Jenkins-Crumb}")
 )
 
     // Run scnpostJobEnable with warm up and reach a constant rate for entire duration
@@ -388,11 +347,8 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scnpostJobLastBuildStop = scenario("postJobLastBuildStopSimulation")
-        .feed(postJobLastBuildStopHEADERFeeder)
-        .feed(postJobLastBuildStopPATHFeeder)
         .exec(http("postJobLastBuildStop")
         .httpRequest("POST","/job/${name}/lastBuild/stop")
-        .header("Jenkins-Crumb","${Jenkins-Crumb}")
 )
 
     // Run scnpostJobLastBuildStop with warm up and reach a constant rate for entire duration
@@ -404,11 +360,8 @@ class RemoteAccessApiSimulation extends Simulation {
 
     
     val scnpostViewConfig = scenario("postViewConfigSimulation")
-        .feed(postViewConfigHEADERFeeder)
-        .feed(postViewConfigPATHFeeder)
         .exec(http("postViewConfig")
         .httpRequest("POST","/view/${name}/config.xml")
-        .header("Jenkins-Crumb","${Jenkins-Crumb}")
 )
 
     // Run scnpostViewConfig with warm up and reach a constant rate for entire duration

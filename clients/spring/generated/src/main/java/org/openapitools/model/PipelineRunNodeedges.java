@@ -19,14 +19,14 @@ import javax.annotation.Generated;
  * PipelineRunNodeedges
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineRunNodeedges {
 
   private @Nullable String id;
 
   private @Nullable String propertyClass;
 
-  public PipelineRunNodeedges id(String id) {
+  public PipelineRunNodeedges id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -38,15 +38,15 @@ public class PipelineRunNodeedges {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public PipelineRunNodeedges propertyClass(String propertyClass) {
+  public PipelineRunNodeedges propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -58,11 +58,11 @@ public class PipelineRunNodeedges {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

@@ -26,28 +26,28 @@ class PipelineImpllinksTest : ShouldSpec() {
         // uncomment below to create an instance of PipelineImpllinks
         //val modelInstance = PipelineImpllinks()
 
-        // to test the property `runs`
-        should("test runs") {
-            // uncomment below to test the property
-            //modelInstance.runs shouldBe ("TODO")
-        }
-
         // to test the property `self`
         should("test self") {
             // uncomment below to test the property
             //modelInstance.self shouldBe ("TODO")
         }
 
-        // to test the property `queue`
-        should("test queue") {
-            // uncomment below to test the property
-            //modelInstance.queue shouldBe ("TODO")
-        }
-
         // to test the property `actions`
         should("test actions") {
             // uncomment below to test the property
             //modelInstance.actions shouldBe ("TODO")
+        }
+
+        // to test the property `runs`
+        should("test runs") {
+            // uncomment below to test the property
+            //modelInstance.runs shouldBe ("TODO")
+        }
+
+        // to test the property `queue`
+        should("test queue") {
+            // uncomment below to test the property
+            //modelInstance.queue shouldBe ("TODO")
         }
 
         // to test the property `propertyClass`

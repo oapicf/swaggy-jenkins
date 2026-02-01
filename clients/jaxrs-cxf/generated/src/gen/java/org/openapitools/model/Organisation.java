@@ -11,9 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Organisation  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String name;
  /**
    * Get propertyClass

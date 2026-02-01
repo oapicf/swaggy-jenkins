@@ -11,10 +11,10 @@
 
 (def pipeline-impllinks-data
   {
-   (ds/opt :runs) link-spec
    (ds/opt :self) link-spec
-   (ds/opt :queue) link-spec
    (ds/opt :actions) link-spec
+   (ds/opt :runs) link-spec
+   (ds/opt :queue) link-spec
    (ds/opt :_class) string?
    })
 

@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -21,7 +21,7 @@ import public "models/null_scm.proto";
 
 message FreeStyleProject {
 
-  string _class = 406713225;
+  string class = 94742904;
 
   string name = 3373707;
 
@@ -33,46 +33,47 @@ message FreeStyleProject {
 
   string description = 113933319;
 
-  string displayName = 103536240;
+  string display_name = 4473835;
 
-  string displayNameOrNull = 45423322;
+  string display_name_or_null = 128985359;
 
-  string fullDisplayName = 275284900;
+  string full_display_name = 274623386;
 
-  string fullName = 257110460;
+  string full_name = 66563528;
 
   bool buildable = 326863674;
 
   repeated FreeStyleBuild builds = 304281661;
 
-  FreeStyleBuild firstBuild = 187551330;
+  FreeStyleBuild first_build = 169199586;
 
-  repeated FreeStyleProjecthealthReport healthReport = 475664048;
+  repeated FreeStyleProjecthealthReport health_report = 338505848;
 
-  bool inQueue = 315591407;
+  bool in_queue = 19637897;
 
-  bool keepDependencies = 422468944;
+  bool keep_dependencies = 87303264;
 
-  FreeStyleBuild lastBuild = 375943547;
+  FreeStyleBuild last_build = 417598590;
 
-  FreeStyleBuild lastCompletedBuild = 373344489;
+  FreeStyleBuild last_completed_build = 502527956;
 
-  string lastFailedBuild = 172680264;
+  string last_failed_build = 9049847;
 
-  FreeStyleBuild lastStableBuild = 165073789;
+  FreeStyleBuild last_stable_build = 278878069;
 
-  FreeStyleBuild lastSuccessfulBuild = 411458948;
+  FreeStyleBuild last_successful_build = 476215536;
 
-  string lastUnstableBuild = 491593925;
+  string last_unstable_build = 413575758;
 
-  string lastUnsuccessfulBuild = 283767880;
+  string last_unsuccessful_build = 6437526;
 
-  int32 nextBuildNumber = 470394268;
+  int32 next_build_number = 382082056;
 
-  string queueItem = 129165375;
+  string queue_item = 310844804;
 
-  bool concurrentBuild = 515446028;
+  bool concurrent_build = 133387803;
 
   NullSCM scm = 113693;
 
 }
+

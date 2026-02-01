@@ -5,15 +5,34 @@
  *
  *)
 
-type t = {
-    io_jenkins_blueocean_service_embedded_rest_pipeline_impl: Extension_class_impl.t option [@default None];
-    io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl: Extension_class_impl.t option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    io_jenkins_blueocean_service_embedded_rest_pipeline_impl = None;
-    io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              io_jenkins_blueocean_service_embedded_rest_pipeline_impl: Extension_class_impl.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "io.jenkins.blueocean.service.embedded.rest.PipelineImpl"]
+                                              io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl: Extension_class_impl.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            io_jenkins_blueocean_service_embedded_rest_pipeline_impl = None;
+            io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl = None;
+            _class = None;
+        }
+    
 

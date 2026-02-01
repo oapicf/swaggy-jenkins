@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class HudsonassignedLabels  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get propertyClass

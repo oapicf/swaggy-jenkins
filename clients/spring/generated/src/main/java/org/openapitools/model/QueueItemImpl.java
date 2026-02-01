@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * QueueItemImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class QueueItemImpl {
 
   private @Nullable String propertyClass;
@@ -32,7 +32,7 @@ public class QueueItemImpl {
 
   private @Nullable Integer queuedTime;
 
-  public QueueItemImpl propertyClass(String propertyClass) {
+  public QueueItemImpl propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -44,15 +44,15 @@ public class QueueItemImpl {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public QueueItemImpl expectedBuildNumber(Integer expectedBuildNumber) {
+  public QueueItemImpl expectedBuildNumber(@Nullable Integer expectedBuildNumber) {
     this.expectedBuildNumber = expectedBuildNumber;
     return this;
   }
@@ -64,15 +64,15 @@ public class QueueItemImpl {
   
   @Schema(name = "expectedBuildNumber", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("expectedBuildNumber")
-  public Integer getExpectedBuildNumber() {
+  public @Nullable Integer getExpectedBuildNumber() {
     return expectedBuildNumber;
   }
 
-  public void setExpectedBuildNumber(Integer expectedBuildNumber) {
+  public void setExpectedBuildNumber(@Nullable Integer expectedBuildNumber) {
     this.expectedBuildNumber = expectedBuildNumber;
   }
 
-  public QueueItemImpl id(String id) {
+  public QueueItemImpl id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -84,15 +84,15 @@ public class QueueItemImpl {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public QueueItemImpl pipeline(String pipeline) {
+  public QueueItemImpl pipeline(@Nullable String pipeline) {
     this.pipeline = pipeline;
     return this;
   }
@@ -104,15 +104,15 @@ public class QueueItemImpl {
   
   @Schema(name = "pipeline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pipeline")
-  public String getPipeline() {
+  public @Nullable String getPipeline() {
     return pipeline;
   }
 
-  public void setPipeline(String pipeline) {
+  public void setPipeline(@Nullable String pipeline) {
     this.pipeline = pipeline;
   }
 
-  public QueueItemImpl queuedTime(Integer queuedTime) {
+  public QueueItemImpl queuedTime(@Nullable Integer queuedTime) {
     this.queuedTime = queuedTime;
     return this;
   }
@@ -124,11 +124,11 @@ public class QueueItemImpl {
   
   @Schema(name = "queuedTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("queuedTime")
-  public Integer getQueuedTime() {
+  public @Nullable Integer getQueuedTime() {
     return queuedTime;
   }
 
-  public void setQueuedTime(Integer queuedTime) {
+  public void setQueuedTime(@Nullable Integer queuedTime) {
     this.queuedTime = queuedTime;
   }
 

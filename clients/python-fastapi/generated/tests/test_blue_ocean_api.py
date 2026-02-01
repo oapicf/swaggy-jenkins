@@ -23,19 +23,38 @@ from openapi_server.models.queue_item_impl import QueueItemImpl  # noqa: F401
 from openapi_server.models.user import User  # noqa: F401
 
 
-def test_delete_pipeline_queue_item(client: TestClient):
-    """Test case for delete_pipeline_queue_item
+def test_get_json_web_token(client: TestClient):
+    """Test case for get_json_web_token
+
+    
+    """
+    params = [("expiry_time_in_mins", 56),     ("max_expiry_time_in_mins", 56)]
+    headers = {
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/jwt-auth/token",
+    #    headers=headers,
+    #    params=params,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_get_json_web_key(client: TestClient):
+    """Test case for get_json_web_key
 
     
     """
 
     headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
     }
     # uncomment below to make a request
     #response = client.request(
-    #    "DELETE",
-    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}".format(organization='organization_example', pipeline='pipeline_example', queue='queue_example'),
+    #    "GET",
+    #    "/jwt-auth/jwks/{key}".format(key=56),
     #    headers=headers,
     #)
 
@@ -43,20 +62,21 @@ def test_delete_pipeline_queue_item(client: TestClient):
     #assert response.status_code == 200
 
 
-def test_get_authenticated_user(client: TestClient):
-    """Test case for get_authenticated_user
+def test_search_classes(client: TestClient):
+    """Test case for search_classes
 
     
     """
-
+    params = [("q", 'q_example')]
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
     # uncomment below to make a request
     #response = client.request(
     #    "GET",
-    #    "/blue/rest/organizations/{organization}/user/".format(organization='organization_example'),
+    #    "/blue/rest/classes/",
     #    headers=headers,
+    #    params=params,
     #)
 
     # uncomment below to assert the status code of the HTTP response
@@ -83,39 +103,41 @@ def test_get_classes(client: TestClient):
     #assert response.status_code == 200
 
 
-def test_get_json_web_key(client: TestClient):
-    """Test case for get_json_web_key
+def test_search(client: TestClient):
+    """Test case for search
 
     
     """
-
+    params = [("q", 'q_example')]
     headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
     }
     # uncomment below to make a request
     #response = client.request(
     #    "GET",
-    #    "/jwt-auth/jwks/{key}".format(key=56),
+    #    "/blue/rest/search/",
     #    headers=headers,
+    #    params=params,
     #)
 
     # uncomment below to assert the status code of the HTTP response
     #assert response.status_code == 200
 
 
-def test_get_json_web_token(client: TestClient):
-    """Test case for get_json_web_token
+def test_get_organisations(client: TestClient):
+    """Test case for get_organisations
 
     
     """
-    params = [("expiry_time_in_mins", 56),     ("max_expiry_time_in_mins", 56)]
+
     headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
     }
     # uncomment below to make a request
     #response = client.request(
     #    "GET",
-    #    "/jwt-auth/token",
+    #    "/blue/rest/organizations/",
     #    headers=headers,
-    #    params=params,
     #)
 
     # uncomment below to assert the status code of the HTTP response
@@ -142,8 +164,8 @@ def test_get_organisation(client: TestClient):
     #assert response.status_code == 200
 
 
-def test_get_organisations(client: TestClient):
-    """Test case for get_organisations
+def test_get_pipelines(client: TestClient):
+    """Test case for get_pipelines
 
     
     """
@@ -154,7 +176,7 @@ def test_get_organisations(client: TestClient):
     # uncomment below to make a request
     #response = client.request(
     #    "GET",
-    #    "/blue/rest/organizations/",
+    #    "/blue/rest/organizations/{organization}/pipelines/".format(organization='organization_example'),
     #    headers=headers,
     #)
 
@@ -202,6 +224,26 @@ def test_get_pipeline_activities(client: TestClient):
     #assert response.status_code == 200
 
 
+def test_get_pipeline_branches(client: TestClient):
+    """Test case for get_pipeline_branches
+
+    
+    """
+
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches".format(organization='organization_example', pipeline='pipeline_example'),
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
 def test_get_pipeline_branch(client: TestClient):
     """Test case for get_pipeline_branch
 
@@ -235,26 +277,6 @@ def test_get_pipeline_branch_run(client: TestClient):
     #response = client.request(
     #    "GET",
     #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}".format(organization='organization_example', pipeline='pipeline_example', branch='branch_example', run='run_example'),
-    #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_get_pipeline_branches(client: TestClient):
-    """Test case for get_pipeline_branches
-
-    
-    """
-
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "GET",
-    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches".format(organization='organization_example', pipeline='pipeline_example'),
     #    headers=headers,
     #)
 
@@ -302,6 +324,28 @@ def test_get_pipeline_folder_pipeline(client: TestClient):
     #assert response.status_code == 200
 
 
+def test_put_pipeline_favorite(client: TestClient):
+    """Test case for put_pipeline_favorite
+
+    
+    """
+    body = True
+
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "PUT",
+    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite".format(organization='organization_example', pipeline='pipeline_example'),
+    #    headers=headers,
+    #    json=body,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
 def test_get_pipeline_queue(client: TestClient):
     """Test case for get_pipeline_queue
 
@@ -315,6 +359,66 @@ def test_get_pipeline_queue(client: TestClient):
     #response = client.request(
     #    "GET",
     #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue".format(organization='organization_example', pipeline='pipeline_example'),
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_delete_pipeline_queue_item(client: TestClient):
+    """Test case for delete_pipeline_queue_item
+
+    
+    """
+
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "DELETE",
+    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}".format(organization='organization_example', pipeline='pipeline_example', queue='queue_example'),
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_get_pipeline_runs(client: TestClient):
+    """Test case for get_pipeline_runs
+
+    
+    """
+
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".format(organization='organization_example', pipeline='pipeline_example'),
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_post_pipeline_runs(client: TestClient):
+    """Test case for post_pipeline_runs
+
+    
+    """
+
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".format(organization='organization_example', pipeline='pipeline_example'),
     #    headers=headers,
     #)
 
@@ -342,21 +446,20 @@ def test_get_pipeline_run(client: TestClient):
     #assert response.status_code == 200
 
 
-def test_get_pipeline_run_log(client: TestClient):
-    """Test case for get_pipeline_run_log
+def test_get_pipeline_run_nodes(client: TestClient):
+    """Test case for get_pipeline_run_nodes
 
     
     """
-    params = [("start", 56),     ("download", True)]
+
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
     # uncomment below to make a request
     #response = client.request(
     #    "GET",
-    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log".format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
+    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes".format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
     #    headers=headers,
-    #    params=params,
     #)
 
     # uncomment below to assert the status code of the HTTP response
@@ -376,6 +479,26 @@ def test_get_pipeline_run_node(client: TestClient):
     #response = client.request(
     #    "GET",
     #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}".format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example'),
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_get_pipeline_run_node_steps(client: TestClient):
+    """Test case for get_pipeline_run_node_steps
+
+    
+    """
+
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps".format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example'),
     #    headers=headers,
     #)
 
@@ -423,8 +546,29 @@ def test_get_pipeline_run_node_step_log(client: TestClient):
     #assert response.status_code == 200
 
 
-def test_get_pipeline_run_node_steps(client: TestClient):
-    """Test case for get_pipeline_run_node_steps
+def test_get_pipeline_run_log(client: TestClient):
+    """Test case for get_pipeline_run_log
+
+    
+    """
+    params = [("start", 56),     ("download", True)]
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log".format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
+    #    headers=headers,
+    #    params=params,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_post_pipeline_run(client: TestClient):
+    """Test case for post_pipeline_run
 
     
     """
@@ -434,8 +578,8 @@ def test_get_pipeline_run_node_steps(client: TestClient):
     }
     # uncomment below to make a request
     #response = client.request(
-    #    "GET",
-    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps".format(organization='organization_example', pipeline='pipeline_example', run='run_example', node='node_example'),
+    #    "POST",
+    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay".format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
     #    headers=headers,
     #)
 
@@ -443,60 +587,21 @@ def test_get_pipeline_run_node_steps(client: TestClient):
     #assert response.status_code == 200
 
 
-def test_get_pipeline_run_nodes(client: TestClient):
-    """Test case for get_pipeline_run_nodes
+def test_put_pipeline_run(client: TestClient):
+    """Test case for put_pipeline_run
 
     
     """
-
+    params = [("blocking", 'blocking_example'),     ("time_out_in_secs", 56)]
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
     # uncomment below to make a request
     #response = client.request(
-    #    "GET",
-    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes".format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
+    #    "PUT",
+    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop".format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
     #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_get_pipeline_runs(client: TestClient):
-    """Test case for get_pipeline_runs
-
-    
-    """
-
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "GET",
-    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".format(organization='organization_example', pipeline='pipeline_example'),
-    #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_get_pipelines(client: TestClient):
-    """Test case for get_pipelines
-
-    
-    """
-
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "GET",
-    #    "/blue/rest/organizations/{organization}/pipelines/".format(organization='organization_example'),
-    #    headers=headers,
+    #    params=params,
     #)
 
     # uncomment below to assert the status code of the HTTP response
@@ -517,6 +622,27 @@ def test_get_scm(client: TestClient):
     #    "GET",
     #    "/blue/rest/organizations/{organization}/scm/{scm}".format(organization='organization_example', scm='scm_example'),
     #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_get_scm_organisations(client: TestClient):
+    """Test case for get_scm_organisations
+
+    
+    """
+    params = [("credential_id", 'credential_id_example')]
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/blue/rest/organizations/{organization}/scm/{scm}/organizations".format(organization='organization_example', scm='scm_example'),
+    #    headers=headers,
+    #    params=params,
     #)
 
     # uncomment below to assert the status code of the HTTP response
@@ -565,21 +691,40 @@ def test_get_scm_organisation_repository(client: TestClient):
     #assert response.status_code == 200
 
 
-def test_get_scm_organisations(client: TestClient):
-    """Test case for get_scm_organisations
+def test_get_authenticated_user(client: TestClient):
+    """Test case for get_authenticated_user
 
     
     """
-    params = [("credential_id", 'credential_id_example')]
+
     headers = {
         "Authorization": "BasicZm9vOmJhcg==",
     }
     # uncomment below to make a request
     #response = client.request(
     #    "GET",
-    #    "/blue/rest/organizations/{organization}/scm/{scm}/organizations".format(organization='organization_example', scm='scm_example'),
+    #    "/blue/rest/organizations/{organization}/user/".format(organization='organization_example'),
     #    headers=headers,
-    #    params=params,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_get_users(client: TestClient):
+    """Test case for get_users
+
+    
+    """
+
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/blue/rest/organizations/{organization}/users/".format(organization='organization_example'),
+    #    headers=headers,
     #)
 
     # uncomment below to assert the status code of the HTTP response
@@ -620,151 +765,6 @@ def test_get_user_favorites(client: TestClient):
     #    "GET",
     #    "/blue/rest/users/{user}/favorites".format(user='user_example'),
     #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_get_users(client: TestClient):
-    """Test case for get_users
-
-    
-    """
-
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "GET",
-    #    "/blue/rest/organizations/{organization}/users/".format(organization='organization_example'),
-    #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_post_pipeline_run(client: TestClient):
-    """Test case for post_pipeline_run
-
-    
-    """
-
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay".format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
-    #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_post_pipeline_runs(client: TestClient):
-    """Test case for post_pipeline_runs
-
-    
-    """
-
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs".format(organization='organization_example', pipeline='pipeline_example'),
-    #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_put_pipeline_favorite(client: TestClient):
-    """Test case for put_pipeline_favorite
-
-    
-    """
-    body = True
-
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "PUT",
-    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite".format(organization='organization_example', pipeline='pipeline_example'),
-    #    headers=headers,
-    #    json=body,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_put_pipeline_run(client: TestClient):
-    """Test case for put_pipeline_run
-
-    
-    """
-    params = [("blocking", 'blocking_example'),     ("time_out_in_secs", 56)]
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "PUT",
-    #    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop".format(organization='organization_example', pipeline='pipeline_example', run='run_example'),
-    #    headers=headers,
-    #    params=params,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_search(client: TestClient):
-    """Test case for search
-
-    
-    """
-    params = [("q", 'q_example')]
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "GET",
-    #    "/blue/rest/search/",
-    #    headers=headers,
-    #    params=params,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_search_classes(client: TestClient):
-    """Test case for search_classes
-
-    
-    """
-    params = [("q", 'q_example')]
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "GET",
-    #    "/blue/rest/classes/",
-    #    headers=headers,
-    #    params=params,
     #)
 
     # uncomment below to assert the status code of the HTTP response

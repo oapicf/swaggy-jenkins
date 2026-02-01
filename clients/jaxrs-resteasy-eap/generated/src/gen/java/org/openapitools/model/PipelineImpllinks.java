@@ -11,26 +11,14 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2025-05-10T02:40:31.143011869Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-02-01T01:24:33.282701546Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineImpllinks   {
   
-  private Link runs;
   private Link self;
-  private Link queue;
   private Link actions;
+  private Link runs;
+  private Link queue;
   private String propertyClass;
-
-  /**
-   **/
-  
-  @ApiModelProperty(value = "")
-  @JsonProperty("runs")
-  public Link getRuns() {
-    return runs;
-  }
-  public void setRuns(Link runs) {
-    this.runs = runs;
-  }
 
   /**
    **/
@@ -48,24 +36,36 @@ public class PipelineImpllinks   {
    **/
   
   @ApiModelProperty(value = "")
-  @JsonProperty("queue")
-  public Link getQueue() {
-    return queue;
-  }
-  public void setQueue(Link queue) {
-    this.queue = queue;
-  }
-
-  /**
-   **/
-  
-  @ApiModelProperty(value = "")
   @JsonProperty("actions")
   public Link getActions() {
     return actions;
   }
   public void setActions(Link actions) {
     this.actions = actions;
+  }
+
+  /**
+   **/
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("runs")
+  public Link getRuns() {
+    return runs;
+  }
+  public void setRuns(Link runs) {
+    this.runs = runs;
+  }
+
+  /**
+   **/
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("queue")
+  public Link getQueue() {
+    return queue;
+  }
+  public void setQueue(Link queue) {
+    this.queue = queue;
   }
 
   /**
@@ -90,16 +90,16 @@ public class PipelineImpllinks   {
       return false;
     }
     PipelineImpllinks pipelineImpllinks = (PipelineImpllinks) o;
-    return Objects.equals(this.runs, pipelineImpllinks.runs) &&
-        Objects.equals(this.self, pipelineImpllinks.self) &&
-        Objects.equals(this.queue, pipelineImpllinks.queue) &&
+    return Objects.equals(this.self, pipelineImpllinks.self) &&
         Objects.equals(this.actions, pipelineImpllinks.actions) &&
+        Objects.equals(this.runs, pipelineImpllinks.runs) &&
+        Objects.equals(this.queue, pipelineImpllinks.queue) &&
         Objects.equals(this.propertyClass, pipelineImpllinks.propertyClass);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(runs, self, queue, actions, propertyClass);
+    return Objects.hash(self, actions, runs, queue, propertyClass);
   }
 
   @Override
@@ -107,10 +107,10 @@ public class PipelineImpllinks   {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineImpllinks {\n");
     
-    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
+    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
+    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("}");
     return sb.toString();

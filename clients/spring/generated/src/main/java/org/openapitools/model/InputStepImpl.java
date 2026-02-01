@@ -24,7 +24,7 @@ import javax.annotation.Generated;
  * InputStepImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class InputStepImpl {
 
   private @Nullable String propertyClass;
@@ -42,7 +42,7 @@ public class InputStepImpl {
 
   private @Nullable String submitter;
 
-  public InputStepImpl propertyClass(String propertyClass) {
+  public InputStepImpl propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -54,15 +54,15 @@ public class InputStepImpl {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public InputStepImpl links(InputStepImpllinks links) {
+  public InputStepImpl links(@Nullable InputStepImpllinks links) {
     this.links = links;
     return this;
   }
@@ -74,15 +74,15 @@ public class InputStepImpl {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public InputStepImpllinks getLinks() {
+  public @Nullable InputStepImpllinks getLinks() {
     return links;
   }
 
-  public void setLinks(InputStepImpllinks links) {
+  public void setLinks(@Nullable InputStepImpllinks links) {
     this.links = links;
   }
 
-  public InputStepImpl id(String id) {
+  public InputStepImpl id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -94,15 +94,15 @@ public class InputStepImpl {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public InputStepImpl message(String message) {
+  public InputStepImpl message(@Nullable String message) {
     this.message = message;
     return this;
   }
@@ -114,15 +114,15 @@ public class InputStepImpl {
   
   @Schema(name = "message", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("message")
-  public String getMessage() {
+  public @Nullable String getMessage() {
     return message;
   }
 
-  public void setMessage(String message) {
+  public void setMessage(@Nullable String message) {
     this.message = message;
   }
 
-  public InputStepImpl ok(String ok) {
+  public InputStepImpl ok(@Nullable String ok) {
     this.ok = ok;
     return this;
   }
@@ -134,11 +134,11 @@ public class InputStepImpl {
   
   @Schema(name = "ok", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("ok")
-  public String getOk() {
+  public @Nullable String getOk() {
     return ok;
   }
 
-  public void setOk(String ok) {
+  public void setOk(@Nullable String ok) {
     this.ok = ok;
   }
 
@@ -170,7 +170,7 @@ public class InputStepImpl {
     this.parameters = parameters;
   }
 
-  public InputStepImpl submitter(String submitter) {
+  public InputStepImpl submitter(@Nullable String submitter) {
     this.submitter = submitter;
     return this;
   }
@@ -182,11 +182,11 @@ public class InputStepImpl {
   
   @Schema(name = "submitter", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("submitter")
-  public String getSubmitter() {
+  public @Nullable String getSubmitter() {
     return submitter;
   }
 
-  public void setSubmitter(String submitter) {
+  public void setSubmitter(@Nullable String submitter) {
     this.submitter = submitter;
   }
 

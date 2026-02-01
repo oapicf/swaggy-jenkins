@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * GenericResource
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class GenericResource {
 
   private @Nullable String propertyClass;
@@ -34,7 +34,7 @@ public class GenericResource {
 
   private @Nullable String startTime;
 
-  public GenericResource propertyClass(String propertyClass) {
+  public GenericResource propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -46,15 +46,15 @@ public class GenericResource {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public GenericResource displayName(String displayName) {
+  public GenericResource displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -66,15 +66,15 @@ public class GenericResource {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
-  public GenericResource durationInMillis(Integer durationInMillis) {
+  public GenericResource durationInMillis(@Nullable Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
     return this;
   }
@@ -86,15 +86,15 @@ public class GenericResource {
   
   @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("durationInMillis")
-  public Integer getDurationInMillis() {
+  public @Nullable Integer getDurationInMillis() {
     return durationInMillis;
   }
 
-  public void setDurationInMillis(Integer durationInMillis) {
+  public void setDurationInMillis(@Nullable Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
   }
 
-  public GenericResource id(String id) {
+  public GenericResource id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -106,15 +106,15 @@ public class GenericResource {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public GenericResource result(String result) {
+  public GenericResource result(@Nullable String result) {
     this.result = result;
     return this;
   }
@@ -126,15 +126,15 @@ public class GenericResource {
   
   @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("result")
-  public String getResult() {
+  public @Nullable String getResult() {
     return result;
   }
 
-  public void setResult(String result) {
+  public void setResult(@Nullable String result) {
     this.result = result;
   }
 
-  public GenericResource startTime(String startTime) {
+  public GenericResource startTime(@Nullable String startTime) {
     this.startTime = startTime;
     return this;
   }
@@ -146,11 +146,11 @@ public class GenericResource {
   
   @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("startTime")
-  public String getStartTime() {
+  public @Nullable String getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(String startTime) {
+  public void setStartTime(@Nullable String startTime) {
     this.startTime = startTime;
   }
 

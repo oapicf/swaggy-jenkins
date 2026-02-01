@@ -10,12 +10,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ExtensionClassContainerImpl1map  {
   
   @ApiModelProperty(value = "")
+
   private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
 
   @ApiModelProperty(value = "")
+
   private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl

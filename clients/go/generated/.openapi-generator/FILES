@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -174,4 +175,7 @@ model_swap_space_monitor_memory_usage2.go
 model_unlabeled_load_statistics.go
 model_user.go
 response.go
+test/api_base_test.go
+test/api_blue_ocean_test.go
+test/api_remote_access_test.go
 utils.go

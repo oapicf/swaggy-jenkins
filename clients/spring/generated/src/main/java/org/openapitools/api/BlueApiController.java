@@ -5,6 +5,7 @@ import org.openapitools.model.FavoriteImpl;
 import org.openapitools.model.GithubOrganization;
 import org.openapitools.model.GithubScm;
 import org.openapitools.model.MultibranchPipeline;
+import org.springframework.lang.Nullable;
 import org.openapitools.model.Organisation;
 import org.openapitools.model.Pipeline;
 import org.openapitools.model.PipelineActivity;
@@ -40,7 +41,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-04-27T08:11:13.649076561Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 @Controller
 @RequestMapping("${openapi.swaggyJenkins.base-path:}")
 public class BlueApiController implements BlueApi {

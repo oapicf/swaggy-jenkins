@@ -19,14 +19,14 @@ import javax.annotation.Generated;
  * Link
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class Link {
 
   private @Nullable String propertyClass;
 
   private @Nullable String href;
 
-  public Link propertyClass(String propertyClass) {
+  public Link propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -38,15 +38,15 @@ public class Link {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public Link href(String href) {
+  public Link href(@Nullable String href) {
     this.href = href;
     return this;
   }
@@ -58,11 +58,11 @@ public class Link {
   
   @Schema(name = "href", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("href")
-  public String getHref() {
+  public @Nullable String getHref() {
     return href;
   }
 
-  public void setHref(String href) {
+  public void setHref(@Nullable String href) {
     this.href = href;
   }
 

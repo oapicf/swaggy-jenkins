@@ -5,13 +5,27 @@
  *
  *)
 
-type t = {
-    content: Github_content.t option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    content = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              content: Github_content.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "content"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            content = None;
+            _class = None;
+        }
+    
 

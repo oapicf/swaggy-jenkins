@@ -75,7 +75,7 @@ data class QueueLeftItem(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("executable") val executable: FreeStyleBuild? = null
-    ) {
+) {
 
 }
 

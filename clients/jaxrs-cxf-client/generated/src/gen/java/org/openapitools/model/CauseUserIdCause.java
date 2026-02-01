@@ -9,15 +9,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CauseUserIdCause  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String shortDescription;
 
   @ApiModelProperty(value = "")
+
   private String userId;
 
   @ApiModelProperty(value = "")
+
   private String userName;
  /**
    * Get propertyClass

@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  * FavoriteImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FavoriteImpl {
 
   private @Nullable String propertyClass;
@@ -30,7 +30,7 @@ public class FavoriteImpl {
 
   private @Nullable PipelineImpl item;
 
-  public FavoriteImpl propertyClass(String propertyClass) {
+  public FavoriteImpl propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -42,15 +42,15 @@ public class FavoriteImpl {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public FavoriteImpl links(FavoriteImpllinks links) {
+  public FavoriteImpl links(@Nullable FavoriteImpllinks links) {
     this.links = links;
     return this;
   }
@@ -62,15 +62,15 @@ public class FavoriteImpl {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public FavoriteImpllinks getLinks() {
+  public @Nullable FavoriteImpllinks getLinks() {
     return links;
   }
 
-  public void setLinks(FavoriteImpllinks links) {
+  public void setLinks(@Nullable FavoriteImpllinks links) {
     this.links = links;
   }
 
-  public FavoriteImpl item(PipelineImpl item) {
+  public FavoriteImpl item(@Nullable PipelineImpl item) {
     this.item = item;
     return this;
   }
@@ -82,11 +82,11 @@ public class FavoriteImpl {
   @Valid 
   @Schema(name = "item", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("item")
-  public PipelineImpl getItem() {
+  public @Nullable PipelineImpl getItem() {
     return item;
   }
 
-  public void setItem(PipelineImpl item) {
+  public void setItem(@Nullable PipelineImpl item) {
     this.item = item;
   }
 

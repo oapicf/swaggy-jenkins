@@ -14,6 +14,46 @@ from openapi_server.models.list_view import ListView  # noqa: F401
 from openapi_server.models.queue import Queue  # noqa: F401
 
 
+def test_get_jenkins(client: TestClient):
+    """Test case for get_jenkins
+
+    
+    """
+
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "GET",
+    #    "/api/json",
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_head_jenkins(client: TestClient):
+    """Test case for head_jenkins
+
+    
+    """
+
+    headers = {
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "HEAD",
+    #    "/api/json",
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
 def test_get_computer(client: TestClient):
     """Test case for get_computer
 
@@ -35,20 +75,50 @@ def test_get_computer(client: TestClient):
     #assert response.status_code == 200
 
 
-def test_get_jenkins(client: TestClient):
-    """Test case for get_jenkins
+def test_post_create_item(client: TestClient):
+    """Test case for post_create_item
 
     
     """
-
+    body = 'body_example'
+    params = [("name", 'name_example'),     ("var_from", 'var_from_example'),     ("mode", 'mode_example')]
     headers = {
+        "jenkins_crumb": 'jenkins_crumb_example',
+        "content_type": 'content_type_example',
         "Authorization": "BasicZm9vOmJhcg==",
     }
     # uncomment below to make a request
     #response = client.request(
-    #    "GET",
-    #    "/api/json",
+    #    "POST",
+    #    "/createItem",
     #    headers=headers,
+    #    json=body,
+    #    params=params,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_post_create_view(client: TestClient):
+    """Test case for post_create_view
+
+    
+    """
+    body = 'body_example'
+    params = [("name", 'name_example')]
+    headers = {
+        "jenkins_crumb": 'jenkins_crumb_example',
+        "content_type": 'content_type_example',
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/createView",
+    #    headers=headers,
+    #    json=body,
+    #    params=params,
     #)
 
     # uncomment below to assert the status code of the HTTP response
@@ -75,6 +145,28 @@ def test_get_job(client: TestClient):
     #assert response.status_code == 200
 
 
+def test_post_job_build(client: TestClient):
+    """Test case for post_job_build
+
+    
+    """
+    params = [("var_json", 'var_json_example'),     ("token", 'token_example')]
+    headers = {
+        "jenkins_crumb": 'jenkins_crumb_example',
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/build".format(name='name_example'),
+    #    headers=headers,
+    #    params=params,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
 def test_get_job_config(client: TestClient):
     """Test case for get_job_config
 
@@ -95,6 +187,92 @@ def test_get_job_config(client: TestClient):
     #assert response.status_code == 200
 
 
+def test_post_job_config(client: TestClient):
+    """Test case for post_job_config
+
+    
+    """
+    body = 'body_example'
+
+    headers = {
+        "jenkins_crumb": 'jenkins_crumb_example',
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/config.xml".format(name='name_example'),
+    #    headers=headers,
+    #    json=body,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_post_job_delete(client: TestClient):
+    """Test case for post_job_delete
+
+    
+    """
+
+    headers = {
+        "jenkins_crumb": 'jenkins_crumb_example',
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/doDelete".format(name='name_example'),
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_post_job_disable(client: TestClient):
+    """Test case for post_job_disable
+
+    
+    """
+
+    headers = {
+        "jenkins_crumb": 'jenkins_crumb_example',
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/disable".format(name='name_example'),
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_post_job_enable(client: TestClient):
+    """Test case for post_job_enable
+
+    
+    """
+
+    headers = {
+        "jenkins_crumb": 'jenkins_crumb_example',
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/enable".format(name='name_example'),
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
 def test_get_job_last_build(client: TestClient):
     """Test case for get_job_last_build
 
@@ -108,6 +286,27 @@ def test_get_job_last_build(client: TestClient):
     #response = client.request(
     #    "GET",
     #    "/job/{name}/lastBuild/api/json".format(name='name_example'),
+    #    headers=headers,
+    #)
+
+    # uncomment below to assert the status code of the HTTP response
+    #assert response.status_code == 200
+
+
+def test_post_job_last_build_stop(client: TestClient):
+    """Test case for post_job_last_build_stop
+
+    
+    """
+
+    headers = {
+        "jenkins_crumb": 'jenkins_crumb_example',
+        "Authorization": "BasicZm9vOmJhcg==",
+    }
+    # uncomment below to make a request
+    #response = client.request(
+    #    "POST",
+    #    "/job/{name}/lastBuild/stop".format(name='name_example'),
     #    headers=headers,
     #)
 
@@ -209,205 +408,6 @@ def test_get_view_config(client: TestClient):
     #response = client.request(
     #    "GET",
     #    "/view/{name}/config.xml".format(name='name_example'),
-    #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_head_jenkins(client: TestClient):
-    """Test case for head_jenkins
-
-    
-    """
-
-    headers = {
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "HEAD",
-    #    "/api/json",
-    #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_post_create_item(client: TestClient):
-    """Test case for post_create_item
-
-    
-    """
-    body = 'body_example'
-    params = [("name", 'name_example'),     ("var_from", 'var_from_example'),     ("mode", 'mode_example')]
-    headers = {
-        "jenkins_crumb": 'jenkins_crumb_example',
-        "content_type": 'content_type_example',
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/createItem",
-    #    headers=headers,
-    #    json=body,
-    #    params=params,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_post_create_view(client: TestClient):
-    """Test case for post_create_view
-
-    
-    """
-    body = 'body_example'
-    params = [("name", 'name_example')]
-    headers = {
-        "jenkins_crumb": 'jenkins_crumb_example',
-        "content_type": 'content_type_example',
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/createView",
-    #    headers=headers,
-    #    json=body,
-    #    params=params,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_post_job_build(client: TestClient):
-    """Test case for post_job_build
-
-    
-    """
-    params = [("var_json", 'var_json_example'),     ("token", 'token_example')]
-    headers = {
-        "jenkins_crumb": 'jenkins_crumb_example',
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/job/{name}/build".format(name='name_example'),
-    #    headers=headers,
-    #    params=params,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_post_job_config(client: TestClient):
-    """Test case for post_job_config
-
-    
-    """
-    body = 'body_example'
-
-    headers = {
-        "jenkins_crumb": 'jenkins_crumb_example',
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/job/{name}/config.xml".format(name='name_example'),
-    #    headers=headers,
-    #    json=body,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_post_job_delete(client: TestClient):
-    """Test case for post_job_delete
-
-    
-    """
-
-    headers = {
-        "jenkins_crumb": 'jenkins_crumb_example',
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/job/{name}/doDelete".format(name='name_example'),
-    #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_post_job_disable(client: TestClient):
-    """Test case for post_job_disable
-
-    
-    """
-
-    headers = {
-        "jenkins_crumb": 'jenkins_crumb_example',
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/job/{name}/disable".format(name='name_example'),
-    #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_post_job_enable(client: TestClient):
-    """Test case for post_job_enable
-
-    
-    """
-
-    headers = {
-        "jenkins_crumb": 'jenkins_crumb_example',
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/job/{name}/enable".format(name='name_example'),
-    #    headers=headers,
-    #)
-
-    # uncomment below to assert the status code of the HTTP response
-    #assert response.status_code == 200
-
-
-def test_post_job_last_build_stop(client: TestClient):
-    """Test case for post_job_last_build_stop
-
-    
-    """
-
-    headers = {
-        "jenkins_crumb": 'jenkins_crumb_example',
-        "Authorization": "BasicZm9vOmJhcg==",
-    }
-    # uncomment below to make a request
-    #response = client.request(
-    #    "POST",
-    #    "/job/{name}/lastBuild/stop".format(name='name_example'),
     #    headers=headers,
     #)
 

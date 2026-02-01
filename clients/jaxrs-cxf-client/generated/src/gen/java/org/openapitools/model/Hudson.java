@@ -16,48 +16,63 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Hudson  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private List<HudsonassignedLabels> assignedLabels = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private String mode;
 
   @ApiModelProperty(value = "")
+
   private String nodeDescription;
 
   @ApiModelProperty(value = "")
+
   private String nodeName;
 
   @ApiModelProperty(value = "")
+
   private Integer numExecutors;
 
   @ApiModelProperty(value = "")
+
   private String description;
 
   @ApiModelProperty(value = "")
+
   private List<FreeStyleProject> jobs = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private AllView primaryView;
 
   @ApiModelProperty(value = "")
+
   private Boolean quietingDown;
 
   @ApiModelProperty(value = "")
+
   private Integer slaveAgentPort;
 
   @ApiModelProperty(value = "")
+
   private UnlabeledLoadStatistics unlabeledLoad;
 
   @ApiModelProperty(value = "")
+
   private Boolean useCrumbs;
 
   @ApiModelProperty(value = "")
+
   private Boolean useSecurity;
 
   @ApiModelProperty(value = "")
+
   private List<AllView> views = new ArrayList<>();
  /**
    * Get propertyClass

@@ -14,40 +14,40 @@ class PipelineImpllinks(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, runs=None, _self=None, queue=None, actions=None, _class=None):  # noqa: E501
+    def __init__(self, _self=None, actions=None, runs=None, queue=None, _class=None):  # noqa: E501
         """PipelineImpllinks - a model defined in OpenAPI
 
-        :param runs: The runs of this PipelineImpllinks.  # noqa: E501
-        :type runs: Link
         :param _self: The _self of this PipelineImpllinks.  # noqa: E501
         :type _self: Link
-        :param queue: The queue of this PipelineImpllinks.  # noqa: E501
-        :type queue: Link
         :param actions: The actions of this PipelineImpllinks.  # noqa: E501
         :type actions: Link
+        :param runs: The runs of this PipelineImpllinks.  # noqa: E501
+        :type runs: Link
+        :param queue: The queue of this PipelineImpllinks.  # noqa: E501
+        :type queue: Link
         :param _class: The _class of this PipelineImpllinks.  # noqa: E501
         :type _class: str
         """
         self.openapi_types = {
-            'runs': Link,
             '_self': Link,
-            'queue': Link,
             'actions': Link,
+            'runs': Link,
+            'queue': Link,
             '_class': str
         }
 
         self.attribute_map = {
-            'runs': 'runs',
             '_self': 'self',
-            'queue': 'queue',
             'actions': 'actions',
+            'runs': 'runs',
+            'queue': 'queue',
             '_class': '_class'
         }
 
-        self._runs = runs
         self.__self = _self
-        self._queue = queue
         self._actions = actions
+        self._runs = runs
+        self._queue = queue
         self.__class = _class
 
     @classmethod
@@ -60,27 +60,6 @@ class PipelineImpllinks(Model):
         :rtype: PipelineImpllinks
         """
         return util.deserialize_model(dikt, cls)
-
-    @property
-    def runs(self) -> Link:
-        """Gets the runs of this PipelineImpllinks.
-
-
-        :return: The runs of this PipelineImpllinks.
-        :rtype: Link
-        """
-        return self._runs
-
-    @runs.setter
-    def runs(self, runs: Link):
-        """Sets the runs of this PipelineImpllinks.
-
-
-        :param runs: The runs of this PipelineImpllinks.
-        :type runs: Link
-        """
-
-        self._runs = runs
 
     @property
     def _self(self) -> Link:
@@ -104,27 +83,6 @@ class PipelineImpllinks(Model):
         self.__self = _self
 
     @property
-    def queue(self) -> Link:
-        """Gets the queue of this PipelineImpllinks.
-
-
-        :return: The queue of this PipelineImpllinks.
-        :rtype: Link
-        """
-        return self._queue
-
-    @queue.setter
-    def queue(self, queue: Link):
-        """Sets the queue of this PipelineImpllinks.
-
-
-        :param queue: The queue of this PipelineImpllinks.
-        :type queue: Link
-        """
-
-        self._queue = queue
-
-    @property
     def actions(self) -> Link:
         """Gets the actions of this PipelineImpllinks.
 
@@ -144,6 +102,48 @@ class PipelineImpllinks(Model):
         """
 
         self._actions = actions
+
+    @property
+    def runs(self) -> Link:
+        """Gets the runs of this PipelineImpllinks.
+
+
+        :return: The runs of this PipelineImpllinks.
+        :rtype: Link
+        """
+        return self._runs
+
+    @runs.setter
+    def runs(self, runs: Link):
+        """Sets the runs of this PipelineImpllinks.
+
+
+        :param runs: The runs of this PipelineImpllinks.
+        :type runs: Link
+        """
+
+        self._runs = runs
+
+    @property
+    def queue(self) -> Link:
+        """Gets the queue of this PipelineImpllinks.
+
+
+        :return: The queue of this PipelineImpllinks.
+        :rtype: Link
+        """
+        return self._queue
+
+    @queue.setter
+    def queue(self, queue: Link):
+        """Sets the queue of this PipelineImpllinks.
+
+
+        :param queue: The queue of this PipelineImpllinks.
+        :type queue: Link
+        """
+
+        self._queue = queue
 
     @property
     def _class(self) -> str:

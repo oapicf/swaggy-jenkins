@@ -10,7 +10,7 @@
 # !
 # ! Based on: https://github.com/Valodim/zsh-curl-completion/blob/master/_curl
 # !
-# ! Generator version: 7.12.0
+# ! Generator version: 7.18.0
 # !
 # !
 # ! Installation:

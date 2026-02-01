@@ -11,10 +11,10 @@ import { Link } from './link';
 
 
 export interface PipelineImpllinks { 
-    runs?: Link;
     self?: Link;
-    queue?: Link;
     actions?: Link;
+    runs?: Link;
+    queue?: Link;
     _class?: string;
 }
 

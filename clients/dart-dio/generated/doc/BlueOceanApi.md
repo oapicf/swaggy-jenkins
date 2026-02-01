@@ -69,7 +69,7 @@ final String queue = queue_example; // String | Name of the queue item
 
 try {
     api.deletePipelineQueueItem(organization, pipeline, queue);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->deletePipelineQueueItem: $e\n');
 }
 ```
@@ -117,7 +117,7 @@ final String organization = organization_example; // String | Name of the organi
 try {
     final response = api.getAuthenticatedUser(organization);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getAuthenticatedUser: $e\n');
 }
 ```
@@ -163,7 +163,7 @@ final String class_ = class__example; // String | Name of the class
 try {
     final response = api.getClasses(class_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getClasses: $e\n');
 }
 ```
@@ -206,7 +206,7 @@ final int key = 56; // int | Key ID received as part of JWT header field kid
 try {
     final response = api.getJsonWebKey(key);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getJsonWebKey: $e\n');
 }
 ```
@@ -250,7 +250,7 @@ final int maxExpiryTimeInMins = 56; // int | Maximum token expiry time in minute
 try {
     final response = api.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getJsonWebToken: $e\n');
 }
 ```
@@ -297,7 +297,7 @@ final String organization = organization_example; // String | Name of the organi
 try {
     final response = api.getOrganisation(organization);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getOrganisation: $e\n');
 }
 ```
@@ -342,7 +342,7 @@ final api = Openapi().getBlueOceanApi();
 try {
     final response = api.getOrganisations();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getOrganisations: $e\n');
 }
 ```
@@ -386,7 +386,7 @@ final String pipeline = pipeline_example; // String | Name of the pipeline
 try {
     final response = api.getPipeline(organization, pipeline);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipeline: $e\n');
 }
 ```
@@ -434,7 +434,7 @@ final String pipeline = pipeline_example; // String | Name of the pipeline
 try {
     final response = api.getPipelineActivities(organization, pipeline);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineActivities: $e\n');
 }
 ```
@@ -483,7 +483,7 @@ final String branch = branch_example; // String | Name of the branch
 try {
     final response = api.getPipelineBranch(organization, pipeline, branch);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineBranch: $e\n');
 }
 ```
@@ -534,7 +534,7 @@ final String run = run_example; // String | Name of the run
 try {
     final response = api.getPipelineBranchRun(organization, pipeline, branch, run);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineBranchRun: $e\n');
 }
 ```
@@ -584,7 +584,7 @@ final String pipeline = pipeline_example; // String | Name of the pipeline
 try {
     final response = api.getPipelineBranches(organization, pipeline);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineBranches: $e\n');
 }
 ```
@@ -632,7 +632,7 @@ final String folder = folder_example; // String | Name of the folder
 try {
     final response = api.getPipelineFolder(organization, folder);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineFolder: $e\n');
 }
 ```
@@ -681,7 +681,7 @@ final String folder = folder_example; // String | Name of the folder
 try {
     final response = api.getPipelineFolderPipeline(organization, pipeline, folder);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineFolderPipeline: $e\n');
 }
 ```
@@ -730,7 +730,7 @@ final String pipeline = pipeline_example; // String | Name of the pipeline
 try {
     final response = api.getPipelineQueue(organization, pipeline);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineQueue: $e\n');
 }
 ```
@@ -779,7 +779,7 @@ final String run = run_example; // String | Name of the run
 try {
     final response = api.getPipelineRun(organization, pipeline, run);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineRun: $e\n');
 }
 ```
@@ -831,7 +831,7 @@ final bool download = true; // bool | Set to true in order to download the file,
 try {
     final response = api.getPipelineRunLog(organization, pipeline, run, start, download);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunLog: $e\n');
 }
 ```
@@ -884,7 +884,7 @@ final String node = node_example; // String | Name of the node
 try {
     final response = api.getPipelineRunNode(organization, pipeline, run, node);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunNode: $e\n');
 }
 ```
@@ -937,7 +937,7 @@ final String step = step_example; // String | Name of the step
 try {
     final response = api.getPipelineRunNodeStep(organization, pipeline, run, node, step);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunNodeStep: $e\n');
 }
 ```
@@ -991,7 +991,7 @@ final String step = step_example; // String | Name of the step
 try {
     final response = api.getPipelineRunNodeStepLog(organization, pipeline, run, node, step);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunNodeStepLog: $e\n');
 }
 ```
@@ -1044,7 +1044,7 @@ final String node = node_example; // String | Name of the node
 try {
     final response = api.getPipelineRunNodeSteps(organization, pipeline, run, node);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunNodeSteps: $e\n');
 }
 ```
@@ -1095,7 +1095,7 @@ final String run = run_example; // String | Name of the run
 try {
     final response = api.getPipelineRunNodes(organization, pipeline, run);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineRunNodes: $e\n');
 }
 ```
@@ -1144,7 +1144,7 @@ final String pipeline = pipeline_example; // String | Name of the pipeline
 try {
     final response = api.getPipelineRuns(organization, pipeline);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelineRuns: $e\n');
 }
 ```
@@ -1191,7 +1191,7 @@ final String organization = organization_example; // String | Name of the organi
 try {
     final response = api.getPipelines(organization);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getPipelines: $e\n');
 }
 ```
@@ -1238,7 +1238,7 @@ final String scm = scm_example; // String | Name of SCM
 try {
     final response = api.getSCM(organization, scm);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getSCM: $e\n');
 }
 ```
@@ -1290,7 +1290,7 @@ final int pageNumber = 56; // int | Page number
 try {
     final response = api.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getSCMOrganisationRepositories: $e\n');
 }
 ```
@@ -1345,7 +1345,7 @@ final String credentialId = credentialId_example; // String | Credential ID
 try {
     final response = api.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getSCMOrganisationRepository: $e\n');
 }
 ```
@@ -1397,7 +1397,7 @@ final String credentialId = credentialId_example; // String | Credential ID
 try {
     final response = api.getSCMOrganisations(organization, scm, credentialId);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getSCMOrganisations: $e\n');
 }
 ```
@@ -1446,7 +1446,7 @@ final String user = user_example; // String | Name of the user
 try {
     final response = api.getUser(organization, user);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getUser: $e\n');
 }
 ```
@@ -1493,7 +1493,7 @@ final String user = user_example; // String | Name of the user
 try {
     final response = api.getUserFavorites(user);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getUserFavorites: $e\n');
 }
 ```
@@ -1539,7 +1539,7 @@ final String organization = organization_example; // String | Name of the organi
 try {
     final response = api.getUsers(organization);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->getUsers: $e\n');
 }
 ```
@@ -1587,7 +1587,7 @@ final String run = run_example; // String | Name of the run
 try {
     final response = api.postPipelineRun(organization, pipeline, run);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->postPipelineRun: $e\n');
 }
 ```
@@ -1636,7 +1636,7 @@ final String pipeline = pipeline_example; // String | Name of the pipeline
 try {
     final response = api.postPipelineRuns(organization, pipeline);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->postPipelineRuns: $e\n');
 }
 ```
@@ -1685,7 +1685,7 @@ final bool body = true; // bool | Set JSON string body to {\"favorite\": true} t
 try {
     final response = api.putPipelineFavorite(organization, pipeline, body);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->putPipelineFavorite: $e\n');
 }
 ```
@@ -1737,7 +1737,7 @@ final int timeOutInSecs = 56; // int | Timeout in seconds, default: 10 seconds
 try {
     final response = api.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->putPipelineRun: $e\n');
 }
 ```
@@ -1787,7 +1787,7 @@ final String q = q_example; // String | Query string
 try {
     final response = api.search(q);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->search: $e\n');
 }
 ```
@@ -1833,7 +1833,7 @@ final String q = q_example; // String | Query string containing an array of clas
 try {
     final response = api.searchClasses(q);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BlueOceanApi->searchClasses: $e\n');
 }
 ```

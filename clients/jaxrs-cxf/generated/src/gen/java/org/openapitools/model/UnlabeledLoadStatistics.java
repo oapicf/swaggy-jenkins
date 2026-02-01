@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class UnlabeledLoadStatistics  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get propertyClass

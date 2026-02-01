@@ -11,30 +11,39 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelineBranchesitem  {
   
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private Integer estimatedDurationInMillis;
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private Integer weatherScore;
 
   @ApiModelProperty(value = "")
+
   private PipelineBranchesitemlatestRun latestRun;
 
   @ApiModelProperty(value = "")
+
   private String organization;
 
   @ApiModelProperty(value = "")
+
   private PipelineBranchesitempullRequest pullRequest;
 
   @ApiModelProperty(value = "")
+
   private Integer totalNumberOfPullRequests;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get displayName

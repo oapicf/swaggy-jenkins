@@ -1360,10 +1360,10 @@
       </xs:complexType>
       <xs:complexType name="PipelineImpllinks">
         <xs:sequence>
-          <xs:element minOccurs="0" name="runs" type="schemas:Link" />
           <xs:element minOccurs="0" name="self" type="schemas:Link" />
-          <xs:element minOccurs="0" name="queue" type="schemas:Link" />
           <xs:element minOccurs="0" name="actions" type="schemas:Link" />
+          <xs:element minOccurs="0" name="runs" type="schemas:Link" />
+          <xs:element minOccurs="0" name="queue" type="schemas:Link" />
           <xs:element minOccurs="0" name="_class" type="xs:string" />
         </xs:sequence>
       </xs:complexType>

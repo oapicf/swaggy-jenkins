@@ -21,10 +21,10 @@ class HudsonMasterComputer
 
     /**
      * @DTA\Data(field="executors", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection8::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection8::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection9::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection9::class})
      */
-    public ?\App\DTO\Collection8 $executors = null;
+    public ?\App\DTO\Collection9 $executors = null;
 
     /**
      * @DTA\Data(field="icon", nullable=true)

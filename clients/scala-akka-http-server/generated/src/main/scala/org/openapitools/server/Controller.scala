@@ -8,11 +8,11 @@ import org.openapitools.server.api.RemoteAccessApi
 
 import akka.http.scaladsl.server.Directives._
 import akka.actor.ActorSystem
-import akka.stream.ActorMaterializer
+import akka.stream.Materializer
 
-class Controller(base: BaseApi, blueOcean: BlueOceanApi, remoteAccess: RemoteAccessApi)(implicit system: ActorSystem, materializer: ActorMaterializer) {
+class Controller(base: BaseApi, blueOcean: BlueOceanApi, remoteAccess: RemoteAccessApi)(implicit system: ActorSystem, materializer: Materializer) {
 
     lazy val routes: Route = base.route ~ blueOcean.route ~ remoteAccess.route 
 
-    Http().bindAndHandle(routes, "0.0.0.0", 9000)
+    Http().newServerAt("0.0.0.0", 9000).bind(routes)
 }

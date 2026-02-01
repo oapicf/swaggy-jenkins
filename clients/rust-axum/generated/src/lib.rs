@@ -15,7 +15,7 @@
 )]
 
 pub const BASE_PATH: &str = "";
-pub const API_VERSION: &str = "3.0.2-pre.0";
+pub const API_VERSION: &str = "3.2.1-pre.0";
 
 #[cfg(feature = "server")]
 pub mod server;

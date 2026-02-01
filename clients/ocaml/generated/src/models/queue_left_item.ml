@@ -5,35 +5,102 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    actions: Cause_action.t list;
-    blocked: bool option [@default None];
-    buildable: bool option [@default None];
-    id: int32 option [@default None];
-    in_queue_since: int32 option [@default None];
-    params: string option [@default None];
-    stuck: bool option [@default None];
-    task: Free_style_project.t option [@default None];
-    url: string option [@default None];
-    why: string option [@default None];
-    cancelled: bool option [@default None];
-    executable: Free_style_build.t option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    actions = [];
-    blocked = None;
-    buildable = None;
-    id = None;
-    in_queue_since = None;
-    params = None;
-    stuck = None;
-    task = None;
-    url = None;
-    why = None;
-    cancelled = None;
-    executable = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              actions: Cause_action.t list
+                 [@default []]
+                
+                ; [@key "actions"]
+                                              blocked: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "blocked"]
+                                              buildable: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "buildable"]
+                                              id: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "id"]
+                                              in_queue_since: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "inQueueSince"]
+                                              params: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "params"]
+                                              stuck: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "stuck"]
+                                              task: Free_style_project.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "task"]
+                                              url: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "url"]
+                                              why: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "why"]
+                                              cancelled: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "cancelled"]
+                                              executable: Free_style_build.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "executable"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            actions = [];
+            blocked = None;
+            buildable = None;
+            id = None;
+            in_queue_since = None;
+            params = None;
+            stuck = None;
+            task = None;
+            url = None;
+            why = None;
+            cancelled = None;
+            executable = None;
+        }
+    
 

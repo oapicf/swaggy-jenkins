@@ -13,24 +13,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class HudsonMasterComputermonitorData  {
   
   @ApiModelProperty(value = "")
+
   private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
 
   @ApiModelProperty(value = "")
+
   private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
 
   @ApiModelProperty(value = "")
+
   private DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
 
   @ApiModelProperty(value = "")
+
   private String hudsonNodeMonitorsArchitectureMonitor;
 
   @ApiModelProperty(value = "")
+
   private ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
 
   @ApiModelProperty(value = "")
+
   private ClockDifference hudsonNodeMonitorsClockMonitor;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get hudsonNodeMonitorsSwapSpaceMonitor

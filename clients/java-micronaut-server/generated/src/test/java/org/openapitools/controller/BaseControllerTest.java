@@ -79,7 +79,7 @@ public class BaseControllerTest {
         // given
         String uri = UriTemplate.of("/crumbIssuer/api/json").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@34d9df9f");
+            .accept("[Ljava.lang.String;@6e00837f");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, DefaultCrumbIssuer.class);

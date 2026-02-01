@@ -5,19 +5,48 @@
  *
  *)
 
-type t = {
-    description: string option [@default None];
-    icon_class_name: string option [@default None];
-    icon_url: string option [@default None];
-    score: int32 option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    description = None;
-    icon_class_name = None;
-    icon_url = None;
-    score = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              description: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "description"]
+                                              icon_class_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "iconClassName"]
+                                              icon_url: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "iconUrl"]
+                                              score: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "score"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            description = None;
+            icon_class_name = None;
+            icon_url = None;
+            score = None;
+            _class = None;
+        }
+    
 

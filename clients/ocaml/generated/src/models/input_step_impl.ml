@@ -5,23 +5,60 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    _links: Input_step_impllinks.t option [@default None];
-    id: string option [@default None];
-    message: string option [@default None];
-    ok: string option [@default None];
-    parameters: String_parameter_definition.t list;
-    submitter: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    _links = None;
-    id = None;
-    message = None;
-    ok = None;
-    parameters = [];
-    submitter = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              _links: Input_step_impllinks.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_links"]
+                                              id: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "id"]
+                                              message: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "message"]
+                                              ok: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "ok"]
+                                              parameters: String_parameter_definition.t list
+                 [@default []]
+                
+                ; [@key "parameters"]
+                                              submitter: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "submitter"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            _links = None;
+            id = None;
+            message = None;
+            ok = None;
+            parameters = [];
+            submitter = None;
+        }
+    
 

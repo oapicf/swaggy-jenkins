@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  * GithubRespositoryContainer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class GithubRespositoryContainer {
 
   private @Nullable String propertyClass;
@@ -30,7 +30,7 @@ public class GithubRespositoryContainer {
 
   private @Nullable GithubRepositories repositories;
 
-  public GithubRespositoryContainer propertyClass(String propertyClass) {
+  public GithubRespositoryContainer propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -42,15 +42,15 @@ public class GithubRespositoryContainer {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public GithubRespositoryContainer links(GithubRespositoryContainerlinks links) {
+  public GithubRespositoryContainer links(@Nullable GithubRespositoryContainerlinks links) {
     this.links = links;
     return this;
   }
@@ -62,15 +62,15 @@ public class GithubRespositoryContainer {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public GithubRespositoryContainerlinks getLinks() {
+  public @Nullable GithubRespositoryContainerlinks getLinks() {
     return links;
   }
 
-  public void setLinks(GithubRespositoryContainerlinks links) {
+  public void setLinks(@Nullable GithubRespositoryContainerlinks links) {
     this.links = links;
   }
 
-  public GithubRespositoryContainer repositories(GithubRepositories repositories) {
+  public GithubRespositoryContainer repositories(@Nullable GithubRepositories repositories) {
     this.repositories = repositories;
     return this;
   }
@@ -82,11 +82,11 @@ public class GithubRespositoryContainer {
   @Valid 
   @Schema(name = "repositories", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("repositories")
-  public GithubRepositories getRepositories() {
+  public @Nullable GithubRepositories getRepositories() {
     return repositories;
   }
 
-  public void setRepositories(GithubRepositories repositories) {
+  public void setRepositories(@Nullable GithubRepositories repositories) {
     this.repositories = repositories;
   }
 

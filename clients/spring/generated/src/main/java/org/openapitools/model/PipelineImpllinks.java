@@ -20,40 +20,20 @@ import javax.annotation.Generated;
  * PipelineImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineImpllinks {
-
-  private @Nullable Link runs;
 
   private @Nullable Link self;
 
-  private @Nullable Link queue;
-
   private @Nullable Link actions;
+
+  private @Nullable Link runs;
+
+  private @Nullable Link queue;
 
   private @Nullable String propertyClass;
 
-  public PipelineImpllinks runs(Link runs) {
-    this.runs = runs;
-    return this;
-  }
-
-  /**
-   * Get runs
-   * @return runs
-   */
-  @Valid 
-  @Schema(name = "runs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("runs")
-  public Link getRuns() {
-    return runs;
-  }
-
-  public void setRuns(Link runs) {
-    this.runs = runs;
-  }
-
-  public PipelineImpllinks self(Link self) {
+  public PipelineImpllinks self(@Nullable Link self) {
     this.self = self;
     return this;
   }
@@ -65,35 +45,15 @@ public class PipelineImpllinks {
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
-  public Link getSelf() {
+  public @Nullable Link getSelf() {
     return self;
   }
 
-  public void setSelf(Link self) {
+  public void setSelf(@Nullable Link self) {
     this.self = self;
   }
 
-  public PipelineImpllinks queue(Link queue) {
-    this.queue = queue;
-    return this;
-  }
-
-  /**
-   * Get queue
-   * @return queue
-   */
-  @Valid 
-  @Schema(name = "queue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("queue")
-  public Link getQueue() {
-    return queue;
-  }
-
-  public void setQueue(Link queue) {
-    this.queue = queue;
-  }
-
-  public PipelineImpllinks actions(Link actions) {
+  public PipelineImpllinks actions(@Nullable Link actions) {
     this.actions = actions;
     return this;
   }
@@ -105,15 +65,55 @@ public class PipelineImpllinks {
   @Valid 
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
-  public Link getActions() {
+  public @Nullable Link getActions() {
     return actions;
   }
 
-  public void setActions(Link actions) {
+  public void setActions(@Nullable Link actions) {
     this.actions = actions;
   }
 
-  public PipelineImpllinks propertyClass(String propertyClass) {
+  public PipelineImpllinks runs(@Nullable Link runs) {
+    this.runs = runs;
+    return this;
+  }
+
+  /**
+   * Get runs
+   * @return runs
+   */
+  @Valid 
+  @Schema(name = "runs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("runs")
+  public @Nullable Link getRuns() {
+    return runs;
+  }
+
+  public void setRuns(@Nullable Link runs) {
+    this.runs = runs;
+  }
+
+  public PipelineImpllinks queue(@Nullable Link queue) {
+    this.queue = queue;
+    return this;
+  }
+
+  /**
+   * Get queue
+   * @return queue
+   */
+  @Valid 
+  @Schema(name = "queue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("queue")
+  public @Nullable Link getQueue() {
+    return queue;
+  }
+
+  public void setQueue(@Nullable Link queue) {
+    this.queue = queue;
+  }
+
+  public PipelineImpllinks propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -125,11 +125,11 @@ public class PipelineImpllinks {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
@@ -142,26 +142,26 @@ public class PipelineImpllinks {
       return false;
     }
     PipelineImpllinks pipelineImpllinks = (PipelineImpllinks) o;
-    return Objects.equals(this.runs, pipelineImpllinks.runs) &&
-        Objects.equals(this.self, pipelineImpllinks.self) &&
-        Objects.equals(this.queue, pipelineImpllinks.queue) &&
+    return Objects.equals(this.self, pipelineImpllinks.self) &&
         Objects.equals(this.actions, pipelineImpllinks.actions) &&
+        Objects.equals(this.runs, pipelineImpllinks.runs) &&
+        Objects.equals(this.queue, pipelineImpllinks.queue) &&
         Objects.equals(this.propertyClass, pipelineImpllinks.propertyClass);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(runs, self, queue, actions, propertyClass);
+    return Objects.hash(self, actions, runs, queue, propertyClass);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineImpllinks {\n");
-    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
+    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
+    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("}");
     return sb.toString();

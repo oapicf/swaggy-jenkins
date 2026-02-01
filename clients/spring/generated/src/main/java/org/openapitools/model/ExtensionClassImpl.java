@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * ExtensionClassImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ExtensionClassImpl {
 
   private @Nullable String propertyClass;
@@ -33,7 +33,7 @@ public class ExtensionClassImpl {
   @Valid
   private List<String> classes = new ArrayList<>();
 
-  public ExtensionClassImpl propertyClass(String propertyClass) {
+  public ExtensionClassImpl propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -45,15 +45,15 @@ public class ExtensionClassImpl {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public ExtensionClassImpl links(ExtensionClassImpllinks links) {
+  public ExtensionClassImpl links(@Nullable ExtensionClassImpllinks links) {
     this.links = links;
     return this;
   }
@@ -65,11 +65,11 @@ public class ExtensionClassImpl {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public ExtensionClassImpllinks getLinks() {
+  public @Nullable ExtensionClassImpllinks getLinks() {
     return links;
   }
 
-  public void setLinks(ExtensionClassImpllinks links) {
+  public void setLinks(@Nullable ExtensionClassImpllinks links) {
     this.links = links;
   }
 

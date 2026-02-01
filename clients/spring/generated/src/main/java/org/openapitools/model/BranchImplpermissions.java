@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * BranchImplpermissions
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class BranchImplpermissions {
 
   private @Nullable Boolean create;
@@ -32,7 +32,7 @@ public class BranchImplpermissions {
 
   private @Nullable String propertyClass;
 
-  public BranchImplpermissions create(Boolean create) {
+  public BranchImplpermissions create(@Nullable Boolean create) {
     this.create = create;
     return this;
   }
@@ -44,15 +44,15 @@ public class BranchImplpermissions {
   
   @Schema(name = "create", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("create")
-  public Boolean getCreate() {
+  public @Nullable Boolean getCreate() {
     return create;
   }
 
-  public void setCreate(Boolean create) {
+  public void setCreate(@Nullable Boolean create) {
     this.create = create;
   }
 
-  public BranchImplpermissions read(Boolean read) {
+  public BranchImplpermissions read(@Nullable Boolean read) {
     this.read = read;
     return this;
   }
@@ -64,15 +64,15 @@ public class BranchImplpermissions {
   
   @Schema(name = "read", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("read")
-  public Boolean getRead() {
+  public @Nullable Boolean getRead() {
     return read;
   }
 
-  public void setRead(Boolean read) {
+  public void setRead(@Nullable Boolean read) {
     this.read = read;
   }
 
-  public BranchImplpermissions start(Boolean start) {
+  public BranchImplpermissions start(@Nullable Boolean start) {
     this.start = start;
     return this;
   }
@@ -84,15 +84,15 @@ public class BranchImplpermissions {
   
   @Schema(name = "start", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("start")
-  public Boolean getStart() {
+  public @Nullable Boolean getStart() {
     return start;
   }
 
-  public void setStart(Boolean start) {
+  public void setStart(@Nullable Boolean start) {
     this.start = start;
   }
 
-  public BranchImplpermissions stop(Boolean stop) {
+  public BranchImplpermissions stop(@Nullable Boolean stop) {
     this.stop = stop;
     return this;
   }
@@ -104,15 +104,15 @@ public class BranchImplpermissions {
   
   @Schema(name = "stop", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("stop")
-  public Boolean getStop() {
+  public @Nullable Boolean getStop() {
     return stop;
   }
 
-  public void setStop(Boolean stop) {
+  public void setStop(@Nullable Boolean stop) {
     this.stop = stop;
   }
 
-  public BranchImplpermissions propertyClass(String propertyClass) {
+  public BranchImplpermissions propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -124,11 +124,11 @@ public class BranchImplpermissions {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

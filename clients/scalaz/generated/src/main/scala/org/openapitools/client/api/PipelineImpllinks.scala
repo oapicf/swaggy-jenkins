@@ -12,10 +12,10 @@ import org.joda.time.DateTime
 import PipelineImpllinks._
 
 case class PipelineImpllinks (
-  runs: Option[Link],
-self: Option[Link],
-queue: Option[Link],
+  self: Option[Link],
 actions: Option[Link],
+runs: Option[Link],
+queue: Option[Link],
 `class`: Option[String])
 
 object PipelineImpllinks {

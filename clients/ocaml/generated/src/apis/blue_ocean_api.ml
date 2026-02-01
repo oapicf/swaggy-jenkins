@@ -9,9 +9,51 @@ let delete_pipeline_queue_item ~organization ~pipeline ~queue =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "queue" (fun x -> x) queue in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "queue"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ queue in
     Cohttp_lwt_unix.Client.call `DELETE uri ~headers >>= fun (resp, body) ->
     Request.handle_unit_response resp
 
@@ -19,7 +61,21 @@ let get_authenticated_user ~organization =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/user/" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap User.of_yojson) resp body
 
@@ -27,7 +83,21 @@ let get_classes ~_class =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/classes/{class}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "class" (fun x -> x) _class in
+    let uri = Request.replace_path_param uri "class"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ _class in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
@@ -35,7 +105,21 @@ let get_json_web_key ~key =
     let open Lwt.Infix in
     let uri = Request.build_uri "/jwt-auth/jwks/{key}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "key" Int32.to_string key in
+    let uri = Request.replace_path_param uri "key"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ key in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
@@ -43,8 +127,36 @@ let get_json_web_token ?expiry_time_in_mins ?max_expiry_time_in_mins () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/jwt-auth/token" in
     let headers = Request.default_headers in
-    let uri = Request.maybe_add_query_param uri "expiryTimeInMins" Int32.to_string expiry_time_in_mins in
-    let uri = Request.maybe_add_query_param uri "maxExpiryTimeInMins" Int32.to_string max_expiry_time_in_mins in
+    let uri = Request.maybe_add_query_param uri "expiryTimeInMins"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ expiry_time_in_mins in
+    let uri = Request.maybe_add_query_param uri "maxExpiryTimeInMins"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ max_expiry_time_in_mins in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
@@ -52,7 +164,21 @@ let get_organisation ~organization =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Organisation.of_yojson) resp body
 
@@ -67,8 +193,36 @@ let get_pipeline ~organization ~pipeline =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Pipeline.of_yojson) resp body
 
@@ -76,8 +230,36 @@ let get_pipeline_activities ~organization ~pipeline =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Pipeline_activity.of_yojson) resp body
 
@@ -85,9 +267,51 @@ let get_pipeline_branch ~organization ~pipeline ~branch =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "branch" (fun x -> x) branch in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "branch"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ branch in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Branch_impl.of_yojson) resp body
 
@@ -95,10 +319,66 @@ let get_pipeline_branch_run ~organization ~pipeline ~branch ~run =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "branch" (fun x -> x) branch in
-    let uri = Request.replace_path_param uri "run" (fun x -> x) run in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "branch"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ branch in
+    let uri = Request.replace_path_param uri "run"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ run in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_run.of_yojson) resp body
 
@@ -106,8 +386,36 @@ let get_pipeline_branches ~organization ~pipeline =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Multibranch_pipeline.of_yojson) resp body
 
@@ -115,8 +423,36 @@ let get_pipeline_folder ~organization ~folder =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{folder}/" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "folder" (fun x -> x) folder in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "folder"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ folder in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_folder_impl.of_yojson) resp body
 
@@ -124,9 +460,51 @@ let get_pipeline_folder_pipeline ~organization ~pipeline ~folder =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "folder" (fun x -> x) folder in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "folder"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ folder in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_impl.of_yojson) resp body
 
@@ -134,8 +512,36 @@ let get_pipeline_queue ~organization ~pipeline =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Queue_item_impl.of_yojson) resp body
 
@@ -143,9 +549,51 @@ let get_pipeline_run ~organization ~pipeline ~run =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "run" (fun x -> x) run in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "run"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ run in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_run.of_yojson) resp body
 
@@ -153,11 +601,81 @@ let get_pipeline_run_log ~organization ~pipeline ~run ?start ?download () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "run" (fun x -> x) run in
-    let uri = Request.maybe_add_query_param uri "start" Int32.to_string start in
-    let uri = Request.maybe_add_query_param uri "download" string_of_bool download in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "run"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ run in
+    let uri = Request.maybe_add_query_param uri "start"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ start in
+    let uri = Request.maybe_add_query_param uri "download"     
+    
+    
+    
+    
+    string_of_bool
+    
+    
+    
+    
+    
+    
+        
+        
+ download in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
@@ -165,10 +683,66 @@ let get_pipeline_run_node ~organization ~pipeline ~run ~node =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "run" (fun x -> x) run in
-    let uri = Request.replace_path_param uri "node" (fun x -> x) node in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "run"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ run in
+    let uri = Request.replace_path_param uri "node"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ node in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_run_node.of_yojson) resp body
 
@@ -176,11 +750,81 @@ let get_pipeline_run_node_step ~organization ~pipeline ~run ~node ~step =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "run" (fun x -> x) run in
-    let uri = Request.replace_path_param uri "node" (fun x -> x) node in
-    let uri = Request.replace_path_param uri "step" (fun x -> x) step in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "run"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ run in
+    let uri = Request.replace_path_param uri "node"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ node in
+    let uri = Request.replace_path_param uri "step"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ step in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_step_impl.of_yojson) resp body
 
@@ -188,11 +832,81 @@ let get_pipeline_run_node_step_log ~organization ~pipeline ~run ~node ~step =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "run" (fun x -> x) run in
-    let uri = Request.replace_path_param uri "node" (fun x -> x) node in
-    let uri = Request.replace_path_param uri "step" (fun x -> x) step in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "run"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ run in
+    let uri = Request.replace_path_param uri "node"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ node in
+    let uri = Request.replace_path_param uri "step"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ step in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
@@ -200,10 +914,66 @@ let get_pipeline_run_node_steps ~organization ~pipeline ~run ~node =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "run" (fun x -> x) run in
-    let uri = Request.replace_path_param uri "node" (fun x -> x) node in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "run"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ run in
+    let uri = Request.replace_path_param uri "node"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ node in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Pipeline_step_impl.of_yojson) resp body
 
@@ -211,9 +981,51 @@ let get_pipeline_run_nodes ~organization ~pipeline ~run =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "run" (fun x -> x) run in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "run"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ run in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Pipeline_run_node.of_yojson) resp body
 
@@ -221,8 +1033,36 @@ let get_pipeline_runs ~organization ~pipeline =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Pipeline_run.of_yojson) resp body
 
@@ -230,7 +1070,21 @@ let get_pipelines ~organization =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Pipeline.of_yojson) resp body
 
@@ -238,8 +1092,36 @@ let get_scm ~organization ~scm =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/scm/{scm}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "scm" (fun x -> x) scm in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "scm"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ scm in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Github_scm.of_yojson) resp body
 
@@ -247,12 +1129,96 @@ let get_scm_organisation_repositories ~organization ~scm ~scm_organisation ?cred
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "scm" (fun x -> x) scm in
-    let uri = Request.replace_path_param uri "scmOrganisation" (fun x -> x) scm_organisation in
-    let uri = Request.maybe_add_query_param uri "credentialId" (fun x -> x) credential_id in
-    let uri = Request.maybe_add_query_param uri "pageSize" Int32.to_string page_size in
-    let uri = Request.maybe_add_query_param uri "pageNumber" Int32.to_string page_number in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "scm"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ scm in
+    let uri = Request.replace_path_param uri "scmOrganisation"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ scm_organisation in
+    let uri = Request.maybe_add_query_param uri "credentialId"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ credential_id in
+    let uri = Request.maybe_add_query_param uri "pageSize"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ page_size in
+    let uri = Request.maybe_add_query_param uri "pageNumber"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ page_number in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Github_organization.of_yojson) resp body
 
@@ -260,11 +1226,81 @@ let get_scm_organisation_repository ~organization ~scm ~scm_organisation ~reposi
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "scm" (fun x -> x) scm in
-    let uri = Request.replace_path_param uri "scmOrganisation" (fun x -> x) scm_organisation in
-    let uri = Request.replace_path_param uri "repository" (fun x -> x) repository in
-    let uri = Request.maybe_add_query_param uri "credentialId" (fun x -> x) credential_id in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "scm"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ scm in
+    let uri = Request.replace_path_param uri "scmOrganisation"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ scm_organisation in
+    let uri = Request.replace_path_param uri "repository"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ repository in
+    let uri = Request.maybe_add_query_param uri "credentialId"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ credential_id in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Github_organization.of_yojson) resp body
 
@@ -272,9 +1308,51 @@ let get_scm_organisations ~organization ~scm ?credential_id () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/scm/{scm}/organizations" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "scm" (fun x -> x) scm in
-    let uri = Request.maybe_add_query_param uri "credentialId" (fun x -> x) credential_id in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "scm"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ scm in
+    let uri = Request.maybe_add_query_param uri "credentialId"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ credential_id in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Github_organization.of_yojson) resp body
 
@@ -282,8 +1360,36 @@ let get_user ~organization ~user =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/users/{user}" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "user" (fun x -> x) user in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "user"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ user in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap User.of_yojson) resp body
 
@@ -291,7 +1397,21 @@ let get_user_favorites ~user =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/users/{user}/favorites" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "user" (fun x -> x) user in
+    let uri = Request.replace_path_param uri "user"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ user in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as_list_of (JsonSupport.unwrap Favorite_impl.of_yojson) resp body
 
@@ -299,7 +1419,21 @@ let get_users ~organization =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/users/" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap User.of_yojson) resp body
 
@@ -307,9 +1441,51 @@ let post_pipeline_run ~organization ~pipeline ~run =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "run" (fun x -> x) run in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "run"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ run in
     Cohttp_lwt_unix.Client.call `POST uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Queue_item_impl.of_yojson) resp body
 
@@ -317,8 +1493,36 @@ let post_pipeline_runs ~organization ~pipeline =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
     Cohttp_lwt_unix.Client.call `POST uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Queue_item_impl.of_yojson) resp body
 
@@ -326,9 +1530,50 @@ let put_pipeline_favorite ~organization ~pipeline ~body =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let body = Request.write_as_json_body JsonSupport.of_bool body in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let body = Request.
+        
+        write_as_json_body     
+    
+    
+    
+    
+    
+    JsonSupport.of_bool
+    
+    
+    
+ body
+    in
     Cohttp_lwt_unix.Client.call `PUT uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Favorite_impl.of_yojson) resp body
 
@@ -336,11 +1581,81 @@ let put_pipeline_run ~organization ~pipeline ~run ?blocking ?time_out_in_secs ()
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop" in
     let headers = Request.default_headers in
-    let uri = Request.replace_path_param uri "organization" (fun x -> x) organization in
-    let uri = Request.replace_path_param uri "pipeline" (fun x -> x) pipeline in
-    let uri = Request.replace_path_param uri "run" (fun x -> x) run in
-    let uri = Request.maybe_add_query_param uri "blocking" (fun x -> x) blocking in
-    let uri = Request.maybe_add_query_param uri "timeOutInSecs" Int32.to_string time_out_in_secs in
+    let uri = Request.replace_path_param uri "organization"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ organization in
+    let uri = Request.replace_path_param uri "pipeline"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ pipeline in
+    let uri = Request.replace_path_param uri "run"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ run in
+    let uri = Request.maybe_add_query_param uri "blocking"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ blocking in
+    let uri = Request.maybe_add_query_param uri "timeOutInSecs"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ time_out_in_secs in
     Cohttp_lwt_unix.Client.call `PUT uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Pipeline_run.of_yojson) resp body
 
@@ -348,7 +1663,21 @@ let search ~q =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/search/" in
     let headers = Request.default_headers in
-    let uri = Request.add_query_param uri "q" (fun x -> x) q in
+    let uri = Request.add_query_param uri "q"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ q in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.to_string) resp body
 
@@ -356,7 +1685,21 @@ let search_classes ~q =
     let open Lwt.Infix in
     let uri = Request.build_uri "/blue/rest/classes/" in
     let headers = Request.default_headers in
-    let uri = Request.add_query_param uri "q" (fun x -> x) q in
+    let uri = Request.add_query_param uri "q"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ q in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.to_string) resp body
 

@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -20,7 +20,7 @@ import public "models/free_style_project.proto";
 
 message QueueLeftItem {
 
-  string _class = 406713225;
+  string class = 94742904;
 
   repeated CauseAction actions = 88061701;
 
@@ -30,7 +30,7 @@ message QueueLeftItem {
 
   int32 id = 3355;
 
-  int32 inQueueSince = 181496750;
+  int32 in_queue_since = 99255695;
 
   string params = 458557051;
 
@@ -47,3 +47,4 @@ message QueueLeftItem {
   FreeStyleBuild executable = 2393163;
 
 }
+

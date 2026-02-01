@@ -26,7 +26,7 @@ import javax.annotation.Generated;
  * Hudson
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class Hudson {
 
   private @Nullable String propertyClass;
@@ -62,7 +62,7 @@ public class Hudson {
   @Valid
   private List<@Valid AllView> views = new ArrayList<>();
 
-  public Hudson propertyClass(String propertyClass) {
+  public Hudson propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -74,11 +74,11 @@ public class Hudson {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
@@ -110,7 +110,7 @@ public class Hudson {
     this.assignedLabels = assignedLabels;
   }
 
-  public Hudson mode(String mode) {
+  public Hudson mode(@Nullable String mode) {
     this.mode = mode;
     return this;
   }
@@ -122,15 +122,15 @@ public class Hudson {
   
   @Schema(name = "mode", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("mode")
-  public String getMode() {
+  public @Nullable String getMode() {
     return mode;
   }
 
-  public void setMode(String mode) {
+  public void setMode(@Nullable String mode) {
     this.mode = mode;
   }
 
-  public Hudson nodeDescription(String nodeDescription) {
+  public Hudson nodeDescription(@Nullable String nodeDescription) {
     this.nodeDescription = nodeDescription;
     return this;
   }
@@ -142,15 +142,15 @@ public class Hudson {
   
   @Schema(name = "nodeDescription", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("nodeDescription")
-  public String getNodeDescription() {
+  public @Nullable String getNodeDescription() {
     return nodeDescription;
   }
 
-  public void setNodeDescription(String nodeDescription) {
+  public void setNodeDescription(@Nullable String nodeDescription) {
     this.nodeDescription = nodeDescription;
   }
 
-  public Hudson nodeName(String nodeName) {
+  public Hudson nodeName(@Nullable String nodeName) {
     this.nodeName = nodeName;
     return this;
   }
@@ -162,15 +162,15 @@ public class Hudson {
   
   @Schema(name = "nodeName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("nodeName")
-  public String getNodeName() {
+  public @Nullable String getNodeName() {
     return nodeName;
   }
 
-  public void setNodeName(String nodeName) {
+  public void setNodeName(@Nullable String nodeName) {
     this.nodeName = nodeName;
   }
 
-  public Hudson numExecutors(Integer numExecutors) {
+  public Hudson numExecutors(@Nullable Integer numExecutors) {
     this.numExecutors = numExecutors;
     return this;
   }
@@ -182,15 +182,15 @@ public class Hudson {
   
   @Schema(name = "numExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numExecutors")
-  public Integer getNumExecutors() {
+  public @Nullable Integer getNumExecutors() {
     return numExecutors;
   }
 
-  public void setNumExecutors(Integer numExecutors) {
+  public void setNumExecutors(@Nullable Integer numExecutors) {
     this.numExecutors = numExecutors;
   }
 
-  public Hudson description(String description) {
+  public Hudson description(@Nullable String description) {
     this.description = description;
     return this;
   }
@@ -202,11 +202,11 @@ public class Hudson {
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
-  public String getDescription() {
+  public @Nullable String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@Nullable String description) {
     this.description = description;
   }
 
@@ -238,7 +238,7 @@ public class Hudson {
     this.jobs = jobs;
   }
 
-  public Hudson primaryView(AllView primaryView) {
+  public Hudson primaryView(@Nullable AllView primaryView) {
     this.primaryView = primaryView;
     return this;
   }
@@ -250,15 +250,15 @@ public class Hudson {
   @Valid 
   @Schema(name = "primaryView", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("primaryView")
-  public AllView getPrimaryView() {
+  public @Nullable AllView getPrimaryView() {
     return primaryView;
   }
 
-  public void setPrimaryView(AllView primaryView) {
+  public void setPrimaryView(@Nullable AllView primaryView) {
     this.primaryView = primaryView;
   }
 
-  public Hudson quietingDown(Boolean quietingDown) {
+  public Hudson quietingDown(@Nullable Boolean quietingDown) {
     this.quietingDown = quietingDown;
     return this;
   }
@@ -270,15 +270,15 @@ public class Hudson {
   
   @Schema(name = "quietingDown", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("quietingDown")
-  public Boolean getQuietingDown() {
+  public @Nullable Boolean getQuietingDown() {
     return quietingDown;
   }
 
-  public void setQuietingDown(Boolean quietingDown) {
+  public void setQuietingDown(@Nullable Boolean quietingDown) {
     this.quietingDown = quietingDown;
   }
 
-  public Hudson slaveAgentPort(Integer slaveAgentPort) {
+  public Hudson slaveAgentPort(@Nullable Integer slaveAgentPort) {
     this.slaveAgentPort = slaveAgentPort;
     return this;
   }
@@ -290,15 +290,15 @@ public class Hudson {
   
   @Schema(name = "slaveAgentPort", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("slaveAgentPort")
-  public Integer getSlaveAgentPort() {
+  public @Nullable Integer getSlaveAgentPort() {
     return slaveAgentPort;
   }
 
-  public void setSlaveAgentPort(Integer slaveAgentPort) {
+  public void setSlaveAgentPort(@Nullable Integer slaveAgentPort) {
     this.slaveAgentPort = slaveAgentPort;
   }
 
-  public Hudson unlabeledLoad(UnlabeledLoadStatistics unlabeledLoad) {
+  public Hudson unlabeledLoad(@Nullable UnlabeledLoadStatistics unlabeledLoad) {
     this.unlabeledLoad = unlabeledLoad;
     return this;
   }
@@ -310,15 +310,15 @@ public class Hudson {
   @Valid 
   @Schema(name = "unlabeledLoad", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("unlabeledLoad")
-  public UnlabeledLoadStatistics getUnlabeledLoad() {
+  public @Nullable UnlabeledLoadStatistics getUnlabeledLoad() {
     return unlabeledLoad;
   }
 
-  public void setUnlabeledLoad(UnlabeledLoadStatistics unlabeledLoad) {
+  public void setUnlabeledLoad(@Nullable UnlabeledLoadStatistics unlabeledLoad) {
     this.unlabeledLoad = unlabeledLoad;
   }
 
-  public Hudson useCrumbs(Boolean useCrumbs) {
+  public Hudson useCrumbs(@Nullable Boolean useCrumbs) {
     this.useCrumbs = useCrumbs;
     return this;
   }
@@ -330,15 +330,15 @@ public class Hudson {
   
   @Schema(name = "useCrumbs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("useCrumbs")
-  public Boolean getUseCrumbs() {
+  public @Nullable Boolean getUseCrumbs() {
     return useCrumbs;
   }
 
-  public void setUseCrumbs(Boolean useCrumbs) {
+  public void setUseCrumbs(@Nullable Boolean useCrumbs) {
     this.useCrumbs = useCrumbs;
   }
 
-  public Hudson useSecurity(Boolean useSecurity) {
+  public Hudson useSecurity(@Nullable Boolean useSecurity) {
     this.useSecurity = useSecurity;
     return this;
   }
@@ -350,11 +350,11 @@ public class Hudson {
   
   @Schema(name = "useSecurity", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("useSecurity")
-  public Boolean getUseSecurity() {
+  public @Nullable Boolean getUseSecurity() {
     return useSecurity;
   }
 
-  public void setUseSecurity(Boolean useSecurity) {
+  public void setUseSecurity(@Nullable Boolean useSecurity) {
     this.useSecurity = useSecurity;
   }
 

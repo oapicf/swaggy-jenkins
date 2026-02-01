@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * HudsonMasterComputermonitorData
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class HudsonMasterComputermonitorData {
 
   private @Nullable SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
@@ -40,7 +40,7 @@ public class HudsonMasterComputermonitorData {
 
   private @Nullable String propertyClass;
 
-  public HudsonMasterComputermonitorData hudsonNodeMonitorsSwapSpaceMonitor(SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor) {
+  public HudsonMasterComputermonitorData hudsonNodeMonitorsSwapSpaceMonitor(@Nullable SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor) {
     this.hudsonNodeMonitorsSwapSpaceMonitor = hudsonNodeMonitorsSwapSpaceMonitor;
     return this;
   }
@@ -52,15 +52,15 @@ public class HudsonMasterComputermonitorData {
   @Valid 
   @Schema(name = "hudson.node_monitors.SwapSpaceMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
-  public SwapSpaceMonitorMemoryUsage2 getHudsonNodeMonitorsSwapSpaceMonitor() {
+  public @Nullable SwapSpaceMonitorMemoryUsage2 getHudsonNodeMonitorsSwapSpaceMonitor() {
     return hudsonNodeMonitorsSwapSpaceMonitor;
   }
 
-  public void setHudsonNodeMonitorsSwapSpaceMonitor(SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor) {
+  public void setHudsonNodeMonitorsSwapSpaceMonitor(@Nullable SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor) {
     this.hudsonNodeMonitorsSwapSpaceMonitor = hudsonNodeMonitorsSwapSpaceMonitor;
   }
 
-  public HudsonMasterComputermonitorData hudsonNodeMonitorsTemporarySpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor) {
+  public HudsonMasterComputermonitorData hudsonNodeMonitorsTemporarySpaceMonitor(@Nullable DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor) {
     this.hudsonNodeMonitorsTemporarySpaceMonitor = hudsonNodeMonitorsTemporarySpaceMonitor;
     return this;
   }
@@ -72,15 +72,15 @@ public class HudsonMasterComputermonitorData {
   @Valid 
   @Schema(name = "hudson.node_monitors.TemporarySpaceMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("hudson.node_monitors.TemporarySpaceMonitor")
-  public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsTemporarySpaceMonitor() {
+  public @Nullable DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsTemporarySpaceMonitor() {
     return hudsonNodeMonitorsTemporarySpaceMonitor;
   }
 
-  public void setHudsonNodeMonitorsTemporarySpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor) {
+  public void setHudsonNodeMonitorsTemporarySpaceMonitor(@Nullable DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor) {
     this.hudsonNodeMonitorsTemporarySpaceMonitor = hudsonNodeMonitorsTemporarySpaceMonitor;
   }
 
-  public HudsonMasterComputermonitorData hudsonNodeMonitorsDiskSpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor) {
+  public HudsonMasterComputermonitorData hudsonNodeMonitorsDiskSpaceMonitor(@Nullable DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor) {
     this.hudsonNodeMonitorsDiskSpaceMonitor = hudsonNodeMonitorsDiskSpaceMonitor;
     return this;
   }
@@ -92,15 +92,15 @@ public class HudsonMasterComputermonitorData {
   @Valid 
   @Schema(name = "hudson.node_monitors.DiskSpaceMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("hudson.node_monitors.DiskSpaceMonitor")
-  public DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsDiskSpaceMonitor() {
+  public @Nullable DiskSpaceMonitorDescriptorDiskSpace getHudsonNodeMonitorsDiskSpaceMonitor() {
     return hudsonNodeMonitorsDiskSpaceMonitor;
   }
 
-  public void setHudsonNodeMonitorsDiskSpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor) {
+  public void setHudsonNodeMonitorsDiskSpaceMonitor(@Nullable DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor) {
     this.hudsonNodeMonitorsDiskSpaceMonitor = hudsonNodeMonitorsDiskSpaceMonitor;
   }
 
-  public HudsonMasterComputermonitorData hudsonNodeMonitorsArchitectureMonitor(String hudsonNodeMonitorsArchitectureMonitor) {
+  public HudsonMasterComputermonitorData hudsonNodeMonitorsArchitectureMonitor(@Nullable String hudsonNodeMonitorsArchitectureMonitor) {
     this.hudsonNodeMonitorsArchitectureMonitor = hudsonNodeMonitorsArchitectureMonitor;
     return this;
   }
@@ -112,15 +112,15 @@ public class HudsonMasterComputermonitorData {
   
   @Schema(name = "hudson.node_monitors.ArchitectureMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("hudson.node_monitors.ArchitectureMonitor")
-  public String getHudsonNodeMonitorsArchitectureMonitor() {
+  public @Nullable String getHudsonNodeMonitorsArchitectureMonitor() {
     return hudsonNodeMonitorsArchitectureMonitor;
   }
 
-  public void setHudsonNodeMonitorsArchitectureMonitor(String hudsonNodeMonitorsArchitectureMonitor) {
+  public void setHudsonNodeMonitorsArchitectureMonitor(@Nullable String hudsonNodeMonitorsArchitectureMonitor) {
     this.hudsonNodeMonitorsArchitectureMonitor = hudsonNodeMonitorsArchitectureMonitor;
   }
 
-  public HudsonMasterComputermonitorData hudsonNodeMonitorsResponseTimeMonitor(ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor) {
+  public HudsonMasterComputermonitorData hudsonNodeMonitorsResponseTimeMonitor(@Nullable ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor) {
     this.hudsonNodeMonitorsResponseTimeMonitor = hudsonNodeMonitorsResponseTimeMonitor;
     return this;
   }
@@ -132,15 +132,15 @@ public class HudsonMasterComputermonitorData {
   @Valid 
   @Schema(name = "hudson.node_monitors.ResponseTimeMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("hudson.node_monitors.ResponseTimeMonitor")
-  public ResponseTimeMonitorData getHudsonNodeMonitorsResponseTimeMonitor() {
+  public @Nullable ResponseTimeMonitorData getHudsonNodeMonitorsResponseTimeMonitor() {
     return hudsonNodeMonitorsResponseTimeMonitor;
   }
 
-  public void setHudsonNodeMonitorsResponseTimeMonitor(ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor) {
+  public void setHudsonNodeMonitorsResponseTimeMonitor(@Nullable ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor) {
     this.hudsonNodeMonitorsResponseTimeMonitor = hudsonNodeMonitorsResponseTimeMonitor;
   }
 
-  public HudsonMasterComputermonitorData hudsonNodeMonitorsClockMonitor(ClockDifference hudsonNodeMonitorsClockMonitor) {
+  public HudsonMasterComputermonitorData hudsonNodeMonitorsClockMonitor(@Nullable ClockDifference hudsonNodeMonitorsClockMonitor) {
     this.hudsonNodeMonitorsClockMonitor = hudsonNodeMonitorsClockMonitor;
     return this;
   }
@@ -152,15 +152,15 @@ public class HudsonMasterComputermonitorData {
   @Valid 
   @Schema(name = "hudson.node_monitors.ClockMonitor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("hudson.node_monitors.ClockMonitor")
-  public ClockDifference getHudsonNodeMonitorsClockMonitor() {
+  public @Nullable ClockDifference getHudsonNodeMonitorsClockMonitor() {
     return hudsonNodeMonitorsClockMonitor;
   }
 
-  public void setHudsonNodeMonitorsClockMonitor(ClockDifference hudsonNodeMonitorsClockMonitor) {
+  public void setHudsonNodeMonitorsClockMonitor(@Nullable ClockDifference hudsonNodeMonitorsClockMonitor) {
     this.hudsonNodeMonitorsClockMonitor = hudsonNodeMonitorsClockMonitor;
   }
 
-  public HudsonMasterComputermonitorData propertyClass(String propertyClass) {
+  public HudsonMasterComputermonitorData propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -172,11 +172,11 @@ public class HudsonMasterComputermonitorData {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

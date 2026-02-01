@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -19,7 +19,7 @@ import public "models/empty_change_log_set.proto";
 
 message FreeStyleBuild {
 
-  string _class = 406713225;
+  string class = 94742904;
 
   int32 number = 497493176;
 
@@ -31,28 +31,29 @@ message FreeStyleBuild {
 
   string description = 113933319;
 
-  string displayName = 103536240;
+  string display_name = 4473835;
 
   int32 duration = 381399663;
 
-  int32 estimatedDuration = 192755186;
+  int32 estimated_duration = 65306060;
 
   string executor = 432404694;
 
-  string fullDisplayName = 275284900;
+  string full_display_name = 274623386;
 
   string id = 3355;
 
-  bool keepLog = 296249986;
+  bool keep_log = 56380534;
 
-  int32 queueId = 118301197;
+  int32 queue_id = 90737913;
 
   string result = 397555684;
 
   int32 timestamp = 55126294;
 
-  string builtOn = 230959357;
+  string built_on = 356437186;
 
-  EmptyChangeLogSet changeSet = 381506196;
+  EmptyChangeLogSet change_set = 520968368;
 
 }
+

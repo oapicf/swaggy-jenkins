@@ -10,9 +10,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FavoriteImpllinks  {
   
   @ApiModelProperty(value = "")
+
   private Link self;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get self

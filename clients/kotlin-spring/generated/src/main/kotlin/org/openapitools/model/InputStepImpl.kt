@@ -49,7 +49,7 @@ data class InputStepImpl(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("submitter") val submitter: kotlin.String? = null
-    ) {
+) {
 
 }
 

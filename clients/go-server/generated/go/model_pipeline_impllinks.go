@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.0.2-pre.0
+ * API version: 3.2.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -16,29 +16,29 @@ package openapi
 
 type PipelineImpllinks struct {
 
-	Runs Link `json:"runs,omitempty"`
-
 	Self Link `json:"self,omitempty"`
 
-	Queue Link `json:"queue,omitempty"`
-
 	Actions Link `json:"actions,omitempty"`
+
+	Runs Link `json:"runs,omitempty"`
+
+	Queue Link `json:"queue,omitempty"`
 
 	Class string `json:"_class,omitempty"`
 }
 
 // AssertPipelineImpllinksRequired checks if the required fields are not zero-ed
 func AssertPipelineImpllinksRequired(obj PipelineImpllinks) error {
-	if err := AssertLinkRequired(obj.Runs); err != nil {
-		return err
-	}
 	if err := AssertLinkRequired(obj.Self); err != nil {
 		return err
 	}
-	if err := AssertLinkRequired(obj.Queue); err != nil {
+	if err := AssertLinkRequired(obj.Actions); err != nil {
 		return err
 	}
-	if err := AssertLinkRequired(obj.Actions); err != nil {
+	if err := AssertLinkRequired(obj.Runs); err != nil {
+		return err
+	}
+	if err := AssertLinkRequired(obj.Queue); err != nil {
 		return err
 	}
 	return nil
@@ -46,16 +46,16 @@ func AssertPipelineImpllinksRequired(obj PipelineImpllinks) error {
 
 // AssertPipelineImpllinksConstraints checks if the values respects the defined constraints
 func AssertPipelineImpllinksConstraints(obj PipelineImpllinks) error {
-	if err := AssertLinkConstraints(obj.Runs); err != nil {
-		return err
-	}
 	if err := AssertLinkConstraints(obj.Self); err != nil {
 		return err
 	}
-	if err := AssertLinkConstraints(obj.Queue); err != nil {
+	if err := AssertLinkConstraints(obj.Actions); err != nil {
 		return err
 	}
-	if err := AssertLinkConstraints(obj.Actions); err != nil {
+	if err := AssertLinkConstraints(obj.Runs); err != nil {
+		return err
+	}
+	if err := AssertLinkConstraints(obj.Queue); err != nil {
 		return err
 	}
 	return nil

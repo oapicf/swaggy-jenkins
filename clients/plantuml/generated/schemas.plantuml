@@ -509,10 +509,10 @@ entity PipelineImpl {
 }
 
 entity PipelineImpllinks {
-    runs: Link
     self: Link
-    queue: Link
     actions: Link
+    runs: Link
+    queue: Link
     _class: String
 }
 
@@ -726,10 +726,10 @@ GithubRespositoryContainer -- GithubRespositoryContainerlinks : _links
 GithubRespositoryContainer -- GithubRepositories : repositories
 GithubRepositories -- GithubRepositorieslinks : _links
 GithubRepositories -- "0..*" GithubRepository : items
-PipelineImpllinks -- Link : runs
 PipelineImpllinks -- Link : self
-PipelineImpllinks -- Link : queue
 PipelineImpllinks -- Link : actions
+PipelineImpllinks -- Link : runs
+PipelineImpllinks -- Link : queue
 ExtensionClassContainerImpl1 -- ExtensionClassContainerImpl1links : _links
 ExtensionClassContainerImpl1 -- ExtensionClassContainerImpl1map : map
 GithubOrganization -- GithubOrganizationlinks : _links

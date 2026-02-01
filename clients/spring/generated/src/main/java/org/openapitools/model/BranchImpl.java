@@ -26,7 +26,7 @@ import javax.annotation.Generated;
  * BranchImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class BranchImpl {
 
   private @Nullable String propertyClass;
@@ -56,7 +56,7 @@ public class BranchImpl {
 
   private @Nullable PipelineRunImpl latestRun;
 
-  public BranchImpl propertyClass(String propertyClass) {
+  public BranchImpl propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -68,15 +68,15 @@ public class BranchImpl {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public BranchImpl displayName(String displayName) {
+  public BranchImpl displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -88,15 +88,15 @@ public class BranchImpl {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
-  public BranchImpl estimatedDurationInMillis(Integer estimatedDurationInMillis) {
+  public BranchImpl estimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
   }
@@ -108,15 +108,15 @@ public class BranchImpl {
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
-  public Integer getEstimatedDurationInMillis() {
+  public @Nullable Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
 
-  public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
+  public void setEstimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  public BranchImpl fullDisplayName(String fullDisplayName) {
+  public BranchImpl fullDisplayName(@Nullable String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
     return this;
   }
@@ -128,15 +128,15 @@ public class BranchImpl {
   
   @Schema(name = "fullDisplayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullDisplayName")
-  public String getFullDisplayName() {
+  public @Nullable String getFullDisplayName() {
     return fullDisplayName;
   }
 
-  public void setFullDisplayName(String fullDisplayName) {
+  public void setFullDisplayName(@Nullable String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
   }
 
-  public BranchImpl fullName(String fullName) {
+  public BranchImpl fullName(@Nullable String fullName) {
     this.fullName = fullName;
     return this;
   }
@@ -148,15 +148,15 @@ public class BranchImpl {
   
   @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullName")
-  public String getFullName() {
+  public @Nullable String getFullName() {
     return fullName;
   }
 
-  public void setFullName(String fullName) {
+  public void setFullName(@Nullable String fullName) {
     this.fullName = fullName;
   }
 
-  public BranchImpl name(String name) {
+  public BranchImpl name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -168,15 +168,15 @@ public class BranchImpl {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
-  public BranchImpl organization(String organization) {
+  public BranchImpl organization(@Nullable String organization) {
     this.organization = organization;
     return this;
   }
@@ -188,11 +188,11 @@ public class BranchImpl {
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
-  public String getOrganization() {
+  public @Nullable String getOrganization() {
     return organization;
   }
 
-  public void setOrganization(String organization) {
+  public void setOrganization(@Nullable String organization) {
     this.organization = organization;
   }
 
@@ -224,7 +224,7 @@ public class BranchImpl {
     this.parameters = parameters;
   }
 
-  public BranchImpl permissions(BranchImplpermissions permissions) {
+  public BranchImpl permissions(@Nullable BranchImplpermissions permissions) {
     this.permissions = permissions;
     return this;
   }
@@ -236,15 +236,15 @@ public class BranchImpl {
   @Valid 
   @Schema(name = "permissions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("permissions")
-  public BranchImplpermissions getPermissions() {
+  public @Nullable BranchImplpermissions getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(BranchImplpermissions permissions) {
+  public void setPermissions(@Nullable BranchImplpermissions permissions) {
     this.permissions = permissions;
   }
 
-  public BranchImpl weatherScore(Integer weatherScore) {
+  public BranchImpl weatherScore(@Nullable Integer weatherScore) {
     this.weatherScore = weatherScore;
     return this;
   }
@@ -256,15 +256,15 @@ public class BranchImpl {
   
   @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("weatherScore")
-  public Integer getWeatherScore() {
+  public @Nullable Integer getWeatherScore() {
     return weatherScore;
   }
 
-  public void setWeatherScore(Integer weatherScore) {
+  public void setWeatherScore(@Nullable Integer weatherScore) {
     this.weatherScore = weatherScore;
   }
 
-  public BranchImpl pullRequest(String pullRequest) {
+  public BranchImpl pullRequest(@Nullable String pullRequest) {
     this.pullRequest = pullRequest;
     return this;
   }
@@ -276,15 +276,15 @@ public class BranchImpl {
   
   @Schema(name = "pullRequest", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pullRequest")
-  public String getPullRequest() {
+  public @Nullable String getPullRequest() {
     return pullRequest;
   }
 
-  public void setPullRequest(String pullRequest) {
+  public void setPullRequest(@Nullable String pullRequest) {
     this.pullRequest = pullRequest;
   }
 
-  public BranchImpl links(BranchImpllinks links) {
+  public BranchImpl links(@Nullable BranchImpllinks links) {
     this.links = links;
     return this;
   }
@@ -296,15 +296,15 @@ public class BranchImpl {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public BranchImpllinks getLinks() {
+  public @Nullable BranchImpllinks getLinks() {
     return links;
   }
 
-  public void setLinks(BranchImpllinks links) {
+  public void setLinks(@Nullable BranchImpllinks links) {
     this.links = links;
   }
 
-  public BranchImpl latestRun(PipelineRunImpl latestRun) {
+  public BranchImpl latestRun(@Nullable PipelineRunImpl latestRun) {
     this.latestRun = latestRun;
     return this;
   }
@@ -316,11 +316,11 @@ public class BranchImpl {
   @Valid 
   @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("latestRun")
-  public PipelineRunImpl getLatestRun() {
+  public @Nullable PipelineRunImpl getLatestRun() {
     return latestRun;
   }
 
-  public void setLatestRun(PipelineRunImpl latestRun) {
+  public void setLatestRun(@Nullable PipelineRunImpl latestRun) {
     this.latestRun = latestRun;
   }
 

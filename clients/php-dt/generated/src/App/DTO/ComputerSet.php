@@ -21,10 +21,10 @@ class ComputerSet
 
     /**
      * @DTA\Data(field="computer", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection9::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection9::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection10::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection10::class})
      */
-    public ?\App\DTO\Collection9 $computer = null;
+    public ?\App\DTO\Collection10 $computer = null;
 
     /**
      * @DTA\Data(field="displayName", nullable=true)

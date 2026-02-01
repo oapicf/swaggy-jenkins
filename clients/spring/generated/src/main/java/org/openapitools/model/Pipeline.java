@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * Pipeline
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class Pipeline {
 
   private @Nullable String propertyClass;
@@ -39,7 +39,7 @@ public class Pipeline {
 
   private @Nullable PipelinelatestRun latestRun;
 
-  public Pipeline propertyClass(String propertyClass) {
+  public Pipeline propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -51,15 +51,15 @@ public class Pipeline {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public Pipeline organization(String organization) {
+  public Pipeline organization(@Nullable String organization) {
     this.organization = organization;
     return this;
   }
@@ -71,15 +71,15 @@ public class Pipeline {
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
-  public String getOrganization() {
+  public @Nullable String getOrganization() {
     return organization;
   }
 
-  public void setOrganization(String organization) {
+  public void setOrganization(@Nullable String organization) {
     this.organization = organization;
   }
 
-  public Pipeline name(String name) {
+  public Pipeline name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -91,15 +91,15 @@ public class Pipeline {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
-  public Pipeline displayName(String displayName) {
+  public Pipeline displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -111,15 +111,15 @@ public class Pipeline {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
-  public Pipeline fullName(String fullName) {
+  public Pipeline fullName(@Nullable String fullName) {
     this.fullName = fullName;
     return this;
   }
@@ -131,15 +131,15 @@ public class Pipeline {
   
   @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullName")
-  public String getFullName() {
+  public @Nullable String getFullName() {
     return fullName;
   }
 
-  public void setFullName(String fullName) {
+  public void setFullName(@Nullable String fullName) {
     this.fullName = fullName;
   }
 
-  public Pipeline weatherScore(Integer weatherScore) {
+  public Pipeline weatherScore(@Nullable Integer weatherScore) {
     this.weatherScore = weatherScore;
     return this;
   }
@@ -151,15 +151,15 @@ public class Pipeline {
   
   @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("weatherScore")
-  public Integer getWeatherScore() {
+  public @Nullable Integer getWeatherScore() {
     return weatherScore;
   }
 
-  public void setWeatherScore(Integer weatherScore) {
+  public void setWeatherScore(@Nullable Integer weatherScore) {
     this.weatherScore = weatherScore;
   }
 
-  public Pipeline estimatedDurationInMillis(Integer estimatedDurationInMillis) {
+  public Pipeline estimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
   }
@@ -171,15 +171,15 @@ public class Pipeline {
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
-  public Integer getEstimatedDurationInMillis() {
+  public @Nullable Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
 
-  public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
+  public void setEstimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  public Pipeline latestRun(PipelinelatestRun latestRun) {
+  public Pipeline latestRun(@Nullable PipelinelatestRun latestRun) {
     this.latestRun = latestRun;
     return this;
   }
@@ -191,11 +191,11 @@ public class Pipeline {
   @Valid 
   @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("latestRun")
-  public PipelinelatestRun getLatestRun() {
+  public @Nullable PipelinelatestRun getLatestRun() {
     return latestRun;
   }
 
-  public void setLatestRun(PipelinelatestRun latestRun) {
+  public void setLatestRun(@Nullable PipelinelatestRun latestRun) {
     this.latestRun = latestRun;
   }
 

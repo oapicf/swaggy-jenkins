@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * User
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class User {
 
   private @Nullable String propertyClass;
@@ -32,7 +32,7 @@ public class User {
 
   private @Nullable String name;
 
-  public User propertyClass(String propertyClass) {
+  public User propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -44,15 +44,15 @@ public class User {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public User id(String id) {
+  public User id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -64,15 +64,15 @@ public class User {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public User fullName(String fullName) {
+  public User fullName(@Nullable String fullName) {
     this.fullName = fullName;
     return this;
   }
@@ -84,15 +84,15 @@ public class User {
   
   @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullName")
-  public String getFullName() {
+  public @Nullable String getFullName() {
     return fullName;
   }
 
-  public void setFullName(String fullName) {
+  public void setFullName(@Nullable String fullName) {
     this.fullName = fullName;
   }
 
-  public User email(String email) {
+  public User email(@Nullable String email) {
     this.email = email;
     return this;
   }
@@ -104,15 +104,15 @@ public class User {
   
   @Schema(name = "email", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("email")
-  public String getEmail() {
+  public @Nullable String getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
+  public void setEmail(@Nullable String email) {
     this.email = email;
   }
 
-  public User name(String name) {
+  public User name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -124,11 +124,11 @@ public class User {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 

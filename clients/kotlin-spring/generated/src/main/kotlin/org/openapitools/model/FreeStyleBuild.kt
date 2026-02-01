@@ -93,7 +93,7 @@ data class FreeStyleBuild(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("changeSet") val changeSet: EmptyChangeLogSet? = null
-    ) {
+) {
 
 }
 

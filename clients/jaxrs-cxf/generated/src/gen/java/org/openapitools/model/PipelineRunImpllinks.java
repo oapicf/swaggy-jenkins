@@ -12,26 +12,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelineRunImpllinks  {
   
   @ApiModelProperty(value = "")
+
   @Valid
+
   private Link nodes;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private Link log;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private Link self;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private Link actions;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private Link steps;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get nodes

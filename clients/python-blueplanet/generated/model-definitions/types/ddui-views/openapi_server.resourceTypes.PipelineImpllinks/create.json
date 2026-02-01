@@ -11,10 +11,10 @@
     "label": "Details",
     "model": "properties",
     "children": [
-      {"model": "runs" },
       {"model": "_self" },
-      {"model": "queue" },
       {"model": "actions" },
+      {"model": "runs" },
+      {"model": "queue" },
       {"model": "_class" },
     ]
   }]

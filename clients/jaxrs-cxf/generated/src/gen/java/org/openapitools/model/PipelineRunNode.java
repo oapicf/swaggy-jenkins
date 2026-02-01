@@ -15,28 +15,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelineRunNode  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private Integer durationInMillis;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid PipelineRunNodeedges> edges = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private String id;
 
   @ApiModelProperty(value = "")
+
   private String result;
 
   @ApiModelProperty(value = "")
+
   private String startTime;
 
   @ApiModelProperty(value = "")
+
   private String state;
  /**
    * Get propertyClass

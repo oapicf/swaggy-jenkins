@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -18,20 +18,21 @@ import public "models/pipelinelatest_run.proto";
 
 message Pipeline {
 
-  string _class = 406713225;
+  string class = 94742904;
 
   string organization = 105180469;
 
   string name = 3373707;
 
-  string displayName = 103536240;
+  string display_name = 4473835;
 
-  string fullName = 257110460;
+  string full_name = 66563528;
 
-  int32 weatherScore = 365105410;
+  int32 weather_score = 313987722;
 
-  int32 estimatedDurationInMillis = 316469800;
+  int32 estimated_duration_in_millis = 297912984;
 
-  PipelinelatestRun latestRun = 194530943;
+  PipelinelatestRun latest_run = 124494381;
 
 }
+

@@ -5,17 +5,41 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    _links: Github_organizationlinks.t option [@default None];
-    jenkins_organization_pipeline: bool option [@default None];
-    name: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    _links = None;
-    jenkins_organization_pipeline = None;
-    name = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              _links: Github_organizationlinks.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_links"]
+                                              jenkins_organization_pipeline: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "jenkinsOrganizationPipeline"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            _links = None;
+            jenkins_organization_pipeline = None;
+            name = None;
+        }
+    
 

@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * PipelineRunImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineRunImpl {
 
   private @Nullable String propertyClass;
@@ -53,7 +53,7 @@ public class PipelineRunImpl {
 
   private @Nullable String commitId;
 
-  public PipelineRunImpl propertyClass(String propertyClass) {
+  public PipelineRunImpl propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -65,15 +65,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public PipelineRunImpl links(PipelineRunImpllinks links) {
+  public PipelineRunImpl links(@Nullable PipelineRunImpllinks links) {
     this.links = links;
     return this;
   }
@@ -85,15 +85,15 @@ public class PipelineRunImpl {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public PipelineRunImpllinks getLinks() {
+  public @Nullable PipelineRunImpllinks getLinks() {
     return links;
   }
 
-  public void setLinks(PipelineRunImpllinks links) {
+  public void setLinks(@Nullable PipelineRunImpllinks links) {
     this.links = links;
   }
 
-  public PipelineRunImpl durationInMillis(Integer durationInMillis) {
+  public PipelineRunImpl durationInMillis(@Nullable Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
     return this;
   }
@@ -105,15 +105,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("durationInMillis")
-  public Integer getDurationInMillis() {
+  public @Nullable Integer getDurationInMillis() {
     return durationInMillis;
   }
 
-  public void setDurationInMillis(Integer durationInMillis) {
+  public void setDurationInMillis(@Nullable Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
   }
 
-  public PipelineRunImpl enQueueTime(String enQueueTime) {
+  public PipelineRunImpl enQueueTime(@Nullable String enQueueTime) {
     this.enQueueTime = enQueueTime;
     return this;
   }
@@ -125,15 +125,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "enQueueTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("enQueueTime")
-  public String getEnQueueTime() {
+  public @Nullable String getEnQueueTime() {
     return enQueueTime;
   }
 
-  public void setEnQueueTime(String enQueueTime) {
+  public void setEnQueueTime(@Nullable String enQueueTime) {
     this.enQueueTime = enQueueTime;
   }
 
-  public PipelineRunImpl endTime(String endTime) {
+  public PipelineRunImpl endTime(@Nullable String endTime) {
     this.endTime = endTime;
     return this;
   }
@@ -145,15 +145,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "endTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("endTime")
-  public String getEndTime() {
+  public @Nullable String getEndTime() {
     return endTime;
   }
 
-  public void setEndTime(String endTime) {
+  public void setEndTime(@Nullable String endTime) {
     this.endTime = endTime;
   }
 
-  public PipelineRunImpl estimatedDurationInMillis(Integer estimatedDurationInMillis) {
+  public PipelineRunImpl estimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
   }
@@ -165,15 +165,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
-  public Integer getEstimatedDurationInMillis() {
+  public @Nullable Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
 
-  public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
+  public void setEstimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  public PipelineRunImpl id(String id) {
+  public PipelineRunImpl id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -185,15 +185,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public PipelineRunImpl organization(String organization) {
+  public PipelineRunImpl organization(@Nullable String organization) {
     this.organization = organization;
     return this;
   }
@@ -205,15 +205,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
-  public String getOrganization() {
+  public @Nullable String getOrganization() {
     return organization;
   }
 
-  public void setOrganization(String organization) {
+  public void setOrganization(@Nullable String organization) {
     this.organization = organization;
   }
 
-  public PipelineRunImpl pipeline(String pipeline) {
+  public PipelineRunImpl pipeline(@Nullable String pipeline) {
     this.pipeline = pipeline;
     return this;
   }
@@ -225,15 +225,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "pipeline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pipeline")
-  public String getPipeline() {
+  public @Nullable String getPipeline() {
     return pipeline;
   }
 
-  public void setPipeline(String pipeline) {
+  public void setPipeline(@Nullable String pipeline) {
     this.pipeline = pipeline;
   }
 
-  public PipelineRunImpl result(String result) {
+  public PipelineRunImpl result(@Nullable String result) {
     this.result = result;
     return this;
   }
@@ -245,15 +245,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("result")
-  public String getResult() {
+  public @Nullable String getResult() {
     return result;
   }
 
-  public void setResult(String result) {
+  public void setResult(@Nullable String result) {
     this.result = result;
   }
 
-  public PipelineRunImpl runSummary(String runSummary) {
+  public PipelineRunImpl runSummary(@Nullable String runSummary) {
     this.runSummary = runSummary;
     return this;
   }
@@ -265,15 +265,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "runSummary", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("runSummary")
-  public String getRunSummary() {
+  public @Nullable String getRunSummary() {
     return runSummary;
   }
 
-  public void setRunSummary(String runSummary) {
+  public void setRunSummary(@Nullable String runSummary) {
     this.runSummary = runSummary;
   }
 
-  public PipelineRunImpl startTime(String startTime) {
+  public PipelineRunImpl startTime(@Nullable String startTime) {
     this.startTime = startTime;
     return this;
   }
@@ -285,15 +285,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("startTime")
-  public String getStartTime() {
+  public @Nullable String getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(String startTime) {
+  public void setStartTime(@Nullable String startTime) {
     this.startTime = startTime;
   }
 
-  public PipelineRunImpl state(String state) {
+  public PipelineRunImpl state(@Nullable String state) {
     this.state = state;
     return this;
   }
@@ -305,15 +305,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "state", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("state")
-  public String getState() {
+  public @Nullable String getState() {
     return state;
   }
 
-  public void setState(String state) {
+  public void setState(@Nullable String state) {
     this.state = state;
   }
 
-  public PipelineRunImpl type(String type) {
+  public PipelineRunImpl type(@Nullable String type) {
     this.type = type;
     return this;
   }
@@ -325,15 +325,15 @@ public class PipelineRunImpl {
   
   @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("type")
-  public String getType() {
+  public @Nullable String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@Nullable String type) {
     this.type = type;
   }
 
-  public PipelineRunImpl commitId(String commitId) {
+  public PipelineRunImpl commitId(@Nullable String commitId) {
     this.commitId = commitId;
     return this;
   }
@@ -345,11 +345,11 @@ public class PipelineRunImpl {
   
   @Schema(name = "commitId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("commitId")
-  public String getCommitId() {
+  public @Nullable String getCommitId() {
     return commitId;
   }
 
-  public void setCommitId(String commitId) {
+  public void setCommitId(@Nullable String commitId) {
     this.commitId = commitId;
   }
 

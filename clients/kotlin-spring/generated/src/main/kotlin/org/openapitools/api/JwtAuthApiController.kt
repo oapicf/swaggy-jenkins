@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
+import org.openapitools.api.JwtAuthApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -29,7 +30,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${api.base-path:}")
+@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
 class JwtAuthApiController() {
 
     @Operation(
@@ -43,10 +44,12 @@ class JwtAuthApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/jwt-auth/jwks/{key}"],
+        value = [PATH_GET_JSON_WEB_KEY /* "/jwt-auth/jwks/{key}" */],
         produces = ["application/json"]
     )
-    fun getJsonWebKey(@Parameter(description = "Key ID received as part of JWT header field kid", required = true) @PathVariable("key") key: kotlin.Int): ResponseEntity<kotlin.String> {
+    fun getJsonWebKey(
+        @Parameter(description = "Key ID received as part of JWT header field kid", required = true) @PathVariable("key") key: kotlin.Int
+    ): ResponseEntity<kotlin.String> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -61,10 +64,20 @@ class JwtAuthApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/jwt-auth/token"],
+        value = [PATH_GET_JSON_WEB_TOKEN /* "/jwt-auth/token" */],
         produces = ["application/json"]
     )
-    fun getJsonWebToken(@Parameter(description = "Token expiry time in minutes, default: 30 minutes") @Valid @RequestParam(value = "expiryTimeInMins", required = false) expiryTimeInMins: kotlin.Int?,@Parameter(description = "Maximum token expiry time in minutes, default: 480 minutes") @Valid @RequestParam(value = "maxExpiryTimeInMins", required = false) maxExpiryTimeInMins: kotlin.Int?): ResponseEntity<kotlin.String> {
+    fun getJsonWebToken(
+        @Parameter(description = "Token expiry time in minutes, default: 30 minutes") @Valid @RequestParam(value = "expiryTimeInMins", required = false) expiryTimeInMins: kotlin.Int?,
+        @Parameter(description = "Maximum token expiry time in minutes, default: 480 minutes") @Valid @RequestParam(value = "maxExpiryTimeInMins", required = false) maxExpiryTimeInMins: kotlin.Int?
+    ): ResponseEntity<kotlin.String> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
+    }
+
+    companion object {
+        //for your own safety never directly reuse these path definitions in tests
+        const val BASE_PATH: String = ""
+        const val PATH_GET_JSON_WEB_KEY: String = "/jwt-auth/jwks/{key}"
+        const val PATH_GET_JSON_WEB_TOKEN: String = "/jwt-auth/token"
     }
 }

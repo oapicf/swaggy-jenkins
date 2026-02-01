@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -23,45 +23,45 @@ import public "models/list_view.proto";
 import public "models/queue.proto";
 
 service RemoteAccessService {
-  rpc GetComputer (GetComputerRequest) returns (ComputerSet);
+  rpc GetComputer (GetComputerRequest) returns (GetComputerResponse);
 
-  rpc GetJenkins (google.protobuf.Empty) returns (Hudson);
+  rpc GetJenkins (google.protobuf.Empty) returns (GetJenkinsResponse);
 
-  rpc GetJob (GetJobRequest) returns (FreeStyleProject);
+  rpc GetJob (GetJobRequest) returns (GetJobResponse);
 
   rpc GetJobConfig (GetJobConfigRequest) returns (GetJobConfigResponse);
 
-  rpc GetJobLastBuild (GetJobLastBuildRequest) returns (FreeStyleBuild);
+  rpc GetJobLastBuild (GetJobLastBuildRequest) returns (GetJobLastBuildResponse);
 
-  rpc GetJobProgressiveText (GetJobProgressiveTextRequest) returns (google.protobuf.Empty);
+  rpc GetJobProgressiveText (GetJobProgressiveTextRequest) returns (GetJobProgressiveTextResponse);
 
-  rpc GetQueue (google.protobuf.Empty) returns (Queue);
+  rpc GetQueue (google.protobuf.Empty) returns (GetQueueResponse);
 
-  rpc GetQueueItem (GetQueueItemRequest) returns (Queue);
+  rpc GetQueueItem (GetQueueItemRequest) returns (GetQueueItemResponse);
 
-  rpc GetView (GetViewRequest) returns (ListView);
+  rpc GetView (GetViewRequest) returns (GetViewResponse);
 
   rpc GetViewConfig (GetViewConfigRequest) returns (GetViewConfigResponse);
 
-  rpc HeadJenkins (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc HeadJenkins (google.protobuf.Empty) returns (HeadJenkinsResponse);
 
-  rpc PostCreateItem (PostCreateItemRequest) returns (google.protobuf.Empty);
+  rpc PostCreateItem (PostCreateItemRequest) returns (PostCreateItemResponse);
 
-  rpc PostCreateView (PostCreateViewRequest) returns (google.protobuf.Empty);
+  rpc PostCreateView (PostCreateViewRequest) returns (PostCreateViewResponse);
 
-  rpc PostJobBuild (PostJobBuildRequest) returns (google.protobuf.Empty);
+  rpc PostJobBuild (PostJobBuildRequest) returns (PostJobBuildResponse);
 
-  rpc PostJobConfig (PostJobConfigRequest) returns (google.protobuf.Empty);
+  rpc PostJobConfig (PostJobConfigRequest) returns (PostJobConfigResponse);
 
-  rpc PostJobDelete (PostJobDeleteRequest) returns (google.protobuf.Empty);
+  rpc PostJobDelete (PostJobDeleteRequest) returns (PostJobDeleteResponse);
 
-  rpc PostJobDisable (PostJobDisableRequest) returns (google.protobuf.Empty);
+  rpc PostJobDisable (PostJobDisableRequest) returns (PostJobDisableResponse);
 
-  rpc PostJobEnable (PostJobEnableRequest) returns (google.protobuf.Empty);
+  rpc PostJobEnable (PostJobEnableRequest) returns (PostJobEnableResponse);
 
-  rpc PostJobLastBuildStop (PostJobLastBuildStopRequest) returns (google.protobuf.Empty);
+  rpc PostJobLastBuildStop (PostJobLastBuildStopRequest) returns (PostJobLastBuildStopResponse);
 
-  rpc PostViewConfig (PostViewConfigRequest) returns (google.protobuf.Empty);
+  rpc PostViewConfig (PostViewConfigRequest) returns (PostViewConfigResponse);
 
 }
 
@@ -71,12 +71,34 @@ message GetComputerRequest {
 
 }
 
+message GetComputerResponse {
+    oneof response {
+        ComputerSet computer_set_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
+message GetJenkinsResponse {
+    oneof response {
+        Hudson hudson_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetJobRequest {
   // Name of the job
   string name = 1;
 
 }
 
+message GetJobResponse {
+    oneof response {
+        FreeStyleProject free_style_project_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
+}
 message GetJobConfigRequest {
   // Name of the job
   string name = 1;
@@ -84,15 +106,27 @@ message GetJobConfigRequest {
 }
 
 message GetJobConfigResponse {
-  string data = 1;
+    oneof response {
+        string string_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
 }
-
 message GetJobLastBuildRequest {
   // Name of the job
   string name = 1;
 
 }
 
+message GetJobLastBuildResponse {
+    oneof response {
+        FreeStyleBuild free_style_build_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
+}
 message GetJobProgressiveTextRequest {
   // Name of the job
   string name = 1;
@@ -103,18 +137,48 @@ message GetJobProgressiveTextRequest {
 
 }
 
+message GetJobProgressiveTextResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
+}
+message GetQueueResponse {
+    oneof response {
+        Queue queue_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetQueueItemRequest {
   // Queue number
   string number = 1;
 
 }
 
+message GetQueueItemResponse {
+    oneof response {
+        Queue queue_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetViewRequest {
   // Name of the view
   string name = 1;
 
 }
 
+message GetViewResponse {
+    oneof response {
+        ListView list_view_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
+}
 message GetViewConfigRequest {
   // Name of the view
   string name = 1;
@@ -122,9 +186,20 @@ message GetViewConfigRequest {
 }
 
 message GetViewConfigResponse {
-  string data = 1;
+    oneof response {
+        string string_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
 }
-
+message HeadJenkinsResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message PostCreateItemRequest {
   // Name of the new job
   string name = 1;
@@ -133,85 +208,160 @@ message PostCreateItemRequest {
   // Set to 'copy' for copying an existing job
   string mode = 3;
   // CSRF protection token
-  string jenkinsCrumb = 4;
+  string jenkins_crumb = 4;
   // Content type header application/xml
-  string contentType = 5;
+  string content_type = 5;
   // Job configuration in config.xml format
   string body = 6;
 
 }
 
+message PostCreateItemResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        string string_400 = 2;
+        google.protobuf.Empty empty_401 = 3;
+        google.protobuf.Empty empty_403 = 4;
+    }
+}
 message PostCreateViewRequest {
   // Name of the new view
   string name = 1;
   // CSRF protection token
-  string jenkinsCrumb = 2;
+  string jenkins_crumb = 2;
   // Content type header application/xml
-  string contentType = 3;
+  string content_type = 3;
   // View configuration in config.xml format
   string body = 4;
 
 }
 
+message PostCreateViewResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        string string_400 = 2;
+        google.protobuf.Empty empty_401 = 3;
+        google.protobuf.Empty empty_403 = 4;
+    }
+}
 message PostJobBuildRequest {
   // Name of the job
   string name = 1;
   string json = 2;
   string token = 3;
   // CSRF protection token
-  string jenkinsCrumb = 4;
+  string jenkins_crumb = 4;
 
 }
 
+message PostJobBuildResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        google.protobuf.Empty empty_201 = 2;
+        google.protobuf.Empty empty_401 = 3;
+        google.protobuf.Empty empty_403 = 4;
+        google.protobuf.Empty empty_404 = 5;
+    }
+}
 message PostJobConfigRequest {
   // Name of the job
   string name = 1;
   // Job configuration in config.xml format
   string body = 2;
   // CSRF protection token
-  string jenkinsCrumb = 3;
+  string jenkins_crumb = 3;
 
 }
 
+message PostJobConfigResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        string string_400 = 2;
+        google.protobuf.Empty empty_401 = 3;
+        google.protobuf.Empty empty_403 = 4;
+        google.protobuf.Empty empty_404 = 5;
+    }
+}
 message PostJobDeleteRequest {
   // Name of the job
   string name = 1;
   // CSRF protection token
-  string jenkinsCrumb = 2;
+  string jenkins_crumb = 2;
 
 }
 
+message PostJobDeleteResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
+}
 message PostJobDisableRequest {
   // Name of the job
   string name = 1;
   // CSRF protection token
-  string jenkinsCrumb = 2;
+  string jenkins_crumb = 2;
 
 }
 
+message PostJobDisableResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
+}
 message PostJobEnableRequest {
   // Name of the job
   string name = 1;
   // CSRF protection token
-  string jenkinsCrumb = 2;
+  string jenkins_crumb = 2;
 
 }
 
+message PostJobEnableResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
+}
 message PostJobLastBuildStopRequest {
   // Name of the job
   string name = 1;
   // CSRF protection token
-  string jenkinsCrumb = 2;
+  string jenkins_crumb = 2;
 
 }
 
+message PostJobLastBuildStopResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
+}
 message PostViewConfigRequest {
   // Name of the view
   string name = 1;
   // View configuration in config.xml format
   string body = 2;
   // CSRF protection token
-  string jenkinsCrumb = 3;
+  string jenkins_crumb = 3;
 
 }
 
+message PostViewConfigResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        string string_400 = 2;
+        google.protobuf.Empty empty_401 = 3;
+        google.protobuf.Empty empty_403 = 4;
+        google.protobuf.Empty empty_404 = 5;
+    }
+}

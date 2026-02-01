@@ -24,7 +24,7 @@ import javax.annotation.Generated;
  * QueueBlockedItem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class QueueBlockedItem {
 
   private @Nullable String propertyClass;
@@ -52,7 +52,7 @@ public class QueueBlockedItem {
 
   private @Nullable Integer buildableStartMilliseconds;
 
-  public QueueBlockedItem propertyClass(String propertyClass) {
+  public QueueBlockedItem propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -64,11 +64,11 @@ public class QueueBlockedItem {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
@@ -100,7 +100,7 @@ public class QueueBlockedItem {
     this.actions = actions;
   }
 
-  public QueueBlockedItem blocked(Boolean blocked) {
+  public QueueBlockedItem blocked(@Nullable Boolean blocked) {
     this.blocked = blocked;
     return this;
   }
@@ -112,15 +112,15 @@ public class QueueBlockedItem {
   
   @Schema(name = "blocked", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("blocked")
-  public Boolean getBlocked() {
+  public @Nullable Boolean getBlocked() {
     return blocked;
   }
 
-  public void setBlocked(Boolean blocked) {
+  public void setBlocked(@Nullable Boolean blocked) {
     this.blocked = blocked;
   }
 
-  public QueueBlockedItem buildable(Boolean buildable) {
+  public QueueBlockedItem buildable(@Nullable Boolean buildable) {
     this.buildable = buildable;
     return this;
   }
@@ -132,15 +132,15 @@ public class QueueBlockedItem {
   
   @Schema(name = "buildable", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("buildable")
-  public Boolean getBuildable() {
+  public @Nullable Boolean getBuildable() {
     return buildable;
   }
 
-  public void setBuildable(Boolean buildable) {
+  public void setBuildable(@Nullable Boolean buildable) {
     this.buildable = buildable;
   }
 
-  public QueueBlockedItem id(Integer id) {
+  public QueueBlockedItem id(@Nullable Integer id) {
     this.id = id;
     return this;
   }
@@ -152,15 +152,15 @@ public class QueueBlockedItem {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public Integer getId() {
+  public @Nullable Integer getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(@Nullable Integer id) {
     this.id = id;
   }
 
-  public QueueBlockedItem inQueueSince(Integer inQueueSince) {
+  public QueueBlockedItem inQueueSince(@Nullable Integer inQueueSince) {
     this.inQueueSince = inQueueSince;
     return this;
   }
@@ -172,15 +172,15 @@ public class QueueBlockedItem {
   
   @Schema(name = "inQueueSince", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("inQueueSince")
-  public Integer getInQueueSince() {
+  public @Nullable Integer getInQueueSince() {
     return inQueueSince;
   }
 
-  public void setInQueueSince(Integer inQueueSince) {
+  public void setInQueueSince(@Nullable Integer inQueueSince) {
     this.inQueueSince = inQueueSince;
   }
 
-  public QueueBlockedItem params(String params) {
+  public QueueBlockedItem params(@Nullable String params) {
     this.params = params;
     return this;
   }
@@ -192,15 +192,15 @@ public class QueueBlockedItem {
   
   @Schema(name = "params", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("params")
-  public String getParams() {
+  public @Nullable String getParams() {
     return params;
   }
 
-  public void setParams(String params) {
+  public void setParams(@Nullable String params) {
     this.params = params;
   }
 
-  public QueueBlockedItem stuck(Boolean stuck) {
+  public QueueBlockedItem stuck(@Nullable Boolean stuck) {
     this.stuck = stuck;
     return this;
   }
@@ -212,15 +212,15 @@ public class QueueBlockedItem {
   
   @Schema(name = "stuck", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("stuck")
-  public Boolean getStuck() {
+  public @Nullable Boolean getStuck() {
     return stuck;
   }
 
-  public void setStuck(Boolean stuck) {
+  public void setStuck(@Nullable Boolean stuck) {
     this.stuck = stuck;
   }
 
-  public QueueBlockedItem task(FreeStyleProject task) {
+  public QueueBlockedItem task(@Nullable FreeStyleProject task) {
     this.task = task;
     return this;
   }
@@ -232,15 +232,15 @@ public class QueueBlockedItem {
   @Valid 
   @Schema(name = "task", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("task")
-  public FreeStyleProject getTask() {
+  public @Nullable FreeStyleProject getTask() {
     return task;
   }
 
-  public void setTask(FreeStyleProject task) {
+  public void setTask(@Nullable FreeStyleProject task) {
     this.task = task;
   }
 
-  public QueueBlockedItem url(String url) {
+  public QueueBlockedItem url(@Nullable String url) {
     this.url = url;
     return this;
   }
@@ -252,15 +252,15 @@ public class QueueBlockedItem {
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")
-  public String getUrl() {
+  public @Nullable String getUrl() {
     return url;
   }
 
-  public void setUrl(String url) {
+  public void setUrl(@Nullable String url) {
     this.url = url;
   }
 
-  public QueueBlockedItem why(String why) {
+  public QueueBlockedItem why(@Nullable String why) {
     this.why = why;
     return this;
   }
@@ -272,15 +272,15 @@ public class QueueBlockedItem {
   
   @Schema(name = "why", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("why")
-  public String getWhy() {
+  public @Nullable String getWhy() {
     return why;
   }
 
-  public void setWhy(String why) {
+  public void setWhy(@Nullable String why) {
     this.why = why;
   }
 
-  public QueueBlockedItem buildableStartMilliseconds(Integer buildableStartMilliseconds) {
+  public QueueBlockedItem buildableStartMilliseconds(@Nullable Integer buildableStartMilliseconds) {
     this.buildableStartMilliseconds = buildableStartMilliseconds;
     return this;
   }
@@ -292,11 +292,11 @@ public class QueueBlockedItem {
   
   @Schema(name = "buildableStartMilliseconds", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("buildableStartMilliseconds")
-  public Integer getBuildableStartMilliseconds() {
+  public @Nullable Integer getBuildableStartMilliseconds() {
     return buildableStartMilliseconds;
   }
 
-  public void setBuildableStartMilliseconds(Integer buildableStartMilliseconds) {
+  public void setBuildableStartMilliseconds(@Nullable Integer buildableStartMilliseconds) {
     this.buildableStartMilliseconds = buildableStartMilliseconds;
   }
 

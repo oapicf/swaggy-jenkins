@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * HudsonMasterComputerexecutors
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class HudsonMasterComputerexecutors {
 
   private @Nullable FreeStyleBuild currentExecutable;
@@ -35,7 +35,7 @@ public class HudsonMasterComputerexecutors {
 
   private @Nullable String propertyClass;
 
-  public HudsonMasterComputerexecutors currentExecutable(FreeStyleBuild currentExecutable) {
+  public HudsonMasterComputerexecutors currentExecutable(@Nullable FreeStyleBuild currentExecutable) {
     this.currentExecutable = currentExecutable;
     return this;
   }
@@ -47,15 +47,15 @@ public class HudsonMasterComputerexecutors {
   @Valid 
   @Schema(name = "currentExecutable", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("currentExecutable")
-  public FreeStyleBuild getCurrentExecutable() {
+  public @Nullable FreeStyleBuild getCurrentExecutable() {
     return currentExecutable;
   }
 
-  public void setCurrentExecutable(FreeStyleBuild currentExecutable) {
+  public void setCurrentExecutable(@Nullable FreeStyleBuild currentExecutable) {
     this.currentExecutable = currentExecutable;
   }
 
-  public HudsonMasterComputerexecutors idle(Boolean idle) {
+  public HudsonMasterComputerexecutors idle(@Nullable Boolean idle) {
     this.idle = idle;
     return this;
   }
@@ -67,15 +67,15 @@ public class HudsonMasterComputerexecutors {
   
   @Schema(name = "idle", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("idle")
-  public Boolean getIdle() {
+  public @Nullable Boolean getIdle() {
     return idle;
   }
 
-  public void setIdle(Boolean idle) {
+  public void setIdle(@Nullable Boolean idle) {
     this.idle = idle;
   }
 
-  public HudsonMasterComputerexecutors likelyStuck(Boolean likelyStuck) {
+  public HudsonMasterComputerexecutors likelyStuck(@Nullable Boolean likelyStuck) {
     this.likelyStuck = likelyStuck;
     return this;
   }
@@ -87,15 +87,15 @@ public class HudsonMasterComputerexecutors {
   
   @Schema(name = "likelyStuck", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("likelyStuck")
-  public Boolean getLikelyStuck() {
+  public @Nullable Boolean getLikelyStuck() {
     return likelyStuck;
   }
 
-  public void setLikelyStuck(Boolean likelyStuck) {
+  public void setLikelyStuck(@Nullable Boolean likelyStuck) {
     this.likelyStuck = likelyStuck;
   }
 
-  public HudsonMasterComputerexecutors number(Integer number) {
+  public HudsonMasterComputerexecutors number(@Nullable Integer number) {
     this.number = number;
     return this;
   }
@@ -107,15 +107,15 @@ public class HudsonMasterComputerexecutors {
   
   @Schema(name = "number", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("number")
-  public Integer getNumber() {
+  public @Nullable Integer getNumber() {
     return number;
   }
 
-  public void setNumber(Integer number) {
+  public void setNumber(@Nullable Integer number) {
     this.number = number;
   }
 
-  public HudsonMasterComputerexecutors progress(Integer progress) {
+  public HudsonMasterComputerexecutors progress(@Nullable Integer progress) {
     this.progress = progress;
     return this;
   }
@@ -127,15 +127,15 @@ public class HudsonMasterComputerexecutors {
   
   @Schema(name = "progress", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("progress")
-  public Integer getProgress() {
+  public @Nullable Integer getProgress() {
     return progress;
   }
 
-  public void setProgress(Integer progress) {
+  public void setProgress(@Nullable Integer progress) {
     this.progress = progress;
   }
 
-  public HudsonMasterComputerexecutors propertyClass(String propertyClass) {
+  public HudsonMasterComputerexecutors propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -147,11 +147,11 @@ public class HudsonMasterComputerexecutors {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

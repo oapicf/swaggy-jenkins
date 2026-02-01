@@ -45,10 +45,10 @@ class MultibranchPipeline
 
     /**
      * @DTA\Data(field="branchNames", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection18::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection18::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection22::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection22::class})
      */
-    public ?\App\DTO\Collection18 $branch_names = null;
+    public ?\App\DTO\Collection22 $branch_names = null;
 
     /**
      * @DTA\Data(field="numberOfFailingBranches", nullable=true)

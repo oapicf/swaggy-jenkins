@@ -24,7 +24,7 @@ import javax.annotation.Generated;
  * GithubRepositories
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class GithubRepositories {
 
   private @Nullable String propertyClass;
@@ -40,7 +40,7 @@ public class GithubRepositories {
 
   private @Nullable Integer pageSize;
 
-  public GithubRepositories propertyClass(String propertyClass) {
+  public GithubRepositories propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -52,15 +52,15 @@ public class GithubRepositories {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public GithubRepositories links(GithubRepositorieslinks links) {
+  public GithubRepositories links(@Nullable GithubRepositorieslinks links) {
     this.links = links;
     return this;
   }
@@ -72,11 +72,11 @@ public class GithubRepositories {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public GithubRepositorieslinks getLinks() {
+  public @Nullable GithubRepositorieslinks getLinks() {
     return links;
   }
 
-  public void setLinks(GithubRepositorieslinks links) {
+  public void setLinks(@Nullable GithubRepositorieslinks links) {
     this.links = links;
   }
 
@@ -108,7 +108,7 @@ public class GithubRepositories {
     this.items = items;
   }
 
-  public GithubRepositories lastPage(Integer lastPage) {
+  public GithubRepositories lastPage(@Nullable Integer lastPage) {
     this.lastPage = lastPage;
     return this;
   }
@@ -120,15 +120,15 @@ public class GithubRepositories {
   
   @Schema(name = "lastPage", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("lastPage")
-  public Integer getLastPage() {
+  public @Nullable Integer getLastPage() {
     return lastPage;
   }
 
-  public void setLastPage(Integer lastPage) {
+  public void setLastPage(@Nullable Integer lastPage) {
     this.lastPage = lastPage;
   }
 
-  public GithubRepositories nextPage(Integer nextPage) {
+  public GithubRepositories nextPage(@Nullable Integer nextPage) {
     this.nextPage = nextPage;
     return this;
   }
@@ -140,15 +140,15 @@ public class GithubRepositories {
   
   @Schema(name = "nextPage", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("nextPage")
-  public Integer getNextPage() {
+  public @Nullable Integer getNextPage() {
     return nextPage;
   }
 
-  public void setNextPage(Integer nextPage) {
+  public void setNextPage(@Nullable Integer nextPage) {
     this.nextPage = nextPage;
   }
 
-  public GithubRepositories pageSize(Integer pageSize) {
+  public GithubRepositories pageSize(@Nullable Integer pageSize) {
     this.pageSize = pageSize;
     return this;
   }
@@ -160,11 +160,11 @@ public class GithubRepositories {
   
   @Schema(name = "pageSize", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pageSize")
-  public Integer getPageSize() {
+  public @Nullable Integer getPageSize() {
     return pageSize;
   }
 
-  public void setPageSize(Integer pageSize) {
+  public void setPageSize(@Nullable Integer pageSize) {
     this.pageSize = pageSize;
   }
 

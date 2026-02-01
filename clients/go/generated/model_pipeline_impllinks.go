@@ -3,7 +3,7 @@ Swaggy Jenkins
 
 Jenkins API clients generated from Swagger / Open API specification
 
-API version: 3.0.2-pre.0
+API version: 3.2.1-pre.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -20,10 +20,10 @@ var _ MappedNullable = &PipelineImpllinks{}
 
 // PipelineImpllinks struct for PipelineImpllinks
 type PipelineImpllinks struct {
-	Runs *Link `json:"runs,omitempty"`
 	Self *Link `json:"self,omitempty"`
-	Queue *Link `json:"queue,omitempty"`
 	Actions *Link `json:"actions,omitempty"`
+	Runs *Link `json:"runs,omitempty"`
+	Queue *Link `json:"queue,omitempty"`
 	Class *string `json:"_class,omitempty"`
 }
 
@@ -42,38 +42,6 @@ func NewPipelineImpllinks() *PipelineImpllinks {
 func NewPipelineImpllinksWithDefaults() *PipelineImpllinks {
 	this := PipelineImpllinks{}
 	return &this
-}
-
-// GetRuns returns the Runs field value if set, zero value otherwise.
-func (o *PipelineImpllinks) GetRuns() Link {
-	if o == nil || IsNil(o.Runs) {
-		var ret Link
-		return ret
-	}
-	return *o.Runs
-}
-
-// GetRunsOk returns a tuple with the Runs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PipelineImpllinks) GetRunsOk() (*Link, bool) {
-	if o == nil || IsNil(o.Runs) {
-		return nil, false
-	}
-	return o.Runs, true
-}
-
-// HasRuns returns a boolean if a field has been set.
-func (o *PipelineImpllinks) HasRuns() bool {
-	if o != nil && !IsNil(o.Runs) {
-		return true
-	}
-
-	return false
-}
-
-// SetRuns gets a reference to the given Link and assigns it to the Runs field.
-func (o *PipelineImpllinks) SetRuns(v Link) {
-	o.Runs = &v
 }
 
 // GetSelf returns the Self field value if set, zero value otherwise.
@@ -108,38 +76,6 @@ func (o *PipelineImpllinks) SetSelf(v Link) {
 	o.Self = &v
 }
 
-// GetQueue returns the Queue field value if set, zero value otherwise.
-func (o *PipelineImpllinks) GetQueue() Link {
-	if o == nil || IsNil(o.Queue) {
-		var ret Link
-		return ret
-	}
-	return *o.Queue
-}
-
-// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PipelineImpllinks) GetQueueOk() (*Link, bool) {
-	if o == nil || IsNil(o.Queue) {
-		return nil, false
-	}
-	return o.Queue, true
-}
-
-// HasQueue returns a boolean if a field has been set.
-func (o *PipelineImpllinks) HasQueue() bool {
-	if o != nil && !IsNil(o.Queue) {
-		return true
-	}
-
-	return false
-}
-
-// SetQueue gets a reference to the given Link and assigns it to the Queue field.
-func (o *PipelineImpllinks) SetQueue(v Link) {
-	o.Queue = &v
-}
-
 // GetActions returns the Actions field value if set, zero value otherwise.
 func (o *PipelineImpllinks) GetActions() Link {
 	if o == nil || IsNil(o.Actions) {
@@ -170,6 +106,70 @@ func (o *PipelineImpllinks) HasActions() bool {
 // SetActions gets a reference to the given Link and assigns it to the Actions field.
 func (o *PipelineImpllinks) SetActions(v Link) {
 	o.Actions = &v
+}
+
+// GetRuns returns the Runs field value if set, zero value otherwise.
+func (o *PipelineImpllinks) GetRuns() Link {
+	if o == nil || IsNil(o.Runs) {
+		var ret Link
+		return ret
+	}
+	return *o.Runs
+}
+
+// GetRunsOk returns a tuple with the Runs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PipelineImpllinks) GetRunsOk() (*Link, bool) {
+	if o == nil || IsNil(o.Runs) {
+		return nil, false
+	}
+	return o.Runs, true
+}
+
+// HasRuns returns a boolean if a field has been set.
+func (o *PipelineImpllinks) HasRuns() bool {
+	if o != nil && !IsNil(o.Runs) {
+		return true
+	}
+
+	return false
+}
+
+// SetRuns gets a reference to the given Link and assigns it to the Runs field.
+func (o *PipelineImpllinks) SetRuns(v Link) {
+	o.Runs = &v
+}
+
+// GetQueue returns the Queue field value if set, zero value otherwise.
+func (o *PipelineImpllinks) GetQueue() Link {
+	if o == nil || IsNil(o.Queue) {
+		var ret Link
+		return ret
+	}
+	return *o.Queue
+}
+
+// GetQueueOk returns a tuple with the Queue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PipelineImpllinks) GetQueueOk() (*Link, bool) {
+	if o == nil || IsNil(o.Queue) {
+		return nil, false
+	}
+	return o.Queue, true
+}
+
+// HasQueue returns a boolean if a field has been set.
+func (o *PipelineImpllinks) HasQueue() bool {
+	if o != nil && !IsNil(o.Queue) {
+		return true
+	}
+
+	return false
+}
+
+// SetQueue gets a reference to the given Link and assigns it to the Queue field.
+func (o *PipelineImpllinks) SetQueue(v Link) {
+	o.Queue = &v
 }
 
 // GetClass returns the Class field value if set, zero value otherwise.
@@ -214,17 +214,17 @@ func (o PipelineImpllinks) MarshalJSON() ([]byte, error) {
 
 func (o PipelineImpllinks) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Runs) {
-		toSerialize["runs"] = o.Runs
-	}
 	if !IsNil(o.Self) {
 		toSerialize["self"] = o.Self
 	}
-	if !IsNil(o.Queue) {
-		toSerialize["queue"] = o.Queue
-	}
 	if !IsNil(o.Actions) {
 		toSerialize["actions"] = o.Actions
+	}
+	if !IsNil(o.Runs) {
+		toSerialize["runs"] = o.Runs
+	}
+	if !IsNil(o.Queue) {
+		toSerialize["queue"] = o.Queue
 	}
 	if !IsNil(o.Class) {
 		toSerialize["_class"] = o.Class

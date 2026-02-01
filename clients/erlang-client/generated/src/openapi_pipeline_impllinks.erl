@@ -5,22 +5,22 @@
 -export_type([openapi_pipeline_impllinks/0]).
 
 -type openapi_pipeline_impllinks() ::
-    #{ 'runs' => openapi_link:openapi_link(),
-       'self' => openapi_link:openapi_link(),
-       'queue' => openapi_link:openapi_link(),
+    #{ 'self' => openapi_link:openapi_link(),
        'actions' => openapi_link:openapi_link(),
+       'runs' => openapi_link:openapi_link(),
+       'queue' => openapi_link:openapi_link(),
        '_class' => binary()
      }.
 
-encode(#{ 'runs' := Runs,
-          'self' := Self,
-          'queue' := Queue,
+encode(#{ 'self' := Self,
           'actions' := Actions,
+          'runs' := Runs,
+          'queue' := Queue,
           '_class' := Class
         }) ->
-    #{ 'runs' => Runs,
-       'self' => Self,
-       'queue' => Queue,
+    #{ 'self' => Self,
        'actions' => Actions,
+       'runs' => Runs,
+       'queue' => Queue,
        '_class' => Class
      }.

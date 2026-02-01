@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * GithubScm
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class GithubScm {
 
   private @Nullable String propertyClass;
@@ -33,7 +33,7 @@ public class GithubScm {
 
   private @Nullable String uri;
 
-  public GithubScm propertyClass(String propertyClass) {
+  public GithubScm propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -45,15 +45,15 @@ public class GithubScm {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public GithubScm links(GithubScmlinks links) {
+  public GithubScm links(@Nullable GithubScmlinks links) {
     this.links = links;
     return this;
   }
@@ -65,15 +65,15 @@ public class GithubScm {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public GithubScmlinks getLinks() {
+  public @Nullable GithubScmlinks getLinks() {
     return links;
   }
 
-  public void setLinks(GithubScmlinks links) {
+  public void setLinks(@Nullable GithubScmlinks links) {
     this.links = links;
   }
 
-  public GithubScm credentialId(String credentialId) {
+  public GithubScm credentialId(@Nullable String credentialId) {
     this.credentialId = credentialId;
     return this;
   }
@@ -85,15 +85,15 @@ public class GithubScm {
   
   @Schema(name = "credentialId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("credentialId")
-  public String getCredentialId() {
+  public @Nullable String getCredentialId() {
     return credentialId;
   }
 
-  public void setCredentialId(String credentialId) {
+  public void setCredentialId(@Nullable String credentialId) {
     this.credentialId = credentialId;
   }
 
-  public GithubScm id(String id) {
+  public GithubScm id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -105,15 +105,15 @@ public class GithubScm {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public GithubScm uri(String uri) {
+  public GithubScm uri(@Nullable String uri) {
     this.uri = uri;
     return this;
   }
@@ -125,11 +125,11 @@ public class GithubScm {
   
   @Schema(name = "uri", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("uri")
-  public String getUri() {
+  public @Nullable String getUri() {
     return uri;
   }
 
-  public void setUri(String uri) {
+  public void setUri(@Nullable String uri) {
     this.uri = uri;
   }
 

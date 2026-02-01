@@ -9,12 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DefaultCrumbIssuer  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String crumb;
 
   @ApiModelProperty(value = "")
+
   private String crumbRequestField;
  /**
    * Get propertyClass

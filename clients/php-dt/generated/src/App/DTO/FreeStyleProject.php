@@ -33,10 +33,10 @@ class FreeStyleProject
 
     /**
      * @DTA\Data(field="actions", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection1::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection1::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection11::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection11::class})
      */
-    public ?\App\DTO\Collection1 $actions = null;
+    public ?\App\DTO\Collection11 $actions = null;
 
     /**
      * @DTA\Data(field="description", nullable=true)
@@ -76,10 +76,10 @@ class FreeStyleProject
 
     /**
      * @DTA\Data(field="builds", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection4::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection4::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection12::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection12::class})
      */
-    public ?\App\DTO\Collection4 $builds = null;
+    public ?\App\DTO\Collection12 $builds = null;
 
     /**
      * @DTA\Data(field="firstBuild", nullable=true)
@@ -90,10 +90,10 @@ class FreeStyleProject
 
     /**
      * @DTA\Data(field="healthReport", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection5::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection5::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection13::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection13::class})
      */
-    public ?\App\DTO\Collection5 $health_report = null;
+    public ?\App\DTO\Collection13 $health_report = null;
 
     /**
      * @DTA\Data(field="inQueue", nullable=true)

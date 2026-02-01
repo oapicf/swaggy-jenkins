@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**runs** | [**Link**](Link.md) |  | [optional] 
 **var_self** | [**Link**](Link.md) |  | [optional] 
-**queue** | [**Link**](Link.md) |  | [optional] 
 **actions** | [**Link**](Link.md) |  | [optional] 
+**runs** | [**Link**](Link.md) |  | [optional] 
+**queue** | [**Link**](Link.md) |  | [optional] 
 **var_class** | **str** |  | [optional] 
 
 ## Example

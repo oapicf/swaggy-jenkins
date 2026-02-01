@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * PipelineFolderImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineFolderImpl {
 
   private @Nullable String propertyClass;
@@ -36,7 +36,7 @@ public class PipelineFolderImpl {
 
   private @Nullable Integer numberOfPipelines;
 
-  public PipelineFolderImpl propertyClass(String propertyClass) {
+  public PipelineFolderImpl propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -48,15 +48,15 @@ public class PipelineFolderImpl {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public PipelineFolderImpl displayName(String displayName) {
+  public PipelineFolderImpl displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -68,15 +68,15 @@ public class PipelineFolderImpl {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
-  public PipelineFolderImpl fullName(String fullName) {
+  public PipelineFolderImpl fullName(@Nullable String fullName) {
     this.fullName = fullName;
     return this;
   }
@@ -88,15 +88,15 @@ public class PipelineFolderImpl {
   
   @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullName")
-  public String getFullName() {
+  public @Nullable String getFullName() {
     return fullName;
   }
 
-  public void setFullName(String fullName) {
+  public void setFullName(@Nullable String fullName) {
     this.fullName = fullName;
   }
 
-  public PipelineFolderImpl name(String name) {
+  public PipelineFolderImpl name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -108,15 +108,15 @@ public class PipelineFolderImpl {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
-  public PipelineFolderImpl organization(String organization) {
+  public PipelineFolderImpl organization(@Nullable String organization) {
     this.organization = organization;
     return this;
   }
@@ -128,15 +128,15 @@ public class PipelineFolderImpl {
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
-  public String getOrganization() {
+  public @Nullable String getOrganization() {
     return organization;
   }
 
-  public void setOrganization(String organization) {
+  public void setOrganization(@Nullable String organization) {
     this.organization = organization;
   }
 
-  public PipelineFolderImpl numberOfFolders(Integer numberOfFolders) {
+  public PipelineFolderImpl numberOfFolders(@Nullable Integer numberOfFolders) {
     this.numberOfFolders = numberOfFolders;
     return this;
   }
@@ -148,15 +148,15 @@ public class PipelineFolderImpl {
   
   @Schema(name = "numberOfFolders", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numberOfFolders")
-  public Integer getNumberOfFolders() {
+  public @Nullable Integer getNumberOfFolders() {
     return numberOfFolders;
   }
 
-  public void setNumberOfFolders(Integer numberOfFolders) {
+  public void setNumberOfFolders(@Nullable Integer numberOfFolders) {
     this.numberOfFolders = numberOfFolders;
   }
 
-  public PipelineFolderImpl numberOfPipelines(Integer numberOfPipelines) {
+  public PipelineFolderImpl numberOfPipelines(@Nullable Integer numberOfPipelines) {
     this.numberOfPipelines = numberOfPipelines;
     return this;
   }
@@ -168,11 +168,11 @@ public class PipelineFolderImpl {
   
   @Schema(name = "numberOfPipelines", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numberOfPipelines")
-  public Integer getNumberOfPipelines() {
+  public @Nullable Integer getNumberOfPipelines() {
     return numberOfPipelines;
   }
 
-  public void setNumberOfPipelines(Integer numberOfPipelines) {
+  public void setNumberOfPipelines(@Nullable Integer numberOfPipelines) {
     this.numberOfPipelines = numberOfPipelines;
   }
 

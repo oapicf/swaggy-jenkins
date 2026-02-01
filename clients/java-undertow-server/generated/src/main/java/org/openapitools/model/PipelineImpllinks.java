@@ -3,7 +3,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * OpenAPI document version: 3.0.2-pre.0
+ * OpenAPI document version: 3.2.1-pre.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -21,31 +21,14 @@ import org.openapitools.model.Link;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2025-05-10T02:40:14.671432823Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-02-01T01:24:13.782190294Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineImpllinks   {
   
-  private Link runs;
   private Link self;
-  private Link queue;
   private Link actions;
+  private Link runs;
+  private Link queue;
   private String propertyClass;
-
-  /**
-   */
-  public PipelineImpllinks runs(Link runs) {
-    this.runs = runs;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "")
-  @JsonProperty("runs")
-  public Link getRuns() {
-    return runs;
-  }
-  public void setRuns(Link runs) {
-    this.runs = runs;
-  }
 
   /**
    */
@@ -66,23 +49,6 @@ public class PipelineImpllinks   {
 
   /**
    */
-  public PipelineImpllinks queue(Link queue) {
-    this.queue = queue;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "")
-  @JsonProperty("queue")
-  public Link getQueue() {
-    return queue;
-  }
-  public void setQueue(Link queue) {
-    this.queue = queue;
-  }
-
-  /**
-   */
   public PipelineImpllinks actions(Link actions) {
     this.actions = actions;
     return this;
@@ -96,6 +62,40 @@ public class PipelineImpllinks   {
   }
   public void setActions(Link actions) {
     this.actions = actions;
+  }
+
+  /**
+   */
+  public PipelineImpllinks runs(Link runs) {
+    this.runs = runs;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("runs")
+  public Link getRuns() {
+    return runs;
+  }
+  public void setRuns(Link runs) {
+    this.runs = runs;
+  }
+
+  /**
+   */
+  public PipelineImpllinks queue(Link queue) {
+    this.queue = queue;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("queue")
+  public Link getQueue() {
+    return queue;
+  }
+  public void setQueue(Link queue) {
+    this.queue = queue;
   }
 
   /**
@@ -125,16 +125,16 @@ public class PipelineImpllinks   {
       return false;
     }
     PipelineImpllinks pipelineImpllinks = (PipelineImpllinks) o;
-    return Objects.equals(runs, pipelineImpllinks.runs) &&
-        Objects.equals(self, pipelineImpllinks.self) &&
-        Objects.equals(queue, pipelineImpllinks.queue) &&
+    return Objects.equals(self, pipelineImpllinks.self) &&
         Objects.equals(actions, pipelineImpllinks.actions) &&
+        Objects.equals(runs, pipelineImpllinks.runs) &&
+        Objects.equals(queue, pipelineImpllinks.queue) &&
         Objects.equals(propertyClass, pipelineImpllinks.propertyClass);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(runs, self, queue, actions, propertyClass);
+    return Objects.hash(self, actions, runs, queue, propertyClass);
   }
 
   @Override
@@ -142,10 +142,10 @@ public class PipelineImpllinks   {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineImpllinks {\n");
     
-    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
+    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
+    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("}");
     return sb.toString();

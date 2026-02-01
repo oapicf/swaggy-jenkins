@@ -11,14 +11,14 @@ module PipelineImpllinks =
 
   [<CLIMutable>]
   type PipelineImpllinks = {
-    [<JsonProperty(PropertyName = "runs")>]
-    Runs : Link;
     [<JsonProperty(PropertyName = "self")>]
     Self : Link;
-    [<JsonProperty(PropertyName = "queue")>]
-    Queue : Link;
     [<JsonProperty(PropertyName = "actions")>]
     Actions : Link;
+    [<JsonProperty(PropertyName = "runs")>]
+    Runs : Link;
+    [<JsonProperty(PropertyName = "queue")>]
+    Queue : Link;
     [<JsonProperty(PropertyName = "_class")>]
     Class : string;
   }

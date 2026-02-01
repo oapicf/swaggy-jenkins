@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 README.md
 config.nim
 openapiclient.nim
@@ -5,6 +6,7 @@ openapiclient/apis/api_base.nim
 openapiclient/apis/api_blue_ocean.nim
 openapiclient/apis/api_remote_access.nim
 openapiclient/models/model_all_view.nim
+openapiclient/models/model_any_type.nim
 openapiclient/models/model_branch_impl.nim
 openapiclient/models/model_branch_impllinks.nim
 openapiclient/models/model_branch_implpermissions.nim
@@ -53,6 +55,7 @@ openapiclient/models/model_link.nim
 openapiclient/models/model_list_view.nim
 openapiclient/models/model_multibranch_pipeline.nim
 openapiclient/models/model_null_scm.nim
+openapiclient/models/model_object.nim
 openapiclient/models/model_organisation.nim
 openapiclient/models/model_pipeline.nim
 openapiclient/models/model_pipeline_activity.nim

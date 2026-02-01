@@ -33,7 +33,7 @@ data class FavoriteImpl(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("item") val item: PipelineImpl? = null
-    ) {
+) {
 
 }
 

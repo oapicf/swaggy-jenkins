@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -19,12 +19,13 @@ message FreeStyleProjecthealthReport {
 
   string description = 113933319;
 
-  string iconClassName = 352061527;
+  string icon_class_name = 477526136;
 
-  string iconUrl = 28152377;
+  string icon_url = 200717144;
 
   int32 score = 109264530;
 
-  string _class = 406713225;
+  string class = 94742904;
 
 }
+

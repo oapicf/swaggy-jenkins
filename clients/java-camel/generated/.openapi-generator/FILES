@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 src/main/java/org/openapitools/RestConfiguration.java
 src/main/java/org/openapitools/api/BaseApi.java
 src/main/java/org/openapitools/api/BlueOceanApi.java

@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * PipelineBranchesitempullRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineBranchesitempullRequest {
 
   private @Nullable PipelineBranchesitempullRequestlinks links;
@@ -35,7 +35,7 @@ public class PipelineBranchesitempullRequest {
 
   private @Nullable String propertyClass;
 
-  public PipelineBranchesitempullRequest links(PipelineBranchesitempullRequestlinks links) {
+  public PipelineBranchesitempullRequest links(@Nullable PipelineBranchesitempullRequestlinks links) {
     this.links = links;
     return this;
   }
@@ -47,15 +47,15 @@ public class PipelineBranchesitempullRequest {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public PipelineBranchesitempullRequestlinks getLinks() {
+  public @Nullable PipelineBranchesitempullRequestlinks getLinks() {
     return links;
   }
 
-  public void setLinks(PipelineBranchesitempullRequestlinks links) {
+  public void setLinks(@Nullable PipelineBranchesitempullRequestlinks links) {
     this.links = links;
   }
 
-  public PipelineBranchesitempullRequest author(String author) {
+  public PipelineBranchesitempullRequest author(@Nullable String author) {
     this.author = author;
     return this;
   }
@@ -67,15 +67,15 @@ public class PipelineBranchesitempullRequest {
   
   @Schema(name = "author", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("author")
-  public String getAuthor() {
+  public @Nullable String getAuthor() {
     return author;
   }
 
-  public void setAuthor(String author) {
+  public void setAuthor(@Nullable String author) {
     this.author = author;
   }
 
-  public PipelineBranchesitempullRequest id(String id) {
+  public PipelineBranchesitempullRequest id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -87,15 +87,15 @@ public class PipelineBranchesitempullRequest {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public PipelineBranchesitempullRequest title(String title) {
+  public PipelineBranchesitempullRequest title(@Nullable String title) {
     this.title = title;
     return this;
   }
@@ -107,15 +107,15 @@ public class PipelineBranchesitempullRequest {
   
   @Schema(name = "title", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("title")
-  public String getTitle() {
+  public @Nullable String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(@Nullable String title) {
     this.title = title;
   }
 
-  public PipelineBranchesitempullRequest url(String url) {
+  public PipelineBranchesitempullRequest url(@Nullable String url) {
     this.url = url;
     return this;
   }
@@ -127,15 +127,15 @@ public class PipelineBranchesitempullRequest {
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")
-  public String getUrl() {
+  public @Nullable String getUrl() {
     return url;
   }
 
-  public void setUrl(String url) {
+  public void setUrl(@Nullable String url) {
     this.url = url;
   }
 
-  public PipelineBranchesitempullRequest propertyClass(String propertyClass) {
+  public PipelineBranchesitempullRequest propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -147,11 +147,11 @@ public class PipelineBranchesitempullRequest {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

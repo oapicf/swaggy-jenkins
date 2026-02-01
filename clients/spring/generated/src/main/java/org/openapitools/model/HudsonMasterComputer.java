@@ -25,7 +25,7 @@ import javax.annotation.Generated;
  * HudsonMasterComputer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class HudsonMasterComputer {
 
   private @Nullable String propertyClass;
@@ -61,7 +61,7 @@ public class HudsonMasterComputer {
 
   private @Nullable Boolean temporarilyOffline;
 
-  public HudsonMasterComputer propertyClass(String propertyClass) {
+  public HudsonMasterComputer propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -73,15 +73,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public HudsonMasterComputer displayName(String displayName) {
+  public HudsonMasterComputer displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -93,11 +93,11 @@ public class HudsonMasterComputer {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
@@ -129,7 +129,7 @@ public class HudsonMasterComputer {
     this.executors = executors;
   }
 
-  public HudsonMasterComputer icon(String icon) {
+  public HudsonMasterComputer icon(@Nullable String icon) {
     this.icon = icon;
     return this;
   }
@@ -141,15 +141,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "icon", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("icon")
-  public String getIcon() {
+  public @Nullable String getIcon() {
     return icon;
   }
 
-  public void setIcon(String icon) {
+  public void setIcon(@Nullable String icon) {
     this.icon = icon;
   }
 
-  public HudsonMasterComputer iconClassName(String iconClassName) {
+  public HudsonMasterComputer iconClassName(@Nullable String iconClassName) {
     this.iconClassName = iconClassName;
     return this;
   }
@@ -161,15 +161,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "iconClassName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("iconClassName")
-  public String getIconClassName() {
+  public @Nullable String getIconClassName() {
     return iconClassName;
   }
 
-  public void setIconClassName(String iconClassName) {
+  public void setIconClassName(@Nullable String iconClassName) {
     this.iconClassName = iconClassName;
   }
 
-  public HudsonMasterComputer idle(Boolean idle) {
+  public HudsonMasterComputer idle(@Nullable Boolean idle) {
     this.idle = idle;
     return this;
   }
@@ -181,15 +181,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "idle", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("idle")
-  public Boolean getIdle() {
+  public @Nullable Boolean getIdle() {
     return idle;
   }
 
-  public void setIdle(Boolean idle) {
+  public void setIdle(@Nullable Boolean idle) {
     this.idle = idle;
   }
 
-  public HudsonMasterComputer jnlpAgent(Boolean jnlpAgent) {
+  public HudsonMasterComputer jnlpAgent(@Nullable Boolean jnlpAgent) {
     this.jnlpAgent = jnlpAgent;
     return this;
   }
@@ -201,15 +201,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "jnlpAgent", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("jnlpAgent")
-  public Boolean getJnlpAgent() {
+  public @Nullable Boolean getJnlpAgent() {
     return jnlpAgent;
   }
 
-  public void setJnlpAgent(Boolean jnlpAgent) {
+  public void setJnlpAgent(@Nullable Boolean jnlpAgent) {
     this.jnlpAgent = jnlpAgent;
   }
 
-  public HudsonMasterComputer launchSupported(Boolean launchSupported) {
+  public HudsonMasterComputer launchSupported(@Nullable Boolean launchSupported) {
     this.launchSupported = launchSupported;
     return this;
   }
@@ -221,15 +221,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "launchSupported", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("launchSupported")
-  public Boolean getLaunchSupported() {
+  public @Nullable Boolean getLaunchSupported() {
     return launchSupported;
   }
 
-  public void setLaunchSupported(Boolean launchSupported) {
+  public void setLaunchSupported(@Nullable Boolean launchSupported) {
     this.launchSupported = launchSupported;
   }
 
-  public HudsonMasterComputer loadStatistics(Label1 loadStatistics) {
+  public HudsonMasterComputer loadStatistics(@Nullable Label1 loadStatistics) {
     this.loadStatistics = loadStatistics;
     return this;
   }
@@ -241,15 +241,15 @@ public class HudsonMasterComputer {
   @Valid 
   @Schema(name = "loadStatistics", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("loadStatistics")
-  public Label1 getLoadStatistics() {
+  public @Nullable Label1 getLoadStatistics() {
     return loadStatistics;
   }
 
-  public void setLoadStatistics(Label1 loadStatistics) {
+  public void setLoadStatistics(@Nullable Label1 loadStatistics) {
     this.loadStatistics = loadStatistics;
   }
 
-  public HudsonMasterComputer manualLaunchAllowed(Boolean manualLaunchAllowed) {
+  public HudsonMasterComputer manualLaunchAllowed(@Nullable Boolean manualLaunchAllowed) {
     this.manualLaunchAllowed = manualLaunchAllowed;
     return this;
   }
@@ -261,15 +261,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "manualLaunchAllowed", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("manualLaunchAllowed")
-  public Boolean getManualLaunchAllowed() {
+  public @Nullable Boolean getManualLaunchAllowed() {
     return manualLaunchAllowed;
   }
 
-  public void setManualLaunchAllowed(Boolean manualLaunchAllowed) {
+  public void setManualLaunchAllowed(@Nullable Boolean manualLaunchAllowed) {
     this.manualLaunchAllowed = manualLaunchAllowed;
   }
 
-  public HudsonMasterComputer monitorData(HudsonMasterComputermonitorData monitorData) {
+  public HudsonMasterComputer monitorData(@Nullable HudsonMasterComputermonitorData monitorData) {
     this.monitorData = monitorData;
     return this;
   }
@@ -281,15 +281,15 @@ public class HudsonMasterComputer {
   @Valid 
   @Schema(name = "monitorData", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("monitorData")
-  public HudsonMasterComputermonitorData getMonitorData() {
+  public @Nullable HudsonMasterComputermonitorData getMonitorData() {
     return monitorData;
   }
 
-  public void setMonitorData(HudsonMasterComputermonitorData monitorData) {
+  public void setMonitorData(@Nullable HudsonMasterComputermonitorData monitorData) {
     this.monitorData = monitorData;
   }
 
-  public HudsonMasterComputer numExecutors(Integer numExecutors) {
+  public HudsonMasterComputer numExecutors(@Nullable Integer numExecutors) {
     this.numExecutors = numExecutors;
     return this;
   }
@@ -301,15 +301,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "numExecutors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("numExecutors")
-  public Integer getNumExecutors() {
+  public @Nullable Integer getNumExecutors() {
     return numExecutors;
   }
 
-  public void setNumExecutors(Integer numExecutors) {
+  public void setNumExecutors(@Nullable Integer numExecutors) {
     this.numExecutors = numExecutors;
   }
 
-  public HudsonMasterComputer offline(Boolean offline) {
+  public HudsonMasterComputer offline(@Nullable Boolean offline) {
     this.offline = offline;
     return this;
   }
@@ -321,15 +321,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "offline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("offline")
-  public Boolean getOffline() {
+  public @Nullable Boolean getOffline() {
     return offline;
   }
 
-  public void setOffline(Boolean offline) {
+  public void setOffline(@Nullable Boolean offline) {
     this.offline = offline;
   }
 
-  public HudsonMasterComputer offlineCause(String offlineCause) {
+  public HudsonMasterComputer offlineCause(@Nullable String offlineCause) {
     this.offlineCause = offlineCause;
     return this;
   }
@@ -341,15 +341,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "offlineCause", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("offlineCause")
-  public String getOfflineCause() {
+  public @Nullable String getOfflineCause() {
     return offlineCause;
   }
 
-  public void setOfflineCause(String offlineCause) {
+  public void setOfflineCause(@Nullable String offlineCause) {
     this.offlineCause = offlineCause;
   }
 
-  public HudsonMasterComputer offlineCauseReason(String offlineCauseReason) {
+  public HudsonMasterComputer offlineCauseReason(@Nullable String offlineCauseReason) {
     this.offlineCauseReason = offlineCauseReason;
     return this;
   }
@@ -361,15 +361,15 @@ public class HudsonMasterComputer {
   
   @Schema(name = "offlineCauseReason", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("offlineCauseReason")
-  public String getOfflineCauseReason() {
+  public @Nullable String getOfflineCauseReason() {
     return offlineCauseReason;
   }
 
-  public void setOfflineCauseReason(String offlineCauseReason) {
+  public void setOfflineCauseReason(@Nullable String offlineCauseReason) {
     this.offlineCauseReason = offlineCauseReason;
   }
 
-  public HudsonMasterComputer temporarilyOffline(Boolean temporarilyOffline) {
+  public HudsonMasterComputer temporarilyOffline(@Nullable Boolean temporarilyOffline) {
     this.temporarilyOffline = temporarilyOffline;
     return this;
   }
@@ -381,11 +381,11 @@ public class HudsonMasterComputer {
   
   @Schema(name = "temporarilyOffline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("temporarilyOffline")
-  public Boolean getTemporarilyOffline() {
+  public @Nullable Boolean getTemporarilyOffline() {
     return temporarilyOffline;
   }
 
-  public void setTemporarilyOffline(Boolean temporarilyOffline) {
+  public void setTemporarilyOffline(@Nullable Boolean temporarilyOffline) {
     this.temporarilyOffline = temporarilyOffline;
   }
 

@@ -5,37 +5,109 @@
  *
  *)
 
-type t = {
-    display_name: string option [@default None];
-    estimated_duration_in_millis: int32 option [@default None];
-    latest_run: string option [@default None];
-    name: string option [@default None];
-    organization: string option [@default None];
-    weather_score: int32 option [@default None];
-    branch_names: string list;
-    number_of_failing_branches: int32 option [@default None];
-    number_of_failing_pull_requests: int32 option [@default None];
-    number_of_successful_branches: int32 option [@default None];
-    number_of_successful_pull_requests: int32 option [@default None];
-    total_number_of_branches: int32 option [@default None];
-    total_number_of_pull_requests: int32 option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    display_name = None;
-    estimated_duration_in_millis = None;
-    latest_run = None;
-    name = None;
-    organization = None;
-    weather_score = None;
-    branch_names = [];
-    number_of_failing_branches = None;
-    number_of_failing_pull_requests = None;
-    number_of_successful_branches = None;
-    number_of_successful_pull_requests = None;
-    total_number_of_branches = None;
-    total_number_of_pull_requests = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "displayName"]
+                                              estimated_duration_in_millis: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "estimatedDurationInMillis"]
+                                              latest_run: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "latestRun"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                                              organization: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "organization"]
+                                              weather_score: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "weatherScore"]
+                                              branch_names: string list
+                 [@default []]
+                
+                ; [@key "branchNames"]
+                                              number_of_failing_branches: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "numberOfFailingBranches"]
+                                              number_of_failing_pull_requests: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "numberOfFailingPullRequests"]
+                                              number_of_successful_branches: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "numberOfSuccessfulBranches"]
+                                              number_of_successful_pull_requests: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "numberOfSuccessfulPullRequests"]
+                                              total_number_of_branches: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "totalNumberOfBranches"]
+                                              total_number_of_pull_requests: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "totalNumberOfPullRequests"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            display_name = None;
+            estimated_duration_in_millis = None;
+            latest_run = None;
+            name = None;
+            organization = None;
+            weather_score = None;
+            branch_names = [];
+            number_of_failing_branches = None;
+            number_of_failing_pull_requests = None;
+            number_of_successful_branches = None;
+            number_of_successful_pull_requests = None;
+            total_number_of_branches = None;
+            total_number_of_pull_requests = None;
+            _class = None;
+        }
+    
 

@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -18,10 +18,11 @@ import public "models/extension_class_impl.proto";
 
 message ExtensionClassContainerImpl1map {
 
-  ExtensionClassImpl io.jenkins.blueocean.service.embedded.rest.PipelineImpl = 58820507;
+  ExtensionClassImpl io_jenkins_blueocean_service_embedded_rest_pipeline_impl = 292143682;
 
-  ExtensionClassImpl io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl = 270825887;
+  ExtensionClassImpl io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl = 259278276;
 
-  string _class = 406713225;
+  string class = 94742904;
 
 }
+

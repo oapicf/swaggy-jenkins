@@ -5,25 +5,25 @@
   "name": "PipelineImpllinks",
   "fields": [
     {
-      "name": "runs",
-      "type": ["null", "model.Link"],
-      "doc": "",
-      "default": null
-    },
-    {
       "name": "self",
       "type": ["null", "model.Link"],
       "doc": "",
       "default": null
     },
     {
-      "name": "queue",
+      "name": "actions",
       "type": ["null", "model.Link"],
       "doc": "",
       "default": null
     },
     {
-      "name": "actions",
+      "name": "runs",
+      "type": ["null", "model.Link"],
+      "doc": "",
+      "default": null
+    },
+    {
+      "name": "queue",
       "type": ["null", "model.Link"],
       "doc": "",
       "default": null

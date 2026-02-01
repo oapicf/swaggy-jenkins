@@ -10,12 +10,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelineStepImpllinks  {
   
   @ApiModelProperty(value = "")
+
   private Link self;
 
   @ApiModelProperty(value = "")
+
   private Link actions;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get self

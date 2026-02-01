@@ -5,15 +5,34 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    crumb: string option [@default None];
-    crumb_request_field: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    crumb = None;
-    crumb_request_field = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              crumb: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "crumb"]
+                                              crumb_request_field: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "crumbRequestField"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            crumb = None;
+            crumb_request_field = None;
+        }
+    
 

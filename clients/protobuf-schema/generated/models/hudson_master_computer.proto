@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -20,36 +20,37 @@ import public "models/label1.proto";
 
 message HudsonMasterComputer {
 
-  string _class = 406713225;
+  string class = 94742904;
 
-  string displayName = 103536240;
+  string display_name = 4473835;
 
   repeated HudsonMasterComputerexecutors executors = 17227266;
 
   string icon = 3226745;
 
-  string iconClassName = 352061527;
+  string icon_class_name = 477526136;
 
   bool idle = 3227604;
 
-  bool jnlpAgent = 454776349;
+  bool jnlp_agent = 455936465;
 
-  bool launchSupported = 375147067;
+  bool launch_supported = 151334690;
 
-  Label1 loadStatistics = 422898346;
+  Label1 load_statistics = 335566367;
 
-  bool manualLaunchAllowed = 145747892;
+  bool manual_launch_allowed = 70931790;
 
-  HudsonMasterComputermonitorData monitorData = 505340966;
+  HudsonMasterComputermonitorData monitor_data = 121320306;
 
-  int32 numExecutors = 192205545;
+  int32 num_executors = 333997946;
 
   bool offline = 474870303;
 
-  string offlineCause = 238539709;
+  string offline_cause = 149410036;
 
-  string offlineCauseReason = 157950424;
+  string offline_cause_reason = 448149581;
 
-  bool temporarilyOffline = 490383992;
+  bool temporarily_offline = 470661585;
 
 }
+

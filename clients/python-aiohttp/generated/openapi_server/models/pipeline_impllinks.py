@@ -15,35 +15,35 @@ class PipelineImpllinks(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, runs: Link=None, _self: Link=None, queue: Link=None, actions: Link=None, _class: str=None):
+    def __init__(self, _self: Link=None, actions: Link=None, runs: Link=None, queue: Link=None, _class: str=None):
         """PipelineImpllinks - a model defined in OpenAPI
 
-        :param runs: The runs of this PipelineImpllinks.
         :param _self: The _self of this PipelineImpllinks.
-        :param queue: The queue of this PipelineImpllinks.
         :param actions: The actions of this PipelineImpllinks.
+        :param runs: The runs of this PipelineImpllinks.
+        :param queue: The queue of this PipelineImpllinks.
         :param _class: The _class of this PipelineImpllinks.
         """
         self.openapi_types = {
-            'runs': Link,
             '_self': Link,
-            'queue': Link,
             'actions': Link,
+            'runs': Link,
+            'queue': Link,
             '_class': str
         }
 
         self.attribute_map = {
-            'runs': 'runs',
             '_self': 'self',
-            'queue': 'queue',
             'actions': 'actions',
+            'runs': 'runs',
+            'queue': 'queue',
             '_class': '_class'
         }
 
-        self._runs = runs
         self.__self = _self
-        self._queue = queue
         self._actions = actions
+        self._runs = runs
+        self._queue = queue
         self.__class = _class
 
     @classmethod
@@ -54,27 +54,6 @@ class PipelineImpllinks(Model):
         :return: The PipelineImpllinks of this PipelineImpllinks.
         """
         return util.deserialize_model(dikt, cls)
-
-    @property
-    def runs(self):
-        """Gets the runs of this PipelineImpllinks.
-
-
-        :return: The runs of this PipelineImpllinks.
-        :rtype: Link
-        """
-        return self._runs
-
-    @runs.setter
-    def runs(self, runs):
-        """Sets the runs of this PipelineImpllinks.
-
-
-        :param runs: The runs of this PipelineImpllinks.
-        :type runs: Link
-        """
-
-        self._runs = runs
 
     @property
     def _self(self):
@@ -98,27 +77,6 @@ class PipelineImpllinks(Model):
         self.__self = _self
 
     @property
-    def queue(self):
-        """Gets the queue of this PipelineImpllinks.
-
-
-        :return: The queue of this PipelineImpllinks.
-        :rtype: Link
-        """
-        return self._queue
-
-    @queue.setter
-    def queue(self, queue):
-        """Sets the queue of this PipelineImpllinks.
-
-
-        :param queue: The queue of this PipelineImpllinks.
-        :type queue: Link
-        """
-
-        self._queue = queue
-
-    @property
     def actions(self):
         """Gets the actions of this PipelineImpllinks.
 
@@ -138,6 +96,48 @@ class PipelineImpllinks(Model):
         """
 
         self._actions = actions
+
+    @property
+    def runs(self):
+        """Gets the runs of this PipelineImpllinks.
+
+
+        :return: The runs of this PipelineImpllinks.
+        :rtype: Link
+        """
+        return self._runs
+
+    @runs.setter
+    def runs(self, runs):
+        """Sets the runs of this PipelineImpllinks.
+
+
+        :param runs: The runs of this PipelineImpllinks.
+        :type runs: Link
+        """
+
+        self._runs = runs
+
+    @property
+    def queue(self):
+        """Gets the queue of this PipelineImpllinks.
+
+
+        :return: The queue of this PipelineImpllinks.
+        :rtype: Link
+        """
+        return self._queue
+
+    @queue.setter
+    def queue(self, queue):
+        """Sets the queue of this PipelineImpllinks.
+
+
+        :param queue: The queue of this PipelineImpllinks.
+        :type queue: Link
+        """
+
+        self._queue = queue
 
     @property
     def _class(self):

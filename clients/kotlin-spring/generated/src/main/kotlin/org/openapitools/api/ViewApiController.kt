@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
+import org.openapitools.api.ViewApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -30,7 +31,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${api.base-path:}")
+@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
 class ViewApiController() {
 
     @Operation(
@@ -46,10 +47,12 @@ class ViewApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/view/{name}/api/json"],
+        value = [PATH_GET_VIEW /* "/view/{name}/api/json" */],
         produces = ["application/json"]
     )
-    fun getView(@Parameter(description = "Name of the view", required = true) @PathVariable("name") name: kotlin.String): ResponseEntity<ListView> {
+    fun getView(
+        @Parameter(description = "Name of the view", required = true) @PathVariable("name") name: kotlin.String
+    ): ResponseEntity<ListView> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -66,10 +69,12 @@ class ViewApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/view/{name}/config.xml"],
+        value = [PATH_GET_VIEW_CONFIG /* "/view/{name}/config.xml" */],
         produces = ["text/xml"]
     )
-    fun getViewConfig(@Parameter(description = "Name of the view", required = true) @PathVariable("name") name: kotlin.String): ResponseEntity<kotlin.String> {
+    fun getViewConfig(
+        @Parameter(description = "Name of the view", required = true) @PathVariable("name") name: kotlin.String
+    ): ResponseEntity<kotlin.String> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -87,11 +92,23 @@ class ViewApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/view/{name}/config.xml"],
+        value = [PATH_POST_VIEW_CONFIG /* "/view/{name}/config.xml" */],
         produces = ["*/*"],
         consumes = ["application/json"]
     )
-    fun postViewConfig(@Parameter(description = "Name of the view", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "View configuration in config.xml format", required = true) @Valid @RequestBody body: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
+    fun postViewConfig(
+        @Parameter(description = "Name of the view", required = true) @PathVariable("name") name: kotlin.String,
+        @Parameter(description = "View configuration in config.xml format", required = true) @Valid @RequestBody body: kotlin.String,
+        @Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?
+    ): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
+    }
+
+    companion object {
+        //for your own safety never directly reuse these path definitions in tests
+        const val BASE_PATH: String = ""
+        const val PATH_GET_VIEW: String = "/view/{name}/api/json"
+        const val PATH_GET_VIEW_CONFIG: String = "/view/{name}/config.xml"
+        const val PATH_POST_VIEW_CONFIG: String = "/view/{name}/config.xml"
     }
 }

@@ -33,6 +33,7 @@ class BlueApiTest {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
         val queue: kotlin.String = TODO()
+        
         val response: ResponseEntity<Unit> = api.deletePipelineQueueItem(organization, pipeline, queue)
 
         // TODO: test validations
@@ -47,6 +48,7 @@ class BlueApiTest {
     @Test
     fun getAuthenticatedUserTest() {
         val organization: kotlin.String = TODO()
+        
         val response: ResponseEntity<User> = api.getAuthenticatedUser(organization)
 
         // TODO: test validations
@@ -61,6 +63,7 @@ class BlueApiTest {
     @Test
     fun getClassesTest() {
         val propertyClass: kotlin.String = TODO()
+        
         val response: ResponseEntity<kotlin.String> = api.getClasses(propertyClass)
 
         // TODO: test validations
@@ -75,6 +78,7 @@ class BlueApiTest {
     @Test
     fun getOrganisationTest() {
         val organization: kotlin.String = TODO()
+        
         val response: ResponseEntity<Organisation> = api.getOrganisation(organization)
 
         // TODO: test validations
@@ -88,6 +92,7 @@ class BlueApiTest {
      */
     @Test
     fun getOrganisationsTest() {
+        
         val response: ResponseEntity<List<Organisation>> = api.getOrganisations()
 
         // TODO: test validations
@@ -103,6 +108,7 @@ class BlueApiTest {
     fun getPipelineTest() {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
+        
         val response: ResponseEntity<Pipeline> = api.getPipeline(organization, pipeline)
 
         // TODO: test validations
@@ -118,6 +124,7 @@ class BlueApiTest {
     fun getPipelineActivitiesTest() {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
+        
         val response: ResponseEntity<List<PipelineActivity>> = api.getPipelineActivities(organization, pipeline)
 
         // TODO: test validations
@@ -134,6 +141,7 @@ class BlueApiTest {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
         val branch: kotlin.String = TODO()
+        
         val response: ResponseEntity<BranchImpl> = api.getPipelineBranch(organization, pipeline, branch)
 
         // TODO: test validations
@@ -151,6 +159,7 @@ class BlueApiTest {
         val pipeline: kotlin.String = TODO()
         val branch: kotlin.String = TODO()
         val run: kotlin.String = TODO()
+        
         val response: ResponseEntity<PipelineRun> = api.getPipelineBranchRun(organization, pipeline, branch, run)
 
         // TODO: test validations
@@ -166,6 +175,7 @@ class BlueApiTest {
     fun getPipelineBranchesTest() {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
+        
         val response: ResponseEntity<MultibranchPipeline> = api.getPipelineBranches(organization, pipeline)
 
         // TODO: test validations
@@ -181,6 +191,7 @@ class BlueApiTest {
     fun getPipelineFolderTest() {
         val organization: kotlin.String = TODO()
         val folder: kotlin.String = TODO()
+        
         val response: ResponseEntity<PipelineFolderImpl> = api.getPipelineFolder(organization, folder)
 
         // TODO: test validations
@@ -197,6 +208,7 @@ class BlueApiTest {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
         val folder: kotlin.String = TODO()
+        
         val response: ResponseEntity<PipelineImpl> = api.getPipelineFolderPipeline(organization, pipeline, folder)
 
         // TODO: test validations
@@ -212,6 +224,7 @@ class BlueApiTest {
     fun getPipelineQueueTest() {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
+        
         val response: ResponseEntity<List<QueueItemImpl>> = api.getPipelineQueue(organization, pipeline)
 
         // TODO: test validations
@@ -228,6 +241,7 @@ class BlueApiTest {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
         val run: kotlin.String = TODO()
+        
         val response: ResponseEntity<PipelineRun> = api.getPipelineRun(organization, pipeline, run)
 
         // TODO: test validations
@@ -246,6 +260,7 @@ class BlueApiTest {
         val run: kotlin.String = TODO()
         val start: kotlin.Int? = TODO()
         val download: kotlin.Boolean? = TODO()
+        
         val response: ResponseEntity<kotlin.String> = api.getPipelineRunLog(organization, pipeline, run, start, download)
 
         // TODO: test validations
@@ -263,6 +278,7 @@ class BlueApiTest {
         val pipeline: kotlin.String = TODO()
         val run: kotlin.String = TODO()
         val node: kotlin.String = TODO()
+        
         val response: ResponseEntity<PipelineRunNode> = api.getPipelineRunNode(organization, pipeline, run, node)
 
         // TODO: test validations
@@ -281,6 +297,7 @@ class BlueApiTest {
         val run: kotlin.String = TODO()
         val node: kotlin.String = TODO()
         val step: kotlin.String = TODO()
+        
         val response: ResponseEntity<PipelineStepImpl> = api.getPipelineRunNodeStep(organization, pipeline, run, node, step)
 
         // TODO: test validations
@@ -299,6 +316,7 @@ class BlueApiTest {
         val run: kotlin.String = TODO()
         val node: kotlin.String = TODO()
         val step: kotlin.String = TODO()
+        
         val response: ResponseEntity<kotlin.String> = api.getPipelineRunNodeStepLog(organization, pipeline, run, node, step)
 
         // TODO: test validations
@@ -316,6 +334,7 @@ class BlueApiTest {
         val pipeline: kotlin.String = TODO()
         val run: kotlin.String = TODO()
         val node: kotlin.String = TODO()
+        
         val response: ResponseEntity<List<PipelineStepImpl>> = api.getPipelineRunNodeSteps(organization, pipeline, run, node)
 
         // TODO: test validations
@@ -332,6 +351,7 @@ class BlueApiTest {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
         val run: kotlin.String = TODO()
+        
         val response: ResponseEntity<List<PipelineRunNode>> = api.getPipelineRunNodes(organization, pipeline, run)
 
         // TODO: test validations
@@ -347,6 +367,7 @@ class BlueApiTest {
     fun getPipelineRunsTest() {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
+        
         val response: ResponseEntity<List<PipelineRun>> = api.getPipelineRuns(organization, pipeline)
 
         // TODO: test validations
@@ -361,6 +382,7 @@ class BlueApiTest {
     @Test
     fun getPipelinesTest() {
         val organization: kotlin.String = TODO()
+        
         val response: ResponseEntity<List<Pipeline>> = api.getPipelines(organization)
 
         // TODO: test validations
@@ -376,6 +398,7 @@ class BlueApiTest {
     fun getSCMTest() {
         val organization: kotlin.String = TODO()
         val scm: kotlin.String = TODO()
+        
         val response: ResponseEntity<GithubScm> = api.getSCM(organization, scm)
 
         // TODO: test validations
@@ -395,6 +418,7 @@ class BlueApiTest {
         val credentialId: kotlin.String? = TODO()
         val pageSize: kotlin.Int? = TODO()
         val pageNumber: kotlin.Int? = TODO()
+        
         val response: ResponseEntity<List<GithubOrganization>> = api.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
 
         // TODO: test validations
@@ -413,6 +437,7 @@ class BlueApiTest {
         val scmOrganisation: kotlin.String = TODO()
         val repository: kotlin.String = TODO()
         val credentialId: kotlin.String? = TODO()
+        
         val response: ResponseEntity<List<GithubOrganization>> = api.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
 
         // TODO: test validations
@@ -429,6 +454,7 @@ class BlueApiTest {
         val organization: kotlin.String = TODO()
         val scm: kotlin.String = TODO()
         val credentialId: kotlin.String? = TODO()
+        
         val response: ResponseEntity<List<GithubOrganization>> = api.getSCMOrganisations(organization, scm, credentialId)
 
         // TODO: test validations
@@ -444,6 +470,7 @@ class BlueApiTest {
     fun getUserTest() {
         val organization: kotlin.String = TODO()
         val user: kotlin.String = TODO()
+        
         val response: ResponseEntity<User> = api.getUser(organization, user)
 
         // TODO: test validations
@@ -458,6 +485,7 @@ class BlueApiTest {
     @Test
     fun getUserFavoritesTest() {
         val user: kotlin.String = TODO()
+        
         val response: ResponseEntity<List<FavoriteImpl>> = api.getUserFavorites(user)
 
         // TODO: test validations
@@ -472,6 +500,7 @@ class BlueApiTest {
     @Test
     fun getUsersTest() {
         val organization: kotlin.String = TODO()
+        
         val response: ResponseEntity<User> = api.getUsers(organization)
 
         // TODO: test validations
@@ -488,6 +517,7 @@ class BlueApiTest {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
         val run: kotlin.String = TODO()
+        
         val response: ResponseEntity<QueueItemImpl> = api.postPipelineRun(organization, pipeline, run)
 
         // TODO: test validations
@@ -503,6 +533,7 @@ class BlueApiTest {
     fun postPipelineRunsTest() {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
+        
         val response: ResponseEntity<QueueItemImpl> = api.postPipelineRuns(organization, pipeline)
 
         // TODO: test validations
@@ -519,6 +550,7 @@ class BlueApiTest {
         val organization: kotlin.String = TODO()
         val pipeline: kotlin.String = TODO()
         val body: kotlin.Boolean = TODO()
+        
         val response: ResponseEntity<FavoriteImpl> = api.putPipelineFavorite(organization, pipeline, body)
 
         // TODO: test validations
@@ -537,6 +569,7 @@ class BlueApiTest {
         val run: kotlin.String = TODO()
         val blocking: kotlin.String? = TODO()
         val timeOutInSecs: kotlin.Int? = TODO()
+        
         val response: ResponseEntity<PipelineRun> = api.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs)
 
         // TODO: test validations
@@ -551,6 +584,7 @@ class BlueApiTest {
     @Test
     fun searchTest() {
         val q: kotlin.String = TODO()
+        
         val response: ResponseEntity<kotlin.String> = api.search(q)
 
         // TODO: test validations
@@ -565,6 +599,7 @@ class BlueApiTest {
     @Test
     fun searchClassesTest() {
         val q: kotlin.String = TODO()
+        
         val response: ResponseEntity<kotlin.String> = api.searchClasses(q)
 
         // TODO: test validations

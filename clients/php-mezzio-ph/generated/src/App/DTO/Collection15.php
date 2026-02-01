@@ -6,9 +6,9 @@ namespace App\DTO;
 use Articus\DataTransfer\Annotation as DTA;
 
 /**
- * @DTA\Strategy(name="ObjectList", options={"type":\App\DTO\Pipeline::class})
+ * @DTA\Strategy(name="ObjectList", options={"type":\App\DTO\QueueBlockedItem::class})
  * @DTA\Validator(name="Collection", options={"validators":{
- *     {"name":"TypeCompliant", "options":{"type":\App\DTO\Pipeline::class}}
+ *     {"name":"TypeCompliant", "options":{"type":\App\DTO\QueueBlockedItem::class}}
  * }})
  */
 class Collection15 extends \ArrayObject

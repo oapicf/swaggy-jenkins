@@ -11,18 +11,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class SwapSpaceMonitorMemoryUsage2  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private Integer availablePhysicalMemory;
 
   @ApiModelProperty(value = "")
+
   private Integer availableSwapSpace;
 
   @ApiModelProperty(value = "")
+
   private Integer totalPhysicalMemory;
 
   @ApiModelProperty(value = "")
+
   private Integer totalSwapSpace;
  /**
    * Get propertyClass

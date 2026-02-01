@@ -11,15 +11,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelinelatestRunartifacts  {
   
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private Integer size;
 
   @ApiModelProperty(value = "")
+
   private String url;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get name

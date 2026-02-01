@@ -5,19 +5,48 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    _links: Github_scmlinks.t option [@default None];
-    credential_id: string option [@default None];
-    id: string option [@default None];
-    uri: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    _links = None;
-    credential_id = None;
-    id = None;
-    uri = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              _links: Github_scmlinks.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_links"]
+                                              credential_id: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "credentialId"]
+                                              id: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "id"]
+                                              uri: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "uri"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            _links = None;
+            credential_id = None;
+            id = None;
+            uri = None;
+        }
+    
 

@@ -7,10 +7,69 @@ use validator::Validate;
 use crate::header;
 use crate::{models, types::*};
 
-      
-      
+#[allow(dead_code)]
+fn from_validation_error(e: validator::ValidationError) -> validator::ValidationErrors {
+  let mut errs = validator::ValidationErrors::new();
+  errs.add("na", e);
+  errs
+}
+
+#[allow(dead_code)]
+pub fn check_xss_string(v: &str) -> std::result::Result<(), validator::ValidationError> {
+    if ammonia::is_html(v) {
+        std::result::Result::Err(validator::ValidationError::new("xss detected"))
+    } else {
+        std::result::Result::Ok(())
+    }
+}
+
+#[allow(dead_code)]
+pub fn check_xss_vec_string(v: &[String]) -> std::result::Result<(), validator::ValidationError> {
+    if v.iter().any(|i| ammonia::is_html(i)) {
+        std::result::Result::Err(validator::ValidationError::new("xss detected"))
+    } else {
+        std::result::Result::Ok(())
+    }
+}
+
+#[allow(dead_code)]
+pub fn check_xss_map_string(
+    v: &std::collections::HashMap<String, String>,
+) -> std::result::Result<(), validator::ValidationError> {
+    if v.keys().any(|k| ammonia::is_html(k)) || v.values().any(|v| ammonia::is_html(v)) {
+        std::result::Result::Err(validator::ValidationError::new("xss detected"))
+    } else {
+        std::result::Result::Ok(())
+    }
+}
+
+#[allow(dead_code)]
+pub fn check_xss_map_nested<T>(
+    v: &std::collections::HashMap<String, T>,
+) -> std::result::Result<(), validator::ValidationError>
+where
+    T: validator::Validate,
+{
+    if v.keys().any(|k| ammonia::is_html(k)) || v.values().any(|v| v.validate().is_err()) {
+        std::result::Result::Err(validator::ValidationError::new("xss detected"))
+    } else {
+        std::result::Result::Ok(())
+    }
+}
+
+#[allow(dead_code)]
+pub fn check_xss_map<T>(v: &std::collections::HashMap<String, T>) -> std::result::Result<(), validator::ValidationError> {
+    if v.keys().any(|k| ammonia::is_html(k)) {
+        std::result::Result::Err(validator::ValidationError::new("xss detected"))
+    } else {
+        std::result::Result::Ok(())
+    }
+}
+
+
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct DeletePipelineQueueItemPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -21,60 +80,60 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetAuthenticatedUserPathParams {
             /// Name of the organization
                 pub organization: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetClassesPathParams {
             /// Name of the class
                 pub class: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetJsonWebKeyPathParams {
             /// Key ID received as part of JWT header field kid
                 pub key: i32,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetJsonWebTokenQueryParams {
             /// Token expiry time in minutes, default: 30 minutes
                 #[serde(rename = "expiryTimeInMins")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub expiry_time_in_mins: Option<i32>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub expiry_time_in_mins: Option<i32>,
             /// Maximum token expiry time in minutes, default: 480 minutes
                 #[serde(rename = "maxExpiryTimeInMins")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub max_expiry_time_in_mins: Option<i32>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub max_expiry_time_in_mins: Option<i32>,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetOrganisationPathParams {
             /// Name of the organization
                 pub organization: String,
     }
 
 
-      
-      
+
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelinePathParams {
             /// Name of the organization
                 pub organization: String,
@@ -83,9 +142,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineActivitiesPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -94,9 +153,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineBranchPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -107,9 +166,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineBranchRunPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -122,9 +181,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineBranchesPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -133,9 +192,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineFolderPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -144,9 +203,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineFolderPipelinePathParams {
             /// Name of the organization
                 pub organization: String,
@@ -157,9 +216,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineQueuePathParams {
             /// Name of the organization
                 pub organization: String,
@@ -168,9 +227,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineRunPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -181,9 +240,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineRunLogPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -195,21 +254,21 @@ use crate::{models, types::*};
 
 
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineRunLogQueryParams {
             /// Start position of the log
                 #[serde(rename = "start")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub start: Option<i32>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub start: Option<i32>,
             /// Set to true in order to download the file, otherwise it's passed as a response body
                 #[serde(rename = "download")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub download: Option<bool>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub download: Option<bool>,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineRunNodePathParams {
             /// Name of the organization
                 pub organization: String,
@@ -222,9 +281,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineRunNodeStepPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -239,9 +298,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineRunNodeStepLogPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -256,9 +315,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineRunNodeStepsPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -271,9 +330,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineRunNodesPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -284,9 +343,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelineRunsPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -295,18 +354,18 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetPipelinesPathParams {
             /// Name of the organization
                 pub organization: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetScmPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -315,9 +374,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetScmOrganisationRepositoriesPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -329,25 +388,25 @@ use crate::{models, types::*};
 
 
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetScmOrganisationRepositoriesQueryParams {
             /// Credential ID
                 #[serde(rename = "credentialId")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub credential_id: Option<String>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub credential_id: Option<String>,
             /// Number of items in a page
                 #[serde(rename = "pageSize")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub page_size: Option<i32>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub page_size: Option<i32>,
             /// Page number
                 #[serde(rename = "pageNumber")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub page_number: Option<i32>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub page_number: Option<i32>,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetScmOrganisationRepositoryPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -361,17 +420,17 @@ use crate::{models, types::*};
 
 
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetScmOrganisationRepositoryQueryParams {
             /// Credential ID
                 #[serde(rename = "credentialId")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub credential_id: Option<String>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub credential_id: Option<String>,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetScmOrganisationsPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -381,17 +440,17 @@ use crate::{models, types::*};
 
 
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetScmOrganisationsQueryParams {
             /// Credential ID
                 #[serde(rename = "credentialId")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub credential_id: Option<String>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub credential_id: Option<String>,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetUserPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -400,27 +459,27 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetUserFavoritesPathParams {
             /// Name of the user
                 pub user: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetUsersPathParams {
             /// Name of the organization
                 pub organization: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostPipelineRunPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -431,9 +490,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostPipelineRunsPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -442,9 +501,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PutPipelineFavoritePathParams {
             /// Name of the organization
                 pub organization: String,
@@ -453,9 +512,9 @@ use crate::{models, types::*};
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PutPipelineRunPathParams {
             /// Name of the organization
                 pub organization: String,
@@ -467,76 +526,76 @@ use crate::{models, types::*};
 
 
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PutPipelineRunQueryParams {
             /// Set to true to make blocking stop, default: false
                 #[serde(rename = "blocking")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub blocking: Option<String>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub blocking: Option<String>,
             /// Timeout in seconds, default: 10 seconds
                 #[serde(rename = "timeOutInSecs")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub time_out_in_secs: Option<i32>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub time_out_in_secs: Option<i32>,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct SearchQueryParams {
             /// Query string
                 #[serde(rename = "q")]
-                pub q: String,
+                    pub q: String,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct SearchClassesQueryParams {
             /// Query string containing an array of class names
                 #[serde(rename = "q")]
-                pub q: String,
+                    pub q: String,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetComputerQueryParams {
             /// Recursion depth in response model
                 #[serde(rename = "depth")]
-                pub depth: i32,
+                    pub depth: i32,
     }
 
-      
-      
+
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetJobPathParams {
             /// Name of the job
                 pub name: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetJobConfigPathParams {
             /// Name of the job
                 pub name: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetJobLastBuildPathParams {
             /// Name of the job
                 pub name: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetJobProgressiveTextPathParams {
             /// Name of the job
                 pub name: String,
@@ -546,43 +605,43 @@ use crate::{models, types::*};
 
 
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetJobProgressiveTextQueryParams {
             /// Starting point of progressive text output
                 #[serde(rename = "start")]
-                pub start: String,
+                    pub start: String,
     }
 
-      
-      
+
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetQueueItemPathParams {
             /// Queue number
                 pub number: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetViewPathParams {
             /// Name of the view
                 pub name: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct GetViewConfigPathParams {
             /// Name of the view
                 pub name: String,
     }
 
 
-      
-      
+
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
     #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostCreateItemHeaderParams {
@@ -590,24 +649,24 @@ use crate::{models, types::*};
         pub content_type: Option<String>,
     }
 
-            
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostCreateItemQueryParams {
             /// Name of the new job
                 #[serde(rename = "name")]
-                pub name: String,
+                    pub name: String,
             /// Existing job to copy from
                 #[serde(rename = "from")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub from: Option<String>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub from: Option<String>,
             /// Set to 'copy' for copying an existing job
                 #[serde(rename = "mode")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub mode: Option<String>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub mode: Option<String>,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
     #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostCreateViewHeaderParams {
@@ -615,25 +674,25 @@ use crate::{models, types::*};
         pub content_type: Option<String>,
     }
 
-            
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostCreateViewQueryParams {
             /// Name of the new view
                 #[serde(rename = "name")]
-                pub name: String,
+                    pub name: String,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
     #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobBuildHeaderParams {
         pub jenkins_crumb: Option<String>,
     }
 
-            
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobBuildPathParams {
             /// Name of the job
                 pub name: String,
@@ -641,105 +700,105 @@ use crate::{models, types::*};
 
 
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobBuildQueryParams {
                 #[serde(rename = "json")]
-                pub json: String,
+                    pub json: String,
                 #[serde(rename = "token")]
-                #[serde(skip_serializing_if="Option::is_none")]
-                pub token: Option<String>,
+                    #[serde(skip_serializing_if="Option::is_none")]
+                    pub token: Option<String>,
     }
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
     #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobConfigHeaderParams {
         pub jenkins_crumb: Option<String>,
     }
 
-            
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobConfigPathParams {
             /// Name of the job
                 pub name: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
     #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobDeleteHeaderParams {
         pub jenkins_crumb: Option<String>,
     }
 
-            
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobDeletePathParams {
             /// Name of the job
                 pub name: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
     #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobDisableHeaderParams {
         pub jenkins_crumb: Option<String>,
     }
 
-            
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobDisablePathParams {
             /// Name of the job
                 pub name: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
     #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobEnableHeaderParams {
         pub jenkins_crumb: Option<String>,
     }
 
-            
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobEnablePathParams {
             /// Name of the job
                 pub name: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
     #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobLastBuildStopHeaderParams {
         pub jenkins_crumb: Option<String>,
     }
 
-            
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostJobLastBuildStopPathParams {
             /// Name of the job
                 pub name: String,
     }
 
 
-      
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
     #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostViewConfigHeaderParams {
         pub jenkins_crumb: Option<String>,
     }
 
-            
+
     #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
-    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))] 
+    #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
     pub struct PostViewConfigPathParams {
             /// Name of the view
                 pub name: String,
@@ -752,14 +811,17 @@ use crate::{models, types::*};
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct AllView {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "url")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub url: Option<String>,
 
@@ -767,15 +829,13 @@ pub struct AllView {
 
 
 
-
-
 impl AllView {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> AllView {
         AllView {
-            _class: None,
-            name: None,
-            url: None,
+ _class: None,
+ name: None,
+ url: None,
         }
     }
 }
@@ -880,9 +940,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<AllView>> for HeaderValue {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for AllView - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for AllView - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -896,18 +954,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<AllView> {
              std::result::Result::Ok(value) => {
                     match <AllView as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into AllView - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into AllView - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -915,10 +968,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<AllView> {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct BranchImpl {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
@@ -927,26 +982,32 @@ pub struct BranchImpl {
     pub estimated_duration_in_millis: Option<i32>,
 
     #[serde(rename = "fullDisplayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub full_display_name: Option<String>,
 
     #[serde(rename = "fullName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub full_name: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
     #[serde(rename = "parameters")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub parameters: Option<Vec<models::StringParameterDefinition>>,
 
     #[serde(rename = "permissions")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub permissions: Option<models::BranchImplpermissions>,
 
@@ -955,14 +1016,17 @@ pub struct BranchImpl {
     pub weather_score: Option<i32>,
 
     #[serde(rename = "pullRequest")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub pull_request: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::BranchImpllinks>,
 
     #[serde(rename = "latestRun")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub latest_run: Option<models::PipelineRunImpl>,
 
@@ -970,25 +1034,23 @@ pub struct BranchImpl {
 
 
 
-
-
 impl BranchImpl {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> BranchImpl {
         BranchImpl {
-            _class: None,
-            display_name: None,
-            estimated_duration_in_millis: None,
-            full_display_name: None,
-            full_name: None,
-            name: None,
-            organization: None,
-            parameters: None,
-            permissions: None,
-            weather_score: None,
-            pull_request: None,
-            _links: None,
-            latest_run: None,
+ _class: None,
+ display_name: None,
+ estimated_duration_in_millis: None,
+ full_display_name: None,
+ full_name: None,
+ name: None,
+ organization: None,
+ parameters: None,
+ permissions: None,
+ weather_score: None,
+ pull_request: None,
+ _links: None,
+ latest_run: None,
         }
     }
 }
@@ -1188,9 +1250,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<BranchImpl>> for HeaderValue 
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for BranchImpl - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for BranchImpl - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -1204,18 +1264,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<BranchImpl> 
              std::result::Result::Ok(value) => {
                     match <BranchImpl as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into BranchImpl - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into BranchImpl - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -1223,22 +1278,27 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<BranchImpl> 
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct BranchImpllinks {
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "actions")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub actions: Option<models::Link>,
 
     #[serde(rename = "runs")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub runs: Option<models::Link>,
 
     #[serde(rename = "queue")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub queue: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -1246,17 +1306,15 @@ pub struct BranchImpllinks {
 
 
 
-
-
 impl BranchImpllinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> BranchImpllinks {
         BranchImpllinks {
-            param_self: None,
-            actions: None,
-            runs: None,
-            queue: None,
-            _class: None,
+ param_self: None,
+ actions: None,
+ runs: None,
+ queue: None,
+ _class: None,
         }
     }
 }
@@ -1361,9 +1419,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<BranchImpllinks>> for HeaderV
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for BranchImpllinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for BranchImpllinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -1377,18 +1433,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<BranchImplli
              std::result::Result::Ok(value) => {
                     match <BranchImpllinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into BranchImpllinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into BranchImpllinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -1412,6 +1463,7 @@ pub struct BranchImplpermissions {
     pub stop: Option<bool>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -1419,17 +1471,15 @@ pub struct BranchImplpermissions {
 
 
 
-
-
 impl BranchImplpermissions {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> BranchImplpermissions {
         BranchImplpermissions {
-            create: None,
-            read: None,
-            start: None,
-            stop: None,
-            _class: None,
+ create: None,
+ read: None,
+ start: None,
+ stop: None,
+ _class: None,
         }
     }
 }
@@ -1558,9 +1608,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<BranchImplpermissions>> for H
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for BranchImplpermissions - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for BranchImplpermissions - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -1574,18 +1622,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<BranchImplpe
              std::result::Result::Ok(value) => {
                     match <BranchImplpermissions as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into BranchImplpermissions - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into BranchImplpermissions - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -1593,10 +1636,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<BranchImplpe
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct CauseAction {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "causes")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub causes: Option<Vec<models::CauseUserIdCause>>,
 
@@ -1604,14 +1649,12 @@ pub struct CauseAction {
 
 
 
-
-
 impl CauseAction {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> CauseAction {
         CauseAction {
-            _class: None,
-            causes: None,
+ _class: None,
+ causes: None,
         }
     }
 }
@@ -1697,9 +1740,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<CauseAction>> for HeaderValue
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for CauseAction - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for CauseAction - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -1713,18 +1754,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<CauseAction>
              std::result::Result::Ok(value) => {
                     match <CauseAction as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into CauseAction - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into CauseAction - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -1732,18 +1768,22 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<CauseAction>
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct CauseUserIdCause {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "shortDescription")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub short_description: Option<String>,
 
     #[serde(rename = "userId")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub user_id: Option<String>,
 
     #[serde(rename = "userName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub user_name: Option<String>,
 
@@ -1751,16 +1791,14 @@ pub struct CauseUserIdCause {
 
 
 
-
-
 impl CauseUserIdCause {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> CauseUserIdCause {
         CauseUserIdCause {
-            _class: None,
-            short_description: None,
-            user_id: None,
-            user_name: None,
+ _class: None,
+ short_description: None,
+ user_id: None,
+ user_name: None,
         }
     }
 }
@@ -1877,9 +1915,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<CauseUserIdCause>> for Header
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for CauseUserIdCause - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for CauseUserIdCause - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -1893,18 +1929,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<CauseUserIdC
              std::result::Result::Ok(value) => {
                     match <CauseUserIdCause as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into CauseUserIdCause - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into CauseUserIdCause - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -1912,10 +1943,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<CauseUserIdC
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ClassesByClass {
     #[serde(rename = "classes")]
+          #[validate(custom(function = "check_xss_vec_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub classes: Option<Vec<String>>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -1923,14 +1956,12 @@ pub struct ClassesByClass {
 
 
 
-
-
 impl ClassesByClass {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> ClassesByClass {
         ClassesByClass {
-            classes: None,
-            _class: None,
+ classes: None,
+ _class: None,
         }
     }
 }
@@ -2022,9 +2053,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ClassesByClass>> for HeaderVa
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for ClassesByClass - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for ClassesByClass - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -2038,18 +2067,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ClassesByCla
              std::result::Result::Ok(value) => {
                     match <ClassesByClass as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into ClassesByClass - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into ClassesByClass - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -2057,6 +2081,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ClassesByCla
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ClockDifference {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -2068,14 +2093,12 @@ pub struct ClockDifference {
 
 
 
-
-
 impl ClockDifference {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> ClockDifference {
         ClockDifference {
-            _class: None,
-            diff: None,
+ _class: None,
+ diff: None,
         }
     }
 }
@@ -2168,9 +2191,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ClockDifference>> for HeaderV
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for ClockDifference - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for ClockDifference - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -2184,18 +2205,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ClockDiffere
              std::result::Result::Ok(value) => {
                     match <ClockDifference as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into ClockDifference - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into ClockDifference - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -2203,6 +2219,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ClockDiffere
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ComputerSet {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -2211,10 +2228,12 @@ pub struct ComputerSet {
     pub busy_executors: Option<i32>,
 
     #[serde(rename = "computer")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub computer: Option<Vec<models::HudsonMasterComputer>>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
@@ -2226,17 +2245,15 @@ pub struct ComputerSet {
 
 
 
-
-
 impl ComputerSet {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> ComputerSet {
         ComputerSet {
-            _class: None,
-            busy_executors: None,
-            computer: None,
-            display_name: None,
-            total_executors: None,
+ _class: None,
+ busy_executors: None,
+ computer: None,
+ display_name: None,
+ total_executors: None,
         }
     }
 }
@@ -2358,9 +2375,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ComputerSet>> for HeaderValue
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for ComputerSet - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for ComputerSet - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -2374,18 +2389,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ComputerSet>
              std::result::Result::Ok(value) => {
                     match <ComputerSet as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into ComputerSet - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into ComputerSet - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -2393,14 +2403,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ComputerSet>
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct DefaultCrumbIssuer {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "crumb")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub crumb: Option<String>,
 
     #[serde(rename = "crumbRequestField")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub crumb_request_field: Option<String>,
 
@@ -2408,15 +2421,13 @@ pub struct DefaultCrumbIssuer {
 
 
 
-
-
 impl DefaultCrumbIssuer {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> DefaultCrumbIssuer {
         DefaultCrumbIssuer {
-            _class: None,
-            crumb: None,
-            crumb_request_field: None,
+ _class: None,
+ crumb: None,
+ crumb_request_field: None,
         }
     }
 }
@@ -2521,9 +2532,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<DefaultCrumbIssuer>> for Head
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for DefaultCrumbIssuer - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for DefaultCrumbIssuer - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -2537,18 +2546,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<DefaultCrumb
              std::result::Result::Ok(value) => {
                     match <DefaultCrumbIssuer as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into DefaultCrumbIssuer - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into DefaultCrumbIssuer - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -2556,6 +2560,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<DefaultCrumb
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct DiskSpaceMonitorDescriptorDiskSpace {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -2564,6 +2569,7 @@ pub struct DiskSpaceMonitorDescriptorDiskSpace {
     pub timestamp: Option<i32>,
 
     #[serde(rename = "path")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub path: Option<String>,
 
@@ -2575,16 +2581,14 @@ pub struct DiskSpaceMonitorDescriptorDiskSpace {
 
 
 
-
-
 impl DiskSpaceMonitorDescriptorDiskSpace {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> DiskSpaceMonitorDescriptorDiskSpace {
         DiskSpaceMonitorDescriptorDiskSpace {
-            _class: None,
-            timestamp: None,
-            path: None,
-            size: None,
+ _class: None,
+ timestamp: None,
+ path: None,
+ size: None,
         }
     }
 }
@@ -2701,9 +2705,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<DiskSpaceMonitorDescriptorDis
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for DiskSpaceMonitorDescriptorDiskSpace - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for DiskSpaceMonitorDescriptorDiskSpace - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -2717,18 +2719,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<DiskSpaceMon
              std::result::Result::Ok(value) => {
                     match <DiskSpaceMonitorDescriptorDiskSpace as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into DiskSpaceMonitorDescriptorDiskSpace - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into DiskSpaceMonitorDescriptorDiskSpace - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -2736,10 +2733,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<DiskSpaceMon
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct EmptyChangeLogSet {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "kind")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub kind: Option<String>,
 
@@ -2747,14 +2746,12 @@ pub struct EmptyChangeLogSet {
 
 
 
-
-
 impl EmptyChangeLogSet {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> EmptyChangeLogSet {
         EmptyChangeLogSet {
-            _class: None,
-            kind: None,
+ _class: None,
+ kind: None,
         }
     }
 }
@@ -2847,9 +2844,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<EmptyChangeLogSet>> for Heade
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for EmptyChangeLogSet - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for EmptyChangeLogSet - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -2863,18 +2858,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<EmptyChangeL
              std::result::Result::Ok(value) => {
                     match <EmptyChangeLogSet as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into EmptyChangeLogSet - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into EmptyChangeLogSet - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -2882,14 +2872,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<EmptyChangeL
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassContainerImpl1 {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::ExtensionClassContainerImpl1links>,
 
     #[serde(rename = "map")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub map: Option<models::ExtensionClassContainerImpl1map>,
 
@@ -2897,15 +2890,13 @@ pub struct ExtensionClassContainerImpl1 {
 
 
 
-
-
 impl ExtensionClassContainerImpl1 {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> ExtensionClassContainerImpl1 {
         ExtensionClassContainerImpl1 {
-            _class: None,
-            _links: None,
-            map: None,
+ _class: None,
+ _links: None,
+ map: None,
         }
     }
 }
@@ -2998,9 +2989,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ExtensionClassContainerImpl1>
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for ExtensionClassContainerImpl1 - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for ExtensionClassContainerImpl1 - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -3014,18 +3003,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
              std::result::Result::Ok(value) => {
                     match <ExtensionClassContainerImpl1 as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into ExtensionClassContainerImpl1 - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into ExtensionClassContainerImpl1 - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -3033,10 +3017,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassContainerImpl1links {
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -3044,14 +3030,12 @@ pub struct ExtensionClassContainerImpl1links {
 
 
 
-
-
 impl ExtensionClassContainerImpl1links {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> ExtensionClassContainerImpl1links {
         ExtensionClassContainerImpl1links {
-            param_self: None,
-            _class: None,
+ param_self: None,
+ _class: None,
         }
     }
 }
@@ -3138,9 +3122,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ExtensionClassContainerImpl1l
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for ExtensionClassContainerImpl1links - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for ExtensionClassContainerImpl1links - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -3154,18 +3136,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
              std::result::Result::Ok(value) => {
                     match <ExtensionClassContainerImpl1links as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into ExtensionClassContainerImpl1links - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into ExtensionClassContainerImpl1links - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -3173,14 +3150,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassContainerImpl1map {
     #[serde(rename = "io.jenkins.blueocean.service.embedded.rest.PipelineImpl")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_pipeline_impl: Option<models::ExtensionClassImpl>,
+    pub io_jenkins_blueocean_service_embedded_rest_pipeline_impl: Option<models::ExtensionClassImpl>,
 
     #[serde(rename = "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_multi_branch_pipeline_impl: Option<models::ExtensionClassImpl>,
+    pub io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl: Option<models::ExtensionClassImpl>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -3188,15 +3168,13 @@ pub struct ExtensionClassContainerImpl1map {
 
 
 
-
-
 impl ExtensionClassContainerImpl1map {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> ExtensionClassContainerImpl1map {
         ExtensionClassContainerImpl1map {
-            io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_pipeline_impl: None,
-            io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_multi_branch_pipeline_impl: None,
-            _class: None,
+ io_jenkins_blueocean_service_embedded_rest_pipeline_impl: None,
+ io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl: None,
+ _class: None,
         }
     }
 }
@@ -3236,8 +3214,8 @@ impl std::str::FromStr for ExtensionClassContainerImpl1map {
         #[derive(Default)]
         #[allow(dead_code)]
         struct IntermediateRep {
-            pub io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_pipeline_impl: Vec<models::ExtensionClassImpl>,
-            pub io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_multi_branch_pipeline_impl: Vec<models::ExtensionClassImpl>,
+            pub io_jenkins_blueocean_service_embedded_rest_pipeline_impl: Vec<models::ExtensionClassImpl>,
+            pub io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl: Vec<models::ExtensionClassImpl>,
             pub _class: Vec<String>,
         }
 
@@ -3257,9 +3235,9 @@ impl std::str::FromStr for ExtensionClassContainerImpl1map {
                 #[allow(clippy::match_single_binding)]
                 match key {
                     #[allow(clippy::redundant_clone)]
-                    "io.jenkins.blueocean.service.embedded.rest.PipelineImpl" => intermediate_rep.io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_pipeline_impl.push(<models::ExtensionClassImpl as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "io.jenkins.blueocean.service.embedded.rest.PipelineImpl" => intermediate_rep.io_jenkins_blueocean_service_embedded_rest_pipeline_impl.push(<models::ExtensionClassImpl as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl" => intermediate_rep.io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_multi_branch_pipeline_impl.push(<models::ExtensionClassImpl as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl" => intermediate_rep.io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl.push(<models::ExtensionClassImpl as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
                     "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     _ => return std::result::Result::Err("Unexpected key while parsing ExtensionClassContainerImpl1map".to_string())
@@ -3272,8 +3250,8 @@ impl std::str::FromStr for ExtensionClassContainerImpl1map {
 
         // Use the intermediate representation to return the struct
         std::result::Result::Ok(ExtensionClassContainerImpl1map {
-            io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_pipeline_impl: intermediate_rep.io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_pipeline_impl.into_iter().next(),
-            io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_multi_branch_pipeline_impl: intermediate_rep.io_period_jenkins_period_blueocean_period_service_period_embedded_period_rest_period_multi_branch_pipeline_impl.into_iter().next(),
+            io_jenkins_blueocean_service_embedded_rest_pipeline_impl: intermediate_rep.io_jenkins_blueocean_service_embedded_rest_pipeline_impl.into_iter().next(),
+            io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl: intermediate_rep.io_jenkins_blueocean_service_embedded_rest_multi_branch_pipeline_impl.into_iter().next(),
             _class: intermediate_rep._class.into_iter().next(),
         })
     }
@@ -3289,9 +3267,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ExtensionClassContainerImpl1m
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for ExtensionClassContainerImpl1map - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for ExtensionClassContainerImpl1map - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -3305,18 +3281,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
              std::result::Result::Ok(value) => {
                     match <ExtensionClassContainerImpl1map as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into ExtensionClassContainerImpl1map - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into ExtensionClassContainerImpl1map - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -3324,14 +3295,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassImpl {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::ExtensionClassImpllinks>,
 
     #[serde(rename = "classes")]
+          #[validate(custom(function = "check_xss_vec_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub classes: Option<Vec<String>>,
 
@@ -3339,15 +3313,13 @@ pub struct ExtensionClassImpl {
 
 
 
-
-
 impl ExtensionClassImpl {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> ExtensionClassImpl {
         ExtensionClassImpl {
-            _class: None,
-            _links: None,
-            classes: None,
+ _class: None,
+ _links: None,
+ classes: None,
         }
     }
 }
@@ -3445,9 +3417,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ExtensionClassImpl>> for Head
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for ExtensionClassImpl - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for ExtensionClassImpl - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -3461,18 +3431,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
              std::result::Result::Ok(value) => {
                     match <ExtensionClassImpl as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into ExtensionClassImpl - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into ExtensionClassImpl - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -3480,10 +3445,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ExtensionClassImpllinks {
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -3491,14 +3458,12 @@ pub struct ExtensionClassImpllinks {
 
 
 
-
-
 impl ExtensionClassImpllinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> ExtensionClassImpllinks {
         ExtensionClassImpllinks {
-            param_self: None,
-            _class: None,
+ param_self: None,
+ _class: None,
         }
     }
 }
@@ -3585,9 +3550,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ExtensionClassImpllinks>> for
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for ExtensionClassImpllinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for ExtensionClassImpllinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -3601,18 +3564,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
              std::result::Result::Ok(value) => {
                     match <ExtensionClassImpllinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into ExtensionClassImpllinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into ExtensionClassImpllinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -3620,14 +3578,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ExtensionCla
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FavoriteImpl {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::FavoriteImpllinks>,
 
     #[serde(rename = "item")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub item: Option<models::PipelineImpl>,
 
@@ -3635,15 +3596,13 @@ pub struct FavoriteImpl {
 
 
 
-
-
 impl FavoriteImpl {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> FavoriteImpl {
         FavoriteImpl {
-            _class: None,
-            _links: None,
-            item: None,
+ _class: None,
+ _links: None,
+ item: None,
         }
     }
 }
@@ -3736,9 +3695,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<FavoriteImpl>> for HeaderValu
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for FavoriteImpl - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for FavoriteImpl - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -3752,18 +3709,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FavoriteImpl
              std::result::Result::Ok(value) => {
                     match <FavoriteImpl as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into FavoriteImpl - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into FavoriteImpl - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -3771,10 +3723,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FavoriteImpl
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FavoriteImpllinks {
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -3782,14 +3736,12 @@ pub struct FavoriteImpllinks {
 
 
 
-
-
 impl FavoriteImpllinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> FavoriteImpllinks {
         FavoriteImpllinks {
-            param_self: None,
-            _class: None,
+ param_self: None,
+ _class: None,
         }
     }
 }
@@ -3876,9 +3828,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<FavoriteImpllinks>> for Heade
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for FavoriteImpllinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for FavoriteImpllinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -3892,18 +3842,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FavoriteImpl
              std::result::Result::Ok(value) => {
                     match <FavoriteImpllinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into FavoriteImpllinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into FavoriteImpllinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -3911,6 +3856,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FavoriteImpl
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleBuild {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -3919,10 +3865,12 @@ pub struct FreeStyleBuild {
     pub number: Option<i32>,
 
     #[serde(rename = "url")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub url: Option<String>,
 
     #[serde(rename = "actions")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub actions: Option<Vec<models::CauseAction>>,
 
@@ -3931,10 +3879,12 @@ pub struct FreeStyleBuild {
     pub building: Option<bool>,
 
     #[serde(rename = "description")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub description: Option<String>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
@@ -3947,14 +3897,17 @@ pub struct FreeStyleBuild {
     pub estimated_duration: Option<i32>,
 
     #[serde(rename = "executor")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub executor: Option<String>,
 
     #[serde(rename = "fullDisplayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub full_display_name: Option<String>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
@@ -3967,6 +3920,7 @@ pub struct FreeStyleBuild {
     pub queue_id: Option<i32>,
 
     #[serde(rename = "result")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub result: Option<String>,
 
@@ -3975,10 +3929,12 @@ pub struct FreeStyleBuild {
     pub timestamp: Option<i32>,
 
     #[serde(rename = "builtOn")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub built_on: Option<String>,
 
     #[serde(rename = "changeSet")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub change_set: Option<models::EmptyChangeLogSet>,
 
@@ -3986,30 +3942,28 @@ pub struct FreeStyleBuild {
 
 
 
-
-
 impl FreeStyleBuild {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> FreeStyleBuild {
         FreeStyleBuild {
-            _class: None,
-            number: None,
-            url: None,
-            actions: None,
-            building: None,
-            description: None,
-            display_name: None,
-            duration: None,
-            estimated_duration: None,
-            executor: None,
-            full_display_name: None,
-            id: None,
-            keep_log: None,
-            queue_id: None,
-            result: None,
-            timestamp: None,
-            built_on: None,
-            change_set: None,
+ _class: None,
+ number: None,
+ url: None,
+ actions: None,
+ building: None,
+ description: None,
+ display_name: None,
+ duration: None,
+ estimated_duration: None,
+ executor: None,
+ full_display_name: None,
+ id: None,
+ keep_log: None,
+ queue_id: None,
+ result: None,
+ timestamp: None,
+ built_on: None,
+ change_set: None,
         }
     }
 }
@@ -4281,9 +4235,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<FreeStyleBuild>> for HeaderVa
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for FreeStyleBuild - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for FreeStyleBuild - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -4297,18 +4249,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStyleBui
              std::result::Result::Ok(value) => {
                     match <FreeStyleBuild as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into FreeStyleBuild - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into FreeStyleBuild - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -4316,42 +4263,52 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStyleBui
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleProject {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "url")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub url: Option<String>,
 
     #[serde(rename = "color")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub color: Option<String>,
 
     #[serde(rename = "actions")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub actions: Option<Vec<models::FreeStyleProjectactions>>,
 
     #[serde(rename = "description")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub description: Option<String>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
     #[serde(rename = "displayNameOrNull")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name_or_null: Option<String>,
 
     #[serde(rename = "fullDisplayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub full_display_name: Option<String>,
 
     #[serde(rename = "fullName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub full_name: Option<String>,
 
@@ -4360,14 +4317,17 @@ pub struct FreeStyleProject {
     pub buildable: Option<bool>,
 
     #[serde(rename = "builds")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub builds: Option<Vec<models::FreeStyleBuild>>,
 
     #[serde(rename = "firstBuild")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub first_build: Option<models::FreeStyleBuild>,
 
     #[serde(rename = "healthReport")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub health_report: Option<Vec<models::FreeStyleProjecthealthReport>>,
 
@@ -4380,30 +4340,37 @@ pub struct FreeStyleProject {
     pub keep_dependencies: Option<bool>,
 
     #[serde(rename = "lastBuild")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub last_build: Option<models::FreeStyleBuild>,
 
     #[serde(rename = "lastCompletedBuild")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub last_completed_build: Option<models::FreeStyleBuild>,
 
     #[serde(rename = "lastFailedBuild")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub last_failed_build: Option<String>,
 
     #[serde(rename = "lastStableBuild")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub last_stable_build: Option<models::FreeStyleBuild>,
 
     #[serde(rename = "lastSuccessfulBuild")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub last_successful_build: Option<models::FreeStyleBuild>,
 
     #[serde(rename = "lastUnstableBuild")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub last_unstable_build: Option<String>,
 
     #[serde(rename = "lastUnsuccessfulBuild")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub last_unsuccessful_build: Option<String>,
 
@@ -4412,6 +4379,7 @@ pub struct FreeStyleProject {
     pub next_build_number: Option<i32>,
 
     #[serde(rename = "queueItem")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub queue_item: Option<String>,
 
@@ -4420,6 +4388,7 @@ pub struct FreeStyleProject {
     pub concurrent_build: Option<bool>,
 
     #[serde(rename = "scm")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub scm: Option<models::NullScm>,
 
@@ -4427,39 +4396,37 @@ pub struct FreeStyleProject {
 
 
 
-
-
 impl FreeStyleProject {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> FreeStyleProject {
         FreeStyleProject {
-            _class: None,
-            name: None,
-            url: None,
-            color: None,
-            actions: None,
-            description: None,
-            display_name: None,
-            display_name_or_null: None,
-            full_display_name: None,
-            full_name: None,
-            buildable: None,
-            builds: None,
-            first_build: None,
-            health_report: None,
-            in_queue: None,
-            keep_dependencies: None,
-            last_build: None,
-            last_completed_build: None,
-            last_failed_build: None,
-            last_stable_build: None,
-            last_successful_build: None,
-            last_unstable_build: None,
-            last_unsuccessful_build: None,
-            next_build_number: None,
-            queue_item: None,
-            concurrent_build: None,
-            scm: None,
+ _class: None,
+ name: None,
+ url: None,
+ color: None,
+ actions: None,
+ description: None,
+ display_name: None,
+ display_name_or_null: None,
+ full_display_name: None,
+ full_name: None,
+ buildable: None,
+ builds: None,
+ first_build: None,
+ health_report: None,
+ in_queue: None,
+ keep_dependencies: None,
+ last_build: None,
+ last_completed_build: None,
+ last_failed_build: None,
+ last_stable_build: None,
+ last_successful_build: None,
+ last_unstable_build: None,
+ last_unsuccessful_build: None,
+ next_build_number: None,
+ queue_item: None,
+ concurrent_build: None,
+ scm: None,
         }
     }
 }
@@ -4795,9 +4762,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<FreeStyleProject>> for Header
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for FreeStyleProject - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for FreeStyleProject - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -4811,18 +4776,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStylePro
              std::result::Result::Ok(value) => {
                     match <FreeStyleProject as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into FreeStyleProject - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into FreeStyleProject - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -4830,6 +4790,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStylePro
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleProjectactions {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -4837,13 +4798,11 @@ pub struct FreeStyleProjectactions {
 
 
 
-
-
 impl FreeStyleProjectactions {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> FreeStyleProjectactions {
         FreeStyleProjectactions {
-            _class: None,
+ _class: None,
         }
     }
 }
@@ -4924,9 +4883,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<FreeStyleProjectactions>> for
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for FreeStyleProjectactions - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for FreeStyleProjectactions - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -4940,18 +4897,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStylePro
              std::result::Result::Ok(value) => {
                     match <FreeStyleProjectactions as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into FreeStyleProjectactions - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into FreeStyleProjectactions - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -4959,14 +4911,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStylePro
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct FreeStyleProjecthealthReport {
     #[serde(rename = "description")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub description: Option<String>,
 
     #[serde(rename = "iconClassName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub icon_class_name: Option<String>,
 
     #[serde(rename = "iconUrl")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub icon_url: Option<String>,
 
@@ -4975,6 +4930,7 @@ pub struct FreeStyleProjecthealthReport {
     pub score: Option<i32>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -4982,17 +4938,15 @@ pub struct FreeStyleProjecthealthReport {
 
 
 
-
-
 impl FreeStyleProjecthealthReport {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> FreeStyleProjecthealthReport {
         FreeStyleProjecthealthReport {
-            description: None,
-            icon_class_name: None,
-            icon_url: None,
-            score: None,
-            _class: None,
+ description: None,
+ icon_class_name: None,
+ icon_url: None,
+ score: None,
+ _class: None,
         }
     }
 }
@@ -5121,9 +5075,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<FreeStyleProjecthealthReport>
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for FreeStyleProjecthealthReport - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for FreeStyleProjecthealthReport - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -5137,18 +5089,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStylePro
              std::result::Result::Ok(value) => {
                     match <FreeStyleProjecthealthReport as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into FreeStyleProjecthealthReport - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into FreeStyleProjecthealthReport - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -5156,10 +5103,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<FreeStylePro
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GenericResource {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
@@ -5168,14 +5117,17 @@ pub struct GenericResource {
     pub duration_in_millis: Option<i32>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "result")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub result: Option<String>,
 
     #[serde(rename = "startTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub start_time: Option<String>,
 
@@ -5183,18 +5135,16 @@ pub struct GenericResource {
 
 
 
-
-
 impl GenericResource {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GenericResource {
         GenericResource {
-            _class: None,
-            display_name: None,
-            duration_in_millis: None,
-            id: None,
-            result: None,
-            start_time: None,
+ _class: None,
+ display_name: None,
+ duration_in_millis: None,
+ id: None,
+ result: None,
+ start_time: None,
         }
     }
 }
@@ -5335,9 +5285,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GenericResource>> for HeaderV
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GenericResource - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GenericResource - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -5351,18 +5299,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GenericResou
              std::result::Result::Ok(value) => {
                     match <GenericResource as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GenericResource - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GenericResource - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -5370,18 +5313,22 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GenericResou
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubContent {
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "sha")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub sha: Option<String>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "repo")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub repo: Option<String>,
 
@@ -5390,14 +5337,17 @@ pub struct GithubContent {
     pub size: Option<i32>,
 
     #[serde(rename = "owner")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub owner: Option<String>,
 
     #[serde(rename = "path")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub path: Option<String>,
 
     #[serde(rename = "base64Data")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub base64_data: Option<String>,
 
@@ -5405,20 +5355,18 @@ pub struct GithubContent {
 
 
 
-
-
 impl GithubContent {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubContent {
         GithubContent {
-            name: None,
-            sha: None,
-            _class: None,
-            repo: None,
-            size: None,
-            owner: None,
-            path: None,
-            base64_data: None,
+ name: None,
+ sha: None,
+ _class: None,
+ repo: None,
+ size: None,
+ owner: None,
+ path: None,
+ base64_data: None,
         }
     }
 }
@@ -5583,9 +5531,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubContent>> for HeaderVal
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubContent - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubContent - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -5599,18 +5545,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubConten
              std::result::Result::Ok(value) => {
                     match <GithubContent as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubContent - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubContent - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -5618,10 +5559,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubConten
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubFile {
     #[serde(rename = "content")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub content: Option<models::GithubContent>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -5629,14 +5572,12 @@ pub struct GithubFile {
 
 
 
-
-
 impl GithubFile {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubFile {
         GithubFile {
-            content: None,
-            _class: None,
+ content: None,
+ _class: None,
         }
     }
 }
@@ -5723,9 +5664,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubFile>> for HeaderValue 
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubFile - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubFile - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -5739,18 +5678,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubFile> 
              std::result::Result::Ok(value) => {
                     match <GithubFile as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubFile - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubFile - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -5758,10 +5692,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubFile> 
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubOrganization {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::GithubOrganizationlinks>,
 
@@ -5770,6 +5706,7 @@ pub struct GithubOrganization {
     pub jenkins_organization_pipeline: Option<bool>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
@@ -5777,16 +5714,14 @@ pub struct GithubOrganization {
 
 
 
-
-
 impl GithubOrganization {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubOrganization {
         GithubOrganization {
-            _class: None,
-            _links: None,
-            jenkins_organization_pipeline: None,
-            name: None,
+ _class: None,
+ _links: None,
+ jenkins_organization_pipeline: None,
+ name: None,
         }
     }
 }
@@ -5897,9 +5832,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubOrganization>> for Head
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubOrganization - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubOrganization - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -5913,18 +5846,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubOrgani
              std::result::Result::Ok(value) => {
                     match <GithubOrganization as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubOrganization - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubOrganization - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -5932,14 +5860,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubOrgani
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubOrganizationlinks {
     #[serde(rename = "repositories")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub repositories: Option<models::Link>,
 
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -5947,15 +5878,13 @@ pub struct GithubOrganizationlinks {
 
 
 
-
-
 impl GithubOrganizationlinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubOrganizationlinks {
         GithubOrganizationlinks {
-            repositories: None,
-            param_self: None,
-            _class: None,
+ repositories: None,
+ param_self: None,
+ _class: None,
         }
     }
 }
@@ -6048,9 +5977,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubOrganizationlinks>> for
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubOrganizationlinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubOrganizationlinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -6064,18 +5991,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubOrgani
              std::result::Result::Ok(value) => {
                     match <GithubOrganizationlinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubOrganizationlinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubOrganizationlinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -6083,14 +6005,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubOrgani
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositories {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::GithubRepositorieslinks>,
 
     #[serde(rename = "items")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub items: Option<Vec<models::GithubRepository>>,
 
@@ -6110,18 +6035,16 @@ pub struct GithubRepositories {
 
 
 
-
-
 impl GithubRepositories {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubRepositories {
         GithubRepositories {
-            _class: None,
-            _links: None,
-            items: None,
-            last_page: None,
-            next_page: None,
-            page_size: None,
+ _class: None,
+ _links: None,
+ items: None,
+ last_page: None,
+ next_page: None,
+ page_size: None,
         }
     }
 }
@@ -6249,9 +6172,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubRepositories>> for Head
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubRepositories - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubRepositories - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -6265,18 +6186,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
              std::result::Result::Ok(value) => {
                     match <GithubRepositories as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubRepositories - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubRepositories - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -6284,10 +6200,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositorieslinks {
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -6295,14 +6213,12 @@ pub struct GithubRepositorieslinks {
 
 
 
-
-
 impl GithubRepositorieslinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubRepositorieslinks {
         GithubRepositorieslinks {
-            param_self: None,
-            _class: None,
+ param_self: None,
+ _class: None,
         }
     }
 }
@@ -6389,9 +6305,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubRepositorieslinks>> for
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubRepositorieslinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubRepositorieslinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -6405,18 +6319,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
              std::result::Result::Ok(value) => {
                     match <GithubRepositorieslinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubRepositorieslinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubRepositorieslinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -6424,26 +6333,32 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepository {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::GithubRepositorylinks>,
 
     #[serde(rename = "defaultBranch")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub default_branch: Option<String>,
 
     #[serde(rename = "description")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub description: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "permissions")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub permissions: Option<models::GithubRepositorypermissions>,
 
@@ -6452,6 +6367,7 @@ pub struct GithubRepository {
     pub private: Option<bool>,
 
     #[serde(rename = "fullName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub full_name: Option<String>,
 
@@ -6459,20 +6375,18 @@ pub struct GithubRepository {
 
 
 
-
-
 impl GithubRepository {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubRepository {
         GithubRepository {
-            _class: None,
-            _links: None,
-            default_branch: None,
-            description: None,
-            name: None,
-            permissions: None,
-            private: None,
-            full_name: None,
+ _class: None,
+ _links: None,
+ default_branch: None,
+ description: None,
+ name: None,
+ permissions: None,
+ private: None,
+ full_name: None,
         }
     }
 }
@@ -6625,9 +6539,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubRepository>> for Header
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubRepository - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubRepository - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -6641,18 +6553,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
              std::result::Result::Ok(value) => {
                     match <GithubRepository as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubRepository - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubRepository - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -6660,10 +6567,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRepositorylinks {
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -6671,14 +6580,12 @@ pub struct GithubRepositorylinks {
 
 
 
-
-
 impl GithubRepositorylinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubRepositorylinks {
         GithubRepositorylinks {
-            param_self: None,
-            _class: None,
+ param_self: None,
+ _class: None,
         }
     }
 }
@@ -6765,9 +6672,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubRepositorylinks>> for H
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubRepositorylinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubRepositorylinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -6781,18 +6686,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
              std::result::Result::Ok(value) => {
                     match <GithubRepositorylinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubRepositorylinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubRepositorylinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -6812,6 +6712,7 @@ pub struct GithubRepositorypermissions {
     pub pull: Option<bool>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -6819,16 +6720,14 @@ pub struct GithubRepositorypermissions {
 
 
 
-
-
 impl GithubRepositorypermissions {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubRepositorypermissions {
         GithubRepositorypermissions {
-            admin: None,
-            push: None,
-            pull: None,
-            _class: None,
+ admin: None,
+ push: None,
+ pull: None,
+ _class: None,
         }
     }
 }
@@ -6945,9 +6844,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubRepositorypermissions>>
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubRepositorypermissions - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubRepositorypermissions - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -6961,18 +6858,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
              std::result::Result::Ok(value) => {
                     match <GithubRepositorypermissions as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubRepositorypermissions - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubRepositorypermissions - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -6980,14 +6872,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubReposi
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRespositoryContainer {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::GithubRespositoryContainerlinks>,
 
     #[serde(rename = "repositories")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub repositories: Option<models::GithubRepositories>,
 
@@ -6995,15 +6890,13 @@ pub struct GithubRespositoryContainer {
 
 
 
-
-
 impl GithubRespositoryContainer {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubRespositoryContainer {
         GithubRespositoryContainer {
-            _class: None,
-            _links: None,
-            repositories: None,
+ _class: None,
+ _links: None,
+ repositories: None,
         }
     }
 }
@@ -7096,9 +6989,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubRespositoryContainer>> 
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubRespositoryContainer - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubRespositoryContainer - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -7112,18 +7003,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubRespos
              std::result::Result::Ok(value) => {
                     match <GithubRespositoryContainer as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubRespositoryContainer - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubRespositoryContainer - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -7131,10 +7017,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubRespos
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubRespositoryContainerlinks {
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -7142,14 +7030,12 @@ pub struct GithubRespositoryContainerlinks {
 
 
 
-
-
 impl GithubRespositoryContainerlinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubRespositoryContainerlinks {
         GithubRespositoryContainerlinks {
-            param_self: None,
-            _class: None,
+ param_self: None,
+ _class: None,
         }
     }
 }
@@ -7236,9 +7122,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubRespositoryContainerlin
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubRespositoryContainerlinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubRespositoryContainerlinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -7252,18 +7136,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubRespos
              std::result::Result::Ok(value) => {
                     match <GithubRespositoryContainerlinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubRespositoryContainerlinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubRespositoryContainerlinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -7271,22 +7150,27 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubRespos
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubScm {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::GithubScmlinks>,
 
     #[serde(rename = "credentialId")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub credential_id: Option<String>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "uri")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub uri: Option<String>,
 
@@ -7294,17 +7178,15 @@ pub struct GithubScm {
 
 
 
-
-
 impl GithubScm {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubScm {
         GithubScm {
-            _class: None,
-            _links: None,
-            credential_id: None,
-            id: None,
-            uri: None,
+ _class: None,
+ _links: None,
+ credential_id: None,
+ id: None,
+ uri: None,
         }
     }
 }
@@ -7427,9 +7309,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubScm>> for HeaderValue {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubScm - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubScm - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -7443,18 +7323,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubScm> {
              std::result::Result::Ok(value) => {
                     match <GithubScm as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubScm - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubScm - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -7462,10 +7337,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubScm> {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct GithubScmlinks {
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -7473,14 +7350,12 @@ pub struct GithubScmlinks {
 
 
 
-
-
 impl GithubScmlinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> GithubScmlinks {
         GithubScmlinks {
-            param_self: None,
-            _class: None,
+ param_self: None,
+ _class: None,
         }
     }
 }
@@ -7567,9 +7442,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<GithubScmlinks>> for HeaderVa
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for GithubScmlinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for GithubScmlinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -7583,18 +7456,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubScmlin
              std::result::Result::Ok(value) => {
                     match <GithubScmlinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into GithubScmlinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into GithubScmlinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -7602,22 +7470,27 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<GithubScmlin
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Hudson {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "assignedLabels")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub assigned_labels: Option<Vec<models::HudsonassignedLabels>>,
 
     #[serde(rename = "mode")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub mode: Option<String>,
 
     #[serde(rename = "nodeDescription")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub node_description: Option<String>,
 
     #[serde(rename = "nodeName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub node_name: Option<String>,
 
@@ -7626,14 +7499,17 @@ pub struct Hudson {
     pub num_executors: Option<i32>,
 
     #[serde(rename = "description")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub description: Option<String>,
 
     #[serde(rename = "jobs")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub jobs: Option<Vec<models::FreeStyleProject>>,
 
     #[serde(rename = "primaryView")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub primary_view: Option<models::AllView>,
 
@@ -7646,6 +7522,7 @@ pub struct Hudson {
     pub slave_agent_port: Option<i32>,
 
     #[serde(rename = "unlabeledLoad")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub unlabeled_load: Option<models::UnlabeledLoadStatistics>,
 
@@ -7658,6 +7535,7 @@ pub struct Hudson {
     pub use_security: Option<bool>,
 
     #[serde(rename = "views")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub views: Option<Vec<models::AllView>>,
 
@@ -7665,27 +7543,25 @@ pub struct Hudson {
 
 
 
-
-
 impl Hudson {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> Hudson {
         Hudson {
-            _class: None,
-            assigned_labels: None,
-            mode: None,
-            node_description: None,
-            node_name: None,
-            num_executors: None,
-            description: None,
-            jobs: None,
-            primary_view: None,
-            quieting_down: None,
-            slave_agent_port: None,
-            unlabeled_load: None,
-            use_crumbs: None,
-            use_security: None,
-            views: None,
+ _class: None,
+ assigned_labels: None,
+ mode: None,
+ node_description: None,
+ node_name: None,
+ num_executors: None,
+ description: None,
+ jobs: None,
+ primary_view: None,
+ quieting_down: None,
+ slave_agent_port: None,
+ unlabeled_load: None,
+ use_crumbs: None,
+ use_security: None,
+ views: None,
         }
     }
 }
@@ -7901,9 +7777,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<Hudson>> for HeaderValue {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for Hudson - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for Hudson - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -7917,18 +7791,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Hudson> {
              std::result::Result::Ok(value) => {
                     match <Hudson as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into Hudson - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into Hudson - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -7936,22 +7805,27 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Hudson> {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonMasterComputer {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
     #[serde(rename = "executors")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub executors: Option<Vec<models::HudsonMasterComputerexecutors>>,
 
     #[serde(rename = "icon")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub icon: Option<String>,
 
     #[serde(rename = "iconClassName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub icon_class_name: Option<String>,
 
@@ -7968,6 +7842,7 @@ pub struct HudsonMasterComputer {
     pub launch_supported: Option<bool>,
 
     #[serde(rename = "loadStatistics")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub load_statistics: Option<models::Label1>,
 
@@ -7976,6 +7851,7 @@ pub struct HudsonMasterComputer {
     pub manual_launch_allowed: Option<bool>,
 
     #[serde(rename = "monitorData")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub monitor_data: Option<models::HudsonMasterComputermonitorData>,
 
@@ -7988,10 +7864,12 @@ pub struct HudsonMasterComputer {
     pub offline: Option<bool>,
 
     #[serde(rename = "offlineCause")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub offline_cause: Option<String>,
 
     #[serde(rename = "offlineCauseReason")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub offline_cause_reason: Option<String>,
 
@@ -8003,28 +7881,26 @@ pub struct HudsonMasterComputer {
 
 
 
-
-
 impl HudsonMasterComputer {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> HudsonMasterComputer {
         HudsonMasterComputer {
-            _class: None,
-            display_name: None,
-            executors: None,
-            icon: None,
-            icon_class_name: None,
-            idle: None,
-            jnlp_agent: None,
-            launch_supported: None,
-            load_statistics: None,
-            manual_launch_allowed: None,
-            monitor_data: None,
-            num_executors: None,
-            offline: None,
-            offline_cause: None,
-            offline_cause_reason: None,
-            temporarily_offline: None,
+ _class: None,
+ display_name: None,
+ executors: None,
+ icon: None,
+ icon_class_name: None,
+ idle: None,
+ jnlp_agent: None,
+ launch_supported: None,
+ load_statistics: None,
+ manual_launch_allowed: None,
+ monitor_data: None,
+ num_executors: None,
+ offline: None,
+ offline_cause: None,
+ offline_cause_reason: None,
+ temporarily_offline: None,
         }
     }
 }
@@ -8266,9 +8142,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<HudsonMasterComputer>> for He
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for HudsonMasterComputer - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for HudsonMasterComputer - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -8282,18 +8156,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<HudsonMaster
              std::result::Result::Ok(value) => {
                     match <HudsonMasterComputer as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into HudsonMasterComputer - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into HudsonMasterComputer - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -8301,6 +8170,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<HudsonMaster
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonMasterComputerexecutors {
     #[serde(rename = "currentExecutable")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub current_executable: Option<models::FreeStyleBuild>,
 
@@ -8321,6 +8191,7 @@ pub struct HudsonMasterComputerexecutors {
     pub progress: Option<i32>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -8328,18 +8199,16 @@ pub struct HudsonMasterComputerexecutors {
 
 
 
-
-
 impl HudsonMasterComputerexecutors {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> HudsonMasterComputerexecutors {
         HudsonMasterComputerexecutors {
-            current_executable: None,
-            idle: None,
-            likely_stuck: None,
-            number: None,
-            progress: None,
-            _class: None,
+ current_executable: None,
+ idle: None,
+ likely_stuck: None,
+ number: None,
+ progress: None,
+ _class: None,
         }
     }
 }
@@ -8474,9 +8343,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<HudsonMasterComputerexecutors
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for HudsonMasterComputerexecutors - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for HudsonMasterComputerexecutors - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -8490,18 +8357,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<HudsonMaster
              std::result::Result::Ok(value) => {
                     match <HudsonMasterComputerexecutors as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into HudsonMasterComputerexecutors - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into HudsonMasterComputerexecutors - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -8509,30 +8371,37 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<HudsonMaster
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonMasterComputermonitorData {
     #[serde(rename = "hudson.node_monitors.SwapSpaceMonitor")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub hudson_period_node_monitors_period_swap_space_monitor: Option<models::SwapSpaceMonitorMemoryUsage2>,
+    pub hudson_node_monitors_swap_space_monitor: Option<models::SwapSpaceMonitorMemoryUsage2>,
 
     #[serde(rename = "hudson.node_monitors.TemporarySpaceMonitor")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub hudson_period_node_monitors_period_temporary_space_monitor: Option<models::DiskSpaceMonitorDescriptorDiskSpace>,
+    pub hudson_node_monitors_temporary_space_monitor: Option<models::DiskSpaceMonitorDescriptorDiskSpace>,
 
     #[serde(rename = "hudson.node_monitors.DiskSpaceMonitor")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub hudson_period_node_monitors_period_disk_space_monitor: Option<models::DiskSpaceMonitorDescriptorDiskSpace>,
+    pub hudson_node_monitors_disk_space_monitor: Option<models::DiskSpaceMonitorDescriptorDiskSpace>,
 
     #[serde(rename = "hudson.node_monitors.ArchitectureMonitor")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub hudson_period_node_monitors_period_architecture_monitor: Option<String>,
+    pub hudson_node_monitors_architecture_monitor: Option<String>,
 
     #[serde(rename = "hudson.node_monitors.ResponseTimeMonitor")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub hudson_period_node_monitors_period_response_time_monitor: Option<models::ResponseTimeMonitorData>,
+    pub hudson_node_monitors_response_time_monitor: Option<models::ResponseTimeMonitorData>,
 
     #[serde(rename = "hudson.node_monitors.ClockMonitor")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub hudson_period_node_monitors_period_clock_monitor: Option<models::ClockDifference>,
+    pub hudson_node_monitors_clock_monitor: Option<models::ClockDifference>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -8540,19 +8409,17 @@ pub struct HudsonMasterComputermonitorData {
 
 
 
-
-
 impl HudsonMasterComputermonitorData {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> HudsonMasterComputermonitorData {
         HudsonMasterComputermonitorData {
-            hudson_period_node_monitors_period_swap_space_monitor: None,
-            hudson_period_node_monitors_period_temporary_space_monitor: None,
-            hudson_period_node_monitors_period_disk_space_monitor: None,
-            hudson_period_node_monitors_period_architecture_monitor: None,
-            hudson_period_node_monitors_period_response_time_monitor: None,
-            hudson_period_node_monitors_period_clock_monitor: None,
-            _class: None,
+ hudson_node_monitors_swap_space_monitor: None,
+ hudson_node_monitors_temporary_space_monitor: None,
+ hudson_node_monitors_disk_space_monitor: None,
+ hudson_node_monitors_architecture_monitor: None,
+ hudson_node_monitors_response_time_monitor: None,
+ hudson_node_monitors_clock_monitor: None,
+ _class: None,
         }
     }
 }
@@ -8570,10 +8437,10 @@ impl std::fmt::Display for HudsonMasterComputermonitorData {
             // Skipping hudson.node_monitors.DiskSpaceMonitor in query parameter serialization
 
 
-            self.hudson_period_node_monitors_period_architecture_monitor.as_ref().map(|hudson_period_node_monitors_period_architecture_monitor| {
+            self.hudson_node_monitors_architecture_monitor.as_ref().map(|hudson_node_monitors_architecture_monitor| {
                 [
                     "hudson.node_monitors.ArchitectureMonitor".to_string(),
-                    hudson_period_node_monitors_period_architecture_monitor.to_string(),
+                    hudson_node_monitors_architecture_monitor.to_string(),
                 ].join(",")
             }),
 
@@ -8606,12 +8473,12 @@ impl std::str::FromStr for HudsonMasterComputermonitorData {
         #[derive(Default)]
         #[allow(dead_code)]
         struct IntermediateRep {
-            pub hudson_period_node_monitors_period_swap_space_monitor: Vec<models::SwapSpaceMonitorMemoryUsage2>,
-            pub hudson_period_node_monitors_period_temporary_space_monitor: Vec<models::DiskSpaceMonitorDescriptorDiskSpace>,
-            pub hudson_period_node_monitors_period_disk_space_monitor: Vec<models::DiskSpaceMonitorDescriptorDiskSpace>,
-            pub hudson_period_node_monitors_period_architecture_monitor: Vec<String>,
-            pub hudson_period_node_monitors_period_response_time_monitor: Vec<models::ResponseTimeMonitorData>,
-            pub hudson_period_node_monitors_period_clock_monitor: Vec<models::ClockDifference>,
+            pub hudson_node_monitors_swap_space_monitor: Vec<models::SwapSpaceMonitorMemoryUsage2>,
+            pub hudson_node_monitors_temporary_space_monitor: Vec<models::DiskSpaceMonitorDescriptorDiskSpace>,
+            pub hudson_node_monitors_disk_space_monitor: Vec<models::DiskSpaceMonitorDescriptorDiskSpace>,
+            pub hudson_node_monitors_architecture_monitor: Vec<String>,
+            pub hudson_node_monitors_response_time_monitor: Vec<models::ResponseTimeMonitorData>,
+            pub hudson_node_monitors_clock_monitor: Vec<models::ClockDifference>,
             pub _class: Vec<String>,
         }
 
@@ -8631,17 +8498,17 @@ impl std::str::FromStr for HudsonMasterComputermonitorData {
                 #[allow(clippy::match_single_binding)]
                 match key {
                     #[allow(clippy::redundant_clone)]
-                    "hudson.node_monitors.SwapSpaceMonitor" => intermediate_rep.hudson_period_node_monitors_period_swap_space_monitor.push(<models::SwapSpaceMonitorMemoryUsage2 as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "hudson.node_monitors.SwapSpaceMonitor" => intermediate_rep.hudson_node_monitors_swap_space_monitor.push(<models::SwapSpaceMonitorMemoryUsage2 as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "hudson.node_monitors.TemporarySpaceMonitor" => intermediate_rep.hudson_period_node_monitors_period_temporary_space_monitor.push(<models::DiskSpaceMonitorDescriptorDiskSpace as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "hudson.node_monitors.TemporarySpaceMonitor" => intermediate_rep.hudson_node_monitors_temporary_space_monitor.push(<models::DiskSpaceMonitorDescriptorDiskSpace as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "hudson.node_monitors.DiskSpaceMonitor" => intermediate_rep.hudson_period_node_monitors_period_disk_space_monitor.push(<models::DiskSpaceMonitorDescriptorDiskSpace as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "hudson.node_monitors.DiskSpaceMonitor" => intermediate_rep.hudson_node_monitors_disk_space_monitor.push(<models::DiskSpaceMonitorDescriptorDiskSpace as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "hudson.node_monitors.ArchitectureMonitor" => intermediate_rep.hudson_period_node_monitors_period_architecture_monitor.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "hudson.node_monitors.ArchitectureMonitor" => intermediate_rep.hudson_node_monitors_architecture_monitor.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "hudson.node_monitors.ResponseTimeMonitor" => intermediate_rep.hudson_period_node_monitors_period_response_time_monitor.push(<models::ResponseTimeMonitorData as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "hudson.node_monitors.ResponseTimeMonitor" => intermediate_rep.hudson_node_monitors_response_time_monitor.push(<models::ResponseTimeMonitorData as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "hudson.node_monitors.ClockMonitor" => intermediate_rep.hudson_period_node_monitors_period_clock_monitor.push(<models::ClockDifference as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "hudson.node_monitors.ClockMonitor" => intermediate_rep.hudson_node_monitors_clock_monitor.push(<models::ClockDifference as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
                     "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     _ => return std::result::Result::Err("Unexpected key while parsing HudsonMasterComputermonitorData".to_string())
@@ -8654,12 +8521,12 @@ impl std::str::FromStr for HudsonMasterComputermonitorData {
 
         // Use the intermediate representation to return the struct
         std::result::Result::Ok(HudsonMasterComputermonitorData {
-            hudson_period_node_monitors_period_swap_space_monitor: intermediate_rep.hudson_period_node_monitors_period_swap_space_monitor.into_iter().next(),
-            hudson_period_node_monitors_period_temporary_space_monitor: intermediate_rep.hudson_period_node_monitors_period_temporary_space_monitor.into_iter().next(),
-            hudson_period_node_monitors_period_disk_space_monitor: intermediate_rep.hudson_period_node_monitors_period_disk_space_monitor.into_iter().next(),
-            hudson_period_node_monitors_period_architecture_monitor: intermediate_rep.hudson_period_node_monitors_period_architecture_monitor.into_iter().next(),
-            hudson_period_node_monitors_period_response_time_monitor: intermediate_rep.hudson_period_node_monitors_period_response_time_monitor.into_iter().next(),
-            hudson_period_node_monitors_period_clock_monitor: intermediate_rep.hudson_period_node_monitors_period_clock_monitor.into_iter().next(),
+            hudson_node_monitors_swap_space_monitor: intermediate_rep.hudson_node_monitors_swap_space_monitor.into_iter().next(),
+            hudson_node_monitors_temporary_space_monitor: intermediate_rep.hudson_node_monitors_temporary_space_monitor.into_iter().next(),
+            hudson_node_monitors_disk_space_monitor: intermediate_rep.hudson_node_monitors_disk_space_monitor.into_iter().next(),
+            hudson_node_monitors_architecture_monitor: intermediate_rep.hudson_node_monitors_architecture_monitor.into_iter().next(),
+            hudson_node_monitors_response_time_monitor: intermediate_rep.hudson_node_monitors_response_time_monitor.into_iter().next(),
+            hudson_node_monitors_clock_monitor: intermediate_rep.hudson_node_monitors_clock_monitor.into_iter().next(),
             _class: intermediate_rep._class.into_iter().next(),
         })
     }
@@ -8675,9 +8542,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<HudsonMasterComputermonitorDa
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for HudsonMasterComputermonitorData - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for HudsonMasterComputermonitorData - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -8691,18 +8556,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<HudsonMaster
              std::result::Result::Ok(value) => {
                     match <HudsonMasterComputermonitorData as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into HudsonMasterComputermonitorData - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into HudsonMasterComputermonitorData - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -8710,6 +8570,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<HudsonMaster
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct HudsonassignedLabels {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -8717,13 +8578,11 @@ pub struct HudsonassignedLabels {
 
 
 
-
-
 impl HudsonassignedLabels {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> HudsonassignedLabels {
         HudsonassignedLabels {
-            _class: None,
+ _class: None,
         }
     }
 }
@@ -8804,9 +8663,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<HudsonassignedLabels>> for He
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for HudsonassignedLabels - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for HudsonassignedLabels - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -8820,18 +8677,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Hudsonassign
              std::result::Result::Ok(value) => {
                     match <HudsonassignedLabels as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into HudsonassignedLabels - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into HudsonassignedLabels - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -8839,30 +8691,37 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Hudsonassign
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct InputStepImpl {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::InputStepImpllinks>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "message")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub message: Option<String>,
 
     #[serde(rename = "ok")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub ok: Option<String>,
 
     #[serde(rename = "parameters")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub parameters: Option<Vec<models::StringParameterDefinition>>,
 
     #[serde(rename = "submitter")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub submitter: Option<String>,
 
@@ -8870,19 +8729,17 @@ pub struct InputStepImpl {
 
 
 
-
-
 impl InputStepImpl {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> InputStepImpl {
         InputStepImpl {
-            _class: None,
-            _links: None,
-            id: None,
-            message: None,
-            ok: None,
-            parameters: None,
-            submitter: None,
+ _class: None,
+ _links: None,
+ id: None,
+ message: None,
+ ok: None,
+ parameters: None,
+ submitter: None,
         }
     }
 }
@@ -9022,9 +8879,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<InputStepImpl>> for HeaderVal
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for InputStepImpl - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for InputStepImpl - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -9038,18 +8893,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<InputStepImp
              std::result::Result::Ok(value) => {
                     match <InputStepImpl as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into InputStepImpl - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into InputStepImpl - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -9057,10 +8907,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<InputStepImp
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct InputStepImpllinks {
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -9068,14 +8920,12 @@ pub struct InputStepImpllinks {
 
 
 
-
-
 impl InputStepImpllinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> InputStepImpllinks {
         InputStepImpllinks {
-            param_self: None,
-            _class: None,
+ param_self: None,
+ _class: None,
         }
     }
 }
@@ -9162,9 +9012,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<InputStepImpllinks>> for Head
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for InputStepImpllinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for InputStepImpllinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -9178,18 +9026,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<InputStepImp
              std::result::Result::Ok(value) => {
                     match <InputStepImpllinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into InputStepImpllinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into InputStepImpllinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -9197,6 +9040,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<InputStepImp
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Label1 {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -9204,13 +9048,11 @@ pub struct Label1 {
 
 
 
-
-
 impl Label1 {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> Label1 {
         Label1 {
-            _class: None,
+ _class: None,
         }
     }
 }
@@ -9291,9 +9133,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<Label1>> for HeaderValue {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for Label1 - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for Label1 - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -9307,18 +9147,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Label1> {
              std::result::Result::Ok(value) => {
                     match <Label1 as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into Label1 - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into Label1 - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -9326,10 +9161,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Label1> {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Link {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "href")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub href: Option<String>,
 
@@ -9337,14 +9174,12 @@ pub struct Link {
 
 
 
-
-
 impl Link {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> Link {
         Link {
-            _class: None,
-            href: None,
+ _class: None,
+ href: None,
         }
     }
 }
@@ -9437,9 +9272,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<Link>> for HeaderValue {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for Link - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for Link - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -9453,18 +9286,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Link> {
              std::result::Result::Ok(value) => {
                     match <Link as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into Link - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into Link - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -9472,22 +9300,27 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Link> {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ListView {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "description")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub description: Option<String>,
 
     #[serde(rename = "jobs")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub jobs: Option<Vec<models::FreeStyleProject>>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "url")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub url: Option<String>,
 
@@ -9495,17 +9328,15 @@ pub struct ListView {
 
 
 
-
-
 impl ListView {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> ListView {
         ListView {
-            _class: None,
-            description: None,
-            jobs: None,
-            name: None,
-            url: None,
+ _class: None,
+ description: None,
+ jobs: None,
+ name: None,
+ url: None,
         }
     }
 }
@@ -9627,9 +9458,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ListView>> for HeaderValue {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for ListView - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for ListView - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -9643,18 +9472,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ListView> {
              std::result::Result::Ok(value) => {
                     match <ListView as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into ListView - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into ListView - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -9662,6 +9486,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ListView> {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct MultibranchPipeline {
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
@@ -9670,14 +9495,17 @@ pub struct MultibranchPipeline {
     pub estimated_duration_in_millis: Option<i32>,
 
     #[serde(rename = "latestRun")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub latest_run: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
@@ -9686,6 +9514,7 @@ pub struct MultibranchPipeline {
     pub weather_score: Option<i32>,
 
     #[serde(rename = "branchNames")]
+          #[validate(custom(function = "check_xss_vec_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub branch_names: Option<Vec<String>>,
 
@@ -9714,6 +9543,7 @@ pub struct MultibranchPipeline {
     pub total_number_of_pull_requests: Option<i32>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -9721,26 +9551,24 @@ pub struct MultibranchPipeline {
 
 
 
-
-
 impl MultibranchPipeline {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> MultibranchPipeline {
         MultibranchPipeline {
-            display_name: None,
-            estimated_duration_in_millis: None,
-            latest_run: None,
-            name: None,
-            organization: None,
-            weather_score: None,
-            branch_names: None,
-            number_of_failing_branches: None,
-            number_of_failing_pull_requests: None,
-            number_of_successful_branches: None,
-            number_of_successful_pull_requests: None,
-            total_number_of_branches: None,
-            total_number_of_pull_requests: None,
-            _class: None,
+ display_name: None,
+ estimated_duration_in_millis: None,
+ latest_run: None,
+ name: None,
+ organization: None,
+ weather_score: None,
+ branch_names: None,
+ number_of_failing_branches: None,
+ number_of_failing_pull_requests: None,
+ number_of_successful_branches: None,
+ number_of_successful_pull_requests: None,
+ total_number_of_branches: None,
+ total_number_of_pull_requests: None,
+ _class: None,
         }
     }
 }
@@ -9976,9 +9804,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<MultibranchPipeline>> for Hea
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for MultibranchPipeline - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for MultibranchPipeline - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -9992,18 +9818,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<MultibranchP
              std::result::Result::Ok(value) => {
                     match <MultibranchPipeline as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into MultibranchPipeline - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into MultibranchPipeline - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -10011,6 +9832,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<MultibranchP
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct NullScm {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -10018,13 +9840,11 @@ pub struct NullScm {
 
 
 
-
-
 impl NullScm {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> NullScm {
         NullScm {
-            _class: None,
+ _class: None,
         }
     }
 }
@@ -10105,9 +9925,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<NullScm>> for HeaderValue {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for NullScm - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for NullScm - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -10121,18 +9939,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<NullScm> {
              std::result::Result::Ok(value) => {
                     match <NullScm as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into NullScm - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into NullScm - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -10140,10 +9953,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<NullScm> {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Organisation {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
@@ -10151,14 +9966,12 @@ pub struct Organisation {
 
 
 
-
-
 impl Organisation {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> Organisation {
         Organisation {
-            _class: None,
-            name: None,
+ _class: None,
+ name: None,
         }
     }
 }
@@ -10251,9 +10064,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<Organisation>> for HeaderValu
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for Organisation - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for Organisation - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -10267,18 +10078,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Organisation
              std::result::Result::Ok(value) => {
                     match <Organisation as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into Organisation - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into Organisation - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -10286,22 +10092,27 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Organisation
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Pipeline {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
     #[serde(rename = "fullName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub full_name: Option<String>,
 
@@ -10314,6 +10125,7 @@ pub struct Pipeline {
     pub estimated_duration_in_millis: Option<i32>,
 
     #[serde(rename = "latestRun")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub latest_run: Option<models::PipelinelatestRun>,
 
@@ -10321,20 +10133,18 @@ pub struct Pipeline {
 
 
 
-
-
 impl Pipeline {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> Pipeline {
         Pipeline {
-            _class: None,
-            organization: None,
-            name: None,
-            display_name: None,
-            full_name: None,
-            weather_score: None,
-            estimated_duration_in_millis: None,
-            latest_run: None,
+ _class: None,
+ organization: None,
+ name: None,
+ display_name: None,
+ full_name: None,
+ weather_score: None,
+ estimated_duration_in_millis: None,
+ latest_run: None,
         }
     }
 }
@@ -10493,9 +10303,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<Pipeline>> for HeaderValue {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for Pipeline - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for Pipeline - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -10509,18 +10317,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Pipeline> {
              std::result::Result::Ok(value) => {
                     match <Pipeline as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into Pipeline - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into Pipeline - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -10528,10 +10331,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Pipeline> {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineActivity {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "artifacts")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub artifacts: Option<Vec<models::PipelineActivityartifacts>>,
 
@@ -10544,46 +10349,57 @@ pub struct PipelineActivity {
     pub estimated_duration_in_millis: Option<i32>,
 
     #[serde(rename = "enQueueTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub en_queue_time: Option<String>,
 
     #[serde(rename = "endTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub end_time: Option<String>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
     #[serde(rename = "pipeline")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub pipeline: Option<String>,
 
     #[serde(rename = "result")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub result: Option<String>,
 
     #[serde(rename = "runSummary")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub run_summary: Option<String>,
 
     #[serde(rename = "startTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub start_time: Option<String>,
 
     #[serde(rename = "state")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub state: Option<String>,
 
     #[serde(rename = "type")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub r#type: Option<String>,
+    pub r_type: Option<String>,
 
     #[serde(rename = "commitId")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub commit_id: Option<String>,
 
@@ -10591,27 +10407,25 @@ pub struct PipelineActivity {
 
 
 
-
-
 impl PipelineActivity {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineActivity {
         PipelineActivity {
-            _class: None,
-            artifacts: None,
-            duration_in_millis: None,
-            estimated_duration_in_millis: None,
-            en_queue_time: None,
-            end_time: None,
-            id: None,
-            organization: None,
-            pipeline: None,
-            result: None,
-            run_summary: None,
-            start_time: None,
-            state: None,
-            r#type: None,
-            commit_id: None,
+ _class: None,
+ artifacts: None,
+ duration_in_millis: None,
+ estimated_duration_in_millis: None,
+ en_queue_time: None,
+ end_time: None,
+ id: None,
+ organization: None,
+ pipeline: None,
+ result: None,
+ run_summary: None,
+ start_time: None,
+ state: None,
+ r_type: None,
+ commit_id: None,
         }
     }
 }
@@ -10721,10 +10535,10 @@ impl std::fmt::Display for PipelineActivity {
             }),
 
 
-            self.r#type.as_ref().map(|r#type| {
+            self.r_type.as_ref().map(|r_type| {
                 [
                     "type".to_string(),
-                    r#type.to_string(),
+                    r_type.to_string(),
                 ].join(",")
             }),
 
@@ -10766,7 +10580,7 @@ impl std::str::FromStr for PipelineActivity {
             pub run_summary: Vec<String>,
             pub start_time: Vec<String>,
             pub state: Vec<String>,
-            pub r#type: Vec<String>,
+            pub r_type: Vec<String>,
             pub commit_id: Vec<String>,
         }
 
@@ -10811,7 +10625,7 @@ impl std::str::FromStr for PipelineActivity {
                     #[allow(clippy::redundant_clone)]
                     "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "type" => intermediate_rep.r#type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "type" => intermediate_rep.r_type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
                     "commitId" => intermediate_rep.commit_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     _ => return std::result::Result::Err("Unexpected key while parsing PipelineActivity".to_string())
@@ -10837,7 +10651,7 @@ impl std::str::FromStr for PipelineActivity {
             run_summary: intermediate_rep.run_summary.into_iter().next(),
             start_time: intermediate_rep.start_time.into_iter().next(),
             state: intermediate_rep.state.into_iter().next(),
-            r#type: intermediate_rep.r#type.into_iter().next(),
+            r_type: intermediate_rep.r_type.into_iter().next(),
             commit_id: intermediate_rep.commit_id.into_iter().next(),
         })
     }
@@ -10853,9 +10667,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineActivity>> for Header
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineActivity - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineActivity - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -10869,18 +10681,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineActi
              std::result::Result::Ok(value) => {
                     match <PipelineActivity as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineActivity - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineActivity - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -10888,6 +10695,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineActi
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineActivityartifacts {
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
@@ -10896,10 +10704,12 @@ pub struct PipelineActivityartifacts {
     pub size: Option<i32>,
 
     #[serde(rename = "url")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub url: Option<String>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -10907,16 +10717,14 @@ pub struct PipelineActivityartifacts {
 
 
 
-
-
 impl PipelineActivityartifacts {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineActivityartifacts {
         PipelineActivityartifacts {
-            name: None,
-            size: None,
-            url: None,
-            _class: None,
+ name: None,
+ size: None,
+ url: None,
+ _class: None,
         }
     }
 }
@@ -11033,9 +10841,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineActivityartifacts>> f
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineActivityartifacts - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineActivityartifacts - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -11049,18 +10855,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineActi
              std::result::Result::Ok(value) => {
                     match <PipelineActivityartifacts as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineActivityartifacts - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineActivityartifacts - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -11068,6 +10869,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineActi
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitem {
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
@@ -11076,6 +10878,7 @@ pub struct PipelineBranchesitem {
     pub estimated_duration_in_millis: Option<i32>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
@@ -11084,14 +10887,17 @@ pub struct PipelineBranchesitem {
     pub weather_score: Option<i32>,
 
     #[serde(rename = "latestRun")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub latest_run: Option<models::PipelineBranchesitemlatestRun>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
     #[serde(rename = "pullRequest")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub pull_request: Option<models::PipelineBranchesitempullRequest>,
 
@@ -11100,6 +10906,7 @@ pub struct PipelineBranchesitem {
     pub total_number_of_pull_requests: Option<i32>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -11107,21 +10914,19 @@ pub struct PipelineBranchesitem {
 
 
 
-
-
 impl PipelineBranchesitem {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineBranchesitem {
         PipelineBranchesitem {
-            display_name: None,
-            estimated_duration_in_millis: None,
-            name: None,
-            weather_score: None,
-            latest_run: None,
-            organization: None,
-            pull_request: None,
-            total_number_of_pull_requests: None,
-            _class: None,
+ display_name: None,
+ estimated_duration_in_millis: None,
+ name: None,
+ weather_score: None,
+ latest_run: None,
+ organization: None,
+ pull_request: None,
+ total_number_of_pull_requests: None,
+ _class: None,
         }
     }
 }
@@ -11286,9 +11091,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineBranchesitem>> for He
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineBranchesitem - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineBranchesitem - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -11302,18 +11105,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
              std::result::Result::Ok(value) => {
                     match <PipelineBranchesitem as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineBranchesitem - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineBranchesitem - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -11329,50 +11127,62 @@ pub struct PipelineBranchesitemlatestRun {
     pub estimated_duration_in_millis: Option<i32>,
 
     #[serde(rename = "enQueueTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub en_queue_time: Option<String>,
 
     #[serde(rename = "endTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub end_time: Option<String>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
     #[serde(rename = "pipeline")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub pipeline: Option<String>,
 
     #[serde(rename = "result")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub result: Option<String>,
 
     #[serde(rename = "runSummary")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub run_summary: Option<String>,
 
     #[serde(rename = "startTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub start_time: Option<String>,
 
     #[serde(rename = "state")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub state: Option<String>,
 
     #[serde(rename = "type")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub r#type: Option<String>,
+    pub r_type: Option<String>,
 
     #[serde(rename = "commitId")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub commit_id: Option<String>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -11380,26 +11190,24 @@ pub struct PipelineBranchesitemlatestRun {
 
 
 
-
-
 impl PipelineBranchesitemlatestRun {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineBranchesitemlatestRun {
         PipelineBranchesitemlatestRun {
-            duration_in_millis: None,
-            estimated_duration_in_millis: None,
-            en_queue_time: None,
-            end_time: None,
-            id: None,
-            organization: None,
-            pipeline: None,
-            result: None,
-            run_summary: None,
-            start_time: None,
-            state: None,
-            r#type: None,
-            commit_id: None,
-            _class: None,
+ duration_in_millis: None,
+ estimated_duration_in_millis: None,
+ en_queue_time: None,
+ end_time: None,
+ id: None,
+ organization: None,
+ pipeline: None,
+ result: None,
+ run_summary: None,
+ start_time: None,
+ state: None,
+ r_type: None,
+ commit_id: None,
+ _class: None,
         }
     }
 }
@@ -11499,10 +11307,10 @@ impl std::fmt::Display for PipelineBranchesitemlatestRun {
             }),
 
 
-            self.r#type.as_ref().map(|r#type| {
+            self.r_type.as_ref().map(|r_type| {
                 [
                     "type".to_string(),
-                    r#type.to_string(),
+                    r_type.to_string(),
                 ].join(",")
             }),
 
@@ -11550,7 +11358,7 @@ impl std::str::FromStr for PipelineBranchesitemlatestRun {
             pub run_summary: Vec<String>,
             pub start_time: Vec<String>,
             pub state: Vec<String>,
-            pub r#type: Vec<String>,
+            pub r_type: Vec<String>,
             pub commit_id: Vec<String>,
             pub _class: Vec<String>,
         }
@@ -11593,7 +11401,7 @@ impl std::str::FromStr for PipelineBranchesitemlatestRun {
                     #[allow(clippy::redundant_clone)]
                     "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "type" => intermediate_rep.r#type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "type" => intermediate_rep.r_type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
                     "commitId" => intermediate_rep.commit_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
@@ -11619,7 +11427,7 @@ impl std::str::FromStr for PipelineBranchesitemlatestRun {
             run_summary: intermediate_rep.run_summary.into_iter().next(),
             start_time: intermediate_rep.start_time.into_iter().next(),
             state: intermediate_rep.state.into_iter().next(),
-            r#type: intermediate_rep.r#type.into_iter().next(),
+            r_type: intermediate_rep.r_type.into_iter().next(),
             commit_id: intermediate_rep.commit_id.into_iter().next(),
             _class: intermediate_rep._class.into_iter().next(),
         })
@@ -11636,9 +11444,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineBranchesitemlatestRun
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineBranchesitemlatestRun - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineBranchesitemlatestRun - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -11652,18 +11458,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
              std::result::Result::Ok(value) => {
                     match <PipelineBranchesitemlatestRun as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineBranchesitemlatestRun - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineBranchesitemlatestRun - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -11671,26 +11472,32 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitempullRequest {
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::PipelineBranchesitempullRequestlinks>,
 
     #[serde(rename = "author")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub author: Option<String>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "title")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub title: Option<String>,
 
     #[serde(rename = "url")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub url: Option<String>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -11698,18 +11505,16 @@ pub struct PipelineBranchesitempullRequest {
 
 
 
-
-
 impl PipelineBranchesitempullRequest {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineBranchesitempullRequest {
         PipelineBranchesitempullRequest {
-            _links: None,
-            author: None,
-            id: None,
-            title: None,
-            url: None,
-            _class: None,
+ _links: None,
+ author: None,
+ id: None,
+ title: None,
+ url: None,
+ _class: None,
         }
     }
 }
@@ -11844,9 +11649,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineBranchesitempullReque
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineBranchesitempullRequest - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineBranchesitempullRequest - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -11860,18 +11663,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
              std::result::Result::Ok(value) => {
                     match <PipelineBranchesitempullRequest as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineBranchesitempullRequest - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineBranchesitempullRequest - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -11879,10 +11677,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineBranchesitempullRequestlinks {
     #[serde(rename = "self")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<String>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -11890,14 +11690,12 @@ pub struct PipelineBranchesitempullRequestlinks {
 
 
 
-
-
 impl PipelineBranchesitempullRequestlinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineBranchesitempullRequestlinks {
         PipelineBranchesitempullRequestlinks {
-            param_self: None,
-            _class: None,
+ param_self: None,
+ _class: None,
         }
     }
 }
@@ -11990,9 +11788,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineBranchesitempullReque
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineBranchesitempullRequestlinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineBranchesitempullRequestlinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -12006,18 +11802,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
              std::result::Result::Ok(value) => {
                     match <PipelineBranchesitempullRequestlinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineBranchesitempullRequestlinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineBranchesitempullRequestlinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -12025,22 +11816,27 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineBran
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineFolderImpl {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
     #[serde(rename = "fullName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub full_name: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
@@ -12056,19 +11852,17 @@ pub struct PipelineFolderImpl {
 
 
 
-
-
 impl PipelineFolderImpl {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineFolderImpl {
         PipelineFolderImpl {
-            _class: None,
-            display_name: None,
-            full_name: None,
-            name: None,
-            organization: None,
-            number_of_folders: None,
-            number_of_pipelines: None,
+ _class: None,
+ display_name: None,
+ full_name: None,
+ name: None,
+ organization: None,
+ number_of_folders: None,
+ number_of_pipelines: None,
         }
     }
 }
@@ -12221,9 +12015,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineFolderImpl>> for Head
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineFolderImpl - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineFolderImpl - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -12237,18 +12029,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineFold
              std::result::Result::Ok(value) => {
                     match <PipelineFolderImpl as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineFolderImpl - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineFolderImpl - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -12256,10 +12043,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineFold
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineImpl {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
@@ -12268,18 +12057,22 @@ pub struct PipelineImpl {
     pub estimated_duration_in_millis: Option<i32>,
 
     #[serde(rename = "fullName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub full_name: Option<String>,
 
     #[serde(rename = "latestRun")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub latest_run: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
@@ -12288,6 +12081,7 @@ pub struct PipelineImpl {
     pub weather_score: Option<i32>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::PipelineImpllinks>,
 
@@ -12295,21 +12089,19 @@ pub struct PipelineImpl {
 
 
 
-
-
 impl PipelineImpl {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineImpl {
         PipelineImpl {
-            _class: None,
-            display_name: None,
-            estimated_duration_in_millis: None,
-            full_name: None,
-            latest_run: None,
-            name: None,
-            organization: None,
-            weather_score: None,
-            _links: None,
+ _class: None,
+ display_name: None,
+ estimated_duration_in_millis: None,
+ full_name: None,
+ latest_run: None,
+ name: None,
+ organization: None,
+ weather_score: None,
+ _links: None,
         }
     }
 }
@@ -12480,9 +12272,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineImpl>> for HeaderValu
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineImpl - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineImpl - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -12496,41 +12286,41 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineImpl
              std::result::Result::Ok(value) => {
                     match <PipelineImpl as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineImpl - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineImpl - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
 
 
 
-
 #[derive(Debug, Clone, PartialEq, serde::Serialize, serde::Deserialize, validator::Validate)]
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineImpllinks {
-    #[serde(rename = "runs")]
-    #[serde(skip_serializing_if="Option::is_none")]
-    pub runs: Option<models::Link>,
-
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
-    #[serde(rename = "queue")]
-    #[serde(skip_serializing_if="Option::is_none")]
-    pub queue: Option<models::Link>,
-
     #[serde(rename = "actions")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub actions: Option<models::Link>,
 
+    #[serde(rename = "runs")]
+          #[validate(nested)]
+    #[serde(skip_serializing_if="Option::is_none")]
+    pub runs: Option<models::Link>,
+
+    #[serde(rename = "queue")]
+          #[validate(nested)]
+    #[serde(skip_serializing_if="Option::is_none")]
+    pub queue: Option<models::Link>,
+
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -12538,17 +12328,15 @@ pub struct PipelineImpllinks {
 
 
 
-
-
 impl PipelineImpllinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineImpllinks {
         PipelineImpllinks {
-            runs: None,
-            param_self: None,
-            queue: None,
-            actions: None,
-            _class: None,
+ param_self: None,
+ actions: None,
+ runs: None,
+ queue: None,
+ _class: None,
         }
     }
 }
@@ -12559,13 +12347,13 @@ impl PipelineImpllinks {
 impl std::fmt::Display for PipelineImpllinks {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let params: Vec<Option<String>> = vec![
-            // Skipping runs in query parameter serialization
-
             // Skipping self in query parameter serialization
 
-            // Skipping queue in query parameter serialization
-
             // Skipping actions in query parameter serialization
+
+            // Skipping runs in query parameter serialization
+
+            // Skipping queue in query parameter serialization
 
 
             self._class.as_ref().map(|_class| {
@@ -12592,10 +12380,10 @@ impl std::str::FromStr for PipelineImpllinks {
         #[derive(Default)]
         #[allow(dead_code)]
         struct IntermediateRep {
-            pub runs: Vec<models::Link>,
             pub param_self: Vec<models::Link>,
-            pub queue: Vec<models::Link>,
             pub actions: Vec<models::Link>,
+            pub runs: Vec<models::Link>,
+            pub queue: Vec<models::Link>,
             pub _class: Vec<String>,
         }
 
@@ -12615,13 +12403,13 @@ impl std::str::FromStr for PipelineImpllinks {
                 #[allow(clippy::match_single_binding)]
                 match key {
                     #[allow(clippy::redundant_clone)]
-                    "runs" => intermediate_rep.runs.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
-                    #[allow(clippy::redundant_clone)]
                     "self" => intermediate_rep.param_self.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "queue" => intermediate_rep.queue.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
-                    #[allow(clippy::redundant_clone)]
                     "actions" => intermediate_rep.actions.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    #[allow(clippy::redundant_clone)]
+                    "runs" => intermediate_rep.runs.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    #[allow(clippy::redundant_clone)]
+                    "queue" => intermediate_rep.queue.push(<models::Link as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
                     "_class" => intermediate_rep._class.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     _ => return std::result::Result::Err("Unexpected key while parsing PipelineImpllinks".to_string())
@@ -12634,10 +12422,10 @@ impl std::str::FromStr for PipelineImpllinks {
 
         // Use the intermediate representation to return the struct
         std::result::Result::Ok(PipelineImpllinks {
-            runs: intermediate_rep.runs.into_iter().next(),
             param_self: intermediate_rep.param_self.into_iter().next(),
-            queue: intermediate_rep.queue.into_iter().next(),
             actions: intermediate_rep.actions.into_iter().next(),
+            runs: intermediate_rep.runs.into_iter().next(),
+            queue: intermediate_rep.queue.into_iter().next(),
             _class: intermediate_rep._class.into_iter().next(),
         })
     }
@@ -12653,9 +12441,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineImpllinks>> for Heade
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineImpllinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineImpllinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -12669,18 +12455,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineImpl
              std::result::Result::Ok(value) => {
                     match <PipelineImpllinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineImpllinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineImpllinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -12688,10 +12469,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineImpl
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRun {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "artifacts")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub artifacts: Option<Vec<models::PipelineRunartifacts>>,
 
@@ -12704,46 +12487,57 @@ pub struct PipelineRun {
     pub estimated_duration_in_millis: Option<i32>,
 
     #[serde(rename = "enQueueTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub en_queue_time: Option<String>,
 
     #[serde(rename = "endTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub end_time: Option<String>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
     #[serde(rename = "pipeline")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub pipeline: Option<String>,
 
     #[serde(rename = "result")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub result: Option<String>,
 
     #[serde(rename = "runSummary")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub run_summary: Option<String>,
 
     #[serde(rename = "startTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub start_time: Option<String>,
 
     #[serde(rename = "state")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub state: Option<String>,
 
     #[serde(rename = "type")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub r#type: Option<String>,
+    pub r_type: Option<String>,
 
     #[serde(rename = "commitId")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub commit_id: Option<String>,
 
@@ -12751,27 +12545,25 @@ pub struct PipelineRun {
 
 
 
-
-
 impl PipelineRun {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineRun {
         PipelineRun {
-            _class: None,
-            artifacts: None,
-            duration_in_millis: None,
-            estimated_duration_in_millis: None,
-            en_queue_time: None,
-            end_time: None,
-            id: None,
-            organization: None,
-            pipeline: None,
-            result: None,
-            run_summary: None,
-            start_time: None,
-            state: None,
-            r#type: None,
-            commit_id: None,
+ _class: None,
+ artifacts: None,
+ duration_in_millis: None,
+ estimated_duration_in_millis: None,
+ en_queue_time: None,
+ end_time: None,
+ id: None,
+ organization: None,
+ pipeline: None,
+ result: None,
+ run_summary: None,
+ start_time: None,
+ state: None,
+ r_type: None,
+ commit_id: None,
         }
     }
 }
@@ -12881,10 +12673,10 @@ impl std::fmt::Display for PipelineRun {
             }),
 
 
-            self.r#type.as_ref().map(|r#type| {
+            self.r_type.as_ref().map(|r_type| {
                 [
                     "type".to_string(),
-                    r#type.to_string(),
+                    r_type.to_string(),
                 ].join(",")
             }),
 
@@ -12926,7 +12718,7 @@ impl std::str::FromStr for PipelineRun {
             pub run_summary: Vec<String>,
             pub start_time: Vec<String>,
             pub state: Vec<String>,
-            pub r#type: Vec<String>,
+            pub r_type: Vec<String>,
             pub commit_id: Vec<String>,
         }
 
@@ -12971,7 +12763,7 @@ impl std::str::FromStr for PipelineRun {
                     #[allow(clippy::redundant_clone)]
                     "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "type" => intermediate_rep.r#type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "type" => intermediate_rep.r_type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
                     "commitId" => intermediate_rep.commit_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     _ => return std::result::Result::Err("Unexpected key while parsing PipelineRun".to_string())
@@ -12997,7 +12789,7 @@ impl std::str::FromStr for PipelineRun {
             run_summary: intermediate_rep.run_summary.into_iter().next(),
             start_time: intermediate_rep.start_time.into_iter().next(),
             state: intermediate_rep.state.into_iter().next(),
-            r#type: intermediate_rep.r#type.into_iter().next(),
+            r_type: intermediate_rep.r_type.into_iter().next(),
             commit_id: intermediate_rep.commit_id.into_iter().next(),
         })
     }
@@ -13013,9 +12805,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRun>> for HeaderValue
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineRun - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineRun - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -13029,18 +12819,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRun>
              std::result::Result::Ok(value) => {
                     match <PipelineRun as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineRun - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineRun - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -13048,10 +12833,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRun>
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunImpl {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::PipelineRunImpllinks>,
 
@@ -13060,10 +12847,12 @@ pub struct PipelineRunImpl {
     pub duration_in_millis: Option<i32>,
 
     #[serde(rename = "enQueueTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub en_queue_time: Option<String>,
 
     #[serde(rename = "endTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub end_time: Option<String>,
 
@@ -13072,38 +12861,47 @@ pub struct PipelineRunImpl {
     pub estimated_duration_in_millis: Option<i32>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
     #[serde(rename = "pipeline")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub pipeline: Option<String>,
 
     #[serde(rename = "result")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub result: Option<String>,
 
     #[serde(rename = "runSummary")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub run_summary: Option<String>,
 
     #[serde(rename = "startTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub start_time: Option<String>,
 
     #[serde(rename = "state")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub state: Option<String>,
 
     #[serde(rename = "type")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub r#type: Option<String>,
+    pub r_type: Option<String>,
 
     #[serde(rename = "commitId")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub commit_id: Option<String>,
 
@@ -13111,27 +12909,25 @@ pub struct PipelineRunImpl {
 
 
 
-
-
 impl PipelineRunImpl {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineRunImpl {
         PipelineRunImpl {
-            _class: None,
-            _links: None,
-            duration_in_millis: None,
-            en_queue_time: None,
-            end_time: None,
-            estimated_duration_in_millis: None,
-            id: None,
-            organization: None,
-            pipeline: None,
-            result: None,
-            run_summary: None,
-            start_time: None,
-            state: None,
-            r#type: None,
-            commit_id: None,
+ _class: None,
+ _links: None,
+ duration_in_millis: None,
+ en_queue_time: None,
+ end_time: None,
+ estimated_duration_in_millis: None,
+ id: None,
+ organization: None,
+ pipeline: None,
+ result: None,
+ run_summary: None,
+ start_time: None,
+ state: None,
+ r_type: None,
+ commit_id: None,
         }
     }
 }
@@ -13241,10 +13037,10 @@ impl std::fmt::Display for PipelineRunImpl {
             }),
 
 
-            self.r#type.as_ref().map(|r#type| {
+            self.r_type.as_ref().map(|r_type| {
                 [
                     "type".to_string(),
-                    r#type.to_string(),
+                    r_type.to_string(),
                 ].join(",")
             }),
 
@@ -13286,7 +13082,7 @@ impl std::str::FromStr for PipelineRunImpl {
             pub run_summary: Vec<String>,
             pub start_time: Vec<String>,
             pub state: Vec<String>,
-            pub r#type: Vec<String>,
+            pub r_type: Vec<String>,
             pub commit_id: Vec<String>,
         }
 
@@ -13332,7 +13128,7 @@ impl std::str::FromStr for PipelineRunImpl {
                     #[allow(clippy::redundant_clone)]
                     "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "type" => intermediate_rep.r#type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "type" => intermediate_rep.r_type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
                     "commitId" => intermediate_rep.commit_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     _ => return std::result::Result::Err("Unexpected key while parsing PipelineRunImpl".to_string())
@@ -13358,7 +13154,7 @@ impl std::str::FromStr for PipelineRunImpl {
             run_summary: intermediate_rep.run_summary.into_iter().next(),
             start_time: intermediate_rep.start_time.into_iter().next(),
             state: intermediate_rep.state.into_iter().next(),
-            r#type: intermediate_rep.r#type.into_iter().next(),
+            r_type: intermediate_rep.r_type.into_iter().next(),
             commit_id: intermediate_rep.commit_id.into_iter().next(),
         })
     }
@@ -13374,9 +13170,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRunImpl>> for HeaderV
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineRunImpl - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineRunImpl - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -13390,18 +13184,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunI
              std::result::Result::Ok(value) => {
                     match <PipelineRunImpl as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineRunImpl - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineRunImpl - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -13409,26 +13198,32 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunI
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunImpllinks {
     #[serde(rename = "nodes")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub nodes: Option<models::Link>,
 
     #[serde(rename = "log")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub log: Option<models::Link>,
 
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "actions")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub actions: Option<models::Link>,
 
     #[serde(rename = "steps")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub steps: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -13436,18 +13231,16 @@ pub struct PipelineRunImpllinks {
 
 
 
-
-
 impl PipelineRunImpllinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineRunImpllinks {
         PipelineRunImpllinks {
-            nodes: None,
-            log: None,
-            param_self: None,
-            actions: None,
-            steps: None,
-            _class: None,
+ nodes: None,
+ log: None,
+ param_self: None,
+ actions: None,
+ steps: None,
+ _class: None,
         }
     }
 }
@@ -13558,9 +13351,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRunImpllinks>> for He
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineRunImpllinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineRunImpllinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -13574,18 +13365,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunI
              std::result::Result::Ok(value) => {
                     match <PipelineRunImpllinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineRunImpllinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineRunImpllinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -13593,10 +13379,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunI
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunNode {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
@@ -13605,22 +13393,27 @@ pub struct PipelineRunNode {
     pub duration_in_millis: Option<i32>,
 
     #[serde(rename = "edges")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub edges: Option<Vec<models::PipelineRunNodeedges>>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "result")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub result: Option<String>,
 
     #[serde(rename = "startTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub start_time: Option<String>,
 
     #[serde(rename = "state")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub state: Option<String>,
 
@@ -13628,20 +13421,18 @@ pub struct PipelineRunNode {
 
 
 
-
-
 impl PipelineRunNode {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineRunNode {
         PipelineRunNode {
-            _class: None,
-            display_name: None,
-            duration_in_millis: None,
-            edges: None,
-            id: None,
-            result: None,
-            start_time: None,
-            state: None,
+ _class: None,
+ display_name: None,
+ duration_in_millis: None,
+ edges: None,
+ id: None,
+ result: None,
+ start_time: None,
+ state: None,
         }
     }
 }
@@ -13799,9 +13590,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRunNode>> for HeaderV
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineRunNode - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineRunNode - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -13815,18 +13604,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunN
              std::result::Result::Ok(value) => {
                     match <PipelineRunNode as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineRunNode - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineRunNode - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -13834,10 +13618,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunN
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunNodeedges {
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -13845,14 +13631,12 @@ pub struct PipelineRunNodeedges {
 
 
 
-
-
 impl PipelineRunNodeedges {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineRunNodeedges {
         PipelineRunNodeedges {
-            id: None,
-            _class: None,
+ id: None,
+ _class: None,
         }
     }
 }
@@ -13945,9 +13729,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRunNodeedges>> for He
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineRunNodeedges - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineRunNodeedges - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -13961,18 +13743,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunN
              std::result::Result::Ok(value) => {
                     match <PipelineRunNodeedges as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineRunNodeedges - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineRunNodeedges - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -13980,6 +13757,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRunN
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineRunartifacts {
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
@@ -13988,10 +13766,12 @@ pub struct PipelineRunartifacts {
     pub size: Option<i32>,
 
     #[serde(rename = "url")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub url: Option<String>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -13999,16 +13779,14 @@ pub struct PipelineRunartifacts {
 
 
 
-
-
 impl PipelineRunartifacts {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineRunartifacts {
         PipelineRunartifacts {
-            name: None,
-            size: None,
-            url: None,
-            _class: None,
+ name: None,
+ size: None,
+ url: None,
+ _class: None,
         }
     }
 }
@@ -14125,9 +13903,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineRunartifacts>> for He
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineRunartifacts - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineRunartifacts - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -14141,18 +13917,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRuna
              std::result::Result::Ok(value) => {
                     match <PipelineRunartifacts as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineRunartifacts - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineRunartifacts - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -14160,14 +13931,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineRuna
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineStepImpl {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "_links")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _links: Option<models::PipelineStepImpllinks>,
 
     #[serde(rename = "displayName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub display_name: Option<String>,
 
@@ -14176,22 +13950,27 @@ pub struct PipelineStepImpl {
     pub duration_in_millis: Option<i32>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "input")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub input: Option<models::InputStepImpl>,
 
     #[serde(rename = "result")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub result: Option<String>,
 
     #[serde(rename = "startTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub start_time: Option<String>,
 
     #[serde(rename = "state")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub state: Option<String>,
 
@@ -14199,21 +13978,19 @@ pub struct PipelineStepImpl {
 
 
 
-
-
 impl PipelineStepImpl {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineStepImpl {
         PipelineStepImpl {
-            _class: None,
-            _links: None,
-            display_name: None,
-            duration_in_millis: None,
-            id: None,
-            input: None,
-            result: None,
-            start_time: None,
-            state: None,
+ _class: None,
+ _links: None,
+ display_name: None,
+ duration_in_millis: None,
+ id: None,
+ input: None,
+ result: None,
+ start_time: None,
+ state: None,
         }
     }
 }
@@ -14378,9 +14155,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineStepImpl>> for Header
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineStepImpl - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineStepImpl - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -14394,18 +14169,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineStep
              std::result::Result::Ok(value) => {
                     match <PipelineStepImpl as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineStepImpl - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineStepImpl - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -14413,14 +14183,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineStep
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelineStepImpllinks {
     #[serde(rename = "self")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub param_self: Option<models::Link>,
 
     #[serde(rename = "actions")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub actions: Option<models::Link>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -14428,15 +14201,13 @@ pub struct PipelineStepImpllinks {
 
 
 
-
-
 impl PipelineStepImpllinks {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelineStepImpllinks {
         PipelineStepImpllinks {
-            param_self: None,
-            actions: None,
-            _class: None,
+ param_self: None,
+ actions: None,
+ _class: None,
         }
     }
 }
@@ -14529,9 +14300,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelineStepImpllinks>> for H
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelineStepImpllinks - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelineStepImpllinks - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -14545,18 +14314,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineStep
              std::result::Result::Ok(value) => {
                     match <PipelineStepImpllinks as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelineStepImpllinks - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelineStepImpllinks - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -14564,6 +14328,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<PipelineStep
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelinelatestRun {
     #[serde(rename = "artifacts")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub artifacts: Option<Vec<models::PipelinelatestRunartifacts>>,
 
@@ -14576,50 +14341,62 @@ pub struct PipelinelatestRun {
     pub estimated_duration_in_millis: Option<i32>,
 
     #[serde(rename = "enQueueTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub en_queue_time: Option<String>,
 
     #[serde(rename = "endTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub end_time: Option<String>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "organization")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub organization: Option<String>,
 
     #[serde(rename = "pipeline")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub pipeline: Option<String>,
 
     #[serde(rename = "result")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub result: Option<String>,
 
     #[serde(rename = "runSummary")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub run_summary: Option<String>,
 
     #[serde(rename = "startTime")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub start_time: Option<String>,
 
     #[serde(rename = "state")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub state: Option<String>,
 
     #[serde(rename = "type")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub r#type: Option<String>,
+    pub r_type: Option<String>,
 
     #[serde(rename = "commitId")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub commit_id: Option<String>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -14627,27 +14404,25 @@ pub struct PipelinelatestRun {
 
 
 
-
-
 impl PipelinelatestRun {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelinelatestRun {
         PipelinelatestRun {
-            artifacts: None,
-            duration_in_millis: None,
-            estimated_duration_in_millis: None,
-            en_queue_time: None,
-            end_time: None,
-            id: None,
-            organization: None,
-            pipeline: None,
-            result: None,
-            run_summary: None,
-            start_time: None,
-            state: None,
-            r#type: None,
-            commit_id: None,
-            _class: None,
+ artifacts: None,
+ duration_in_millis: None,
+ estimated_duration_in_millis: None,
+ en_queue_time: None,
+ end_time: None,
+ id: None,
+ organization: None,
+ pipeline: None,
+ result: None,
+ run_summary: None,
+ start_time: None,
+ state: None,
+ r_type: None,
+ commit_id: None,
+ _class: None,
         }
     }
 }
@@ -14749,10 +14524,10 @@ impl std::fmt::Display for PipelinelatestRun {
             }),
 
 
-            self.r#type.as_ref().map(|r#type| {
+            self.r_type.as_ref().map(|r_type| {
                 [
                     "type".to_string(),
-                    r#type.to_string(),
+                    r_type.to_string(),
                 ].join(",")
             }),
 
@@ -14801,7 +14576,7 @@ impl std::str::FromStr for PipelinelatestRun {
             pub run_summary: Vec<String>,
             pub start_time: Vec<String>,
             pub state: Vec<String>,
-            pub r#type: Vec<String>,
+            pub r_type: Vec<String>,
             pub commit_id: Vec<String>,
             pub _class: Vec<String>,
         }
@@ -14845,7 +14620,7 @@ impl std::str::FromStr for PipelinelatestRun {
                     #[allow(clippy::redundant_clone)]
                     "state" => intermediate_rep.state.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "type" => intermediate_rep.r#type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "type" => intermediate_rep.r_type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
                     "commitId" => intermediate_rep.commit_id.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
@@ -14872,7 +14647,7 @@ impl std::str::FromStr for PipelinelatestRun {
             run_summary: intermediate_rep.run_summary.into_iter().next(),
             start_time: intermediate_rep.start_time.into_iter().next(),
             state: intermediate_rep.state.into_iter().next(),
-            r#type: intermediate_rep.r#type.into_iter().next(),
+            r_type: intermediate_rep.r_type.into_iter().next(),
             commit_id: intermediate_rep.commit_id.into_iter().next(),
             _class: intermediate_rep._class.into_iter().next(),
         })
@@ -14889,9 +14664,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelinelatestRun>> for Heade
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelinelatestRun - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelinelatestRun - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -14905,18 +14678,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Pipelinelate
              std::result::Result::Ok(value) => {
                     match <PipelinelatestRun as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelinelatestRun - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelinelatestRun - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -14924,6 +14692,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Pipelinelate
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct PipelinelatestRunartifacts {
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
@@ -14932,10 +14701,12 @@ pub struct PipelinelatestRunartifacts {
     pub size: Option<i32>,
 
     #[serde(rename = "url")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub url: Option<String>,
 
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -14943,16 +14714,14 @@ pub struct PipelinelatestRunartifacts {
 
 
 
-
-
 impl PipelinelatestRunartifacts {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> PipelinelatestRunartifacts {
         PipelinelatestRunartifacts {
-            name: None,
-            size: None,
-            url: None,
-            _class: None,
+ name: None,
+ size: None,
+ url: None,
+ _class: None,
         }
     }
 }
@@ -15069,9 +14838,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<PipelinelatestRunartifacts>> 
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for PipelinelatestRunartifacts - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for PipelinelatestRunartifacts - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -15085,18 +14852,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Pipelinelate
              std::result::Result::Ok(value) => {
                     match <PipelinelatestRunartifacts as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into PipelinelatestRunartifacts - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into PipelinelatestRunartifacts - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -15104,10 +14866,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Pipelinelate
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct Queue {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "items")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub items: Option<Vec<models::QueueBlockedItem>>,
 
@@ -15115,14 +14879,12 @@ pub struct Queue {
 
 
 
-
-
 impl Queue {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> Queue {
         Queue {
-            _class: None,
-            items: None,
+ _class: None,
+ items: None,
         }
     }
 }
@@ -15208,9 +14970,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<Queue>> for HeaderValue {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for Queue - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for Queue - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -15224,18 +14984,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Queue> {
              std::result::Result::Ok(value) => {
                     match <Queue as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into Queue - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into Queue - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -15243,10 +14998,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<Queue> {
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct QueueBlockedItem {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "actions")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub actions: Option<Vec<models::CauseAction>>,
 
@@ -15267,6 +15024,7 @@ pub struct QueueBlockedItem {
     pub in_queue_since: Option<i32>,
 
     #[serde(rename = "params")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub params: Option<String>,
 
@@ -15275,14 +15033,17 @@ pub struct QueueBlockedItem {
     pub stuck: Option<bool>,
 
     #[serde(rename = "task")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub task: Option<models::FreeStyleProject>,
 
     #[serde(rename = "url")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub url: Option<String>,
 
     #[serde(rename = "why")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub why: Option<String>,
 
@@ -15294,24 +15055,22 @@ pub struct QueueBlockedItem {
 
 
 
-
-
 impl QueueBlockedItem {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> QueueBlockedItem {
         QueueBlockedItem {
-            _class: None,
-            actions: None,
-            blocked: None,
-            buildable: None,
-            id: None,
-            in_queue_since: None,
-            params: None,
-            stuck: None,
-            task: None,
-            url: None,
-            why: None,
-            buildable_start_milliseconds: None,
+ _class: None,
+ actions: None,
+ blocked: None,
+ buildable: None,
+ id: None,
+ in_queue_since: None,
+ params: None,
+ stuck: None,
+ task: None,
+ url: None,
+ why: None,
+ buildable_start_milliseconds: None,
         }
     }
 }
@@ -15511,9 +15270,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<QueueBlockedItem>> for Header
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for QueueBlockedItem - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for QueueBlockedItem - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -15527,18 +15284,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<QueueBlocked
              std::result::Result::Ok(value) => {
                     match <QueueBlockedItem as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into QueueBlockedItem - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into QueueBlockedItem - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -15546,6 +15298,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<QueueBlocked
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct QueueItemImpl {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -15554,10 +15307,12 @@ pub struct QueueItemImpl {
     pub expected_build_number: Option<i32>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "pipeline")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub pipeline: Option<String>,
 
@@ -15569,17 +15324,15 @@ pub struct QueueItemImpl {
 
 
 
-
-
 impl QueueItemImpl {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> QueueItemImpl {
         QueueItemImpl {
-            _class: None,
-            expected_build_number: None,
-            id: None,
-            pipeline: None,
-            queued_time: None,
+ _class: None,
+ expected_build_number: None,
+ id: None,
+ pipeline: None,
+ queued_time: None,
         }
     }
 }
@@ -15708,9 +15461,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<QueueItemImpl>> for HeaderVal
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for QueueItemImpl - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for QueueItemImpl - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -15724,18 +15475,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<QueueItemImp
              std::result::Result::Ok(value) => {
                     match <QueueItemImpl as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into QueueItemImpl - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into QueueItemImpl - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -15743,10 +15489,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<QueueItemImp
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct QueueLeftItem {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "actions")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub actions: Option<Vec<models::CauseAction>>,
 
@@ -15767,6 +15515,7 @@ pub struct QueueLeftItem {
     pub in_queue_since: Option<i32>,
 
     #[serde(rename = "params")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub params: Option<String>,
 
@@ -15775,14 +15524,17 @@ pub struct QueueLeftItem {
     pub stuck: Option<bool>,
 
     #[serde(rename = "task")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub task: Option<models::FreeStyleProject>,
 
     #[serde(rename = "url")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub url: Option<String>,
 
     #[serde(rename = "why")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub why: Option<String>,
 
@@ -15791,6 +15543,7 @@ pub struct QueueLeftItem {
     pub cancelled: Option<bool>,
 
     #[serde(rename = "executable")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub executable: Option<models::FreeStyleBuild>,
 
@@ -15798,25 +15551,23 @@ pub struct QueueLeftItem {
 
 
 
-
-
 impl QueueLeftItem {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> QueueLeftItem {
         QueueLeftItem {
-            _class: None,
-            actions: None,
-            blocked: None,
-            buildable: None,
-            id: None,
-            in_queue_since: None,
-            params: None,
-            stuck: None,
-            task: None,
-            url: None,
-            why: None,
-            cancelled: None,
-            executable: None,
+ _class: None,
+ actions: None,
+ blocked: None,
+ buildable: None,
+ id: None,
+ in_queue_since: None,
+ params: None,
+ stuck: None,
+ task: None,
+ url: None,
+ why: None,
+ cancelled: None,
+ executable: None,
         }
     }
 }
@@ -16022,9 +15773,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<QueueLeftItem>> for HeaderVal
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for QueueLeftItem - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for QueueLeftItem - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -16038,18 +15787,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<QueueLeftIte
              std::result::Result::Ok(value) => {
                     match <QueueLeftItem as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into QueueLeftItem - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into QueueLeftItem - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -16057,6 +15801,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<QueueLeftIte
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct ResponseTimeMonitorData {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -16072,15 +15817,13 @@ pub struct ResponseTimeMonitorData {
 
 
 
-
-
 impl ResponseTimeMonitorData {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> ResponseTimeMonitorData {
         ResponseTimeMonitorData {
-            _class: None,
-            timestamp: None,
-            average: None,
+ _class: None,
+ timestamp: None,
+ average: None,
         }
     }
 }
@@ -16185,9 +15928,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<ResponseTimeMonitorData>> for
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for ResponseTimeMonitorData - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for ResponseTimeMonitorData - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -16201,18 +15942,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ResponseTime
              std::result::Result::Ok(value) => {
                     match <ResponseTimeMonitorData as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into ResponseTimeMonitorData - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into ResponseTimeMonitorData - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -16220,28 +15956,31 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<ResponseTime
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct StringParameterDefinition {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "defaultParameterValue")]
+          #[validate(nested)]
     #[serde(skip_serializing_if="Option::is_none")]
     pub default_parameter_value: Option<models::StringParameterValue>,
 
     #[serde(rename = "description")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub description: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "type")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
-    pub r#type: Option<String>,
+    pub r_type: Option<String>,
 
 }
-
-
 
 
 
@@ -16249,11 +15988,11 @@ impl StringParameterDefinition {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> StringParameterDefinition {
         StringParameterDefinition {
-            _class: None,
-            default_parameter_value: None,
-            description: None,
-            name: None,
-            r#type: None,
+ _class: None,
+ default_parameter_value: None,
+ description: None,
+ name: None,
+ r_type: None,
         }
     }
 }
@@ -16291,10 +16030,10 @@ impl std::fmt::Display for StringParameterDefinition {
             }),
 
 
-            self.r#type.as_ref().map(|r#type| {
+            self.r_type.as_ref().map(|r_type| {
                 [
                     "type".to_string(),
-                    r#type.to_string(),
+                    r_type.to_string(),
                 ].join(",")
             }),
 
@@ -16319,7 +16058,7 @@ impl std::str::FromStr for StringParameterDefinition {
             pub default_parameter_value: Vec<models::StringParameterValue>,
             pub description: Vec<String>,
             pub name: Vec<String>,
-            pub r#type: Vec<String>,
+            pub r_type: Vec<String>,
         }
 
         let mut intermediate_rep = IntermediateRep::default();
@@ -16346,7 +16085,7 @@ impl std::str::FromStr for StringParameterDefinition {
                     #[allow(clippy::redundant_clone)]
                     "name" => intermediate_rep.name.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     #[allow(clippy::redundant_clone)]
-                    "type" => intermediate_rep.r#type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
+                    "type" => intermediate_rep.r_type.push(<String as std::str::FromStr>::from_str(val).map_err(|x| x.to_string())?),
                     _ => return std::result::Result::Err("Unexpected key while parsing StringParameterDefinition".to_string())
                 }
             }
@@ -16361,7 +16100,7 @@ impl std::str::FromStr for StringParameterDefinition {
             default_parameter_value: intermediate_rep.default_parameter_value.into_iter().next(),
             description: intermediate_rep.description.into_iter().next(),
             name: intermediate_rep.name.into_iter().next(),
-            r#type: intermediate_rep.r#type.into_iter().next(),
+            r_type: intermediate_rep.r_type.into_iter().next(),
         })
     }
 }
@@ -16376,9 +16115,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<StringParameterDefinition>> f
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for StringParameterDefinition - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for StringParameterDefinition - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -16392,18 +16129,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<StringParame
              std::result::Result::Ok(value) => {
                     match <StringParameterDefinition as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into StringParameterDefinition - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into StringParameterDefinition - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -16411,14 +16143,17 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<StringParame
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct StringParameterValue {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
     #[serde(rename = "value")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub value: Option<String>,
 
@@ -16426,15 +16161,13 @@ pub struct StringParameterValue {
 
 
 
-
-
 impl StringParameterValue {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> StringParameterValue {
         StringParameterValue {
-            _class: None,
-            name: None,
-            value: None,
+ _class: None,
+ name: None,
+ value: None,
         }
     }
 }
@@ -16539,9 +16272,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<StringParameterValue>> for He
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for StringParameterValue - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for StringParameterValue - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -16555,18 +16286,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<StringParame
              std::result::Result::Ok(value) => {
                     match <StringParameterValue as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into StringParameterValue - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into StringParameterValue - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -16574,6 +16300,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<StringParame
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct SwapSpaceMonitorMemoryUsage2 {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -16597,17 +16324,15 @@ pub struct SwapSpaceMonitorMemoryUsage2 {
 
 
 
-
-
 impl SwapSpaceMonitorMemoryUsage2 {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> SwapSpaceMonitorMemoryUsage2 {
         SwapSpaceMonitorMemoryUsage2 {
-            _class: None,
-            available_physical_memory: None,
-            available_swap_space: None,
-            total_physical_memory: None,
-            total_swap_space: None,
+ _class: None,
+ available_physical_memory: None,
+ available_swap_space: None,
+ total_physical_memory: None,
+ total_swap_space: None,
         }
     }
 }
@@ -16736,9 +16461,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<SwapSpaceMonitorMemoryUsage2>
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for SwapSpaceMonitorMemoryUsage2 - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for SwapSpaceMonitorMemoryUsage2 - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -16752,18 +16475,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<SwapSpaceMon
              std::result::Result::Ok(value) => {
                     match <SwapSpaceMonitorMemoryUsage2 as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into SwapSpaceMonitorMemoryUsage2 - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into SwapSpaceMonitorMemoryUsage2 - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -16771,6 +16489,7 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<SwapSpaceMon
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct UnlabeledLoadStatistics {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
@@ -16778,13 +16497,11 @@ pub struct UnlabeledLoadStatistics {
 
 
 
-
-
 impl UnlabeledLoadStatistics {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> UnlabeledLoadStatistics {
         UnlabeledLoadStatistics {
-            _class: None,
+ _class: None,
         }
     }
 }
@@ -16865,9 +16582,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<UnlabeledLoadStatistics>> for
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for UnlabeledLoadStatistics - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for UnlabeledLoadStatistics - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -16881,18 +16596,13 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<UnlabeledLoa
              std::result::Result::Ok(value) => {
                     match <UnlabeledLoadStatistics as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into UnlabeledLoadStatistics - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into UnlabeledLoadStatistics - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 
 
@@ -16900,22 +16610,27 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<UnlabeledLoa
 #[cfg_attr(feature = "conversion", derive(frunk::LabelledGeneric))]
 pub struct User {
     #[serde(rename = "_class")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub _class: Option<String>,
 
     #[serde(rename = "id")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub id: Option<String>,
 
     #[serde(rename = "fullName")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub full_name: Option<String>,
 
     #[serde(rename = "email")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub email: Option<String>,
 
     #[serde(rename = "name")]
+          #[validate(custom(function = "check_xss_string"))]
     #[serde(skip_serializing_if="Option::is_none")]
     pub name: Option<String>,
 
@@ -16923,17 +16638,15 @@ pub struct User {
 
 
 
-
-
 impl User {
     #[allow(clippy::new_without_default, clippy::too_many_arguments)]
     pub fn new() -> User {
         User {
-            _class: None,
-            id: None,
-            full_name: None,
-            email: None,
-            name: None,
+ _class: None,
+ id: None,
+ full_name: None,
+ email: None,
+ name: None,
         }
     }
 }
@@ -17062,9 +16775,7 @@ impl std::convert::TryFrom<header::IntoHeaderValue<User>> for HeaderValue {
         let hdr_value = hdr_value.to_string();
         match HeaderValue::from_str(&hdr_value) {
              std::result::Result::Ok(value) => std::result::Result::Ok(value),
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Invalid header value for User - value: {} is invalid {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Invalid header value for User - value: {hdr_value} is invalid {e}"#))
         }
     }
 }
@@ -17078,17 +16789,12 @@ impl std::convert::TryFrom<HeaderValue> for header::IntoHeaderValue<User> {
              std::result::Result::Ok(value) => {
                     match <User as std::str::FromStr>::from_str(value) {
                         std::result::Result::Ok(value) => std::result::Result::Ok(header::IntoHeaderValue(value)),
-                        std::result::Result::Err(err) => std::result::Result::Err(
-                            format!("Unable to convert header value '{}' into User - {}",
-                                value, err))
+                        std::result::Result::Err(err) => std::result::Result::Err(format!(r#"Unable to convert header value '{value}' into User - {err}"#))
                     }
              },
-             std::result::Result::Err(e) => std::result::Result::Err(
-                 format!("Unable to convert header: {:?} to string: {}",
-                     hdr_value, e))
+             std::result::Result::Err(e) => std::result::Result::Err(format!(r#"Unable to convert header: {hdr_value:?} to string: {e}"#))
         }
     }
 }
-
 
 

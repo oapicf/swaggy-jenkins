@@ -5,19 +5,46 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    description: string option [@default None];
-    jobs: Free_style_project.t list;
-    name: string option [@default None];
-    url: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    description = None;
-    jobs = [];
-    name = None;
-    url = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              description: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "description"]
+                                              jobs: Free_style_project.t list
+                 [@default []]
+                
+                ; [@key "jobs"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                                              url: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "url"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            description = None;
+            jobs = [];
+            name = None;
+            url = None;
+        }
+    
 

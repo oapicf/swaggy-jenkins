@@ -20,14 +20,14 @@ import javax.annotation.Generated;
  * FavoriteImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FavoriteImpllinks {
 
   private @Nullable Link self;
 
   private @Nullable String propertyClass;
 
-  public FavoriteImpllinks self(Link self) {
+  public FavoriteImpllinks self(@Nullable Link self) {
     this.self = self;
     return this;
   }
@@ -39,15 +39,15 @@ public class FavoriteImpllinks {
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
-  public Link getSelf() {
+  public @Nullable Link getSelf() {
     return self;
   }
 
-  public void setSelf(Link self) {
+  public void setSelf(@Nullable Link self) {
     this.self = self;
   }
 
-  public FavoriteImpllinks propertyClass(String propertyClass) {
+  public FavoriteImpllinks propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -59,11 +59,11 @@ public class FavoriteImpllinks {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

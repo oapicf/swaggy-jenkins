@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -18,9 +18,9 @@ import public "models/string_parameter_value.proto";
 
 message StringParameterDefinition {
 
-  string _class = 406713225;
+  string class = 94742904;
 
-  StringParameterValue defaultParameterValue = 509088794;
+  StringParameterValue default_parameter_value = 337448798;
 
   string description = 113933319;
 
@@ -29,3 +29,4 @@ message StringParameterDefinition {
   string type = 3575610;
 
 }
+

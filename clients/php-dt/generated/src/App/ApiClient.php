@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Swaggy Jenkins
  * Jenkins API clients generated from Swagger / Open API specification
- * The version of the OpenAPI document: 3.0.2-pre.0
+ * The version of the OpenAPI document: 3.2.1-pre.0
  */
 class ApiClient extends OAGAC\AbstractApiClient
 {
@@ -1025,7 +1025,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved pipelines details */
-                $responseContent = new \App\DTO\Collection13();
+                $responseContent = new \App\DTO\Collection17();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -1041,7 +1041,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection13
+     * @return \App\DTO\Collection17
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -1050,7 +1050,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     public function getOrganisationsResult(
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection13
+    ): \App\DTO\Collection17
     {
         return $this->getSuccessfulContent(...$this->getOrganisations($security, $responseMediaType));
     }
@@ -1180,7 +1180,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved all activities details */
-                $responseContent = new \App\DTO\Collection17();
+                $responseContent = new \App\DTO\Collection21();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -1197,7 +1197,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @param \App\DTO\GetPipelineActivitiesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection17
+     * @return \App\DTO\Collection21
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -1207,7 +1207,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelineActivitiesParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection17
+    ): \App\DTO\Collection21
     {
         return $this->getSuccessfulContent(...$this->getPipelineActivities($parameters, $security, $responseMediaType));
     }
@@ -1642,7 +1642,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved queue details */
-                $responseContent = new \App\DTO\Collection21();
+                $responseContent = new \App\DTO\Collection25();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -1659,7 +1659,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @param \App\DTO\GetPipelineQueueParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection21
+     * @return \App\DTO\Collection25
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -1669,7 +1669,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelineQueueParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection21
+    ): \App\DTO\Collection25
     {
         return $this->getSuccessfulContent(...$this->getPipelineQueue($parameters, $security, $responseMediaType));
     }
@@ -2102,7 +2102,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved run node steps details */
-                $responseContent = new \App\DTO\Collection26();
+                $responseContent = new \App\DTO\Collection32();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2119,7 +2119,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @param \App\DTO\GetPipelineRunNodeStepsParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection26
+     * @return \App\DTO\Collection32
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2129,7 +2129,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelineRunNodeStepsParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection26
+    ): \App\DTO\Collection32
     {
         return $this->getSuccessfulContent(...$this->getPipelineRunNodeSteps($parameters, $security, $responseMediaType));
     }
@@ -2179,7 +2179,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved run nodes details */
-                $responseContent = new \App\DTO\Collection24();
+                $responseContent = new \App\DTO\Collection29();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2196,7 +2196,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @param \App\DTO\GetPipelineRunNodesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection24
+     * @return \App\DTO\Collection29
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2206,7 +2206,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelineRunNodesParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection24
+    ): \App\DTO\Collection29
     {
         return $this->getSuccessfulContent(...$this->getPipelineRunNodes($parameters, $security, $responseMediaType));
     }
@@ -2256,7 +2256,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved runs details */
-                $responseContent = new \App\DTO\Collection22();
+                $responseContent = new \App\DTO\Collection27();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2273,7 +2273,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @param \App\DTO\GetPipelineRunsParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection22
+     * @return \App\DTO\Collection27
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2283,7 +2283,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelineRunsParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection22
+    ): \App\DTO\Collection27
     {
         return $this->getSuccessfulContent(...$this->getPipelineRuns($parameters, $security, $responseMediaType));
     }
@@ -2333,7 +2333,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved pipelines details */
-                $responseContent = new \App\DTO\Collection15();
+                $responseContent = new \App\DTO\Collection19();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2350,7 +2350,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @param \App\DTO\GetPipelinesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection15
+     * @return \App\DTO\Collection19
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2360,7 +2360,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetPipelinesParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection15
+    ): \App\DTO\Collection19
     {
         return $this->getSuccessfulContent(...$this->getPipelines($parameters, $security, $responseMediaType));
     }
@@ -2635,7 +2635,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved SCM organization repositories details */
-                $responseContent = new \App\DTO\Collection27();
+                $responseContent = new \App\DTO\Collection33();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2652,7 +2652,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @param \App\DTO\GetSCMOrganisationRepositoriesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection27
+     * @return \App\DTO\Collection33
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2662,7 +2662,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetSCMOrganisationRepositoriesParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection27
+    ): \App\DTO\Collection33
     {
         return $this->getSuccessfulContent(...$this->getSCMOrganisationRepositories($parameters, $security, $responseMediaType));
     }
@@ -2712,7 +2712,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved SCM organizations details */
-                $responseContent = new \App\DTO\Collection27();
+                $responseContent = new \App\DTO\Collection33();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2729,7 +2729,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @param \App\DTO\GetSCMOrganisationRepositoryParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection27
+     * @return \App\DTO\Collection33
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2739,7 +2739,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetSCMOrganisationRepositoryParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection27
+    ): \App\DTO\Collection33
     {
         return $this->getSuccessfulContent(...$this->getSCMOrganisationRepository($parameters, $security, $responseMediaType));
     }
@@ -2789,7 +2789,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved SCM organizations details */
-                $responseContent = new \App\DTO\Collection27();
+                $responseContent = new \App\DTO\Collection33();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2806,7 +2806,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @param \App\DTO\GetSCMOrganisationsParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection27
+     * @return \App\DTO\Collection33
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2816,7 +2816,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetSCMOrganisationsParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection27
+    ): \App\DTO\Collection33
     {
         return $this->getSuccessfulContent(...$this->getSCMOrganisations($parameters, $security, $responseMediaType));
     }
@@ -2943,7 +2943,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* Successfully retrieved users favorites details */
-                $responseContent = new \App\DTO\Collection28();
+                $responseContent = new \App\DTO\Collection34();
                 break;
             case 401:
                 /* Authentication failed - incorrect username and/or password */
@@ -2960,7 +2960,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @param \App\DTO\GetUserFavoritesParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection28
+     * @return \App\DTO\Collection34
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -2970,7 +2970,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\GetUserFavoritesParameterData $parameters,
         iterable $security = ['jenkins_auth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection28
+    ): \App\DTO\Collection34
     {
         return $this->getSuccessfulContent(...$this->getUserFavorites($parameters, $security, $responseMediaType));
     }

@@ -55,7 +55,7 @@ data class PipelineImpl(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("_links") val links: PipelineImpllinks? = null
-    ) {
+) {
 
 }
 

@@ -5,21 +5,55 @@
  *
  *)
 
-type t = {
-    nodes: Link.t option [@default None];
-    log: Link.t option [@default None];
-    self: Link.t option [@default None];
-    actions: Link.t option [@default None];
-    steps: Link.t option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    nodes = None;
-    log = None;
-    self = None;
-    actions = None;
-    steps = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              nodes: Link.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "nodes"]
+                                              log: Link.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "log"]
+                                              self: Link.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "self"]
+                                              actions: Link.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "actions"]
+                                              steps: Link.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "steps"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            nodes = None;
+            log = None;
+            self = None;
+            actions = None;
+            steps = None;
+            _class = None;
+        }
+    
 

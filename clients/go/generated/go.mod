@@ -1,6 +1,6 @@
 module github.com/oapicf/swaggy-jenkins
 
-go 1.18
+go 1.23
 
 require (
 )

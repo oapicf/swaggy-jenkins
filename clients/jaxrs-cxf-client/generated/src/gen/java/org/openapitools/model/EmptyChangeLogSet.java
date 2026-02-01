@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class EmptyChangeLogSet  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String kind;
  /**
    * Get propertyClass

@@ -15,13 +15,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ExtensionClassImpl  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private ExtensionClassImpllinks links;
 
   @ApiModelProperty(value = "")
+
   private List<String> classes = new ArrayList<>();
  /**
    * Get propertyClass

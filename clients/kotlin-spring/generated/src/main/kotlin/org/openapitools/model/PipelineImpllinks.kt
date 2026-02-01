@@ -16,17 +16,13 @@ import io.swagger.v3.oas.annotations.media.Schema
 
 /**
  * 
- * @param runs 
  * @param self 
- * @param queue 
  * @param actions 
+ * @param runs 
+ * @param queue 
  * @param propertyClass 
  */
 data class PipelineImpllinks(
-
-    @field:Valid
-    @Schema(example = "null", description = "")
-    @get:JsonProperty("runs") val runs: Link? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
@@ -34,15 +30,19 @@ data class PipelineImpllinks(
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("queue") val queue: Link? = null,
+    @get:JsonProperty("actions") val actions: Link? = null,
 
     @field:Valid
     @Schema(example = "null", description = "")
-    @get:JsonProperty("actions") val actions: Link? = null,
+    @get:JsonProperty("runs") val runs: Link? = null,
+
+    @field:Valid
+    @Schema(example = "null", description = "")
+    @get:JsonProperty("queue") val queue: Link? = null,
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
-    ) {
+) {
 
 }
 

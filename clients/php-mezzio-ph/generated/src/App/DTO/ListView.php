@@ -25,9 +25,9 @@ class ListView
 
     /**
      * @DTA\Data(field="jobs", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection12::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection12::class})
-     * @var \App\DTO\Collection12|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection16::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection16::class})
+     * @var \App\DTO\Collection16|null
      */
     public $jobs;
 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
+import org.openapitools.api.JobApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -31,7 +32,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${api.base-path:}")
+@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
 class JobApiController() {
 
     @Operation(
@@ -47,10 +48,12 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/job/{name}/api/json"],
+        value = [PATH_GET_JOB /* "/job/{name}/api/json" */],
         produces = ["application/json"]
     )
-    fun getJob(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String): ResponseEntity<FreeStyleProject> {
+    fun getJob(
+        @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String
+    ): ResponseEntity<FreeStyleProject> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -67,10 +70,12 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/job/{name}/config.xml"],
+        value = [PATH_GET_JOB_CONFIG /* "/job/{name}/config.xml" */],
         produces = ["text/xml"]
     )
-    fun getJobConfig(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String): ResponseEntity<kotlin.String> {
+    fun getJobConfig(
+        @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String
+    ): ResponseEntity<kotlin.String> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -87,10 +92,12 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/job/{name}/lastBuild/api/json"],
+        value = [PATH_GET_JOB_LAST_BUILD /* "/job/{name}/lastBuild/api/json" */],
         produces = ["application/json"]
     )
-    fun getJobLastBuild(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String): ResponseEntity<FreeStyleBuild> {
+    fun getJobLastBuild(
+        @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String
+    ): ResponseEntity<FreeStyleBuild> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -107,9 +114,13 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/job/{name}/{number}/logText/progressiveText"]
+        value = [PATH_GET_JOB_PROGRESSIVE_TEXT /* "/job/{name}/{number}/logText/progressiveText" */]
     )
-    fun getJobProgressiveText(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "Build number", required = true) @PathVariable("number") number: kotlin.String,@NotNull @Parameter(description = "Starting point of progressive text output", required = true) @Valid @RequestParam(value = "start", required = true) start: kotlin.String): ResponseEntity<Unit> {
+    fun getJobProgressiveText(
+        @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
+        @Parameter(description = "Build number", required = true) @PathVariable("number") number: kotlin.String,
+        @NotNull @Parameter(description = "Starting point of progressive text output", required = true) @Valid @RequestParam(value = "start", required = true) start: kotlin.String
+    ): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -127,9 +138,14 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/job/{name}/build"]
+        value = [PATH_POST_JOB_BUILD /* "/job/{name}/build" */]
     )
-    fun postJobBuild(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@NotNull @Parameter(description = "", required = true) @Valid @RequestParam(value = "json", required = true) json: kotlin.String,@Parameter(description = "") @Valid @RequestParam(value = "token", required = false) token: kotlin.String?,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
+    fun postJobBuild(
+        @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
+        @NotNull @Parameter(description = "", required = true) @Valid @RequestParam(value = "json", required = true) json: kotlin.String,
+        @Parameter(description = "") @Valid @RequestParam(value = "token", required = false) token: kotlin.String?,
+        @Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?
+    ): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -147,11 +163,15 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/job/{name}/config.xml"],
+        value = [PATH_POST_JOB_CONFIG /* "/job/{name}/config.xml" */],
         produces = ["*/*"],
         consumes = ["application/json"]
     )
-    fun postJobConfig(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "Job configuration in config.xml format", required = true) @Valid @RequestBody body: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
+    fun postJobConfig(
+        @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
+        @Parameter(description = "Job configuration in config.xml format", required = true) @Valid @RequestBody body: kotlin.String,
+        @Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?
+    ): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -168,9 +188,12 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/job/{name}/doDelete"]
+        value = [PATH_POST_JOB_DELETE /* "/job/{name}/doDelete" */]
     )
-    fun postJobDelete(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
+    fun postJobDelete(
+        @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
+        @Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?
+    ): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -187,9 +210,12 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/job/{name}/disable"]
+        value = [PATH_POST_JOB_DISABLE /* "/job/{name}/disable" */]
     )
-    fun postJobDisable(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
+    fun postJobDisable(
+        @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
+        @Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?
+    ): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -206,9 +232,12 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/job/{name}/enable"]
+        value = [PATH_POST_JOB_ENABLE /* "/job/{name}/enable" */]
     )
-    fun postJobEnable(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
+    fun postJobEnable(
+        @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
+        @Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?
+    ): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -225,9 +254,27 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/job/{name}/lastBuild/stop"]
+        value = [PATH_POST_JOB_LAST_BUILD_STOP /* "/job/{name}/lastBuild/stop" */]
     )
-    fun postJobLastBuildStop(@Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?): ResponseEntity<Unit> {
+    fun postJobLastBuildStop(
+        @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
+        @Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?
+    ): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
+    }
+
+    companion object {
+        //for your own safety never directly reuse these path definitions in tests
+        const val BASE_PATH: String = ""
+        const val PATH_GET_JOB: String = "/job/{name}/api/json"
+        const val PATH_GET_JOB_CONFIG: String = "/job/{name}/config.xml"
+        const val PATH_GET_JOB_LAST_BUILD: String = "/job/{name}/lastBuild/api/json"
+        const val PATH_GET_JOB_PROGRESSIVE_TEXT: String = "/job/{name}/{number}/logText/progressiveText"
+        const val PATH_POST_JOB_BUILD: String = "/job/{name}/build"
+        const val PATH_POST_JOB_CONFIG: String = "/job/{name}/config.xml"
+        const val PATH_POST_JOB_DELETE: String = "/job/{name}/doDelete"
+        const val PATH_POST_JOB_DISABLE: String = "/job/{name}/disable"
+        const val PATH_POST_JOB_ENABLE: String = "/job/{name}/enable"
+        const val PATH_POST_JOB_LAST_BUILD_STOP: String = "/job/{name}/lastBuild/stop"
     }
 }

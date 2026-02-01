@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * GithubOrganizationlinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class GithubOrganizationlinks {
 
   private @Nullable Link repositories;
@@ -29,7 +29,7 @@ public class GithubOrganizationlinks {
 
   private @Nullable String propertyClass;
 
-  public GithubOrganizationlinks repositories(Link repositories) {
+  public GithubOrganizationlinks repositories(@Nullable Link repositories) {
     this.repositories = repositories;
     return this;
   }
@@ -41,15 +41,15 @@ public class GithubOrganizationlinks {
   @Valid 
   @Schema(name = "repositories", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("repositories")
-  public Link getRepositories() {
+  public @Nullable Link getRepositories() {
     return repositories;
   }
 
-  public void setRepositories(Link repositories) {
+  public void setRepositories(@Nullable Link repositories) {
     this.repositories = repositories;
   }
 
-  public GithubOrganizationlinks self(Link self) {
+  public GithubOrganizationlinks self(@Nullable Link self) {
     this.self = self;
     return this;
   }
@@ -61,15 +61,15 @@ public class GithubOrganizationlinks {
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
-  public Link getSelf() {
+  public @Nullable Link getSelf() {
     return self;
   }
 
-  public void setSelf(Link self) {
+  public void setSelf(@Nullable Link self) {
     this.self = self;
   }
 
-  public GithubOrganizationlinks propertyClass(String propertyClass) {
+  public GithubOrganizationlinks propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -81,11 +81,11 @@ public class GithubOrganizationlinks {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

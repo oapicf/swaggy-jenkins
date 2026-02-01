@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * StringParameterDefinition
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class StringParameterDefinition {
 
   private @Nullable String propertyClass;
@@ -33,7 +33,7 @@ public class StringParameterDefinition {
 
   private @Nullable String type;
 
-  public StringParameterDefinition propertyClass(String propertyClass) {
+  public StringParameterDefinition propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -45,15 +45,15 @@ public class StringParameterDefinition {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public StringParameterDefinition defaultParameterValue(StringParameterValue defaultParameterValue) {
+  public StringParameterDefinition defaultParameterValue(@Nullable StringParameterValue defaultParameterValue) {
     this.defaultParameterValue = defaultParameterValue;
     return this;
   }
@@ -65,15 +65,15 @@ public class StringParameterDefinition {
   @Valid 
   @Schema(name = "defaultParameterValue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("defaultParameterValue")
-  public StringParameterValue getDefaultParameterValue() {
+  public @Nullable StringParameterValue getDefaultParameterValue() {
     return defaultParameterValue;
   }
 
-  public void setDefaultParameterValue(StringParameterValue defaultParameterValue) {
+  public void setDefaultParameterValue(@Nullable StringParameterValue defaultParameterValue) {
     this.defaultParameterValue = defaultParameterValue;
   }
 
-  public StringParameterDefinition description(String description) {
+  public StringParameterDefinition description(@Nullable String description) {
     this.description = description;
     return this;
   }
@@ -85,15 +85,15 @@ public class StringParameterDefinition {
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
-  public String getDescription() {
+  public @Nullable String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@Nullable String description) {
     this.description = description;
   }
 
-  public StringParameterDefinition name(String name) {
+  public StringParameterDefinition name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -105,15 +105,15 @@ public class StringParameterDefinition {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
-  public StringParameterDefinition type(String type) {
+  public StringParameterDefinition type(@Nullable String type) {
     this.type = type;
     return this;
   }
@@ -125,11 +125,11 @@ public class StringParameterDefinition {
   
   @Schema(name = "type", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("type")
-  public String getType() {
+  public @Nullable String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@Nullable String type) {
     this.type = type;
   }
 

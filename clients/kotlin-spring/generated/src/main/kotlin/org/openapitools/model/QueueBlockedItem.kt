@@ -69,7 +69,7 @@ data class QueueBlockedItem(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("buildableStartMilliseconds") val buildableStartMilliseconds: kotlin.Int? = null
-    ) {
+) {
 
 }
 

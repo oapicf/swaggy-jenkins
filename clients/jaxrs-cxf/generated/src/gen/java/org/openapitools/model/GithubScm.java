@@ -12,19 +12,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GithubScm  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private GithubScmlinks links;
 
   @ApiModelProperty(value = "")
+
   private String credentialId;
 
   @ApiModelProperty(value = "")
+
   private String id;
 
   @ApiModelProperty(value = "")
+
   private String uri;
  /**
    * Get propertyClass

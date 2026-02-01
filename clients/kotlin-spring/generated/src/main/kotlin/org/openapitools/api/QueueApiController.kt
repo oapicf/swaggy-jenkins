@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
+import org.openapitools.api.QueueApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -30,7 +31,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${api.base-path:}")
+@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
 class QueueApiController() {
 
     @Operation(
@@ -45,7 +46,7 @@ class QueueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/queue/api/json"],
+        value = [PATH_GET_QUEUE /* "/queue/api/json" */],
         produces = ["application/json"]
     )
     fun getQueue(): ResponseEntity<Queue> {
@@ -64,10 +65,19 @@ class QueueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/queue/item/{number}/api/json"],
+        value = [PATH_GET_QUEUE_ITEM /* "/queue/item/{number}/api/json" */],
         produces = ["application/json"]
     )
-    fun getQueueItem(@Parameter(description = "Queue number", required = true) @PathVariable("number") number: kotlin.String): ResponseEntity<Queue> {
+    fun getQueueItem(
+        @Parameter(description = "Queue number", required = true) @PathVariable("number") number: kotlin.String
+    ): ResponseEntity<Queue> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
+    }
+
+    companion object {
+        //for your own safety never directly reuse these path definitions in tests
+        const val BASE_PATH: String = ""
+        const val PATH_GET_QUEUE: String = "/queue/api/json"
+        const val PATH_GET_QUEUE_ITEM: String = "/queue/item/{number}/api/json"
     }
 }

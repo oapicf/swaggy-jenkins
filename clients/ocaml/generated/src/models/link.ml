@@ -5,13 +5,27 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    href: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    href = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              href: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "href"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            href = None;
+        }
+    
 

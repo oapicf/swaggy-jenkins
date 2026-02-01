@@ -5,25 +5,69 @@
  *
  *)
 
-type t = {
-    name: string option [@default None];
-    sha: string option [@default None];
-    _class: string option [@default None];
-    repo: string option [@default None];
-    size: int32 option [@default None];
-    owner: string option [@default None];
-    path: string option [@default None];
-    base64_data: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    name = None;
-    sha = None;
-    _class = None;
-    repo = None;
-    size = None;
-    owner = None;
-    path = None;
-    base64_data = None;
-}
+
+    
+        type t = {
+                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                                              sha: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "sha"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              repo: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "repo"]
+                                              size: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "size"]
+                                              owner: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "owner"]
+                                              path: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "path"]
+                                              base64_data: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "base64Data"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            name = None;
+            sha = None;
+            _class = None;
+            repo = None;
+            size = None;
+            owner = None;
+            path = None;
+            base64_data = None;
+        }
+    
 

@@ -1,8 +1,8 @@
 # openapi-client
 
 Swaggy Jenkins
-- API version: 3.0.2-pre.0
-  - Generator version: 7.12.0
+- API version: 3.2.1-pre.0
+  - Generator version: 7.18.0
 
 Jenkins API clients generated from Swagger / Open API specification
 

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FreeStyleProjectactions  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get propertyClass

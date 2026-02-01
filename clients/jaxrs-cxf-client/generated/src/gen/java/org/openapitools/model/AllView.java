@@ -9,12 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class AllView  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private String url;
  /**
    * Get propertyClass

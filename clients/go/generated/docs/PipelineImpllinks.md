@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Runs** | Pointer to [**Link**](Link.md) |  | [optional] 
 **Self** | Pointer to [**Link**](Link.md) |  | [optional] 
-**Queue** | Pointer to [**Link**](Link.md) |  | [optional] 
 **Actions** | Pointer to [**Link**](Link.md) |  | [optional] 
+**Runs** | Pointer to [**Link**](Link.md) |  | [optional] 
+**Queue** | Pointer to [**Link**](Link.md) |  | [optional] 
 **Class** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -28,31 +28,6 @@ will change when the set of required properties is changed
 NewPipelineImpllinksWithDefaults instantiates a new PipelineImpllinks object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetRuns
-
-`func (o *PipelineImpllinks) GetRuns() Link`
-
-GetRuns returns the Runs field if non-nil, zero value otherwise.
-
-### GetRunsOk
-
-`func (o *PipelineImpllinks) GetRunsOk() (*Link, bool)`
-
-GetRunsOk returns a tuple with the Runs field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRuns
-
-`func (o *PipelineImpllinks) SetRuns(v Link)`
-
-SetRuns sets Runs field to given value.
-
-### HasRuns
-
-`func (o *PipelineImpllinks) HasRuns() bool`
-
-HasRuns returns a boolean if a field has been set.
 
 ### GetSelf
 
@@ -79,31 +54,6 @@ SetSelf sets Self field to given value.
 
 HasSelf returns a boolean if a field has been set.
 
-### GetQueue
-
-`func (o *PipelineImpllinks) GetQueue() Link`
-
-GetQueue returns the Queue field if non-nil, zero value otherwise.
-
-### GetQueueOk
-
-`func (o *PipelineImpllinks) GetQueueOk() (*Link, bool)`
-
-GetQueueOk returns a tuple with the Queue field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQueue
-
-`func (o *PipelineImpllinks) SetQueue(v Link)`
-
-SetQueue sets Queue field to given value.
-
-### HasQueue
-
-`func (o *PipelineImpllinks) HasQueue() bool`
-
-HasQueue returns a boolean if a field has been set.
-
 ### GetActions
 
 `func (o *PipelineImpllinks) GetActions() Link`
@@ -128,6 +78,56 @@ SetActions sets Actions field to given value.
 `func (o *PipelineImpllinks) HasActions() bool`
 
 HasActions returns a boolean if a field has been set.
+
+### GetRuns
+
+`func (o *PipelineImpllinks) GetRuns() Link`
+
+GetRuns returns the Runs field if non-nil, zero value otherwise.
+
+### GetRunsOk
+
+`func (o *PipelineImpllinks) GetRunsOk() (*Link, bool)`
+
+GetRunsOk returns a tuple with the Runs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRuns
+
+`func (o *PipelineImpllinks) SetRuns(v Link)`
+
+SetRuns sets Runs field to given value.
+
+### HasRuns
+
+`func (o *PipelineImpllinks) HasRuns() bool`
+
+HasRuns returns a boolean if a field has been set.
+
+### GetQueue
+
+`func (o *PipelineImpllinks) GetQueue() Link`
+
+GetQueue returns the Queue field if non-nil, zero value otherwise.
+
+### GetQueueOk
+
+`func (o *PipelineImpllinks) GetQueueOk() (*Link, bool)`
+
+GetQueueOk returns a tuple with the Queue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQueue
+
+`func (o *PipelineImpllinks) SetQueue(v Link)`
+
+SetQueue sets Queue field to given value.
+
+### HasQueue
+
+`func (o *PipelineImpllinks) HasQueue() bool`
+
+HasQueue returns a boolean if a field has been set.
 
 ### GetClass
 

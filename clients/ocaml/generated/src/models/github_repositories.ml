@@ -5,21 +5,53 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    _links: Github_repositorieslinks.t option [@default None];
-    items: Github_repository.t list;
-    last_page: int32 option [@default None];
-    next_page: int32 option [@default None];
-    page_size: int32 option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    _links = None;
-    items = [];
-    last_page = None;
-    next_page = None;
-    page_size = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              _links: Github_repositorieslinks.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_links"]
+                                              items: Github_repository.t list
+                 [@default []]
+                
+                ; [@key "items"]
+                                              last_page: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "lastPage"]
+                                              next_page: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "nextPage"]
+                                              page_size: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "pageSize"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            _links = None;
+            items = [];
+            last_page = None;
+            next_page = None;
+            page_size = None;
+        }
+    
 

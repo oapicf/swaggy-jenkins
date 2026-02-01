@@ -5,15 +5,34 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    _links: Favorite_impllinks.t option [@default None];
-    item: Pipeline_impl.t option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    _links = None;
-    item = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              _links: Favorite_impllinks.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_links"]
+                                              item: Pipeline_impl.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "item"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            _links = None;
+            item = None;
+        }
+    
 

@@ -19,14 +19,14 @@ import javax.annotation.Generated;
  * EmptyChangeLogSet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class EmptyChangeLogSet {
 
   private @Nullable String propertyClass;
 
   private @Nullable String kind;
 
-  public EmptyChangeLogSet propertyClass(String propertyClass) {
+  public EmptyChangeLogSet propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -38,15 +38,15 @@ public class EmptyChangeLogSet {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public EmptyChangeLogSet kind(String kind) {
+  public EmptyChangeLogSet kind(@Nullable String kind) {
     this.kind = kind;
     return this;
   }
@@ -58,11 +58,11 @@ public class EmptyChangeLogSet {
   
   @Schema(name = "kind", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("kind")
-  public String getKind() {
+  public @Nullable String getKind() {
     return kind;
   }
 
-  public void setKind(String kind) {
+  public void setKind(@Nullable String kind) {
     this.kind = kind;
   }
 

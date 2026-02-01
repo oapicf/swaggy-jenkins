@@ -13,14 +13,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GithubRespositoryContainer  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private GithubRespositoryContainerlinks links;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private GithubRepositories repositories;
  /**
    * Get propertyClass

@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -21,18 +21,19 @@ import public "models/swap_space_monitor_memory_usage2.proto";
 
 message HudsonMasterComputermonitorData {
 
-  SwapSpaceMonitorMemoryUsage2 hudson.node_monitors.SwapSpaceMonitor = 291656916;
+  SwapSpaceMonitorMemoryUsage2 hudson_node_monitors_swap_space_monitor = 392786209;
 
-  DiskSpaceMonitorDescriptorDiskSpace hudson.node_monitors.TemporarySpaceMonitor = 91720937;
+  DiskSpaceMonitorDescriptorDiskSpace hudson_node_monitors_temporary_space_monitor = 500809831;
 
-  DiskSpaceMonitorDescriptorDiskSpace hudson.node_monitors.DiskSpaceMonitor = 148869599;
+  DiskSpaceMonitorDescriptorDiskSpace hudson_node_monitors_disk_space_monitor = 172445334;
 
-  string hudson.node_monitors.ArchitectureMonitor = 221725309;
+  string hudson_node_monitors_architecture_monitor = 212769950;
 
-  ResponseTimeMonitorData hudson.node_monitors.ResponseTimeMonitor = 429019967;
+  ResponseTimeMonitorData hudson_node_monitors_response_time_monitor = 187034473;
 
-  ClockDifference hudson.node_monitors.ClockMonitor = 283534057;
+  ClockDifference hudson_node_monitors_clock_monitor = 34608996;
 
-  string _class = 406713225;
+  string class = 94742904;
 
 }
+

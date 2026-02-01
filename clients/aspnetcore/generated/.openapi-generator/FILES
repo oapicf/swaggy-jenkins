@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 Org.OpenAPITools.sln
 README.md
 build.bat

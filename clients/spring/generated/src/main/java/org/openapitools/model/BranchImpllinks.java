@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * BranchImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class BranchImpllinks {
 
   private @Nullable Link self;
@@ -33,7 +33,7 @@ public class BranchImpllinks {
 
   private @Nullable String propertyClass;
 
-  public BranchImpllinks self(Link self) {
+  public BranchImpllinks self(@Nullable Link self) {
     this.self = self;
     return this;
   }
@@ -45,15 +45,15 @@ public class BranchImpllinks {
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
-  public Link getSelf() {
+  public @Nullable Link getSelf() {
     return self;
   }
 
-  public void setSelf(Link self) {
+  public void setSelf(@Nullable Link self) {
     this.self = self;
   }
 
-  public BranchImpllinks actions(Link actions) {
+  public BranchImpllinks actions(@Nullable Link actions) {
     this.actions = actions;
     return this;
   }
@@ -65,15 +65,15 @@ public class BranchImpllinks {
   @Valid 
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
-  public Link getActions() {
+  public @Nullable Link getActions() {
     return actions;
   }
 
-  public void setActions(Link actions) {
+  public void setActions(@Nullable Link actions) {
     this.actions = actions;
   }
 
-  public BranchImpllinks runs(Link runs) {
+  public BranchImpllinks runs(@Nullable Link runs) {
     this.runs = runs;
     return this;
   }
@@ -85,15 +85,15 @@ public class BranchImpllinks {
   @Valid 
   @Schema(name = "runs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("runs")
-  public Link getRuns() {
+  public @Nullable Link getRuns() {
     return runs;
   }
 
-  public void setRuns(Link runs) {
+  public void setRuns(@Nullable Link runs) {
     this.runs = runs;
   }
 
-  public BranchImpllinks queue(Link queue) {
+  public BranchImpllinks queue(@Nullable Link queue) {
     this.queue = queue;
     return this;
   }
@@ -105,15 +105,15 @@ public class BranchImpllinks {
   @Valid 
   @Schema(name = "queue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("queue")
-  public Link getQueue() {
+  public @Nullable Link getQueue() {
     return queue;
   }
 
-  public void setQueue(Link queue) {
+  public void setQueue(@Nullable Link queue) {
     this.queue = queue;
   }
 
-  public BranchImpllinks propertyClass(String propertyClass) {
+  public BranchImpllinks propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -125,11 +125,11 @@ public class BranchImpllinks {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

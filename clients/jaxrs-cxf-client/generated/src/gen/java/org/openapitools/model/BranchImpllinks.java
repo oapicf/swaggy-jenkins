@@ -10,18 +10,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class BranchImpllinks  {
   
   @ApiModelProperty(value = "")
+
   private Link self;
 
   @ApiModelProperty(value = "")
+
   private Link actions;
 
   @ApiModelProperty(value = "")
+
   private Link runs;
 
   @ApiModelProperty(value = "")
+
   private Link queue;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get self

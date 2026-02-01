@@ -15,42 +15,55 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class QueueLeftItem  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private List<CauseAction> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private Boolean blocked;
 
   @ApiModelProperty(value = "")
+
   private Boolean buildable;
 
   @ApiModelProperty(value = "")
+
   private Integer id;
 
   @ApiModelProperty(value = "")
+
   private Integer inQueueSince;
 
   @ApiModelProperty(value = "")
+
   private String params;
 
   @ApiModelProperty(value = "")
+
   private Boolean stuck;
 
   @ApiModelProperty(value = "")
+
   private FreeStyleProject task;
 
   @ApiModelProperty(value = "")
+
   private String url;
 
   @ApiModelProperty(value = "")
+
   private String why;
 
   @ApiModelProperty(value = "")
+
   private Boolean cancelled;
 
   @ApiModelProperty(value = "")
+
   private FreeStyleBuild executable;
  /**
    * Get propertyClass

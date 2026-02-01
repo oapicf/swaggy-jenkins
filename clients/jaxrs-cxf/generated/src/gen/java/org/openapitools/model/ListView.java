@@ -15,19 +15,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ListView  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String description;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private String url;
  /**
    * Get propertyClass

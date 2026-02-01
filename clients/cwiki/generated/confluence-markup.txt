@@ -2,7 +2,7 @@ h1. Swaggy Jenkins
 
 Jenkins API clients generated from Swagger / Open API specification
 
-*Version:* 3.0.2-pre.0
+*Version:* 3.2.1-pre.0
 
 ----
 
@@ -4563,10 +4563,10 @@ h2. Models
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |runs |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
          |self |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
-         |queue |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
          |actions |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |runs |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
+         |queue |(x) |{noformat:nopanel=true}Link{noformat} |  |  | null
          |_class |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
          
         {anchor:PipelineRunModelAnchor}

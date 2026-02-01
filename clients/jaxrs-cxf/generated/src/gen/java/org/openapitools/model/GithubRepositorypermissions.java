@@ -11,15 +11,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GithubRepositorypermissions  {
   
   @ApiModelProperty(value = "")
+
   private Boolean admin;
 
   @ApiModelProperty(value = "")
+
   private Boolean push;
 
   @ApiModelProperty(value = "")
+
   private Boolean pull;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get admin

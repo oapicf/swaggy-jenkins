@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * FreeStyleProjecthealthReport
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FreeStyleProjecthealthReport {
 
   private @Nullable String description;
@@ -32,7 +32,7 @@ public class FreeStyleProjecthealthReport {
 
   private @Nullable String propertyClass;
 
-  public FreeStyleProjecthealthReport description(String description) {
+  public FreeStyleProjecthealthReport description(@Nullable String description) {
     this.description = description;
     return this;
   }
@@ -44,15 +44,15 @@ public class FreeStyleProjecthealthReport {
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
-  public String getDescription() {
+  public @Nullable String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@Nullable String description) {
     this.description = description;
   }
 
-  public FreeStyleProjecthealthReport iconClassName(String iconClassName) {
+  public FreeStyleProjecthealthReport iconClassName(@Nullable String iconClassName) {
     this.iconClassName = iconClassName;
     return this;
   }
@@ -64,15 +64,15 @@ public class FreeStyleProjecthealthReport {
   
   @Schema(name = "iconClassName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("iconClassName")
-  public String getIconClassName() {
+  public @Nullable String getIconClassName() {
     return iconClassName;
   }
 
-  public void setIconClassName(String iconClassName) {
+  public void setIconClassName(@Nullable String iconClassName) {
     this.iconClassName = iconClassName;
   }
 
-  public FreeStyleProjecthealthReport iconUrl(String iconUrl) {
+  public FreeStyleProjecthealthReport iconUrl(@Nullable String iconUrl) {
     this.iconUrl = iconUrl;
     return this;
   }
@@ -84,15 +84,15 @@ public class FreeStyleProjecthealthReport {
   
   @Schema(name = "iconUrl", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("iconUrl")
-  public String getIconUrl() {
+  public @Nullable String getIconUrl() {
     return iconUrl;
   }
 
-  public void setIconUrl(String iconUrl) {
+  public void setIconUrl(@Nullable String iconUrl) {
     this.iconUrl = iconUrl;
   }
 
-  public FreeStyleProjecthealthReport score(Integer score) {
+  public FreeStyleProjecthealthReport score(@Nullable Integer score) {
     this.score = score;
     return this;
   }
@@ -104,15 +104,15 @@ public class FreeStyleProjecthealthReport {
   
   @Schema(name = "score", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("score")
-  public Integer getScore() {
+  public @Nullable Integer getScore() {
     return score;
   }
 
-  public void setScore(Integer score) {
+  public void setScore(@Nullable Integer score) {
     this.score = score;
   }
 
-  public FreeStyleProjecthealthReport propertyClass(String propertyClass) {
+  public FreeStyleProjecthealthReport propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -124,11 +124,11 @@ public class FreeStyleProjecthealthReport {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

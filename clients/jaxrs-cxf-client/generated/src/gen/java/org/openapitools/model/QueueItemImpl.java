@@ -9,18 +9,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class QueueItemImpl  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private Integer expectedBuildNumber;
 
   @ApiModelProperty(value = "")
+
   private String id;
 
   @ApiModelProperty(value = "")
+
   private String pipeline;
 
   @ApiModelProperty(value = "")
+
   private Integer queuedTime;
  /**
    * Get propertyClass

@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -19,7 +19,7 @@ import public "models/free_style_project.proto";
 
 message QueueBlockedItem {
 
-  string _class = 406713225;
+  string class = 94742904;
 
   repeated CauseAction actions = 88061701;
 
@@ -29,7 +29,7 @@ message QueueBlockedItem {
 
   int32 id = 3355;
 
-  int32 inQueueSince = 181496750;
+  int32 in_queue_since = 99255695;
 
   string params = 458557051;
 
@@ -41,6 +41,7 @@ message QueueBlockedItem {
 
   string why = 117704;
 
-  int32 buildableStartMilliseconds = 414942125;
+  int32 buildable_start_milliseconds = 293018535;
 
 }
+

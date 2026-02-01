@@ -21,10 +21,10 @@ class ListView
 
     /**
      * @DTA\Data(field="jobs", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection12::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection12::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection16::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection16::class})
      */
-    public ?\App\DTO\Collection12 $jobs = null;
+    public ?\App\DTO\Collection16 $jobs = null;
 
     /**
      * @DTA\Data(field="name", nullable=true)

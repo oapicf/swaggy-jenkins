@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * CauseUserIdCause
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class CauseUserIdCause {
 
   private @Nullable String propertyClass;
@@ -30,7 +30,7 @@ public class CauseUserIdCause {
 
   private @Nullable String userName;
 
-  public CauseUserIdCause propertyClass(String propertyClass) {
+  public CauseUserIdCause propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -42,15 +42,15 @@ public class CauseUserIdCause {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public CauseUserIdCause shortDescription(String shortDescription) {
+  public CauseUserIdCause shortDescription(@Nullable String shortDescription) {
     this.shortDescription = shortDescription;
     return this;
   }
@@ -62,15 +62,15 @@ public class CauseUserIdCause {
   
   @Schema(name = "shortDescription", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("shortDescription")
-  public String getShortDescription() {
+  public @Nullable String getShortDescription() {
     return shortDescription;
   }
 
-  public void setShortDescription(String shortDescription) {
+  public void setShortDescription(@Nullable String shortDescription) {
     this.shortDescription = shortDescription;
   }
 
-  public CauseUserIdCause userId(String userId) {
+  public CauseUserIdCause userId(@Nullable String userId) {
     this.userId = userId;
     return this;
   }
@@ -82,15 +82,15 @@ public class CauseUserIdCause {
   
   @Schema(name = "userId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("userId")
-  public String getUserId() {
+  public @Nullable String getUserId() {
     return userId;
   }
 
-  public void setUserId(String userId) {
+  public void setUserId(@Nullable String userId) {
     this.userId = userId;
   }
 
-  public CauseUserIdCause userName(String userName) {
+  public CauseUserIdCause userName(@Nullable String userName) {
     this.userName = userName;
     return this;
   }
@@ -102,11 +102,11 @@ public class CauseUserIdCause {
   
   @Schema(name = "userName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("userName")
-  public String getUserName() {
+  public @Nullable String getUserName() {
     return userName;
   }
 
-  public void setUserName(String userName) {
+  public void setUserName(@Nullable String userName) {
     this.userName = userName;
   }
 

@@ -9,27 +9,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GithubContent  {
   
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private String sha;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String repo;
 
   @ApiModelProperty(value = "")
+
   private Integer size;
 
   @ApiModelProperty(value = "")
+
   private String owner;
 
   @ApiModelProperty(value = "")
+
   private String path;
 
   @ApiModelProperty(value = "")
+
   private String base64Data;
  /**
    * Get name

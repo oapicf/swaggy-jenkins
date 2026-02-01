@@ -9,21 +9,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GenericResource  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private Integer durationInMillis;
 
   @ApiModelProperty(value = "")
+
   private String id;
 
   @ApiModelProperty(value = "")
+
   private String result;
 
   @ApiModelProperty(value = "")
+
   private String startTime;
  /**
    * Get propertyClass

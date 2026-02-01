@@ -5,13 +5,27 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    diff: int32 option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    diff = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              diff: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "diff"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            diff = None;
+        }
+    
 

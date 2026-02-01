@@ -23,27 +23,27 @@ import com.squareup.moshi.JsonClass
 /**
  * 
  *
- * @param runs 
  * @param self 
- * @param queue 
  * @param actions 
+ * @param runs 
+ * @param queue 
  * @param propertyClass 
  */
 
 
 data class PipelineImpllinks (
 
-    @Json(name = "runs")
-    val runs: Link? = null,
-
     @Json(name = "self")
     val self: Link? = null,
 
-    @Json(name = "queue")
-    val queue: Link? = null,
-
     @Json(name = "actions")
     val actions: Link? = null,
+
+    @Json(name = "runs")
+    val runs: Link? = null,
+
+    @Json(name = "queue")
+    val queue: Link? = null,
 
     @Json(name = "_class")
     val propertyClass: kotlin.String? = null

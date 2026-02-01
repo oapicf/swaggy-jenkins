@@ -220,7 +220,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getJobConfig
      */
-    public function getJobConfig(string $name, int &$responseCode, array &$responseHeaders): array|object|null
+    public function getJobConfig(string $name, int &$responseCode, array &$responseHeaders): string
     {
         // Implement the operation ...
     }
@@ -543,7 +543,7 @@ class RemoteAccessApi implements RemoteAccessApiInterface
     /**
      * Implementation of RemoteAccessApiInterface#getViewConfig
      */
-    public function getViewConfig(string $name, int &$responseCode, array &$responseHeaders): array|object|null
+    public function getViewConfig(string $name, int &$responseCode, array &$responseHeaders): string
     {
         // Implement the operation ...
     }

@@ -23,35 +23,35 @@ PipelineImpllinks::~PipelineImpllinks()
 void
 PipelineImpllinks::__init()
 {
-	//runs = new Link();
 	//self = new Link();
-	//queue = new Link();
 	//actions = new Link();
+	//runs = new Link();
+	//queue = new Link();
 	//_class = std::string();
 }
 
 void
 PipelineImpllinks::__cleanup()
 {
-	//if(runs != NULL) {
-	//
-	//delete runs;
-	//runs = NULL;
-	//}
 	//if(self != NULL) {
 	//
 	//delete self;
 	//self = NULL;
 	//}
-	//if(queue != NULL) {
-	//
-	//delete queue;
-	//queue = NULL;
-	//}
 	//if(actions != NULL) {
 	//
 	//delete actions;
 	//actions = NULL;
+	//}
+	//if(runs != NULL) {
+	//
+	//delete runs;
+	//runs = NULL;
+	//}
+	//if(queue != NULL) {
+	//
+	//delete queue;
+	//queue = NULL;
 	//}
 	//if(_class != NULL) {
 	//
@@ -66,20 +66,6 @@ PipelineImpllinks::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
-	const gchar *runsKey = "runs";
-	node = json_object_get_member(pJsonObject, runsKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("Link")) {
-			jsonToValue(&runs, node, "Link", "Link");
-		} else {
-			
-			Link* obj = static_cast<Link*> (&runs);
-			obj->fromJson(json_to_string(node, false));
-			
-		}
-	}
 	const gchar *selfKey = "self";
 	node = json_object_get_member(pJsonObject, selfKey);
 	if (node !=NULL) {
@@ -94,20 +80,6 @@ PipelineImpllinks::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *queueKey = "queue";
-	node = json_object_get_member(pJsonObject, queueKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("Link")) {
-			jsonToValue(&queue, node, "Link", "Link");
-		} else {
-			
-			Link* obj = static_cast<Link*> (&queue);
-			obj->fromJson(json_to_string(node, false));
-			
-		}
-	}
 	const gchar *actionsKey = "actions";
 	node = json_object_get_member(pJsonObject, actionsKey);
 	if (node !=NULL) {
@@ -118,6 +90,34 @@ PipelineImpllinks::fromJson(char* jsonStr)
 		} else {
 			
 			Link* obj = static_cast<Link*> (&actions);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *runsKey = "runs";
+	node = json_object_get_member(pJsonObject, runsKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("Link")) {
+			jsonToValue(&runs, node, "Link", "Link");
+		} else {
+			
+			Link* obj = static_cast<Link*> (&runs);
+			obj->fromJson(json_to_string(node, false));
+			
+		}
+	}
+	const gchar *queueKey = "queue";
+	node = json_object_get_member(pJsonObject, queueKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("Link")) {
+			jsonToValue(&queue, node, "Link", "Link");
+		} else {
+			
+			Link* obj = static_cast<Link*> (&queue);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -146,20 +146,6 @@ PipelineImpllinks::toJson()
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
 	if (isprimitive("Link")) {
-		Link obj = getRuns();
-		node = converttoJson(&obj, "Link", "");
-	}
-	else {
-		
-		Link obj = static_cast<Link> (getRuns());
-		GError *mygerror;
-		mygerror = NULL;
-		node = json_from_string(obj.toJson(), &mygerror);
-		
-	}
-	const gchar *runsKey = "runs";
-	json_object_set_member(pJsonObject, runsKey, node);
-	if (isprimitive("Link")) {
 		Link obj = getSelf();
 		node = converttoJson(&obj, "Link", "");
 	}
@@ -174,20 +160,6 @@ PipelineImpllinks::toJson()
 	const gchar *selfKey = "self";
 	json_object_set_member(pJsonObject, selfKey, node);
 	if (isprimitive("Link")) {
-		Link obj = getQueue();
-		node = converttoJson(&obj, "Link", "");
-	}
-	else {
-		
-		Link obj = static_cast<Link> (getQueue());
-		GError *mygerror;
-		mygerror = NULL;
-		node = json_from_string(obj.toJson(), &mygerror);
-		
-	}
-	const gchar *queueKey = "queue";
-	json_object_set_member(pJsonObject, queueKey, node);
-	if (isprimitive("Link")) {
 		Link obj = getActions();
 		node = converttoJson(&obj, "Link", "");
 	}
@@ -201,6 +173,34 @@ PipelineImpllinks::toJson()
 	}
 	const gchar *actionsKey = "actions";
 	json_object_set_member(pJsonObject, actionsKey, node);
+	if (isprimitive("Link")) {
+		Link obj = getRuns();
+		node = converttoJson(&obj, "Link", "");
+	}
+	else {
+		
+		Link obj = static_cast<Link> (getRuns());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *runsKey = "runs";
+	json_object_set_member(pJsonObject, runsKey, node);
+	if (isprimitive("Link")) {
+		Link obj = getQueue();
+		node = converttoJson(&obj, "Link", "");
+	}
+	else {
+		
+		Link obj = static_cast<Link> (getQueue());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
+		
+	}
+	const gchar *queueKey = "queue";
+	json_object_set_member(pJsonObject, queueKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getClass();
 		node = converttoJson(&obj, "std::string", "");
@@ -219,18 +219,6 @@ PipelineImpllinks::toJson()
 }
 
 Link
-PipelineImpllinks::getRuns()
-{
-	return runs;
-}
-
-void
-PipelineImpllinks::setRuns(Link  runs)
-{
-	this->runs = runs;
-}
-
-Link
 PipelineImpllinks::getSelf()
 {
 	return self;
@@ -243,18 +231,6 @@ PipelineImpllinks::setSelf(Link  self)
 }
 
 Link
-PipelineImpllinks::getQueue()
-{
-	return queue;
-}
-
-void
-PipelineImpllinks::setQueue(Link  queue)
-{
-	this->queue = queue;
-}
-
-Link
 PipelineImpllinks::getActions()
 {
 	return actions;
@@ -264,6 +240,30 @@ void
 PipelineImpllinks::setActions(Link  actions)
 {
 	this->actions = actions;
+}
+
+Link
+PipelineImpllinks::getRuns()
+{
+	return runs;
+}
+
+void
+PipelineImpllinks::setRuns(Link  runs)
+{
+	this->runs = runs;
+}
+
+Link
+PipelineImpllinks::getQueue()
+{
+	return queue;
+}
+
+void
+PipelineImpllinks::setQueue(Link  queue)
+{
+	this->queue = queue;
 }
 
 std::string

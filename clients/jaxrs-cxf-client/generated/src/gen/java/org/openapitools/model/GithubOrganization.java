@@ -10,15 +10,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GithubOrganization  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private GithubOrganizationlinks links;
 
   @ApiModelProperty(value = "")
+
   private Boolean jenkinsOrganizationPipeline;
 
   @ApiModelProperty(value = "")
+
   private String name;
  /**
    * Get propertyClass

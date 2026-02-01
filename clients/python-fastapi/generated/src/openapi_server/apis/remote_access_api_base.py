@@ -19,6 +19,20 @@ class BaseRemoteAccessApi:
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
         BaseRemoteAccessApi.subclasses = BaseRemoteAccessApi.subclasses + (cls,)
+    async def get_jenkins(
+        self,
+    ) -> Hudson:
+        """Retrieve Jenkins details"""
+        ...
+
+
+    async def head_jenkins(
+        self,
+    ) -> None:
+        """Retrieve Jenkins headers"""
+        ...
+
+
     async def get_computer(
         self,
         depth: Annotated[StrictInt, Field(description="Recursion depth in response model")],
@@ -27,10 +41,27 @@ class BaseRemoteAccessApi:
         ...
 
 
-    async def get_jenkins(
+    async def post_create_item(
         self,
-    ) -> Hudson:
-        """Retrieve Jenkins details"""
+        name: Annotated[StrictStr, Field(description="Name of the new job")],
+        var_from: Annotated[Optional[StrictStr], Field(description="Existing job to copy from")],
+        mode: Annotated[Optional[StrictStr], Field(description="Set to 'copy' for copying an existing job")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
+        content_type: Annotated[Optional[StrictStr], Field(description="Content type header application/xml")],
+        body: Annotated[Optional[StrictStr], Field(description="Job configuration in config.xml format")],
+    ) -> None:
+        """Create a new job using job configuration, or copied from an existing job"""
+        ...
+
+
+    async def post_create_view(
+        self,
+        name: Annotated[StrictStr, Field(description="Name of the new view")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
+        content_type: Annotated[Optional[StrictStr], Field(description="Content type header application/xml")],
+        body: Annotated[Optional[StrictStr], Field(description="View configuration in config.xml format")],
+    ) -> None:
+        """Create a new view using view configuration"""
         ...
 
 
@@ -42,6 +73,17 @@ class BaseRemoteAccessApi:
         ...
 
 
+    async def post_job_build(
+        self,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        var_json: StrictStr,
+        token: Optional[StrictStr],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
+    ) -> None:
+        """Build a job"""
+        ...
+
+
     async def get_job_config(
         self,
         name: Annotated[StrictStr, Field(description="Name of the job")],
@@ -50,11 +92,57 @@ class BaseRemoteAccessApi:
         ...
 
 
+    async def post_job_config(
+        self,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        body: Annotated[StrictStr, Field(description="Job configuration in config.xml format")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
+    ) -> None:
+        """Update job configuration"""
+        ...
+
+
+    async def post_job_delete(
+        self,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
+    ) -> None:
+        """Delete a job"""
+        ...
+
+
+    async def post_job_disable(
+        self,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
+    ) -> None:
+        """Disable a job"""
+        ...
+
+
+    async def post_job_enable(
+        self,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
+    ) -> None:
+        """Enable a job"""
+        ...
+
+
     async def get_job_last_build(
         self,
         name: Annotated[StrictStr, Field(description="Name of the job")],
     ) -> FreeStyleBuild:
         """Retrieve job&#39;s last build details"""
+        ...
+
+
+    async def post_job_last_build_stop(
+        self,
+        name: Annotated[StrictStr, Field(description="Name of the job")],
+        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
+    ) -> None:
+        """Stop a job"""
         ...
 
 
@@ -96,94 +184,6 @@ class BaseRemoteAccessApi:
         name: Annotated[StrictStr, Field(description="Name of the view")],
     ) -> str:
         """Retrieve view configuration"""
-        ...
-
-
-    async def head_jenkins(
-        self,
-    ) -> None:
-        """Retrieve Jenkins headers"""
-        ...
-
-
-    async def post_create_item(
-        self,
-        name: Annotated[StrictStr, Field(description="Name of the new job")],
-        var_from: Annotated[Optional[StrictStr], Field(description="Existing job to copy from")],
-        mode: Annotated[Optional[StrictStr], Field(description="Set to 'copy' for copying an existing job")],
-        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
-        content_type: Annotated[Optional[StrictStr], Field(description="Content type header application/xml")],
-        body: Annotated[Optional[StrictStr], Field(description="Job configuration in config.xml format")],
-    ) -> None:
-        """Create a new job using job configuration, or copied from an existing job"""
-        ...
-
-
-    async def post_create_view(
-        self,
-        name: Annotated[StrictStr, Field(description="Name of the new view")],
-        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
-        content_type: Annotated[Optional[StrictStr], Field(description="Content type header application/xml")],
-        body: Annotated[Optional[StrictStr], Field(description="View configuration in config.xml format")],
-    ) -> None:
-        """Create a new view using view configuration"""
-        ...
-
-
-    async def post_job_build(
-        self,
-        name: Annotated[StrictStr, Field(description="Name of the job")],
-        var_json: StrictStr,
-        token: Optional[StrictStr],
-        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
-    ) -> None:
-        """Build a job"""
-        ...
-
-
-    async def post_job_config(
-        self,
-        name: Annotated[StrictStr, Field(description="Name of the job")],
-        body: Annotated[StrictStr, Field(description="Job configuration in config.xml format")],
-        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
-    ) -> None:
-        """Update job configuration"""
-        ...
-
-
-    async def post_job_delete(
-        self,
-        name: Annotated[StrictStr, Field(description="Name of the job")],
-        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
-    ) -> None:
-        """Delete a job"""
-        ...
-
-
-    async def post_job_disable(
-        self,
-        name: Annotated[StrictStr, Field(description="Name of the job")],
-        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
-    ) -> None:
-        """Disable a job"""
-        ...
-
-
-    async def post_job_enable(
-        self,
-        name: Annotated[StrictStr, Field(description="Name of the job")],
-        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
-    ) -> None:
-        """Enable a job"""
-        ...
-
-
-    async def post_job_last_build_stop(
-        self,
-        name: Annotated[StrictStr, Field(description="Name of the job")],
-        jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")],
-    ) -> None:
-        """Stop a job"""
         ...
 
 

@@ -9,16 +9,16 @@ import org.openapitools.models.Link
 
 /**
  * 
- * @param runs 
  * @param self 
- * @param queue 
  * @param actions 
+ * @param runs 
+ * @param queue 
  * @param Underscoreclass 
  */
-case class PipelineImpllinks(runs: Option[Link],
-                self: Option[Link],
-                queue: Option[Link],
+case class PipelineImpllinks(self: Option[Link],
                 actions: Option[Link],
+                runs: Option[Link],
+                queue: Option[Link],
                 Underscoreclass: Option[String]
                 )
 

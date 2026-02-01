@@ -50,61 +50,6 @@ All URIs are relative to *http://localhost*
 
 Delete queue item from an organization pipeline queue
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class DeletePipelineQueueItemExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var queue = "queue_example";  // string | Name of the queue item
-
-            try
-            {
-                apiInstance.DeletePipelineQueueItem(organization, pipeline, queue);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.DeletePipelineQueueItem: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the DeletePipelineQueueItemWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    apiInstance.DeletePipelineQueueItemWithHttpInfo(organization, pipeline, queue);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.DeletePipelineQueueItemWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -145,63 +90,6 @@ void (empty response body)
 
 Retrieve authenticated user details for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetAuthenticatedUserExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-
-            try
-            {
-                User result = apiInstance.GetAuthenticatedUser(organization);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetAuthenticatedUser: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetAuthenticatedUserWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<User> response = apiInstance.GetAuthenticatedUserWithHttpInfo(organization);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetAuthenticatedUserWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -240,63 +128,6 @@ catch (ApiException e)
 
 Get a list of class names supported by a given class
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetClassesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var varClass = "varClass_example";  // string | Name of the class
-
-            try
-            {
-                string result = apiInstance.GetClasses(varClass);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetClasses: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetClassesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<string> response = apiInstance.GetClassesWithHttpInfo(varClass);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetClassesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -335,59 +166,6 @@ catch (ApiException e)
 
 Retrieve JSON Web Key
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetJsonWebKeyExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new BlueOceanApi(config);
-            var key = 56;  // int | Key ID received as part of JWT header field kid
-
-            try
-            {
-                string result = apiInstance.GetJsonWebKey(key);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetJsonWebKey: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetJsonWebKeyWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<string> response = apiInstance.GetJsonWebKeyWithHttpInfo(key);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetJsonWebKeyWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -426,60 +204,6 @@ No authorization required
 
 Retrieve JSON Web Token
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetJsonWebTokenExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            var apiInstance = new BlueOceanApi(config);
-            var expiryTimeInMins = 56;  // int | Token expiry time in minutes, default: 30 minutes (optional) 
-            var maxExpiryTimeInMins = 56;  // int | Maximum token expiry time in minutes, default: 480 minutes (optional) 
-
-            try
-            {
-                string result = apiInstance.GetJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetJsonWebToken: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetJsonWebTokenWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<string> response = apiInstance.GetJsonWebTokenWithHttpInfo(expiryTimeInMins, maxExpiryTimeInMins);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetJsonWebTokenWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -519,63 +243,6 @@ No authorization required
 
 Retrieve organization details
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetOrganisationExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-
-            try
-            {
-                Organisation result = apiInstance.GetOrganisation(organization);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetOrganisation: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetOrganisationWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<Organisation> response = apiInstance.GetOrganisationWithHttpInfo(organization);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetOrganisationWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -615,62 +282,6 @@ catch (ApiException e)
 
 Retrieve all organizations details
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetOrganisationsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-
-            try
-            {
-                List<Organisation> result = apiInstance.GetOrganisations();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetOrganisations: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetOrganisationsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<Organisation>> response = apiInstance.GetOrganisationsWithHttpInfo();
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetOrganisationsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -705,64 +316,6 @@ This endpoint does not need any parameter.
 
 Retrieve pipeline details for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-
-            try
-            {
-                Pipeline result = apiInstance.GetPipeline(organization, pipeline);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipeline: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<Pipeline> response = apiInstance.GetPipelineWithHttpInfo(organization, pipeline);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -803,64 +356,6 @@ catch (ApiException e)
 
 Retrieve all activities details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineActivitiesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-
-            try
-            {
-                List<PipelineActivity> result = apiInstance.GetPipelineActivities(organization, pipeline);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineActivities: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineActivitiesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<PipelineActivity>> response = apiInstance.GetPipelineActivitiesWithHttpInfo(organization, pipeline);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineActivitiesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -900,65 +395,6 @@ catch (ApiException e)
 
 Retrieve branch details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineBranchExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var branch = "branch_example";  // string | Name of the branch
-
-            try
-            {
-                BranchImpl result = apiInstance.GetPipelineBranch(organization, pipeline, branch);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineBranch: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineBranchWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<BranchImpl> response = apiInstance.GetPipelineBranchWithHttpInfo(organization, pipeline, branch);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineBranchWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -999,66 +435,6 @@ catch (ApiException e)
 
 Retrieve branch run details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineBranchRunExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var branch = "branch_example";  // string | Name of the branch
-            var run = "run_example";  // string | Name of the run
-
-            try
-            {
-                PipelineRun result = apiInstance.GetPipelineBranchRun(organization, pipeline, branch, run);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineBranchRun: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineBranchRunWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<PipelineRun> response = apiInstance.GetPipelineBranchRunWithHttpInfo(organization, pipeline, branch, run);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineBranchRunWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1100,64 +476,6 @@ catch (ApiException e)
 
 Retrieve all branches details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineBranchesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-
-            try
-            {
-                MultibranchPipeline result = apiInstance.GetPipelineBranches(organization, pipeline);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineBranches: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineBranchesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<MultibranchPipeline> response = apiInstance.GetPipelineBranchesWithHttpInfo(organization, pipeline);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineBranchesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1197,64 +515,6 @@ catch (ApiException e)
 
 Retrieve pipeline folder for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineFolderExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var folder = "folder_example";  // string | Name of the folder
-
-            try
-            {
-                PipelineFolderImpl result = apiInstance.GetPipelineFolder(organization, folder);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineFolder: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineFolderWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<PipelineFolderImpl> response = apiInstance.GetPipelineFolderWithHttpInfo(organization, folder);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineFolderWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1294,65 +554,6 @@ catch (ApiException e)
 
 Retrieve pipeline details for an organization folder
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineFolderPipelineExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var folder = "folder_example";  // string | Name of the folder
-
-            try
-            {
-                PipelineImpl result = apiInstance.GetPipelineFolderPipeline(organization, pipeline, folder);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineFolderPipeline: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineFolderPipelineWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<PipelineImpl> response = apiInstance.GetPipelineFolderPipelineWithHttpInfo(organization, pipeline, folder);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineFolderPipelineWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1393,64 +594,6 @@ catch (ApiException e)
 
 Retrieve queue details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineQueueExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-
-            try
-            {
-                List<QueueItemImpl> result = apiInstance.GetPipelineQueue(organization, pipeline);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineQueue: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineQueueWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<QueueItemImpl>> response = apiInstance.GetPipelineQueueWithHttpInfo(organization, pipeline);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineQueueWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1490,65 +633,6 @@ catch (ApiException e)
 
 Retrieve run details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineRunExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var run = "run_example";  // string | Name of the run
-
-            try
-            {
-                PipelineRun result = apiInstance.GetPipelineRun(organization, pipeline, run);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineRun: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineRunWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<PipelineRun> response = apiInstance.GetPipelineRunWithHttpInfo(organization, pipeline, run);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1589,67 +673,6 @@ catch (ApiException e)
 
 Get log for a pipeline run
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineRunLogExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var run = "run_example";  // string | Name of the run
-            var start = 56;  // int | Start position of the log (optional) 
-            var download = true;  // bool | Set to true in order to download the file, otherwise it's passed as a response body (optional) 
-
-            try
-            {
-                string result = apiInstance.GetPipelineRunLog(organization, pipeline, run, start, download);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunLog: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineRunLogWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<string> response = apiInstance.GetPipelineRunLogWithHttpInfo(organization, pipeline, run, start, download);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunLogWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1692,66 +715,6 @@ catch (ApiException e)
 
 Retrieve run node details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineRunNodeExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var run = "run_example";  // string | Name of the run
-            var node = "node_example";  // string | Name of the node
-
-            try
-            {
-                PipelineRunNode result = apiInstance.GetPipelineRunNode(organization, pipeline, run, node);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNode: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineRunNodeWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<PipelineRunNode> response = apiInstance.GetPipelineRunNodeWithHttpInfo(organization, pipeline, run, node);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodeWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1793,67 +756,6 @@ catch (ApiException e)
 
 Retrieve run node details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineRunNodeStepExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var run = "run_example";  // string | Name of the run
-            var node = "node_example";  // string | Name of the node
-            var step = "step_example";  // string | Name of the step
-
-            try
-            {
-                PipelineStepImpl result = apiInstance.GetPipelineRunNodeStep(organization, pipeline, run, node, step);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodeStep: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineRunNodeStepWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<PipelineStepImpl> response = apiInstance.GetPipelineRunNodeStepWithHttpInfo(organization, pipeline, run, node, step);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodeStepWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1896,67 +798,6 @@ catch (ApiException e)
 
 Get log for a pipeline run node step
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineRunNodeStepLogExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var run = "run_example";  // string | Name of the run
-            var node = "node_example";  // string | Name of the node
-            var step = "step_example";  // string | Name of the step
-
-            try
-            {
-                string result = apiInstance.GetPipelineRunNodeStepLog(organization, pipeline, run, node, step);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodeStepLog: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineRunNodeStepLogWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<string> response = apiInstance.GetPipelineRunNodeStepLogWithHttpInfo(organization, pipeline, run, node, step);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodeStepLogWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -1999,66 +840,6 @@ catch (ApiException e)
 
 Retrieve run node steps details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineRunNodeStepsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var run = "run_example";  // string | Name of the run
-            var node = "node_example";  // string | Name of the node
-
-            try
-            {
-                List<PipelineStepImpl> result = apiInstance.GetPipelineRunNodeSteps(organization, pipeline, run, node);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodeSteps: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineRunNodeStepsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<PipelineStepImpl>> response = apiInstance.GetPipelineRunNodeStepsWithHttpInfo(organization, pipeline, run, node);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodeStepsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2100,65 +881,6 @@ catch (ApiException e)
 
 Retrieve run nodes details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineRunNodesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var run = "run_example";  // string | Name of the run
-
-            try
-            {
-                List<PipelineRunNode> result = apiInstance.GetPipelineRunNodes(organization, pipeline, run);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodes: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineRunNodesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<PipelineRunNode>> response = apiInstance.GetPipelineRunNodesWithHttpInfo(organization, pipeline, run);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunNodesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2199,64 +921,6 @@ catch (ApiException e)
 
 Retrieve all runs details for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelineRunsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-
-            try
-            {
-                List<PipelineRun> result = apiInstance.GetPipelineRuns(organization, pipeline);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelineRuns: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelineRunsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<PipelineRun>> response = apiInstance.GetPipelineRunsWithHttpInfo(organization, pipeline);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelineRunsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2296,63 +960,6 @@ catch (ApiException e)
 
 Retrieve all pipelines details for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetPipelinesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-
-            try
-            {
-                List<Pipeline> result = apiInstance.GetPipelines(organization);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetPipelines: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPipelinesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<Pipeline>> response = apiInstance.GetPipelinesWithHttpInfo(organization);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetPipelinesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2391,64 +998,6 @@ catch (ApiException e)
 
 Retrieve SCM details for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetSCMExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var scm = "scm_example";  // string | Name of SCM
-
-            try
-            {
-                GithubScm result = apiInstance.GetSCM(organization, scm);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetSCM: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetSCMWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<GithubScm> response = apiInstance.GetSCMWithHttpInfo(organization, scm);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetSCMWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2488,68 +1037,6 @@ catch (ApiException e)
 
 Retrieve SCM organization repositories details for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetSCMOrganisationRepositoriesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var scm = "scm_example";  // string | Name of SCM
-            var scmOrganisation = "scmOrganisation_example";  // string | Name of the SCM organization
-            var credentialId = "credentialId_example";  // string | Credential ID (optional) 
-            var pageSize = 56;  // int | Number of items in a page (optional) 
-            var pageNumber = 56;  // int | Page number (optional) 
-
-            try
-            {
-                List<GithubOrganization> result = apiInstance.GetSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetSCMOrganisationRepositories: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetSCMOrganisationRepositoriesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<GithubOrganization>> response = apiInstance.GetSCMOrganisationRepositoriesWithHttpInfo(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetSCMOrganisationRepositoriesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2593,67 +1080,6 @@ catch (ApiException e)
 
 Retrieve SCM organization repository details for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetSCMOrganisationRepositoryExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var scm = "scm_example";  // string | Name of SCM
-            var scmOrganisation = "scmOrganisation_example";  // string | Name of the SCM organization
-            var repository = "repository_example";  // string | Name of the SCM repository
-            var credentialId = "credentialId_example";  // string | Credential ID (optional) 
-
-            try
-            {
-                List<GithubOrganization> result = apiInstance.GetSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetSCMOrganisationRepository: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetSCMOrganisationRepositoryWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<GithubOrganization>> response = apiInstance.GetSCMOrganisationRepositoryWithHttpInfo(organization, scm, scmOrganisation, repository, credentialId);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetSCMOrganisationRepositoryWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2696,65 +1122,6 @@ catch (ApiException e)
 
 Retrieve SCM organizations details for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetSCMOrganisationsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var scm = "scm_example";  // string | Name of SCM
-            var credentialId = "credentialId_example";  // string | Credential ID (optional) 
-
-            try
-            {
-                List<GithubOrganization> result = apiInstance.GetSCMOrganisations(organization, scm, credentialId);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetSCMOrganisations: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetSCMOrganisationsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<GithubOrganization>> response = apiInstance.GetSCMOrganisationsWithHttpInfo(organization, scm, credentialId);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetSCMOrganisationsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2795,64 +1162,6 @@ catch (ApiException e)
 
 Retrieve user details for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetUserExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var user = "user_example";  // string | Name of the user
-
-            try
-            {
-                User result = apiInstance.GetUser(organization, user);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetUser: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetUserWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<User> response = apiInstance.GetUserWithHttpInfo(organization, user);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetUserWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2892,63 +1201,6 @@ catch (ApiException e)
 
 Retrieve user favorites details for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetUserFavoritesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var user = "user_example";  // string | Name of the user
-
-            try
-            {
-                List<FavoriteImpl> result = apiInstance.GetUserFavorites(user);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetUserFavorites: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetUserFavoritesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<List<FavoriteImpl>> response = apiInstance.GetUserFavoritesWithHttpInfo(user);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetUserFavoritesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -2987,63 +1239,6 @@ catch (ApiException e)
 
 Retrieve users details for an organization
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class GetUsersExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-
-            try
-            {
-                User result = apiInstance.GetUsers(organization);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.GetUsers: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetUsersWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<User> response = apiInstance.GetUsersWithHttpInfo(organization);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.GetUsersWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -3082,65 +1277,6 @@ catch (ApiException e)
 
 Replay an organization pipeline run
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class PostPipelineRunExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var run = "run_example";  // string | Name of the run
-
-            try
-            {
-                QueueItemImpl result = apiInstance.PostPipelineRun(organization, pipeline, run);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.PostPipelineRun: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the PostPipelineRunWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<QueueItemImpl> response = apiInstance.PostPipelineRunWithHttpInfo(organization, pipeline, run);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.PostPipelineRunWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -3181,64 +1317,6 @@ catch (ApiException e)
 
 Start a build for an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class PostPipelineRunsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-
-            try
-            {
-                QueueItemImpl result = apiInstance.PostPipelineRuns(organization, pipeline);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.PostPipelineRuns: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the PostPipelineRunsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<QueueItemImpl> response = apiInstance.PostPipelineRunsWithHttpInfo(organization, pipeline);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.PostPipelineRunsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -3278,65 +1356,6 @@ catch (ApiException e)
 
 Favorite/unfavorite a pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class PutPipelineFavoriteExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var body = true;  // bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-
-            try
-            {
-                FavoriteImpl result = apiInstance.PutPipelineFavorite(organization, pipeline, body);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.PutPipelineFavorite: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the PutPipelineFavoriteWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<FavoriteImpl> response = apiInstance.PutPipelineFavoriteWithHttpInfo(organization, pipeline, body);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.PutPipelineFavoriteWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -3377,67 +1396,6 @@ catch (ApiException e)
 
 Stop a build of an organization pipeline
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class PutPipelineRunExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var organization = "organization_example";  // string | Name of the organization
-            var pipeline = "pipeline_example";  // string | Name of the pipeline
-            var run = "run_example";  // string | Name of the run
-            var blocking = "blocking_example";  // string | Set to true to make blocking stop, default: false (optional) 
-            var timeOutInSecs = 56;  // int | Timeout in seconds, default: 10 seconds (optional) 
-
-            try
-            {
-                PipelineRun result = apiInstance.PutPipelineRun(organization, pipeline, run, blocking, timeOutInSecs);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.PutPipelineRun: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the PutPipelineRunWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<PipelineRun> response = apiInstance.PutPipelineRunWithHttpInfo(organization, pipeline, run, blocking, timeOutInSecs);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.PutPipelineRunWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -3480,63 +1438,6 @@ catch (ApiException e)
 
 Search for any resource details
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class SearchExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var q = "q_example";  // string | Query string
-
-            try
-            {
-                string result = apiInstance.Search(q);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.Search: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the SearchWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<string> response = apiInstance.SearchWithHttpInfo(q);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.SearchWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 
@@ -3575,63 +1476,6 @@ catch (ApiException e)
 
 Get classes details
 
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using Org.OpenAPITools.Api;
-using Org.OpenAPITools.Client;
-using Org.OpenAPITools.Model;
-
-namespace Example
-{
-    public class SearchClassesExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "http://localhost";
-            // Configure HTTP basic authorization: jenkins_auth
-            config.Username = "YOUR_USERNAME";
-            config.Password = "YOUR_PASSWORD";
-
-            var apiInstance = new BlueOceanApi(config);
-            var q = "q_example";  // string | Query string containing an array of class names
-
-            try
-            {
-                string result = apiInstance.SearchClasses(q);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling BlueOceanApi.SearchClasses: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the SearchClassesWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    ApiResponse<string> response = apiInstance.SearchClassesWithHttpInfo(q);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling BlueOceanApi.SearchClassesWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
 
 ### Parameters
 

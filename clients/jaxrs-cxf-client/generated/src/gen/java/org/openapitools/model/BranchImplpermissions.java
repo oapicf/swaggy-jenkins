@@ -9,18 +9,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class BranchImplpermissions  {
   
   @ApiModelProperty(value = "")
+
   private Boolean create;
 
   @ApiModelProperty(value = "")
+
   private Boolean read;
 
   @ApiModelProperty(value = "")
+
   private Boolean start;
 
   @ApiModelProperty(value = "")
+
   private Boolean stop;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get create

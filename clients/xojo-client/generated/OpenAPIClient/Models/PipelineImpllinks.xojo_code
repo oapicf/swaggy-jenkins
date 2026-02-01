@@ -2,22 +2,22 @@
 Protected Class PipelineImpllinks
 
 	#tag Property, Flags = &h0
-		runs As OpenAPIClient.Models.Link
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
 		Escapedself As OpenAPIClient.Models.Link
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		queue As OpenAPIClient.Models.Link
+		actions As OpenAPIClient.Models.Link
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		actions As OpenAPIClient.Models.Link
+		runs As OpenAPIClient.Models.Link
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		queue As OpenAPIClient.Models.Link
 	#tag EndProperty
 
 
@@ -63,14 +63,6 @@ Protected Class PipelineImpllinks
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="runs"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="Link"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Escapedself"
 			Visible=false
 			Group="Behavior"
@@ -79,7 +71,7 @@ Protected Class PipelineImpllinks
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="queue"
+			Name="actions"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
@@ -87,7 +79,15 @@ Protected Class PipelineImpllinks
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="actions"
+			Name="runs"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Link"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="queue"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

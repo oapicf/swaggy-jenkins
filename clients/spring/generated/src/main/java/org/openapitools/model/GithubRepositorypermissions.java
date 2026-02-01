@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * GithubRepositorypermissions
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class GithubRepositorypermissions {
 
   private @Nullable Boolean admin;
@@ -30,7 +30,7 @@ public class GithubRepositorypermissions {
 
   private @Nullable String propertyClass;
 
-  public GithubRepositorypermissions admin(Boolean admin) {
+  public GithubRepositorypermissions admin(@Nullable Boolean admin) {
     this.admin = admin;
     return this;
   }
@@ -42,15 +42,15 @@ public class GithubRepositorypermissions {
   
   @Schema(name = "admin", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("admin")
-  public Boolean getAdmin() {
+  public @Nullable Boolean getAdmin() {
     return admin;
   }
 
-  public void setAdmin(Boolean admin) {
+  public void setAdmin(@Nullable Boolean admin) {
     this.admin = admin;
   }
 
-  public GithubRepositorypermissions push(Boolean push) {
+  public GithubRepositorypermissions push(@Nullable Boolean push) {
     this.push = push;
     return this;
   }
@@ -62,15 +62,15 @@ public class GithubRepositorypermissions {
   
   @Schema(name = "push", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("push")
-  public Boolean getPush() {
+  public @Nullable Boolean getPush() {
     return push;
   }
 
-  public void setPush(Boolean push) {
+  public void setPush(@Nullable Boolean push) {
     this.push = push;
   }
 
-  public GithubRepositorypermissions pull(Boolean pull) {
+  public GithubRepositorypermissions pull(@Nullable Boolean pull) {
     this.pull = pull;
     return this;
   }
@@ -82,15 +82,15 @@ public class GithubRepositorypermissions {
   
   @Schema(name = "pull", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pull")
-  public Boolean getPull() {
+  public @Nullable Boolean getPull() {
     return pull;
   }
 
-  public void setPull(Boolean pull) {
+  public void setPull(@Nullable Boolean pull) {
     this.pull = pull;
   }
 
-  public GithubRepositorypermissions propertyClass(String propertyClass) {
+  public GithubRepositorypermissions propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -102,11 +102,11 @@ public class GithubRepositorypermissions {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

@@ -5,19 +5,46 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    busy_executors: int32 option [@default None];
-    computer: Hudson_master_computer.t list;
-    display_name: string option [@default None];
-    total_executors: int32 option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    busy_executors = None;
-    computer = [];
-    display_name = None;
-    total_executors = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              busy_executors: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "busyExecutors"]
+                                              computer: Hudson_master_computer.t list
+                 [@default []]
+                
+                ; [@key "computer"]
+                                              display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "displayName"]
+                                              total_executors: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "totalExecutors"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            busy_executors = None;
+            computer = [];
+            display_name = None;
+            total_executors = None;
+        }
+    
 

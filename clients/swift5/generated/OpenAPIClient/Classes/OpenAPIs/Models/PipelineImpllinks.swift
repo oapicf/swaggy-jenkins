@@ -12,25 +12,25 @@ import AnyCodable
 
 public struct PipelineImpllinks: Codable, JSONEncodable, Hashable {
 
-    public var runs: Link?
     public var _self: Link?
-    public var queue: Link?
     public var actions: Link?
+    public var runs: Link?
+    public var queue: Link?
     public var _class: String?
 
-    public init(runs: Link? = nil, _self: Link? = nil, queue: Link? = nil, actions: Link? = nil, _class: String? = nil) {
-        self.runs = runs
+    public init(_self: Link? = nil, actions: Link? = nil, runs: Link? = nil, queue: Link? = nil, _class: String? = nil) {
         self._self = _self
-        self.queue = queue
         self.actions = actions
+        self.runs = runs
+        self.queue = queue
         self._class = _class
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case runs
         case _self = "self"
-        case queue
         case actions
+        case runs
+        case queue
         case _class
     }
 
@@ -38,10 +38,10 @@ public struct PipelineImpllinks: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(runs, forKey: .runs)
         try container.encodeIfPresent(_self, forKey: ._self)
-        try container.encodeIfPresent(queue, forKey: .queue)
         try container.encodeIfPresent(actions, forKey: .actions)
+        try container.encodeIfPresent(runs, forKey: .runs)
+        try container.encodeIfPresent(queue, forKey: .queue)
         try container.encodeIfPresent(_class, forKey: ._class)
     }
 }

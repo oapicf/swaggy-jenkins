@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -18,11 +18,11 @@ import public "models/pipeline_run_nodeedges.proto";
 
 message PipelineRunNode {
 
-  string _class = 406713225;
+  string class = 94742904;
 
-  string displayName = 103536240;
+  string display_name = 4473835;
 
-  int32 durationInMillis = 364528000;
+  int32 duration_in_millis = 498976181;
 
   repeated PipelineRunNodeedges edges = 96356950;
 
@@ -30,8 +30,9 @@ message PipelineRunNode {
 
   string result = 397555684;
 
-  string startTime = 518682036;
+  string start_time = 499403640;
 
   string state = 109757585;
 
 }
+

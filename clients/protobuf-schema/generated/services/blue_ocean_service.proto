@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -32,9 +32,9 @@ import public "models/queue_item_impl.proto";
 import public "models/user.proto";
 
 service BlueOceanService {
-  rpc DeletePipelineQueueItem (DeletePipelineQueueItemRequest) returns (google.protobuf.Empty);
+  rpc DeletePipelineQueueItem (DeletePipelineQueueItemRequest) returns (DeletePipelineQueueItemResponse);
 
-  rpc GetAuthenticatedUser (GetAuthenticatedUserRequest) returns (User);
+  rpc GetAuthenticatedUser (GetAuthenticatedUserRequest) returns (GetAuthenticatedUserResponse);
 
   rpc GetClasses (GetClassesRequest) returns (GetClassesResponse);
 
@@ -42,33 +42,33 @@ service BlueOceanService {
 
   rpc GetJsonWebToken (GetJsonWebTokenRequest) returns (GetJsonWebTokenResponse);
 
-  rpc GetOrganisation (GetOrganisationRequest) returns (Organisation);
+  rpc GetOrganisation (GetOrganisationRequest) returns (GetOrganisationResponse);
 
   rpc GetOrganisations (google.protobuf.Empty) returns (GetOrganisationsResponse);
 
-  rpc GetPipeline (GetPipelineRequest) returns (Pipeline);
+  rpc GetPipeline (GetPipelineRequest) returns (GetPipelineResponse);
 
   rpc GetPipelineActivities (GetPipelineActivitiesRequest) returns (GetPipelineActivitiesResponse);
 
-  rpc GetPipelineBranch (GetPipelineBranchRequest) returns (BranchImpl);
+  rpc GetPipelineBranch (GetPipelineBranchRequest) returns (GetPipelineBranchResponse);
 
-  rpc GetPipelineBranchRun (GetPipelineBranchRunRequest) returns (PipelineRun);
+  rpc GetPipelineBranchRun (GetPipelineBranchRunRequest) returns (GetPipelineBranchRunResponse);
 
-  rpc GetPipelineBranches (GetPipelineBranchesRequest) returns (MultibranchPipeline);
+  rpc GetPipelineBranches (GetPipelineBranchesRequest) returns (GetPipelineBranchesResponse);
 
-  rpc GetPipelineFolder (GetPipelineFolderRequest) returns (PipelineFolderImpl);
+  rpc GetPipelineFolder (GetPipelineFolderRequest) returns (GetPipelineFolderResponse);
 
-  rpc GetPipelineFolderPipeline (GetPipelineFolderPipelineRequest) returns (PipelineImpl);
+  rpc GetPipelineFolderPipeline (GetPipelineFolderPipelineRequest) returns (GetPipelineFolderPipelineResponse);
 
   rpc GetPipelineQueue (GetPipelineQueueRequest) returns (GetPipelineQueueResponse);
 
-  rpc GetPipelineRun (GetPipelineRunRequest) returns (PipelineRun);
+  rpc GetPipelineRun (GetPipelineRunRequest) returns (GetPipelineRunResponse);
 
   rpc GetPipelineRunLog (GetPipelineRunLogRequest) returns (GetPipelineRunLogResponse);
 
-  rpc GetPipelineRunNode (GetPipelineRunNodeRequest) returns (PipelineRunNode);
+  rpc GetPipelineRunNode (GetPipelineRunNodeRequest) returns (GetPipelineRunNodeResponse);
 
-  rpc GetPipelineRunNodeStep (GetPipelineRunNodeStepRequest) returns (PipelineStepImpl);
+  rpc GetPipelineRunNodeStep (GetPipelineRunNodeStepRequest) returns (GetPipelineRunNodeStepResponse);
 
   rpc GetPipelineRunNodeStepLog (GetPipelineRunNodeStepLogRequest) returns (GetPipelineRunNodeStepLogResponse);
 
@@ -80,7 +80,7 @@ service BlueOceanService {
 
   rpc GetPipelines (GetPipelinesRequest) returns (GetPipelinesResponse);
 
-  rpc GetSCM (GetSCMRequest) returns (GithubScm);
+  rpc GetSCM (GetSCMRequest) returns (GetSCMResponse);
 
   rpc GetSCMOrganisationRepositories (GetSCMOrganisationRepositoriesRequest) returns (GetSCMOrganisationRepositoriesResponse);
 
@@ -88,19 +88,19 @@ service BlueOceanService {
 
   rpc GetSCMOrganisations (GetSCMOrganisationsRequest) returns (GetSCMOrganisationsResponse);
 
-  rpc GetUser (GetUserRequest) returns (User);
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
 
   rpc GetUserFavorites (GetUserFavoritesRequest) returns (GetUserFavoritesResponse);
 
-  rpc GetUsers (GetUsersRequest) returns (User);
+  rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
 
-  rpc PostPipelineRun (PostPipelineRunRequest) returns (QueueItemImpl);
+  rpc PostPipelineRun (PostPipelineRunRequest) returns (PostPipelineRunResponse);
 
-  rpc PostPipelineRuns (PostPipelineRunsRequest) returns (QueueItemImpl);
+  rpc PostPipelineRuns (PostPipelineRunsRequest) returns (PostPipelineRunsResponse);
 
-  rpc PutPipelineFavorite (PutPipelineFavoriteRequest) returns (FavoriteImpl);
+  rpc PutPipelineFavorite (PutPipelineFavoriteRequest) returns (PutPipelineFavoriteResponse);
 
-  rpc PutPipelineRun (PutPipelineRunRequest) returns (PipelineRun);
+  rpc PutPipelineRun (PutPipelineRunRequest) returns (PutPipelineRunResponse);
 
   rpc Search (SearchRequest) returns (SearchResponse);
 
@@ -118,12 +118,26 @@ message DeletePipelineQueueItemRequest {
 
 }
 
+message DeletePipelineQueueItemResponse {
+    oneof response {
+        google.protobuf.Empty empty_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetAuthenticatedUserRequest {
   // Name of the organization
   string organization = 1;
 
 }
 
+message GetAuthenticatedUserResponse {
+    oneof response {
+        User user_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetClassesRequest {
   // Name of the class
   string class = 1;
@@ -131,9 +145,12 @@ message GetClassesRequest {
 }
 
 message GetClassesResponse {
-  string data = 1;
+    oneof response {
+        string string_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetJsonWebKeyRequest {
   // Key ID received as part of JWT header field kid
   int32 key = 1;
@@ -141,31 +158,48 @@ message GetJsonWebKeyRequest {
 }
 
 message GetJsonWebKeyResponse {
-  string data = 1;
+    oneof response {
+        string string_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetJsonWebTokenRequest {
   // Token expiry time in minutes, default: 30 minutes
-  int32 expiryTimeInMins = 1;
+  int32 expiry_time_in_mins = 1;
   // Maximum token expiry time in minutes, default: 480 minutes
-  int32 maxExpiryTimeInMins = 2;
+  int32 max_expiry_time_in_mins = 2;
 
 }
 
 message GetJsonWebTokenResponse {
-  string data = 1;
+    oneof response {
+        string string_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetOrganisationRequest {
   // Name of the organization
   string organization = 1;
 
 }
 
-message GetOrganisationsResponse {
-  repeated Organisation data = 1;
+message GetOrganisationResponse {
+    oneof response {
+        Organisation organisation_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
 }
-
+message GetOrganisationsResponse {
+    oneof response {
+        Organisation organisation_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetPipelineRequest {
   // Name of the organization
   string organization = 1;
@@ -174,6 +208,14 @@ message GetPipelineRequest {
 
 }
 
+message GetPipelineResponse {
+    oneof response {
+        Pipeline pipeline_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+        google.protobuf.Empty empty_404 = 4;
+    }
+}
 message GetPipelineActivitiesRequest {
   // Name of the organization
   string organization = 1;
@@ -183,9 +225,12 @@ message GetPipelineActivitiesRequest {
 }
 
 message GetPipelineActivitiesResponse {
-  repeated PipelineActivity data = 1;
+    oneof response {
+        PipelineActivity pipeline_activity_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetPipelineBranchRequest {
   // Name of the organization
   string organization = 1;
@@ -196,6 +241,13 @@ message GetPipelineBranchRequest {
 
 }
 
+message GetPipelineBranchResponse {
+    oneof response {
+        BranchImpl branch_impl_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetPipelineBranchRunRequest {
   // Name of the organization
   string organization = 1;
@@ -208,6 +260,13 @@ message GetPipelineBranchRunRequest {
 
 }
 
+message GetPipelineBranchRunResponse {
+    oneof response {
+        PipelineRun pipeline_run_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetPipelineBranchesRequest {
   // Name of the organization
   string organization = 1;
@@ -216,6 +275,13 @@ message GetPipelineBranchesRequest {
 
 }
 
+message GetPipelineBranchesResponse {
+    oneof response {
+        MultibranchPipeline multibranch_pipeline_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetPipelineFolderRequest {
   // Name of the organization
   string organization = 1;
@@ -224,6 +290,13 @@ message GetPipelineFolderRequest {
 
 }
 
+message GetPipelineFolderResponse {
+    oneof response {
+        PipelineFolderImpl pipeline_folder_impl_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetPipelineFolderPipelineRequest {
   // Name of the organization
   string organization = 1;
@@ -234,6 +307,13 @@ message GetPipelineFolderPipelineRequest {
 
 }
 
+message GetPipelineFolderPipelineResponse {
+    oneof response {
+        PipelineImpl pipeline_impl_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetPipelineQueueRequest {
   // Name of the organization
   string organization = 1;
@@ -243,9 +323,12 @@ message GetPipelineQueueRequest {
 }
 
 message GetPipelineQueueResponse {
-  repeated QueueItemImpl data = 1;
+    oneof response {
+        QueueItemImpl queue_item_impl_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetPipelineRunRequest {
   // Name of the organization
   string organization = 1;
@@ -256,6 +339,13 @@ message GetPipelineRunRequest {
 
 }
 
+message GetPipelineRunResponse {
+    oneof response {
+        PipelineRun pipeline_run_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetPipelineRunLogRequest {
   // Name of the organization
   string organization = 1;
@@ -271,9 +361,12 @@ message GetPipelineRunLogRequest {
 }
 
 message GetPipelineRunLogResponse {
-  string data = 1;
+    oneof response {
+        string string_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetPipelineRunNodeRequest {
   // Name of the organization
   string organization = 1;
@@ -286,6 +379,13 @@ message GetPipelineRunNodeRequest {
 
 }
 
+message GetPipelineRunNodeResponse {
+    oneof response {
+        PipelineRunNode pipeline_run_node_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetPipelineRunNodeStepRequest {
   // Name of the organization
   string organization = 1;
@@ -300,6 +400,13 @@ message GetPipelineRunNodeStepRequest {
 
 }
 
+message GetPipelineRunNodeStepResponse {
+    oneof response {
+        PipelineStepImpl pipeline_step_impl_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetPipelineRunNodeStepLogRequest {
   // Name of the organization
   string organization = 1;
@@ -315,9 +422,12 @@ message GetPipelineRunNodeStepLogRequest {
 }
 
 message GetPipelineRunNodeStepLogResponse {
-  string data = 1;
+    oneof response {
+        string string_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetPipelineRunNodeStepsRequest {
   // Name of the organization
   string organization = 1;
@@ -331,9 +441,12 @@ message GetPipelineRunNodeStepsRequest {
 }
 
 message GetPipelineRunNodeStepsResponse {
-  repeated PipelineStepImpl data = 1;
+    oneof response {
+        PipelineStepImpl pipeline_step_impl_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetPipelineRunNodesRequest {
   // Name of the organization
   string organization = 1;
@@ -345,9 +458,12 @@ message GetPipelineRunNodesRequest {
 }
 
 message GetPipelineRunNodesResponse {
-  repeated PipelineRunNode data = 1;
+    oneof response {
+        PipelineRunNode pipeline_run_node_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetPipelineRunsRequest {
   // Name of the organization
   string organization = 1;
@@ -357,9 +473,12 @@ message GetPipelineRunsRequest {
 }
 
 message GetPipelineRunsResponse {
-  repeated PipelineRun data = 1;
+    oneof response {
+        PipelineRun pipeline_run_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetPipelinesRequest {
   // Name of the organization
   string organization = 1;
@@ -367,9 +486,12 @@ message GetPipelinesRequest {
 }
 
 message GetPipelinesResponse {
-  repeated Pipeline data = 1;
+    oneof response {
+        Pipeline pipeline_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetSCMRequest {
   // Name of the organization
   string organization = 1;
@@ -378,58 +500,74 @@ message GetSCMRequest {
 
 }
 
+message GetSCMResponse {
+    oneof response {
+        GithubScm github_scm_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetSCMOrganisationRepositoriesRequest {
   // Name of the organization
   string organization = 1;
   // Name of SCM
   string scm = 2;
   // Name of the SCM organization
-  string scmOrganisation = 3;
+  string scm_organisation = 3;
   // Credential ID
-  string credentialId = 4;
+  string credential_id = 4;
   // Number of items in a page
-  int32 pageSize = 5;
+  int32 page_size = 5;
   // Page number
-  int32 pageNumber = 6;
+  int32 page_number = 6;
 
 }
 
 message GetSCMOrganisationRepositoriesResponse {
-  repeated GithubOrganization data = 1;
+    oneof response {
+        GithubOrganization github_organization_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetSCMOrganisationRepositoryRequest {
   // Name of the organization
   string organization = 1;
   // Name of SCM
   string scm = 2;
   // Name of the SCM organization
-  string scmOrganisation = 3;
+  string scm_organisation = 3;
   // Name of the SCM repository
   string repository = 4;
   // Credential ID
-  string credentialId = 5;
+  string credential_id = 5;
 
 }
 
 message GetSCMOrganisationRepositoryResponse {
-  repeated GithubOrganization data = 1;
+    oneof response {
+        GithubOrganization github_organization_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetSCMOrganisationsRequest {
   // Name of the organization
   string organization = 1;
   // Name of SCM
   string scm = 2;
   // Credential ID
-  string credentialId = 3;
+  string credential_id = 3;
 
 }
 
 message GetSCMOrganisationsResponse {
-  repeated GithubOrganization data = 1;
+    oneof response {
+        GithubOrganization github_organization_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetUserRequest {
   // Name of the organization
   string organization = 1;
@@ -438,6 +576,13 @@ message GetUserRequest {
 
 }
 
+message GetUserResponse {
+    oneof response {
+        User user_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message GetUserFavoritesRequest {
   // Name of the user
   string user = 1;
@@ -445,15 +590,25 @@ message GetUserFavoritesRequest {
 }
 
 message GetUserFavoritesResponse {
-  repeated FavoriteImpl data = 1;
+    oneof response {
+        FavoriteImpl favorite_impl_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message GetUsersRequest {
   // Name of the organization
   string organization = 1;
 
 }
 
+message GetUsersResponse {
+    oneof response {
+        User user_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message PostPipelineRunRequest {
   // Name of the organization
   string organization = 1;
@@ -464,6 +619,13 @@ message PostPipelineRunRequest {
 
 }
 
+message PostPipelineRunResponse {
+    oneof response {
+        QueueItemImpl queue_item_impl_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message PostPipelineRunsRequest {
   // Name of the organization
   string organization = 1;
@@ -472,6 +634,13 @@ message PostPipelineRunsRequest {
 
 }
 
+message PostPipelineRunsResponse {
+    oneof response {
+        QueueItemImpl queue_item_impl_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message PutPipelineFavoriteRequest {
   // Name of the organization
   string organization = 1;
@@ -482,6 +651,13 @@ message PutPipelineFavoriteRequest {
 
 }
 
+message PutPipelineFavoriteResponse {
+    oneof response {
+        FavoriteImpl favorite_impl_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message PutPipelineRunRequest {
   // Name of the organization
   string organization = 1;
@@ -492,10 +668,17 @@ message PutPipelineRunRequest {
   // Set to true to make blocking stop, default: false
   string blocking = 4;
   // Timeout in seconds, default: 10 seconds
-  int32 timeOutInSecs = 5;
+  int32 time_out_in_secs = 5;
 
 }
 
+message PutPipelineRunResponse {
+    oneof response {
+        PipelineRun pipeline_run_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}
 message SearchRequest {
   // Query string
   string q = 1;
@@ -503,9 +686,12 @@ message SearchRequest {
 }
 
 message SearchResponse {
-  string data = 1;
+    oneof response {
+        string string_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-
 message SearchClassesRequest {
   // Query string containing an array of class names
   string q = 1;
@@ -513,6 +699,9 @@ message SearchClassesRequest {
 }
 
 message SearchClassesResponse {
-  string data = 1;
+    oneof response {
+        string string_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
 }
-

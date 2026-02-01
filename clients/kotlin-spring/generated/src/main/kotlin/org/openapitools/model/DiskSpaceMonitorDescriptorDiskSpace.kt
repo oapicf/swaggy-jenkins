@@ -33,7 +33,7 @@ data class DiskSpaceMonitorDescriptorDiskSpace(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("size") val propertySize: kotlin.Int? = null
-    ) {
+) {
 
 }
 

@@ -26,7 +26,7 @@ public class SpringDocConfiguration {
                                                 .url("https://github.com/oapicf/swaggy-jenkins")
                                                 .email("blah+oapicf@cliffano.com")
                                 )
-                                .version("3.0.2-pre.0")
+                                .version("3.2.1-pre.0")
                 )
                 .components(
                         new Components()

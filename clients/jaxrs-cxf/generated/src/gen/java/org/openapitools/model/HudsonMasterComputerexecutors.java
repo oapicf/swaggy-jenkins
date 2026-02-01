@@ -12,22 +12,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class HudsonMasterComputerexecutors  {
   
   @ApiModelProperty(value = "")
+
   @Valid
+
   private FreeStyleBuild currentExecutable;
 
   @ApiModelProperty(value = "")
+
   private Boolean idle;
 
   @ApiModelProperty(value = "")
+
   private Boolean likelyStuck;
 
   @ApiModelProperty(value = "")
+
   private Integer number;
 
   @ApiModelProperty(value = "")
+
   private Integer progress;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get currentExecutable

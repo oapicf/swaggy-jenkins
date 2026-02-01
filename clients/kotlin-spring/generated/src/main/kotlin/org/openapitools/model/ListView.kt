@@ -39,7 +39,7 @@ data class ListView(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("url") val url: kotlin.String? = null
-    ) {
+) {
 
 }
 

@@ -28,9 +28,9 @@ class BlueRestOrganizationsOrganizationScmScmOrganizations
      *
      * @throws PHException\HttpCode 501 if the method is not implemented
      *
-     * @return \App\DTO\Collection27
+     * @return \App\DTO\Collection33
      */
-    public function getSCMOrganisations(ServerRequestInterface $request): \App\DTO\Collection27
+    public function getSCMOrganisations(ServerRequestInterface $request): \App\DTO\Collection33
     {
         //TODO implement method
         /** @var \App\DTO\GetSCMOrganisationsQueryData $queryData */

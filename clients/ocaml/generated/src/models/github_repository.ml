@@ -5,25 +5,69 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    _links: Github_repositorylinks.t option [@default None];
-    default_branch: string option [@default None];
-    description: string option [@default None];
-    name: string option [@default None];
-    permissions: Github_repositorypermissions.t option [@default None];
-    _private: bool option [@default None];
-    full_name: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    _links = None;
-    default_branch = None;
-    description = None;
-    name = None;
-    permissions = None;
-    _private = None;
-    full_name = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              _links: Github_repositorylinks.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_links"]
+                                              default_branch: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "defaultBranch"]
+                                              description: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "description"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                                              permissions: Github_repositorypermissions.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "permissions"]
+                                              _private: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "private"]
+                                              full_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "fullName"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            _links = None;
+            default_branch = None;
+            description = None;
+            name = None;
+            permissions = None;
+            _private = None;
+            full_name = None;
+        }
+    
 

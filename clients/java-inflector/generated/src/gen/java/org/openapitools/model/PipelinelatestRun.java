@@ -14,7 +14,7 @@ import org.openapitools.model.PipelinelatestRunartifacts;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2025-05-10T02:40:01.089204461Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-02-01T01:23:57.874111660Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelinelatestRun   {
   @JsonProperty("artifacts")
   private List<PipelinelatestRunartifacts> artifacts = null;

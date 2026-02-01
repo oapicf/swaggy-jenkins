@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -18,17 +18,17 @@ import public "models/pipeline_run_impllinks.proto";
 
 message PipelineRunImpl {
 
-  string _class = 406713225;
+  string class = 94742904;
 
-  PipelineRunImpllinks _links = 398478664;
+  PipelineRunImpllinks links = 102977465;
 
-  int32 durationInMillis = 364528000;
+  int32 duration_in_millis = 498976181;
 
-  string enQueueTime = 443731756;
+  string en_queue_time = 460384913;
 
-  string endTime = 533501370;
+  string end_time = 114938804;
 
-  int32 estimatedDurationInMillis = 316469800;
+  int32 estimated_duration_in_millis = 297912984;
 
   string id = 3355;
 
@@ -38,14 +38,15 @@ message PipelineRunImpl {
 
   string result = 397555684;
 
-  string runSummary = 54239900;
+  string run_summary = 425308687;
 
-  string startTime = 518682036;
+  string start_time = 499403640;
 
   string state = 109757585;
 
   string type = 3575610;
 
-  string commitId = 65421135;
+  string commit_id = 417421023;
 
 }
+

@@ -7,13 +7,9 @@ import org.openapitools.model.Hudson;
 import org.openapitools.model.ListView;
 import org.openapitools.model.Queue;
 
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.MediaType;
 import org.apache.cxf.jaxrs.ext.multipart.*;
 
 import io.swagger.annotations.Api;

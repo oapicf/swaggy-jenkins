@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  * ExtensionClassContainerImpl1
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ExtensionClassContainerImpl1 {
 
   private @Nullable String propertyClass;
@@ -30,7 +30,7 @@ public class ExtensionClassContainerImpl1 {
 
   private @Nullable ExtensionClassContainerImpl1map map;
 
-  public ExtensionClassContainerImpl1 propertyClass(String propertyClass) {
+  public ExtensionClassContainerImpl1 propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -42,15 +42,15 @@ public class ExtensionClassContainerImpl1 {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public ExtensionClassContainerImpl1 links(ExtensionClassContainerImpl1links links) {
+  public ExtensionClassContainerImpl1 links(@Nullable ExtensionClassContainerImpl1links links) {
     this.links = links;
     return this;
   }
@@ -62,15 +62,15 @@ public class ExtensionClassContainerImpl1 {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public ExtensionClassContainerImpl1links getLinks() {
+  public @Nullable ExtensionClassContainerImpl1links getLinks() {
     return links;
   }
 
-  public void setLinks(ExtensionClassContainerImpl1links links) {
+  public void setLinks(@Nullable ExtensionClassContainerImpl1links links) {
     this.links = links;
   }
 
-  public ExtensionClassContainerImpl1 map(ExtensionClassContainerImpl1map map) {
+  public ExtensionClassContainerImpl1 map(@Nullable ExtensionClassContainerImpl1map map) {
     this.map = map;
     return this;
   }
@@ -82,11 +82,11 @@ public class ExtensionClassContainerImpl1 {
   @Valid 
   @Schema(name = "map", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("map")
-  public ExtensionClassContainerImpl1map getMap() {
+  public @Nullable ExtensionClassContainerImpl1map getMap() {
     return map;
   }
 
-  public void setMap(ExtensionClassContainerImpl1map map) {
+  public void setMap(@Nullable ExtensionClassContainerImpl1map map) {
     this.map = map;
   }
 

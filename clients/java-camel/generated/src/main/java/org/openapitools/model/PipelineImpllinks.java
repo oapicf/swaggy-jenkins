@@ -19,38 +19,18 @@ import javax.annotation.Generated;
  * PipelineImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2025-05-10T02:40:20.283295278Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-02-01T01:24:18.049500991Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineImpllinks {
-
-  private Link runs;
 
   private Link self;
 
-  private Link queue;
-
   private Link actions;
 
+  private Link runs;
+
+  private Link queue;
+
   private String propertyClass;
-
-  public PipelineImpllinks runs(Link runs) {
-    this.runs = runs;
-    return this;
-  }
-
-  /**
-   * Get runs
-   * @return runs
-   */
-  @Valid 
-  @Schema(name = "runs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("runs")
-  public Link getRuns() {
-    return runs;
-  }
-
-  public void setRuns(Link runs) {
-    this.runs = runs;
-  }
 
   public PipelineImpllinks self(Link self) {
     this.self = self;
@@ -72,26 +52,6 @@ public class PipelineImpllinks {
     this.self = self;
   }
 
-  public PipelineImpllinks queue(Link queue) {
-    this.queue = queue;
-    return this;
-  }
-
-  /**
-   * Get queue
-   * @return queue
-   */
-  @Valid 
-  @Schema(name = "queue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("queue")
-  public Link getQueue() {
-    return queue;
-  }
-
-  public void setQueue(Link queue) {
-    this.queue = queue;
-  }
-
   public PipelineImpllinks actions(Link actions) {
     this.actions = actions;
     return this;
@@ -110,6 +70,46 @@ public class PipelineImpllinks {
 
   public void setActions(Link actions) {
     this.actions = actions;
+  }
+
+  public PipelineImpllinks runs(Link runs) {
+    this.runs = runs;
+    return this;
+  }
+
+  /**
+   * Get runs
+   * @return runs
+   */
+  @Valid 
+  @Schema(name = "runs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("runs")
+  public Link getRuns() {
+    return runs;
+  }
+
+  public void setRuns(Link runs) {
+    this.runs = runs;
+  }
+
+  public PipelineImpllinks queue(Link queue) {
+    this.queue = queue;
+    return this;
+  }
+
+  /**
+   * Get queue
+   * @return queue
+   */
+  @Valid 
+  @Schema(name = "queue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("queue")
+  public Link getQueue() {
+    return queue;
+  }
+
+  public void setQueue(Link queue) {
+    this.queue = queue;
   }
 
   public PipelineImpllinks propertyClass(String propertyClass) {
@@ -141,26 +141,26 @@ public class PipelineImpllinks {
       return false;
     }
     PipelineImpllinks pipelineImpllinks = (PipelineImpllinks) o;
-    return Objects.equals(this.runs, pipelineImpllinks.runs) &&
-        Objects.equals(this.self, pipelineImpllinks.self) &&
-        Objects.equals(this.queue, pipelineImpllinks.queue) &&
+    return Objects.equals(this.self, pipelineImpllinks.self) &&
         Objects.equals(this.actions, pipelineImpllinks.actions) &&
+        Objects.equals(this.runs, pipelineImpllinks.runs) &&
+        Objects.equals(this.queue, pipelineImpllinks.queue) &&
         Objects.equals(this.propertyClass, pipelineImpllinks.propertyClass);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(runs, self, queue, actions, propertyClass);
+    return Objects.hash(self, actions, runs, queue, propertyClass);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineImpllinks {\n");
-    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
+    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
+    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("}");
     return sb.toString();

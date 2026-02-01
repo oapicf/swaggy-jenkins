@@ -1,5 +1,5 @@
 import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/http';
-import { Configuration, ConfigurationOptions, PromiseConfigurationOptions } from '../configuration'
+import { Configuration, PromiseConfigurationOptions, wrapOptions } from '../configuration'
 import { PromiseMiddleware, Middleware, PromiseMiddlewareWrapper } from '../middleware';
 
 import { AllView } from '../models/AllView';
@@ -100,18 +100,7 @@ export class PromiseBaseApi {
      * Retrieve CSRF protection token
      */
     public getCrumbWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<DefaultCrumbIssuer>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getCrumbWithHttpInfo(observableOptions);
         return result.toPromise();
     }
@@ -120,18 +109,7 @@ export class PromiseBaseApi {
      * Retrieve CSRF protection token
      */
     public getCrumb(_options?: PromiseConfigurationOptions): Promise<DefaultCrumbIssuer> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getCrumb(observableOptions);
         return result.toPromise();
     }
@@ -162,18 +140,7 @@ export class PromiseBlueOceanApi {
      * @param queue Name of the queue item
      */
     public deletePipelineQueueItemWithHttpInfo(organization: string, pipeline: string, queue: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.deletePipelineQueueItemWithHttpInfo(organization, pipeline, queue, observableOptions);
         return result.toPromise();
     }
@@ -185,18 +152,7 @@ export class PromiseBlueOceanApi {
      * @param queue Name of the queue item
      */
     public deletePipelineQueueItem(organization: string, pipeline: string, queue: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.deletePipelineQueueItem(organization, pipeline, queue, observableOptions);
         return result.toPromise();
     }
@@ -206,18 +162,7 @@ export class PromiseBlueOceanApi {
      * @param organization Name of the organization
      */
     public getAuthenticatedUserWithHttpInfo(organization: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<User>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getAuthenticatedUserWithHttpInfo(organization, observableOptions);
         return result.toPromise();
     }
@@ -227,18 +172,7 @@ export class PromiseBlueOceanApi {
      * @param organization Name of the organization
      */
     public getAuthenticatedUser(organization: string, _options?: PromiseConfigurationOptions): Promise<User> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getAuthenticatedUser(organization, observableOptions);
         return result.toPromise();
     }
@@ -248,18 +182,7 @@ export class PromiseBlueOceanApi {
      * @param _class Name of the class
      */
     public getClassesWithHttpInfo(_class: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<string>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getClassesWithHttpInfo(_class, observableOptions);
         return result.toPromise();
     }
@@ -269,18 +192,7 @@ export class PromiseBlueOceanApi {
      * @param _class Name of the class
      */
     public getClasses(_class: string, _options?: PromiseConfigurationOptions): Promise<string> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getClasses(_class, observableOptions);
         return result.toPromise();
     }
@@ -290,18 +202,7 @@ export class PromiseBlueOceanApi {
      * @param key Key ID received as part of JWT header field kid
      */
     public getJsonWebKeyWithHttpInfo(key: number, _options?: PromiseConfigurationOptions): Promise<HttpInfo<string>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJsonWebKeyWithHttpInfo(key, observableOptions);
         return result.toPromise();
     }
@@ -311,18 +212,7 @@ export class PromiseBlueOceanApi {
      * @param key Key ID received as part of JWT header field kid
      */
     public getJsonWebKey(key: number, _options?: PromiseConfigurationOptions): Promise<string> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJsonWebKey(key, observableOptions);
         return result.toPromise();
     }
@@ -333,18 +223,7 @@ export class PromiseBlueOceanApi {
      * @param [maxExpiryTimeInMins] Maximum token expiry time in minutes, default: 480 minutes
      */
     public getJsonWebTokenWithHttpInfo(expiryTimeInMins?: number, maxExpiryTimeInMins?: number, _options?: PromiseConfigurationOptions): Promise<HttpInfo<string>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJsonWebTokenWithHttpInfo(expiryTimeInMins, maxExpiryTimeInMins, observableOptions);
         return result.toPromise();
     }
@@ -355,18 +234,7 @@ export class PromiseBlueOceanApi {
      * @param [maxExpiryTimeInMins] Maximum token expiry time in minutes, default: 480 minutes
      */
     public getJsonWebToken(expiryTimeInMins?: number, maxExpiryTimeInMins?: number, _options?: PromiseConfigurationOptions): Promise<string> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins, observableOptions);
         return result.toPromise();
     }
@@ -376,18 +244,7 @@ export class PromiseBlueOceanApi {
      * @param organization Name of the organization
      */
     public getOrganisationWithHttpInfo(organization: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Organisation>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getOrganisationWithHttpInfo(organization, observableOptions);
         return result.toPromise();
     }
@@ -397,18 +254,7 @@ export class PromiseBlueOceanApi {
      * @param organization Name of the organization
      */
     public getOrganisation(organization: string, _options?: PromiseConfigurationOptions): Promise<Organisation> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getOrganisation(organization, observableOptions);
         return result.toPromise();
     }
@@ -417,18 +263,7 @@ export class PromiseBlueOceanApi {
      * Retrieve all organizations details
      */
     public getOrganisationsWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<Organisation>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getOrganisationsWithHttpInfo(observableOptions);
         return result.toPromise();
     }
@@ -437,18 +272,7 @@ export class PromiseBlueOceanApi {
      * Retrieve all organizations details
      */
     public getOrganisations(_options?: PromiseConfigurationOptions): Promise<Array<Organisation>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getOrganisations(observableOptions);
         return result.toPromise();
     }
@@ -459,18 +283,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public getPipelineWithHttpInfo(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Pipeline>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineWithHttpInfo(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -481,18 +294,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public getPipeline(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<Pipeline> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipeline(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -503,18 +305,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public getPipelineActivitiesWithHttpInfo(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<PipelineActivity>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineActivitiesWithHttpInfo(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -525,18 +316,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public getPipelineActivities(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<Array<PipelineActivity>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineActivities(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -548,18 +328,7 @@ export class PromiseBlueOceanApi {
      * @param branch Name of the branch
      */
     public getPipelineBranchWithHttpInfo(organization: string, pipeline: string, branch: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<BranchImpl>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineBranchWithHttpInfo(organization, pipeline, branch, observableOptions);
         return result.toPromise();
     }
@@ -571,18 +340,7 @@ export class PromiseBlueOceanApi {
      * @param branch Name of the branch
      */
     public getPipelineBranch(organization: string, pipeline: string, branch: string, _options?: PromiseConfigurationOptions): Promise<BranchImpl> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineBranch(organization, pipeline, branch, observableOptions);
         return result.toPromise();
     }
@@ -595,18 +353,7 @@ export class PromiseBlueOceanApi {
      * @param run Name of the run
      */
     public getPipelineBranchRunWithHttpInfo(organization: string, pipeline: string, branch: string, run: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<PipelineRun>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineBranchRunWithHttpInfo(organization, pipeline, branch, run, observableOptions);
         return result.toPromise();
     }
@@ -619,18 +366,7 @@ export class PromiseBlueOceanApi {
      * @param run Name of the run
      */
     public getPipelineBranchRun(organization: string, pipeline: string, branch: string, run: string, _options?: PromiseConfigurationOptions): Promise<PipelineRun> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineBranchRun(organization, pipeline, branch, run, observableOptions);
         return result.toPromise();
     }
@@ -641,18 +377,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public getPipelineBranchesWithHttpInfo(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<MultibranchPipeline>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineBranchesWithHttpInfo(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -663,18 +388,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public getPipelineBranches(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<MultibranchPipeline> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineBranches(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -685,18 +399,7 @@ export class PromiseBlueOceanApi {
      * @param folder Name of the folder
      */
     public getPipelineFolderWithHttpInfo(organization: string, folder: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<PipelineFolderImpl>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineFolderWithHttpInfo(organization, folder, observableOptions);
         return result.toPromise();
     }
@@ -707,18 +410,7 @@ export class PromiseBlueOceanApi {
      * @param folder Name of the folder
      */
     public getPipelineFolder(organization: string, folder: string, _options?: PromiseConfigurationOptions): Promise<PipelineFolderImpl> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineFolder(organization, folder, observableOptions);
         return result.toPromise();
     }
@@ -730,18 +422,7 @@ export class PromiseBlueOceanApi {
      * @param folder Name of the folder
      */
     public getPipelineFolderPipelineWithHttpInfo(organization: string, pipeline: string, folder: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<PipelineImpl>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineFolderPipelineWithHttpInfo(organization, pipeline, folder, observableOptions);
         return result.toPromise();
     }
@@ -753,18 +434,7 @@ export class PromiseBlueOceanApi {
      * @param folder Name of the folder
      */
     public getPipelineFolderPipeline(organization: string, pipeline: string, folder: string, _options?: PromiseConfigurationOptions): Promise<PipelineImpl> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineFolderPipeline(organization, pipeline, folder, observableOptions);
         return result.toPromise();
     }
@@ -775,18 +445,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public getPipelineQueueWithHttpInfo(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<QueueItemImpl>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineQueueWithHttpInfo(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -797,18 +456,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public getPipelineQueue(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<Array<QueueItemImpl>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineQueue(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -820,18 +468,7 @@ export class PromiseBlueOceanApi {
      * @param run Name of the run
      */
     public getPipelineRunWithHttpInfo(organization: string, pipeline: string, run: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<PipelineRun>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunWithHttpInfo(organization, pipeline, run, observableOptions);
         return result.toPromise();
     }
@@ -843,18 +480,7 @@ export class PromiseBlueOceanApi {
      * @param run Name of the run
      */
     public getPipelineRun(organization: string, pipeline: string, run: string, _options?: PromiseConfigurationOptions): Promise<PipelineRun> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRun(organization, pipeline, run, observableOptions);
         return result.toPromise();
     }
@@ -868,18 +494,7 @@ export class PromiseBlueOceanApi {
      * @param [download] Set to true in order to download the file, otherwise it\&#39;s passed as a response body
      */
     public getPipelineRunLogWithHttpInfo(organization: string, pipeline: string, run: string, start?: number, download?: boolean, _options?: PromiseConfigurationOptions): Promise<HttpInfo<string>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunLogWithHttpInfo(organization, pipeline, run, start, download, observableOptions);
         return result.toPromise();
     }
@@ -893,18 +508,7 @@ export class PromiseBlueOceanApi {
      * @param [download] Set to true in order to download the file, otherwise it\&#39;s passed as a response body
      */
     public getPipelineRunLog(organization: string, pipeline: string, run: string, start?: number, download?: boolean, _options?: PromiseConfigurationOptions): Promise<string> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunLog(organization, pipeline, run, start, download, observableOptions);
         return result.toPromise();
     }
@@ -917,18 +521,7 @@ export class PromiseBlueOceanApi {
      * @param node Name of the node
      */
     public getPipelineRunNodeWithHttpInfo(organization: string, pipeline: string, run: string, node: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<PipelineRunNode>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunNodeWithHttpInfo(organization, pipeline, run, node, observableOptions);
         return result.toPromise();
     }
@@ -941,18 +534,7 @@ export class PromiseBlueOceanApi {
      * @param node Name of the node
      */
     public getPipelineRunNode(organization: string, pipeline: string, run: string, node: string, _options?: PromiseConfigurationOptions): Promise<PipelineRunNode> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunNode(organization, pipeline, run, node, observableOptions);
         return result.toPromise();
     }
@@ -966,18 +548,7 @@ export class PromiseBlueOceanApi {
      * @param step Name of the step
      */
     public getPipelineRunNodeStepWithHttpInfo(organization: string, pipeline: string, run: string, node: string, step: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<PipelineStepImpl>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunNodeStepWithHttpInfo(organization, pipeline, run, node, step, observableOptions);
         return result.toPromise();
     }
@@ -991,18 +562,7 @@ export class PromiseBlueOceanApi {
      * @param step Name of the step
      */
     public getPipelineRunNodeStep(organization: string, pipeline: string, run: string, node: string, step: string, _options?: PromiseConfigurationOptions): Promise<PipelineStepImpl> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunNodeStep(organization, pipeline, run, node, step, observableOptions);
         return result.toPromise();
     }
@@ -1016,18 +576,7 @@ export class PromiseBlueOceanApi {
      * @param step Name of the step
      */
     public getPipelineRunNodeStepLogWithHttpInfo(organization: string, pipeline: string, run: string, node: string, step: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<string>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunNodeStepLogWithHttpInfo(organization, pipeline, run, node, step, observableOptions);
         return result.toPromise();
     }
@@ -1041,18 +590,7 @@ export class PromiseBlueOceanApi {
      * @param step Name of the step
      */
     public getPipelineRunNodeStepLog(organization: string, pipeline: string, run: string, node: string, step: string, _options?: PromiseConfigurationOptions): Promise<string> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunNodeStepLog(organization, pipeline, run, node, step, observableOptions);
         return result.toPromise();
     }
@@ -1065,18 +603,7 @@ export class PromiseBlueOceanApi {
      * @param node Name of the node
      */
     public getPipelineRunNodeStepsWithHttpInfo(organization: string, pipeline: string, run: string, node: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<PipelineStepImpl>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunNodeStepsWithHttpInfo(organization, pipeline, run, node, observableOptions);
         return result.toPromise();
     }
@@ -1089,18 +616,7 @@ export class PromiseBlueOceanApi {
      * @param node Name of the node
      */
     public getPipelineRunNodeSteps(organization: string, pipeline: string, run: string, node: string, _options?: PromiseConfigurationOptions): Promise<Array<PipelineStepImpl>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunNodeSteps(organization, pipeline, run, node, observableOptions);
         return result.toPromise();
     }
@@ -1112,18 +628,7 @@ export class PromiseBlueOceanApi {
      * @param run Name of the run
      */
     public getPipelineRunNodesWithHttpInfo(organization: string, pipeline: string, run: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<PipelineRunNode>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunNodesWithHttpInfo(organization, pipeline, run, observableOptions);
         return result.toPromise();
     }
@@ -1135,18 +640,7 @@ export class PromiseBlueOceanApi {
      * @param run Name of the run
      */
     public getPipelineRunNodes(organization: string, pipeline: string, run: string, _options?: PromiseConfigurationOptions): Promise<Array<PipelineRunNode>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunNodes(organization, pipeline, run, observableOptions);
         return result.toPromise();
     }
@@ -1157,18 +651,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public getPipelineRunsWithHttpInfo(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<PipelineRun>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRunsWithHttpInfo(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -1179,18 +662,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public getPipelineRuns(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<Array<PipelineRun>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelineRuns(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -1200,18 +672,7 @@ export class PromiseBlueOceanApi {
      * @param organization Name of the organization
      */
     public getPipelinesWithHttpInfo(organization: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<Pipeline>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelinesWithHttpInfo(organization, observableOptions);
         return result.toPromise();
     }
@@ -1221,18 +682,7 @@ export class PromiseBlueOceanApi {
      * @param organization Name of the organization
      */
     public getPipelines(organization: string, _options?: PromiseConfigurationOptions): Promise<Array<Pipeline>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getPipelines(organization, observableOptions);
         return result.toPromise();
     }
@@ -1243,18 +693,7 @@ export class PromiseBlueOceanApi {
      * @param scm Name of SCM
      */
     public getSCMWithHttpInfo(organization: string, scm: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GithubScm>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getSCMWithHttpInfo(organization, scm, observableOptions);
         return result.toPromise();
     }
@@ -1265,18 +704,7 @@ export class PromiseBlueOceanApi {
      * @param scm Name of SCM
      */
     public getSCM(organization: string, scm: string, _options?: PromiseConfigurationOptions): Promise<GithubScm> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getSCM(organization, scm, observableOptions);
         return result.toPromise();
     }
@@ -1291,18 +719,7 @@ export class PromiseBlueOceanApi {
      * @param [pageNumber] Page number
      */
     public getSCMOrganisationRepositoriesWithHttpInfo(organization: string, scm: string, scmOrganisation: string, credentialId?: string, pageSize?: number, pageNumber?: number, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<GithubOrganization>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getSCMOrganisationRepositoriesWithHttpInfo(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber, observableOptions);
         return result.toPromise();
     }
@@ -1317,18 +734,7 @@ export class PromiseBlueOceanApi {
      * @param [pageNumber] Page number
      */
     public getSCMOrganisationRepositories(organization: string, scm: string, scmOrganisation: string, credentialId?: string, pageSize?: number, pageNumber?: number, _options?: PromiseConfigurationOptions): Promise<Array<GithubOrganization>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber, observableOptions);
         return result.toPromise();
     }
@@ -1342,18 +748,7 @@ export class PromiseBlueOceanApi {
      * @param [credentialId] Credential ID
      */
     public getSCMOrganisationRepositoryWithHttpInfo(organization: string, scm: string, scmOrganisation: string, repository: string, credentialId?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<GithubOrganization>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getSCMOrganisationRepositoryWithHttpInfo(organization, scm, scmOrganisation, repository, credentialId, observableOptions);
         return result.toPromise();
     }
@@ -1367,18 +762,7 @@ export class PromiseBlueOceanApi {
      * @param [credentialId] Credential ID
      */
     public getSCMOrganisationRepository(organization: string, scm: string, scmOrganisation: string, repository: string, credentialId?: string, _options?: PromiseConfigurationOptions): Promise<Array<GithubOrganization>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId, observableOptions);
         return result.toPromise();
     }
@@ -1390,18 +774,7 @@ export class PromiseBlueOceanApi {
      * @param [credentialId] Credential ID
      */
     public getSCMOrganisationsWithHttpInfo(organization: string, scm: string, credentialId?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<GithubOrganization>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getSCMOrganisationsWithHttpInfo(organization, scm, credentialId, observableOptions);
         return result.toPromise();
     }
@@ -1413,18 +786,7 @@ export class PromiseBlueOceanApi {
      * @param [credentialId] Credential ID
      */
     public getSCMOrganisations(organization: string, scm: string, credentialId?: string, _options?: PromiseConfigurationOptions): Promise<Array<GithubOrganization>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getSCMOrganisations(organization, scm, credentialId, observableOptions);
         return result.toPromise();
     }
@@ -1435,18 +797,7 @@ export class PromiseBlueOceanApi {
      * @param user Name of the user
      */
     public getUserWithHttpInfo(organization: string, user: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<User>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getUserWithHttpInfo(organization, user, observableOptions);
         return result.toPromise();
     }
@@ -1457,18 +808,7 @@ export class PromiseBlueOceanApi {
      * @param user Name of the user
      */
     public getUser(organization: string, user: string, _options?: PromiseConfigurationOptions): Promise<User> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getUser(organization, user, observableOptions);
         return result.toPromise();
     }
@@ -1478,18 +818,7 @@ export class PromiseBlueOceanApi {
      * @param user Name of the user
      */
     public getUserFavoritesWithHttpInfo(user: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<FavoriteImpl>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getUserFavoritesWithHttpInfo(user, observableOptions);
         return result.toPromise();
     }
@@ -1499,18 +828,7 @@ export class PromiseBlueOceanApi {
      * @param user Name of the user
      */
     public getUserFavorites(user: string, _options?: PromiseConfigurationOptions): Promise<Array<FavoriteImpl>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getUserFavorites(user, observableOptions);
         return result.toPromise();
     }
@@ -1520,18 +838,7 @@ export class PromiseBlueOceanApi {
      * @param organization Name of the organization
      */
     public getUsersWithHttpInfo(organization: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<User>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getUsersWithHttpInfo(organization, observableOptions);
         return result.toPromise();
     }
@@ -1541,18 +848,7 @@ export class PromiseBlueOceanApi {
      * @param organization Name of the organization
      */
     public getUsers(organization: string, _options?: PromiseConfigurationOptions): Promise<User> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getUsers(organization, observableOptions);
         return result.toPromise();
     }
@@ -1564,18 +860,7 @@ export class PromiseBlueOceanApi {
      * @param run Name of the run
      */
     public postPipelineRunWithHttpInfo(organization: string, pipeline: string, run: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<QueueItemImpl>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postPipelineRunWithHttpInfo(organization, pipeline, run, observableOptions);
         return result.toPromise();
     }
@@ -1587,18 +872,7 @@ export class PromiseBlueOceanApi {
      * @param run Name of the run
      */
     public postPipelineRun(organization: string, pipeline: string, run: string, _options?: PromiseConfigurationOptions): Promise<QueueItemImpl> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postPipelineRun(organization, pipeline, run, observableOptions);
         return result.toPromise();
     }
@@ -1609,18 +883,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public postPipelineRunsWithHttpInfo(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<QueueItemImpl>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postPipelineRunsWithHttpInfo(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -1631,18 +894,7 @@ export class PromiseBlueOceanApi {
      * @param pipeline Name of the pipeline
      */
     public postPipelineRuns(organization: string, pipeline: string, _options?: PromiseConfigurationOptions): Promise<QueueItemImpl> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postPipelineRuns(organization, pipeline, observableOptions);
         return result.toPromise();
     }
@@ -1654,18 +906,7 @@ export class PromiseBlueOceanApi {
      * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
      */
     public putPipelineFavoriteWithHttpInfo(organization: string, pipeline: string, body: boolean, _options?: PromiseConfigurationOptions): Promise<HttpInfo<FavoriteImpl>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.putPipelineFavoriteWithHttpInfo(organization, pipeline, body, observableOptions);
         return result.toPromise();
     }
@@ -1677,18 +918,7 @@ export class PromiseBlueOceanApi {
      * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
      */
     public putPipelineFavorite(organization: string, pipeline: string, body: boolean, _options?: PromiseConfigurationOptions): Promise<FavoriteImpl> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.putPipelineFavorite(organization, pipeline, body, observableOptions);
         return result.toPromise();
     }
@@ -1702,18 +932,7 @@ export class PromiseBlueOceanApi {
      * @param [timeOutInSecs] Timeout in seconds, default: 10 seconds
      */
     public putPipelineRunWithHttpInfo(organization: string, pipeline: string, run: string, blocking?: string, timeOutInSecs?: number, _options?: PromiseConfigurationOptions): Promise<HttpInfo<PipelineRun>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.putPipelineRunWithHttpInfo(organization, pipeline, run, blocking, timeOutInSecs, observableOptions);
         return result.toPromise();
     }
@@ -1727,18 +946,7 @@ export class PromiseBlueOceanApi {
      * @param [timeOutInSecs] Timeout in seconds, default: 10 seconds
      */
     public putPipelineRun(organization: string, pipeline: string, run: string, blocking?: string, timeOutInSecs?: number, _options?: PromiseConfigurationOptions): Promise<PipelineRun> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs, observableOptions);
         return result.toPromise();
     }
@@ -1748,18 +956,7 @@ export class PromiseBlueOceanApi {
      * @param q Query string
      */
     public searchWithHttpInfo(q: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<string>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.searchWithHttpInfo(q, observableOptions);
         return result.toPromise();
     }
@@ -1769,18 +966,7 @@ export class PromiseBlueOceanApi {
      * @param q Query string
      */
     public search(q: string, _options?: PromiseConfigurationOptions): Promise<string> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.search(q, observableOptions);
         return result.toPromise();
     }
@@ -1790,18 +976,7 @@ export class PromiseBlueOceanApi {
      * @param q Query string containing an array of class names
      */
     public searchClassesWithHttpInfo(q: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<string>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.searchClassesWithHttpInfo(q, observableOptions);
         return result.toPromise();
     }
@@ -1811,18 +986,7 @@ export class PromiseBlueOceanApi {
      * @param q Query string containing an array of class names
      */
     public searchClasses(q: string, _options?: PromiseConfigurationOptions): Promise<string> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.searchClasses(q, observableOptions);
         return result.toPromise();
     }
@@ -1851,18 +1015,7 @@ export class PromiseRemoteAccessApi {
      * @param depth Recursion depth in response model
      */
     public getComputerWithHttpInfo(depth: number, _options?: PromiseConfigurationOptions): Promise<HttpInfo<ComputerSet>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getComputerWithHttpInfo(depth, observableOptions);
         return result.toPromise();
     }
@@ -1872,18 +1025,7 @@ export class PromiseRemoteAccessApi {
      * @param depth Recursion depth in response model
      */
     public getComputer(depth: number, _options?: PromiseConfigurationOptions): Promise<ComputerSet> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getComputer(depth, observableOptions);
         return result.toPromise();
     }
@@ -1892,18 +1034,7 @@ export class PromiseRemoteAccessApi {
      * Retrieve Jenkins details
      */
     public getJenkinsWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<Hudson>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJenkinsWithHttpInfo(observableOptions);
         return result.toPromise();
     }
@@ -1912,18 +1043,7 @@ export class PromiseRemoteAccessApi {
      * Retrieve Jenkins details
      */
     public getJenkins(_options?: PromiseConfigurationOptions): Promise<Hudson> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJenkins(observableOptions);
         return result.toPromise();
     }
@@ -1933,18 +1053,7 @@ export class PromiseRemoteAccessApi {
      * @param name Name of the job
      */
     public getJobWithHttpInfo(name: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<FreeStyleProject>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJobWithHttpInfo(name, observableOptions);
         return result.toPromise();
     }
@@ -1954,18 +1063,7 @@ export class PromiseRemoteAccessApi {
      * @param name Name of the job
      */
     public getJob(name: string, _options?: PromiseConfigurationOptions): Promise<FreeStyleProject> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJob(name, observableOptions);
         return result.toPromise();
     }
@@ -1975,18 +1073,7 @@ export class PromiseRemoteAccessApi {
      * @param name Name of the job
      */
     public getJobConfigWithHttpInfo(name: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<string>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJobConfigWithHttpInfo(name, observableOptions);
         return result.toPromise();
     }
@@ -1996,18 +1083,7 @@ export class PromiseRemoteAccessApi {
      * @param name Name of the job
      */
     public getJobConfig(name: string, _options?: PromiseConfigurationOptions): Promise<string> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJobConfig(name, observableOptions);
         return result.toPromise();
     }
@@ -2017,18 +1093,7 @@ export class PromiseRemoteAccessApi {
      * @param name Name of the job
      */
     public getJobLastBuildWithHttpInfo(name: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<FreeStyleBuild>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJobLastBuildWithHttpInfo(name, observableOptions);
         return result.toPromise();
     }
@@ -2038,18 +1103,7 @@ export class PromiseRemoteAccessApi {
      * @param name Name of the job
      */
     public getJobLastBuild(name: string, _options?: PromiseConfigurationOptions): Promise<FreeStyleBuild> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJobLastBuild(name, observableOptions);
         return result.toPromise();
     }
@@ -2061,18 +1115,7 @@ export class PromiseRemoteAccessApi {
      * @param start Starting point of progressive text output
      */
     public getJobProgressiveTextWithHttpInfo(name: string, number: string, start: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJobProgressiveTextWithHttpInfo(name, number, start, observableOptions);
         return result.toPromise();
     }
@@ -2084,18 +1127,7 @@ export class PromiseRemoteAccessApi {
      * @param start Starting point of progressive text output
      */
     public getJobProgressiveText(name: string, number: string, start: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getJobProgressiveText(name, number, start, observableOptions);
         return result.toPromise();
     }
@@ -2104,18 +1136,7 @@ export class PromiseRemoteAccessApi {
      * Retrieve queue details
      */
     public getQueueWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<Queue>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getQueueWithHttpInfo(observableOptions);
         return result.toPromise();
     }
@@ -2124,18 +1145,7 @@ export class PromiseRemoteAccessApi {
      * Retrieve queue details
      */
     public getQueue(_options?: PromiseConfigurationOptions): Promise<Queue> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getQueue(observableOptions);
         return result.toPromise();
     }
@@ -2145,18 +1155,7 @@ export class PromiseRemoteAccessApi {
      * @param number Queue number
      */
     public getQueueItemWithHttpInfo(number: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<Queue>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getQueueItemWithHttpInfo(number, observableOptions);
         return result.toPromise();
     }
@@ -2166,18 +1165,7 @@ export class PromiseRemoteAccessApi {
      * @param number Queue number
      */
     public getQueueItem(number: string, _options?: PromiseConfigurationOptions): Promise<Queue> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getQueueItem(number, observableOptions);
         return result.toPromise();
     }
@@ -2187,18 +1175,7 @@ export class PromiseRemoteAccessApi {
      * @param name Name of the view
      */
     public getViewWithHttpInfo(name: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<ListView>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getViewWithHttpInfo(name, observableOptions);
         return result.toPromise();
     }
@@ -2208,18 +1185,7 @@ export class PromiseRemoteAccessApi {
      * @param name Name of the view
      */
     public getView(name: string, _options?: PromiseConfigurationOptions): Promise<ListView> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getView(name, observableOptions);
         return result.toPromise();
     }
@@ -2229,18 +1195,7 @@ export class PromiseRemoteAccessApi {
      * @param name Name of the view
      */
     public getViewConfigWithHttpInfo(name: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<string>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getViewConfigWithHttpInfo(name, observableOptions);
         return result.toPromise();
     }
@@ -2250,18 +1205,7 @@ export class PromiseRemoteAccessApi {
      * @param name Name of the view
      */
     public getViewConfig(name: string, _options?: PromiseConfigurationOptions): Promise<string> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getViewConfig(name, observableOptions);
         return result.toPromise();
     }
@@ -2270,18 +1214,7 @@ export class PromiseRemoteAccessApi {
      * Retrieve Jenkins headers
      */
     public headJenkinsWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.headJenkinsWithHttpInfo(observableOptions);
         return result.toPromise();
     }
@@ -2290,18 +1223,7 @@ export class PromiseRemoteAccessApi {
      * Retrieve Jenkins headers
      */
     public headJenkins(_options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.headJenkins(observableOptions);
         return result.toPromise();
     }
@@ -2316,18 +1238,7 @@ export class PromiseRemoteAccessApi {
      * @param [body] Job configuration in config.xml format
      */
     public postCreateItemWithHttpInfo(name: string, _from?: string, mode?: string, jenkinsCrumb?: string, contentType?: string, body?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postCreateItemWithHttpInfo(name, _from, mode, jenkinsCrumb, contentType, body, observableOptions);
         return result.toPromise();
     }
@@ -2342,18 +1253,7 @@ export class PromiseRemoteAccessApi {
      * @param [body] Job configuration in config.xml format
      */
     public postCreateItem(name: string, _from?: string, mode?: string, jenkinsCrumb?: string, contentType?: string, body?: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postCreateItem(name, _from, mode, jenkinsCrumb, contentType, body, observableOptions);
         return result.toPromise();
     }
@@ -2366,18 +1266,7 @@ export class PromiseRemoteAccessApi {
      * @param [body] View configuration in config.xml format
      */
     public postCreateViewWithHttpInfo(name: string, jenkinsCrumb?: string, contentType?: string, body?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postCreateViewWithHttpInfo(name, jenkinsCrumb, contentType, body, observableOptions);
         return result.toPromise();
     }
@@ -2390,18 +1279,7 @@ export class PromiseRemoteAccessApi {
      * @param [body] View configuration in config.xml format
      */
     public postCreateView(name: string, jenkinsCrumb?: string, contentType?: string, body?: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postCreateView(name, jenkinsCrumb, contentType, body, observableOptions);
         return result.toPromise();
     }
@@ -2414,18 +1292,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobBuildWithHttpInfo(name: string, json: string, token?: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobBuildWithHttpInfo(name, json, token, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2438,18 +1305,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobBuild(name: string, json: string, token?: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobBuild(name, json, token, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2461,18 +1317,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobConfigWithHttpInfo(name: string, body: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobConfigWithHttpInfo(name, body, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2484,18 +1329,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobConfig(name: string, body: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobConfig(name, body, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2506,18 +1340,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobDeleteWithHttpInfo(name: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobDeleteWithHttpInfo(name, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2528,18 +1351,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobDelete(name: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobDelete(name, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2550,18 +1362,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobDisableWithHttpInfo(name: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobDisableWithHttpInfo(name, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2572,18 +1373,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobDisable(name: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobDisable(name, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2594,18 +1384,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobEnableWithHttpInfo(name: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobEnableWithHttpInfo(name, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2616,18 +1395,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobEnable(name: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobEnable(name, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2638,18 +1406,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobLastBuildStopWithHttpInfo(name: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobLastBuildStopWithHttpInfo(name, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2660,18 +1417,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postJobLastBuildStop(name: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postJobLastBuildStop(name, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2683,18 +1429,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postViewConfigWithHttpInfo(name: string, body: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postViewConfigWithHttpInfo(name, body, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }
@@ -2706,18 +1441,7 @@ export class PromiseRemoteAccessApi {
      * @param [jenkinsCrumb] CSRF protection token
      */
     public postViewConfig(name: string, body: string, jenkinsCrumb?: string, _options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.postViewConfig(name, body, jenkinsCrumb, observableOptions);
         return result.toPromise();
     }

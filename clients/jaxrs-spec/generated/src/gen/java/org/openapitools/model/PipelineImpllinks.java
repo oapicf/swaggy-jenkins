@@ -12,38 +12,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 
 @JsonTypeName("PipelineImpllinks")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2025-05-10T02:40:32.828902557Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-02-01T01:24:35.543085533Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineImpllinks   {
-  private Link runs;
   private Link self;
-  private Link queue;
   private Link actions;
+  private Link runs;
+  private Link queue;
   private String propertyClass;
 
   public PipelineImpllinks() {
-  }
-
-  /**
-   **/
-  public PipelineImpllinks runs(Link runs) {
-    this.runs = runs;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "")
-  @JsonProperty("runs")
-  @Valid public Link getRuns() {
-    return runs;
-  }
-
-  @JsonProperty("runs")
-  public void setRuns(Link runs) {
-    this.runs = runs;
   }
 
   /**
@@ -67,25 +49,6 @@ public class PipelineImpllinks   {
 
   /**
    **/
-  public PipelineImpllinks queue(Link queue) {
-    this.queue = queue;
-    return this;
-  }
-
-  
-  @ApiModelProperty(value = "")
-  @JsonProperty("queue")
-  @Valid public Link getQueue() {
-    return queue;
-  }
-
-  @JsonProperty("queue")
-  public void setQueue(Link queue) {
-    this.queue = queue;
-  }
-
-  /**
-   **/
   public PipelineImpllinks actions(Link actions) {
     this.actions = actions;
     return this;
@@ -101,6 +64,44 @@ public class PipelineImpllinks   {
   @JsonProperty("actions")
   public void setActions(Link actions) {
     this.actions = actions;
+  }
+
+  /**
+   **/
+  public PipelineImpllinks runs(Link runs) {
+    this.runs = runs;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("runs")
+  @Valid public Link getRuns() {
+    return runs;
+  }
+
+  @JsonProperty("runs")
+  public void setRuns(Link runs) {
+    this.runs = runs;
+  }
+
+  /**
+   **/
+  public PipelineImpllinks queue(Link queue) {
+    this.queue = queue;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "")
+  @JsonProperty("queue")
+  @Valid public Link getQueue() {
+    return queue;
+  }
+
+  @JsonProperty("queue")
+  public void setQueue(Link queue) {
+    this.queue = queue;
   }
 
   /**
@@ -132,16 +133,16 @@ public class PipelineImpllinks   {
       return false;
     }
     PipelineImpllinks pipelineImpllinks = (PipelineImpllinks) o;
-    return Objects.equals(this.runs, pipelineImpllinks.runs) &&
-        Objects.equals(this.self, pipelineImpllinks.self) &&
-        Objects.equals(this.queue, pipelineImpllinks.queue) &&
+    return Objects.equals(this.self, pipelineImpllinks.self) &&
         Objects.equals(this.actions, pipelineImpllinks.actions) &&
+        Objects.equals(this.runs, pipelineImpllinks.runs) &&
+        Objects.equals(this.queue, pipelineImpllinks.queue) &&
         Objects.equals(this.propertyClass, pipelineImpllinks.propertyClass);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(runs, self, queue, actions, propertyClass);
+    return Objects.hash(self, actions, runs, queue, propertyClass);
   }
 
   @Override
@@ -149,10 +150,10 @@ public class PipelineImpllinks   {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineImpllinks {\n");
     
-    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
+    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
+    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("}");
     return sb.toString();

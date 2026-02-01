@@ -13,14 +13,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FavoriteImpl  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private FavoriteImpllinks links;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private PipelineImpl item;
  /**
    * Get propertyClass

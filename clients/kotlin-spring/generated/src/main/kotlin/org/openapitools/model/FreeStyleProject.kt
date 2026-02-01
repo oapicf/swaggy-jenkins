@@ -138,7 +138,7 @@ data class FreeStyleProject(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("scm") val scm: NullSCM? = null
-    ) {
+) {
 
 }
 

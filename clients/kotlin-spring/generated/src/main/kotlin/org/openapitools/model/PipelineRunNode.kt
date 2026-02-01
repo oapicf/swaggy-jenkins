@@ -51,7 +51,7 @@ data class PipelineRunNode(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("state") val state: kotlin.String? = null
-    ) {
+) {
 
 }
 

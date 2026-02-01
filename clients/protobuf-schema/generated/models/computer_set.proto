@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -18,14 +18,15 @@ import public "models/hudson_master_computer.proto";
 
 message ComputerSet {
 
-  string _class = 406713225;
+  string class = 94742904;
 
-  int32 busyExecutors = 37165066;
+  int32 busy_executors = 202831048;
 
   repeated HudsonMasterComputer computer = 62292198;
 
-  string displayName = 103536240;
+  string display_name = 4473835;
 
-  int32 totalExecutors = 270740708;
+  int32 total_executors = 84233532;
 
 }
+

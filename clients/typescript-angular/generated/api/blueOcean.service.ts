@@ -11,10 +11,10 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent, HttpParameterCodec, HttpContext 
+         HttpResponse, HttpEvent, HttpContext 
         }       from '@angular/common/http';
-import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
+import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
 
 // @ts-ignore
 import { BranchImpl } from '../model/branchImpl';
@@ -65,11 +65,13 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Delete queue item from an organization pipeline queue
+     * @endpoint delete /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param queue Name of the queue item
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public deletePipelineQueueItem(organization: string, pipeline: string, queue: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
     public deletePipelineQueueItem(organization: string, pipeline: string, queue: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
@@ -113,14 +115,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/queue/${this.configuration.encodeParam({name: "queue", value: queue, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<any>('delete', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -128,9 +131,11 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve authenticated user details for an organization
+     * @endpoint get /blue/rest/organizations/{organization}/user/
      * @param organization Name of the organization
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getAuthenticatedUser(organization: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<User>;
     public getAuthenticatedUser(organization: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<User>>;
@@ -169,14 +174,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/user/`;
-        return this.httpClient.request<User>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<User>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -184,9 +190,11 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Get a list of class names supported by a given class
+     * @endpoint get /blue/rest/classes/{class}
      * @param _class Name of the class
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getClasses(_class: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<string>;
     public getClasses(_class: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<string>>;
@@ -225,14 +233,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/classes/${this.configuration.encodeParam({name: "_class", value: _class, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<string>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<string>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -240,9 +249,11 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve JSON Web Key
+     * @endpoint get /jwt-auth/jwks/{key}
      * @param key Key ID received as part of JWT header field kid
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getJsonWebKey(key: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<string>;
     public getJsonWebKey(key: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<string>>;
@@ -278,14 +289,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/jwt-auth/jwks/${this.configuration.encodeParam({name: "key", value: key, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: undefined})}`;
-        return this.httpClient.request<string>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<string>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -293,21 +305,37 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve JSON Web Token
+     * @endpoint get /jwt-auth/token
      * @param expiryTimeInMins Token expiry time in minutes, default: 30 minutes
      * @param maxExpiryTimeInMins Maximum token expiry time in minutes, default: 480 minutes
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getJsonWebToken(expiryTimeInMins?: number, maxExpiryTimeInMins?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<string>;
     public getJsonWebToken(expiryTimeInMins?: number, maxExpiryTimeInMins?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<string>>;
     public getJsonWebToken(expiryTimeInMins?: number, maxExpiryTimeInMins?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<string>>;
     public getJsonWebToken(expiryTimeInMins?: number, maxExpiryTimeInMins?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>expiryTimeInMins, 'expiryTimeInMins');
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>maxExpiryTimeInMins, 'maxExpiryTimeInMins');
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'expiryTimeInMins',
+            <any>expiryTimeInMins,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'maxExpiryTimeInMins',
+            <any>maxExpiryTimeInMins,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -335,15 +363,16 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/jwt-auth/token`;
-        return this.httpClient.request<string>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<string>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                params: localVarQueryParameters,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -351,9 +380,11 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve organization details
+     * @endpoint get /blue/rest/organizations/{organization}
      * @param organization Name of the organization
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getOrganisation(organization: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Organisation>;
     public getOrganisation(organization: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Organisation>>;
@@ -392,14 +423,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<Organisation>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Organisation>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -407,8 +439,10 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve all organizations details
+     * @endpoint get /blue/rest/organizations/
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getOrganisations(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<Organisation>>;
     public getOrganisations(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<Organisation>>>;
@@ -444,14 +478,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/`;
-        return this.httpClient.request<Array<Organisation>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<Organisation>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -459,10 +494,12 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve pipeline details for an organization
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipeline(organization: string, pipeline: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Pipeline>;
     public getPipeline(organization: string, pipeline: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Pipeline>>;
@@ -504,14 +541,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<Pipeline>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Pipeline>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -519,10 +557,12 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve all activities details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineActivities(organization: string, pipeline: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<PipelineActivity>>;
     public getPipelineActivities(organization: string, pipeline: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<PipelineActivity>>>;
@@ -564,14 +604,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/activities`;
-        return this.httpClient.request<Array<PipelineActivity>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<PipelineActivity>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -579,11 +620,13 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve branch details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param branch Name of the branch
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineBranch(organization: string, pipeline: string, branch: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<BranchImpl>;
     public getPipelineBranch(organization: string, pipeline: string, branch: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<BranchImpl>>;
@@ -628,14 +671,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/branches/${this.configuration.encodeParam({name: "branch", value: branch, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/`;
-        return this.httpClient.request<BranchImpl>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<BranchImpl>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -643,12 +687,14 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve branch run details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param branch Name of the branch
      * @param run Name of the run
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineBranchRun(organization: string, pipeline: string, branch: string, run: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PipelineRun>;
     public getPipelineBranchRun(organization: string, pipeline: string, branch: string, run: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PipelineRun>>;
@@ -696,14 +742,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/branches/${this.configuration.encodeParam({name: "branch", value: branch, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs/${this.configuration.encodeParam({name: "run", value: run, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<PipelineRun>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PipelineRun>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -711,10 +758,12 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve all branches details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineBranches(organization: string, pipeline: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<MultibranchPipeline>;
     public getPipelineBranches(organization: string, pipeline: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<MultibranchPipeline>>;
@@ -756,14 +805,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/branches`;
-        return this.httpClient.request<MultibranchPipeline>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<MultibranchPipeline>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -771,10 +821,12 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve pipeline folder for an organization
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{folder}/
      * @param organization Name of the organization
      * @param folder Name of the folder
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineFolder(organization: string, folder: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PipelineFolderImpl>;
     public getPipelineFolder(organization: string, folder: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PipelineFolderImpl>>;
@@ -816,14 +868,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "folder", value: folder, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/`;
-        return this.httpClient.request<PipelineFolderImpl>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PipelineFolderImpl>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -831,11 +884,13 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve pipeline details for an organization folder
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param folder Name of the folder
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineFolderPipeline(organization: string, pipeline: string, folder: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PipelineImpl>;
     public getPipelineFolderPipeline(organization: string, pipeline: string, folder: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PipelineImpl>>;
@@ -880,14 +935,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "folder", value: folder, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<PipelineImpl>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PipelineImpl>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -895,10 +951,12 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve queue details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineQueue(organization: string, pipeline: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<QueueItemImpl>>;
     public getPipelineQueue(organization: string, pipeline: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<QueueItemImpl>>>;
@@ -940,14 +998,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/queue`;
-        return this.httpClient.request<Array<QueueItemImpl>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<QueueItemImpl>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -955,11 +1014,13 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve run details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param run Name of the run
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineRun(organization: string, pipeline: string, run: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PipelineRun>;
     public getPipelineRun(organization: string, pipeline: string, run: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PipelineRun>>;
@@ -1004,14 +1065,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs/${this.configuration.encodeParam({name: "run", value: run, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<PipelineRun>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PipelineRun>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1019,6 +1081,7 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Get log for a pipeline run
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param run Name of the run
@@ -1026,6 +1089,7 @@ export class BlueOceanService extends BaseService {
      * @param download Set to true in order to download the file, otherwise it\&#39;s passed as a response body
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineRunLog(organization: string, pipeline: string, run: string, start?: number, download?: boolean, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<string>;
     public getPipelineRunLog(organization: string, pipeline: string, run: string, start?: number, download?: boolean, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<string>>;
@@ -1041,11 +1105,25 @@ export class BlueOceanService extends BaseService {
             throw new Error('Required parameter run was null or undefined when calling getPipelineRunLog.');
         }
 
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>start, 'start');
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>download, 'download');
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'start',
+            <any>start,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'download',
+            <any>download,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -1076,15 +1154,16 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs/${this.configuration.encodeParam({name: "run", value: run, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/log`;
-        return this.httpClient.request<string>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<string>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                params: localVarQueryParameters,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1092,12 +1171,14 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve run node details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param run Name of the run
      * @param node Name of the node
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineRunNode(organization: string, pipeline: string, run: string, node: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PipelineRunNode>;
     public getPipelineRunNode(organization: string, pipeline: string, run: string, node: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PipelineRunNode>>;
@@ -1145,14 +1226,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs/${this.configuration.encodeParam({name: "run", value: run, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/nodes/${this.configuration.encodeParam({name: "node", value: node, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<PipelineRunNode>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PipelineRunNode>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1160,6 +1242,7 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve run node details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param run Name of the run
@@ -1167,6 +1250,7 @@ export class BlueOceanService extends BaseService {
      * @param step Name of the step
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineRunNodeStep(organization: string, pipeline: string, run: string, node: string, step: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PipelineStepImpl>;
     public getPipelineRunNodeStep(organization: string, pipeline: string, run: string, node: string, step: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PipelineStepImpl>>;
@@ -1217,14 +1301,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs/${this.configuration.encodeParam({name: "run", value: run, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/nodes/${this.configuration.encodeParam({name: "node", value: node, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/steps/${this.configuration.encodeParam({name: "step", value: step, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<PipelineStepImpl>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PipelineStepImpl>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1232,6 +1317,7 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Get log for a pipeline run node step
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param run Name of the run
@@ -1239,6 +1325,7 @@ export class BlueOceanService extends BaseService {
      * @param step Name of the step
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineRunNodeStepLog(organization: string, pipeline: string, run: string, node: string, step: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<string>;
     public getPipelineRunNodeStepLog(organization: string, pipeline: string, run: string, node: string, step: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<string>>;
@@ -1289,14 +1376,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs/${this.configuration.encodeParam({name: "run", value: run, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/nodes/${this.configuration.encodeParam({name: "node", value: node, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/steps/${this.configuration.encodeParam({name: "step", value: step, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/log`;
-        return this.httpClient.request<string>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<string>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1304,12 +1392,14 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve run node steps details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param run Name of the run
      * @param node Name of the node
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineRunNodeSteps(organization: string, pipeline: string, run: string, node: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<PipelineStepImpl>>;
     public getPipelineRunNodeSteps(organization: string, pipeline: string, run: string, node: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<PipelineStepImpl>>>;
@@ -1357,14 +1447,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs/${this.configuration.encodeParam({name: "run", value: run, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/nodes/${this.configuration.encodeParam({name: "node", value: node, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/steps`;
-        return this.httpClient.request<Array<PipelineStepImpl>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<PipelineStepImpl>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1372,11 +1463,13 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve run nodes details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param run Name of the run
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineRunNodes(organization: string, pipeline: string, run: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<PipelineRunNode>>;
     public getPipelineRunNodes(organization: string, pipeline: string, run: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<PipelineRunNode>>>;
@@ -1421,14 +1514,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs/${this.configuration.encodeParam({name: "run", value: run, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/nodes`;
-        return this.httpClient.request<Array<PipelineRunNode>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<PipelineRunNode>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1436,10 +1530,12 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve all runs details for an organization pipeline
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelineRuns(organization: string, pipeline: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<PipelineRun>>;
     public getPipelineRuns(organization: string, pipeline: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<PipelineRun>>>;
@@ -1481,14 +1577,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs`;
-        return this.httpClient.request<Array<PipelineRun>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<PipelineRun>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1496,9 +1593,11 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve all pipelines details for an organization
+     * @endpoint get /blue/rest/organizations/{organization}/pipelines/
      * @param organization Name of the organization
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getPipelines(organization: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<Pipeline>>;
     public getPipelines(organization: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<Pipeline>>>;
@@ -1537,14 +1636,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/`;
-        return this.httpClient.request<Array<Pipeline>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<Pipeline>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1552,10 +1652,12 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve SCM details for an organization
+     * @endpoint get /blue/rest/organizations/{organization}/scm/{scm}
      * @param organization Name of the organization
      * @param scm Name of SCM
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getSCM(organization: string, scm: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<GithubScm>;
     public getSCM(organization: string, scm: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GithubScm>>;
@@ -1597,14 +1699,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/scm/${this.configuration.encodeParam({name: "scm", value: scm, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<GithubScm>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<GithubScm>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1612,6 +1715,7 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve SCM organization repositories details for an organization
+     * @endpoint get /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
      * @param organization Name of the organization
      * @param scm Name of SCM
      * @param scmOrganisation Name of the SCM organization
@@ -1620,6 +1724,7 @@ export class BlueOceanService extends BaseService {
      * @param pageNumber Page number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getSCMOrganisationRepositories(organization: string, scm: string, scmOrganisation: string, credentialId?: string, pageSize?: number, pageNumber?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<GithubOrganization>>;
     public getSCMOrganisationRepositories(organization: string, scm: string, scmOrganisation: string, credentialId?: string, pageSize?: number, pageNumber?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<GithubOrganization>>>;
@@ -1635,13 +1740,34 @@ export class BlueOceanService extends BaseService {
             throw new Error('Required parameter scmOrganisation was null or undefined when calling getSCMOrganisationRepositories.');
         }
 
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>credentialId, 'credentialId');
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>pageSize, 'pageSize');
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>pageNumber, 'pageNumber');
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'credentialId',
+            <any>credentialId,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'pageSize',
+            <any>pageSize,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'pageNumber',
+            <any>pageNumber,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -1672,15 +1798,16 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/scm/${this.configuration.encodeParam({name: "scm", value: scm, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/organizations/${this.configuration.encodeParam({name: "scmOrganisation", value: scmOrganisation, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/repositories`;
-        return this.httpClient.request<Array<GithubOrganization>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<GithubOrganization>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                params: localVarQueryParameters,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1688,6 +1815,7 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve SCM organization repository details for an organization
+     * @endpoint get /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
      * @param organization Name of the organization
      * @param scm Name of SCM
      * @param scmOrganisation Name of the SCM organization
@@ -1695,6 +1823,7 @@ export class BlueOceanService extends BaseService {
      * @param credentialId Credential ID
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getSCMOrganisationRepository(organization: string, scm: string, scmOrganisation: string, repository: string, credentialId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<GithubOrganization>>;
     public getSCMOrganisationRepository(organization: string, scm: string, scmOrganisation: string, repository: string, credentialId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<GithubOrganization>>>;
@@ -1713,9 +1842,16 @@ export class BlueOceanService extends BaseService {
             throw new Error('Required parameter repository was null or undefined when calling getSCMOrganisationRepository.');
         }
 
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>credentialId, 'credentialId');
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'credentialId',
+            <any>credentialId,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -1746,15 +1882,16 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/scm/${this.configuration.encodeParam({name: "scm", value: scm, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/organizations/${this.configuration.encodeParam({name: "scmOrganisation", value: scmOrganisation, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/repositories/${this.configuration.encodeParam({name: "repository", value: repository, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<Array<GithubOrganization>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<GithubOrganization>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                params: localVarQueryParameters,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1762,11 +1899,13 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve SCM organizations details for an organization
+     * @endpoint get /blue/rest/organizations/{organization}/scm/{scm}/organizations
      * @param organization Name of the organization
      * @param scm Name of SCM
      * @param credentialId Credential ID
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getSCMOrganisations(organization: string, scm: string, credentialId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<GithubOrganization>>;
     public getSCMOrganisations(organization: string, scm: string, credentialId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<GithubOrganization>>>;
@@ -1779,9 +1918,16 @@ export class BlueOceanService extends BaseService {
             throw new Error('Required parameter scm was null or undefined when calling getSCMOrganisations.');
         }
 
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>credentialId, 'credentialId');
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'credentialId',
+            <any>credentialId,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -1812,15 +1958,16 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/scm/${this.configuration.encodeParam({name: "scm", value: scm, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/organizations`;
-        return this.httpClient.request<Array<GithubOrganization>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<GithubOrganization>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                params: localVarQueryParameters,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1828,10 +1975,12 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve user details for an organization
+     * @endpoint get /blue/rest/organizations/{organization}/users/{user}
      * @param organization Name of the organization
      * @param user Name of the user
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getUser(organization: string, user: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<User>;
     public getUser(organization: string, user: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<User>>;
@@ -1873,14 +2022,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/users/${this.configuration.encodeParam({name: "user", value: user, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<User>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<User>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1888,9 +2038,11 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve user favorites details for an organization
+     * @endpoint get /blue/rest/users/{user}/favorites
      * @param user Name of the user
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getUserFavorites(user: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<FavoriteImpl>>;
     public getUserFavorites(user: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<FavoriteImpl>>>;
@@ -1929,14 +2081,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/users/${this.configuration.encodeParam({name: "user", value: user, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/favorites`;
-        return this.httpClient.request<Array<FavoriteImpl>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<FavoriteImpl>>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -1944,9 +2097,11 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Retrieve users details for an organization
+     * @endpoint get /blue/rest/organizations/{organization}/users/
      * @param organization Name of the organization
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public getUsers(organization: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<User>;
     public getUsers(organization: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<User>>;
@@ -1985,14 +2140,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/users/`;
-        return this.httpClient.request<User>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<User>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -2000,11 +2156,13 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Replay an organization pipeline run
+     * @endpoint post /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param run Name of the run
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public postPipelineRun(organization: string, pipeline: string, run: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<QueueItemImpl>;
     public postPipelineRun(organization: string, pipeline: string, run: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<QueueItemImpl>>;
@@ -2049,14 +2207,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs/${this.configuration.encodeParam({name: "run", value: run, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/replay`;
-        return this.httpClient.request<QueueItemImpl>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<QueueItemImpl>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -2064,10 +2223,12 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Start a build for an organization pipeline
+     * @endpoint post /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public postPipelineRuns(organization: string, pipeline: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<QueueItemImpl>;
     public postPipelineRuns(organization: string, pipeline: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<QueueItemImpl>>;
@@ -2109,14 +2270,15 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs`;
-        return this.httpClient.request<QueueItemImpl>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<QueueItemImpl>('post', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -2124,11 +2286,13 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Favorite/unfavorite a pipeline
+     * @endpoint put /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param body Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public putPipelineFavorite(organization: string, pipeline: string, body: boolean, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<FavoriteImpl>;
     public putPipelineFavorite(organization: string, pipeline: string, body: boolean, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<FavoriteImpl>>;
@@ -2182,15 +2346,16 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/favorite`;
-        return this.httpClient.request<FavoriteImpl>('put', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<FavoriteImpl>('put', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 body: body,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -2198,6 +2363,7 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Stop a build of an organization pipeline
+     * @endpoint put /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop
      * @param organization Name of the organization
      * @param pipeline Name of the pipeline
      * @param run Name of the run
@@ -2205,6 +2371,7 @@ export class BlueOceanService extends BaseService {
      * @param timeOutInSecs Timeout in seconds, default: 10 seconds
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public putPipelineRun(organization: string, pipeline: string, run: string, blocking?: string, timeOutInSecs?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PipelineRun>;
     public putPipelineRun(organization: string, pipeline: string, run: string, blocking?: string, timeOutInSecs?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PipelineRun>>;
@@ -2220,11 +2387,25 @@ export class BlueOceanService extends BaseService {
             throw new Error('Required parameter run was null or undefined when calling putPipelineRun.');
         }
 
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>blocking, 'blocking');
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>timeOutInSecs, 'timeOutInSecs');
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'blocking',
+            <any>blocking,
+            QueryParamStyle.Form,
+            true,
+        );
+
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'timeOutInSecs',
+            <any>timeOutInSecs,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -2255,15 +2436,16 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/organizations/${this.configuration.encodeParam({name: "organization", value: organization, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/pipelines/${this.configuration.encodeParam({name: "pipeline", value: pipeline, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/runs/${this.configuration.encodeParam({name: "run", value: run, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/stop`;
-        return this.httpClient.request<PipelineRun>('put', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<PipelineRun>('put', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                params: localVarQueryParameters,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -2271,9 +2453,11 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Search for any resource details
+     * @endpoint get /blue/rest/search/
      * @param q Query string
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public search(q: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<string>;
     public search(q: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<string>>;
@@ -2283,9 +2467,16 @@ export class BlueOceanService extends BaseService {
             throw new Error('Required parameter q was null or undefined when calling search.');
         }
 
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>q, 'q');
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'q',
+            <any>q,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -2316,15 +2507,16 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/search/`;
-        return this.httpClient.request<string>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<string>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                params: localVarQueryParameters,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -2332,9 +2524,11 @@ export class BlueOceanService extends BaseService {
 
     /**
      * Get classes details
+     * @endpoint get /blue/rest/classes/
      * @param q Query string containing an array of class names
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param options additional options
      */
     public searchClasses(q: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<string>;
     public searchClasses(q: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<string>>;
@@ -2344,9 +2538,16 @@ export class BlueOceanService extends BaseService {
             throw new Error('Required parameter q was null or undefined when calling searchClasses.');
         }
 
-        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-          <any>q, 'q');
+        let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
+
+        localVarQueryParameters = this.addToHttpParams(
+            localVarQueryParameters,
+            'q',
+            <any>q,
+            QueryParamStyle.Form,
+            true,
+        );
+
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -2377,15 +2578,16 @@ export class BlueOceanService extends BaseService {
         }
 
         let localVarPath = `/blue/rest/classes/`;
-        return this.httpClient.request<string>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<string>('get', `${basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                params: localVarQueryParameters,
+                params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
-                transferCache: localVarTransferCache,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );

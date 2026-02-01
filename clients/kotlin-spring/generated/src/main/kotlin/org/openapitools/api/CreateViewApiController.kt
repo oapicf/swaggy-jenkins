@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
+import org.openapitools.api.CreateViewApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -29,7 +30,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${api.base-path:}")
+@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
 class CreateViewApiController() {
 
     @Operation(
@@ -45,11 +46,22 @@ class CreateViewApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/createView"],
+        value = [PATH_POST_CREATE_VIEW /* "/createView" */],
         produces = ["*/*"],
         consumes = ["application/json"]
     )
-    fun postCreateView(@NotNull @Parameter(description = "Name of the new view", required = true) @Valid @RequestParam(value = "name", required = true) name: kotlin.String,@Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?,@Parameter(description = "Content type header application/xml", `in` = ParameterIn.HEADER) @RequestHeader(value = "Content-Type", required = false) contentType: kotlin.String?,@Parameter(description = "View configuration in config.xml format") @Valid @RequestBody(required = false) body: kotlin.String?): ResponseEntity<Unit> {
+    fun postCreateView(
+        @NotNull @Parameter(description = "Name of the new view", required = true) @Valid @RequestParam(value = "name", required = true) name: kotlin.String,
+        @Parameter(description = "CSRF protection token", `in` = ParameterIn.HEADER) @RequestHeader(value = "Jenkins-Crumb", required = false) jenkinsCrumb: kotlin.String?,
+        @Parameter(description = "Content type header application/xml", `in` = ParameterIn.HEADER) @RequestHeader(value = "Content-Type", required = false) contentType: kotlin.String?,
+        @Parameter(description = "View configuration in config.xml format") @Valid @RequestBody(required = false) body: kotlin.String?
+    ): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
+    }
+
+    companion object {
+        //for your own safety never directly reuse these path definitions in tests
+        const val BASE_PATH: String = ""
+        const val PATH_POST_CREATE_VIEW: String = "/createView"
     }
 }

@@ -18,9 +18,9 @@ class Queue
 
     /**
      * @DTA\Data(field="items", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection11::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection11::class})
-     * @var \App\DTO\Collection11|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection15::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection15::class})
+     * @var \App\DTO\Collection15|null
      */
     public $items;
 

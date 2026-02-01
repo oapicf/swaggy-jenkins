@@ -24,7 +24,7 @@ import javax.annotation.Generated;
  * FreeStyleBuild
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class FreeStyleBuild {
 
   private @Nullable String propertyClass;
@@ -64,7 +64,7 @@ public class FreeStyleBuild {
 
   private @Nullable EmptyChangeLogSet changeSet;
 
-  public FreeStyleBuild propertyClass(String propertyClass) {
+  public FreeStyleBuild propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -76,15 +76,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public FreeStyleBuild number(Integer number) {
+  public FreeStyleBuild number(@Nullable Integer number) {
     this.number = number;
     return this;
   }
@@ -96,15 +96,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "number", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("number")
-  public Integer getNumber() {
+  public @Nullable Integer getNumber() {
     return number;
   }
 
-  public void setNumber(Integer number) {
+  public void setNumber(@Nullable Integer number) {
     this.number = number;
   }
 
-  public FreeStyleBuild url(String url) {
+  public FreeStyleBuild url(@Nullable String url) {
     this.url = url;
     return this;
   }
@@ -116,11 +116,11 @@ public class FreeStyleBuild {
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")
-  public String getUrl() {
+  public @Nullable String getUrl() {
     return url;
   }
 
-  public void setUrl(String url) {
+  public void setUrl(@Nullable String url) {
     this.url = url;
   }
 
@@ -152,7 +152,7 @@ public class FreeStyleBuild {
     this.actions = actions;
   }
 
-  public FreeStyleBuild building(Boolean building) {
+  public FreeStyleBuild building(@Nullable Boolean building) {
     this.building = building;
     return this;
   }
@@ -164,15 +164,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "building", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("building")
-  public Boolean getBuilding() {
+  public @Nullable Boolean getBuilding() {
     return building;
   }
 
-  public void setBuilding(Boolean building) {
+  public void setBuilding(@Nullable Boolean building) {
     this.building = building;
   }
 
-  public FreeStyleBuild description(String description) {
+  public FreeStyleBuild description(@Nullable String description) {
     this.description = description;
     return this;
   }
@@ -184,15 +184,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
-  public String getDescription() {
+  public @Nullable String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@Nullable String description) {
     this.description = description;
   }
 
-  public FreeStyleBuild displayName(String displayName) {
+  public FreeStyleBuild displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -204,15 +204,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
-  public FreeStyleBuild duration(Integer duration) {
+  public FreeStyleBuild duration(@Nullable Integer duration) {
     this.duration = duration;
     return this;
   }
@@ -224,15 +224,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "duration", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("duration")
-  public Integer getDuration() {
+  public @Nullable Integer getDuration() {
     return duration;
   }
 
-  public void setDuration(Integer duration) {
+  public void setDuration(@Nullable Integer duration) {
     this.duration = duration;
   }
 
-  public FreeStyleBuild estimatedDuration(Integer estimatedDuration) {
+  public FreeStyleBuild estimatedDuration(@Nullable Integer estimatedDuration) {
     this.estimatedDuration = estimatedDuration;
     return this;
   }
@@ -244,15 +244,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "estimatedDuration", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDuration")
-  public Integer getEstimatedDuration() {
+  public @Nullable Integer getEstimatedDuration() {
     return estimatedDuration;
   }
 
-  public void setEstimatedDuration(Integer estimatedDuration) {
+  public void setEstimatedDuration(@Nullable Integer estimatedDuration) {
     this.estimatedDuration = estimatedDuration;
   }
 
-  public FreeStyleBuild executor(String executor) {
+  public FreeStyleBuild executor(@Nullable String executor) {
     this.executor = executor;
     return this;
   }
@@ -264,15 +264,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "executor", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("executor")
-  public String getExecutor() {
+  public @Nullable String getExecutor() {
     return executor;
   }
 
-  public void setExecutor(String executor) {
+  public void setExecutor(@Nullable String executor) {
     this.executor = executor;
   }
 
-  public FreeStyleBuild fullDisplayName(String fullDisplayName) {
+  public FreeStyleBuild fullDisplayName(@Nullable String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
     return this;
   }
@@ -284,15 +284,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "fullDisplayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullDisplayName")
-  public String getFullDisplayName() {
+  public @Nullable String getFullDisplayName() {
     return fullDisplayName;
   }
 
-  public void setFullDisplayName(String fullDisplayName) {
+  public void setFullDisplayName(@Nullable String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
   }
 
-  public FreeStyleBuild id(String id) {
+  public FreeStyleBuild id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -304,15 +304,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public FreeStyleBuild keepLog(Boolean keepLog) {
+  public FreeStyleBuild keepLog(@Nullable Boolean keepLog) {
     this.keepLog = keepLog;
     return this;
   }
@@ -324,15 +324,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "keepLog", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("keepLog")
-  public Boolean getKeepLog() {
+  public @Nullable Boolean getKeepLog() {
     return keepLog;
   }
 
-  public void setKeepLog(Boolean keepLog) {
+  public void setKeepLog(@Nullable Boolean keepLog) {
     this.keepLog = keepLog;
   }
 
-  public FreeStyleBuild queueId(Integer queueId) {
+  public FreeStyleBuild queueId(@Nullable Integer queueId) {
     this.queueId = queueId;
     return this;
   }
@@ -344,15 +344,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "queueId", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("queueId")
-  public Integer getQueueId() {
+  public @Nullable Integer getQueueId() {
     return queueId;
   }
 
-  public void setQueueId(Integer queueId) {
+  public void setQueueId(@Nullable Integer queueId) {
     this.queueId = queueId;
   }
 
-  public FreeStyleBuild result(String result) {
+  public FreeStyleBuild result(@Nullable String result) {
     this.result = result;
     return this;
   }
@@ -364,15 +364,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("result")
-  public String getResult() {
+  public @Nullable String getResult() {
     return result;
   }
 
-  public void setResult(String result) {
+  public void setResult(@Nullable String result) {
     this.result = result;
   }
 
-  public FreeStyleBuild timestamp(Integer timestamp) {
+  public FreeStyleBuild timestamp(@Nullable Integer timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -384,15 +384,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "timestamp", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("timestamp")
-  public Integer getTimestamp() {
+  public @Nullable Integer getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(Integer timestamp) {
+  public void setTimestamp(@Nullable Integer timestamp) {
     this.timestamp = timestamp;
   }
 
-  public FreeStyleBuild builtOn(String builtOn) {
+  public FreeStyleBuild builtOn(@Nullable String builtOn) {
     this.builtOn = builtOn;
     return this;
   }
@@ -404,15 +404,15 @@ public class FreeStyleBuild {
   
   @Schema(name = "builtOn", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("builtOn")
-  public String getBuiltOn() {
+  public @Nullable String getBuiltOn() {
     return builtOn;
   }
 
-  public void setBuiltOn(String builtOn) {
+  public void setBuiltOn(@Nullable String builtOn) {
     this.builtOn = builtOn;
   }
 
-  public FreeStyleBuild changeSet(EmptyChangeLogSet changeSet) {
+  public FreeStyleBuild changeSet(@Nullable EmptyChangeLogSet changeSet) {
     this.changeSet = changeSet;
     return this;
   }
@@ -424,11 +424,11 @@ public class FreeStyleBuild {
   @Valid 
   @Schema(name = "changeSet", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("changeSet")
-  public EmptyChangeLogSet getChangeSet() {
+  public @Nullable EmptyChangeLogSet getChangeSet() {
     return changeSet;
   }
 
-  public void setChangeSet(EmptyChangeLogSet changeSet) {
+  public void setChangeSet(@Nullable EmptyChangeLogSet changeSet) {
     this.changeSet = changeSet;
   }
 

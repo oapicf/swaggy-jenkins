@@ -15,51 +15,67 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class HudsonMasterComputer  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private List<HudsonMasterComputerexecutors> executors = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private String icon;
 
   @ApiModelProperty(value = "")
+
   private String iconClassName;
 
   @ApiModelProperty(value = "")
+
   private Boolean idle;
 
   @ApiModelProperty(value = "")
+
   private Boolean jnlpAgent;
 
   @ApiModelProperty(value = "")
+
   private Boolean launchSupported;
 
   @ApiModelProperty(value = "")
+
   private Label1 loadStatistics;
 
   @ApiModelProperty(value = "")
+
   private Boolean manualLaunchAllowed;
 
   @ApiModelProperty(value = "")
+
   private HudsonMasterComputermonitorData monitorData;
 
   @ApiModelProperty(value = "")
+
   private Integer numExecutors;
 
   @ApiModelProperty(value = "")
+
   private Boolean offline;
 
   @ApiModelProperty(value = "")
+
   private String offlineCause;
 
   @ApiModelProperty(value = "")
+
   private String offlineCauseReason;
 
   @ApiModelProperty(value = "")
+
   private Boolean temporarilyOffline;
  /**
    * Get propertyClass

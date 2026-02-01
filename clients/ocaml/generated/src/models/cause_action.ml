@@ -5,13 +5,25 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    causes: Cause_user_id_cause.t list;
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    causes = [];
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              causes: Cause_user_id_cause.t list
+                 [@default []]
+                
+                ; [@key "causes"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            causes = [];
+        }
+    
 

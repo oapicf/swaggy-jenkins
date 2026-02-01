@@ -5,23 +5,62 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    display_name: string option [@default None];
-    full_name: string option [@default None];
-    name: string option [@default None];
-    organization: string option [@default None];
-    number_of_folders: int32 option [@default None];
-    number_of_pipelines: int32 option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    display_name = None;
-    full_name = None;
-    name = None;
-    organization = None;
-    number_of_folders = None;
-    number_of_pipelines = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "displayName"]
+                                              full_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "fullName"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                                              organization: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "organization"]
+                                              number_of_folders: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "numberOfFolders"]
+                                              number_of_pipelines: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "numberOfPipelines"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            display_name = None;
+            full_name = None;
+            name = None;
+            organization = None;
+            number_of_folders = None;
+            number_of_pipelines = None;
+        }
+    
 

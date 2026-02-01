@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ClockDifference  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private Integer diff;
  /**
    * Get propertyClass

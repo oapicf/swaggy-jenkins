@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * PipelineActivityartifacts
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineActivityartifacts {
 
   private @Nullable String name;
@@ -30,7 +30,7 @@ public class PipelineActivityartifacts {
 
   private @Nullable String propertyClass;
 
-  public PipelineActivityartifacts name(String name) {
+  public PipelineActivityartifacts name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -42,15 +42,15 @@ public class PipelineActivityartifacts {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
-  public PipelineActivityartifacts size(Integer size) {
+  public PipelineActivityartifacts size(@Nullable Integer size) {
     this.size = size;
     return this;
   }
@@ -62,15 +62,15 @@ public class PipelineActivityartifacts {
   
   @Schema(name = "size", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("size")
-  public Integer getSize() {
+  public @Nullable Integer getSize() {
     return size;
   }
 
-  public void setSize(Integer size) {
+  public void setSize(@Nullable Integer size) {
     this.size = size;
   }
 
-  public PipelineActivityartifacts url(String url) {
+  public PipelineActivityartifacts url(@Nullable String url) {
     this.url = url;
     return this;
   }
@@ -82,15 +82,15 @@ public class PipelineActivityartifacts {
   
   @Schema(name = "url", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("url")
-  public String getUrl() {
+  public @Nullable String getUrl() {
     return url;
   }
 
-  public void setUrl(String url) {
+  public void setUrl(@Nullable String url) {
     this.url = url;
   }
 
-  public PipelineActivityartifacts propertyClass(String propertyClass) {
+  public PipelineActivityartifacts propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -102,11 +102,11 @@ public class PipelineActivityartifacts {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

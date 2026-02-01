@@ -27,10 +27,10 @@ class FreeStyleBuild
 
     /**
      * @DTA\Data(field="actions", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection3::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection3::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection5::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection5::class})
      */
-    public ?\App\DTO\Collection3 $actions = null;
+    public ?\App\DTO\Collection5 $actions = null;
 
     /**
      * @DTA\Data(field="building", nullable=true)

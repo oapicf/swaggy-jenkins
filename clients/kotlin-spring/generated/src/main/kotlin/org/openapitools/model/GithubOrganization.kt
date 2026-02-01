@@ -35,7 +35,7 @@ data class GithubOrganization(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("name") val name: kotlin.String? = null
-    ) {
+) {
 
 }
 

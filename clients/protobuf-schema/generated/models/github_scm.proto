@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -18,14 +18,15 @@ import public "models/github_scmlinks.proto";
 
 message GithubScm {
 
-  string _class = 406713225;
+  string class = 94742904;
 
-  GithubScmlinks _links = 398478664;
+  GithubScmlinks links = 102977465;
 
-  string credentialId = 367736786;
+  string credential_id = 411298303;
 
   string id = 3355;
 
   string uri = 116076;
 
 }
+

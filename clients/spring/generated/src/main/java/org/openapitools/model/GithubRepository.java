@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  * GithubRepository
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class GithubRepository {
 
   private @Nullable String propertyClass;
@@ -40,7 +40,7 @@ public class GithubRepository {
 
   private @Nullable String fullName;
 
-  public GithubRepository propertyClass(String propertyClass) {
+  public GithubRepository propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -52,15 +52,15 @@ public class GithubRepository {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public GithubRepository links(GithubRepositorylinks links) {
+  public GithubRepository links(@Nullable GithubRepositorylinks links) {
     this.links = links;
     return this;
   }
@@ -72,15 +72,15 @@ public class GithubRepository {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public GithubRepositorylinks getLinks() {
+  public @Nullable GithubRepositorylinks getLinks() {
     return links;
   }
 
-  public void setLinks(GithubRepositorylinks links) {
+  public void setLinks(@Nullable GithubRepositorylinks links) {
     this.links = links;
   }
 
-  public GithubRepository defaultBranch(String defaultBranch) {
+  public GithubRepository defaultBranch(@Nullable String defaultBranch) {
     this.defaultBranch = defaultBranch;
     return this;
   }
@@ -92,15 +92,15 @@ public class GithubRepository {
   
   @Schema(name = "defaultBranch", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("defaultBranch")
-  public String getDefaultBranch() {
+  public @Nullable String getDefaultBranch() {
     return defaultBranch;
   }
 
-  public void setDefaultBranch(String defaultBranch) {
+  public void setDefaultBranch(@Nullable String defaultBranch) {
     this.defaultBranch = defaultBranch;
   }
 
-  public GithubRepository description(String description) {
+  public GithubRepository description(@Nullable String description) {
     this.description = description;
     return this;
   }
@@ -112,15 +112,15 @@ public class GithubRepository {
   
   @Schema(name = "description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("description")
-  public String getDescription() {
+  public @Nullable String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@Nullable String description) {
     this.description = description;
   }
 
-  public GithubRepository name(String name) {
+  public GithubRepository name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -132,15 +132,15 @@ public class GithubRepository {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
-  public GithubRepository permissions(GithubRepositorypermissions permissions) {
+  public GithubRepository permissions(@Nullable GithubRepositorypermissions permissions) {
     this.permissions = permissions;
     return this;
   }
@@ -152,15 +152,15 @@ public class GithubRepository {
   @Valid 
   @Schema(name = "permissions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("permissions")
-  public GithubRepositorypermissions getPermissions() {
+  public @Nullable GithubRepositorypermissions getPermissions() {
     return permissions;
   }
 
-  public void setPermissions(GithubRepositorypermissions permissions) {
+  public void setPermissions(@Nullable GithubRepositorypermissions permissions) {
     this.permissions = permissions;
   }
 
-  public GithubRepository _private(Boolean _private) {
+  public GithubRepository _private(@Nullable Boolean _private) {
     this._private = _private;
     return this;
   }
@@ -172,15 +172,15 @@ public class GithubRepository {
   
   @Schema(name = "private", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("private")
-  public Boolean getPrivate() {
+  public @Nullable Boolean getPrivate() {
     return _private;
   }
 
-  public void setPrivate(Boolean _private) {
+  public void setPrivate(@Nullable Boolean _private) {
     this._private = _private;
   }
 
-  public GithubRepository fullName(String fullName) {
+  public GithubRepository fullName(@Nullable String fullName) {
     this.fullName = fullName;
     return this;
   }
@@ -192,11 +192,11 @@ public class GithubRepository {
   
   @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullName")
-  public String getFullName() {
+  public @Nullable String getFullName() {
     return fullName;
   }
 
-  public void setFullName(String fullName) {
+  public void setFullName(@Nullable String fullName) {
     this.fullName = fullName;
   }
 

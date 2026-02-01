@@ -12,14 +12,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelineStepImpllinks  {
   
   @ApiModelProperty(value = "")
+
   @Valid
+
   private Link self;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private Link actions;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get self

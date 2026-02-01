@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * DefaultCrumbIssuer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class DefaultCrumbIssuer {
 
   private @Nullable String propertyClass;
@@ -28,7 +28,7 @@ public class DefaultCrumbIssuer {
 
   private @Nullable String crumbRequestField;
 
-  public DefaultCrumbIssuer propertyClass(String propertyClass) {
+  public DefaultCrumbIssuer propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -40,15 +40,15 @@ public class DefaultCrumbIssuer {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public DefaultCrumbIssuer crumb(String crumb) {
+  public DefaultCrumbIssuer crumb(@Nullable String crumb) {
     this.crumb = crumb;
     return this;
   }
@@ -60,15 +60,15 @@ public class DefaultCrumbIssuer {
   
   @Schema(name = "crumb", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("crumb")
-  public String getCrumb() {
+  public @Nullable String getCrumb() {
     return crumb;
   }
 
-  public void setCrumb(String crumb) {
+  public void setCrumb(@Nullable String crumb) {
     this.crumb = crumb;
   }
 
-  public DefaultCrumbIssuer crumbRequestField(String crumbRequestField) {
+  public DefaultCrumbIssuer crumbRequestField(@Nullable String crumbRequestField) {
     this.crumbRequestField = crumbRequestField;
     return this;
   }
@@ -80,11 +80,11 @@ public class DefaultCrumbIssuer {
   
   @Schema(name = "crumbRequestField", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("crumbRequestField")
-  public String getCrumbRequestField() {
+  public @Nullable String getCrumbRequestField() {
     return crumbRequestField;
   }
 
-  public void setCrumbRequestField(String crumbRequestField) {
+  public void setCrumbRequestField(@Nullable String crumbRequestField) {
     this.crumbRequestField = crumbRequestField;
   }
 

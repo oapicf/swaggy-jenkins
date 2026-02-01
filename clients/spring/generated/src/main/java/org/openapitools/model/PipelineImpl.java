@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * PipelineImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineImpl {
 
   private @Nullable String propertyClass;
@@ -41,7 +41,7 @@ public class PipelineImpl {
 
   private @Nullable PipelineImpllinks links;
 
-  public PipelineImpl propertyClass(String propertyClass) {
+  public PipelineImpl propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -53,15 +53,15 @@ public class PipelineImpl {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public PipelineImpl displayName(String displayName) {
+  public PipelineImpl displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -73,15 +73,15 @@ public class PipelineImpl {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
-  public PipelineImpl estimatedDurationInMillis(Integer estimatedDurationInMillis) {
+  public PipelineImpl estimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
   }
@@ -93,15 +93,15 @@ public class PipelineImpl {
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
-  public Integer getEstimatedDurationInMillis() {
+  public @Nullable Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
 
-  public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
+  public void setEstimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  public PipelineImpl fullName(String fullName) {
+  public PipelineImpl fullName(@Nullable String fullName) {
     this.fullName = fullName;
     return this;
   }
@@ -113,15 +113,15 @@ public class PipelineImpl {
   
   @Schema(name = "fullName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("fullName")
-  public String getFullName() {
+  public @Nullable String getFullName() {
     return fullName;
   }
 
-  public void setFullName(String fullName) {
+  public void setFullName(@Nullable String fullName) {
     this.fullName = fullName;
   }
 
-  public PipelineImpl latestRun(String latestRun) {
+  public PipelineImpl latestRun(@Nullable String latestRun) {
     this.latestRun = latestRun;
     return this;
   }
@@ -133,15 +133,15 @@ public class PipelineImpl {
   
   @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("latestRun")
-  public String getLatestRun() {
+  public @Nullable String getLatestRun() {
     return latestRun;
   }
 
-  public void setLatestRun(String latestRun) {
+  public void setLatestRun(@Nullable String latestRun) {
     this.latestRun = latestRun;
   }
 
-  public PipelineImpl name(String name) {
+  public PipelineImpl name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -153,15 +153,15 @@ public class PipelineImpl {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
-  public PipelineImpl organization(String organization) {
+  public PipelineImpl organization(@Nullable String organization) {
     this.organization = organization;
     return this;
   }
@@ -173,15 +173,15 @@ public class PipelineImpl {
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
-  public String getOrganization() {
+  public @Nullable String getOrganization() {
     return organization;
   }
 
-  public void setOrganization(String organization) {
+  public void setOrganization(@Nullable String organization) {
     this.organization = organization;
   }
 
-  public PipelineImpl weatherScore(Integer weatherScore) {
+  public PipelineImpl weatherScore(@Nullable Integer weatherScore) {
     this.weatherScore = weatherScore;
     return this;
   }
@@ -193,15 +193,15 @@ public class PipelineImpl {
   
   @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("weatherScore")
-  public Integer getWeatherScore() {
+  public @Nullable Integer getWeatherScore() {
     return weatherScore;
   }
 
-  public void setWeatherScore(Integer weatherScore) {
+  public void setWeatherScore(@Nullable Integer weatherScore) {
     this.weatherScore = weatherScore;
   }
 
-  public PipelineImpl links(PipelineImpllinks links) {
+  public PipelineImpl links(@Nullable PipelineImpllinks links) {
     this.links = links;
     return this;
   }
@@ -213,11 +213,11 @@ public class PipelineImpl {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public PipelineImpllinks getLinks() {
+  public @Nullable PipelineImpllinks getLinks() {
     return links;
   }
 
-  public void setLinks(PipelineImpllinks links) {
+  public void setLinks(@Nullable PipelineImpllinks links) {
     this.links = links;
   }
 

@@ -5,15 +5,34 @@
  *
  *)
 
-type t = {
-    self: Link.t option [@default None];
-    actions: Link.t option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    self = None;
-    actions = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              self: Link.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "self"]
+                                              actions: Link.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "actions"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            self = None;
+            actions = None;
+            _class = None;
+        }
+    
 

@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -17,18 +17,19 @@ package openapitools;
 
 message PipelineFolderImpl {
 
-  string _class = 406713225;
+  string class = 94742904;
 
-  string displayName = 103536240;
+  string display_name = 4473835;
 
-  string fullName = 257110460;
+  string full_name = 66563528;
 
   string name = 3373707;
 
   string organization = 105180469;
 
-  int32 numberOfFolders = 481555110;
+  int32 number_of_folders = 459726319;
 
-  int32 numberOfPipelines = 278098673;
+  int32 number_of_pipelines = 334135007;
 
 }
+

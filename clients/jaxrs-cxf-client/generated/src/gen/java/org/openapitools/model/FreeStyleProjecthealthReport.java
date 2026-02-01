@@ -9,18 +9,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FreeStyleProjecthealthReport  {
   
   @ApiModelProperty(value = "")
+
   private String description;
 
   @ApiModelProperty(value = "")
+
   private String iconClassName;
 
   @ApiModelProperty(value = "")
+
   private String iconUrl;
 
   @ApiModelProperty(value = "")
+
   private Integer score;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get description

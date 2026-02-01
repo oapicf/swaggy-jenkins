@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 API/Client/AllView.js
 API/Client/BaseApi.js
 API/Client/BlueOceanApi.js

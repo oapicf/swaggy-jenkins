@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * GithubOrganization
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class GithubOrganization {
 
   private @Nullable String propertyClass;
@@ -31,7 +31,7 @@ public class GithubOrganization {
 
   private @Nullable String name;
 
-  public GithubOrganization propertyClass(String propertyClass) {
+  public GithubOrganization propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -43,15 +43,15 @@ public class GithubOrganization {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public GithubOrganization links(GithubOrganizationlinks links) {
+  public GithubOrganization links(@Nullable GithubOrganizationlinks links) {
     this.links = links;
     return this;
   }
@@ -63,15 +63,15 @@ public class GithubOrganization {
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
-  public GithubOrganizationlinks getLinks() {
+  public @Nullable GithubOrganizationlinks getLinks() {
     return links;
   }
 
-  public void setLinks(GithubOrganizationlinks links) {
+  public void setLinks(@Nullable GithubOrganizationlinks links) {
     this.links = links;
   }
 
-  public GithubOrganization jenkinsOrganizationPipeline(Boolean jenkinsOrganizationPipeline) {
+  public GithubOrganization jenkinsOrganizationPipeline(@Nullable Boolean jenkinsOrganizationPipeline) {
     this.jenkinsOrganizationPipeline = jenkinsOrganizationPipeline;
     return this;
   }
@@ -83,15 +83,15 @@ public class GithubOrganization {
   
   @Schema(name = "jenkinsOrganizationPipeline", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("jenkinsOrganizationPipeline")
-  public Boolean getJenkinsOrganizationPipeline() {
+  public @Nullable Boolean getJenkinsOrganizationPipeline() {
     return jenkinsOrganizationPipeline;
   }
 
-  public void setJenkinsOrganizationPipeline(Boolean jenkinsOrganizationPipeline) {
+  public void setJenkinsOrganizationPipeline(@Nullable Boolean jenkinsOrganizationPipeline) {
     this.jenkinsOrganizationPipeline = jenkinsOrganizationPipeline;
   }
 
-  public GithubOrganization name(String name) {
+  public GithubOrganization name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -103,11 +103,11 @@ public class GithubOrganization {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 

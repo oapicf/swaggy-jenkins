@@ -9,24 +9,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelineFolderImpl  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private String fullName;
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private String organization;
 
   @ApiModelProperty(value = "")
+
   private Integer numberOfFolders;
 
   @ApiModelProperty(value = "")
+
   private Integer numberOfPipelines;
  /**
    * Get propertyClass

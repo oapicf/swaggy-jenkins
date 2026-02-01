@@ -13,9 +13,9 @@ To see how to make this your own, look here:
 
 [README]((https://openapi-generator.tech))
 
-- API version: 3.0.2-pre.0
-- Build date: 2025-05-10T02:41:45.521893947Z[Etc/UTC]
-- Generator version: 7.12.0
+- API version: 3.2.1-pre.0
+- Build date: 2026-02-01T01:26:45.873874265Z[Etc/UTC]
+- Generator version: 7.18.0
 
 For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)
 
@@ -171,6 +171,9 @@ The generated library has a few optional features that can be activated through 
     * This defaults to disabled and creates extra derives on models to allow "transmogrification" between objects of structurally similar types.
 * `cli`
     * This defaults to disabled and is required for building the included CLI tool.
+* `validate`
+    * This defaults to disabled and allows JSON Schema validation of received data using `MakeService::set_validation` or `Service::set_validation`.
+    * Note, enabling validation will have a performance penalty, especially if the API heavily uses regex based checks.
 
 See https://doc.rust-lang.org/cargo/reference/manifest.html#the-features-section for how to use features in your `Cargo.toml`.
 

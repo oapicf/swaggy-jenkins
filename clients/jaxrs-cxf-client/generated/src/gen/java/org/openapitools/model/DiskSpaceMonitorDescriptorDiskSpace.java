@@ -9,15 +9,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class DiskSpaceMonitorDescriptorDiskSpace  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private Integer timestamp;
 
   @ApiModelProperty(value = "")
+
   private String path;
 
   @ApiModelProperty(value = "")
+
   private Integer size;
  /**
    * Get propertyClass

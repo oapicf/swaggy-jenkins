@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * PipelineStepImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineStepImpllinks {
 
   private @Nullable Link self;
@@ -29,7 +29,7 @@ public class PipelineStepImpllinks {
 
   private @Nullable String propertyClass;
 
-  public PipelineStepImpllinks self(Link self) {
+  public PipelineStepImpllinks self(@Nullable Link self) {
     this.self = self;
     return this;
   }
@@ -41,15 +41,15 @@ public class PipelineStepImpllinks {
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
-  public Link getSelf() {
+  public @Nullable Link getSelf() {
     return self;
   }
 
-  public void setSelf(Link self) {
+  public void setSelf(@Nullable Link self) {
     this.self = self;
   }
 
-  public PipelineStepImpllinks actions(Link actions) {
+  public PipelineStepImpllinks actions(@Nullable Link actions) {
     this.actions = actions;
     return this;
   }
@@ -61,15 +61,15 @@ public class PipelineStepImpllinks {
   @Valid 
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
-  public Link getActions() {
+  public @Nullable Link getActions() {
     return actions;
   }
 
-  public void setActions(Link actions) {
+  public void setActions(@Nullable Link actions) {
     this.actions = actions;
   }
 
-  public PipelineStepImpllinks propertyClass(String propertyClass) {
+  public PipelineStepImpllinks propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -81,11 +81,11 @@ public class PipelineStepImpllinks {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

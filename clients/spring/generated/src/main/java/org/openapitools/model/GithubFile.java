@@ -20,14 +20,14 @@ import javax.annotation.Generated;
  * GithubFile
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class GithubFile {
 
   private @Nullable GithubContent content;
 
   private @Nullable String propertyClass;
 
-  public GithubFile content(GithubContent content) {
+  public GithubFile content(@Nullable GithubContent content) {
     this.content = content;
     return this;
   }
@@ -39,15 +39,15 @@ public class GithubFile {
   @Valid 
   @Schema(name = "content", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("content")
-  public GithubContent getContent() {
+  public @Nullable GithubContent getContent() {
     return content;
   }
 
-  public void setContent(GithubContent content) {
+  public void setContent(@Nullable GithubContent content) {
     this.content = content;
   }
 
-  public GithubFile propertyClass(String propertyClass) {
+  public GithubFile propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -59,11 +59,11 @@ public class GithubFile {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

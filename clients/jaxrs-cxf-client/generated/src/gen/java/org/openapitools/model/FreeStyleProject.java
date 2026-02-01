@@ -16,84 +16,111 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FreeStyleProject  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private String url;
 
   @ApiModelProperty(value = "")
+
   private String color;
 
   @ApiModelProperty(value = "")
+
   private List<FreeStyleProjectactions> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private String description;
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private String displayNameOrNull;
 
   @ApiModelProperty(value = "")
+
   private String fullDisplayName;
 
   @ApiModelProperty(value = "")
+
   private String fullName;
 
   @ApiModelProperty(value = "")
+
   private Boolean buildable;
 
   @ApiModelProperty(value = "")
+
   private List<FreeStyleBuild> builds = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private FreeStyleBuild firstBuild;
 
   @ApiModelProperty(value = "")
+
   private List<FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private Boolean inQueue;
 
   @ApiModelProperty(value = "")
+
   private Boolean keepDependencies;
 
   @ApiModelProperty(value = "")
+
   private FreeStyleBuild lastBuild;
 
   @ApiModelProperty(value = "")
+
   private FreeStyleBuild lastCompletedBuild;
 
   @ApiModelProperty(value = "")
+
   private String lastFailedBuild;
 
   @ApiModelProperty(value = "")
+
   private FreeStyleBuild lastStableBuild;
 
   @ApiModelProperty(value = "")
+
   private FreeStyleBuild lastSuccessfulBuild;
 
   @ApiModelProperty(value = "")
+
   private String lastUnstableBuild;
 
   @ApiModelProperty(value = "")
+
   private String lastUnsuccessfulBuild;
 
   @ApiModelProperty(value = "")
+
   private Integer nextBuildNumber;
 
   @ApiModelProperty(value = "")
+
   private String queueItem;
 
   @ApiModelProperty(value = "")
+
   private Boolean concurrentBuild;
 
   @ApiModelProperty(value = "")
+
   private NullSCM scm;
  /**
    * Get propertyClass

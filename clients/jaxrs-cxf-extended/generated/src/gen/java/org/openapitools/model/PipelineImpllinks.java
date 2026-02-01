@@ -13,46 +13,22 @@ public class PipelineImpllinks  {
   
   @ApiModelProperty(value = "")
   @Valid
-  private Link runs;
-
-  @ApiModelProperty(value = "")
-  @Valid
   private Link self;
-
-  @ApiModelProperty(value = "")
-  @Valid
-  private Link queue;
 
   @ApiModelProperty(value = "")
   @Valid
   private Link actions;
 
   @ApiModelProperty(value = "")
+  @Valid
+  private Link runs;
+
+  @ApiModelProperty(value = "")
+  @Valid
+  private Link queue;
+
+  @ApiModelProperty(value = "")
   private String propertyClass;
- /**
-  * Get runs
-  * @return runs
-  */
-  @JsonProperty("runs")
-  public Link getRuns() {
-    return runs;
-  }
-
-  /**
-   * Sets the <code>runs</code> property.
-   */
- public void setRuns(Link runs) {
-    this.runs = runs;
-  }
-
-  /**
-   * Sets the <code>runs</code> property.
-   */
-  public PipelineImpllinks runs(Link runs) {
-    this.runs = runs;
-    return this;
-  }
-
  /**
   * Get self
   * @return self
@@ -78,30 +54,6 @@ public class PipelineImpllinks  {
   }
 
  /**
-  * Get queue
-  * @return queue
-  */
-  @JsonProperty("queue")
-  public Link getQueue() {
-    return queue;
-  }
-
-  /**
-   * Sets the <code>queue</code> property.
-   */
- public void setQueue(Link queue) {
-    this.queue = queue;
-  }
-
-  /**
-   * Sets the <code>queue</code> property.
-   */
-  public PipelineImpllinks queue(Link queue) {
-    this.queue = queue;
-    return this;
-  }
-
- /**
   * Get actions
   * @return actions
   */
@@ -122,6 +74,54 @@ public class PipelineImpllinks  {
    */
   public PipelineImpllinks actions(Link actions) {
     this.actions = actions;
+    return this;
+  }
+
+ /**
+  * Get runs
+  * @return runs
+  */
+  @JsonProperty("runs")
+  public Link getRuns() {
+    return runs;
+  }
+
+  /**
+   * Sets the <code>runs</code> property.
+   */
+ public void setRuns(Link runs) {
+    this.runs = runs;
+  }
+
+  /**
+   * Sets the <code>runs</code> property.
+   */
+  public PipelineImpllinks runs(Link runs) {
+    this.runs = runs;
+    return this;
+  }
+
+ /**
+  * Get queue
+  * @return queue
+  */
+  @JsonProperty("queue")
+  public Link getQueue() {
+    return queue;
+  }
+
+  /**
+   * Sets the <code>queue</code> property.
+   */
+ public void setQueue(Link queue) {
+    this.queue = queue;
+  }
+
+  /**
+   * Sets the <code>queue</code> property.
+   */
+  public PipelineImpllinks queue(Link queue) {
+    this.queue = queue;
     return this;
   }
 
@@ -159,16 +159,16 @@ public class PipelineImpllinks  {
       return false;
     }
     PipelineImpllinks pipelineImpllinks = (PipelineImpllinks) o;
-    return Objects.equals(this.runs, pipelineImpllinks.runs) &&
-        Objects.equals(this.self, pipelineImpllinks.self) &&
-        Objects.equals(this.queue, pipelineImpllinks.queue) &&
+    return Objects.equals(this.self, pipelineImpllinks.self) &&
         Objects.equals(this.actions, pipelineImpllinks.actions) &&
+        Objects.equals(this.runs, pipelineImpllinks.runs) &&
+        Objects.equals(this.queue, pipelineImpllinks.queue) &&
         Objects.equals(this.propertyClass, pipelineImpllinks.propertyClass);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(runs, self, queue, actions, propertyClass);
+    return Objects.hash(self, actions, runs, queue, propertyClass);
   }
 
   @Override
@@ -176,10 +176,10 @@ public class PipelineImpllinks  {
     StringBuilder sb = new StringBuilder();
     sb.append("class PipelineImpllinks {\n");
     
-    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
     sb.append("    self: ").append(toIndentedString(self)).append("\n");
-    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
+    sb.append("    runs: ").append(toIndentedString(runs)).append("\n");
+    sb.append("    queue: ").append(toIndentedString(queue)).append("\n");
     sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
     sb.append("}");
     return sb.toString();

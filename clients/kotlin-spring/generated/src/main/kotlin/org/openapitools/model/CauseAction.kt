@@ -27,7 +27,7 @@ data class CauseAction(
     @field:Valid
     @Schema(example = "null", description = "")
     @get:JsonProperty("causes") val causes: kotlin.collections.List<CauseUserIdCause>? = null
-    ) {
+) {
 
 }
 

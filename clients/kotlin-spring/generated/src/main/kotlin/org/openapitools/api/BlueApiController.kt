@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
+import org.openapitools.api.BlueApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -44,7 +45,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${api.base-path:}")
+@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
 class BlueApiController() {
 
     @Operation(
@@ -59,9 +60,13 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}"]
+        value = [PATH_DELETE_PIPELINE_QUEUE_ITEM /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}" */]
     )
-    fun deletePipelineQueueItem(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the queue item", required = true) @PathVariable("queue") queue: kotlin.String): ResponseEntity<Unit> {
+    fun deletePipelineQueueItem(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the queue item", required = true) @PathVariable("queue") queue: kotlin.String
+    ): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -77,10 +82,12 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/user/"],
+        value = [PATH_GET_AUTHENTICATED_USER /* "/blue/rest/organizations/{organization}/user/" */],
         produces = ["application/json"]
     )
-    fun getAuthenticatedUser(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String): ResponseEntity<User> {
+    fun getAuthenticatedUser(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String
+    ): ResponseEntity<User> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -96,10 +103,12 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/classes/{class}"],
+        value = [PATH_GET_CLASSES /* "/blue/rest/classes/{class}" */],
         produces = ["application/json"]
     )
-    fun getClasses(@Parameter(description = "Name of the class", required = true) @PathVariable("class") propertyClass: kotlin.String): ResponseEntity<kotlin.String> {
+    fun getClasses(
+        @Parameter(description = "Name of the class", required = true) @PathVariable("class") propertyClass: kotlin.String
+    ): ResponseEntity<kotlin.String> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -116,10 +125,12 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}"],
+        value = [PATH_GET_ORGANISATION /* "/blue/rest/organizations/{organization}" */],
         produces = ["application/json"]
     )
-    fun getOrganisation(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String): ResponseEntity<Organisation> {
+    fun getOrganisation(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String
+    ): ResponseEntity<Organisation> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -135,7 +146,7 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/"],
+        value = [PATH_GET_ORGANISATIONS /* "/blue/rest/organizations/" */],
         produces = ["application/json"]
     )
     fun getOrganisations(): ResponseEntity<List<Organisation>> {
@@ -155,10 +166,13 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}"],
+        value = [PATH_GET_PIPELINE /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}" */],
         produces = ["application/json"]
     )
-    fun getPipeline(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String): ResponseEntity<Pipeline> {
+    fun getPipeline(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String
+    ): ResponseEntity<Pipeline> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -174,10 +188,13 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities"],
+        value = [PATH_GET_PIPELINE_ACTIVITIES /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities" */],
         produces = ["application/json"]
     )
-    fun getPipelineActivities(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String): ResponseEntity<List<PipelineActivity>> {
+    fun getPipelineActivities(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String
+    ): ResponseEntity<List<PipelineActivity>> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -193,10 +210,14 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/"],
+        value = [PATH_GET_PIPELINE_BRANCH /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/" */],
         produces = ["application/json"]
     )
-    fun getPipelineBranch(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the branch", required = true) @PathVariable("branch") branch: kotlin.String): ResponseEntity<BranchImpl> {
+    fun getPipelineBranch(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the branch", required = true) @PathVariable("branch") branch: kotlin.String
+    ): ResponseEntity<BranchImpl> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -212,10 +233,15 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}"],
+        value = [PATH_GET_PIPELINE_BRANCH_RUN /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}" */],
         produces = ["application/json"]
     )
-    fun getPipelineBranchRun(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the branch", required = true) @PathVariable("branch") branch: kotlin.String,@Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String): ResponseEntity<PipelineRun> {
+    fun getPipelineBranchRun(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the branch", required = true) @PathVariable("branch") branch: kotlin.String,
+        @Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String
+    ): ResponseEntity<PipelineRun> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -231,10 +257,13 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches"],
+        value = [PATH_GET_PIPELINE_BRANCHES /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches" */],
         produces = ["application/json"]
     )
-    fun getPipelineBranches(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String): ResponseEntity<MultibranchPipeline> {
+    fun getPipelineBranches(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String
+    ): ResponseEntity<MultibranchPipeline> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -250,10 +279,13 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{folder}/"],
+        value = [PATH_GET_PIPELINE_FOLDER /* "/blue/rest/organizations/{organization}/pipelines/{folder}/" */],
         produces = ["application/json"]
     )
-    fun getPipelineFolder(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the folder", required = true) @PathVariable("folder") folder: kotlin.String): ResponseEntity<PipelineFolderImpl> {
+    fun getPipelineFolder(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the folder", required = true) @PathVariable("folder") folder: kotlin.String
+    ): ResponseEntity<PipelineFolderImpl> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -269,10 +301,14 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}"],
+        value = [PATH_GET_PIPELINE_FOLDER_PIPELINE /* "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}" */],
         produces = ["application/json"]
     )
-    fun getPipelineFolderPipeline(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the folder", required = true) @PathVariable("folder") folder: kotlin.String): ResponseEntity<PipelineImpl> {
+    fun getPipelineFolderPipeline(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the folder", required = true) @PathVariable("folder") folder: kotlin.String
+    ): ResponseEntity<PipelineImpl> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -288,10 +324,13 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue"],
+        value = [PATH_GET_PIPELINE_QUEUE /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue" */],
         produces = ["application/json"]
     )
-    fun getPipelineQueue(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String): ResponseEntity<List<QueueItemImpl>> {
+    fun getPipelineQueue(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String
+    ): ResponseEntity<List<QueueItemImpl>> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -307,10 +346,14 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}"],
+        value = [PATH_GET_PIPELINE_RUN /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}" */],
         produces = ["application/json"]
     )
-    fun getPipelineRun(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String): ResponseEntity<PipelineRun> {
+    fun getPipelineRun(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String
+    ): ResponseEntity<PipelineRun> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -326,10 +369,16 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log"],
+        value = [PATH_GET_PIPELINE_RUN_LOG /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log" */],
         produces = ["application/json"]
     )
-    fun getPipelineRunLog(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,@Parameter(description = "Start position of the log") @Valid @RequestParam(value = "start", required = false) start: kotlin.Int?,@Parameter(description = "Set to true in order to download the file, otherwise it's passed as a response body") @Valid @RequestParam(value = "download", required = false) download: kotlin.Boolean?): ResponseEntity<kotlin.String> {
+    fun getPipelineRunLog(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,
+        @Parameter(description = "Start position of the log") @Valid @RequestParam(value = "start", required = false) start: kotlin.Int?,
+        @Parameter(description = "Set to true in order to download the file, otherwise it's passed as a response body") @Valid @RequestParam(value = "download", required = false) download: kotlin.Boolean?
+    ): ResponseEntity<kotlin.String> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -345,10 +394,15 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}"],
+        value = [PATH_GET_PIPELINE_RUN_NODE /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}" */],
         produces = ["application/json"]
     )
-    fun getPipelineRunNode(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,@Parameter(description = "Name of the node", required = true) @PathVariable("node") node: kotlin.String): ResponseEntity<PipelineRunNode> {
+    fun getPipelineRunNode(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,
+        @Parameter(description = "Name of the node", required = true) @PathVariable("node") node: kotlin.String
+    ): ResponseEntity<PipelineRunNode> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -364,10 +418,16 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}"],
+        value = [PATH_GET_PIPELINE_RUN_NODE_STEP /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}" */],
         produces = ["application/json"]
     )
-    fun getPipelineRunNodeStep(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,@Parameter(description = "Name of the node", required = true) @PathVariable("node") node: kotlin.String,@Parameter(description = "Name of the step", required = true) @PathVariable("step") step: kotlin.String): ResponseEntity<PipelineStepImpl> {
+    fun getPipelineRunNodeStep(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,
+        @Parameter(description = "Name of the node", required = true) @PathVariable("node") node: kotlin.String,
+        @Parameter(description = "Name of the step", required = true) @PathVariable("step") step: kotlin.String
+    ): ResponseEntity<PipelineStepImpl> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -383,10 +443,16 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log"],
+        value = [PATH_GET_PIPELINE_RUN_NODE_STEP_LOG /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log" */],
         produces = ["application/json"]
     )
-    fun getPipelineRunNodeStepLog(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,@Parameter(description = "Name of the node", required = true) @PathVariable("node") node: kotlin.String,@Parameter(description = "Name of the step", required = true) @PathVariable("step") step: kotlin.String): ResponseEntity<kotlin.String> {
+    fun getPipelineRunNodeStepLog(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,
+        @Parameter(description = "Name of the node", required = true) @PathVariable("node") node: kotlin.String,
+        @Parameter(description = "Name of the step", required = true) @PathVariable("step") step: kotlin.String
+    ): ResponseEntity<kotlin.String> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -402,10 +468,15 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps"],
+        value = [PATH_GET_PIPELINE_RUN_NODE_STEPS /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps" */],
         produces = ["application/json"]
     )
-    fun getPipelineRunNodeSteps(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,@Parameter(description = "Name of the node", required = true) @PathVariable("node") node: kotlin.String): ResponseEntity<List<PipelineStepImpl>> {
+    fun getPipelineRunNodeSteps(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,
+        @Parameter(description = "Name of the node", required = true) @PathVariable("node") node: kotlin.String
+    ): ResponseEntity<List<PipelineStepImpl>> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -421,10 +492,14 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes"],
+        value = [PATH_GET_PIPELINE_RUN_NODES /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes" */],
         produces = ["application/json"]
     )
-    fun getPipelineRunNodes(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String): ResponseEntity<List<PipelineRunNode>> {
+    fun getPipelineRunNodes(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String
+    ): ResponseEntity<List<PipelineRunNode>> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -440,10 +515,13 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"],
+        value = [PATH_GET_PIPELINE_RUNS /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" */],
         produces = ["application/json"]
     )
-    fun getPipelineRuns(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String): ResponseEntity<List<PipelineRun>> {
+    fun getPipelineRuns(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String
+    ): ResponseEntity<List<PipelineRun>> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -459,10 +537,12 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/pipelines/"],
+        value = [PATH_GET_PIPELINES /* "/blue/rest/organizations/{organization}/pipelines/" */],
         produces = ["application/json"]
     )
-    fun getPipelines(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String): ResponseEntity<List<Pipeline>> {
+    fun getPipelines(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String
+    ): ResponseEntity<List<Pipeline>> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -478,10 +558,13 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/scm/{scm}"],
+        value = [PATH_GET_SCM /* "/blue/rest/organizations/{organization}/scm/{scm}" */],
         produces = ["application/json"]
     )
-    fun getSCM(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of SCM", required = true) @PathVariable("scm") scm: kotlin.String): ResponseEntity<GithubScm> {
+    fun getSCM(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of SCM", required = true) @PathVariable("scm") scm: kotlin.String
+    ): ResponseEntity<GithubScm> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -497,10 +580,17 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories"],
+        value = [PATH_GET_SCM_ORGANISATION_REPOSITORIES /* "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories" */],
         produces = ["application/json"]
     )
-    fun getSCMOrganisationRepositories(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of SCM", required = true) @PathVariable("scm") scm: kotlin.String,@Parameter(description = "Name of the SCM organization", required = true) @PathVariable("scmOrganisation") scmOrganisation: kotlin.String,@Parameter(description = "Credential ID") @Valid @RequestParam(value = "credentialId", required = false) credentialId: kotlin.String?,@Parameter(description = "Number of items in a page") @Valid @RequestParam(value = "pageSize", required = false) pageSize: kotlin.Int?,@Parameter(description = "Page number") @Valid @RequestParam(value = "pageNumber", required = false) pageNumber: kotlin.Int?): ResponseEntity<List<GithubOrganization>> {
+    fun getSCMOrganisationRepositories(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of SCM", required = true) @PathVariable("scm") scm: kotlin.String,
+        @Parameter(description = "Name of the SCM organization", required = true) @PathVariable("scmOrganisation") scmOrganisation: kotlin.String,
+        @Parameter(description = "Credential ID") @Valid @RequestParam(value = "credentialId", required = false) credentialId: kotlin.String?,
+        @Parameter(description = "Number of items in a page") @Valid @RequestParam(value = "pageSize", required = false) pageSize: kotlin.Int?,
+        @Parameter(description = "Page number") @Valid @RequestParam(value = "pageNumber", required = false) pageNumber: kotlin.Int?
+    ): ResponseEntity<List<GithubOrganization>> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -516,10 +606,16 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}"],
+        value = [PATH_GET_SCM_ORGANISATION_REPOSITORY /* "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}" */],
         produces = ["application/json"]
     )
-    fun getSCMOrganisationRepository(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of SCM", required = true) @PathVariable("scm") scm: kotlin.String,@Parameter(description = "Name of the SCM organization", required = true) @PathVariable("scmOrganisation") scmOrganisation: kotlin.String,@Parameter(description = "Name of the SCM repository", required = true) @PathVariable("repository") repository: kotlin.String,@Parameter(description = "Credential ID") @Valid @RequestParam(value = "credentialId", required = false) credentialId: kotlin.String?): ResponseEntity<List<GithubOrganization>> {
+    fun getSCMOrganisationRepository(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of SCM", required = true) @PathVariable("scm") scm: kotlin.String,
+        @Parameter(description = "Name of the SCM organization", required = true) @PathVariable("scmOrganisation") scmOrganisation: kotlin.String,
+        @Parameter(description = "Name of the SCM repository", required = true) @PathVariable("repository") repository: kotlin.String,
+        @Parameter(description = "Credential ID") @Valid @RequestParam(value = "credentialId", required = false) credentialId: kotlin.String?
+    ): ResponseEntity<List<GithubOrganization>> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -535,10 +631,14 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/scm/{scm}/organizations"],
+        value = [PATH_GET_SCM_ORGANISATIONS /* "/blue/rest/organizations/{organization}/scm/{scm}/organizations" */],
         produces = ["application/json"]
     )
-    fun getSCMOrganisations(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of SCM", required = true) @PathVariable("scm") scm: kotlin.String,@Parameter(description = "Credential ID") @Valid @RequestParam(value = "credentialId", required = false) credentialId: kotlin.String?): ResponseEntity<List<GithubOrganization>> {
+    fun getSCMOrganisations(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of SCM", required = true) @PathVariable("scm") scm: kotlin.String,
+        @Parameter(description = "Credential ID") @Valid @RequestParam(value = "credentialId", required = false) credentialId: kotlin.String?
+    ): ResponseEntity<List<GithubOrganization>> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -554,10 +654,13 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/users/{user}"],
+        value = [PATH_GET_USER /* "/blue/rest/organizations/{organization}/users/{user}" */],
         produces = ["application/json"]
     )
-    fun getUser(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the user", required = true) @PathVariable("user") user: kotlin.String): ResponseEntity<User> {
+    fun getUser(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the user", required = true) @PathVariable("user") user: kotlin.String
+    ): ResponseEntity<User> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -573,10 +676,12 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/users/{user}/favorites"],
+        value = [PATH_GET_USER_FAVORITES /* "/blue/rest/users/{user}/favorites" */],
         produces = ["application/json"]
     )
-    fun getUserFavorites(@Parameter(description = "Name of the user", required = true) @PathVariable("user") user: kotlin.String): ResponseEntity<List<FavoriteImpl>> {
+    fun getUserFavorites(
+        @Parameter(description = "Name of the user", required = true) @PathVariable("user") user: kotlin.String
+    ): ResponseEntity<List<FavoriteImpl>> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -592,10 +697,12 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/organizations/{organization}/users/"],
+        value = [PATH_GET_USERS /* "/blue/rest/organizations/{organization}/users/" */],
         produces = ["application/json"]
     )
-    fun getUsers(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String): ResponseEntity<User> {
+    fun getUsers(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String
+    ): ResponseEntity<User> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -611,10 +718,14 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay"],
+        value = [PATH_POST_PIPELINE_RUN /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay" */],
         produces = ["application/json"]
     )
-    fun postPipelineRun(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String): ResponseEntity<QueueItemImpl> {
+    fun postPipelineRun(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String
+    ): ResponseEntity<QueueItemImpl> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -630,10 +741,13 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"],
+        value = [PATH_POST_PIPELINE_RUNS /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" */],
         produces = ["application/json"]
     )
-    fun postPipelineRuns(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String): ResponseEntity<QueueItemImpl> {
+    fun postPipelineRuns(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String
+    ): ResponseEntity<QueueItemImpl> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -649,11 +763,15 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.PUT],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite"],
+        value = [PATH_PUT_PIPELINE_FAVORITE /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" */],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun putPipelineFavorite(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite", required = true) @Valid @RequestBody body: kotlin.Boolean): ResponseEntity<FavoriteImpl> {
+    fun putPipelineFavorite(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite", required = true) @Valid @RequestBody body: kotlin.Boolean
+    ): ResponseEntity<FavoriteImpl> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -669,10 +787,16 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.PUT],
-        value = ["/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop"],
+        value = [PATH_PUT_PIPELINE_RUN /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop" */],
         produces = ["application/json"]
     )
-    fun putPipelineRun(@Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,@Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,@Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,@Parameter(description = "Set to true to make blocking stop, default: false") @Valid @RequestParam(value = "blocking", required = false) blocking: kotlin.String?,@Parameter(description = "Timeout in seconds, default: 10 seconds") @Valid @RequestParam(value = "timeOutInSecs", required = false) timeOutInSecs: kotlin.Int?): ResponseEntity<PipelineRun> {
+    fun putPipelineRun(
+        @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
+        @Parameter(description = "Name of the pipeline", required = true) @PathVariable("pipeline") pipeline: kotlin.String,
+        @Parameter(description = "Name of the run", required = true) @PathVariable("run") run: kotlin.String,
+        @Parameter(description = "Set to true to make blocking stop, default: false") @Valid @RequestParam(value = "blocking", required = false) blocking: kotlin.String?,
+        @Parameter(description = "Timeout in seconds, default: 10 seconds") @Valid @RequestParam(value = "timeOutInSecs", required = false) timeOutInSecs: kotlin.Int?
+    ): ResponseEntity<PipelineRun> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -688,10 +812,12 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/search/"],
+        value = [PATH_SEARCH /* "/blue/rest/search/" */],
         produces = ["application/json"]
     )
-    fun search(@NotNull @Parameter(description = "Query string", required = true) @Valid @RequestParam(value = "q", required = true) q: kotlin.String): ResponseEntity<kotlin.String> {
+    fun search(
+        @NotNull @Parameter(description = "Query string", required = true) @Valid @RequestParam(value = "q", required = true) q: kotlin.String
+    ): ResponseEntity<kotlin.String> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
     }
 
@@ -707,10 +833,52 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/blue/rest/classes/"],
+        value = [PATH_SEARCH_CLASSES /* "/blue/rest/classes/" */],
         produces = ["application/json"]
     )
-    fun searchClasses(@NotNull @Parameter(description = "Query string containing an array of class names", required = true) @Valid @RequestParam(value = "q", required = true) q: kotlin.String): ResponseEntity<kotlin.String> {
+    fun searchClasses(
+        @NotNull @Parameter(description = "Query string containing an array of class names", required = true) @Valid @RequestParam(value = "q", required = true) q: kotlin.String
+    ): ResponseEntity<kotlin.String> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
+    }
+
+    companion object {
+        //for your own safety never directly reuse these path definitions in tests
+        const val BASE_PATH: String = ""
+        const val PATH_DELETE_PIPELINE_QUEUE_ITEM: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}"
+        const val PATH_GET_AUTHENTICATED_USER: String = "/blue/rest/organizations/{organization}/user/"
+        const val PATH_GET_CLASSES: String = "/blue/rest/classes/{class}"
+        const val PATH_GET_ORGANISATION: String = "/blue/rest/organizations/{organization}"
+        const val PATH_GET_ORGANISATIONS: String = "/blue/rest/organizations/"
+        const val PATH_GET_PIPELINE: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}"
+        const val PATH_GET_PIPELINE_ACTIVITIES: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities"
+        const val PATH_GET_PIPELINE_BRANCH: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/"
+        const val PATH_GET_PIPELINE_BRANCH_RUN: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}"
+        const val PATH_GET_PIPELINE_BRANCHES: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches"
+        const val PATH_GET_PIPELINE_FOLDER: String = "/blue/rest/organizations/{organization}/pipelines/{folder}/"
+        const val PATH_GET_PIPELINE_FOLDER_PIPELINE: String = "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}"
+        const val PATH_GET_PIPELINE_QUEUE: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue"
+        const val PATH_GET_PIPELINE_RUN: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}"
+        const val PATH_GET_PIPELINE_RUN_LOG: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log"
+        const val PATH_GET_PIPELINE_RUN_NODE: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}"
+        const val PATH_GET_PIPELINE_RUN_NODE_STEP: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}"
+        const val PATH_GET_PIPELINE_RUN_NODE_STEP_LOG: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log"
+        const val PATH_GET_PIPELINE_RUN_NODE_STEPS: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps"
+        const val PATH_GET_PIPELINE_RUN_NODES: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes"
+        const val PATH_GET_PIPELINE_RUNS: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"
+        const val PATH_GET_PIPELINES: String = "/blue/rest/organizations/{organization}/pipelines/"
+        const val PATH_GET_SCM: String = "/blue/rest/organizations/{organization}/scm/{scm}"
+        const val PATH_GET_SCM_ORGANISATION_REPOSITORIES: String = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories"
+        const val PATH_GET_SCM_ORGANISATION_REPOSITORY: String = "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}"
+        const val PATH_GET_SCM_ORGANISATIONS: String = "/blue/rest/organizations/{organization}/scm/{scm}/organizations"
+        const val PATH_GET_USER: String = "/blue/rest/organizations/{organization}/users/{user}"
+        const val PATH_GET_USER_FAVORITES: String = "/blue/rest/users/{user}/favorites"
+        const val PATH_GET_USERS: String = "/blue/rest/organizations/{organization}/users/"
+        const val PATH_POST_PIPELINE_RUN: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay"
+        const val PATH_POST_PIPELINE_RUNS: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"
+        const val PATH_PUT_PIPELINE_FAVORITE: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite"
+        const val PATH_PUT_PIPELINE_RUN: String = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop"
+        const val PATH_SEARCH: String = "/blue/rest/search/"
+        const val PATH_SEARCH_CLASSES: String = "/blue/rest/classes/"
     }
 }

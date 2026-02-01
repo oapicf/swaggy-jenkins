@@ -1938,10 +1938,10 @@ optionsPipelineImpl =
 
 -- | 
 data PipelineImpllinks = PipelineImpllinks
-  { pipelineImpllinksRuns :: Maybe Link -- ^ 
-  , pipelineImpllinksSelf :: Maybe Link -- ^ 
-  , pipelineImpllinksQueue :: Maybe Link -- ^ 
+  { pipelineImpllinksSelf :: Maybe Link -- ^ 
   , pipelineImpllinksActions :: Maybe Link -- ^ 
+  , pipelineImpllinksRuns :: Maybe Link -- ^ 
+  , pipelineImpllinksQueue :: Maybe Link -- ^ 
   , pipelineImpllinksUnderscoreclass :: Maybe Text -- ^ 
   } deriving (Show, Eq, Generic)
 
@@ -1958,10 +1958,10 @@ optionsPipelineImpllinks =
     }
   where
     table =
-      [ ("pipelineImpllinksRuns", "runs")
-      , ("pipelineImpllinksSelf", "self")
-      , ("pipelineImpllinksQueue", "queue")
+      [ ("pipelineImpllinksSelf", "self")
       , ("pipelineImpllinksActions", "actions")
+      , ("pipelineImpllinksRuns", "runs")
+      , ("pipelineImpllinksQueue", "queue")
       , ("pipelineImpllinksUnderscoreclass", "_class")
       ]
 

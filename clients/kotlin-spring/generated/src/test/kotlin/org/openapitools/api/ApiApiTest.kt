@@ -16,6 +16,7 @@ class ApiApiTest {
      */
     @Test
     fun getJenkinsTest() {
+        
         val response: ResponseEntity<Hudson> = api.getJenkins()
 
         // TODO: test validations
@@ -29,6 +30,7 @@ class ApiApiTest {
      */
     @Test
     fun headJenkinsTest() {
+        
         val response: ResponseEntity<Unit> = api.headJenkins()
 
         // TODO: test validations

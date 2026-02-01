@@ -5,41 +5,123 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    display_name: string option [@default None];
-    executors: Hudson_master_computerexecutors.t list;
-    icon: string option [@default None];
-    icon_class_name: string option [@default None];
-    idle: bool option [@default None];
-    jnlp_agent: bool option [@default None];
-    launch_supported: bool option [@default None];
-    load_statistics: Label1.t option [@default None];
-    manual_launch_allowed: bool option [@default None];
-    monitor_data: Hudson_master_computermonitor_data.t option [@default None];
-    num_executors: int32 option [@default None];
-    offline: bool option [@default None];
-    offline_cause: string option [@default None];
-    offline_cause_reason: string option [@default None];
-    temporarily_offline: bool option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    display_name = None;
-    executors = [];
-    icon = None;
-    icon_class_name = None;
-    idle = None;
-    jnlp_agent = None;
-    launch_supported = None;
-    load_statistics = None;
-    manual_launch_allowed = None;
-    monitor_data = None;
-    num_executors = None;
-    offline = None;
-    offline_cause = None;
-    offline_cause_reason = None;
-    temporarily_offline = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "displayName"]
+                                              executors: Hudson_master_computerexecutors.t list
+                 [@default []]
+                
+                ; [@key "executors"]
+                                              icon: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "icon"]
+                                              icon_class_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "iconClassName"]
+                                              idle: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "idle"]
+                                              jnlp_agent: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "jnlpAgent"]
+                                              launch_supported: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "launchSupported"]
+                                              load_statistics: Label1.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "loadStatistics"]
+                                              manual_launch_allowed: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "manualLaunchAllowed"]
+                                              monitor_data: Hudson_master_computermonitor_data.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "monitorData"]
+                                              num_executors: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "numExecutors"]
+                                              offline: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "offline"]
+                                              offline_cause: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "offlineCause"]
+                                              offline_cause_reason: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "offlineCauseReason"]
+                                              temporarily_offline: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "temporarilyOffline"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            display_name = None;
+            executors = [];
+            icon = None;
+            icon_class_name = None;
+            idle = None;
+            jnlp_agent = None;
+            launch_supported = None;
+            load_statistics = None;
+            manual_launch_allowed = None;
+            monitor_data = None;
+            num_executors = None;
+            offline = None;
+            offline_cause = None;
+            offline_cause_reason = None;
+            temporarily_offline = None;
+        }
+    
 

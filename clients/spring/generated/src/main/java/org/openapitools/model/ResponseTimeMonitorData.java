@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * ResponseTimeMonitorData
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class ResponseTimeMonitorData {
 
   private @Nullable String propertyClass;
@@ -28,7 +28,7 @@ public class ResponseTimeMonitorData {
 
   private @Nullable Integer average;
 
-  public ResponseTimeMonitorData propertyClass(String propertyClass) {
+  public ResponseTimeMonitorData propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -40,15 +40,15 @@ public class ResponseTimeMonitorData {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public ResponseTimeMonitorData timestamp(Integer timestamp) {
+  public ResponseTimeMonitorData timestamp(@Nullable Integer timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -60,15 +60,15 @@ public class ResponseTimeMonitorData {
   
   @Schema(name = "timestamp", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("timestamp")
-  public Integer getTimestamp() {
+  public @Nullable Integer getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(Integer timestamp) {
+  public void setTimestamp(@Nullable Integer timestamp) {
     this.timestamp = timestamp;
   }
 
-  public ResponseTimeMonitorData average(Integer average) {
+  public ResponseTimeMonitorData average(@Nullable Integer average) {
     this.average = average;
     return this;
   }
@@ -80,11 +80,11 @@ public class ResponseTimeMonitorData {
   
   @Schema(name = "average", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("average")
-  public Integer getAverage() {
+  public @Nullable Integer getAverage() {
     return average;
   }
 
-  public void setAverage(Integer average) {
+  public void setAverage(@Nullable Integer average) {
     this.average = average;
   }
 

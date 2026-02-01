@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.1.0
 info:
   contact:
     email: blah+oapicf@cliffano.com
@@ -6,7 +6,7 @@ info:
     url: https://github.com/oapicf/swaggy-jenkins
   description: Jenkins API clients generated from Swagger / Open API specification
   title: Swaggy Jenkins
-  version: 3.0.2-pre.0
+  version: 3.2.1-pre.0
 servers:
 - url: /
 paths:
@@ -19,12 +19,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Hudson'
+                $ref: "#/components/schemas/Hudson"
           description: Successfully retrieved Jenkins details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -40,12 +40,13 @@ paths:
               description: Jenkins version number
               explode: false
               schema:
+                title: _class
                 type: string
               style: simple
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -61,6 +62,7 @@ paths:
         name: depth
         required: true
         schema:
+          title: size
           type: integer
         style: form
       responses:
@@ -68,12 +70,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ComputerSet'
+                $ref: "#/components/schemas/ComputerSet"
           description: Successfully retrieved computer details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -90,6 +92,7 @@ paths:
         name: name
         required: true
         schema:
+          title: _class
           type: string
         style: form
       - description: Existing job to copy from
@@ -98,6 +101,7 @@ paths:
         name: from
         required: false
         schema:
+          title: _class
           type: string
         style: form
       - description: Set to 'copy' for copying an existing job
@@ -106,44 +110,35 @@ paths:
         name: mode
         required: false
         schema:
+          title: _class
           type: string
         style: form
-      - description: CSRF protection token
-        explode: false
-        in: header
-        name: Jenkins-Crumb
-        required: false
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/crumb"
       - description: Content type header application/xml
         explode: false
         in: header
         name: Content-Type
         required: false
         schema:
+          title: _class
           type: string
         style: simple
       requestBody:
         content:
           application/json:
             schema:
+              title: _class
               type: string
         description: Job configuration in config.xml format
       responses:
         "200":
           description: Successfully created a new job
         "400":
-          content:
-            '*/*':
-              schema:
-                type: string
-          description: An error has occurred - error message is embedded inside the
-            HTML response
+          $ref: "#/components/responses/errorInHtml"
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -159,16 +154,10 @@ paths:
         name: name
         required: true
         schema:
+          title: _class
           type: string
         style: form
-      - description: CSRF protection token
-        explode: false
-        in: header
-        name: Jenkins-Crumb
-        required: false
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/crumb"
       - description: Content type header application/xml
         explode: false
         in: header
@@ -181,22 +170,18 @@ paths:
         content:
           application/json:
             schema:
+              title: _class
               type: string
         description: View configuration in config.xml format
       responses:
         "200":
           description: Successfully created the view
         "400":
-          content:
-            '*/*':
-              schema:
-                type: string
-          description: An error has occurred - error message is embedded inside the
-            HTML response
+          $ref: "#/components/responses/errorInHtml"
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -210,12 +195,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DefaultCrumbIssuer'
+                $ref: "#/components/schemas/DefaultCrumbIssuer"
           description: Successfully retrieved CSRF protection token
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -225,27 +210,20 @@ paths:
       description: Retrieve job details
       operationId: getJob
       parameters:
-      - description: Name of the job
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/jobName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FreeStyleProject'
+                $ref: "#/components/schemas/FreeStyleProject"
           description: Successfully retrieved job details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Job cannot be found on Jenkins instance
+          $ref: "#/components/responses/jobNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -255,19 +233,13 @@ paths:
       description: Build a job
       operationId: postJobBuild
       parameters:
-      - description: Name of the job
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/jobName"
       - explode: true
         in: query
         name: json
         required: true
         schema:
+          title: _class
           type: string
         style: form
       - explode: true
@@ -275,16 +247,10 @@ paths:
         name: token
         required: false
         schema:
+          title: _class
           type: string
         style: form
-      - description: CSRF protection token
-        explode: false
-        in: header
-        name: Jenkins-Crumb
-        required: false
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/crumb"
       responses:
         "200":
           description: Successfully built the job (backward compatibility for older
@@ -292,11 +258,11 @@ paths:
         "201":
           description: Successfully built the job
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Job cannot be found on Jenkins instance
+          $ref: "#/components/responses/jobNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -306,27 +272,21 @@ paths:
       description: Retrieve job configuration
       operationId: getJobConfig
       parameters:
-      - description: Name of the job
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/jobName"
       responses:
         "200":
           content:
             text/xml:
               schema:
+                title: _class
                 type: string
           description: Successfully retrieved job configuration in config.xml format
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Job cannot be found on Jenkins instance
+          $ref: "#/components/responses/jobNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -335,26 +295,13 @@ paths:
       description: Update job configuration
       operationId: postJobConfig
       parameters:
-      - description: Name of the job
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: CSRF protection token
-        explode: false
-        in: header
-        name: Jenkins-Crumb
-        required: false
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/jobName"
+      - $ref: "#/components/parameters/crumb"
       requestBody:
         content:
           application/json:
             schema:
+              title: _class
               type: string
         description: Job configuration in config.xml format
         required: true
@@ -362,18 +309,13 @@ paths:
         "200":
           description: Successfully retrieved job configuration in config.xml format
         "400":
-          content:
-            '*/*':
-              schema:
-                type: string
-          description: An error has occurred - error message is embedded inside the
-            HTML response
+          $ref: "#/components/responses/errorInHtml"
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Job cannot be found on Jenkins instance
+          $ref: "#/components/responses/jobNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -383,31 +325,17 @@ paths:
       description: Delete a job
       operationId: postJobDelete
       parameters:
-      - description: Name of the job
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: CSRF protection token
-        explode: false
-        in: header
-        name: Jenkins-Crumb
-        required: false
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/jobName"
+      - $ref: "#/components/parameters/crumb"
       responses:
         "200":
           description: Successfully deleted the job
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Job cannot be found on Jenkins instance
+          $ref: "#/components/responses/jobNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -417,31 +345,17 @@ paths:
       description: Disable a job
       operationId: postJobDisable
       parameters:
-      - description: Name of the job
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: CSRF protection token
-        explode: false
-        in: header
-        name: Jenkins-Crumb
-        required: false
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/jobName"
+      - $ref: "#/components/parameters/crumb"
       responses:
         "200":
           description: Successfully disabled the job
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Job cannot be found on Jenkins instance
+          $ref: "#/components/responses/jobNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -451,31 +365,17 @@ paths:
       description: Enable a job
       operationId: postJobEnable
       parameters:
-      - description: Name of the job
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: CSRF protection token
-        explode: false
-        in: header
-        name: Jenkins-Crumb
-        required: false
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/jobName"
+      - $ref: "#/components/parameters/crumb"
       responses:
         "200":
           description: Successfully enabled the job
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Job cannot be found on Jenkins instance
+          $ref: "#/components/responses/jobNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -485,27 +385,20 @@ paths:
       description: Retrieve job's last build details
       operationId: getJobLastBuild
       parameters:
-      - description: Name of the job
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/jobName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FreeStyleBuild'
+                $ref: "#/components/schemas/FreeStyleBuild"
           description: Successfully retrieved job's last build details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Job cannot be found on Jenkins instance
+          $ref: "#/components/responses/jobNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -515,31 +408,17 @@ paths:
       description: Stop a job
       operationId: postJobLastBuildStop
       parameters:
-      - description: Name of the job
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: CSRF protection token
-        explode: false
-        in: header
-        name: Jenkins-Crumb
-        required: false
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/jobName"
+      - $ref: "#/components/parameters/crumb"
       responses:
         "200":
           description: Successfully stopped the job
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Job cannot be found on Jenkins instance
+          $ref: "#/components/responses/jobNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -549,20 +428,14 @@ paths:
       description: Retrieve job's build progressive text output
       operationId: getJobProgressiveText
       parameters:
-      - description: Name of the job
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/jobName"
       - description: Build number
         explode: false
         in: path
         name: number
         required: true
         schema:
+          title: _class
           type: string
         style: simple
       - description: Starting point of progressive text output
@@ -571,17 +444,18 @@ paths:
         name: start
         required: true
         schema:
+          title: _class
           type: string
         style: form
       responses:
         "200":
           description: Successfully retrieved job's build progressive text output
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Job cannot be found on Jenkins instance
+          $ref: "#/components/responses/jobNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -595,12 +469,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Queue'
+                $ref: "#/components/schemas/Queue"
           description: Successfully retrieved queue details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -616,6 +490,7 @@ paths:
         name: number
         required: true
         schema:
+          title: _class
           type: string
         style: simple
       responses:
@@ -623,12 +498,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Queue'
+                $ref: "#/components/schemas/Queue"
           description: Successfully retrieved queued item details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -638,27 +513,20 @@ paths:
       description: Retrieve view details
       operationId: getView
       parameters:
-      - description: Name of the view
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/viewName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListView'
+                $ref: "#/components/schemas/ListView"
           description: Successfully retrieved view details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: View cannot be found on Jenkins instance
+          $ref: "#/components/responses/viewNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -668,27 +536,21 @@ paths:
       description: Retrieve view configuration
       operationId: getViewConfig
       parameters:
-      - description: Name of the view
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/viewName"
       responses:
         "200":
           content:
             text/xml:
               schema:
+                title: _class
                 type: string
           description: Successfully retrieved view configuration in config.xml format
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: View cannot be found on Jenkins instance
+          $ref: "#/components/responses/viewNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -697,26 +559,13 @@ paths:
       description: Update view configuration
       operationId: postViewConfig
       parameters:
-      - description: Name of the view
-        explode: false
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: CSRF protection token
-        explode: false
-        in: header
-        name: Jenkins-Crumb
-        required: false
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/viewName"
+      - $ref: "#/components/parameters/crumb"
       requestBody:
         content:
           application/json:
             schema:
+              title: _class
               type: string
         description: View configuration in config.xml format
         required: true
@@ -724,18 +573,13 @@ paths:
         "200":
           description: Successfully updated view configuration
         "400":
-          content:
-            '*/*':
-              schema:
-                type: string
-          description: An error has occurred - error message is embedded inside the
-            HTML response
+          $ref: "#/components/responses/errorInHtml"
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: View cannot be found on Jenkins instance
+          $ref: "#/components/responses/viewNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -751,6 +595,7 @@ paths:
         name: expiryTimeInMins
         required: false
         schema:
+          title: size
           type: integer
         style: form
       - description: "Maximum token expiry time in minutes, default: 480 minutes"
@@ -759,6 +604,7 @@ paths:
         name: maxExpiryTimeInMins
         required: false
         schema:
+          title: size
           type: integer
         style: form
       responses:
@@ -766,12 +612,13 @@ paths:
           content:
             application/json:
               schema:
+                title: _class
                 type: string
           description: Successfully retrieved JWT token
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       tags:
       - blueOcean
   /jwt-auth/jwks/{key}:
@@ -785,6 +632,7 @@ paths:
         name: key
         required: true
         schema:
+          title: size
           type: integer
         style: simple
       responses:
@@ -792,12 +640,13 @@ paths:
           content:
             application/json:
               schema:
+                title: _class
                 type: string
           description: Successfully retrieved JWT token
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       tags:
       - blueOcean
   /blue/rest/classes/:
@@ -811,6 +660,7 @@ paths:
         name: q
         required: true
         schema:
+          title: _class
           type: string
         style: form
       responses:
@@ -818,12 +668,13 @@ paths:
           content:
             application/json:
               schema:
+                title: _class
                 type: string
           description: Successfully retrieved search result
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -833,25 +684,19 @@ paths:
       description: Get a list of class names supported by a given class
       operationId: getClasses
       parameters:
-      - description: Name of the class
-        explode: false
-        in: path
-        name: class
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/className"
       responses:
         "200":
           content:
             application/json:
               schema:
+                title: _class
                 type: string
           description: Successfully retrieved class names
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -867,6 +712,7 @@ paths:
         name: q
         required: true
         schema:
+          title: _class
           type: string
         style: form
       responses:
@@ -874,12 +720,13 @@ paths:
           content:
             application/json:
               schema:
+                title: _class
                 type: string
           description: Successfully retrieved search result
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -893,12 +740,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Organisations'
+                $ref: "#/components/schemas/Organisations"
           description: Successfully retrieved pipelines details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -908,27 +755,20 @@ paths:
       description: Retrieve organization details
       operationId: getOrganisation
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Organisation'
+                $ref: "#/components/schemas/Organisation"
           description: Successfully retrieved pipeline details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Pipeline cannot be found on Jenkins instance
+          $ref: "#/components/responses/pipelineNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -938,25 +778,18 @@ paths:
       description: Retrieve all pipelines details for an organization
       operationId: getPipelines
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pipelines'
+                $ref: "#/components/schemas/Pipelines"
           description: Successfully retrieved pipelines details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -966,35 +799,21 @@ paths:
       description: Retrieve pipeline details for an organization
       operationId: getPipeline
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pipeline'
+                $ref: "#/components/schemas/Pipeline"
           description: Successfully retrieved pipeline details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
         "404":
-          description: Pipeline cannot be found on Jenkins instance
+          $ref: "#/components/responses/pipelineNotFound"
       security:
       - jenkins_auth: []
       tags:
@@ -1004,33 +823,19 @@ paths:
       description: Retrieve all activities details for an organization pipeline
       operationId: getPipelineActivities
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineActivities'
+                $ref: "#/components/schemas/PipelineActivities"
           description: Successfully retrieved all activities details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1040,33 +845,19 @@ paths:
       description: Retrieve all branches details for an organization pipeline
       operationId: getPipelineBranches
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MultibranchPipeline'
+                $ref: "#/components/schemas/MultibranchPipeline"
           description: Successfully retrieved all branches details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1076,41 +867,20 @@ paths:
       description: Retrieve branch details for an organization pipeline
       operationId: getPipelineBranch
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the branch
-        explode: false
-        in: path
-        name: branch
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/branchName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BranchImpl'
+                $ref: "#/components/schemas/BranchImpl"
           description: Successfully retrieved branch details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1120,49 +890,21 @@ paths:
       description: Retrieve branch run details for an organization pipeline
       operationId: getPipelineBranchRun
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the branch
-        explode: false
-        in: path
-        name: branch
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the run
-        explode: false
-        in: path
-        name: run
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/branchName"
+      - $ref: "#/components/parameters/runName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineRun'
+                $ref: "#/components/schemas/PipelineRun"
           description: Successfully retrieved run details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1172,33 +914,19 @@ paths:
       description: Retrieve pipeline folder for an organization
       operationId: getPipelineFolder
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the folder
-        explode: false
-        in: path
-        name: folder
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/folderName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineFolderImpl'
+                $ref: "#/components/schemas/PipelineFolderImpl"
           description: Successfully retrieved folder details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1208,41 +936,20 @@ paths:
       description: Retrieve pipeline details for an organization folder
       operationId: getPipelineFolderPipeline
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the folder
-        explode: false
-        in: path
-        name: folder
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/folderName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineImpl'
+                $ref: "#/components/schemas/PipelineImpl"
           description: Successfully retrieved pipeline details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1252,26 +959,13 @@ paths:
       description: Favorite/unfavorite a pipeline
       operationId: putPipelineFavorite
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
       requestBody:
         content:
           application/json:
             schema:
+              title: admin
               type: boolean
         description: "Set JSON string body to {\"favorite\": true} to favorite, set\
           \ value to false to unfavorite"
@@ -1281,12 +975,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FavoriteImpl'
+                $ref: "#/components/schemas/FavoriteImpl"
           description: Successfully favorited/unfavorited a pipeline
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1296,33 +990,19 @@ paths:
       description: Retrieve queue details for an organization pipeline
       operationId: getPipelineQueue
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineQueue'
+                $ref: "#/components/schemas/PipelineQueue"
           description: Successfully retrieved queue details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1332,37 +1012,16 @@ paths:
       description: Delete queue item from an organization pipeline queue
       operationId: deletePipelineQueueItem
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the queue item
-        explode: false
-        in: path
-        name: queue
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/queueItemName"
       responses:
         "200":
           description: Successfully deleted queue item
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1372,33 +1031,19 @@ paths:
       description: Retrieve all runs details for an organization pipeline
       operationId: getPipelineRuns
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineRuns'
+                $ref: "#/components/schemas/PipelineRuns"
           description: Successfully retrieved runs details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1407,33 +1052,19 @@ paths:
       description: Start a build for an organization pipeline
       operationId: postPipelineRuns
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QueueItemImpl'
+                $ref: "#/components/schemas/QueueItemImpl"
           description: Successfully started a build
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1443,41 +1074,20 @@ paths:
       description: Retrieve run details for an organization pipeline
       operationId: getPipelineRun
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the run
-        explode: false
-        in: path
-        name: run
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineRun'
+                $ref: "#/components/schemas/PipelineRun"
           description: Successfully retrieved run details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1487,41 +1097,20 @@ paths:
       description: Retrieve run nodes details for an organization pipeline
       operationId: getPipelineRunNodes
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the run
-        explode: false
-        in: path
-        name: run
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineRunNodes'
+                $ref: "#/components/schemas/PipelineRunNodes"
           description: Successfully retrieved run nodes details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1531,49 +1120,21 @@ paths:
       description: Retrieve run node details for an organization pipeline
       operationId: getPipelineRunNode
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the run
-        explode: false
-        in: path
-        name: run
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the node
-        explode: false
-        in: path
-        name: node
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      - $ref: "#/components/parameters/nodeName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineRunNode'
+                $ref: "#/components/schemas/PipelineRunNode"
           description: Successfully retrieved run node details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1583,49 +1144,21 @@ paths:
       description: Retrieve run node steps details for an organization pipeline
       operationId: getPipelineRunNodeSteps
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the run
-        explode: false
-        in: path
-        name: run
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the node
-        explode: false
-        in: path
-        name: node
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      - $ref: "#/components/parameters/nodeName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineRunNodeSteps'
+                $ref: "#/components/schemas/PipelineRunNodeSteps"
           description: Successfully retrieved run node steps details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1635,57 +1168,22 @@ paths:
       description: Retrieve run node details for an organization pipeline
       operationId: getPipelineRunNodeStep
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the run
-        explode: false
-        in: path
-        name: run
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the node
-        explode: false
-        in: path
-        name: node
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the step
-        explode: false
-        in: path
-        name: step
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      - $ref: "#/components/parameters/nodeName"
+      - $ref: "#/components/parameters/stepName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineStepImpl'
+                $ref: "#/components/schemas/PipelineStepImpl"
           description: Successfully retrieved run node step details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1695,57 +1193,23 @@ paths:
       description: Get log for a pipeline run node step
       operationId: getPipelineRunNodeStepLog
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the run
-        explode: false
-        in: path
-        name: run
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the node
-        explode: false
-        in: path
-        name: node
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the step
-        explode: false
-        in: path
-        name: step
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      - $ref: "#/components/parameters/nodeName"
+      - $ref: "#/components/parameters/stepName"
       responses:
         "200":
           content:
             application/json:
               schema:
+                title: _class
                 type: string
           description: Successfully retrieved pipeline run node step log
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1755,36 +1219,16 @@ paths:
       description: Get log for a pipeline run
       operationId: getPipelineRunLog
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the run
-        explode: false
-        in: path
-        name: run
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
       - description: Start position of the log
         explode: true
         in: query
         name: start
         required: false
         schema:
+          title: size
           type: integer
         style: form
       - description: "Set to true in order to download the file, otherwise it's passed\
@@ -1794,6 +1238,7 @@ paths:
         name: download
         required: false
         schema:
+          title: admin
           type: boolean
         style: form
       responses:
@@ -1801,12 +1246,13 @@ paths:
           content:
             application/json:
               schema:
+                title: _class
                 type: string
           description: Successfully retrieved pipeline run log
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1816,41 +1262,20 @@ paths:
       description: Replay an organization pipeline run
       operationId: postPipelineRun
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the run
-        explode: false
-        in: path
-        name: run
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QueueItemImpl'
+                $ref: "#/components/schemas/QueueItemImpl"
           description: Successfully replayed a pipeline run
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1860,36 +1285,16 @@ paths:
       description: Stop a build of an organization pipeline
       operationId: putPipelineRun
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the pipeline
-        explode: false
-        in: path
-        name: pipeline
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the run
-        explode: false
-        in: path
-        name: run
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
       - description: "Set to true to make blocking stop, default: false"
         explode: true
         in: query
         name: blocking
         required: false
         schema:
+          title: _class
           type: string
         style: form
       - description: "Timeout in seconds, default: 10 seconds"
@@ -1898,6 +1303,7 @@ paths:
         name: timeOutInSecs
         required: false
         schema:
+          title: size
           type: integer
         style: form
       responses:
@@ -1905,12 +1311,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PipelineRun'
+                $ref: "#/components/schemas/PipelineRun"
           description: Successfully stopped a build
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1920,33 +1326,19 @@ paths:
       description: Retrieve SCM details for an organization
       operationId: getSCM
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of SCM
-        explode: false
-        in: path
-        name: scm
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/scmName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GithubScm'
+                $ref: "#/components/schemas/GithubScm"
           description: Successfully retrieved SCM details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -1956,28 +1348,15 @@ paths:
       description: Retrieve SCM organizations details for an organization
       operationId: getSCMOrganisations
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of SCM
-        explode: false
-        in: path
-        name: scm
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/scmName"
       - description: Credential ID
         explode: true
         in: query
         name: credentialId
         required: false
         schema:
+          title: _class
           type: string
         style: form
       responses:
@@ -1985,12 +1364,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ScmOrganisations'
+                $ref: "#/components/schemas/ScmOrganisations"
           description: Successfully retrieved SCM organizations details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -2000,30 +1379,9 @@ paths:
       description: Retrieve SCM organization repositories details for an organization
       operationId: getSCMOrganisationRepositories
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of SCM
-        explode: false
-        in: path
-        name: scm
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the SCM organization
-        explode: false
-        in: path
-        name: scmOrganisation
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/scmName"
+      - $ref: "#/components/parameters/scmOrgName"
       - description: Credential ID
         explode: true
         in: query
@@ -2038,6 +1396,7 @@ paths:
         name: pageSize
         required: false
         schema:
+          title: size
           type: integer
         style: form
       - description: Page number
@@ -2046,6 +1405,7 @@ paths:
         name: pageNumber
         required: false
         schema:
+          title: size
           type: integer
         style: form
       responses:
@@ -2053,12 +1413,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ScmOrganisations'
+                $ref: "#/components/schemas/ScmOrganisations"
           description: Successfully retrieved SCM organization repositories details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -2068,38 +1428,10 @@ paths:
       description: Retrieve SCM organization repository details for an organization
       operationId: getSCMOrganisationRepository
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of SCM
-        explode: false
-        in: path
-        name: scm
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the SCM organization
-        explode: false
-        in: path
-        name: scmOrganisation
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the SCM repository
-        explode: false
-        in: path
-        name: repository
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/scmName"
+      - $ref: "#/components/parameters/scmOrgName"
+      - $ref: "#/components/parameters/repositoryName"
       - description: Credential ID
         explode: true
         in: query
@@ -2113,12 +1445,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ScmOrganisations'
+                $ref: "#/components/schemas/ScmOrganisations"
           description: Successfully retrieved SCM organizations details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -2128,25 +1460,18 @@ paths:
       description: Retrieve authenticated user details for an organization
       operationId: getAuthenticatedUser
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
           description: Successfully retrieved authenticated user details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -2156,25 +1481,18 @@ paths:
       description: Retrieve users details for an organization
       operationId: getUsers
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
           description: Successfully retrieved users details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -2184,33 +1502,19 @@ paths:
       description: Retrieve user details for an organization
       operationId: getUser
       parameters:
-      - description: Name of the organization
-        explode: false
-        in: path
-        name: organization
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: Name of the user
-        explode: false
-        in: path
-        name: user
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/userName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
           description: Successfully retrieved users details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -2220,25 +1524,18 @@ paths:
       description: Retrieve user favorites details for an organization
       operationId: getUserFavorites
       parameters:
-      - description: Name of the user
-        explode: false
-        in: path
-        name: user
-        required: true
-        schema:
-          type: string
-        style: simple
+      - $ref: "#/components/parameters/userName"
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserFavorites'
+                $ref: "#/components/schemas/UserFavorites"
           description: Successfully retrieved users favorites details
         "401":
-          description: Authentication failed - incorrect username and/or password
+          $ref: "#/components/responses/unauthorized"
         "403":
-          description: Jenkins requires authentication - please set username and password
+          $ref: "#/components/responses/forbidden"
       security:
       - jenkins_auth: []
       tags:
@@ -2462,7 +1759,7 @@ components:
           type: string
         actions:
           items:
-            $ref: '#/components/schemas/CauseAction'
+            $ref: "#/components/schemas/CauseAction"
           title: actions
           type: array
         building:
@@ -2505,9 +1802,8 @@ components:
           title: builtOn
           type: string
         changeSet:
-          $ref: '#/components/schemas/EmptyChangeLogSet'
+          $ref: "#/components/schemas/EmptyChangeLogSet"
       title: FreeStyleBuild
-      type: object
     HudsonMasterComputerexecutors:
       example:
         currentExecutable:
@@ -2558,7 +1854,7 @@ components:
         _class: _class
       properties:
         currentExecutable:
-          $ref: '#/components/schemas/FreeStyleBuild'
+          $ref: "#/components/schemas/FreeStyleBuild"
         idle:
           title: idle
           type: boolean
@@ -2575,7 +1871,6 @@ components:
           title: _class
           type: string
       title: HudsonMasterComputerexecutors
-      type: object
     Label1:
       example:
         _class: _class
@@ -2584,7 +1879,6 @@ components:
           title: _class
           type: string
       title: Label1
-      type: object
     SwapSpaceMonitorMemoryUsage2:
       example:
         totalSwapSpace: 7
@@ -2609,7 +1903,6 @@ components:
           title: totalSwapSpace
           type: integer
       title: SwapSpaceMonitorMemoryUsage2
-      type: object
     DiskSpaceMonitorDescriptorDiskSpace:
       example:
         path: path
@@ -2630,7 +1923,6 @@ components:
           title: size
           type: integer
       title: DiskSpaceMonitorDescriptorDiskSpace
-      type: object
     ResponseTimeMonitorData:
       example:
         average: 4
@@ -2647,7 +1939,6 @@ components:
           title: average
           type: integer
       title: ResponseTimeMonitorData
-      type: object
     ClockDifference:
       example:
         diff: 7
@@ -2660,7 +1951,6 @@ components:
           title: diff
           type: integer
       title: ClockDifference
-      type: object
     HudsonMasterComputermonitorData:
       example:
         hudson.node_monitors.SwapSpaceMonitor:
@@ -2690,23 +1980,22 @@ components:
           _class: _class
       properties:
         hudson.node_monitors.SwapSpaceMonitor:
-          $ref: '#/components/schemas/SwapSpaceMonitorMemoryUsage2'
+          $ref: "#/components/schemas/SwapSpaceMonitorMemoryUsage2"
         hudson.node_monitors.TemporarySpaceMonitor:
-          $ref: '#/components/schemas/DiskSpaceMonitorDescriptorDiskSpace'
+          $ref: "#/components/schemas/DiskSpaceMonitorDescriptorDiskSpace"
         hudson.node_monitors.DiskSpaceMonitor:
-          $ref: '#/components/schemas/DiskSpaceMonitorDescriptorDiskSpace'
+          $ref: "#/components/schemas/DiskSpaceMonitorDescriptorDiskSpace"
         hudson.node_monitors.ArchitectureMonitor:
           title: hudson.node_monitors.ArchitectureMonitor
           type: string
         hudson.node_monitors.ResponseTimeMonitor:
-          $ref: '#/components/schemas/ResponseTimeMonitorData'
+          $ref: "#/components/schemas/ResponseTimeMonitorData"
         hudson.node_monitors.ClockMonitor:
-          $ref: '#/components/schemas/ClockDifference'
+          $ref: "#/components/schemas/ClockDifference"
         _class:
           title: _class
           type: string
       title: HudsonMasterComputermonitorData
-      type: object
     HudsonMasterComputer:
       example:
         idle: true
@@ -2852,7 +2141,7 @@ components:
           type: string
         executors:
           items:
-            $ref: '#/components/schemas/HudsonMasterComputerexecutors'
+            $ref: "#/components/schemas/HudsonMasterComputerexecutors"
           title: executors
           type: array
         icon:
@@ -2871,12 +2160,12 @@ components:
           title: launchSupported
           type: boolean
         loadStatistics:
-          $ref: '#/components/schemas/Label1'
+          $ref: "#/components/schemas/Label1"
         manualLaunchAllowed:
           title: manualLaunchAllowed
           type: boolean
         monitorData:
-          $ref: '#/components/schemas/HudsonMasterComputermonitorData'
+          $ref: "#/components/schemas/HudsonMasterComputermonitorData"
         numExecutors:
           title: numExecutors
           type: integer
@@ -2893,7 +2182,6 @@ components:
           title: temporarilyOffline
           type: boolean
       title: HudsonMasterComputer
-      type: object
     ComputerSet:
       example:
         busyExecutors: 0
@@ -3178,7 +2466,7 @@ components:
           type: integer
         computer:
           items:
-            $ref: '#/components/schemas/HudsonMasterComputer'
+            $ref: "#/components/schemas/HudsonMasterComputer"
           title: computer
           type: array
         displayName:
@@ -3188,7 +2476,6 @@ components:
           title: totalExecutors
           type: integer
       title: ComputerSet
-      type: object
     DefaultCrumbIssuer:
       example:
         crumb: crumb
@@ -3205,7 +2492,6 @@ components:
           title: crumbRequestField
           type: string
       title: DefaultCrumbIssuer
-      type: object
     HudsonassignedLabels:
       example:
         _class: _class
@@ -3213,8 +2499,7 @@ components:
         _class:
           title: _class
           type: string
-      title: HudsonassignedLabels
-      type: object
+      title: Label1
     FreeStyleProject:
       example:
         color: color
@@ -3552,7 +2837,7 @@ components:
           type: string
         actions:
           items:
-            $ref: '#/components/schemas/FreeStyleProjectactions'
+            $ref: "#/components/schemas/FreeStyleProjectactions"
           title: actions
           type: array
         description:
@@ -3575,14 +2860,14 @@ components:
           type: boolean
         builds:
           items:
-            $ref: '#/components/schemas/FreeStyleBuild'
+            $ref: "#/components/schemas/FreeStyleBuild"
           title: builds
           type: array
         firstBuild:
-          $ref: '#/components/schemas/FreeStyleBuild'
+          $ref: "#/components/schemas/FreeStyleBuild"
         healthReport:
           items:
-            $ref: '#/components/schemas/FreeStyleProjecthealthReport'
+            $ref: "#/components/schemas/FreeStyleProjecthealthReport"
           title: healthReport
           type: array
         inQueue:
@@ -3592,16 +2877,16 @@ components:
           title: keepDependencies
           type: boolean
         lastBuild:
-          $ref: '#/components/schemas/FreeStyleBuild'
+          $ref: "#/components/schemas/FreeStyleBuild"
         lastCompletedBuild:
-          $ref: '#/components/schemas/FreeStyleBuild'
+          $ref: "#/components/schemas/FreeStyleBuild"
         lastFailedBuild:
           title: lastFailedBuild
           type: string
         lastStableBuild:
-          $ref: '#/components/schemas/FreeStyleBuild'
+          $ref: "#/components/schemas/FreeStyleBuild"
         lastSuccessfulBuild:
-          $ref: '#/components/schemas/FreeStyleBuild'
+          $ref: "#/components/schemas/FreeStyleBuild"
         lastUnstableBuild:
           title: lastUnstableBuild
           type: string
@@ -3618,9 +2903,8 @@ components:
           title: concurrentBuild
           type: boolean
         scm:
-          $ref: '#/components/schemas/NullSCM'
+          $ref: "#/components/schemas/NullSCM"
       title: FreeStyleProject
-      type: object
     AllView:
       example:
         name: name
@@ -3637,7 +2921,6 @@ components:
           title: url
           type: string
       title: AllView
-      type: object
     UnlabeledLoadStatistics:
       example:
         _class: _class
@@ -3645,8 +2928,7 @@ components:
         _class:
           title: _class
           type: string
-      title: UnlabeledLoadStatistics
-      type: object
+      title: Label1
     Hudson:
       example:
         nodeName: nodeName
@@ -4322,7 +3604,7 @@ components:
           type: string
         assignedLabels:
           items:
-            $ref: '#/components/schemas/HudsonassignedLabels'
+            $ref: "#/components/schemas/HudsonassignedLabels"
           title: assignedLabels
           type: array
         mode:
@@ -4342,11 +3624,11 @@ components:
           type: string
         jobs:
           items:
-            $ref: '#/components/schemas/FreeStyleProject'
+            $ref: "#/components/schemas/FreeStyleProject"
           title: jobs
           type: array
         primaryView:
-          $ref: '#/components/schemas/AllView'
+          $ref: "#/components/schemas/AllView"
         quietingDown:
           title: quietingDown
           type: boolean
@@ -4354,7 +3636,7 @@ components:
           title: slaveAgentPort
           type: integer
         unlabeledLoad:
-          $ref: '#/components/schemas/UnlabeledLoadStatistics'
+          $ref: "#/components/schemas/UnlabeledLoadStatistics"
         useCrumbs:
           title: useCrumbs
           type: boolean
@@ -4363,11 +3645,10 @@ components:
           type: boolean
         views:
           items:
-            $ref: '#/components/schemas/AllView'
+            $ref: "#/components/schemas/AllView"
           title: views
           type: array
       title: Hudson
-      type: object
     FreeStyleProjectactions:
       example:
         _class: _class
@@ -4375,8 +3656,7 @@ components:
         _class:
           title: _class
           type: string
-      title: FreeStyleProjectactions
-      type: object
+      title: Label1
     FreeStyleProjecthealthReport:
       example:
         score: 7
@@ -4401,7 +3681,6 @@ components:
           title: _class
           type: string
       title: FreeStyleProjecthealthReport
-      type: object
     NullSCM:
       example:
         _class: _class
@@ -4409,8 +3688,7 @@ components:
         _class:
           title: _class
           type: string
-      title: NullSCM
-      type: object
+      title: Label1
     CauseUserIdCause:
       example:
         _class: _class
@@ -4431,7 +3709,6 @@ components:
           title: userName
           type: string
       title: CauseUserIdCause
-      type: object
     CauseAction:
       example:
         causes:
@@ -4450,11 +3727,10 @@ components:
           type: string
         causes:
           items:
-            $ref: '#/components/schemas/CauseUserIdCause'
+            $ref: "#/components/schemas/CauseUserIdCause"
           title: causes
           type: array
       title: CauseAction
-      type: object
     EmptyChangeLogSet:
       example:
         kind: kind
@@ -4467,7 +3743,6 @@ components:
           title: kind
           type: string
       title: EmptyChangeLogSet
-      type: object
     QueueBlockedItem:
       example:
         task:
@@ -4828,7 +4103,7 @@ components:
           type: string
         actions:
           items:
-            $ref: '#/components/schemas/CauseAction'
+            $ref: "#/components/schemas/CauseAction"
           title: actions
           type: array
         blocked:
@@ -4850,7 +4125,7 @@ components:
           title: stuck
           type: boolean
         task:
-          $ref: '#/components/schemas/FreeStyleProject'
+          $ref: "#/components/schemas/FreeStyleProject"
         url:
           title: url
           type: string
@@ -4861,7 +4136,6 @@ components:
           title: buildableStartMilliseconds
           type: integer
       title: QueueBlockedItem
-      type: object
     Queue:
       example:
         _class: _class
@@ -5576,42 +4850,50 @@ components:
           type: string
         items:
           items:
-            $ref: '#/components/schemas/QueueBlockedItem'
+            $ref: "#/components/schemas/QueueBlockedItem"
           title: items
           type: array
       title: Queue
-      type: object
     QueueLeftItem:
       properties:
         _class:
+          title: _class
           type: string
         actions:
           items:
-            $ref: '#/components/schemas/CauseAction'
+            $ref: "#/components/schemas/CauseAction"
           type: array
         blocked:
+          title: admin
           type: boolean
         buildable:
+          title: admin
           type: boolean
         id:
+          title: size
           type: integer
         inQueueSince:
+          title: size
           type: integer
         params:
+          title: _class
           type: string
         stuck:
+          title: admin
           type: boolean
         task:
-          $ref: '#/components/schemas/FreeStyleProject'
+          $ref: "#/components/schemas/FreeStyleProject"
         url:
+          title: _class
           type: string
         why:
+          title: _class
           type: string
         cancelled:
+          title: admin
           type: boolean
         executable:
-          $ref: '#/components/schemas/FreeStyleBuild'
-      type: object
+          $ref: "#/components/schemas/FreeStyleBuild"
     ListView:
       example:
         jobs:
@@ -6268,7 +5550,7 @@ components:
           type: string
         jobs:
           items:
-            $ref: '#/components/schemas/FreeStyleProject'
+            $ref: "#/components/schemas/FreeStyleProject"
           title: jobs
           type: array
         name:
@@ -6278,7 +5560,6 @@ components:
           title: url
           type: string
       title: ListView
-      type: object
     Link:
       example:
         _class: _class
@@ -6291,59 +5572,64 @@ components:
           title: href
           type: string
       title: Link
-      type: object
     ExtensionClassContainerImpl1links:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
       properties:
         self:
-          $ref: '#/components/schemas/Link'
-        _class:
-          title: _class
-          type: string
-      title: ExtensionClassContainerImpl1links
-      type: object
-    ExtensionClassImpllinks:
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
       title: ExtensionClassImpllinks
-      type: object
+    ExtensionClassImpllinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        _class:
+          title: _class
+          type: string
+      title: ExtensionClassImpllinks
     ExtensionClassImpl:
       properties:
         _class:
           title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/ExtensionClassImpllinks'
+          $ref: "#/components/schemas/ExtensionClassImpllinks"
         classes:
           items:
             type: string
           title: classes
           type: array
       title: ExtensionClassImpl
-      type: object
     ExtensionClassContainerImpl1map:
       properties:
         io.jenkins.blueocean.service.embedded.rest.PipelineImpl:
-          $ref: '#/components/schemas/ExtensionClassImpl'
+          $ref: "#/components/schemas/ExtensionClassImpl"
         io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl:
-          $ref: '#/components/schemas/ExtensionClassImpl'
+          $ref: "#/components/schemas/ExtensionClassImpl"
         _class:
           title: _class
           type: string
       title: ExtensionClassContainerImpl1map
-      type: object
     ExtensionClassContainerImpl1:
       properties:
         _class:
+          title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/ExtensionClassContainerImpl1links'
+          $ref: "#/components/schemas/ExtensionClassContainerImpl1links"
         map:
-          $ref: '#/components/schemas/ExtensionClassContainerImpl1map'
-      type: object
+          $ref: "#/components/schemas/ExtensionClassContainerImpl1map"
     ClassesByClass:
       properties:
         classes:
@@ -6351,8 +5637,8 @@ components:
             type: string
           type: array
         _class:
+          title: _class
           type: string
-      type: object
     MultibranchPipeline:
       example:
         weatherScore: 6
@@ -6417,7 +5703,6 @@ components:
           title: _class
           type: string
       title: MultibranchPipeline
-      type: object
     PipelineImpl:
       example:
         weatherScore: 6
@@ -6427,10 +5712,10 @@ components:
             _class: _class
             href: href
           _class: _class
-          runs:
+          actions:
             _class: _class
             href: href
-          actions:
+          runs:
             _class: _class
             href: href
           queue:
@@ -6468,9 +5753,8 @@ components:
           title: weatherScore
           type: integer
         _links:
-          $ref: '#/components/schemas/PipelineImpllinks'
+          $ref: "#/components/schemas/PipelineImpllinks"
       title: PipelineImpl
-      type: object
     Organisation:
       example:
         name: name
@@ -6483,10 +5767,9 @@ components:
           title: name
           type: string
       title: Organisation
-      type: object
     Organisations:
       items:
-        $ref: '#/components/schemas/Organisation'
+        $ref: "#/components/schemas/Organisation"
       type: array
     PipelinelatestRunartifacts:
       example:
@@ -6496,19 +5779,18 @@ components:
         url: url
       properties:
         name:
-          title: name
+          title: _class
           type: string
         size:
           title: size
           type: integer
         url:
-          title: url
+          title: _class
           type: string
         _class:
           title: _class
           type: string
       title: PipelinelatestRunartifacts
-      type: object
     PipelinelatestRun:
       example:
         runSummary: runSummary
@@ -6537,7 +5819,7 @@ components:
       properties:
         artifacts:
           items:
-            $ref: '#/components/schemas/PipelinelatestRunartifacts'
+            $ref: "#/components/schemas/PipelinelatestRunartifacts"
           title: artifacts
           type: array
         durationInMillis:
@@ -6583,7 +5865,6 @@ components:
           title: _class
           type: string
       title: PipelinelatestRun
-      type: object
     Pipeline:
       example:
         weatherScore: 0
@@ -6640,40 +5921,38 @@ components:
           title: estimatedDurationInMillis
           type: integer
         latestRun:
-          $ref: '#/components/schemas/PipelinelatestRun'
+          $ref: "#/components/schemas/PipelinelatestRun"
       title: Pipeline
-      type: object
     PipelineActivityartifacts:
       example:
-        size: 0
+        size: 1
         name: name
         _class: _class
         url: url
       properties:
         name:
-          title: name
+          title: _class
           type: string
         size:
           title: size
           type: integer
         url:
-          title: url
+          title: _class
           type: string
         _class:
           title: _class
           type: string
-      title: PipelineActivityartifacts
-      type: object
+      title: PipelinelatestRunartifacts
     PipelineActivity:
       example:
         runSummary: runSummary
-        durationInMillis: 6
+        durationInMillis: 0
         commitId: commitId
         type: type
         pipeline: pipeline
         result: result
         organization: organization
-        estimatedDurationInMillis: 1
+        estimatedDurationInMillis: 6
         enQueueTime: enQueueTime
         startTime: startTime
         _class: _class
@@ -6681,11 +5960,11 @@ components:
         id: id
         state: state
         artifacts:
-        - size: 0
+        - size: 1
           name: name
           _class: _class
           url: url
-        - size: 0
+        - size: 1
           name: name
           _class: _class
           url: url
@@ -6695,7 +5974,7 @@ components:
           type: string
         artifacts:
           items:
-            $ref: '#/components/schemas/PipelineActivityartifacts'
+            $ref: "#/components/schemas/PipelineActivityartifacts"
           title: artifacts
           type: array
         durationInMillis:
@@ -6738,10 +6017,9 @@ components:
           title: commitId
           type: string
       title: PipelineActivity
-      type: object
     PipelineActivities:
       items:
-        $ref: '#/components/schemas/PipelineActivity'
+        $ref: "#/components/schemas/PipelineActivity"
       type: array
     StringParameterValue:
       example:
@@ -6759,7 +6037,6 @@ components:
           title: value
           type: string
       title: StringParameterValue
-      type: object
     StringParameterDefinition:
       example:
         name: name
@@ -6775,7 +6052,7 @@ components:
           title: _class
           type: string
         defaultParameterValue:
-          $ref: '#/components/schemas/StringParameterValue'
+          $ref: "#/components/schemas/StringParameterValue"
         description:
           title: description
           type: string
@@ -6786,7 +6063,6 @@ components:
           title: type
           type: string
       title: StringParameterDefinition
-      type: object
     BranchImplpermissions:
       example:
         read: true
@@ -6811,7 +6087,6 @@ components:
           title: _class
           type: string
       title: BranchImplpermissions
-      type: object
     BranchImpl:
       example:
         weatherScore: 6
@@ -6916,11 +6191,11 @@ components:
           type: string
         parameters:
           items:
-            $ref: '#/components/schemas/StringParameterDefinition'
+            $ref: "#/components/schemas/StringParameterDefinition"
           title: parameters
           type: array
         permissions:
-          $ref: '#/components/schemas/BranchImplpermissions'
+          $ref: "#/components/schemas/BranchImplpermissions"
         weatherScore:
           title: weatherScore
           type: integer
@@ -6928,112 +6203,114 @@ components:
           title: pullRequest
           type: string
         _links:
-          $ref: '#/components/schemas/BranchImpllinks'
+          $ref: "#/components/schemas/BranchImpllinks"
         latestRun:
-          $ref: '#/components/schemas/PipelineRunImpl'
+          $ref: "#/components/schemas/PipelineRunImpl"
       title: BranchImpl
-      type: object
     PipelineBranchesitemlatestRun:
       properties:
         durationInMillis:
-          title: durationInMillis
+          title: size
           type: integer
         estimatedDurationInMillis:
-          title: estimatedDurationInMillis
+          title: size
           type: integer
         enQueueTime:
-          title: enQueueTime
+          title: _class
           type: string
         endTime:
-          title: endTime
+          title: _class
           type: string
         id:
-          title: id
+          title: _class
           type: string
         organization:
-          title: organization
+          title: _class
           type: string
         pipeline:
-          title: pipeline
+          title: _class
           type: string
         result:
-          title: result
+          title: _class
           type: string
         runSummary:
-          title: runSummary
+          title: _class
           type: string
         startTime:
-          title: startTime
+          title: _class
           type: string
         state:
-          title: state
+          title: _class
           type: string
         type:
-          title: type
+          title: _class
           type: string
         commitId:
-          title: commitId
+          title: _class
           type: string
         _class:
           title: _class
           type: string
       title: PipelineBranchesitemlatestRun
-      type: object
     PipelineBranchesitempullRequestlinks:
       properties:
         self:
-          title: self
+          title: _class
           type: string
         _class:
           title: _class
           type: string
       title: PipelineBranchesitempullRequestlinks
-      type: object
     PipelineBranchesitempullRequest:
       properties:
         _links:
-          $ref: '#/components/schemas/PipelineBranchesitempullRequestlinks'
+          $ref: "#/components/schemas/PipelineBranchesitempullRequestlinks"
         author:
-          title: author
+          title: _class
           type: string
         id:
-          title: id
+          title: _class
           type: string
         title:
-          title: title
+          title: _class
           type: string
         url:
-          title: url
+          title: _class
           type: string
         _class:
           title: _class
           type: string
       title: PipelineBranchesitempullRequest
-      type: object
     PipelineBranchesitem:
       properties:
         displayName:
+          title: _class
           type: string
         estimatedDurationInMillis:
+          title: size
           type: integer
         name:
+          title: _class
           type: string
         weatherScore:
+          title: size
           type: integer
         latestRun:
-          $ref: '#/components/schemas/PipelineBranchesitemlatestRun'
+          $ref: "#/components/schemas/PipelineBranchesitemlatestRun"
         organization:
+          title: _class
           type: string
         pullRequest:
-          $ref: '#/components/schemas/PipelineBranchesitempullRequest'
+          $ref: "#/components/schemas/PipelineBranchesitempullRequest"
         totalNumberOfPullRequests:
+          title: size
           type: integer
         _class:
+          title: _class
           type: string
-      type: object
     PipelineBranches:
       items:
-        $ref: '#/components/schemas/PipelineBranchesitem'
+        $ref: "#/components/schemas/PipelineBranchesitem"
       type: array
     FavoriteImpllinks:
       example:
@@ -7043,41 +6320,39 @@ components:
         _class: _class
       properties:
         self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
-      title: FavoriteImpllinks
-      type: object
+      title: ExtensionClassImpllinks
     PipelineImpllinks:
       example:
         self:
           _class: _class
           href: href
         _class: _class
-        runs:
+        actions:
           _class: _class
           href: href
-        actions:
+        runs:
           _class: _class
           href: href
         queue:
           _class: _class
           href: href
       properties:
-        runs:
-          $ref: '#/components/schemas/Link'
         self:
-          $ref: '#/components/schemas/Link'
-        queue:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         actions:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
+        runs:
+          $ref: "#/components/schemas/Link"
+        queue:
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
       title: PipelineImpllinks
-      type: object
     FavoriteImpl:
       example:
         item:
@@ -7088,10 +6363,10 @@ components:
               _class: _class
               href: href
             _class: _class
-            runs:
+            actions:
               _class: _class
               href: href
-            actions:
+            runs:
               _class: _class
               href: href
             queue:
@@ -7114,11 +6389,10 @@ components:
           title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/FavoriteImpllinks'
+          $ref: "#/components/schemas/FavoriteImpllinks"
         item:
-          $ref: '#/components/schemas/PipelineImpl'
+          $ref: "#/components/schemas/PipelineImpl"
       title: FavoriteImpl
-      type: object
     PipelineFolderImpl:
       example:
         numberOfPipelines: 6
@@ -7151,7 +6425,6 @@ components:
           title: numberOfPipelines
           type: integer
       title: PipelineFolderImpl
-      type: object
     QueueItemImpl:
       example:
         pipeline: pipeline
@@ -7176,42 +6449,40 @@ components:
           title: queuedTime
           type: integer
       title: QueueItemImpl
-      type: object
     PipelineQueue:
       items:
-        $ref: '#/components/schemas/QueueItemImpl'
+        $ref: "#/components/schemas/QueueItemImpl"
       type: array
     PipelineRunartifacts:
       example:
-        size: 0
+        size: 1
         name: name
         _class: _class
         url: url
       properties:
         name:
-          title: name
+          title: _class
           type: string
         size:
           title: size
           type: integer
         url:
-          title: url
+          title: _class
           type: string
         _class:
           title: _class
           type: string
-      title: PipelineRunartifacts
-      type: object
+      title: PipelinelatestRunartifacts
     PipelineRun:
       example:
         runSummary: runSummary
-        durationInMillis: 6
+        durationInMillis: 0
         commitId: commitId
         type: type
         pipeline: pipeline
         result: result
         organization: organization
-        estimatedDurationInMillis: 1
+        estimatedDurationInMillis: 6
         enQueueTime: enQueueTime
         startTime: startTime
         _class: _class
@@ -7219,11 +6490,11 @@ components:
         id: id
         state: state
         artifacts:
-        - size: 0
+        - size: 1
           name: name
           _class: _class
           url: url
-        - size: 0
+        - size: 1
           name: name
           _class: _class
           url: url
@@ -7233,7 +6504,7 @@ components:
           type: string
         artifacts:
           items:
-            $ref: '#/components/schemas/PipelineRunartifacts'
+            $ref: "#/components/schemas/PipelineRunartifacts"
           title: artifacts
           type: array
         durationInMillis:
@@ -7276,7 +6547,6 @@ components:
           title: commitId
           type: string
       title: PipelineRun
-      type: object
     PipelineStepImpllinks:
       example:
         self:
@@ -7288,14 +6558,13 @@ components:
           href: href
       properties:
         self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         actions:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
       title: PipelineStepImpllinks
-      type: object
     InputStepImpllinks:
       example:
         self:
@@ -7304,12 +6573,11 @@ components:
         _class: _class
       properties:
         self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
-      title: InputStepImpllinks
-      type: object
+      title: ExtensionClassImpllinks
     InputStepImpl:
       example:
         submitter: submitter
@@ -7344,7 +6612,7 @@ components:
           title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/InputStepImpllinks'
+          $ref: "#/components/schemas/InputStepImpllinks"
         id:
           title: id
           type: string
@@ -7356,14 +6624,13 @@ components:
           type: string
         parameters:
           items:
-            $ref: '#/components/schemas/StringParameterDefinition'
+            $ref: "#/components/schemas/StringParameterDefinition"
           title: parameters
           type: array
         submitter:
           title: submitter
           type: string
       title: InputStepImpl
-      type: object
     PipelineStepImpl:
       example:
         result: result
@@ -7414,7 +6681,7 @@ components:
           title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/PipelineStepImpllinks'
+          $ref: "#/components/schemas/PipelineStepImpllinks"
         displayName:
           title: displayName
           type: string
@@ -7425,7 +6692,7 @@ components:
           title: id
           type: string
         input:
-          $ref: '#/components/schemas/InputStepImpl'
+          $ref: "#/components/schemas/InputStepImpl"
         result:
           title: result
           type: string
@@ -7436,10 +6703,9 @@ components:
           title: state
           type: string
       title: PipelineStepImpl
-      type: object
     PipelineRunNodeSteps:
       items:
-        $ref: '#/components/schemas/PipelineStepImpl'
+        $ref: "#/components/schemas/PipelineStepImpl"
       type: array
     PipelineRunNodeedges:
       example:
@@ -7453,7 +6719,6 @@ components:
           title: _class
           type: string
       title: PipelineRunNodeedges
-      type: object
     PipelineRunNode:
       example:
         result: result
@@ -7480,7 +6745,7 @@ components:
           type: integer
         edges:
           items:
-            $ref: '#/components/schemas/PipelineRunNodeedges'
+            $ref: "#/components/schemas/PipelineRunNodeedges"
           title: edges
           type: array
         id:
@@ -7496,37 +6761,41 @@ components:
           title: state
           type: string
       title: PipelineRunNode
-      type: object
     PipelineRunNodes:
       items:
-        $ref: '#/components/schemas/PipelineRunNode'
+        $ref: "#/components/schemas/PipelineRunNode"
       type: array
     GenericResource:
       properties:
         _class:
+          title: _class
           type: string
         displayName:
+          title: _class
           type: string
         durationInMillis:
+          title: size
           type: integer
         id:
+          title: _class
           type: string
         result:
+          title: _class
           type: string
         startTime:
+          title: _class
           type: string
-      type: object
     PipelineRunSteps:
       items:
-        $ref: '#/components/schemas/GenericResource'
+        $ref: "#/components/schemas/GenericResource"
       type: array
     PipelineRuns:
       items:
-        $ref: '#/components/schemas/PipelineRun'
+        $ref: "#/components/schemas/PipelineRun"
       type: array
     Pipelines:
       items:
-        $ref: '#/components/schemas/Pipeline'
+        $ref: "#/components/schemas/Pipeline"
       type: array
     GithubScmlinks:
       example:
@@ -7536,12 +6805,11 @@ components:
         _class: _class
       properties:
         self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
-      title: GithubScmlinks
-      type: object
+      title: ExtensionClassImpllinks
     GithubScm:
       example:
         _links:
@@ -7558,7 +6826,7 @@ components:
           title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/GithubScmlinks'
+          $ref: "#/components/schemas/GithubScmlinks"
         credentialId:
           title: credentialId
           type: string
@@ -7569,143 +6837,150 @@ components:
           title: uri
           type: string
       title: GithubScm
-      type: object
     GithubContent:
       properties:
         name:
-          title: name
+          title: _class
           type: string
         sha:
-          title: sha
+          title: _class
           type: string
         _class:
           title: _class
           type: string
         repo:
-          title: repo
+          title: _class
           type: string
         size:
           title: size
           type: integer
         owner:
-          title: owner
+          title: _class
           type: string
         path:
-          title: path
+          title: _class
           type: string
         base64Data:
-          title: base64Data
+          title: _class
           type: string
       title: GithubContent
-      type: object
     GithubFile:
       properties:
         content:
-          $ref: '#/components/schemas/GithubContent'
+          $ref: "#/components/schemas/GithubContent"
         _class:
+          title: _class
           type: string
-      type: object
     GithubRespositoryContainerlinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
       properties:
         self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
-      title: GithubRespositoryContainerlinks
-      type: object
+      title: ExtensionClassImpllinks
     GithubRepositorieslinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
       properties:
         self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
-      title: GithubRepositorieslinks
-      type: object
+      title: ExtensionClassImpllinks
     GithubRepositorylinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
       properties:
         self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
-      title: GithubRepositorylinks
-      type: object
+      title: ExtensionClassImpllinks
     GithubRepositorypermissions:
       properties:
         admin:
           title: admin
           type: boolean
         push:
-          title: push
+          title: admin
           type: boolean
         pull:
-          title: pull
+          title: admin
           type: boolean
         _class:
           title: _class
           type: string
       title: GithubRepositorypermissions
-      type: object
     GithubRepository:
       properties:
         _class:
           title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/GithubRepositorylinks'
+          $ref: "#/components/schemas/GithubRepositorylinks"
         defaultBranch:
-          title: defaultBranch
+          title: _class
           type: string
         description:
-          title: description
+          title: _class
           type: string
         name:
-          title: name
+          title: _class
           type: string
         permissions:
-          $ref: '#/components/schemas/GithubRepositorypermissions'
+          $ref: "#/components/schemas/GithubRepositorypermissions"
         private:
-          title: private
+          title: admin
           type: boolean
         fullName:
-          title: fullName
+          title: _class
           type: string
       title: GithubRepository
-      type: object
     GithubRepositories:
       properties:
         _class:
           title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/GithubRepositorieslinks'
+          $ref: "#/components/schemas/GithubRepositorieslinks"
         items:
           items:
-            $ref: '#/components/schemas/GithubRepository'
+            $ref: "#/components/schemas/GithubRepository"
           title: items
           type: array
         lastPage:
-          title: lastPage
+          title: size
           type: integer
         nextPage:
-          title: nextPage
+          title: size
           type: integer
         pageSize:
-          title: pageSize
+          title: size
           type: integer
       title: GithubRepositories
-      type: object
     GithubRespositoryContainer:
       properties:
         _class:
+          title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/GithubRespositoryContainerlinks'
+          $ref: "#/components/schemas/GithubRespositoryContainerlinks"
         repositories:
-          $ref: '#/components/schemas/GithubRepositories'
-      type: object
+          $ref: "#/components/schemas/GithubRepositories"
     GithubOrganizationlinks:
       example:
         repositories:
@@ -7717,14 +6992,13 @@ components:
         _class: _class
       properties:
         repositories:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
       title: GithubOrganizationlinks
-      type: object
     GithubOrganization:
       example:
         _links:
@@ -7743,7 +7017,7 @@ components:
           title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/GithubOrganizationlinks'
+          $ref: "#/components/schemas/GithubOrganizationlinks"
         jenkinsOrganizationPipeline:
           title: jenkinsOrganizationPipeline
           type: boolean
@@ -7751,10 +7025,9 @@ components:
           title: name
           type: string
       title: GithubOrganization
-      type: object
     ScmOrganisations:
       items:
-        $ref: '#/components/schemas/GithubOrganization'
+        $ref: "#/components/schemas/GithubOrganization"
       type: array
     User:
       example:
@@ -7780,7 +7053,6 @@ components:
           title: name
           type: string
       title: User
-      type: object
     BranchImpllinks:
       example:
         self:
@@ -7798,18 +7070,17 @@ components:
           href: href
       properties:
         self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         actions:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         runs:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         queue:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
-      title: BranchImpllinks
-      type: object
+      title: PipelineImpllinks
     PipelineRunImpllinks:
       example:
         nodes:
@@ -7830,20 +7101,19 @@ components:
           href: href
       properties:
         nodes:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         log:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         self:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         actions:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         steps:
-          $ref: '#/components/schemas/Link'
+          $ref: "#/components/schemas/Link"
         _class:
           title: _class
           type: string
       title: PipelineRunImpllinks
-      type: object
     PipelineRunImpl:
       example:
         runSummary: runSummary
@@ -7882,7 +7152,7 @@ components:
           title: _class
           type: string
         _links:
-          $ref: '#/components/schemas/PipelineRunImpllinks'
+          $ref: "#/components/schemas/PipelineRunImpllinks"
         durationInMillis:
           title: durationInMillis
           type: integer
@@ -7923,14 +7193,13 @@ components:
           title: commitId
           type: string
       title: PipelineRunImpl
-      type: object
     UserFavorites:
       items:
-        $ref: '#/components/schemas/FavoriteImpl'
+        $ref: "#/components/schemas/FavoriteImpl"
       type: array
     Users:
       items:
-        $ref: '#/components/schemas/User'
+        $ref: "#/components/schemas/User"
       type: array
   securitySchemes:
     jenkins_auth:

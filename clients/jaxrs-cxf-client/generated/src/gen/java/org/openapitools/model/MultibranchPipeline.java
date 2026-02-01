@@ -12,45 +12,59 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MultibranchPipeline  {
   
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private Integer estimatedDurationInMillis;
 
   @ApiModelProperty(value = "")
+
   private String latestRun;
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private String organization;
 
   @ApiModelProperty(value = "")
+
   private Integer weatherScore;
 
   @ApiModelProperty(value = "")
+
   private List<String> branchNames = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private Integer numberOfFailingBranches;
 
   @ApiModelProperty(value = "")
+
   private Integer numberOfFailingPullRequests;
 
   @ApiModelProperty(value = "")
+
   private Integer numberOfSuccessfulBranches;
 
   @ApiModelProperty(value = "")
+
   private Integer numberOfSuccessfulPullRequests;
 
   @ApiModelProperty(value = "")
+
   private Integer totalNumberOfBranches;
 
   @ApiModelProperty(value = "")
+
   private Integer totalNumberOfPullRequests;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get displayName

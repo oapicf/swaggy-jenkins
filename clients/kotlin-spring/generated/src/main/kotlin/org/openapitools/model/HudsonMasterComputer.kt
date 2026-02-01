@@ -87,7 +87,7 @@ data class HudsonMasterComputer(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("temporarilyOffline") val temporarilyOffline: kotlin.Boolean? = null
-    ) {
+) {
 
 }
 

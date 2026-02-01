@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 README.md
 composer.json
 src/App/ApiClient.php
@@ -33,7 +34,13 @@ src/App/DTO/Collection25.php
 src/App/DTO/Collection26.php
 src/App/DTO/Collection27.php
 src/App/DTO/Collection28.php
+src/App/DTO/Collection29.php
 src/App/DTO/Collection3.php
+src/App/DTO/Collection30.php
+src/App/DTO/Collection31.php
+src/App/DTO/Collection32.php
+src/App/DTO/Collection33.php
+src/App/DTO/Collection34.php
 src/App/DTO/Collection4.php
 src/App/DTO/Collection5.php
 src/App/DTO/Collection6.php

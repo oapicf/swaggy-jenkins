@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.0.2-pre.0
+ * API version: 3.2.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -53,192 +53,459 @@ func NewBlueOceanAPIController(s BlueOceanAPIServicer, opts ...BlueOceanAPIOptio
 func (c *BlueOceanAPIController) Routes() Routes {
 	return Routes{
 		"GetJsonWebToken": Route{
+			"GetJsonWebToken",
 			strings.ToUpper("Get"),
 			"/jwt-auth/token",
 			c.GetJsonWebToken,
 		},
 		"GetJsonWebKey": Route{
+			"GetJsonWebKey",
 			strings.ToUpper("Get"),
 			"/jwt-auth/jwks/{key}",
 			c.GetJsonWebKey,
 		},
 		"SearchClasses": Route{
+			"SearchClasses",
 			strings.ToUpper("Get"),
 			"/blue/rest/classes/",
 			c.SearchClasses,
 		},
 		"GetClasses": Route{
+			"GetClasses",
 			strings.ToUpper("Get"),
 			"/blue/rest/classes/{class}",
 			c.GetClasses,
 		},
 		"Search": Route{
+			"Search",
 			strings.ToUpper("Get"),
 			"/blue/rest/search/",
 			c.Search,
 		},
 		"GetOrganisations": Route{
+			"GetOrganisations",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/",
 			c.GetOrganisations,
 		},
 		"GetOrganisation": Route{
+			"GetOrganisation",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}",
 			c.GetOrganisation,
 		},
 		"GetPipelines": Route{
+			"GetPipelines",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/",
 			c.GetPipelines,
 		},
 		"GetPipeline": Route{
+			"GetPipeline",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}",
 			c.GetPipeline,
 		},
 		"GetPipelineActivities": Route{
+			"GetPipelineActivities",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities",
 			c.GetPipelineActivities,
 		},
 		"GetPipelineBranches": Route{
+			"GetPipelineBranches",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches",
 			c.GetPipelineBranches,
 		},
 		"GetPipelineBranch": Route{
+			"GetPipelineBranch",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/",
 			c.GetPipelineBranch,
 		},
 		"GetPipelineBranchRun": Route{
+			"GetPipelineBranchRun",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}",
 			c.GetPipelineBranchRun,
 		},
 		"GetPipelineFolder": Route{
+			"GetPipelineFolder",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{folder}/",
 			c.GetPipelineFolder,
 		},
 		"GetPipelineFolderPipeline": Route{
+			"GetPipelineFolderPipeline",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}",
 			c.GetPipelineFolderPipeline,
 		},
 		"PutPipelineFavorite": Route{
+			"PutPipelineFavorite",
 			strings.ToUpper("Put"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite",
 			c.PutPipelineFavorite,
 		},
 		"GetPipelineQueue": Route{
+			"GetPipelineQueue",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue",
 			c.GetPipelineQueue,
 		},
 		"DeletePipelineQueueItem": Route{
+			"DeletePipelineQueueItem",
 			strings.ToUpper("Delete"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}",
 			c.DeletePipelineQueueItem,
 		},
 		"GetPipelineRuns": Route{
+			"GetPipelineRuns",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
 			c.GetPipelineRuns,
 		},
 		"PostPipelineRuns": Route{
+			"PostPipelineRuns",
 			strings.ToUpper("Post"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
 			c.PostPipelineRuns,
 		},
 		"GetPipelineRun": Route{
+			"GetPipelineRun",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}",
 			c.GetPipelineRun,
 		},
 		"GetPipelineRunNodes": Route{
+			"GetPipelineRunNodes",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes",
 			c.GetPipelineRunNodes,
 		},
 		"GetPipelineRunNode": Route{
+			"GetPipelineRunNode",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}",
 			c.GetPipelineRunNode,
 		},
 		"GetPipelineRunNodeSteps": Route{
+			"GetPipelineRunNodeSteps",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps",
 			c.GetPipelineRunNodeSteps,
 		},
 		"GetPipelineRunNodeStep": Route{
+			"GetPipelineRunNodeStep",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}",
 			c.GetPipelineRunNodeStep,
 		},
 		"GetPipelineRunNodeStepLog": Route{
+			"GetPipelineRunNodeStepLog",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log",
 			c.GetPipelineRunNodeStepLog,
 		},
 		"GetPipelineRunLog": Route{
+			"GetPipelineRunLog",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log",
 			c.GetPipelineRunLog,
 		},
 		"PostPipelineRun": Route{
+			"PostPipelineRun",
 			strings.ToUpper("Post"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay",
 			c.PostPipelineRun,
 		},
 		"PutPipelineRun": Route{
+			"PutPipelineRun",
 			strings.ToUpper("Put"),
 			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop",
 			c.PutPipelineRun,
 		},
 		"GetSCM": Route{
+			"GetSCM",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/scm/{scm}",
 			c.GetSCM,
 		},
 		"GetSCMOrganisations": Route{
+			"GetSCMOrganisations",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/scm/{scm}/organizations",
 			c.GetSCMOrganisations,
 		},
 		"GetSCMOrganisationRepositories": Route{
+			"GetSCMOrganisationRepositories",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories",
 			c.GetSCMOrganisationRepositories,
 		},
 		"GetSCMOrganisationRepository": Route{
+			"GetSCMOrganisationRepository",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}",
 			c.GetSCMOrganisationRepository,
 		},
 		"GetAuthenticatedUser": Route{
+			"GetAuthenticatedUser",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/user/",
 			c.GetAuthenticatedUser,
 		},
 		"GetUsers": Route{
+			"GetUsers",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/users/",
 			c.GetUsers,
 		},
 		"GetUser": Route{
+			"GetUser",
 			strings.ToUpper("Get"),
 			"/blue/rest/organizations/{organization}/users/{user}",
 			c.GetUser,
 		},
 		"GetUserFavorites": Route{
+			"GetUserFavorites",
 			strings.ToUpper("Get"),
 			"/blue/rest/users/{user}/favorites",
 			c.GetUserFavorites,
 		},
 	}
 }
+
+// OrderedRoutes returns all the api routes in a deterministic order for the BlueOceanAPIController
+func (c *BlueOceanAPIController) OrderedRoutes() []Route {
+	return []Route{
+		Route{
+			"GetJsonWebToken",
+			strings.ToUpper("Get"),
+			"/jwt-auth/token",
+			c.GetJsonWebToken,
+		},
+		Route{
+			"GetJsonWebKey",
+			strings.ToUpper("Get"),
+			"/jwt-auth/jwks/{key}",
+			c.GetJsonWebKey,
+		},
+		Route{
+			"SearchClasses",
+			strings.ToUpper("Get"),
+			"/blue/rest/classes/",
+			c.SearchClasses,
+		},
+		Route{
+			"GetClasses",
+			strings.ToUpper("Get"),
+			"/blue/rest/classes/{class}",
+			c.GetClasses,
+		},
+		Route{
+			"Search",
+			strings.ToUpper("Get"),
+			"/blue/rest/search/",
+			c.Search,
+		},
+		Route{
+			"GetOrganisations",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/",
+			c.GetOrganisations,
+		},
+		Route{
+			"GetOrganisation",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}",
+			c.GetOrganisation,
+		},
+		Route{
+			"GetPipelines",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/",
+			c.GetPipelines,
+		},
+		Route{
+			"GetPipeline",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}",
+			c.GetPipeline,
+		},
+		Route{
+			"GetPipelineActivities",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities",
+			c.GetPipelineActivities,
+		},
+		Route{
+			"GetPipelineBranches",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches",
+			c.GetPipelineBranches,
+		},
+		Route{
+			"GetPipelineBranch",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/",
+			c.GetPipelineBranch,
+		},
+		Route{
+			"GetPipelineBranchRun",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}",
+			c.GetPipelineBranchRun,
+		},
+		Route{
+			"GetPipelineFolder",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{folder}/",
+			c.GetPipelineFolder,
+		},
+		Route{
+			"GetPipelineFolderPipeline",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}",
+			c.GetPipelineFolderPipeline,
+		},
+		Route{
+			"PutPipelineFavorite",
+			strings.ToUpper("Put"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite",
+			c.PutPipelineFavorite,
+		},
+		Route{
+			"GetPipelineQueue",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue",
+			c.GetPipelineQueue,
+		},
+		Route{
+			"DeletePipelineQueueItem",
+			strings.ToUpper("Delete"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}",
+			c.DeletePipelineQueueItem,
+		},
+		Route{
+			"GetPipelineRuns",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
+			c.GetPipelineRuns,
+		},
+		Route{
+			"PostPipelineRuns",
+			strings.ToUpper("Post"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
+			c.PostPipelineRuns,
+		},
+		Route{
+			"GetPipelineRun",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}",
+			c.GetPipelineRun,
+		},
+		Route{
+			"GetPipelineRunNodes",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes",
+			c.GetPipelineRunNodes,
+		},
+		Route{
+			"GetPipelineRunNode",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}",
+			c.GetPipelineRunNode,
+		},
+		Route{
+			"GetPipelineRunNodeSteps",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps",
+			c.GetPipelineRunNodeSteps,
+		},
+		Route{
+			"GetPipelineRunNodeStep",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}",
+			c.GetPipelineRunNodeStep,
+		},
+		Route{
+			"GetPipelineRunNodeStepLog",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log",
+			c.GetPipelineRunNodeStepLog,
+		},
+		Route{
+			"GetPipelineRunLog",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log",
+			c.GetPipelineRunLog,
+		},
+		Route{
+			"PostPipelineRun",
+			strings.ToUpper("Post"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay",
+			c.PostPipelineRun,
+		},
+		Route{
+			"PutPipelineRun",
+			strings.ToUpper("Put"),
+			"/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop",
+			c.PutPipelineRun,
+		},
+		Route{
+			"GetSCM",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/scm/{scm}",
+			c.GetSCM,
+		},
+		Route{
+			"GetSCMOrganisations",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/scm/{scm}/organizations",
+			c.GetSCMOrganisations,
+		},
+		Route{
+			"GetSCMOrganisationRepositories",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories",
+			c.GetSCMOrganisationRepositories,
+		},
+		Route{
+			"GetSCMOrganisationRepository",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}",
+			c.GetSCMOrganisationRepository,
+		},
+		Route{
+			"GetAuthenticatedUser",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/user/",
+			c.GetAuthenticatedUser,
+		},
+		Route{
+			"GetUsers",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/users/",
+			c.GetUsers,
+		},
+		Route{
+			"GetUser",
+			strings.ToUpper("Get"),
+			"/blue/rest/organizations/{organization}/users/{user}",
+			c.GetUser,
+		},
+		Route{
+			"GetUserFavorites",
+			strings.ToUpper("Get"),
+			"/blue/rest/users/{user}/favorites",
+			c.GetUserFavorites,
+		},
+	}
+}
+
+
 
 // GetJsonWebToken - 
 func (c *BlueOceanAPIController) GetJsonWebToken(w http.ResponseWriter, r *http.Request) {

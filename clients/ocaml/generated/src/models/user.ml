@@ -5,19 +5,48 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    id: string option [@default None];
-    full_name: string option [@default None];
-    email: string option [@default None];
-    name: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    id = None;
-    full_name = None;
-    email = None;
-    name = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              id: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "id"]
+                                              full_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "fullName"]
+                                              email: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "email"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            id = None;
+            full_name = None;
+            email = None;
+            name = None;
+        }
+    
 

@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -18,7 +18,14 @@ import "google/protobuf/empty.proto";
 import public "models/default_crumb_issuer.proto";
 
 service BaseService {
-  rpc GetCrumb (google.protobuf.Empty) returns (DefaultCrumbIssuer);
+  rpc GetCrumb (google.protobuf.Empty) returns (GetCrumbResponse);
 
 }
 
+message GetCrumbResponse {
+    oneof response {
+        DefaultCrumbIssuer default_crumb_issuer_200 = 1;
+        google.protobuf.Empty empty_401 = 2;
+        google.protobuf.Empty empty_403 = 3;
+    }
+}

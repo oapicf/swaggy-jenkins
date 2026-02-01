@@ -3,7 +3,7 @@ Swaggy Jenkins
 
 Jenkins API clients generated from Swagger / Open API specification
 
-API version: 3.0.2-pre.0
+API version: 3.2.1-pre.0
 Contact: blah+oapicf@cliffano.com
 */
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the Swaggy Jenkins API v3.0.2-pre.0
+// APIClient manages communication with the Swaggy Jenkins API v3.2.1-pre.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

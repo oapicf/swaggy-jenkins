@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use axum::{body::Body, extract::*, response::Response, routing::*};
-use axum_extra::extract::{CookieJar, Host};
+use axum_extra::extract::{CookieJar, Host, Query as QueryExtra};
 use bytes::Bytes;
 use http::{header::CONTENT_TYPE, HeaderMap, HeaderName, HeaderValue, Method, StatusCode};
 use tracing::error;
@@ -11,6 +11,9 @@ use crate::{header, types::*};
 
 #[allow(unused_imports)]
 use crate::{apis, models};
+
+#[allow(unused_imports)]
+use crate::{models::check_xss_string, models::check_xss_vec_string, models::check_xss_map_string, models::check_xss_map_nested, models::check_xss_map};
 
 
 /// Setup API Server.
@@ -212,16 +215,15 @@ where
     A: apis::base::Base<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -239,7 +241,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_crumb(
+
+
+let result = api_impl.as_ref().get_crumb(
+      
       &method,
       &host,
       &cookies,
@@ -258,7 +263,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -280,11 +285,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -318,16 +324,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -347,7 +352,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().delete_pipeline_queue_item(
+
+
+let result = api_impl.as_ref().delete_pipeline_queue_item(
+      
       &method,
       &host,
       &cookies,
@@ -376,11 +384,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -414,16 +423,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -443,7 +451,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_authenticated_user(
+
+
+let result = api_impl.as_ref().get_authenticated_user(
+      
       &method,
       &host,
       &cookies,
@@ -463,7 +474,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -485,11 +496,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -523,16 +535,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -552,7 +563,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_classes(
+
+
+let result = api_impl.as_ref().get_classes(
+      
       &method,
       &host,
       &cookies,
@@ -572,7 +586,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -594,11 +608,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -633,6 +648,8 @@ where
         {
 
 
+
+
       #[allow(clippy::redundant_closure)]
       let validation = tokio::task::spawn_blocking(move ||
     get_json_web_key_validation(
@@ -649,7 +666,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_json_web_key(
+
+
+let result = api_impl.as_ref().get_json_web_key(
+      
       &method,
       &host,
       &cookies,
@@ -668,7 +688,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -690,11 +710,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -719,7 +740,7 @@ async fn get_json_web_token<I, A, E, C>(
   method: Method,
   host: Host,
   cookies: CookieJar,
-  Query(query_params): Query<models::GetJsonWebTokenQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::GetJsonWebTokenQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -727,6 +748,8 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
 
 
       #[allow(clippy::redundant_closure)]
@@ -745,7 +768,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_json_web_token(
+
+
+let result = api_impl.as_ref().get_json_web_token(
+      
       &method,
       &host,
       &cookies,
@@ -764,7 +790,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -786,11 +812,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -824,16 +851,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -853,7 +879,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_organisation(
+
+
+let result = api_impl.as_ref().get_organisation(
+      
       &method,
       &host,
       &cookies,
@@ -873,7 +902,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -900,11 +929,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -933,16 +963,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -960,7 +989,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_organisations(
+
+
+let result = api_impl.as_ref().get_organisations(
+      
       &method,
       &host,
       &cookies,
@@ -979,7 +1011,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -1001,11 +1033,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -1039,16 +1072,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -1068,7 +1100,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline(
+
+
+let result = api_impl.as_ref().get_pipeline(
+      
       &method,
       &host,
       &cookies,
@@ -1088,7 +1123,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -1115,11 +1150,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -1153,16 +1189,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -1182,7 +1217,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_activities(
+
+
+let result = api_impl.as_ref().get_pipeline_activities(
+      
       &method,
       &host,
       &cookies,
@@ -1202,7 +1240,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -1224,11 +1262,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -1262,16 +1301,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -1291,7 +1329,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_branch(
+
+
+let result = api_impl.as_ref().get_pipeline_branch(
+      
       &method,
       &host,
       &cookies,
@@ -1311,7 +1352,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -1333,11 +1374,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -1371,16 +1413,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -1400,7 +1441,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_branch_run(
+
+
+let result = api_impl.as_ref().get_pipeline_branch_run(
+      
       &method,
       &host,
       &cookies,
@@ -1420,7 +1464,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -1442,11 +1486,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -1480,16 +1525,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -1509,7 +1553,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_branches(
+
+
+let result = api_impl.as_ref().get_pipeline_branches(
+      
       &method,
       &host,
       &cookies,
@@ -1529,7 +1576,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -1551,11 +1598,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -1589,16 +1637,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -1618,7 +1665,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_folder(
+
+
+let result = api_impl.as_ref().get_pipeline_folder(
+      
       &method,
       &host,
       &cookies,
@@ -1638,7 +1688,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -1660,11 +1710,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -1698,16 +1749,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -1727,7 +1777,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_folder_pipeline(
+
+
+let result = api_impl.as_ref().get_pipeline_folder_pipeline(
+      
       &method,
       &host,
       &cookies,
@@ -1747,7 +1800,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -1769,11 +1822,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -1807,16 +1861,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -1836,7 +1889,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_queue(
+
+
+let result = api_impl.as_ref().get_pipeline_queue(
+      
       &method,
       &host,
       &cookies,
@@ -1856,7 +1912,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -1878,11 +1934,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -1916,16 +1973,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -1945,7 +2001,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_run(
+
+
+let result = api_impl.as_ref().get_pipeline_run(
+      
       &method,
       &host,
       &cookies,
@@ -1965,7 +2024,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -1987,11 +2046,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -2022,7 +2082,7 @@ async fn get_pipeline_run_log<I, A, E, C>(
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineRunLogPathParams>,
-  Query(query_params): Query<models::GetPipelineRunLogQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::GetPipelineRunLogQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -2030,16 +2090,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -2061,7 +2120,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_run_log(
+
+
+let result = api_impl.as_ref().get_pipeline_run_log(
+      
       &method,
       &host,
       &cookies,
@@ -2082,7 +2144,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -2104,11 +2166,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -2142,16 +2205,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -2171,7 +2233,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_run_node(
+
+
+let result = api_impl.as_ref().get_pipeline_run_node(
+      
       &method,
       &host,
       &cookies,
@@ -2191,7 +2256,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -2213,11 +2278,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -2251,16 +2317,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -2280,7 +2345,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_run_node_step(
+
+
+let result = api_impl.as_ref().get_pipeline_run_node_step(
+      
       &method,
       &host,
       &cookies,
@@ -2300,7 +2368,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -2322,11 +2390,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -2360,16 +2429,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -2389,7 +2457,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_run_node_step_log(
+
+
+let result = api_impl.as_ref().get_pipeline_run_node_step_log(
+      
       &method,
       &host,
       &cookies,
@@ -2409,7 +2480,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -2431,11 +2502,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -2469,16 +2541,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -2498,7 +2569,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_run_node_steps(
+
+
+let result = api_impl.as_ref().get_pipeline_run_node_steps(
+      
       &method,
       &host,
       &cookies,
@@ -2518,7 +2592,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -2540,11 +2614,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -2578,16 +2653,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -2607,7 +2681,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_run_nodes(
+
+
+let result = api_impl.as_ref().get_pipeline_run_nodes(
+      
       &method,
       &host,
       &cookies,
@@ -2627,7 +2704,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -2649,11 +2726,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -2687,16 +2765,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -2716,7 +2793,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipeline_runs(
+
+
+let result = api_impl.as_ref().get_pipeline_runs(
+      
       &method,
       &host,
       &cookies,
@@ -2736,7 +2816,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -2758,11 +2838,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -2796,16 +2877,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -2825,7 +2905,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_pipelines(
+
+
+let result = api_impl.as_ref().get_pipelines(
+      
       &method,
       &host,
       &cookies,
@@ -2845,7 +2928,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -2867,11 +2950,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -2905,16 +2989,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -2934,7 +3017,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_scm(
+
+
+let result = api_impl.as_ref().get_scm(
+      
       &method,
       &host,
       &cookies,
@@ -2954,7 +3040,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -2976,11 +3062,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -3011,7 +3098,7 @@ async fn get_scm_organisation_repositories<I, A, E, C>(
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetScmOrganisationRepositoriesPathParams>,
-  Query(query_params): Query<models::GetScmOrganisationRepositoriesQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::GetScmOrganisationRepositoriesQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -3019,16 +3106,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -3050,7 +3136,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_scm_organisation_repositories(
+
+
+let result = api_impl.as_ref().get_scm_organisation_repositories(
+      
       &method,
       &host,
       &cookies,
@@ -3071,7 +3160,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -3093,11 +3182,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -3128,7 +3218,7 @@ async fn get_scm_organisation_repository<I, A, E, C>(
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetScmOrganisationRepositoryPathParams>,
-  Query(query_params): Query<models::GetScmOrganisationRepositoryQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::GetScmOrganisationRepositoryQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -3136,16 +3226,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -3167,7 +3256,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_scm_organisation_repository(
+
+
+let result = api_impl.as_ref().get_scm_organisation_repository(
+      
       &method,
       &host,
       &cookies,
@@ -3188,7 +3280,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -3210,11 +3302,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -3245,7 +3338,7 @@ async fn get_scm_organisations<I, A, E, C>(
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetScmOrganisationsPathParams>,
-  Query(query_params): Query<models::GetScmOrganisationsQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::GetScmOrganisationsQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -3253,16 +3346,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -3284,7 +3376,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_scm_organisations(
+
+
+let result = api_impl.as_ref().get_scm_organisations(
+      
       &method,
       &host,
       &cookies,
@@ -3305,7 +3400,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -3327,11 +3422,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -3365,16 +3461,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -3394,7 +3489,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_user(
+
+
+let result = api_impl.as_ref().get_user(
+      
       &method,
       &host,
       &cookies,
@@ -3414,7 +3512,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -3436,11 +3534,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -3474,16 +3573,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -3503,7 +3601,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_user_favorites(
+
+
+let result = api_impl.as_ref().get_user_favorites(
+      
       &method,
       &host,
       &cookies,
@@ -3523,7 +3624,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -3545,11 +3646,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -3583,16 +3685,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -3612,7 +3713,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_users(
+
+
+let result = api_impl.as_ref().get_users(
+      
       &method,
       &host,
       &cookies,
@@ -3632,7 +3736,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -3654,11 +3758,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -3692,16 +3797,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -3721,7 +3825,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_pipeline_run(
+
+
+let result = api_impl.as_ref().post_pipeline_run(
+      
       &method,
       &host,
       &cookies,
@@ -3741,7 +3848,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -3763,11 +3870,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -3801,16 +3909,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -3830,7 +3937,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_pipeline_runs(
+
+
+let result = api_impl.as_ref().post_pipeline_runs(
+      
       &method,
       &host,
       &cookies,
@@ -3850,7 +3960,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -3872,11 +3982,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -3884,7 +3995,6 @@ where
     #[derive(validator::Validate)]
     #[allow(dead_code)]
     struct PutPipelineFavoriteBodyValidator<'a> {
-            #[validate(nested)]
           body: &'a bool,
     }
 
@@ -3923,16 +4033,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -3954,7 +4063,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().put_pipeline_favorite(
+
+
+let result = api_impl.as_ref().put_pipeline_favorite(
+      
       &method,
       &host,
       &cookies,
@@ -3975,7 +4087,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -3997,11 +4109,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -4032,7 +4145,7 @@ async fn put_pipeline_run<I, A, E, C>(
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PutPipelineRunPathParams>,
-  Query(query_params): Query<models::PutPipelineRunQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::PutPipelineRunQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -4040,16 +4153,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -4071,7 +4183,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().put_pipeline_run(
+
+
+let result = api_impl.as_ref().put_pipeline_run(
+      
       &method,
       &host,
       &cookies,
@@ -4092,7 +4207,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -4114,11 +4229,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -4144,7 +4260,7 @@ async fn search<I, A, E, C>(
   host: Host,
   cookies: CookieJar,
   headers: HeaderMap,
-  Query(query_params): Query<models::SearchQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::SearchQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -4152,16 +4268,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -4181,7 +4296,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().search(
+
+
+let result = api_impl.as_ref().search(
+      
       &method,
       &host,
       &cookies,
@@ -4201,7 +4319,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -4223,11 +4341,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -4253,7 +4372,7 @@ async fn search_classes<I, A, E, C>(
   host: Host,
   cookies: CookieJar,
   headers: HeaderMap,
-  Query(query_params): Query<models::SearchClassesQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::SearchClassesQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -4261,16 +4380,15 @@ where
     A: apis::blue_ocean::BlueOcean<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -4290,7 +4408,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().search_classes(
+
+
+let result = api_impl.as_ref().search_classes(
+      
       &method,
       &host,
       &cookies,
@@ -4310,7 +4431,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -4332,11 +4453,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -4362,7 +4484,7 @@ async fn get_computer<I, A, E, C>(
   host: Host,
   cookies: CookieJar,
   headers: HeaderMap,
-  Query(query_params): Query<models::GetComputerQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::GetComputerQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -4370,16 +4492,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -4399,7 +4520,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_computer(
+
+
+let result = api_impl.as_ref().get_computer(
+      
       &method,
       &host,
       &cookies,
@@ -4419,7 +4543,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -4441,11 +4565,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -4474,16 +4599,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -4501,7 +4625,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_jenkins(
+
+
+let result = api_impl.as_ref().get_jenkins(
+      
       &method,
       &host,
       &cookies,
@@ -4520,7 +4647,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -4542,11 +4669,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -4580,16 +4708,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -4609,7 +4736,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_job(
+
+
+let result = api_impl.as_ref().get_job(
+      
       &method,
       &host,
       &cookies,
@@ -4629,7 +4759,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -4656,11 +4786,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -4694,16 +4825,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -4723,7 +4853,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_job_config(
+
+
+let result = api_impl.as_ref().get_job_config(
+      
       &method,
       &host,
       &cookies,
@@ -4743,7 +4876,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("text/plain").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("text/plain"));
                                                   }
 
                                                   let body_content = body;
@@ -4766,11 +4899,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -4804,16 +4938,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -4833,7 +4966,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_job_last_build(
+
+
+let result = api_impl.as_ref().get_job_last_build(
+      
       &method,
       &host,
       &cookies,
@@ -4853,7 +4989,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -4880,11 +5016,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -4915,7 +5052,7 @@ async fn get_job_progressive_text<I, A, E, C>(
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetJobProgressiveTextPathParams>,
-  Query(query_params): Query<models::GetJobProgressiveTextQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::GetJobProgressiveTextQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -4923,16 +5060,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -4954,7 +5090,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_job_progressive_text(
+
+
+let result = api_impl.as_ref().get_job_progressive_text(
+      
       &method,
       &host,
       &cookies,
@@ -4989,11 +5128,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -5022,16 +5162,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -5049,7 +5188,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_queue(
+
+
+let result = api_impl.as_ref().get_queue(
+      
       &method,
       &host,
       &cookies,
@@ -5068,7 +5210,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -5090,11 +5232,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -5128,16 +5271,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -5157,7 +5299,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_queue_item(
+
+
+let result = api_impl.as_ref().get_queue_item(
+      
       &method,
       &host,
       &cookies,
@@ -5177,7 +5322,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -5199,11 +5344,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -5237,16 +5383,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -5266,7 +5411,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_view(
+
+
+let result = api_impl.as_ref().get_view(
+      
       &method,
       &host,
       &cookies,
@@ -5286,7 +5434,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("application/json").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("application/json"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -5313,11 +5461,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -5351,16 +5500,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -5380,7 +5528,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().get_view_config(
+
+
+let result = api_impl.as_ref().get_view_config(
+      
       &method,
       &host,
       &cookies,
@@ -5400,7 +5551,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("text/plain").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("text/plain"));
                                                   }
 
                                                   let body_content = body;
@@ -5423,11 +5574,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -5456,16 +5608,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
 
@@ -5483,7 +5634,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().head_jenkins(
+
+
+let result = api_impl.as_ref().head_jenkins(
+      
       &method,
       &host,
       &cookies,
@@ -5505,7 +5659,7 @@ where
                                                         Err(e) => {
                                                             return Response::builder()
                                                                     .status(StatusCode::INTERNAL_SERVER_ERROR)
-                                                                    .body(Body::from(format!("An internal server error occurred handling x_jenkins header - {}", e))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                                                    .body(Body::from(format!("An internal server error occurred handling x_jenkins header - {e}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
                                                         }
                                                     };
 
@@ -5533,11 +5687,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -5545,7 +5700,7 @@ where
     #[derive(validator::Validate)]
     #[allow(dead_code)]
     struct PostCreateItemBodyValidator<'a> {
-            #[validate(nested)]
+                #[validate(custom(function = "check_xss_string"))]
           body: &'a String,
     }
 
@@ -5581,7 +5736,7 @@ async fn post_create_item<I, A, E, C>(
   host: Host,
   cookies: CookieJar,
   headers: HeaderMap,
-  Query(query_params): Query<models::PostCreateItemQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::PostCreateItemQueryParams>,
  State(api_impl): State<I>,
           Json(body): Json<Option<String>>,
 ) -> Result<Response, StatusCode>
@@ -5590,16 +5745,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
     // Header parameters
@@ -5613,7 +5767,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -5630,7 +5784,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Content-Type - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Content-Type - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -5666,7 +5820,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_create_item(
+
+
+let result = api_impl.as_ref().post_create_item(
+      
       &method,
       &host,
       &cookies,
@@ -5693,7 +5850,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("*/*").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("*/*"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -5715,11 +5872,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -5727,7 +5885,7 @@ where
     #[derive(validator::Validate)]
     #[allow(dead_code)]
     struct PostCreateViewBodyValidator<'a> {
-            #[validate(nested)]
+                #[validate(custom(function = "check_xss_string"))]
           body: &'a String,
     }
 
@@ -5763,7 +5921,7 @@ async fn post_create_view<I, A, E, C>(
   host: Host,
   cookies: CookieJar,
   headers: HeaderMap,
-  Query(query_params): Query<models::PostCreateViewQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::PostCreateViewQueryParams>,
  State(api_impl): State<I>,
           Json(body): Json<Option<String>>,
 ) -> Result<Response, StatusCode>
@@ -5772,16 +5930,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
     // Header parameters
@@ -5795,7 +5952,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -5812,7 +5969,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Content-Type - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Content-Type - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -5848,7 +6005,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_create_view(
+
+
+let result = api_impl.as_ref().post_create_view(
+      
       &method,
       &host,
       &cookies,
@@ -5875,7 +6035,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("*/*").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("*/*"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -5897,11 +6057,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -5936,7 +6097,7 @@ async fn post_job_build<I, A, E, C>(
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PostJobBuildPathParams>,
-  Query(query_params): Query<models::PostJobBuildQueryParams>,
+  QueryExtra(query_params): QueryExtra<models::PostJobBuildQueryParams>,
  State(api_impl): State<I>,
 ) -> Result<Response, StatusCode>
 where
@@ -5944,16 +6105,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
     // Header parameters
@@ -5967,7 +6127,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -6002,7 +6162,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_job_build(
+
+
+let result = api_impl.as_ref().post_job_build(
+      
       &method,
       &host,
       &cookies,
@@ -6043,11 +6206,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -6055,7 +6219,7 @@ where
     #[derive(validator::Validate)]
     #[allow(dead_code)]
     struct PostJobConfigBodyValidator<'a> {
-            #[validate(nested)]
+                #[validate(custom(function = "check_xss_string"))]
           body: &'a String,
     }
 
@@ -6098,16 +6262,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
     // Header parameters
@@ -6121,7 +6284,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -6156,7 +6319,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_job_config(
+
+
+let result = api_impl.as_ref().post_job_config(
+      
       &method,
       &host,
       &cookies,
@@ -6183,7 +6349,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("*/*").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("*/*"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -6210,11 +6376,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -6252,16 +6419,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
     // Header parameters
@@ -6275,7 +6441,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -6308,7 +6474,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_job_delete(
+
+
+let result = api_impl.as_ref().post_job_delete(
+      
       &method,
       &host,
       &cookies,
@@ -6343,11 +6512,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -6385,16 +6555,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
     // Header parameters
@@ -6408,7 +6577,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -6441,7 +6610,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_job_disable(
+
+
+let result = api_impl.as_ref().post_job_disable(
+      
       &method,
       &host,
       &cookies,
@@ -6476,11 +6648,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -6518,16 +6691,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
     // Header parameters
@@ -6541,7 +6713,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -6574,7 +6746,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_job_enable(
+
+
+let result = api_impl.as_ref().post_job_enable(
+      
       &method,
       &host,
       &cookies,
@@ -6609,11 +6784,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -6651,16 +6827,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
     // Header parameters
@@ -6674,7 +6849,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -6707,7 +6882,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_job_last_build_stop(
+
+
+let result = api_impl.as_ref().post_job_last_build_stop(
+      
       &method,
       &host,
       &cookies,
@@ -6742,11 +6920,12 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
@@ -6754,7 +6933,7 @@ where
     #[derive(validator::Validate)]
     #[allow(dead_code)]
     struct PostViewConfigBodyValidator<'a> {
-            #[validate(nested)]
+                #[validate(custom(function = "check_xss_string"))]
           body: &'a String,
     }
 
@@ -6797,16 +6976,15 @@ where
     A: apis::remote_access::RemoteAccess<E, Claims = C>+ apis::ApiAuthBasic<Claims = C> + Send + Sync,
     E: std::fmt::Debug + Send + Sync + 'static,
         {
+
+
     // Authentication
     let claims_in_auth_header = api_impl.as_ref().extract_claims_from_auth_header(apis::BasicAuthKind::Basic, &headers, "authorization").await;
     let claims = None
              .or(claims_in_auth_header)
           ;
     let Some(claims) = claims else {
-        return Response::builder()
-                        .status(StatusCode::UNAUTHORIZED)
-                        .body(Body::empty())
-                        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR);
+        return response_with_status_code_only(StatusCode::UNAUTHORIZED);
     };
 
     // Header parameters
@@ -6820,7 +6998,7 @@ where
                         Err(err) => {
                             return Response::builder()
                                         .status(StatusCode::BAD_REQUEST)
-                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {}", err))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                                        .body(Body::from(format!("Invalid header Jenkins-Crumb - {err}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
 
                         },
                     },
@@ -6855,7 +7033,10 @@ where
             .map_err(|_| StatusCode::BAD_REQUEST);
   };
 
-  let result = api_impl.as_ref().post_view_config(
+
+
+let result = api_impl.as_ref().post_view_config(
+      
       &method,
       &host,
       &cookies,
@@ -6882,7 +7063,7 @@ where
                                                     let mut response_headers = response.headers_mut().unwrap();
                                                     response_headers.insert(
                                                         CONTENT_TYPE,
-                                                        HeaderValue::from_str("*/*").map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })?);
+                                                        HeaderValue::from_static("*/*"));
                                                   }
 
                                                   let body_content =  tokio::task::spawn_blocking(move ||
@@ -6909,12 +7090,22 @@ where
                                                 },
                                             },
                                             Err(why) => {
-                                                // Application code returned an error. This should not happen, as the implementation should
-                                                // return a valid response.
-                                                return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
+                                                    // Application code returned an error. This should not happen, as the implementation should
+                                                    // return a valid response.
+                                                    return api_impl.as_ref().handle_error(&method, &host, &cookies, why).await;
                                             },
                                         };
+
 
                                         resp.map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR })
 }
 
+
+#[allow(dead_code)]
+#[inline]
+fn response_with_status_code_only(code: StatusCode) -> Result<Response, StatusCode> {
+   Response::builder()
+          .status(code)
+          .body(Body::empty())
+          .map_err(|_| code)
+}

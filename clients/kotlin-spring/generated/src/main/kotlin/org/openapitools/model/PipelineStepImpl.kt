@@ -57,7 +57,7 @@ data class PipelineStepImpl(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("state") val state: kotlin.String? = null
-    ) {
+) {
 
 }
 

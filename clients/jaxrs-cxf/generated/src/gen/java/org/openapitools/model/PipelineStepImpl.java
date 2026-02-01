@@ -13,32 +13,43 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelineStepImpl  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private PipelineStepImpllinks links;
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private Integer durationInMillis;
 
   @ApiModelProperty(value = "")
+
   private String id;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private InputStepImpl input;
 
   @ApiModelProperty(value = "")
+
   private String result;
 
   @ApiModelProperty(value = "")
+
   private String startTime;
 
   @ApiModelProperty(value = "")
+
   private String state;
  /**
    * Get propertyClass

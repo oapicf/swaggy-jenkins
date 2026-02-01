@@ -3,20 +3,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Runs** | [**Link**](Link.md) |  | [optional] 
 **Self** | [**Link**](Link.md) |  | [optional] 
-**Queue** | [**Link**](Link.md) |  | [optional] 
 **Actions** | [**Link**](Link.md) |  | [optional] 
+**Runs** | [**Link**](Link.md) |  | [optional] 
+**Queue** | [**Link**](Link.md) |  | [optional] 
 **Class** | **String** |  | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$PipelineImpllinks = Initialize-PSOpenAPIToolsPipelineImpllinks  -Runs null `
- -Self null `
- -Queue null `
+$PipelineImpllinks = Initialize-PSOpenAPIToolsPipelineImpllinks  -Self null `
  -Actions null `
+ -Runs null `
+ -Queue null `
  -Class null
 ```
 

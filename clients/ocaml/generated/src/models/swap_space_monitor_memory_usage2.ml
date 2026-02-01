@@ -5,19 +5,48 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    available_physical_memory: int32 option [@default None];
-    available_swap_space: int32 option [@default None];
-    total_physical_memory: int32 option [@default None];
-    total_swap_space: int32 option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    available_physical_memory = None;
-    available_swap_space = None;
-    total_physical_memory = None;
-    total_swap_space = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              available_physical_memory: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "availablePhysicalMemory"]
+                                              available_swap_space: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "availableSwapSpace"]
+                                              total_physical_memory: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "totalPhysicalMemory"]
+                                              total_swap_space: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "totalSwapSpace"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            available_physical_memory = None;
+            available_swap_space = None;
+            total_physical_memory = None;
+            total_swap_space = None;
+        }
+    
 

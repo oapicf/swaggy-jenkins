@@ -21,14 +21,6 @@ public class PipelineImpllinksTest {
     }
 
     /**
-     * Test the property 'runs'
-     */
-    @Test
-    public void runsTest() {
-        // TODO: test runs
-    }
-
-    /**
      * Test the property 'self'
      */
     @Test
@@ -37,19 +29,27 @@ public class PipelineImpllinksTest {
     }
 
     /**
-     * Test the property 'queue'
-     */
-    @Test
-    public void queueTest() {
-        // TODO: test queue
-    }
-
-    /**
      * Test the property 'actions'
      */
     @Test
     public void actionsTest() {
         // TODO: test actions
+    }
+
+    /**
+     * Test the property 'runs'
+     */
+    @Test
+    public void runsTest() {
+        // TODO: test runs
+    }
+
+    /**
+     * Test the property 'queue'
+     */
+    @Test
+    public void queueTest() {
+        // TODO: test queue
     }
 
     /**

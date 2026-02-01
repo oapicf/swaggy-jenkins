@@ -5,15 +5,34 @@
  *
  *)
 
-type t = {
-    repositories: Link.t option [@default None];
-    self: Link.t option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    repositories = None;
-    self = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              repositories: Link.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "repositories"]
+                                              self: Link.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "self"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            repositories = None;
+            self = None;
+            _class = None;
+        }
+    
 

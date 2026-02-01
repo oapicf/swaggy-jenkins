@@ -932,10 +932,10 @@ CREATE TABLE IF NOT EXISTS `PipelineImpl` (
 --
 
 CREATE TABLE IF NOT EXISTS `PipelineImpllinks` (
-  `runs` long,
   `self` long,
-  `queue` long,
   `actions` long,
+  `runs` long,
+  `queue` long,
   `_class` text
 ); 
 

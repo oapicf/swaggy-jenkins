@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -21,34 +21,35 @@ import public "models/unlabeled_load_statistics.proto";
 
 message Hudson {
 
-  string _class = 406713225;
+  string class = 94742904;
 
-  repeated HudsonassignedLabels assignedLabels = 208619376;
+  repeated HudsonassignedLabels assigned_labels = 21351313;
 
   string mode = 3357091;
 
-  string nodeDescription = 61470568;
+  string node_description = 347693763;
 
-  string nodeName = 49138607;
+  string node_name = 465630888;
 
-  int32 numExecutors = 192205545;
+  int32 num_executors = 333997946;
 
   string description = 113933319;
 
   repeated FreeStyleProject jobs = 3267670;
 
-  AllView primaryView = 330634298;
+  AllView primary_view = 40413504;
 
-  bool quietingDown = 385440018;
+  bool quieting_down = 423990550;
 
-  int32 slaveAgentPort = 346580239;
+  int32 slave_agent_port = 436428574;
 
-  UnlabeledLoadStatistics unlabeledLoad = 296705507;
+  UnlabeledLoadStatistics unlabeled_load = 448334806;
 
-  bool useCrumbs = 451591618;
+  bool use_crumbs = 318614643;
 
-  bool useSecurity = 454022684;
+  bool use_security = 98446072;
 
   repeated AllView views = 112204398;
 
 }
+

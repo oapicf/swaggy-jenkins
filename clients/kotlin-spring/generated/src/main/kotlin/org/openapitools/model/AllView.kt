@@ -29,7 +29,7 @@ data class AllView(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("url") val url: kotlin.String? = null
-    ) {
+) {
 
 }
 

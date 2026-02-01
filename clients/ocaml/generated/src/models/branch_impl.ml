@@ -5,35 +5,102 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    display_name: string option [@default None];
-    estimated_duration_in_millis: int32 option [@default None];
-    full_display_name: string option [@default None];
-    full_name: string option [@default None];
-    name: string option [@default None];
-    organization: string option [@default None];
-    parameters: String_parameter_definition.t list;
-    permissions: Branch_implpermissions.t option [@default None];
-    weather_score: int32 option [@default None];
-    pull_request: string option [@default None];
-    _links: Branch_impllinks.t option [@default None];
-    latest_run: Pipeline_run_impl.t option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    display_name = None;
-    estimated_duration_in_millis = None;
-    full_display_name = None;
-    full_name = None;
-    name = None;
-    organization = None;
-    parameters = [];
-    permissions = None;
-    weather_score = None;
-    pull_request = None;
-    _links = None;
-    latest_run = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "displayName"]
+                                              estimated_duration_in_millis: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "estimatedDurationInMillis"]
+                                              full_display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "fullDisplayName"]
+                                              full_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "fullName"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                                              organization: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "organization"]
+                                              parameters: String_parameter_definition.t list
+                 [@default []]
+                
+                ; [@key "parameters"]
+                                              permissions: Branch_implpermissions.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "permissions"]
+                                              weather_score: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "weatherScore"]
+                                              pull_request: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "pullRequest"]
+                                              _links: Branch_impllinks.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_links"]
+                                              latest_run: Pipeline_run_impl.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "latestRun"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            display_name = None;
+            estimated_duration_in_millis = None;
+            full_display_name = None;
+            full_name = None;
+            name = None;
+            organization = None;
+            parameters = [];
+            permissions = None;
+            weather_score = None;
+            pull_request = None;
+            _links = None;
+            latest_run = None;
+        }
+    
 

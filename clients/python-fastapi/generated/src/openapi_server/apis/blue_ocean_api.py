@@ -50,50 +50,65 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     importlib.import_module(name)
 
 
-@router.delete(
-    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}",
+@router.get(
+    "/jwt-auth/token",
     responses={
-        200: {"description": "Successfully deleted queue item"},
+        200: {"model": str, "description": "Successfully retrieved JWT token"},
         401: {"description": "Authentication failed - incorrect username and/or password"},
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
     response_model_by_alias=True,
 )
-async def delete_pipeline_queue_item(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    queue: Annotated[StrictStr, Field(description="Name of the queue item")] = Path(..., description="Name of the queue item"),
-    token_jenkins_auth: TokenModel = Security(
-        get_token_jenkins_auth
-    ),
-) -> None:
-    """Delete queue item from an organization pipeline queue"""
+async def get_json_web_token(
+    expiry_time_in_mins: Annotated[Optional[StrictInt], Field(description="Token expiry time in minutes, default: 30 minutes")] = Query(None, description="Token expiry time in minutes, default: 30 minutes", alias="expiryTimeInMins"),
+    max_expiry_time_in_mins: Annotated[Optional[StrictInt], Field(description="Maximum token expiry time in minutes, default: 480 minutes")] = Query(None, description="Maximum token expiry time in minutes, default: 480 minutes", alias="maxExpiryTimeInMins"),
+) -> str:
+    """Retrieve JSON Web Token"""
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().delete_pipeline_queue_item(organization, pipeline, queue)
+    return await BaseBlueOceanApi.subclasses[0]().get_json_web_token(expiry_time_in_mins, max_expiry_time_in_mins)
 
 
 @router.get(
-    "/blue/rest/organizations/{organization}/user/",
+    "/jwt-auth/jwks/{key}",
     responses={
-        200: {"model": User, "description": "Successfully retrieved authenticated user details"},
+        200: {"model": str, "description": "Successfully retrieved JWT token"},
         401: {"description": "Authentication failed - incorrect username and/or password"},
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
     response_model_by_alias=True,
 )
-async def get_authenticated_user(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+async def get_json_web_key(
+    key: Annotated[StrictInt, Field(description="Key ID received as part of JWT header field kid")] = Path(..., description="Key ID received as part of JWT header field kid"),
+) -> str:
+    """Retrieve JSON Web Key"""
+    if not BaseBlueOceanApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseBlueOceanApi.subclasses[0]().get_json_web_key(key)
+
+
+@router.get(
+    "/blue/rest/classes/",
+    responses={
+        200: {"model": str, "description": "Successfully retrieved search result"},
+        401: {"description": "Authentication failed - incorrect username and/or password"},
+        403: {"description": "Jenkins requires authentication - please set username and password"},
+    },
+    tags=["blueOcean"],
+    response_model_by_alias=True,
+)
+async def search_classes(
+    q: Annotated[StrictStr, Field(description="Query string containing an array of class names")] = Query(None, description="Query string containing an array of class names", alias="q"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
-) -> User:
-    """Retrieve authenticated user details for an organization"""
+) -> str:
+    """Get classes details"""
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_authenticated_user(organization)
+    return await BaseBlueOceanApi.subclasses[0]().search_classes(q)
 
 
 @router.get(
@@ -119,42 +134,46 @@ async def get_classes(
 
 
 @router.get(
-    "/jwt-auth/jwks/{key}",
+    "/blue/rest/search/",
     responses={
-        200: {"model": str, "description": "Successfully retrieved JWT token"},
+        200: {"model": str, "description": "Successfully retrieved search result"},
         401: {"description": "Authentication failed - incorrect username and/or password"},
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
     response_model_by_alias=True,
 )
-async def get_json_web_key(
-    key: Annotated[StrictInt, Field(description="Key ID received as part of JWT header field kid")] = Path(..., description="Key ID received as part of JWT header field kid"),
+async def search(
+    q: Annotated[StrictStr, Field(description="Query string")] = Query(None, description="Query string", alias="q"),
+    token_jenkins_auth: TokenModel = Security(
+        get_token_jenkins_auth
+    ),
 ) -> str:
-    """Retrieve JSON Web Key"""
+    """Search for any resource details"""
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_json_web_key(key)
+    return await BaseBlueOceanApi.subclasses[0]().search(q)
 
 
 @router.get(
-    "/jwt-auth/token",
+    "/blue/rest/organizations/",
     responses={
-        200: {"model": str, "description": "Successfully retrieved JWT token"},
+        200: {"model": List[Organisation], "description": "Successfully retrieved pipelines details"},
         401: {"description": "Authentication failed - incorrect username and/or password"},
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
     response_model_by_alias=True,
 )
-async def get_json_web_token(
-    expiry_time_in_mins: Annotated[Optional[StrictInt], Field(description="Token expiry time in minutes, default: 30 minutes")] = Query(None, description="Token expiry time in minutes, default: 30 minutes", alias="expiryTimeInMins"),
-    max_expiry_time_in_mins: Annotated[Optional[StrictInt], Field(description="Maximum token expiry time in minutes, default: 480 minutes")] = Query(None, description="Maximum token expiry time in minutes, default: 480 minutes", alias="maxExpiryTimeInMins"),
-) -> str:
-    """Retrieve JSON Web Token"""
+async def get_organisations(
+    token_jenkins_auth: TokenModel = Security(
+        get_token_jenkins_auth
+    ),
+) -> List[Organisation]:
+    """Retrieve all organizations details"""
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_json_web_token(expiry_time_in_mins, max_expiry_time_in_mins)
+    return await BaseBlueOceanApi.subclasses[0]().get_organisations()
 
 
 @router.get(
@@ -181,24 +200,25 @@ async def get_organisation(
 
 
 @router.get(
-    "/blue/rest/organizations/",
+    "/blue/rest/organizations/{organization}/pipelines/",
     responses={
-        200: {"model": List[Organisation], "description": "Successfully retrieved pipelines details"},
+        200: {"model": List[Pipeline], "description": "Successfully retrieved pipelines details"},
         401: {"description": "Authentication failed - incorrect username and/or password"},
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
     response_model_by_alias=True,
 )
-async def get_organisations(
+async def get_pipelines(
+    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
-) -> List[Organisation]:
-    """Retrieve all organizations details"""
+) -> List[Pipeline]:
+    """Retrieve all pipelines details for an organization"""
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_organisations()
+    return await BaseBlueOceanApi.subclasses[0]().get_pipelines(organization)
 
 
 @router.get(
@@ -246,6 +266,29 @@ async def get_pipeline_activities(
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseBlueOceanApi.subclasses[0]().get_pipeline_activities(organization, pipeline)
+
+
+@router.get(
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches",
+    responses={
+        200: {"model": MultibranchPipeline, "description": "Successfully retrieved all branches details"},
+        401: {"description": "Authentication failed - incorrect username and/or password"},
+        403: {"description": "Jenkins requires authentication - please set username and password"},
+    },
+    tags=["blueOcean"],
+    response_model_by_alias=True,
+)
+async def get_pipeline_branches(
+    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    token_jenkins_auth: TokenModel = Security(
+        get_token_jenkins_auth
+    ),
+) -> MultibranchPipeline:
+    """Retrieve all branches details for an organization pipeline"""
+    if not BaseBlueOceanApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseBlueOceanApi.subclasses[0]().get_pipeline_branches(organization, pipeline)
 
 
 @router.get(
@@ -298,29 +341,6 @@ async def get_pipeline_branch_run(
 
 
 @router.get(
-    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches",
-    responses={
-        200: {"model": MultibranchPipeline, "description": "Successfully retrieved all branches details"},
-        401: {"description": "Authentication failed - incorrect username and/or password"},
-        403: {"description": "Jenkins requires authentication - please set username and password"},
-    },
-    tags=["blueOcean"],
-    response_model_by_alias=True,
-)
-async def get_pipeline_branches(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    token_jenkins_auth: TokenModel = Security(
-        get_token_jenkins_auth
-    ),
-) -> MultibranchPipeline:
-    """Retrieve all branches details for an organization pipeline"""
-    if not BaseBlueOceanApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_pipeline_branches(organization, pipeline)
-
-
-@router.get(
     "/blue/rest/organizations/{organization}/pipelines/{folder}/",
     responses={
         200: {"model": PipelineFolderImpl, "description": "Successfully retrieved folder details"},
@@ -367,6 +387,30 @@ async def get_pipeline_folder_pipeline(
     return await BaseBlueOceanApi.subclasses[0]().get_pipeline_folder_pipeline(organization, pipeline, folder)
 
 
+@router.put(
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite",
+    responses={
+        200: {"model": FavoriteImpl, "description": "Successfully favorited/unfavorited a pipeline"},
+        401: {"description": "Authentication failed - incorrect username and/or password"},
+        403: {"description": "Jenkins requires authentication - please set username and password"},
+    },
+    tags=["blueOcean"],
+    response_model_by_alias=True,
+)
+async def put_pipeline_favorite(
+    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    body: Annotated[StrictBool, Field(description="Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite")] = Body(None, description="Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite"),
+    token_jenkins_auth: TokenModel = Security(
+        get_token_jenkins_auth
+    ),
+) -> FavoriteImpl:
+    """Favorite/unfavorite a pipeline"""
+    if not BaseBlueOceanApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseBlueOceanApi.subclasses[0]().put_pipeline_favorite(organization, pipeline, body)
+
+
 @router.get(
     "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue",
     responses={
@@ -388,6 +432,76 @@ async def get_pipeline_queue(
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseBlueOceanApi.subclasses[0]().get_pipeline_queue(organization, pipeline)
+
+
+@router.delete(
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}",
+    responses={
+        200: {"description": "Successfully deleted queue item"},
+        401: {"description": "Authentication failed - incorrect username and/or password"},
+        403: {"description": "Jenkins requires authentication - please set username and password"},
+    },
+    tags=["blueOcean"],
+    response_model_by_alias=True,
+)
+async def delete_pipeline_queue_item(
+    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    queue: Annotated[StrictStr, Field(description="Name of the queue item")] = Path(..., description="Name of the queue item"),
+    token_jenkins_auth: TokenModel = Security(
+        get_token_jenkins_auth
+    ),
+) -> None:
+    """Delete queue item from an organization pipeline queue"""
+    if not BaseBlueOceanApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseBlueOceanApi.subclasses[0]().delete_pipeline_queue_item(organization, pipeline, queue)
+
+
+@router.get(
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
+    responses={
+        200: {"model": List[PipelineRun], "description": "Successfully retrieved runs details"},
+        401: {"description": "Authentication failed - incorrect username and/or password"},
+        403: {"description": "Jenkins requires authentication - please set username and password"},
+    },
+    tags=["blueOcean"],
+    response_model_by_alias=True,
+)
+async def get_pipeline_runs(
+    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    token_jenkins_auth: TokenModel = Security(
+        get_token_jenkins_auth
+    ),
+) -> List[PipelineRun]:
+    """Retrieve all runs details for an organization pipeline"""
+    if not BaseBlueOceanApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseBlueOceanApi.subclasses[0]().get_pipeline_runs(organization, pipeline)
+
+
+@router.post(
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
+    responses={
+        200: {"model": QueueItemImpl, "description": "Successfully started a build"},
+        401: {"description": "Authentication failed - incorrect username and/or password"},
+        403: {"description": "Jenkins requires authentication - please set username and password"},
+    },
+    tags=["blueOcean"],
+    response_model_by_alias=True,
+)
+async def post_pipeline_runs(
+    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    token_jenkins_auth: TokenModel = Security(
+        get_token_jenkins_auth
+    ),
+) -> QueueItemImpl:
+    """Start a build for an organization pipeline"""
+    if not BaseBlueOceanApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseBlueOceanApi.subclasses[0]().post_pipeline_runs(organization, pipeline)
 
 
 @router.get(
@@ -415,29 +529,27 @@ async def get_pipeline_run(
 
 
 @router.get(
-    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log",
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes",
     responses={
-        200: {"model": str, "description": "Successfully retrieved pipeline run log"},
+        200: {"model": List[PipelineRunNode], "description": "Successfully retrieved run nodes details"},
         401: {"description": "Authentication failed - incorrect username and/or password"},
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
     response_model_by_alias=True,
 )
-async def get_pipeline_run_log(
+async def get_pipeline_run_nodes(
     organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
     pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
     run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
-    start: Annotated[Optional[StrictInt], Field(description="Start position of the log")] = Query(None, description="Start position of the log", alias="start"),
-    download: Annotated[Optional[StrictBool], Field(description="Set to true in order to download the file, otherwise it's passed as a response body")] = Query(None, description="Set to true in order to download the file, otherwise it&#39;s passed as a response body", alias="download"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
-) -> str:
-    """Get log for a pipeline run"""
+) -> List[PipelineRunNode]:
+    """Retrieve run nodes details for an organization pipeline"""
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_pipeline_run_log(organization, pipeline, run, start, download)
+    return await BaseBlueOceanApi.subclasses[0]().get_pipeline_run_nodes(organization, pipeline, run)
 
 
 @router.get(
@@ -463,6 +575,31 @@ async def get_pipeline_run_node(
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseBlueOceanApi.subclasses[0]().get_pipeline_run_node(organization, pipeline, run, node)
+
+
+@router.get(
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps",
+    responses={
+        200: {"model": List[PipelineStepImpl], "description": "Successfully retrieved run node steps details"},
+        401: {"description": "Authentication failed - incorrect username and/or password"},
+        403: {"description": "Jenkins requires authentication - please set username and password"},
+    },
+    tags=["blueOcean"],
+    response_model_by_alias=True,
+)
+async def get_pipeline_run_node_steps(
+    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    node: Annotated[StrictStr, Field(description="Name of the node")] = Path(..., description="Name of the node"),
+    token_jenkins_auth: TokenModel = Security(
+        get_token_jenkins_auth
+    ),
+) -> List[PipelineStepImpl]:
+    """Retrieve run node steps details for an organization pipeline"""
+    if not BaseBlueOceanApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseBlueOceanApi.subclasses[0]().get_pipeline_run_node_steps(organization, pipeline, run, node)
 
 
 @router.get(
@@ -518,97 +655,79 @@ async def get_pipeline_run_node_step_log(
 
 
 @router.get(
-    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps",
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log",
     responses={
-        200: {"model": List[PipelineStepImpl], "description": "Successfully retrieved run node steps details"},
+        200: {"model": str, "description": "Successfully retrieved pipeline run log"},
         401: {"description": "Authentication failed - incorrect username and/or password"},
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
     response_model_by_alias=True,
 )
-async def get_pipeline_run_node_steps(
+async def get_pipeline_run_log(
     organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
     pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
     run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
-    node: Annotated[StrictStr, Field(description="Name of the node")] = Path(..., description="Name of the node"),
+    start: Annotated[Optional[StrictInt], Field(description="Start position of the log")] = Query(None, description="Start position of the log", alias="start"),
+    download: Annotated[Optional[StrictBool], Field(description="Set to true in order to download the file, otherwise it's passed as a response body")] = Query(None, description="Set to true in order to download the file, otherwise it&#39;s passed as a response body", alias="download"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
-) -> List[PipelineStepImpl]:
-    """Retrieve run node steps details for an organization pipeline"""
+) -> str:
+    """Get log for a pipeline run"""
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_pipeline_run_node_steps(organization, pipeline, run, node)
+    return await BaseBlueOceanApi.subclasses[0]().get_pipeline_run_log(organization, pipeline, run, start, download)
 
 
-@router.get(
-    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes",
+@router.post(
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay",
     responses={
-        200: {"model": List[PipelineRunNode], "description": "Successfully retrieved run nodes details"},
+        200: {"model": QueueItemImpl, "description": "Successfully replayed a pipeline run"},
         401: {"description": "Authentication failed - incorrect username and/or password"},
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
     response_model_by_alias=True,
 )
-async def get_pipeline_run_nodes(
+async def post_pipeline_run(
     organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
     pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
     run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
-) -> List[PipelineRunNode]:
-    """Retrieve run nodes details for an organization pipeline"""
+) -> QueueItemImpl:
+    """Replay an organization pipeline run"""
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_pipeline_run_nodes(organization, pipeline, run)
+    return await BaseBlueOceanApi.subclasses[0]().post_pipeline_run(organization, pipeline, run)
 
 
-@router.get(
-    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
+@router.put(
+    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop",
     responses={
-        200: {"model": List[PipelineRun], "description": "Successfully retrieved runs details"},
+        200: {"model": PipelineRun, "description": "Successfully stopped a build"},
         401: {"description": "Authentication failed - incorrect username and/or password"},
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
     response_model_by_alias=True,
 )
-async def get_pipeline_runs(
+async def put_pipeline_run(
     organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
     pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    blocking: Annotated[Optional[StrictStr], Field(description="Set to true to make blocking stop, default: false")] = Query(None, description="Set to true to make blocking stop, default: false", alias="blocking"),
+    time_out_in_secs: Annotated[Optional[StrictInt], Field(description="Timeout in seconds, default: 10 seconds")] = Query(None, description="Timeout in seconds, default: 10 seconds", alias="timeOutInSecs"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
-) -> List[PipelineRun]:
-    """Retrieve all runs details for an organization pipeline"""
+) -> PipelineRun:
+    """Stop a build of an organization pipeline"""
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_pipeline_runs(organization, pipeline)
-
-
-@router.get(
-    "/blue/rest/organizations/{organization}/pipelines/",
-    responses={
-        200: {"model": List[Pipeline], "description": "Successfully retrieved pipelines details"},
-        401: {"description": "Authentication failed - incorrect username and/or password"},
-        403: {"description": "Jenkins requires authentication - please set username and password"},
-    },
-    tags=["blueOcean"],
-    response_model_by_alias=True,
-)
-async def get_pipelines(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    token_jenkins_auth: TokenModel = Security(
-        get_token_jenkins_auth
-    ),
-) -> List[Pipeline]:
-    """Retrieve all pipelines details for an organization"""
-    if not BaseBlueOceanApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_pipelines(organization)
+    return await BaseBlueOceanApi.subclasses[0]().put_pipeline_run(organization, pipeline, run, blocking, time_out_in_secs)
 
 
 @router.get(
@@ -632,6 +751,30 @@ async def get_scm(
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseBlueOceanApi.subclasses[0]().get_scm(organization, scm)
+
+
+@router.get(
+    "/blue/rest/organizations/{organization}/scm/{scm}/organizations",
+    responses={
+        200: {"model": List[GithubOrganization], "description": "Successfully retrieved SCM organizations details"},
+        401: {"description": "Authentication failed - incorrect username and/or password"},
+        403: {"description": "Jenkins requires authentication - please set username and password"},
+    },
+    tags=["blueOcean"],
+    response_model_by_alias=True,
+)
+async def get_scm_organisations(
+    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    scm: Annotated[StrictStr, Field(description="Name of SCM")] = Path(..., description="Name of SCM"),
+    credential_id: Annotated[Optional[StrictStr], Field(description="Credential ID")] = Query(None, description="Credential ID", alias="credentialId"),
+    token_jenkins_auth: TokenModel = Security(
+        get_token_jenkins_auth
+    ),
+) -> List[GithubOrganization]:
+    """Retrieve SCM organizations details for an organization"""
+    if not BaseBlueOceanApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseBlueOceanApi.subclasses[0]().get_scm_organisations(organization, scm, credential_id)
 
 
 @router.get(
@@ -688,27 +831,47 @@ async def get_scm_organisation_repository(
 
 
 @router.get(
-    "/blue/rest/organizations/{organization}/scm/{scm}/organizations",
+    "/blue/rest/organizations/{organization}/user/",
     responses={
-        200: {"model": List[GithubOrganization], "description": "Successfully retrieved SCM organizations details"},
+        200: {"model": User, "description": "Successfully retrieved authenticated user details"},
         401: {"description": "Authentication failed - incorrect username and/or password"},
         403: {"description": "Jenkins requires authentication - please set username and password"},
     },
     tags=["blueOcean"],
     response_model_by_alias=True,
 )
-async def get_scm_organisations(
+async def get_authenticated_user(
     organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    scm: Annotated[StrictStr, Field(description="Name of SCM")] = Path(..., description="Name of SCM"),
-    credential_id: Annotated[Optional[StrictStr], Field(description="Credential ID")] = Query(None, description="Credential ID", alias="credentialId"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
-) -> List[GithubOrganization]:
-    """Retrieve SCM organizations details for an organization"""
+) -> User:
+    """Retrieve authenticated user details for an organization"""
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_scm_organisations(organization, scm, credential_id)
+    return await BaseBlueOceanApi.subclasses[0]().get_authenticated_user(organization)
+
+
+@router.get(
+    "/blue/rest/organizations/{organization}/users/",
+    responses={
+        200: {"model": User, "description": "Successfully retrieved users details"},
+        401: {"description": "Authentication failed - incorrect username and/or password"},
+        403: {"description": "Jenkins requires authentication - please set username and password"},
+    },
+    tags=["blueOcean"],
+    response_model_by_alias=True,
+)
+async def get_users(
+    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    token_jenkins_auth: TokenModel = Security(
+        get_token_jenkins_auth
+    ),
+) -> User:
+    """Retrieve users details for an organization"""
+    if not BaseBlueOceanApi.subclasses:
+        raise HTTPException(status_code=500, detail="Not implemented")
+    return await BaseBlueOceanApi.subclasses[0]().get_users(organization)
 
 
 @router.get(
@@ -754,166 +917,3 @@ async def get_user_favorites(
     if not BaseBlueOceanApi.subclasses:
         raise HTTPException(status_code=500, detail="Not implemented")
     return await BaseBlueOceanApi.subclasses[0]().get_user_favorites(user)
-
-
-@router.get(
-    "/blue/rest/organizations/{organization}/users/",
-    responses={
-        200: {"model": User, "description": "Successfully retrieved users details"},
-        401: {"description": "Authentication failed - incorrect username and/or password"},
-        403: {"description": "Jenkins requires authentication - please set username and password"},
-    },
-    tags=["blueOcean"],
-    response_model_by_alias=True,
-)
-async def get_users(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    token_jenkins_auth: TokenModel = Security(
-        get_token_jenkins_auth
-    ),
-) -> User:
-    """Retrieve users details for an organization"""
-    if not BaseBlueOceanApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().get_users(organization)
-
-
-@router.post(
-    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay",
-    responses={
-        200: {"model": QueueItemImpl, "description": "Successfully replayed a pipeline run"},
-        401: {"description": "Authentication failed - incorrect username and/or password"},
-        403: {"description": "Jenkins requires authentication - please set username and password"},
-    },
-    tags=["blueOcean"],
-    response_model_by_alias=True,
-)
-async def post_pipeline_run(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
-    token_jenkins_auth: TokenModel = Security(
-        get_token_jenkins_auth
-    ),
-) -> QueueItemImpl:
-    """Replay an organization pipeline run"""
-    if not BaseBlueOceanApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().post_pipeline_run(organization, pipeline, run)
-
-
-@router.post(
-    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs",
-    responses={
-        200: {"model": QueueItemImpl, "description": "Successfully started a build"},
-        401: {"description": "Authentication failed - incorrect username and/or password"},
-        403: {"description": "Jenkins requires authentication - please set username and password"},
-    },
-    tags=["blueOcean"],
-    response_model_by_alias=True,
-)
-async def post_pipeline_runs(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    token_jenkins_auth: TokenModel = Security(
-        get_token_jenkins_auth
-    ),
-) -> QueueItemImpl:
-    """Start a build for an organization pipeline"""
-    if not BaseBlueOceanApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().post_pipeline_runs(organization, pipeline)
-
-
-@router.put(
-    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite",
-    responses={
-        200: {"model": FavoriteImpl, "description": "Successfully favorited/unfavorited a pipeline"},
-        401: {"description": "Authentication failed - incorrect username and/or password"},
-        403: {"description": "Jenkins requires authentication - please set username and password"},
-    },
-    tags=["blueOcean"],
-    response_model_by_alias=True,
-)
-async def put_pipeline_favorite(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    body: Annotated[StrictBool, Field(description="Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite")] = Body(None, description="Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite"),
-    token_jenkins_auth: TokenModel = Security(
-        get_token_jenkins_auth
-    ),
-) -> FavoriteImpl:
-    """Favorite/unfavorite a pipeline"""
-    if not BaseBlueOceanApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().put_pipeline_favorite(organization, pipeline, body)
-
-
-@router.put(
-    "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop",
-    responses={
-        200: {"model": PipelineRun, "description": "Successfully stopped a build"},
-        401: {"description": "Authentication failed - incorrect username and/or password"},
-        403: {"description": "Jenkins requires authentication - please set username and password"},
-    },
-    tags=["blueOcean"],
-    response_model_by_alias=True,
-)
-async def put_pipeline_run(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
-    blocking: Annotated[Optional[StrictStr], Field(description="Set to true to make blocking stop, default: false")] = Query(None, description="Set to true to make blocking stop, default: false", alias="blocking"),
-    time_out_in_secs: Annotated[Optional[StrictInt], Field(description="Timeout in seconds, default: 10 seconds")] = Query(None, description="Timeout in seconds, default: 10 seconds", alias="timeOutInSecs"),
-    token_jenkins_auth: TokenModel = Security(
-        get_token_jenkins_auth
-    ),
-) -> PipelineRun:
-    """Stop a build of an organization pipeline"""
-    if not BaseBlueOceanApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().put_pipeline_run(organization, pipeline, run, blocking, time_out_in_secs)
-
-
-@router.get(
-    "/blue/rest/search/",
-    responses={
-        200: {"model": str, "description": "Successfully retrieved search result"},
-        401: {"description": "Authentication failed - incorrect username and/or password"},
-        403: {"description": "Jenkins requires authentication - please set username and password"},
-    },
-    tags=["blueOcean"],
-    response_model_by_alias=True,
-)
-async def search(
-    q: Annotated[StrictStr, Field(description="Query string")] = Query(None, description="Query string", alias="q"),
-    token_jenkins_auth: TokenModel = Security(
-        get_token_jenkins_auth
-    ),
-) -> str:
-    """Search for any resource details"""
-    if not BaseBlueOceanApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().search(q)
-
-
-@router.get(
-    "/blue/rest/classes/",
-    responses={
-        200: {"model": str, "description": "Successfully retrieved search result"},
-        401: {"description": "Authentication failed - incorrect username and/or password"},
-        403: {"description": "Jenkins requires authentication - please set username and password"},
-    },
-    tags=["blueOcean"],
-    response_model_by_alias=True,
-)
-async def search_classes(
-    q: Annotated[StrictStr, Field(description="Query string containing an array of class names")] = Query(None, description="Query string containing an array of class names", alias="q"),
-    token_jenkins_auth: TokenModel = Security(
-        get_token_jenkins_auth
-    ),
-) -> str:
-    """Get classes details"""
-    if not BaseBlueOceanApi.subclasses:
-        raise HTTPException(status_code=500, detail="Not implemented")
-    return await BaseBlueOceanApi.subclasses[0]().search_classes(q)

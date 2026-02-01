@@ -6,10 +6,10 @@ using namespace Tiny;
 
 PipelineImpllinks::PipelineImpllinks()
 {
-	runs = Link();
 	self = Link();
-	queue = Link();
 	actions = Link();
+	runs = Link();
+	queue = Link();
 	_class = std::string();
 }
 
@@ -28,20 +28,6 @@ PipelineImpllinks::fromJson(std::string jsonObj)
 {
     bourne::json object = bourne::json::parse(jsonObj);
 
-    const char *runsKey = "runs";
-
-    if(object.has_key(runsKey))
-    {
-        bourne::json value = object[runsKey];
-
-
-
-
-        Link* obj = &runs;
-		obj->fromJson(value.dump());
-
-    }
-
     const char *selfKey = "self";
 
     if(object.has_key(selfKey))
@@ -56,20 +42,6 @@ PipelineImpllinks::fromJson(std::string jsonObj)
 
     }
 
-    const char *queueKey = "queue";
-
-    if(object.has_key(queueKey))
-    {
-        bourne::json value = object[queueKey];
-
-
-
-
-        Link* obj = &queue;
-		obj->fromJson(value.dump());
-
-    }
-
     const char *actionsKey = "actions";
 
     if(object.has_key(actionsKey))
@@ -80,6 +52,34 @@ PipelineImpllinks::fromJson(std::string jsonObj)
 
 
         Link* obj = &actions;
+		obj->fromJson(value.dump());
+
+    }
+
+    const char *runsKey = "runs";
+
+    if(object.has_key(runsKey))
+    {
+        bourne::json value = object[runsKey];
+
+
+
+
+        Link* obj = &runs;
+		obj->fromJson(value.dump());
+
+    }
+
+    const char *queueKey = "queue";
+
+    if(object.has_key(queueKey))
+    {
+        bourne::json value = object[queueKey];
+
+
+
+
+        Link* obj = &queue;
 		obj->fromJson(value.dump());
 
     }
@@ -110,21 +110,7 @@ PipelineImpllinks::toJson()
 
 
 
-	object["runs"] = getRuns().toJson();
-
-
-
-
-
-
 	object["self"] = getSelf().toJson();
-
-
-
-
-
-
-	object["queue"] = getQueue().toJson();
 
 
 
@@ -137,24 +123,26 @@ PipelineImpllinks::toJson()
 
 
 
+
+	object["runs"] = getRuns().toJson();
+
+
+
+
+
+
+	object["queue"] = getQueue().toJson();
+
+
+
+
+
     object["_class"] = getClass();
 
 
 
     return object;
 
-}
-
-Link
-PipelineImpllinks::getRuns()
-{
-	return runs;
-}
-
-void
-PipelineImpllinks::setRuns(Link  runs)
-{
-	this->runs = runs;
 }
 
 Link
@@ -170,18 +158,6 @@ PipelineImpllinks::setSelf(Link  self)
 }
 
 Link
-PipelineImpllinks::getQueue()
-{
-	return queue;
-}
-
-void
-PipelineImpllinks::setQueue(Link  queue)
-{
-	this->queue = queue;
-}
-
-Link
 PipelineImpllinks::getActions()
 {
 	return actions;
@@ -191,6 +167,30 @@ void
 PipelineImpllinks::setActions(Link  actions)
 {
 	this->actions = actions;
+}
+
+Link
+PipelineImpllinks::getRuns()
+{
+	return runs;
+}
+
+void
+PipelineImpllinks::setRuns(Link  runs)
+{
+	this->runs = runs;
+}
+
+Link
+PipelineImpllinks::getQueue()
+{
+	return queue;
+}
+
+void
+PipelineImpllinks::setQueue(Link  queue)
+{
+	this->queue = queue;
 }
 
 std::string

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Label1  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get propertyClass

@@ -5,19 +5,48 @@
  *
  *)
 
-type t = {
-    create: bool option [@default None];
-    read: bool option [@default None];
-    start: bool option [@default None];
-    stop: bool option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    create = None;
-    read = None;
-    start = None;
-    stop = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              create: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "create"]
+                                              read: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "read"]
+                                              start: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "start"]
+                                              stop: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "stop"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            create = None;
+            read = None;
+            start = None;
+            stop = None;
+            _class = None;
+        }
+    
 

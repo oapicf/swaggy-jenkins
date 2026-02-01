@@ -5,21 +5,55 @@
  *
  *)
 
-type t = {
-    _links: Pipeline_branchesitempull_requestlinks.t option [@default None];
-    author: string option [@default None];
-    id: string option [@default None];
-    title: string option [@default None];
-    url: string option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _links = None;
-    author = None;
-    id = None;
-    title = None;
-    url = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              _links: Pipeline_branchesitempull_requestlinks.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_links"]
+                                              author: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "author"]
+                                              id: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "id"]
+                                              title: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "title"]
+                                              url: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "url"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _links = None;
+            author = None;
+            id = None;
+            title = None;
+            url = None;
+            _class = None;
+        }
+    
 

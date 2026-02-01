@@ -16,59 +16,79 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FreeStyleBuild  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private Integer number;
 
   @ApiModelProperty(value = "")
+
   private String url;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid CauseAction> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private Boolean building;
 
   @ApiModelProperty(value = "")
+
   private String description;
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private Integer duration;
 
   @ApiModelProperty(value = "")
+
   private Integer estimatedDuration;
 
   @ApiModelProperty(value = "")
+
   private String executor;
 
   @ApiModelProperty(value = "")
+
   private String fullDisplayName;
 
   @ApiModelProperty(value = "")
+
   private String id;
 
   @ApiModelProperty(value = "")
+
   private Boolean keepLog;
 
   @ApiModelProperty(value = "")
+
   private Integer queueId;
 
   @ApiModelProperty(value = "")
+
   private String result;
 
   @ApiModelProperty(value = "")
+
   private Integer timestamp;
 
   @ApiModelProperty(value = "")
+
   private String builtOn;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private EmptyChangeLogSet changeSet;
  /**
    * Get propertyClass

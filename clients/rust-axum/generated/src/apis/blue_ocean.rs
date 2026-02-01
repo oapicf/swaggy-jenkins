@@ -568,6 +568,8 @@ pub enum SearchClassesResponse {
 }
 
 
+
+
 /// BlueOcean
 #[async_trait]
 #[allow(clippy::ptr_arg)]
@@ -577,6 +579,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// DeletePipelineQueueItem - DELETE /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}
     async fn delete_pipeline_queue_item(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -587,6 +590,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetAuthenticatedUser - GET /blue/rest/organizations/{organization}/user/
     async fn get_authenticated_user(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -597,6 +601,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetClasses - GET /blue/rest/classes/{class}
     async fn get_classes(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -607,6 +612,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetJsonWebKey - GET /jwt-auth/jwks/{key}
     async fn get_json_web_key(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -616,6 +622,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetJsonWebToken - GET /jwt-auth/token
     async fn get_json_web_token(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -625,6 +632,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetOrganisation - GET /blue/rest/organizations/{organization}
     async fn get_organisation(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -635,6 +643,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetOrganisations - GET /blue/rest/organizations/
     async fn get_organisations(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -644,6 +653,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipeline - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}
     async fn get_pipeline(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -654,6 +664,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineActivities - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities
     async fn get_pipeline_activities(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -664,6 +675,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineBranch - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/
     async fn get_pipeline_branch(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -674,6 +686,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineBranchRun - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}
     async fn get_pipeline_branch_run(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -684,6 +697,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineBranches - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches
     async fn get_pipeline_branches(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -694,6 +708,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineFolder - GET /blue/rest/organizations/{organization}/pipelines/{folder}/
     async fn get_pipeline_folder(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -704,6 +719,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineFolderPipeline - GET /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}
     async fn get_pipeline_folder_pipeline(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -714,6 +730,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineQueue - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue
     async fn get_pipeline_queue(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -724,6 +741,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineRun - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}
     async fn get_pipeline_run(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -734,6 +752,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineRunLog - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log
     async fn get_pipeline_run_log(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -745,6 +764,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineRunNode - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}
     async fn get_pipeline_run_node(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -755,6 +775,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineRunNodeStep - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}
     async fn get_pipeline_run_node_step(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -765,6 +786,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineRunNodeStepLog - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log
     async fn get_pipeline_run_node_step_log(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -775,6 +797,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineRunNodeSteps - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps
     async fn get_pipeline_run_node_steps(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -785,6 +808,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineRunNodes - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes
     async fn get_pipeline_run_nodes(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -795,6 +819,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelineRuns - GET /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
     async fn get_pipeline_runs(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -805,6 +830,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetPipelines - GET /blue/rest/organizations/{organization}/pipelines/
     async fn get_pipelines(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -815,6 +841,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetScm - GET /blue/rest/organizations/{organization}/scm/{scm}
     async fn get_scm(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -825,6 +852,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetScmOrganisationRepositories - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories
     async fn get_scm_organisation_repositories(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -836,6 +864,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetScmOrganisationRepository - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}
     async fn get_scm_organisation_repository(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -847,6 +876,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetScmOrganisations - GET /blue/rest/organizations/{organization}/scm/{scm}/organizations
     async fn get_scm_organisations(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -858,6 +888,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetUser - GET /blue/rest/organizations/{organization}/users/{user}
     async fn get_user(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -868,6 +899,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetUserFavorites - GET /blue/rest/users/{user}/favorites
     async fn get_user_favorites(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -878,6 +910,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// GetUsers - GET /blue/rest/organizations/{organization}/users/
     async fn get_users(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -888,6 +921,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// PostPipelineRun - POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay
     async fn post_pipeline_run(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -898,6 +932,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// PostPipelineRuns - POST /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs
     async fn post_pipeline_runs(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -908,6 +943,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// PutPipelineFavorite - PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite
     async fn put_pipeline_favorite(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -919,6 +955,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// PutPipelineRun - PUT /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop
     async fn put_pipeline_run(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -930,6 +967,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// Search - GET /blue/rest/search/
     async fn search(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,
@@ -940,6 +978,7 @@ pub trait BlueOcean<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::Err
     /// SearchClasses - GET /blue/rest/classes/
     async fn search_classes(
     &self,
+    
     method: &Method,
     host: &Host,
     cookies: &CookieJar,

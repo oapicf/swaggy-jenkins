@@ -9,10 +9,10 @@ class PipelinelatestRun
 {
     /**
      * @DTA\Data(field="artifacts", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection14::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection14::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection18::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection18::class})
      */
-    public ?\App\DTO\Collection14 $artifacts = null;
+    public ?\App\DTO\Collection18 $artifacts = null;
 
     /**
      * @DTA\Data(field="durationInMillis", nullable=true)

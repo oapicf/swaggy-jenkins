@@ -13,9 +13,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CauseAction  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private List<CauseUserIdCause> causes = new ArrayList<>();
  /**
    * Get propertyClass

@@ -23,9 +23,9 @@ class BlueRestOrganizationsOrganizationPipelinesPipelineQueue
      *
      * @throws PHException\HttpCode 501 if the method is not implemented
      *
-     * @return \App\DTO\Collection21
+     * @return \App\DTO\Collection25
      */
-    public function getPipelineQueue(ServerRequestInterface $request): \App\DTO\Collection21
+    public function getPipelineQueue(ServerRequestInterface $request): \App\DTO\Collection25
     {
         //TODO implement method
         throw new PHException\HttpCode(501, "Not implemented");

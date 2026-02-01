@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.0.2-pre.0
+ * API version: 3.2.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"errors"
+	"io"
 	"net/http"
 	"strings"
 
@@ -53,107 +55,255 @@ func NewRemoteAccessAPIController(s RemoteAccessAPIServicer, opts ...RemoteAcces
 func (c *RemoteAccessAPIController) Routes() Routes {
 	return Routes{
 		"GetJenkins": Route{
+			"GetJenkins",
 			strings.ToUpper("Get"),
 			"/api/json",
 			c.GetJenkins,
 		},
 		"HeadJenkins": Route{
+			"HeadJenkins",
 			strings.ToUpper("Head"),
 			"/api/json",
 			c.HeadJenkins,
 		},
 		"GetComputer": Route{
+			"GetComputer",
 			strings.ToUpper("Get"),
 			"/computer/api/json",
 			c.GetComputer,
 		},
 		"PostCreateItem": Route{
+			"PostCreateItem",
 			strings.ToUpper("Post"),
 			"/createItem",
 			c.PostCreateItem,
 		},
 		"PostCreateView": Route{
+			"PostCreateView",
 			strings.ToUpper("Post"),
 			"/createView",
 			c.PostCreateView,
 		},
 		"GetJob": Route{
+			"GetJob",
 			strings.ToUpper("Get"),
 			"/job/{name}/api/json",
 			c.GetJob,
 		},
 		"PostJobBuild": Route{
+			"PostJobBuild",
 			strings.ToUpper("Post"),
 			"/job/{name}/build",
 			c.PostJobBuild,
 		},
 		"GetJobConfig": Route{
+			"GetJobConfig",
 			strings.ToUpper("Get"),
 			"/job/{name}/config.xml",
 			c.GetJobConfig,
 		},
 		"PostJobConfig": Route{
+			"PostJobConfig",
 			strings.ToUpper("Post"),
 			"/job/{name}/config.xml",
 			c.PostJobConfig,
 		},
 		"PostJobDelete": Route{
+			"PostJobDelete",
 			strings.ToUpper("Post"),
 			"/job/{name}/doDelete",
 			c.PostJobDelete,
 		},
 		"PostJobDisable": Route{
+			"PostJobDisable",
 			strings.ToUpper("Post"),
 			"/job/{name}/disable",
 			c.PostJobDisable,
 		},
 		"PostJobEnable": Route{
+			"PostJobEnable",
 			strings.ToUpper("Post"),
 			"/job/{name}/enable",
 			c.PostJobEnable,
 		},
 		"GetJobLastBuild": Route{
+			"GetJobLastBuild",
 			strings.ToUpper("Get"),
 			"/job/{name}/lastBuild/api/json",
 			c.GetJobLastBuild,
 		},
 		"PostJobLastBuildStop": Route{
+			"PostJobLastBuildStop",
 			strings.ToUpper("Post"),
 			"/job/{name}/lastBuild/stop",
 			c.PostJobLastBuildStop,
 		},
 		"GetJobProgressiveText": Route{
+			"GetJobProgressiveText",
 			strings.ToUpper("Get"),
 			"/job/{name}/{number}/logText/progressiveText",
 			c.GetJobProgressiveText,
 		},
 		"GetQueue": Route{
+			"GetQueue",
 			strings.ToUpper("Get"),
 			"/queue/api/json",
 			c.GetQueue,
 		},
 		"GetQueueItem": Route{
+			"GetQueueItem",
 			strings.ToUpper("Get"),
 			"/queue/item/{number}/api/json",
 			c.GetQueueItem,
 		},
 		"GetView": Route{
+			"GetView",
 			strings.ToUpper("Get"),
 			"/view/{name}/api/json",
 			c.GetView,
 		},
 		"GetViewConfig": Route{
+			"GetViewConfig",
 			strings.ToUpper("Get"),
 			"/view/{name}/config.xml",
 			c.GetViewConfig,
 		},
 		"PostViewConfig": Route{
+			"PostViewConfig",
 			strings.ToUpper("Post"),
 			"/view/{name}/config.xml",
 			c.PostViewConfig,
 		},
 	}
 }
+
+// OrderedRoutes returns all the api routes in a deterministic order for the RemoteAccessAPIController
+func (c *RemoteAccessAPIController) OrderedRoutes() []Route {
+	return []Route{
+		Route{
+			"GetJenkins",
+			strings.ToUpper("Get"),
+			"/api/json",
+			c.GetJenkins,
+		},
+		Route{
+			"HeadJenkins",
+			strings.ToUpper("Head"),
+			"/api/json",
+			c.HeadJenkins,
+		},
+		Route{
+			"GetComputer",
+			strings.ToUpper("Get"),
+			"/computer/api/json",
+			c.GetComputer,
+		},
+		Route{
+			"PostCreateItem",
+			strings.ToUpper("Post"),
+			"/createItem",
+			c.PostCreateItem,
+		},
+		Route{
+			"PostCreateView",
+			strings.ToUpper("Post"),
+			"/createView",
+			c.PostCreateView,
+		},
+		Route{
+			"GetJob",
+			strings.ToUpper("Get"),
+			"/job/{name}/api/json",
+			c.GetJob,
+		},
+		Route{
+			"PostJobBuild",
+			strings.ToUpper("Post"),
+			"/job/{name}/build",
+			c.PostJobBuild,
+		},
+		Route{
+			"GetJobConfig",
+			strings.ToUpper("Get"),
+			"/job/{name}/config.xml",
+			c.GetJobConfig,
+		},
+		Route{
+			"PostJobConfig",
+			strings.ToUpper("Post"),
+			"/job/{name}/config.xml",
+			c.PostJobConfig,
+		},
+		Route{
+			"PostJobDelete",
+			strings.ToUpper("Post"),
+			"/job/{name}/doDelete",
+			c.PostJobDelete,
+		},
+		Route{
+			"PostJobDisable",
+			strings.ToUpper("Post"),
+			"/job/{name}/disable",
+			c.PostJobDisable,
+		},
+		Route{
+			"PostJobEnable",
+			strings.ToUpper("Post"),
+			"/job/{name}/enable",
+			c.PostJobEnable,
+		},
+		Route{
+			"GetJobLastBuild",
+			strings.ToUpper("Get"),
+			"/job/{name}/lastBuild/api/json",
+			c.GetJobLastBuild,
+		},
+		Route{
+			"PostJobLastBuildStop",
+			strings.ToUpper("Post"),
+			"/job/{name}/lastBuild/stop",
+			c.PostJobLastBuildStop,
+		},
+		Route{
+			"GetJobProgressiveText",
+			strings.ToUpper("Get"),
+			"/job/{name}/{number}/logText/progressiveText",
+			c.GetJobProgressiveText,
+		},
+		Route{
+			"GetQueue",
+			strings.ToUpper("Get"),
+			"/queue/api/json",
+			c.GetQueue,
+		},
+		Route{
+			"GetQueueItem",
+			strings.ToUpper("Get"),
+			"/queue/item/{number}/api/json",
+			c.GetQueueItem,
+		},
+		Route{
+			"GetView",
+			strings.ToUpper("Get"),
+			"/view/{name}/api/json",
+			c.GetView,
+		},
+		Route{
+			"GetViewConfig",
+			strings.ToUpper("Get"),
+			"/view/{name}/config.xml",
+			c.GetViewConfig,
+		},
+		Route{
+			"PostViewConfig",
+			strings.ToUpper("Post"),
+			"/view/{name}/config.xml",
+			c.PostViewConfig,
+		},
+	}
+}
+
+
 
 // GetJenkins - 
 func (c *RemoteAccessAPIController) GetJenkins(w http.ResponseWriter, r *http.Request) {

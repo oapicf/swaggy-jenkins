@@ -13,20 +13,12 @@ part of openapi.api;
 class PipelineImpllinks {
   /// Returns a new [PipelineImpllinks] instance.
   PipelineImpllinks({
-    this.runs,
     this.self,
-    this.queue,
     this.actions,
+    this.runs,
+    this.queue,
     this.class_,
   });
-
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  Link? runs;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -42,7 +34,7 @@ class PipelineImpllinks {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  Link? queue;
+  Link? actions;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -50,7 +42,15 @@ class PipelineImpllinks {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  Link? actions;
+  Link? runs;
+
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  Link? queue;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -62,45 +62,45 @@ class PipelineImpllinks {
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is PipelineImpllinks &&
-    other.runs == runs &&
     other.self == self &&
-    other.queue == queue &&
     other.actions == actions &&
+    other.runs == runs &&
+    other.queue == queue &&
     other.class_ == class_;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (runs == null ? 0 : runs!.hashCode) +
     (self == null ? 0 : self!.hashCode) +
-    (queue == null ? 0 : queue!.hashCode) +
     (actions == null ? 0 : actions!.hashCode) +
+    (runs == null ? 0 : runs!.hashCode) +
+    (queue == null ? 0 : queue!.hashCode) +
     (class_ == null ? 0 : class_!.hashCode);
 
   @override
-  String toString() => 'PipelineImpllinks[runs=$runs, self=$self, queue=$queue, actions=$actions, class_=$class_]';
+  String toString() => 'PipelineImpllinks[self=$self, actions=$actions, runs=$runs, queue=$queue, class_=$class_]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.runs != null) {
-      json[r'runs'] = this.runs;
-    } else {
-      json[r'runs'] = null;
-    }
     if (this.self != null) {
       json[r'self'] = this.self;
     } else {
       json[r'self'] = null;
     }
-    if (this.queue != null) {
-      json[r'queue'] = this.queue;
-    } else {
-      json[r'queue'] = null;
-    }
     if (this.actions != null) {
       json[r'actions'] = this.actions;
     } else {
       json[r'actions'] = null;
+    }
+    if (this.runs != null) {
+      json[r'runs'] = this.runs;
+    } else {
+      json[r'runs'] = null;
+    }
+    if (this.queue != null) {
+      json[r'queue'] = this.queue;
+    } else {
+      json[r'queue'] = null;
     }
     if (this.class_ != null) {
       json[r'_class'] = this.class_;
@@ -129,10 +129,10 @@ class PipelineImpllinks {
       }());
 
       return PipelineImpllinks(
-        runs: Link.fromJson(json[r'runs']),
         self: Link.fromJson(json[r'self']),
-        queue: Link.fromJson(json[r'queue']),
         actions: Link.fromJson(json[r'actions']),
+        runs: Link.fromJson(json[r'runs']),
+        queue: Link.fromJson(json[r'queue']),
         class_: mapValueOfType<String>(json, r'_class'),
       );
     }

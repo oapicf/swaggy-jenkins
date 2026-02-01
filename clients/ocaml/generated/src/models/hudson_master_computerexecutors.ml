@@ -5,21 +5,55 @@
  *
  *)
 
-type t = {
-    current_executable: Free_style_build.t option [@default None];
-    idle: bool option [@default None];
-    likely_stuck: bool option [@default None];
-    number: int32 option [@default None];
-    progress: int32 option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    current_executable = None;
-    idle = None;
-    likely_stuck = None;
-    number = None;
-    progress = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              current_executable: Free_style_build.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "currentExecutable"]
+                                              idle: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "idle"]
+                                              likely_stuck: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "likelyStuck"]
+                                              number: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "number"]
+                                              progress: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "progress"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            current_executable = None;
+            idle = None;
+            likely_stuck = None;
+            number = None;
+            progress = None;
+            _class = None;
+        }
+    
 

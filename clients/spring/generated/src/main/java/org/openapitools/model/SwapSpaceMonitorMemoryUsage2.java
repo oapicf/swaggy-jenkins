@@ -19,7 +19,7 @@ import javax.annotation.Generated;
  * SwapSpaceMonitorMemoryUsage2
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class SwapSpaceMonitorMemoryUsage2 {
 
   private @Nullable String propertyClass;
@@ -32,7 +32,7 @@ public class SwapSpaceMonitorMemoryUsage2 {
 
   private @Nullable Integer totalSwapSpace;
 
-  public SwapSpaceMonitorMemoryUsage2 propertyClass(String propertyClass) {
+  public SwapSpaceMonitorMemoryUsage2 propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -44,15 +44,15 @@ public class SwapSpaceMonitorMemoryUsage2 {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public SwapSpaceMonitorMemoryUsage2 availablePhysicalMemory(Integer availablePhysicalMemory) {
+  public SwapSpaceMonitorMemoryUsage2 availablePhysicalMemory(@Nullable Integer availablePhysicalMemory) {
     this.availablePhysicalMemory = availablePhysicalMemory;
     return this;
   }
@@ -64,15 +64,15 @@ public class SwapSpaceMonitorMemoryUsage2 {
   
   @Schema(name = "availablePhysicalMemory", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("availablePhysicalMemory")
-  public Integer getAvailablePhysicalMemory() {
+  public @Nullable Integer getAvailablePhysicalMemory() {
     return availablePhysicalMemory;
   }
 
-  public void setAvailablePhysicalMemory(Integer availablePhysicalMemory) {
+  public void setAvailablePhysicalMemory(@Nullable Integer availablePhysicalMemory) {
     this.availablePhysicalMemory = availablePhysicalMemory;
   }
 
-  public SwapSpaceMonitorMemoryUsage2 availableSwapSpace(Integer availableSwapSpace) {
+  public SwapSpaceMonitorMemoryUsage2 availableSwapSpace(@Nullable Integer availableSwapSpace) {
     this.availableSwapSpace = availableSwapSpace;
     return this;
   }
@@ -84,15 +84,15 @@ public class SwapSpaceMonitorMemoryUsage2 {
   
   @Schema(name = "availableSwapSpace", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("availableSwapSpace")
-  public Integer getAvailableSwapSpace() {
+  public @Nullable Integer getAvailableSwapSpace() {
     return availableSwapSpace;
   }
 
-  public void setAvailableSwapSpace(Integer availableSwapSpace) {
+  public void setAvailableSwapSpace(@Nullable Integer availableSwapSpace) {
     this.availableSwapSpace = availableSwapSpace;
   }
 
-  public SwapSpaceMonitorMemoryUsage2 totalPhysicalMemory(Integer totalPhysicalMemory) {
+  public SwapSpaceMonitorMemoryUsage2 totalPhysicalMemory(@Nullable Integer totalPhysicalMemory) {
     this.totalPhysicalMemory = totalPhysicalMemory;
     return this;
   }
@@ -104,15 +104,15 @@ public class SwapSpaceMonitorMemoryUsage2 {
   
   @Schema(name = "totalPhysicalMemory", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalPhysicalMemory")
-  public Integer getTotalPhysicalMemory() {
+  public @Nullable Integer getTotalPhysicalMemory() {
     return totalPhysicalMemory;
   }
 
-  public void setTotalPhysicalMemory(Integer totalPhysicalMemory) {
+  public void setTotalPhysicalMemory(@Nullable Integer totalPhysicalMemory) {
     this.totalPhysicalMemory = totalPhysicalMemory;
   }
 
-  public SwapSpaceMonitorMemoryUsage2 totalSwapSpace(Integer totalSwapSpace) {
+  public SwapSpaceMonitorMemoryUsage2 totalSwapSpace(@Nullable Integer totalSwapSpace) {
     this.totalSwapSpace = totalSwapSpace;
     return this;
   }
@@ -124,11 +124,11 @@ public class SwapSpaceMonitorMemoryUsage2 {
   
   @Schema(name = "totalSwapSpace", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalSwapSpace")
-  public Integer getTotalSwapSpace() {
+  public @Nullable Integer getTotalSwapSpace() {
     return totalSwapSpace;
   }
 
-  public void setTotalSwapSpace(Integer totalSwapSpace) {
+  public void setTotalSwapSpace(@Nullable Integer totalSwapSpace) {
     this.totalSwapSpace = totalSwapSpace;
   }
 

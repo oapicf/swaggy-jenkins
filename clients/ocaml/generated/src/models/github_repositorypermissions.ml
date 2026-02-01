@@ -5,17 +5,41 @@
  *
  *)
 
-type t = {
-    admin: bool option [@default None];
-    push: bool option [@default None];
-    pull: bool option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    admin = None;
-    push = None;
-    pull = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              admin: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "admin"]
+                                              push: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "push"]
+                                              pull: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "pull"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            admin = None;
+            push = None;
+            pull = None;
+            _class = None;
+        }
+    
 

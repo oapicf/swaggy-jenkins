@@ -18,46 +18,63 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class BranchImpl  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private Integer estimatedDurationInMillis;
 
   @ApiModelProperty(value = "")
+
   private String fullDisplayName;
 
   @ApiModelProperty(value = "")
+
   private String fullName;
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private String organization;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private BranchImplpermissions permissions;
 
   @ApiModelProperty(value = "")
+
   private Integer weatherScore;
 
   @ApiModelProperty(value = "")
+
   private String pullRequest;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private BranchImpllinks links;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private PipelineRunImpl latestRun;
  /**
    * Get propertyClass

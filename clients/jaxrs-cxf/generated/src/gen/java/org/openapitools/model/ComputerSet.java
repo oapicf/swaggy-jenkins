@@ -15,19 +15,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ComputerSet  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private Integer busyExecutors;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid HudsonMasterComputer> computer = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private Integer totalExecutors;
  /**
    * Get propertyClass

@@ -25,7 +25,7 @@ data class Organisation(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("name") val name: kotlin.String? = null
-    ) {
+) {
 
 }
 

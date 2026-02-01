@@ -10,18 +10,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class StringParameterDefinition  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private StringParameterValue defaultParameterValue;
 
   @ApiModelProperty(value = "")
+
   private String description;
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private String type;
  /**
    * Get propertyClass

@@ -15,49 +15,65 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelineRun  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid PipelineRunartifacts> artifacts = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private Integer durationInMillis;
 
   @ApiModelProperty(value = "")
+
   private Integer estimatedDurationInMillis;
 
   @ApiModelProperty(value = "")
+
   private String enQueueTime;
 
   @ApiModelProperty(value = "")
+
   private String endTime;
 
   @ApiModelProperty(value = "")
+
   private String id;
 
   @ApiModelProperty(value = "")
+
   private String organization;
 
   @ApiModelProperty(value = "")
+
   private String pipeline;
 
   @ApiModelProperty(value = "")
+
   private String result;
 
   @ApiModelProperty(value = "")
+
   private String runSummary;
 
   @ApiModelProperty(value = "")
+
   private String startTime;
 
   @ApiModelProperty(value = "")
+
   private String state;
 
   @ApiModelProperty(value = "")
+
   private String type;
 
   @ApiModelProperty(value = "")
+
   private String commitId;
  /**
    * Get propertyClass

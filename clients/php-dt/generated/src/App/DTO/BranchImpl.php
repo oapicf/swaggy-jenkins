@@ -51,10 +51,10 @@ class BranchImpl
 
     /**
      * @DTA\Data(field="parameters", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection19::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection19::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection23::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection23::class})
      */
-    public ?\App\DTO\Collection19 $parameters = null;
+    public ?\App\DTO\Collection23 $parameters = null;
 
     /**
      * @DTA\Data(field="permissions", nullable=true)

@@ -10,9 +10,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GithubFile  {
   
   @ApiModelProperty(value = "")
+
   private GithubContent content;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get content

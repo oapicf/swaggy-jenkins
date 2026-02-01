@@ -10,10 +10,10 @@ module PipelineImpllinks =
 
 
   type PipelineImpllinks = {
-    Runs : Link;
     Self : Link;
-    Queue : Link;
     Actions : Link;
+    Runs : Link;
+    Queue : Link;
     Class : string;
   }
   //#endregion

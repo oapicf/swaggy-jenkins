@@ -1,9 +1,7 @@
 .gitattributes
 .gitignore
-BaseApi.md
-BlueOceanApi.md
+.openapi-generator-ignore
 README.md
-RemoteAccessApi.md
 apis/BaseApi.ts
 apis/BlueOceanApi.ts
 apis/RemoteAccessApi.ts
@@ -11,6 +9,9 @@ apis/baseapi.ts
 apis/exception.ts
 auth/auth.ts
 configuration.ts
+docs/BaseApi.md
+docs/BlueOceanApi.md
+docs/RemoteAccessApi.md
 git_push.sh
 http/http.ts
 http/isomorphic-fetch.ts

@@ -5,27 +5,76 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    display_name: string option [@default None];
-    estimated_duration_in_millis: int32 option [@default None];
-    full_name: string option [@default None];
-    latest_run: string option [@default None];
-    name: string option [@default None];
-    organization: string option [@default None];
-    weather_score: int32 option [@default None];
-    _links: Pipeline_impllinks.t option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    display_name = None;
-    estimated_duration_in_millis = None;
-    full_name = None;
-    latest_run = None;
-    name = None;
-    organization = None;
-    weather_score = None;
-    _links = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "displayName"]
+                                              estimated_duration_in_millis: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "estimatedDurationInMillis"]
+                                              full_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "fullName"]
+                                              latest_run: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "latestRun"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                                              organization: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "organization"]
+                                              weather_score: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "weatherScore"]
+                                              _links: Pipeline_impllinks.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_links"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            display_name = None;
+            estimated_duration_in_millis = None;
+            full_name = None;
+            latest_run = None;
+            name = None;
+            organization = None;
+            weather_score = None;
+            _links = None;
+        }
+    
 

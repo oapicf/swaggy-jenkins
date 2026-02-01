@@ -8,13 +8,13 @@ import org.openapitools.model.Link;
 @Canonical
 class PipelineImpllinks {
     
-    Link runs
-    
     Link self
     
-    Link queue
-    
     Link actions
+    
+    Link runs
+    
+    Link queue
     
     String propertyClass
 }

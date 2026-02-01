@@ -17,6 +17,7 @@ class ComputerApiTest {
     @Test
     fun getComputerTest() {
         val depth: kotlin.Int = TODO()
+        
         val response: ResponseEntity<ComputerSet> = api.getComputer(depth)
 
         // TODO: test validations

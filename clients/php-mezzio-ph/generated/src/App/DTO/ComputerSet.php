@@ -25,9 +25,9 @@ class ComputerSet
 
     /**
      * @DTA\Data(field="computer", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection9::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection9::class})
-     * @var \App\DTO\Collection9|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection10::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection10::class})
+     * @var \App\DTO\Collection10|null
      */
     public $computer;
 

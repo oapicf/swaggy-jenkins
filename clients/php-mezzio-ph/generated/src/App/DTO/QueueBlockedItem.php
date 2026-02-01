@@ -18,9 +18,9 @@ class QueueBlockedItem
 
     /**
      * @DTA\Data(field="actions", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection10::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection10::class})
-     * @var \App\DTO\Collection10|null
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection14::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection14::class})
+     * @var \App\DTO\Collection14|null
      */
     public $actions;
 

@@ -52,10 +52,10 @@ class Hudson
 
     /**
      * @DTA\Data(field="jobs", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection6::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection6::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection7::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection7::class})
      */
-    public ?\App\DTO\Collection6 $jobs = null;
+    public ?\App\DTO\Collection7 $jobs = null;
 
     /**
      * @DTA\Data(field="primaryView", nullable=true)
@@ -97,9 +97,9 @@ class Hudson
 
     /**
      * @DTA\Data(field="views", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection7::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection7::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection8::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection8::class})
      */
-    public ?\App\DTO\Collection7 $views = null;
+    public ?\App\DTO\Collection8 $views = null;
 
 }

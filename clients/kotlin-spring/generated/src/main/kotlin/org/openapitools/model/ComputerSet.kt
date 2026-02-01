@@ -39,7 +39,7 @@ data class ComputerSet(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("totalExecutors") val totalExecutors: kotlin.Int? = null
-    ) {
+) {
 
 }
 

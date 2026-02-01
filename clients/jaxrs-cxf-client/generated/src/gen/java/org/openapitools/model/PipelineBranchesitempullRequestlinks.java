@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelineBranchesitempullRequestlinks  {
   
   @ApiModelProperty(value = "")
+
   private String self;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get self

@@ -10,27 +10,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Pipeline  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String organization;
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private String fullName;
 
   @ApiModelProperty(value = "")
+
   private Integer weatherScore;
 
   @ApiModelProperty(value = "")
+
   private Integer estimatedDurationInMillis;
 
   @ApiModelProperty(value = "")
+
   private PipelinelatestRun latestRun;
  /**
    * Get propertyClass

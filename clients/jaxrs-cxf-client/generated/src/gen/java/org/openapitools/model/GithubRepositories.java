@@ -14,21 +14,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GithubRepositories  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private GithubRepositorieslinks links;
 
   @ApiModelProperty(value = "")
+
   private List<GithubRepository> items = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private Integer lastPage;
 
   @ApiModelProperty(value = "")
+
   private Integer nextPage;
 
   @ApiModelProperty(value = "")
+
   private Integer pageSize;
  /**
    * Get propertyClass

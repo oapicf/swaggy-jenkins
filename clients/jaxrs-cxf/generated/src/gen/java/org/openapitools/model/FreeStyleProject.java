@@ -18,93 +18,129 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FreeStyleProject  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String name;
 
   @ApiModelProperty(value = "")
+
   private String url;
 
   @ApiModelProperty(value = "")
+
   private String color;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private String description;
 
   @ApiModelProperty(value = "")
+
   private String displayName;
 
   @ApiModelProperty(value = "")
+
   private String displayNameOrNull;
 
   @ApiModelProperty(value = "")
+
   private String fullDisplayName;
 
   @ApiModelProperty(value = "")
+
   private String fullName;
 
   @ApiModelProperty(value = "")
+
   private Boolean buildable;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid FreeStyleBuild> builds = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private FreeStyleBuild firstBuild;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private Boolean inQueue;
 
   @ApiModelProperty(value = "")
+
   private Boolean keepDependencies;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private FreeStyleBuild lastBuild;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private FreeStyleBuild lastCompletedBuild;
 
   @ApiModelProperty(value = "")
+
   private String lastFailedBuild;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private FreeStyleBuild lastStableBuild;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private FreeStyleBuild lastSuccessfulBuild;
 
   @ApiModelProperty(value = "")
+
   private String lastUnstableBuild;
 
   @ApiModelProperty(value = "")
+
   private String lastUnsuccessfulBuild;
 
   @ApiModelProperty(value = "")
+
   private Integer nextBuildNumber;
 
   @ApiModelProperty(value = "")
+
   private String queueItem;
 
   @ApiModelProperty(value = "")
+
   private Boolean concurrentBuild;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private NullSCM scm;
  /**
    * Get propertyClass

@@ -1,5 +1,7 @@
 # OpenAPI\Client\BlueOceanApi
 
+
+
 All URIs are relative to http://localhost, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

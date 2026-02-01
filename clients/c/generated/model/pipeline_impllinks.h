@@ -20,20 +20,20 @@ typedef struct pipeline_impllinks_t pipeline_impllinks_t;
 
 
 typedef struct pipeline_impllinks_t {
-    struct link_t *runs; //model
     struct link_t *self; //model
-    struct link_t *queue; //model
     struct link_t *actions; //model
+    struct link_t *runs; //model
+    struct link_t *queue; //model
     char *_class; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_impllinks_t;
 
 __attribute__((deprecated)) pipeline_impllinks_t *pipeline_impllinks_create(
-    link_t *runs,
     link_t *self,
-    link_t *queue,
     link_t *actions,
+    link_t *runs,
+    link_t *queue,
     char *_class
 );
 

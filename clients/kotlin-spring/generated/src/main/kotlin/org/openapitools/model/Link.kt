@@ -25,7 +25,7 @@ data class Link(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("href") val href: kotlin.String? = null
-    ) {
+) {
 
 }
 

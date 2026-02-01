@@ -19,14 +19,14 @@ import javax.annotation.Generated;
  * PipelineBranchesitempullRequestlinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineBranchesitempullRequestlinks {
 
   private @Nullable String self;
 
   private @Nullable String propertyClass;
 
-  public PipelineBranchesitempullRequestlinks self(String self) {
+  public PipelineBranchesitempullRequestlinks self(@Nullable String self) {
     this.self = self;
     return this;
   }
@@ -38,15 +38,15 @@ public class PipelineBranchesitempullRequestlinks {
   
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
-  public String getSelf() {
+  public @Nullable String getSelf() {
     return self;
   }
 
-  public void setSelf(String self) {
+  public void setSelf(@Nullable String self) {
     this.self = self;
   }
 
-  public PipelineBranchesitempullRequestlinks propertyClass(String propertyClass) {
+  public PipelineBranchesitempullRequestlinks propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -58,11 +58,11 @@ public class PipelineBranchesitempullRequestlinks {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

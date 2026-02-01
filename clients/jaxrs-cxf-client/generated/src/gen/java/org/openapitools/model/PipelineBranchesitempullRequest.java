@@ -10,21 +10,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PipelineBranchesitempullRequest  {
   
   @ApiModelProperty(value = "")
+
   private PipelineBranchesitempullRequestlinks links;
 
   @ApiModelProperty(value = "")
+
   private String author;
 
   @ApiModelProperty(value = "")
+
   private String id;
 
   @ApiModelProperty(value = "")
+
   private String title;
 
   @ApiModelProperty(value = "")
+
   private String url;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get links

@@ -5,13 +5,25 @@
  *
  *)
 
-type t = {
-    classes: string list;
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    classes = [];
-    _class = None;
-}
+
+    
+        type t = {
+                              classes: string list
+                 [@default []]
+                
+                ; [@key "classes"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            classes = [];
+            _class = None;
+        }
+    
 

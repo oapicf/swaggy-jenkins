@@ -18,6 +18,7 @@ class JobApiTest {
     @Test
     fun getJobTest() {
         val name: kotlin.String = TODO()
+        
         val response: ResponseEntity<FreeStyleProject> = api.getJob(name)
 
         // TODO: test validations
@@ -32,6 +33,7 @@ class JobApiTest {
     @Test
     fun getJobConfigTest() {
         val name: kotlin.String = TODO()
+        
         val response: ResponseEntity<kotlin.String> = api.getJobConfig(name)
 
         // TODO: test validations
@@ -46,6 +48,7 @@ class JobApiTest {
     @Test
     fun getJobLastBuildTest() {
         val name: kotlin.String = TODO()
+        
         val response: ResponseEntity<FreeStyleBuild> = api.getJobLastBuild(name)
 
         // TODO: test validations
@@ -62,6 +65,7 @@ class JobApiTest {
         val name: kotlin.String = TODO()
         val number: kotlin.String = TODO()
         val start: kotlin.String = TODO()
+        
         val response: ResponseEntity<Unit> = api.getJobProgressiveText(name, number, start)
 
         // TODO: test validations
@@ -79,6 +83,7 @@ class JobApiTest {
         val json: kotlin.String = TODO()
         val token: kotlin.String? = TODO()
         val jenkinsCrumb: kotlin.String? = TODO()
+        
         val response: ResponseEntity<Unit> = api.postJobBuild(name, json, token, jenkinsCrumb)
 
         // TODO: test validations
@@ -95,6 +100,7 @@ class JobApiTest {
         val name: kotlin.String = TODO()
         val body: kotlin.String = TODO()
         val jenkinsCrumb: kotlin.String? = TODO()
+        
         val response: ResponseEntity<Unit> = api.postJobConfig(name, body, jenkinsCrumb)
 
         // TODO: test validations
@@ -110,6 +116,7 @@ class JobApiTest {
     fun postJobDeleteTest() {
         val name: kotlin.String = TODO()
         val jenkinsCrumb: kotlin.String? = TODO()
+        
         val response: ResponseEntity<Unit> = api.postJobDelete(name, jenkinsCrumb)
 
         // TODO: test validations
@@ -125,6 +132,7 @@ class JobApiTest {
     fun postJobDisableTest() {
         val name: kotlin.String = TODO()
         val jenkinsCrumb: kotlin.String? = TODO()
+        
         val response: ResponseEntity<Unit> = api.postJobDisable(name, jenkinsCrumb)
 
         // TODO: test validations
@@ -140,6 +148,7 @@ class JobApiTest {
     fun postJobEnableTest() {
         val name: kotlin.String = TODO()
         val jenkinsCrumb: kotlin.String? = TODO()
+        
         val response: ResponseEntity<Unit> = api.postJobEnable(name, jenkinsCrumb)
 
         // TODO: test validations
@@ -155,6 +164,7 @@ class JobApiTest {
     fun postJobLastBuildStopTest() {
         val name: kotlin.String = TODO()
         val jenkinsCrumb: kotlin.String? = TODO()
+        
         val response: ResponseEntity<Unit> = api.postJobLastBuildStop(name, jenkinsCrumb)
 
         // TODO: test validations

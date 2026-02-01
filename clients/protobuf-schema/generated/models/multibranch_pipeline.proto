@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -17,32 +17,33 @@ package openapitools;
 
 message MultibranchPipeline {
 
-  string displayName = 103536240;
+  string display_name = 4473835;
 
-  int32 estimatedDurationInMillis = 316469800;
+  int32 estimated_duration_in_millis = 297912984;
 
-  string latestRun = 194530943;
+  string latest_run = 124494381;
 
   string name = 3373707;
 
   string organization = 105180469;
 
-  int32 weatherScore = 365105410;
+  int32 weather_score = 313987722;
 
-  repeated string branchNames = 471206203;
+  repeated string branch_names = 150397334;
 
-  int32 numberOfFailingBranches = 466676013;
+  int32 number_of_failing_branches = 98333926;
 
-  int32 numberOfFailingPullRequests = 126025776;
+  int32 number_of_failing_pull_requests = 122203985;
 
-  int32 numberOfSuccessfulBranches = 149923415;
+  int32 number_of_successful_branches = 155177251;
 
-  int32 numberOfSuccessfulPullRequests = 272963582;
+  int32 number_of_successful_pull_requests = 119880972;
 
-  int32 totalNumberOfBranches = 316472236;
+  int32 total_number_of_branches = 54253539;
 
-  int32 totalNumberOfPullRequests = 238801491;
+  int32 total_number_of_pull_requests = 293745234;
 
-  string _class = 406713225;
+  string class = 94742904;
 
 }
+

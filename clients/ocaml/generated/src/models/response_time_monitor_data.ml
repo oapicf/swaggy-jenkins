@@ -5,15 +5,34 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    timestamp: int32 option [@default None];
-    average: int32 option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    timestamp = None;
-    average = None;
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              timestamp: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "timestamp"]
+                                              average: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "average"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            timestamp = None;
+            average = None;
+        }
+    
 

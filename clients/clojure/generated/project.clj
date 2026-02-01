@@ -1,4 +1,4 @@
-(defproject swaggy-jenkins "3.0.2-pre.0"
+(defproject swaggy-jenkins "3.2.1-pre.0"
   :description "Jenkins API clients generated from Swagger / Open API specification"
   :url "https://github.com/oapicf/swaggy-jenkins"
   :dependencies [[org.clojure/clojure "1.9.0"]

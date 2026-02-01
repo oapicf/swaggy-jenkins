@@ -11,12 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ExtensionClassContainerImpl1  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private ExtensionClassContainerImpl1links links;
 
   @ApiModelProperty(value = "")
+
   private ExtensionClassContainerImpl1map map;
  /**
    * Get propertyClass

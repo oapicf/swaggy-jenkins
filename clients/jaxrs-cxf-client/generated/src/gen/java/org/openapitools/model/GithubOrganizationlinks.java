@@ -10,12 +10,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GithubOrganizationlinks  {
   
   @ApiModelProperty(value = "")
+
   private Link repositories;
 
   @ApiModelProperty(value = "")
+
   private Link self;
 
   @ApiModelProperty(value = "")
+
   private String propertyClass;
  /**
    * Get repositories

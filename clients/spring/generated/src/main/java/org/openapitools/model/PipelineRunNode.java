@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * PipelineRunNode
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineRunNode {
 
   private @Nullable String propertyClass;
@@ -43,7 +43,7 @@ public class PipelineRunNode {
 
   private @Nullable String state;
 
-  public PipelineRunNode propertyClass(String propertyClass) {
+  public PipelineRunNode propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -55,15 +55,15 @@ public class PipelineRunNode {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 
-  public PipelineRunNode displayName(String displayName) {
+  public PipelineRunNode displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -75,15 +75,15 @@ public class PipelineRunNode {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
-  public PipelineRunNode durationInMillis(Integer durationInMillis) {
+  public PipelineRunNode durationInMillis(@Nullable Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
     return this;
   }
@@ -95,11 +95,11 @@ public class PipelineRunNode {
   
   @Schema(name = "durationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("durationInMillis")
-  public Integer getDurationInMillis() {
+  public @Nullable Integer getDurationInMillis() {
     return durationInMillis;
   }
 
-  public void setDurationInMillis(Integer durationInMillis) {
+  public void setDurationInMillis(@Nullable Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
   }
 
@@ -131,7 +131,7 @@ public class PipelineRunNode {
     this.edges = edges;
   }
 
-  public PipelineRunNode id(String id) {
+  public PipelineRunNode id(@Nullable String id) {
     this.id = id;
     return this;
   }
@@ -143,15 +143,15 @@ public class PipelineRunNode {
   
   @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
-  public String getId() {
+  public @Nullable String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@Nullable String id) {
     this.id = id;
   }
 
-  public PipelineRunNode result(String result) {
+  public PipelineRunNode result(@Nullable String result) {
     this.result = result;
     return this;
   }
@@ -163,15 +163,15 @@ public class PipelineRunNode {
   
   @Schema(name = "result", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("result")
-  public String getResult() {
+  public @Nullable String getResult() {
     return result;
   }
 
-  public void setResult(String result) {
+  public void setResult(@Nullable String result) {
     this.result = result;
   }
 
-  public PipelineRunNode startTime(String startTime) {
+  public PipelineRunNode startTime(@Nullable String startTime) {
     this.startTime = startTime;
     return this;
   }
@@ -183,15 +183,15 @@ public class PipelineRunNode {
   
   @Schema(name = "startTime", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("startTime")
-  public String getStartTime() {
+  public @Nullable String getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(String startTime) {
+  public void setStartTime(@Nullable String startTime) {
     this.startTime = startTime;
   }
 
-  public PipelineRunNode state(String state) {
+  public PipelineRunNode state(@Nullable String state) {
     this.state = state;
     return this;
   }
@@ -203,11 +203,11 @@ public class PipelineRunNode {
   
   @Schema(name = "state", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("state")
-  public String getState() {
+  public @Nullable String getState() {
     return state;
   }
 
-  public void setState(String state) {
+  public void setState(@Nullable String state) {
     this.state = state;
   }
 

@@ -9,18 +9,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class User  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private String id;
 
   @ApiModelProperty(value = "")
+
   private String fullName;
 
   @ApiModelProperty(value = "")
+
   private String email;
 
   @ApiModelProperty(value = "")
+
   private String name;
  /**
    * Get propertyClass

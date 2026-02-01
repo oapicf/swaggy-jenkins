@@ -861,10 +861,10 @@ instance Arbitrary PipelineImpllinks where
 genPipelineImpllinks :: Int -> Gen PipelineImpllinks
 genPipelineImpllinks n =
   PipelineImpllinks
-    <$> arbitraryReducedMaybe n -- pipelineImpllinksRuns :: Maybe Link
-    <*> arbitraryReducedMaybe n -- pipelineImpllinksSelf :: Maybe Link
-    <*> arbitraryReducedMaybe n -- pipelineImpllinksQueue :: Maybe Link
+    <$> arbitraryReducedMaybe n -- pipelineImpllinksSelf :: Maybe Link
     <*> arbitraryReducedMaybe n -- pipelineImpllinksActions :: Maybe Link
+    <*> arbitraryReducedMaybe n -- pipelineImpllinksRuns :: Maybe Link
+    <*> arbitraryReducedMaybe n -- pipelineImpllinksQueue :: Maybe Link
     <*> arbitraryReducedMaybe n -- pipelineImpllinksClass :: Maybe Text
   
 instance Arbitrary PipelineRun where

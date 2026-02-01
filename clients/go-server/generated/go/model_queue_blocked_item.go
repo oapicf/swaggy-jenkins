@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.0.2-pre.0
+ * API version: 3.2.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 

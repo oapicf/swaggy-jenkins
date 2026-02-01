@@ -15,10 +15,10 @@ class PipelineActivity
 
     /**
      * @DTA\Data(field="artifacts", nullable=true)
-     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection16::class})
-     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection16::class})
+     * @DTA\Strategy(name="Object", options={"type":\App\DTO\Collection20::class})
+     * @DTA\Validator(name="TypeCompliant", options={"type":\App\DTO\Collection20::class})
      */
-    public ?\App\DTO\Collection16 $artifacts = null;
+    public ?\App\DTO\Collection20 $artifacts = null;
 
     /**
      * @DTA\Data(field="durationInMillis", nullable=true)

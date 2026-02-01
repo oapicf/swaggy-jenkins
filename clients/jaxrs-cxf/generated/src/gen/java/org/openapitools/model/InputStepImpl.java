@@ -16,26 +16,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class InputStepImpl  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private InputStepImpllinks links;
 
   @ApiModelProperty(value = "")
+
   private String id;
 
   @ApiModelProperty(value = "")
+
   private String message;
 
   @ApiModelProperty(value = "")
+
   private String ok;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
   @ApiModelProperty(value = "")
+
   private String submitter;
  /**
    * Get propertyClass

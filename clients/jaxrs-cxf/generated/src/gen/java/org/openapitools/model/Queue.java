@@ -15,10 +15,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Queue  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   @Valid
+
   private List<@Valid QueueBlockedItem> items = new ArrayList<>();
  /**
    * Get propertyClass

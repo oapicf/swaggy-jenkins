@@ -6,6 +6,8 @@ description: |
   - 
 crystal: ">= 0.35.1"
 dependencies:
+  any_hash:
+    github: Sija/any_hash.cr
   crest:
     github: mamantoha/crest
     version: ~> 1.3.13
@@ -16,5 +18,8 @@ development_dependencies:
     version: ~>1.5.0
   ameba:
     github: crystal-ameba/ameba
+  spectator:
+    gitlab: arctic-fox/spectator
+    version: ~> 0.12.0
 
 license: 

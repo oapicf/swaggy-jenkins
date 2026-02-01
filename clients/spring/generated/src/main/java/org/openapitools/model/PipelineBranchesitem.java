@@ -21,7 +21,7 @@ import javax.annotation.Generated;
  * PipelineBranchesitem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineBranchesitem {
 
   private @Nullable String displayName;
@@ -42,7 +42,7 @@ public class PipelineBranchesitem {
 
   private @Nullable String propertyClass;
 
-  public PipelineBranchesitem displayName(String displayName) {
+  public PipelineBranchesitem displayName(@Nullable String displayName) {
     this.displayName = displayName;
     return this;
   }
@@ -54,15 +54,15 @@ public class PipelineBranchesitem {
   
   @Schema(name = "displayName", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("displayName")
-  public String getDisplayName() {
+  public @Nullable String getDisplayName() {
     return displayName;
   }
 
-  public void setDisplayName(String displayName) {
+  public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
 
-  public PipelineBranchesitem estimatedDurationInMillis(Integer estimatedDurationInMillis) {
+  public PipelineBranchesitem estimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
     return this;
   }
@@ -74,15 +74,15 @@ public class PipelineBranchesitem {
   
   @Schema(name = "estimatedDurationInMillis", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("estimatedDurationInMillis")
-  public Integer getEstimatedDurationInMillis() {
+  public @Nullable Integer getEstimatedDurationInMillis() {
     return estimatedDurationInMillis;
   }
 
-  public void setEstimatedDurationInMillis(Integer estimatedDurationInMillis) {
+  public void setEstimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
 
-  public PipelineBranchesitem name(String name) {
+  public PipelineBranchesitem name(@Nullable String name) {
     this.name = name;
     return this;
   }
@@ -94,15 +94,15 @@ public class PipelineBranchesitem {
   
   @Schema(name = "name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("name")
-  public String getName() {
+  public @Nullable String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@Nullable String name) {
     this.name = name;
   }
 
-  public PipelineBranchesitem weatherScore(Integer weatherScore) {
+  public PipelineBranchesitem weatherScore(@Nullable Integer weatherScore) {
     this.weatherScore = weatherScore;
     return this;
   }
@@ -114,15 +114,15 @@ public class PipelineBranchesitem {
   
   @Schema(name = "weatherScore", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("weatherScore")
-  public Integer getWeatherScore() {
+  public @Nullable Integer getWeatherScore() {
     return weatherScore;
   }
 
-  public void setWeatherScore(Integer weatherScore) {
+  public void setWeatherScore(@Nullable Integer weatherScore) {
     this.weatherScore = weatherScore;
   }
 
-  public PipelineBranchesitem latestRun(PipelineBranchesitemlatestRun latestRun) {
+  public PipelineBranchesitem latestRun(@Nullable PipelineBranchesitemlatestRun latestRun) {
     this.latestRun = latestRun;
     return this;
   }
@@ -134,15 +134,15 @@ public class PipelineBranchesitem {
   @Valid 
   @Schema(name = "latestRun", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("latestRun")
-  public PipelineBranchesitemlatestRun getLatestRun() {
+  public @Nullable PipelineBranchesitemlatestRun getLatestRun() {
     return latestRun;
   }
 
-  public void setLatestRun(PipelineBranchesitemlatestRun latestRun) {
+  public void setLatestRun(@Nullable PipelineBranchesitemlatestRun latestRun) {
     this.latestRun = latestRun;
   }
 
-  public PipelineBranchesitem organization(String organization) {
+  public PipelineBranchesitem organization(@Nullable String organization) {
     this.organization = organization;
     return this;
   }
@@ -154,15 +154,15 @@ public class PipelineBranchesitem {
   
   @Schema(name = "organization", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization")
-  public String getOrganization() {
+  public @Nullable String getOrganization() {
     return organization;
   }
 
-  public void setOrganization(String organization) {
+  public void setOrganization(@Nullable String organization) {
     this.organization = organization;
   }
 
-  public PipelineBranchesitem pullRequest(PipelineBranchesitempullRequest pullRequest) {
+  public PipelineBranchesitem pullRequest(@Nullable PipelineBranchesitempullRequest pullRequest) {
     this.pullRequest = pullRequest;
     return this;
   }
@@ -174,15 +174,15 @@ public class PipelineBranchesitem {
   @Valid 
   @Schema(name = "pullRequest", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("pullRequest")
-  public PipelineBranchesitempullRequest getPullRequest() {
+  public @Nullable PipelineBranchesitempullRequest getPullRequest() {
     return pullRequest;
   }
 
-  public void setPullRequest(PipelineBranchesitempullRequest pullRequest) {
+  public void setPullRequest(@Nullable PipelineBranchesitempullRequest pullRequest) {
     this.pullRequest = pullRequest;
   }
 
-  public PipelineBranchesitem totalNumberOfPullRequests(Integer totalNumberOfPullRequests) {
+  public PipelineBranchesitem totalNumberOfPullRequests(@Nullable Integer totalNumberOfPullRequests) {
     this.totalNumberOfPullRequests = totalNumberOfPullRequests;
     return this;
   }
@@ -194,15 +194,15 @@ public class PipelineBranchesitem {
   
   @Schema(name = "totalNumberOfPullRequests", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("totalNumberOfPullRequests")
-  public Integer getTotalNumberOfPullRequests() {
+  public @Nullable Integer getTotalNumberOfPullRequests() {
     return totalNumberOfPullRequests;
   }
 
-  public void setTotalNumberOfPullRequests(Integer totalNumberOfPullRequests) {
+  public void setTotalNumberOfPullRequests(@Nullable Integer totalNumberOfPullRequests) {
     this.totalNumberOfPullRequests = totalNumberOfPullRequests;
   }
 
-  public PipelineBranchesitem propertyClass(String propertyClass) {
+  public PipelineBranchesitem propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -214,11 +214,11 @@ public class PipelineBranchesitem {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

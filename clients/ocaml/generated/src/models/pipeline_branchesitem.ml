@@ -5,27 +5,76 @@
  *
  *)
 
-type t = {
-    display_name: string option [@default None];
-    estimated_duration_in_millis: int32 option [@default None];
-    name: string option [@default None];
-    weather_score: int32 option [@default None];
-    latest_run: Pipeline_branchesitemlatest_run.t option [@default None];
-    organization: string option [@default None];
-    pull_request: Pipeline_branchesitempull_request.t option [@default None];
-    total_number_of_pull_requests: int32 option [@default None];
-    _class: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    display_name = None;
-    estimated_duration_in_millis = None;
-    name = None;
-    weather_score = None;
-    latest_run = None;
-    organization = None;
-    pull_request = None;
-    total_number_of_pull_requests = None;
-    _class = None;
-}
+
+    
+        type t = {
+                              display_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "displayName"]
+                                              estimated_duration_in_millis: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "estimatedDurationInMillis"]
+                                              name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                                              weather_score: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "weatherScore"]
+                                              latest_run: Pipeline_branchesitemlatest_run.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "latestRun"]
+                                              organization: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "organization"]
+                                              pull_request: Pipeline_branchesitempull_request.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "pullRequest"]
+                                              total_number_of_pull_requests: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "totalNumberOfPullRequests"]
+                                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            display_name = None;
+            estimated_duration_in_millis = None;
+            name = None;
+            weather_score = None;
+            latest_run = None;
+            organization = None;
+            pull_request = None;
+            total_number_of_pull_requests = None;
+            _class = None;
+        }
+    
 

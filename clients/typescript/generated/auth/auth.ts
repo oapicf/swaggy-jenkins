@@ -66,7 +66,6 @@ export class JwtAuthAuthentication implements SecurityAuthentication {
     }
 }
 
-
 export type AuthMethods = {
     "default"?: SecurityAuthentication,
     "jenkins_auth"?: SecurityAuthentication,

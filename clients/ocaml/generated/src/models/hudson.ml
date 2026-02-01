@@ -5,39 +5,112 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    assigned_labels: Hudsonassigned_labels.t list;
-    mode: string option [@default None];
-    node_description: string option [@default None];
-    node_name: string option [@default None];
-    num_executors: int32 option [@default None];
-    description: string option [@default None];
-    jobs: Free_style_project.t list;
-    primary_view: All_view.t option [@default None];
-    quieting_down: bool option [@default None];
-    slave_agent_port: int32 option [@default None];
-    unlabeled_load: Unlabeled_load_statistics.t option [@default None];
-    use_crumbs: bool option [@default None];
-    use_security: bool option [@default None];
-    views: All_view.t list;
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    assigned_labels = [];
-    mode = None;
-    node_description = None;
-    node_name = None;
-    num_executors = None;
-    description = None;
-    jobs = [];
-    primary_view = None;
-    quieting_down = None;
-    slave_agent_port = None;
-    unlabeled_load = None;
-    use_crumbs = None;
-    use_security = None;
-    views = [];
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              assigned_labels: Hudsonassigned_labels.t list
+                 [@default []]
+                
+                ; [@key "assignedLabels"]
+                                              mode: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "mode"]
+                                              node_description: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "nodeDescription"]
+                                              node_name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "nodeName"]
+                                              num_executors: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "numExecutors"]
+                                              description: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "description"]
+                                              jobs: Free_style_project.t list
+                 [@default []]
+                
+                ; [@key "jobs"]
+                                              primary_view: All_view.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "primaryView"]
+                                              quieting_down: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "quietingDown"]
+                                              slave_agent_port: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "slaveAgentPort"]
+                                              unlabeled_load: Unlabeled_load_statistics.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "unlabeledLoad"]
+                                              use_crumbs: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "useCrumbs"]
+                                              use_security: bool
+                  
+                   option [@default None]
+                
+                
+                ; [@key "useSecurity"]
+                                              views: All_view.t list
+                 [@default []]
+                
+                ; [@key "views"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            assigned_labels = [];
+            mode = None;
+            node_description = None;
+            node_name = None;
+            num_executors = None;
+            description = None;
+            jobs = [];
+            primary_view = None;
+            quieting_down = None;
+            slave_agent_port = None;
+            unlabeled_load = None;
+            use_crumbs = None;
+            use_security = None;
+            views = [];
+        }
+    
 

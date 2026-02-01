@@ -752,10 +752,10 @@ CREATE TABLE IF NOT EXISTS `PipelineImpl` (
 --
 
 CREATE TABLE IF NOT EXISTS `PipelineImpllinks` (
-  `runs` TEXT DEFAULT NULL,
   `self` TEXT DEFAULT NULL,
-  `queue` TEXT DEFAULT NULL,
   `actions` TEXT DEFAULT NULL,
+  `runs` TEXT DEFAULT NULL,
+  `queue` TEXT DEFAULT NULL,
   `_class` TEXT DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

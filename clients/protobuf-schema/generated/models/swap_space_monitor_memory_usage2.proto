@@ -3,7 +3,7 @@
 
   Jenkins API clients generated from Swagger / Open API specification
 
-  The version of the OpenAPI document: 3.0.2-pre.0
+  The version of the OpenAPI document: 3.2.1-pre.0
 
   Contact: blah+oapicf@cliffano.com
 
@@ -17,14 +17,15 @@ package openapitools;
 
 message SwapSpaceMonitorMemoryUsage2 {
 
-  string _class = 406713225;
+  string class = 94742904;
 
-  int32 availablePhysicalMemory = 41717732;
+  int32 available_physical_memory = 40519693;
 
-  int32 availableSwapSpace = 192898454;
+  int32 available_swap_space = 367260019;
 
-  int32 totalPhysicalMemory = 431090972;
+  int32 total_physical_memory = 51858836;
 
-  int32 totalSwapSpace = 462511025;
+  int32 total_swap_space = 380580662;
 
 }
+

@@ -5,15 +5,32 @@
  *
  *)
 
-type t = {
-    _class: string option [@default None];
-    _links: Extension_class_impllinks.t option [@default None];
-    classes: string list;
-} [@@deriving yojson { strict = false }, show ];;
 
-let create () : t = {
-    _class = None;
-    _links = None;
-    classes = [];
-}
+
+    
+        type t = {
+                              _class: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_class"]
+                                              _links: Extension_class_impllinks.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "_links"]
+                                              classes: string list
+                 [@default []]
+                
+                ; [@key "classes"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _class = None;
+            _links = None;
+            classes = [];
+        }
+    
 

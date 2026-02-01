@@ -37,7 +37,7 @@ data class QueueItemImpl(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("queuedTime") val queuedTime: kotlin.Int? = null
-    ) {
+) {
 
 }
 

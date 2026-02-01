@@ -48,25 +48,11 @@ public:
 
 	/*! \brief Get 
 	 */
-	Link getRuns();
-
-	/*! \brief Set 
-	 */
-	void setRuns(Link  runs);
-	/*! \brief Get 
-	 */
 	Link getSelf();
 
 	/*! \brief Set 
 	 */
 	void setSelf(Link  self);
-	/*! \brief Get 
-	 */
-	Link getQueue();
-
-	/*! \brief Set 
-	 */
-	void setQueue(Link  queue);
 	/*! \brief Get 
 	 */
 	Link getActions();
@@ -76,6 +62,20 @@ public:
 	void setActions(Link  actions);
 	/*! \brief Get 
 	 */
+	Link getRuns();
+
+	/*! \brief Set 
+	 */
+	void setRuns(Link  runs);
+	/*! \brief Get 
+	 */
+	Link getQueue();
+
+	/*! \brief Set 
+	 */
+	void setQueue(Link  queue);
+	/*! \brief Get 
+	 */
 	std::string getClass();
 
 	/*! \brief Set 
@@ -83,10 +83,10 @@ public:
 	void setClass(std::string  _class);
 
 private:
-	Link runs;
 	Link self;
-	Link queue;
 	Link actions;
+	Link runs;
+	Link queue;
 	std::string _class;
 	void __init();
 	void __cleanup();

@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 .properties
 README.md
 config.gpr

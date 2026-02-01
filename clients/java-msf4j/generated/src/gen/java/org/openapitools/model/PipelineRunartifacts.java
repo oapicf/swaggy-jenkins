@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * PipelineRunartifacts
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2025-05-10T02:40:08.407850893Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-02-01T01:24:06.543745401Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineRunartifacts   {
   @JsonProperty("name")
   private String name;

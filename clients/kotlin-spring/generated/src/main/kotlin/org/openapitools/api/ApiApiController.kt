@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
+import org.openapitools.api.ApiApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -30,7 +31,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${api.base-path:}")
+@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
 class ApiApiController() {
 
     @Operation(
@@ -45,7 +46,7 @@ class ApiApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = ["/api/json"],
+        value = [PATH_GET_JENKINS /* "/api/json" */],
         produces = ["application/json"]
     )
     fun getJenkins(): ResponseEntity<Hudson> {
@@ -64,9 +65,16 @@ class ApiApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.HEAD],
-        value = ["/api/json"]
+        value = [PATH_HEAD_JENKINS /* "/api/json" */]
     )
     fun headJenkins(): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)
+    }
+
+    companion object {
+        //for your own safety never directly reuse these path definitions in tests
+        const val BASE_PATH: String = ""
+        const val PATH_GET_JENKINS: String = "/api/json"
+        const val PATH_HEAD_JENKINS: String = "/api/json"
     }
 }

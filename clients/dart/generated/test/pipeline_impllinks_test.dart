@@ -16,23 +16,23 @@ void main() {
   // final instance = PipelineImpllinks();
 
   group('test PipelineImpllinks', () {
-    // Link runs
-    test('to test the property `runs`', () async {
-      // TODO
-    });
-
     // Link self
     test('to test the property `self`', () async {
       // TODO
     });
 
-    // Link queue
-    test('to test the property `queue`', () async {
+    // Link actions
+    test('to test the property `actions`', () async {
       // TODO
     });
 
-    // Link actions
-    test('to test the property `actions`', () async {
+    // Link runs
+    test('to test the property `runs`', () async {
+      // TODO
+    });
+
+    // Link queue
+    test('to test the property `queue`', () async {
       // TODO
     });
 

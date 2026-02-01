@@ -1,5 +1,5 @@
 {
-  "openapi" : "3.0.0",
+  "openapi" : "3.1.0",
   "info" : {
     "contact" : {
       "email" : "blah+oapicf@cliffano.com",
@@ -8,7 +8,7 @@
     },
     "description" : "Jenkins API clients generated from Swagger / Open API specification",
     "title" : "Swaggy Jenkins",
-    "version" : "3.0.2-pre.0"
+    "version" : "3.2.1-pre.0"
   },
   "servers" : [ {
     "url" : "/"
@@ -30,10 +30,10 @@
             "description" : "Successfully retrieved Jenkins details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -60,10 +60,10 @@
             }
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -100,10 +100,10 @@
             "description" : "Successfully retrieved computer details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -148,15 +148,7 @@
           },
           "style" : "form"
         }, {
-          "description" : "CSRF protection token",
-          "explode" : false,
-          "in" : "header",
-          "name" : "Jenkins-Crumb",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/crumb"
         }, {
           "description" : "Content type header application/xml",
           "explode" : false,
@@ -183,20 +175,13 @@
             "description" : "Successfully created a new job"
           },
           "400" : {
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "description" : "An error has occurred - error message is embedded inside the HTML response"
+            "$ref" : "#/components/responses/errorInHtml"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -222,15 +207,7 @@
           },
           "style" : "form"
         }, {
-          "description" : "CSRF protection token",
-          "explode" : false,
-          "in" : "header",
-          "name" : "Jenkins-Crumb",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/crumb"
         }, {
           "description" : "Content type header application/xml",
           "explode" : false,
@@ -257,20 +234,13 @@
             "description" : "Successfully created the view"
           },
           "400" : {
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "description" : "An error has occurred - error message is embedded inside the HTML response"
+            "$ref" : "#/components/responses/errorInHtml"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -297,10 +267,10 @@
             "description" : "Successfully retrieved CSRF protection token"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -315,15 +285,7 @@
         "description" : "Retrieve job details",
         "operationId" : "getJob",
         "parameters" : [ {
-          "description" : "Name of the job",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/jobName"
         } ],
         "responses" : {
           "200" : {
@@ -337,13 +299,13 @@
             "description" : "Successfully retrieved job details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Job cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/jobNotFound"
           }
         },
         "security" : [ {
@@ -358,15 +320,7 @@
         "description" : "Build a job",
         "operationId" : "postJobBuild",
         "parameters" : [ {
-          "description" : "Name of the job",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/jobName"
         }, {
           "explode" : true,
           "in" : "query",
@@ -386,15 +340,7 @@
           },
           "style" : "form"
         }, {
-          "description" : "CSRF protection token",
-          "explode" : false,
-          "in" : "header",
-          "name" : "Jenkins-Crumb",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/crumb"
         } ],
         "responses" : {
           "200" : {
@@ -404,13 +350,13 @@
             "description" : "Successfully built the job"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Job cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/jobNotFound"
           }
         },
         "security" : [ {
@@ -425,15 +371,7 @@
         "description" : "Retrieve job configuration",
         "operationId" : "getJobConfig",
         "parameters" : [ {
-          "description" : "Name of the job",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/jobName"
         } ],
         "responses" : {
           "200" : {
@@ -447,13 +385,13 @@
             "description" : "Successfully retrieved job configuration in config.xml format"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Job cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/jobNotFound"
           }
         },
         "security" : [ {
@@ -466,25 +404,9 @@
         "description" : "Update job configuration",
         "operationId" : "postJobConfig",
         "parameters" : [ {
-          "description" : "Name of the job",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/jobName"
         }, {
-          "description" : "CSRF protection token",
-          "explode" : false,
-          "in" : "header",
-          "name" : "Jenkins-Crumb",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/crumb"
         } ],
         "requestBody" : {
           "content" : {
@@ -502,23 +424,16 @@
             "description" : "Successfully retrieved job configuration in config.xml format"
           },
           "400" : {
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "description" : "An error has occurred - error message is embedded inside the HTML response"
+            "$ref" : "#/components/responses/errorInHtml"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Job cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/jobNotFound"
           }
         },
         "security" : [ {
@@ -534,38 +449,22 @@
         "description" : "Delete a job",
         "operationId" : "postJobDelete",
         "parameters" : [ {
-          "description" : "Name of the job",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/jobName"
         }, {
-          "description" : "CSRF protection token",
-          "explode" : false,
-          "in" : "header",
-          "name" : "Jenkins-Crumb",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/crumb"
         } ],
         "responses" : {
           "200" : {
             "description" : "Successfully deleted the job"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Job cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/jobNotFound"
           }
         },
         "security" : [ {
@@ -580,38 +479,22 @@
         "description" : "Disable a job",
         "operationId" : "postJobDisable",
         "parameters" : [ {
-          "description" : "Name of the job",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/jobName"
         }, {
-          "description" : "CSRF protection token",
-          "explode" : false,
-          "in" : "header",
-          "name" : "Jenkins-Crumb",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/crumb"
         } ],
         "responses" : {
           "200" : {
             "description" : "Successfully disabled the job"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Job cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/jobNotFound"
           }
         },
         "security" : [ {
@@ -626,38 +509,22 @@
         "description" : "Enable a job",
         "operationId" : "postJobEnable",
         "parameters" : [ {
-          "description" : "Name of the job",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/jobName"
         }, {
-          "description" : "CSRF protection token",
-          "explode" : false,
-          "in" : "header",
-          "name" : "Jenkins-Crumb",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/crumb"
         } ],
         "responses" : {
           "200" : {
             "description" : "Successfully enabled the job"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Job cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/jobNotFound"
           }
         },
         "security" : [ {
@@ -672,15 +539,7 @@
         "description" : "Retrieve job's last build details",
         "operationId" : "getJobLastBuild",
         "parameters" : [ {
-          "description" : "Name of the job",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/jobName"
         } ],
         "responses" : {
           "200" : {
@@ -694,13 +553,13 @@
             "description" : "Successfully retrieved job's last build details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Job cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/jobNotFound"
           }
         },
         "security" : [ {
@@ -715,38 +574,22 @@
         "description" : "Stop a job",
         "operationId" : "postJobLastBuildStop",
         "parameters" : [ {
-          "description" : "Name of the job",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/jobName"
         }, {
-          "description" : "CSRF protection token",
-          "explode" : false,
-          "in" : "header",
-          "name" : "Jenkins-Crumb",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/crumb"
         } ],
         "responses" : {
           "200" : {
             "description" : "Successfully stopped the job"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Job cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/jobNotFound"
           }
         },
         "security" : [ {
@@ -761,15 +604,7 @@
         "description" : "Retrieve job's build progressive text output",
         "operationId" : "getJobProgressiveText",
         "parameters" : [ {
-          "description" : "Name of the job",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/jobName"
         }, {
           "description" : "Build number",
           "explode" : false,
@@ -796,13 +631,13 @@
             "description" : "Successfully retrieved job's build progressive text output"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Job cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/jobNotFound"
           }
         },
         "security" : [ {
@@ -828,10 +663,10 @@
             "description" : "Successfully retrieved queue details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -868,10 +703,10 @@
             "description" : "Successfully retrieved queued item details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -886,15 +721,7 @@
         "description" : "Retrieve view details",
         "operationId" : "getView",
         "parameters" : [ {
-          "description" : "Name of the view",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/viewName"
         } ],
         "responses" : {
           "200" : {
@@ -908,13 +735,13 @@
             "description" : "Successfully retrieved view details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "View cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/viewNotFound"
           }
         },
         "security" : [ {
@@ -929,15 +756,7 @@
         "description" : "Retrieve view configuration",
         "operationId" : "getViewConfig",
         "parameters" : [ {
-          "description" : "Name of the view",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/viewName"
         } ],
         "responses" : {
           "200" : {
@@ -951,13 +770,13 @@
             "description" : "Successfully retrieved view configuration in config.xml format"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "View cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/viewNotFound"
           }
         },
         "security" : [ {
@@ -970,25 +789,9 @@
         "description" : "Update view configuration",
         "operationId" : "postViewConfig",
         "parameters" : [ {
-          "description" : "Name of the view",
-          "explode" : false,
-          "in" : "path",
-          "name" : "name",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/viewName"
         }, {
-          "description" : "CSRF protection token",
-          "explode" : false,
-          "in" : "header",
-          "name" : "Jenkins-Crumb",
-          "required" : false,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/crumb"
         } ],
         "requestBody" : {
           "content" : {
@@ -1006,23 +809,16 @@
             "description" : "Successfully updated view configuration"
           },
           "400" : {
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "type" : "string"
-                }
-              }
-            },
-            "description" : "An error has occurred - error message is embedded inside the HTML response"
+            "$ref" : "#/components/responses/errorInHtml"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "View cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/viewNotFound"
           }
         },
         "security" : [ {
@@ -1070,10 +866,10 @@
             "description" : "Successfully retrieved JWT token"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "tags" : [ "blueOcean" ],
@@ -1107,10 +903,10 @@
             "description" : "Successfully retrieved JWT token"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "tags" : [ "blueOcean" ],
@@ -1144,10 +940,10 @@
             "description" : "Successfully retrieved search result"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1162,15 +958,7 @@
         "description" : "Get a list of class names supported by a given class",
         "operationId" : "getClasses",
         "parameters" : [ {
-          "description" : "Name of the class",
-          "explode" : false,
-          "in" : "path",
-          "name" : "class",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/className"
         } ],
         "responses" : {
           "200" : {
@@ -1184,10 +972,10 @@
             "description" : "Successfully retrieved class names"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1224,10 +1012,10 @@
             "description" : "Successfully retrieved search result"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1253,10 +1041,10 @@
             "description" : "Successfully retrieved pipelines details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1271,15 +1059,7 @@
         "description" : "Retrieve organization details",
         "operationId" : "getOrganisation",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         } ],
         "responses" : {
           "200" : {
@@ -1293,13 +1073,13 @@
             "description" : "Successfully retrieved pipeline details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Pipeline cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/pipelineNotFound"
           }
         },
         "security" : [ {
@@ -1314,15 +1094,7 @@
         "description" : "Retrieve all pipelines details for an organization",
         "operationId" : "getPipelines",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         } ],
         "responses" : {
           "200" : {
@@ -1336,10 +1108,10 @@
             "description" : "Successfully retrieved pipelines details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1354,25 +1126,9 @@
         "description" : "Retrieve pipeline details for an organization",
         "operationId" : "getPipeline",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         } ],
         "responses" : {
           "200" : {
@@ -1386,13 +1142,13 @@
             "description" : "Successfully retrieved pipeline details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           },
           "404" : {
-            "description" : "Pipeline cannot be found on Jenkins instance"
+            "$ref" : "#/components/responses/pipelineNotFound"
           }
         },
         "security" : [ {
@@ -1407,25 +1163,9 @@
         "description" : "Retrieve all activities details for an organization pipeline",
         "operationId" : "getPipelineActivities",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         } ],
         "responses" : {
           "200" : {
@@ -1439,10 +1179,10 @@
             "description" : "Successfully retrieved all activities details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1457,25 +1197,9 @@
         "description" : "Retrieve all branches details for an organization pipeline",
         "operationId" : "getPipelineBranches",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         } ],
         "responses" : {
           "200" : {
@@ -1489,10 +1213,10 @@
             "description" : "Successfully retrieved all branches details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1507,35 +1231,11 @@
         "description" : "Retrieve branch details for an organization pipeline",
         "operationId" : "getPipelineBranch",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the branch",
-          "explode" : false,
-          "in" : "path",
-          "name" : "branch",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/branchName"
         } ],
         "responses" : {
           "200" : {
@@ -1549,10 +1249,10 @@
             "description" : "Successfully retrieved branch details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1567,45 +1267,13 @@
         "description" : "Retrieve branch run details for an organization pipeline",
         "operationId" : "getPipelineBranchRun",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the branch",
-          "explode" : false,
-          "in" : "path",
-          "name" : "branch",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/branchName"
         }, {
-          "description" : "Name of the run",
-          "explode" : false,
-          "in" : "path",
-          "name" : "run",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/runName"
         } ],
         "responses" : {
           "200" : {
@@ -1619,10 +1287,10 @@
             "description" : "Successfully retrieved run details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1637,25 +1305,9 @@
         "description" : "Retrieve pipeline folder for an organization",
         "operationId" : "getPipelineFolder",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the folder",
-          "explode" : false,
-          "in" : "path",
-          "name" : "folder",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/folderName"
         } ],
         "responses" : {
           "200" : {
@@ -1669,10 +1321,10 @@
             "description" : "Successfully retrieved folder details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1687,35 +1339,11 @@
         "description" : "Retrieve pipeline details for an organization folder",
         "operationId" : "getPipelineFolderPipeline",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the folder",
-          "explode" : false,
-          "in" : "path",
-          "name" : "folder",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/folderName"
         } ],
         "responses" : {
           "200" : {
@@ -1729,10 +1357,10 @@
             "description" : "Successfully retrieved pipeline details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1747,25 +1375,9 @@
         "description" : "Favorite/unfavorite a pipeline",
         "operationId" : "putPipelineFavorite",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         } ],
         "requestBody" : {
           "content" : {
@@ -1790,10 +1402,10 @@
             "description" : "Successfully favorited/unfavorited a pipeline"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1809,25 +1421,9 @@
         "description" : "Retrieve queue details for an organization pipeline",
         "operationId" : "getPipelineQueue",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         } ],
         "responses" : {
           "200" : {
@@ -1841,10 +1437,10 @@
             "description" : "Successfully retrieved queue details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1859,45 +1455,21 @@
         "description" : "Delete queue item from an organization pipeline queue",
         "operationId" : "deletePipelineQueueItem",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the queue item",
-          "explode" : false,
-          "in" : "path",
-          "name" : "queue",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/queueItemName"
         } ],
         "responses" : {
           "200" : {
             "description" : "Successfully deleted queue item"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1912,25 +1484,9 @@
         "description" : "Retrieve all runs details for an organization pipeline",
         "operationId" : "getPipelineRuns",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         } ],
         "responses" : {
           "200" : {
@@ -1944,10 +1500,10 @@
             "description" : "Successfully retrieved runs details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -1960,25 +1516,9 @@
         "description" : "Start a build for an organization pipeline",
         "operationId" : "postPipelineRuns",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         } ],
         "responses" : {
           "200" : {
@@ -1992,10 +1532,10 @@
             "description" : "Successfully started a build"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2010,35 +1550,11 @@
         "description" : "Retrieve run details for an organization pipeline",
         "operationId" : "getPipelineRun",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the run",
-          "explode" : false,
-          "in" : "path",
-          "name" : "run",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/runName"
         } ],
         "responses" : {
           "200" : {
@@ -2052,10 +1568,10 @@
             "description" : "Successfully retrieved run details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2070,35 +1586,11 @@
         "description" : "Retrieve run nodes details for an organization pipeline",
         "operationId" : "getPipelineRunNodes",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the run",
-          "explode" : false,
-          "in" : "path",
-          "name" : "run",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/runName"
         } ],
         "responses" : {
           "200" : {
@@ -2112,10 +1604,10 @@
             "description" : "Successfully retrieved run nodes details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2130,45 +1622,13 @@
         "description" : "Retrieve run node details for an organization pipeline",
         "operationId" : "getPipelineRunNode",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the run",
-          "explode" : false,
-          "in" : "path",
-          "name" : "run",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/runName"
         }, {
-          "description" : "Name of the node",
-          "explode" : false,
-          "in" : "path",
-          "name" : "node",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/nodeName"
         } ],
         "responses" : {
           "200" : {
@@ -2182,10 +1642,10 @@
             "description" : "Successfully retrieved run node details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2200,45 +1660,13 @@
         "description" : "Retrieve run node steps details for an organization pipeline",
         "operationId" : "getPipelineRunNodeSteps",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the run",
-          "explode" : false,
-          "in" : "path",
-          "name" : "run",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/runName"
         }, {
-          "description" : "Name of the node",
-          "explode" : false,
-          "in" : "path",
-          "name" : "node",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/nodeName"
         } ],
         "responses" : {
           "200" : {
@@ -2252,10 +1680,10 @@
             "description" : "Successfully retrieved run node steps details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2270,55 +1698,15 @@
         "description" : "Retrieve run node details for an organization pipeline",
         "operationId" : "getPipelineRunNodeStep",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the run",
-          "explode" : false,
-          "in" : "path",
-          "name" : "run",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/runName"
         }, {
-          "description" : "Name of the node",
-          "explode" : false,
-          "in" : "path",
-          "name" : "node",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/nodeName"
         }, {
-          "description" : "Name of the step",
-          "explode" : false,
-          "in" : "path",
-          "name" : "step",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/stepName"
         } ],
         "responses" : {
           "200" : {
@@ -2332,10 +1720,10 @@
             "description" : "Successfully retrieved run node step details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2350,55 +1738,15 @@
         "description" : "Get log for a pipeline run node step",
         "operationId" : "getPipelineRunNodeStepLog",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the run",
-          "explode" : false,
-          "in" : "path",
-          "name" : "run",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/runName"
         }, {
-          "description" : "Name of the node",
-          "explode" : false,
-          "in" : "path",
-          "name" : "node",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/nodeName"
         }, {
-          "description" : "Name of the step",
-          "explode" : false,
-          "in" : "path",
-          "name" : "step",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/stepName"
         } ],
         "responses" : {
           "200" : {
@@ -2412,10 +1760,10 @@
             "description" : "Successfully retrieved pipeline run node step log"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2430,35 +1778,11 @@
         "description" : "Get log for a pipeline run",
         "operationId" : "getPipelineRunLog",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the run",
-          "explode" : false,
-          "in" : "path",
-          "name" : "run",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/runName"
         }, {
           "description" : "Start position of the log",
           "explode" : true,
@@ -2492,10 +1816,10 @@
             "description" : "Successfully retrieved pipeline run log"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2510,35 +1834,11 @@
         "description" : "Replay an organization pipeline run",
         "operationId" : "postPipelineRun",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the run",
-          "explode" : false,
-          "in" : "path",
-          "name" : "run",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/runName"
         } ],
         "responses" : {
           "200" : {
@@ -2552,10 +1852,10 @@
             "description" : "Successfully replayed a pipeline run"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2570,35 +1870,11 @@
         "description" : "Stop a build of an organization pipeline",
         "operationId" : "putPipelineRun",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the pipeline",
-          "explode" : false,
-          "in" : "path",
-          "name" : "pipeline",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/pipelineName"
         }, {
-          "description" : "Name of the run",
-          "explode" : false,
-          "in" : "path",
-          "name" : "run",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/runName"
         }, {
           "description" : "Set to true to make blocking stop, default: false",
           "explode" : true,
@@ -2632,10 +1908,10 @@
             "description" : "Successfully stopped a build"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2650,25 +1926,9 @@
         "description" : "Retrieve SCM details for an organization",
         "operationId" : "getSCM",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of SCM",
-          "explode" : false,
-          "in" : "path",
-          "name" : "scm",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/scmName"
         } ],
         "responses" : {
           "200" : {
@@ -2682,10 +1942,10 @@
             "description" : "Successfully retrieved SCM details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2700,25 +1960,9 @@
         "description" : "Retrieve SCM organizations details for an organization",
         "operationId" : "getSCMOrganisations",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of SCM",
-          "explode" : false,
-          "in" : "path",
-          "name" : "scm",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/scmName"
         }, {
           "description" : "Credential ID",
           "explode" : true,
@@ -2742,10 +1986,10 @@
             "description" : "Successfully retrieved SCM organizations details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2760,35 +2004,11 @@
         "description" : "Retrieve SCM organization repositories details for an organization",
         "operationId" : "getSCMOrganisationRepositories",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of SCM",
-          "explode" : false,
-          "in" : "path",
-          "name" : "scm",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/scmName"
         }, {
-          "description" : "Name of the SCM organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "scmOrganisation",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/scmOrgName"
         }, {
           "description" : "Credential ID",
           "explode" : true,
@@ -2832,10 +2052,10 @@
             "description" : "Successfully retrieved SCM organization repositories details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2850,45 +2070,13 @@
         "description" : "Retrieve SCM organization repository details for an organization",
         "operationId" : "getSCMOrganisationRepository",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of SCM",
-          "explode" : false,
-          "in" : "path",
-          "name" : "scm",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/scmName"
         }, {
-          "description" : "Name of the SCM organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "scmOrganisation",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/scmOrgName"
         }, {
-          "description" : "Name of the SCM repository",
-          "explode" : false,
-          "in" : "path",
-          "name" : "repository",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/repositoryName"
         }, {
           "description" : "Credential ID",
           "explode" : true,
@@ -2912,10 +2100,10 @@
             "description" : "Successfully retrieved SCM organizations details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2930,15 +2118,7 @@
         "description" : "Retrieve authenticated user details for an organization",
         "operationId" : "getAuthenticatedUser",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         } ],
         "responses" : {
           "200" : {
@@ -2952,10 +2132,10 @@
             "description" : "Successfully retrieved authenticated user details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -2970,15 +2150,7 @@
         "description" : "Retrieve users details for an organization",
         "operationId" : "getUsers",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         } ],
         "responses" : {
           "200" : {
@@ -2992,10 +2164,10 @@
             "description" : "Successfully retrieved users details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -3010,25 +2182,9 @@
         "description" : "Retrieve user details for an organization",
         "operationId" : "getUser",
         "parameters" : [ {
-          "description" : "Name of the organization",
-          "explode" : false,
-          "in" : "path",
-          "name" : "organization",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/orgName"
         }, {
-          "description" : "Name of the user",
-          "explode" : false,
-          "in" : "path",
-          "name" : "user",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/userName"
         } ],
         "responses" : {
           "200" : {
@@ -3042,10 +2198,10 @@
             "description" : "Successfully retrieved users details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -3060,15 +2216,7 @@
         "description" : "Retrieve user favorites details for an organization",
         "operationId" : "getUserFavorites",
         "parameters" : [ {
-          "description" : "Name of the user",
-          "explode" : false,
-          "in" : "path",
-          "name" : "user",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          },
-          "style" : "simple"
+          "$ref" : "#/components/parameters/userName"
         } ],
         "responses" : {
           "200" : {
@@ -3082,10 +2230,10 @@
             "description" : "Successfully retrieved users favorites details"
           },
           "401" : {
-            "description" : "Authentication failed - incorrect username and/or password"
+            "$ref" : "#/components/responses/unauthorized"
           },
           "403" : {
-            "description" : "Jenkins requires authentication - please set username and password"
+            "$ref" : "#/components/responses/forbidden"
           }
         },
         "security" : [ {
@@ -3411,8 +2559,7 @@
           "changeSet" : {
             "$ref" : "#/components/schemas/EmptyChangeLogSet"
           }
-        },
-        "type" : "object"
+        }
       },
       "HudsonMasterComputerexecutors" : {
         "example" : {
@@ -3490,8 +2637,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "Label1" : {
         "example" : {
@@ -3501,8 +2647,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "SwapSpaceMonitorMemoryUsage2" : {
         "example" : {
@@ -3528,8 +2673,7 @@
           "totalSwapSpace" : {
             "type" : "integer"
           }
-        },
-        "type" : "object"
+        }
       },
       "DiskSpaceMonitorDescriptorDiskSpace" : {
         "example" : {
@@ -3551,8 +2695,7 @@
           "size" : {
             "type" : "integer"
           }
-        },
-        "type" : "object"
+        }
       },
       "ResponseTimeMonitorData" : {
         "example" : {
@@ -3570,8 +2713,7 @@
           "average" : {
             "type" : "integer"
           }
-        },
-        "type" : "object"
+        }
       },
       "ClockDifference" : {
         "example" : {
@@ -3585,8 +2727,7 @@
           "diff" : {
             "type" : "integer"
           }
-        },
-        "type" : "object"
+        }
       },
       "HudsonMasterComputermonitorData" : {
         "example" : {
@@ -3643,8 +2784,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "HudsonMasterComputer" : {
         "example" : {
@@ -3860,8 +3000,7 @@
           "temporarilyOffline" : {
             "type" : "boolean"
           }
-        },
-        "type" : "object"
+        }
       },
       "ComputerSet" : {
         "example" : {
@@ -4210,8 +3349,7 @@
           "totalExecutors" : {
             "type" : "integer"
           }
-        },
-        "type" : "object"
+        }
       },
       "DefaultCrumbIssuer" : {
         "example" : {
@@ -4229,8 +3367,7 @@
           "crumbRequestField" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "HudsonassignedLabels" : {
         "example" : {
@@ -4240,8 +3377,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "FreeStyleProject" : {
         "example" : {
@@ -4718,8 +3854,7 @@
           "scm" : {
             "$ref" : "#/components/schemas/NullSCM"
           }
-        },
-        "type" : "object"
+        }
       },
       "AllView" : {
         "example" : {
@@ -4737,8 +3872,7 @@
           "url" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "UnlabeledLoadStatistics" : {
         "example" : {
@@ -4748,8 +3882,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "Hudson" : {
         "example" : {
@@ -5606,8 +4739,7 @@
             },
             "type" : "array"
           }
-        },
-        "type" : "object"
+        }
       },
       "FreeStyleProjectactions" : {
         "example" : {
@@ -5617,8 +4749,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "FreeStyleProjecthealthReport" : {
         "example" : {
@@ -5644,8 +4775,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "NullSCM" : {
         "example" : {
@@ -5655,8 +4785,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "CauseUserIdCause" : {
         "example" : {
@@ -5678,8 +4807,7 @@
           "userName" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "CauseAction" : {
         "example" : {
@@ -5706,8 +4834,7 @@
             },
             "type" : "array"
           }
-        },
-        "type" : "object"
+        }
       },
       "EmptyChangeLogSet" : {
         "example" : {
@@ -5721,8 +4848,7 @@
           "kind" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "QueueBlockedItem" : {
         "example" : {
@@ -6187,8 +5313,7 @@
           "buildableStartMilliseconds" : {
             "type" : "integer"
           }
-        },
-        "type" : "object"
+        }
       },
       "Queue" : {
         "example" : {
@@ -7047,8 +6172,7 @@
             },
             "type" : "array"
           }
-        },
-        "type" : "object"
+        }
       },
       "QueueLeftItem" : {
         "properties" : {
@@ -7094,8 +6218,7 @@
           "executable" : {
             "$ref" : "#/components/schemas/FreeStyleBuild"
           }
-        },
-        "type" : "object"
+        }
       },
       "ListView" : {
         "example" : {
@@ -7888,8 +7011,7 @@
           "url" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "Link" : {
         "example" : {
@@ -7903,10 +7025,16 @@
           "href" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "ExtensionClassContainerImpl1links" : {
+        "example" : {
+          "self" : {
+            "_class" : "_class",
+            "href" : "href"
+          },
+          "_class" : "_class"
+        },
         "properties" : {
           "self" : {
             "$ref" : "#/components/schemas/Link"
@@ -7914,10 +7042,16 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "ExtensionClassImpllinks" : {
+        "example" : {
+          "self" : {
+            "_class" : "_class",
+            "href" : "href"
+          },
+          "_class" : "_class"
+        },
         "properties" : {
           "self" : {
             "$ref" : "#/components/schemas/Link"
@@ -7925,8 +7059,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "ExtensionClassImpl" : {
         "properties" : {
@@ -7942,8 +7075,7 @@
             },
             "type" : "array"
           }
-        },
-        "type" : "object"
+        }
       },
       "ExtensionClassContainerImpl1map" : {
         "properties" : {
@@ -7956,8 +7088,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "ExtensionClassContainerImpl1" : {
         "properties" : {
@@ -7970,8 +7101,7 @@
           "map" : {
             "$ref" : "#/components/schemas/ExtensionClassContainerImpl1map"
           }
-        },
-        "type" : "object"
+        }
       },
       "ClassesByClass" : {
         "properties" : {
@@ -7984,8 +7114,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "MultibranchPipeline" : {
         "example" : {
@@ -8050,8 +7179,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineImpl" : {
         "example" : {
@@ -8063,11 +7191,11 @@
               "href" : "href"
             },
             "_class" : "_class",
-            "runs" : {
+            "actions" : {
               "_class" : "_class",
               "href" : "href"
             },
-            "actions" : {
+            "runs" : {
               "_class" : "_class",
               "href" : "href"
             },
@@ -8111,8 +7239,7 @@
           "_links" : {
             "$ref" : "#/components/schemas/PipelineImpllinks"
           }
-        },
-        "type" : "object"
+        }
       },
       "Organisation" : {
         "example" : {
@@ -8126,8 +7253,7 @@
           "name" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "Organisations" : {
         "items" : {
@@ -8155,8 +7281,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelinelatestRun" : {
         "example" : {
@@ -8235,8 +7360,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "Pipeline" : {
         "example" : {
@@ -8300,12 +7424,11 @@
           "latestRun" : {
             "$ref" : "#/components/schemas/PipelinelatestRun"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineActivityartifacts" : {
         "example" : {
-          "size" : 0,
+          "size" : 1,
           "name" : "name",
           "_class" : "_class",
           "url" : "url"
@@ -8323,19 +7446,18 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineActivity" : {
         "example" : {
           "runSummary" : "runSummary",
-          "durationInMillis" : 6,
+          "durationInMillis" : 0,
           "commitId" : "commitId",
           "type" : "type",
           "pipeline" : "pipeline",
           "result" : "result",
           "organization" : "organization",
-          "estimatedDurationInMillis" : 1,
+          "estimatedDurationInMillis" : 6,
           "enQueueTime" : "enQueueTime",
           "startTime" : "startTime",
           "_class" : "_class",
@@ -8343,12 +7465,12 @@
           "id" : "id",
           "state" : "state",
           "artifacts" : [ {
-            "size" : 0,
+            "size" : 1,
             "name" : "name",
             "_class" : "_class",
             "url" : "url"
           }, {
-            "size" : 0,
+            "size" : 1,
             "name" : "name",
             "_class" : "_class",
             "url" : "url"
@@ -8403,8 +7525,7 @@
           "commitId" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineActivities" : {
         "items" : {
@@ -8428,8 +7549,7 @@
           "value" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "StringParameterDefinition" : {
         "example" : {
@@ -8459,8 +7579,7 @@
           "type" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "BranchImplpermissions" : {
         "example" : {
@@ -8486,8 +7605,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "BranchImpl" : {
         "example" : {
@@ -8630,8 +7748,7 @@
           "latestRun" : {
             "$ref" : "#/components/schemas/PipelineRunImpl"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineBranchesitemlatestRun" : {
         "properties" : {
@@ -8677,8 +7794,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineBranchesitempullRequestlinks" : {
         "properties" : {
@@ -8688,8 +7804,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineBranchesitempullRequest" : {
         "properties" : {
@@ -8711,8 +7826,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineBranchesitem" : {
         "properties" : {
@@ -8743,8 +7857,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineBranches" : {
         "items" : {
@@ -8767,8 +7880,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineImpllinks" : {
         "example" : {
@@ -8777,11 +7889,11 @@
             "href" : "href"
           },
           "_class" : "_class",
-          "runs" : {
+          "actions" : {
             "_class" : "_class",
             "href" : "href"
           },
-          "actions" : {
+          "runs" : {
             "_class" : "_class",
             "href" : "href"
           },
@@ -8791,23 +7903,22 @@
           }
         },
         "properties" : {
-          "runs" : {
-            "$ref" : "#/components/schemas/Link"
-          },
           "self" : {
-            "$ref" : "#/components/schemas/Link"
-          },
-          "queue" : {
             "$ref" : "#/components/schemas/Link"
           },
           "actions" : {
             "$ref" : "#/components/schemas/Link"
           },
+          "runs" : {
+            "$ref" : "#/components/schemas/Link"
+          },
+          "queue" : {
+            "$ref" : "#/components/schemas/Link"
+          },
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "FavoriteImpl" : {
         "example" : {
@@ -8820,11 +7931,11 @@
                 "href" : "href"
               },
               "_class" : "_class",
-              "runs" : {
+              "actions" : {
                 "_class" : "_class",
                 "href" : "href"
               },
-              "actions" : {
+              "runs" : {
                 "_class" : "_class",
                 "href" : "href"
               },
@@ -8859,8 +7970,7 @@
           "item" : {
             "$ref" : "#/components/schemas/PipelineImpl"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineFolderImpl" : {
         "example" : {
@@ -8894,8 +8004,7 @@
           "numberOfPipelines" : {
             "type" : "integer"
           }
-        },
-        "type" : "object"
+        }
       },
       "QueueItemImpl" : {
         "example" : {
@@ -8921,8 +8030,7 @@
           "queuedTime" : {
             "type" : "integer"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineQueue" : {
         "items" : {
@@ -8932,7 +8040,7 @@
       },
       "PipelineRunartifacts" : {
         "example" : {
-          "size" : 0,
+          "size" : 1,
           "name" : "name",
           "_class" : "_class",
           "url" : "url"
@@ -8950,19 +8058,18 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineRun" : {
         "example" : {
           "runSummary" : "runSummary",
-          "durationInMillis" : 6,
+          "durationInMillis" : 0,
           "commitId" : "commitId",
           "type" : "type",
           "pipeline" : "pipeline",
           "result" : "result",
           "organization" : "organization",
-          "estimatedDurationInMillis" : 1,
+          "estimatedDurationInMillis" : 6,
           "enQueueTime" : "enQueueTime",
           "startTime" : "startTime",
           "_class" : "_class",
@@ -8970,12 +8077,12 @@
           "id" : "id",
           "state" : "state",
           "artifacts" : [ {
-            "size" : 0,
+            "size" : 1,
             "name" : "name",
             "_class" : "_class",
             "url" : "url"
           }, {
-            "size" : 0,
+            "size" : 1,
             "name" : "name",
             "_class" : "_class",
             "url" : "url"
@@ -9030,8 +8137,7 @@
           "commitId" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineStepImpllinks" : {
         "example" : {
@@ -9055,8 +8161,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "InputStepImpllinks" : {
         "example" : {
@@ -9073,8 +8178,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "InputStepImpl" : {
         "example" : {
@@ -9137,8 +8241,7 @@
           "submitter" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineStepImpl" : {
         "example" : {
@@ -9224,8 +8327,7 @@
           "state" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineRunNodeSteps" : {
         "items" : {
@@ -9245,8 +8347,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineRunNode" : {
         "example" : {
@@ -9293,8 +8394,7 @@
           "state" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineRunNodes" : {
         "items" : {
@@ -9322,8 +8422,7 @@
           "startTime" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineRunSteps" : {
         "items" : {
@@ -9358,8 +8457,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubScm" : {
         "example" : {
@@ -9391,8 +8489,7 @@
           "uri" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubContent" : {
         "properties" : {
@@ -9420,8 +8517,7 @@
           "base64Data" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubFile" : {
         "properties" : {
@@ -9431,10 +8527,16 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubRespositoryContainerlinks" : {
+        "example" : {
+          "self" : {
+            "_class" : "_class",
+            "href" : "href"
+          },
+          "_class" : "_class"
+        },
         "properties" : {
           "self" : {
             "$ref" : "#/components/schemas/Link"
@@ -9442,10 +8544,16 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubRepositorieslinks" : {
+        "example" : {
+          "self" : {
+            "_class" : "_class",
+            "href" : "href"
+          },
+          "_class" : "_class"
+        },
         "properties" : {
           "self" : {
             "$ref" : "#/components/schemas/Link"
@@ -9453,10 +8561,16 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubRepositorylinks" : {
+        "example" : {
+          "self" : {
+            "_class" : "_class",
+            "href" : "href"
+          },
+          "_class" : "_class"
+        },
         "properties" : {
           "self" : {
             "$ref" : "#/components/schemas/Link"
@@ -9464,8 +8578,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubRepositorypermissions" : {
         "properties" : {
@@ -9481,8 +8594,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubRepository" : {
         "properties" : {
@@ -9510,8 +8622,7 @@
           "fullName" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubRepositories" : {
         "properties" : {
@@ -9536,8 +8647,7 @@
           "pageSize" : {
             "type" : "integer"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubRespositoryContainer" : {
         "properties" : {
@@ -9550,8 +8660,7 @@
           "repositories" : {
             "$ref" : "#/components/schemas/GithubRepositories"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubOrganizationlinks" : {
         "example" : {
@@ -9575,8 +8684,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "GithubOrganization" : {
         "example" : {
@@ -9608,8 +8716,7 @@
           "name" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "ScmOrganisations" : {
         "items" : {
@@ -9641,8 +8748,7 @@
           "name" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "BranchImpllinks" : {
         "example" : {
@@ -9680,8 +8786,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineRunImpllinks" : {
         "example" : {
@@ -9726,8 +8831,7 @@
           "_class" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "PipelineRunImpl" : {
         "example" : {
@@ -9815,8 +8919,7 @@
           "commitId" : {
             "type" : "string"
           }
-        },
-        "type" : "object"
+        }
       },
       "UserFavorites" : {
         "items" : {

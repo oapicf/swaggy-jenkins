@@ -21,7 +21,7 @@ data class FreeStyleProjectactions(
 
     @Schema(example = "null", description = "")
     @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
-    ) {
+) {
 
 }
 

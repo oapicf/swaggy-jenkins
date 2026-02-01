@@ -9,12 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ResponseTimeMonitorData  {
   
   @ApiModelProperty(value = "")
+
   private String propertyClass;
 
   @ApiModelProperty(value = "")
+
   private Integer timestamp;
 
   @ApiModelProperty(value = "")
+
   private Integer average;
  /**
    * Get propertyClass

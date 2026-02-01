@@ -20,7 +20,7 @@ import javax.annotation.Generated;
  * PipelineRunImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-05-10T02:42:08.296353499Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
 public class PipelineRunImpllinks {
 
   private @Nullable Link nodes;
@@ -35,7 +35,7 @@ public class PipelineRunImpllinks {
 
   private @Nullable String propertyClass;
 
-  public PipelineRunImpllinks nodes(Link nodes) {
+  public PipelineRunImpllinks nodes(@Nullable Link nodes) {
     this.nodes = nodes;
     return this;
   }
@@ -47,15 +47,15 @@ public class PipelineRunImpllinks {
   @Valid 
   @Schema(name = "nodes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("nodes")
-  public Link getNodes() {
+  public @Nullable Link getNodes() {
     return nodes;
   }
 
-  public void setNodes(Link nodes) {
+  public void setNodes(@Nullable Link nodes) {
     this.nodes = nodes;
   }
 
-  public PipelineRunImpllinks log(Link log) {
+  public PipelineRunImpllinks log(@Nullable Link log) {
     this.log = log;
     return this;
   }
@@ -67,15 +67,15 @@ public class PipelineRunImpllinks {
   @Valid 
   @Schema(name = "log", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("log")
-  public Link getLog() {
+  public @Nullable Link getLog() {
     return log;
   }
 
-  public void setLog(Link log) {
+  public void setLog(@Nullable Link log) {
     this.log = log;
   }
 
-  public PipelineRunImpllinks self(Link self) {
+  public PipelineRunImpllinks self(@Nullable Link self) {
     this.self = self;
     return this;
   }
@@ -87,15 +87,15 @@ public class PipelineRunImpllinks {
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
-  public Link getSelf() {
+  public @Nullable Link getSelf() {
     return self;
   }
 
-  public void setSelf(Link self) {
+  public void setSelf(@Nullable Link self) {
     this.self = self;
   }
 
-  public PipelineRunImpllinks actions(Link actions) {
+  public PipelineRunImpllinks actions(@Nullable Link actions) {
     this.actions = actions;
     return this;
   }
@@ -107,15 +107,15 @@ public class PipelineRunImpllinks {
   @Valid 
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
-  public Link getActions() {
+  public @Nullable Link getActions() {
     return actions;
   }
 
-  public void setActions(Link actions) {
+  public void setActions(@Nullable Link actions) {
     this.actions = actions;
   }
 
-  public PipelineRunImpllinks steps(Link steps) {
+  public PipelineRunImpllinks steps(@Nullable Link steps) {
     this.steps = steps;
     return this;
   }
@@ -127,15 +127,15 @@ public class PipelineRunImpllinks {
   @Valid 
   @Schema(name = "steps", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("steps")
-  public Link getSteps() {
+  public @Nullable Link getSteps() {
     return steps;
   }
 
-  public void setSteps(Link steps) {
+  public void setSteps(@Nullable Link steps) {
     this.steps = steps;
   }
 
-  public PipelineRunImpllinks propertyClass(String propertyClass) {
+  public PipelineRunImpllinks propertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
     return this;
   }
@@ -147,11 +147,11 @@ public class PipelineRunImpllinks {
   
   @Schema(name = "_class", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_class")
-  public String getPropertyClass() {
+  public @Nullable String getPropertyClass() {
     return propertyClass;
   }
 
-  public void setPropertyClass(String propertyClass) {
+  public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
 

@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 openapi2graphql/api/base_api.graphql
 openapi2graphql/api/blue_ocean_api.graphql
 openapi2graphql/api/remote_access_api.graphql
