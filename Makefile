@@ -176,7 +176,10 @@ generate-primary:
 ################################################################
 # API clients building targets for primary generators
 
+# Fix OpenAPI Generator issue where URI component encoding breaks Jenkins API paths
+# https://github.com/oapicf/swaggy-jenkins/pull/58
 build-javascript:
+	sed -i 's/return encodeURIComponent(value);/\/\/ return encodeURIComponent (value);\n            return value/' clients/javascript/generated/src/ApiClient.js || echo ""
 	npm install -g babel-cli
 	cd clients/javascript/generated/ && \
 	  npm install && \
