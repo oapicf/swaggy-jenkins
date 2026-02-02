@@ -1,7 +1,7 @@
 {
   "gemName": "swaggy_jenkins",
   "moduleName": "SwaggyJenkinsClient",
-  "gemVersion": "3.3.0",
+  "gemVersion": "3.3.1-pre.0",
   "gemAuthor": "OpenAPI Clients Factory",
   "gemAuthorEmail": "blah+oapicf@cliffano.com",
   "gemHomepage": "https://github.com/oapicf/swaggy-jenkins",
