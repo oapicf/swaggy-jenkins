@@ -1,6 +1,6 @@
 {
   "artifactId": "swaggyjenkins",
-  "artifactVersion": "3.2.1-pre.0",
+  "artifactVersion": "3.3.0",
   "artifactUrl": "https://github.com/oapicf/swaggy-jenkins",
   "artifactDescription": "Jenkins API client generated from Swagger / Open API specification",
   "groupId": "com.github.oapicf",
