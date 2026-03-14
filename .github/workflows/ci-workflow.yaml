@@ -24,4 +24,4 @@ jobs:
           extra_path: /usr/local/go/bin:/usr/local/maven/bin:/usr/local/node/bin:/usr/local/openjdk-jdk/bin:/root/.cargo/bin:/root/go/bin
           env_file: '/tmp/.env'
       - run: npm install -g gh-pages
-      - run: CACHE_DIR=/tmp gh-pages --dist doc/ --user "pakkunbot <blah+pakkun@cliffano.com>" --repo "https://cliffano:${{ secrets.OAPICF_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+      - run: CACHE_DIR=/tmp gh-pages --dist doc/ --user "pakkunbot <pakkunbot@users.noreply.github.com>" --repo "https://cliffano:${{ secrets.OAPICF_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
