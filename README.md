@@ -1,15 +1,17 @@
+<!-- BEGIN:AVATAR -->
 <img align="right" src="https://raw.github.com/oapicf/swaggy-jenkins/main/avatar.jpg" alt="Avatar"/>
+<!-- END:AVATAR -->
 
+<!-- BEGIN:BADGES -->
 [![Build Status](https://github.com/oapicf/swaggy-jenkins/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/oapicf/swaggy-jenkins/actions/workflows/ci-workflow.yaml)
 <br/>
+<!-- END:BADGES -->
 
-Swaggy Jenkins
---------------
+# Swaggy Jenkins
 
 Swaggy Jenkins is a set of Jenkins API clients in multiple languages generated from Swagger / Open API specification.
 
-Published packages
-------------------
+## Published packages
 
 | Language | Package | Status | Documentation |
 |----------|---------|--------|---------------|
@@ -17,8 +19,7 @@ Published packages
 | Python | [swaggyjenkins]((https://pypi.python.org/pypi/swaggyjenkins)) | [![Published Version](https://img.shields.io/pypi/v/swaggyjenkins.svg)](https://pypi.python.org/pypi/swaggyjenkins) | [README](https://github.com/oapicf/swaggyjenkins/blob/main/clients/python/generated/README.md) |
 | Ruby | [swaggy_jenkins]((https://rubygems.org/gems/swaggy_jenkins)) | [![Published Version](https://img.shields.io/gem/v/swaggy_jenkins.svg)](https://rubygems.org/gems/swaggy_jenkins) | [README](https://github.com/oapicf/swaggy-jenkins/blob/main/clients/ruby/generated/README.md) |
 
-Version Matrix
---------------
+## Version Matrix
 
 | Swaggy Jenkins Version | OpenAPI Version | OpenAPI Generator Version |
 |------------------------|-----------------|---------------------------|
@@ -28,15 +29,15 @@ Version Matrix
 | 2.0.0 | 3.0.0 | 6.0.0 |
 | 1.5.0 | 3.0.0 | 5.4.0 |
 
-Usage
------
+## Usage
 
 Generate API clients of the currently supported languages:
 
-    make generate GEN_BASE_DIR=<path/to/swaggy-jenkins>
+```shell
+make generate GEN_BASE_DIR=<path/to/swaggy-jenkins>
+```
 
-Installation
-------------
+## Installation
 
 You can either use the generated clients from `clients/<lang>/generated/` directory.
 
@@ -44,20 +45,27 @@ Or you can use the published packages like below:
 
 Install JavaScript client:
 
-    npm install swaggy-jenkins
+```shell
+npm install swaggy-jenkins
+```
 
 Install Python client:
 
-    pip install swaggyjenkins
+```shell
+pip install swaggyjenkins
+```
 
 Install Ruby client:
 
-    gem install swaggy_jenkins
+```shell
+gem install swaggy_jenkins
+```
 
-Colophon
---------
+## Colophon
 
+<!-- BEGIN:BUILD_REPORTS -->
 * [API Documentation](https://cliffano.github.io/swaggy-jenkins/api/latest/)
+<!-- END:BUILD_REPORTS -->
 
 Videos:
 
