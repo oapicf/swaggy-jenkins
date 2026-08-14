@@ -1,5 +1,5 @@
 <!-- BEGIN:AVATAR -->
-<img align="right" src="https://raw.github.com/oapicf/swaggy-jenkins/main/avatar.jpg" alt="Avatar"/>
+![Avatar](avatar.jpg)
 <!-- END:AVATAR -->
 
 <!-- BEGIN:BADGES -->
@@ -62,6 +62,10 @@ gem install swaggy_jenkins
 ```
 
 ## Colophon
+
+<!-- BEGIN:DEVELOPERS_GUIDE -->
+[Developer's Guide](https://oapicf.github.io/developers-guide-openapi-generator.html)
+<!-- END:DEVELOPERS_GUIDE -->
 
 <!-- BEGIN:BUILD_REPORTS -->
 * [API Documentation](https://cliffano.github.io/swaggy-jenkins/api/latest/)
