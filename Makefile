@@ -1,16 +1,22 @@
 ################################################################
 # Swaggy C: A Makefile for generating API clients using OpenAPI Generator
-# https://github.com/cliffano/swaggy-c
+# https://github.com/oapicf/swaggy-c
 ################################################################
 
-# The version of Swaggy C
-SWAGGY_C_VERSION = 5.1.0
+# Swaggy C info
+SWAGGY_C_VERSION = 6.2.2
 
 # The version of OpenAPI Generator (https://openapi-generator.tech/) used for generating the API clients
-OPENAPI_GENERATOR_VERSION = 7.18.0
+OPENAPI_GENERATOR_VERSION = 7.24.0
+
+UPDATE_GH_ID = oapicf
+UPDATE_MAKEFILE = swaggy-c
+UPDATE_GENERATOR = openapi-generator
+UPDATE_DOTFILES = .github/. .gitignore .rtk.json AGENTS.md
+UPDATE_PARTIALS = AVATAR BADGES BUILD_REPORTS DEVELOPERS_GUIDE
 
 # GENERATORS_ALL lists the generators supported by the given OPENAPI_GENERATOR_VERSION
-GENERATORS_ALL = ada ada-server android apache2 apex asciidoc aspnet-fastendpoints aspnetcore avro-schema bash crystal c clojure cwiki cpp-oatpp-client cpp-qt-client cpp-qt-qhttpengine-server cpp-oatpp-server cpp-pistache-server cpp-restbed-server cpp-restbed-server-deprecated cpp-restsdk cpp-tiny cpp-tizen cpp-ue4 csharp csharp-functions dart dart-dio eiffel elixir elm erlang-client erlang-proper erlang-server fsharp-functions fsharp-giraffe-server gdscript go go-echo-server go-server go-gin-server graphql-schema graphql-nodejs-express-server groovy haskell-http-client haskell haskell-yesod java java-dubbo jaxrs-cxf-client java-helidon-client java-helidon-server java-inflector java-micronaut-client java-micronaut-server java-msf4j java-pkmst java-play-framework java-undertow-server java-vertx-web java-camel jaxrs-cxf jaxrs-cxf-extended jaxrs-cxf-cdi jaxrs-jersey java-microprofile jaxrs-resteasy jaxrs-resteasy-eap jaxrs-spec javascript javascript-flowtyped javascript-closure-angular java-wiremock jetbrains-http-client jmeter julia-client julia-server k6 kotlin kotlin-misk kotlin-server kotlin-spring kotlin-vertx kotlin-wiremock ktorm-schema lua markdown mysql-schema n4js nim nodejs-express-server objc ocaml openapi openapi-yaml plantuml perl php php-flight php-nextgen php-lumen php-slim4 php-symfony php-mezzio-ph php-dt php-laravel postgresql-schema postman-collection powershell protobuf-schema python python-pydantic-v1 python-fastapi python-flask python-aiohttp python-blueplanet r ruby ruby-on-rails ruby-sinatra rust-axum rust rust-server rust-server-deprecated scalatra scala-akka scala-cask scala-pekko scala-akka-http-server scala-finch scala-gatling scala-http4s scala-http4s-server scala-play-server scala-sttp scala-sttp4 scala-sttp4-jsoniter scalaz spring dynamic-html html html2 swift5 swift6 swift-combine typescript typescript-angular typescript-aurelia typescript-axios typescript-fetch typescript-inversify typescript-jquery typescript-nestjs typescript-nestjs-server typescript-node typescript-redux-query typescript-rxjs wsdl-schema xojo-client zapier
+GENERATORS_ALL = ada ada-server android apache2 apex asciidoc aspnet-fastendpoints aspnetcore avro-schema bash crystal c clojure cwiki cpp-httplib-server cpp-boost-beast-client cpp-oatpp-client cpp-qt-client cpp-qt-qhttpengine-server cpp-oatpp-server cpp-pistache-server cpp-restbed-server cpp-restbed-server-deprecated cpp-restsdk cpp-tiny cpp-tizen cpp-ue4 csharp csharp-functions dart dart-dio eiffel elixir elm erlang-client erlang-proper erlang-server fsharp-functions fsharp-giraffe-server gdscript go go-echo-server go-server go-gin-server graphql-schema graphql-nodejs-express-server groovy haskell-http-client haskell haskell-yesod java java-dubbo jaxrs-cxf-client java-helidon-client java-helidon-server java-inflector java-micronaut-client java-micronaut-server java-msf4j java-pkmst java-play-framework java-undertow-server java-vertx-web java-camel jaxrs-cxf jaxrs-cxf-extended jaxrs-cxf-cdi jaxrs-jersey java-microprofile jaxrs-resteasy jaxrs-resteasy-eap jaxrs-spec javascript javascript-flowtyped javascript-closure-angular java-wiremock jetbrains-http-client jmeter julia-client julia-server k6 kotlin kotlin-misk kotlin-server kotlin-spring kotlin-vertx kotlin-wiremock ktorm-schema lua markdown mysql-schema n4js nim nodejs-express-server objc ocaml openapi openapi-yaml plantuml perl php php-flight php-nextgen php-lumen php-slim4 php-symfony php-mezzio-ph php-dt php-laravel postgresql-schema postman-collection powershell protobuf-schema python python-pydantic-v1 python-fastapi python-flask python-aiohttp python-blueplanet r ruby ruby-nextgen ruby-on-rails ruby-sinatra rust-axum rust rust-salvo rust-server rust-server-deprecated scalatra scala-akka scala-cask scala-pekko scala-akka-http-server scala-gatling scala-http4s scala-http4s-server scala-play-server scala-sttp scala-sttp4 scala-sttp4-jsoniter scalaz spring dynamic-html html html2 swift6 swift-combine terraform-provider typescript typescript-angular typescript-aurelia typescript-axios typescript-fetch typescript-inversify typescript-jquery typescript-nestjs typescript-nestjs-server typescript-node typescript-redux-query typescript-rxjs wsdl-schema xojo-client zapier
 
 # GENERATORS_PRIMARY lists the generators which will be built and published to public package registries
 GENERATORS_PRIMARY = javascript python ruby
@@ -20,15 +26,8 @@ LOCAL_SPEC_PATH = stage/specification.yml
 
 ################################################################
 # User configuration variables
-# These variables should be stored in swaggy-c.yml config file,
-# and they will be parsed using yq https://github.com/mikefarah/yq
-# Example:
-# ---
-# spec_uri: specification/someapp.yml
-# version:1.2.3
-# base_dir:
-#   github_actions: /home/runner/work/someapp/someapp
-#   local: /home/someuser/someapp
+# https://github.com/oapicf/swaggy-c#configuration
+# Configuration variables should be stored in swaggy-c.yml config file
 
 # SPEC_URI is the file path or URL where the OpenAPI specification is located, for example:
 # - local file path: spec/some-app.yaml
@@ -64,15 +63,15 @@ else
 	endif
 endif
 
+$(info ################################################################)
+$(info Building Swaggy C application with user configurations...)
+$(info - OpenAPI specification URI = ${SPEC_URI})
+$(info - Application version = ${APP_VERSION})
+$(info - Application base directory = ${APP_BASE_DIR})
+
 define python_venv
 	. .venv/bin/activate && $(1)
 endef
-
-$(info ################################################################)
-$(info Building Swaggy C application with user configurations:)
-$(info - OpenAPI specification URI: ${SPEC_URI})
-$(info - Application version: ${APP_VERSION})
-$(info - Application base directory: ${APP_BASE_DIR})
 
 ################################################################
 # Base targets
@@ -85,7 +84,7 @@ all: ci
 
 # Ensure stage directory exists
 stage:
-	mkdir -p stage
+	mkdir -p stage stage/gh-pages/
 
 # Remove all generated API clients code
 clean:
@@ -95,6 +94,13 @@ clean:
 deps:
 	docker pull openapitools/openapi-generator-cli:v$(OPENAPI_GENERATOR_VERSION)
 	npm install -g bootprint bootprint-openapi gh-pages
+	$(call deps_extra)
+
+deps-extra-apt:
+	apt-get install -y markdownlint
+
+deps-upgrade:
+	echo "PLACEHOLDER"
 
 # Initialise OpenAPI specification from either a local file path or a remote URL
 # This target requires the following parameters to be supplied by user
@@ -116,7 +122,7 @@ list-generators:
 	docker \
 		run \
 		--rm \
-		-v $(APP_BASE_DIR):/local openapitools/openapi-generator-cli:v$(OPENAPI_GENERATOR_VERSION) \
+		-v .:/local openapitools/openapi-generator-cli:v$(OPENAPI_GENERATOR_VERSION) \
 		list --short | tr ',' ' '
 
 # Initialise basic configuration file for all generators
@@ -127,14 +133,6 @@ init-generators-config:
 	    echo "{\n  \"gitUserId\": \"$(SCM_GIT_USER)\",\n  \"gitRepoId\": \"$(SCM_GIT_REPO)\"\n}" > clients/$$generator/conf.json; \
 	  fi; \
 	done
-
-# Update Makefile to the latest version on origin's main branch
-update-to-latest:
-	curl https://raw.githubusercontent.com/cliffano/swaggy-c/main/src/Makefile-swaggy-c -o Makefile
-
-# Update Makefile to the version defined in TARGET_SWAGGY_C_VERSION parameter
-update-to-version:
-	curl https://raw.githubusercontent.com/cliffano/swaggy-c/v$(TARGET_SWAGGY_C_VERSION)/src/Makefile-swaggy-c -o Makefile
 
 ################################################################
 # API clients generate targets
@@ -176,19 +174,19 @@ generate-primary:
 ################################################################
 # API clients building targets for primary generators
 
-# Fix OpenAPI Generator issue where URI component encoding breaks Jenkins API paths
-# https://github.com/oapicf/swaggy-jenkins/pull/58
+build-javascript: UPDATE_GENERATOR_INPUTS_GITHUB_ID = $(shell yq .generator.inputs.github_id $(UPDATE_MAKEFILE).yml)
+build-javascript: UPDATE_GENERATOR_INPUTS_GITHUB_REPO = $(shell yq .generator.inputs.github_repo $(UPDATE_MAKEFILE).yml)
 build-javascript:
-	sed -i 's/return encodeURIComponent(value);/\/\/ return encodeURIComponent (value);\n            return value/' clients/javascript/generated/src/ApiClient.js || echo ""
+	$(call run_hook,x-pre-build-javascript)
 	npm install -g babel-cli
 	cd clients/javascript/generated/ && \
+	  yq -i '.repository.url = "https://github.com/$(UPDATE_GENERATOR_INPUTS_GITHUB_ID)/$(UPDATE_GENERATOR_INPUTS_GITHUB_REPO)"' package.json && \
 	  npm install && \
 	  npm link && \
 	  npm run build
-	cd test/javascript/ && \
-	  npm link ../../clients/javascript/generated/
 
 build-python:
+	$(call run_hook,x-pre-build-python)
 	cd clients/python/generated/ && \
 	  python3 -m venv .venv && \
 	  $(call python_venv,pip install twine wheel pytest setuptools) && \
@@ -197,6 +195,7 @@ build-python:
 	  $(call python_venv,python3 setup.py install --single-version-externally-managed --record record.txt)
 
 build-ruby:
+	$(call run_hook,x-pre-build-ruby)
 	apt-get install libyaml-dev
 	cd clients/ruby/generated/ && \
 	  rm -f *.gem && \
@@ -213,14 +212,14 @@ build-ruby:
 test: test-javascript test-python test-ruby
 
 test-javascript: build-javascript
-	npm install -g mocha
+	$(call run_hook,x-pre-test-javascript)
 	npm install validator
 	cd clients/javascript/generated/ && \
 	  npm install --dev && \
 	  npm run test
 	cd test/javascript/ && \
 	  npm link ../../clients/javascript/generated/ && \
-	  mocha --timeout 5000 .
+	  ../../clients/javascript/generated/node_modules/.bin/mocha --timeout 5000 .
 
 test-python: build-python
 	cd clients/python/generated/ && \
@@ -233,6 +232,13 @@ test-ruby: build-ruby
 	  rm -f *.gem && \
 	  bundle exec rspec --format documentation && \
 	  bundle exec rspec ../../../test/ruby/ --format documentation
+
+test-examples:
+	mkdir -p stage/test-examples/
+	cd examples && \
+	for f in *.sh; do \
+	  bash -x "$$f"; \
+	done
 
 ################################################################
 # API clients package publishing targets for primary generators
@@ -256,18 +262,127 @@ publish-ruby: build-ruby
 doc: doc-latest
 
 # Generate API documentation locally as the latest version
-doc-latest:
-	bootprint openapi $(LOCAL_SPEC_PATH) doc/api/latest/
+doc-latest: stage
+	bootprint openapi $(LOCAL_SPEC_PATH) stage/gh-pages/api/latest/
 
 # Generate API documentation locally as the application's version
 # This target requires APP_VERSION parameter to be supplied by user
-doc-version:
-	bootprint openapi $(LOCAL_SPEC_PATH) doc/api/$(APP_VERSION)/
+doc-version: stage
+	bootprint openapi $(LOCAL_SPEC_PATH) stage/gh-pages/api/$(APP_VERSION)/
 
-# Publish documentation via GitHub Pages
-doc-publish:
-	CACHE_DIR=/tmp gh-pages --dist doc/
+################################################################
+# MAKE IT SO - Utility Makefile functions and targets
+################################################################
+
+define run_hook
+	@if [ -f Makefile-extras ] && grep -q "^$(1):" Makefile-extras; then \
+		$(MAKE) -f Makefile-extras $(1); \
+	fi
+endef
+
+define deps_extra
+	@if command -v apt-get > /dev/null 2>&1; then \
+		if [ "$$(id -u)" = "0" ]; then \
+			$(MAKE) deps-extra-apt; \
+		else \
+			sudo $(MAKE) deps-extra-apt; \
+		fi; \
+	fi
+endef
+
+define update_dotfiles_from_generator
+	cd stage/ && \
+	  rm -rf generator-$(1)/ && \
+	  git clone https://github.com/$(UPDATE_GH_ID)/generator-$(1) && \
+	  cd generator-$(1) && \
+	  make deps && \
+	  node_modules/.bin/plop $(UPDATE_GENERATOR_COMPONENT) -- \
+	    --project_id "$(UPDATE_GENERATOR_INPUTS_PROJECT_ID)" \
+		--project_name "$(UPDATE_GENERATOR_INPUTS_PROJECT_NAME)" \
+		--project_desc "$(UPDATE_GENERATOR_INPUTS_PROJECT_DESC)" \
+		--author_name "$(UPDATE_GENERATOR_INPUTS_AUTHOR_NAME)" \
+		--author_email "$(UPDATE_GENERATOR_INPUTS_AUTHOR_EMAIL)" \
+		--author_url "$(UPDATE_GENERATOR_INPUTS_AUTHOR_URL)" \
+		--github_id "$(UPDATE_GENERATOR_INPUTS_GITHUB_ID)" \
+		--github_repo "$(UPDATE_GENERATOR_INPUTS_GITHUB_REPO)" \
+		--github_token_prefix "$(UPDATE_GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX)"
+	cd stage/generator-$(1)/stage/$(UPDATE_GENERATOR_COMPONENT) && \
+	  for dotfile in $(2); do \
+		cp -R "$$dotfile" ../../../../"$$dotfile"; \
+	  done
+endef
+
+define update_partials_from_generator
+	cd stage/ && \
+	  rm -rf generator-$(1)/ && \
+	  git clone https://github.com/$(UPDATE_GH_ID)/generator-$(1) && \
+	  cd generator-$(1) && \
+	  make deps && \
+	  node_modules/.bin/plop $(UPDATE_GENERATOR_COMPONENT)-partials -- \
+	    --project_id "$(UPDATE_GENERATOR_INPUTS_PROJECT_ID)" \
+		--project_name "$(UPDATE_GENERATOR_INPUTS_PROJECT_NAME)" \
+		--project_desc "$(UPDATE_GENERATOR_INPUTS_PROJECT_DESC)" \
+		--author_name "$(UPDATE_GENERATOR_INPUTS_AUTHOR_NAME)" \
+		--author_email "$(UPDATE_GENERATOR_INPUTS_AUTHOR_EMAIL)" \
+		--author_url "$(UPDATE_GENERATOR_INPUTS_AUTHOR_URL)" \
+		--github_id "$(UPDATE_GENERATOR_INPUTS_GITHUB_ID)" \
+		--github_repo "$(UPDATE_GENERATOR_INPUTS_GITHUB_REPO)" \
+		--github_token_prefix "$(UPDATE_GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX)"
+	for block in $(2); do \
+	  partial_file=$$(printf "%s" "$$block" | tr "A-Z" "a-z"); \
+	  ex -s \
+	    -c "/<!-- BEGIN:$$block -->/+1,/<!-- END:$$block -->/-1d" \
+	    -c "/<!-- BEGIN:$$block -->/r stage/generator-$(1)/stage/$(UPDATE_GENERATOR_COMPONENT)-partials/$$partial_file.txt" \
+	    -c 'wq' \
+	    README.md; \
+	done
+endef
+
+define set_generator_vars
+$(1): UPDATE_GENERATOR_COMPONENT = $$(shell yq .generator.component $(2).yml)
+$(1): UPDATE_GENERATOR_INPUTS_PROJECT_ID = $$(shell yq .generator.inputs.project_id $(2).yml)
+$(1): UPDATE_GENERATOR_INPUTS_PROJECT_NAME = $$(shell yq .generator.inputs.project_name $(2).yml)
+$(1): UPDATE_GENERATOR_INPUTS_PROJECT_DESC = $$(shell yq .generator.inputs.project_desc $(2).yml)
+$(1): UPDATE_GENERATOR_INPUTS_AUTHOR_NAME = $$(shell yq .generator.inputs.author_name $(2).yml)
+$(1): UPDATE_GENERATOR_INPUTS_AUTHOR_EMAIL = $$(shell yq .generator.inputs.author_email $(2).yml)
+$(1): UPDATE_GENERATOR_INPUTS_AUTHOR_URL = $$(shell yq .generator.inputs.author_url $(2).yml)
+$(1): UPDATE_GENERATOR_INPUTS_GITHUB_ID = $$(shell yq .generator.inputs.github_id $(2).yml)
+$(1): UPDATE_GENERATOR_INPUTS_GITHUB_REPO = $$(shell yq .generator.inputs.github_repo $(2).yml)
+$(1): UPDATE_GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX = $$(shell yq .generator.inputs.github_token_prefix $(2).yml)
+endef
+
+# Update Makefile to the latest version tag
+update-to-latest: UPDATE_TARGET_VERSION = $(shell curl -s https://api.github.com/repos/$(UPDATE_GH_ID)/$(UPDATE_MAKEFILE)/tags | jq -r '.[0].name')
+update-to-latest: update-to-version
+
+# Update Makefile to the main branch
+update-to-main:
+	curl https://raw.githubusercontent.com/$(UPDATE_GH_ID)/$(UPDATE_MAKEFILE)/main/src/Makefile-$(UPDATE_MAKEFILE) -o Makefile
+
+# Update Makefile to the version defined in UPDATE_TARGET_VERSION parameter
+update-to-version:
+	curl https://raw.githubusercontent.com/$(UPDATE_GH_ID)/$(UPDATE_MAKEFILE)/$(UPDATE_TARGET_VERSION)/src/Makefile-$(UPDATE_MAKEFILE) -o Makefile
+
+# Update dotfiles using the generator
+$(eval $(call set_generator_vars,update-dotfiles,$(UPDATE_MAKEFILE)))
+update-dotfiles: stage
+	$(call update_dotfiles_from_generator,$(UPDATE_GENERATOR),$(UPDATE_DOTFILES))
+	$(call run_hook,x-post-update-dotfiles)
+
+# Update partial snippets using the generator
+$(eval $(call set_generator_vars,update-partials,$(UPDATE_MAKEFILE)))
+update-partials: stage
+	$(call update_partials_from_generator,$(UPDATE_GENERATOR),$(UPDATE_PARTIALS))
+
+release-major:
+	rtk release --release-increment-type major
+
+release-minor:
+	rtk release --release-increment-type minor
+
+release-patch:
+	rtk release --release-increment-type patch
 
 ################################################################
 
-.PHONY: all test ci stage clean deps init-spec init-generators-config generate generate-all generate-primary build-javascript build-python build-ruby test-javascript test-python test-ruby publish-javascript publish-python publish-ruby doc doc-latest doc-version doc-publish
+.PHONY: $(1) all test ci stage clean deps init-spec init-generators-config generate generate-all generate-primary build-javascript build-python build-ruby test-javascript test-python test-ruby publish-javascript publish-python publish-ruby doc doc-latest doc-version update-to-latest update-dotfiles update-partials

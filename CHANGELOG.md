@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add examples
 
+### Changed
+- Upgrade Swaggy C to 6.2.2
+- Upgrade OpenAPI Generator to 7.24.0
+
 ## 3.3.0 - 2026-02-02
 ### Added
 - Add Ruby test

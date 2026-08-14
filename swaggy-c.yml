@@ -13,3 +13,15 @@ base_dir:
   local: /Users/cliffano/dev/workspace-oapicf/swaggy-jenkins
   custom: >-
     /home/runner/work/generator-openapi-generator/generator-openapi-generator/stage/swaggy-jenkins/
+generator:
+  component: oag-file-spec
+  inputs:
+    project_id: swaggy-jenkins
+    project_name: Swaggy Jenkins
+    project_desc: A set of Jenkins API clients in multiple languages generated from Swagger / Open API specification
+    author_name: OpenAPI Clients Factory
+    author_email: blah+oapicf@cliffano.com
+    author_url: https://github.com/oapicf
+    github_id: oapicf
+    github_repo: swaggy-jenkins
+    github_token_prefix: OAPICF

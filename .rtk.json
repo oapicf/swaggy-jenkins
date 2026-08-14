@@ -1,7 +1,7 @@
 {
   "resources": [
     {
-      "path": "specification/jenkins.yml",
+      "path": "specification/swaggy-jenkins.yml",
       "type": "yaml",
       "params": {
         "property": "info.version"

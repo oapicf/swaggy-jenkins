@@ -4,7 +4,6 @@
 
 <!-- BEGIN:BADGES -->
 [![Build Status](https://github.com/oapicf/swaggy-jenkins/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/oapicf/swaggy-jenkins/actions/workflows/ci-workflow.yaml)
-<br/>
 <!-- END:BADGES -->
 
 # Swaggy Jenkins
@@ -68,7 +67,7 @@ gem install swaggy_jenkins
 <!-- END:DEVELOPERS_GUIDE -->
 
 <!-- BEGIN:BUILD_REPORTS -->
-* [API Documentation](https://cliffano.github.io/swaggy-jenkins/api/latest/)
+* [API Documentation](https://oapicf.github.io/swaggy-jenkins/api/latest/)
 <!-- END:BUILD_REPORTS -->
 
 Videos:
