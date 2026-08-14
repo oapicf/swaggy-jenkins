@@ -127,7 +127,7 @@ PipelineActivityartifacts::getName()
 }
 
 void
-PipelineActivityartifacts::setName(std::string  name)
+PipelineActivityartifacts::setName(std::string name)
 {
 	this->name = name;
 }
@@ -139,7 +139,7 @@ PipelineActivityartifacts::getSize()
 }
 
 void
-PipelineActivityartifacts::setSize(int  size)
+PipelineActivityartifacts::setSize(int size)
 {
 	this->size = size;
 }
@@ -151,7 +151,7 @@ PipelineActivityartifacts::getUrl()
 }
 
 void
-PipelineActivityartifacts::setUrl(std::string  url)
+PipelineActivityartifacts::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -163,7 +163,7 @@ PipelineActivityartifacts::getClass()
 }
 
 void
-PipelineActivityartifacts::setClass(std::string  _class)
+PipelineActivityartifacts::setClass(std::string _class)
 {
 	this->_class = _class;
 }

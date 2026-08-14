@@ -13,10 +13,10 @@ static link_t *link_create_internal(
     if (!link_local_var) {
         return NULL;
     }
+    memset(link_local_var, 0, sizeof(link_t));
+    link_local_var->_library_owned = 1;
     link_local_var->_class = _class;
     link_local_var->href = href;
-
-    link_local_var->_library_owned = 1;
     return link_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) link_t *link_create(
     char *_class,
     char *href
     ) {
-    return link_create_internal (
+    link_t *result = link_create_internal (
         _class,
         href
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void link_free(link_t *link) {
@@ -80,6 +83,10 @@ link_t *link_parseFromJSON(cJSON *linkJSON){
 
     link_t *link_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *href_local_str = NULL;
+
     // link->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(linkJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -105,13 +112,28 @@ link_t *link_parseFromJSON(cJSON *linkJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (href && !cJSON_IsNull(href)) href_local_str = strdup(href->valuestring);
+
     link_local_var = link_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        href && !cJSON_IsNull(href) ? strdup(href->valuestring) : NULL
+        _class_local_str,
+        href_local_str
         );
+
+    if (!link_local_var) {
+        goto end;
+    }
 
     return link_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (href_local_str) {
+        free(href_local_str);
+        href_local_str = NULL;
+    }
     return NULL;
 
 }

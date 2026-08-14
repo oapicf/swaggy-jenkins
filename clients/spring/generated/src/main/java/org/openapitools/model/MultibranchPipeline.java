@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -10,48 +11,61 @@ import java.util.List;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * MultibranchPipeline
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class MultibranchPipeline {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer estimatedDurationInMillis;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String latestRun;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String organization;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer weatherScore;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<String> branchNames = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numberOfFailingBranches;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numberOfFailingPullRequests;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numberOfSuccessfulBranches;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numberOfSuccessfulPullRequests;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer totalNumberOfBranches;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer totalNumberOfPullRequests;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
   public MultibranchPipeline displayName(@Nullable String displayName) {
@@ -70,6 +84,7 @@ public class MultibranchPipeline {
     return displayName;
   }
 
+  @JsonProperty("displayName")
   public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
@@ -90,6 +105,7 @@ public class MultibranchPipeline {
     return estimatedDurationInMillis;
   }
 
+  @JsonProperty("estimatedDurationInMillis")
   public void setEstimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
@@ -110,6 +126,7 @@ public class MultibranchPipeline {
     return latestRun;
   }
 
+  @JsonProperty("latestRun")
   public void setLatestRun(@Nullable String latestRun) {
     this.latestRun = latestRun;
   }
@@ -130,6 +147,7 @@ public class MultibranchPipeline {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable String name) {
     this.name = name;
   }
@@ -150,6 +168,7 @@ public class MultibranchPipeline {
     return organization;
   }
 
+  @JsonProperty("organization")
   public void setOrganization(@Nullable String organization) {
     this.organization = organization;
   }
@@ -170,6 +189,7 @@ public class MultibranchPipeline {
     return weatherScore;
   }
 
+  @JsonProperty("weatherScore")
   public void setWeatherScore(@Nullable Integer weatherScore) {
     this.weatherScore = weatherScore;
   }
@@ -198,6 +218,7 @@ public class MultibranchPipeline {
     return branchNames;
   }
 
+  @JsonProperty("branchNames")
   public void setBranchNames(List<String> branchNames) {
     this.branchNames = branchNames;
   }
@@ -218,6 +239,7 @@ public class MultibranchPipeline {
     return numberOfFailingBranches;
   }
 
+  @JsonProperty("numberOfFailingBranches")
   public void setNumberOfFailingBranches(@Nullable Integer numberOfFailingBranches) {
     this.numberOfFailingBranches = numberOfFailingBranches;
   }
@@ -238,6 +260,7 @@ public class MultibranchPipeline {
     return numberOfFailingPullRequests;
   }
 
+  @JsonProperty("numberOfFailingPullRequests")
   public void setNumberOfFailingPullRequests(@Nullable Integer numberOfFailingPullRequests) {
     this.numberOfFailingPullRequests = numberOfFailingPullRequests;
   }
@@ -258,6 +281,7 @@ public class MultibranchPipeline {
     return numberOfSuccessfulBranches;
   }
 
+  @JsonProperty("numberOfSuccessfulBranches")
   public void setNumberOfSuccessfulBranches(@Nullable Integer numberOfSuccessfulBranches) {
     this.numberOfSuccessfulBranches = numberOfSuccessfulBranches;
   }
@@ -278,6 +302,7 @@ public class MultibranchPipeline {
     return numberOfSuccessfulPullRequests;
   }
 
+  @JsonProperty("numberOfSuccessfulPullRequests")
   public void setNumberOfSuccessfulPullRequests(@Nullable Integer numberOfSuccessfulPullRequests) {
     this.numberOfSuccessfulPullRequests = numberOfSuccessfulPullRequests;
   }
@@ -298,6 +323,7 @@ public class MultibranchPipeline {
     return totalNumberOfBranches;
   }
 
+  @JsonProperty("totalNumberOfBranches")
   public void setTotalNumberOfBranches(@Nullable Integer totalNumberOfBranches) {
     this.totalNumberOfBranches = totalNumberOfBranches;
   }
@@ -318,6 +344,7 @@ public class MultibranchPipeline {
     return totalNumberOfPullRequests;
   }
 
+  @JsonProperty("totalNumberOfPullRequests")
   public void setTotalNumberOfPullRequests(@Nullable Integer totalNumberOfPullRequests) {
     this.totalNumberOfPullRequests = totalNumberOfPullRequests;
   }
@@ -338,6 +365,7 @@ public class MultibranchPipeline {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -398,11 +426,8 @@ public class MultibranchPipeline {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

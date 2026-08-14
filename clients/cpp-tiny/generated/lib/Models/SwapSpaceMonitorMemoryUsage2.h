@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	int getAvailablePhysicalMemory();
 
 	/*! \brief Set 
 	 */
-	void setAvailablePhysicalMemory(int  availablePhysicalMemory);
+	void setAvailablePhysicalMemory(int availablePhysicalMemory);
 	/*! \brief Get 
 	 */
 	int getAvailableSwapSpace();
 
 	/*! \brief Set 
 	 */
-	void setAvailableSwapSpace(int  availableSwapSpace);
+	void setAvailableSwapSpace(int availableSwapSpace);
 	/*! \brief Get 
 	 */
 	int getTotalPhysicalMemory();
 
 	/*! \brief Set 
 	 */
-	void setTotalPhysicalMemory(int  totalPhysicalMemory);
+	void setTotalPhysicalMemory(int totalPhysicalMemory);
 	/*! \brief Get 
 	 */
 	int getTotalSwapSpace();
 
 	/*! \brief Set 
 	 */
-	void setTotalSwapSpace(int  totalSwapSpace);
+	void setTotalSwapSpace(int totalSwapSpace);
 
 
     private:

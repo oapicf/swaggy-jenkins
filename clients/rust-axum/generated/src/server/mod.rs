@@ -1,19 +1,24 @@
 use std::collections::HashMap;
 
 use axum::{body::Body, extract::*, response::Response, routing::*};
-use axum_extra::extract::{CookieJar, Host, Query as QueryExtra};
+use axum_extra::{
+    TypedHeader,
+    extract::{CookieJar, Query as QueryExtra},
+};
 use bytes::Bytes;
-use http::{header::CONTENT_TYPE, HeaderMap, HeaderName, HeaderValue, Method, StatusCode};
+use headers::Host;
+use http::{HeaderMap, HeaderName, HeaderValue, Method, StatusCode, header::CONTENT_TYPE};
 use tracing::error;
 use validator::{Validate, ValidationErrors};
 
-use crate::{header, types::*};
-
 #[allow(unused_imports)]
 use crate::{apis, models};
-
+use crate::{header, types::*};
 #[allow(unused_imports)]
-use crate::{models::check_xss_string, models::check_xss_vec_string, models::check_xss_map_string, models::check_xss_map_nested, models::check_xss_map};
+use crate::{
+    models::check_xss_map, models::check_xss_map_nested, models::check_xss_map_string,
+    models::check_xss_string, models::check_xss_vec_string,
+};
 
 
 /// Setup API Server.
@@ -205,7 +210,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_crumb<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
  State(api_impl): State<I>,
@@ -243,7 +248,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_crumb(
+  let result = api_impl.as_ref().get_crumb(
       
       &method,
       &host,
@@ -251,13 +256,12 @@ let result = api_impl.as_ref().get_crumb(
         &claims,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::base::GetCrumbResponse::Status200_SuccessfullyRetrievedCSRFProtectionToken
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -275,11 +279,13 @@ let result = api_impl.as_ref().get_crumb(
                                                 },
                                                 apis::base::GetCrumbResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::base::GetCrumbResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -313,7 +319,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn delete_pipeline_queue_item<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::DeletePipelineQueueItemPathParams>,
@@ -354,7 +360,7 @@ where
 
 
 
-let result = api_impl.as_ref().delete_pipeline_queue_item(
+  let result = api_impl.as_ref().delete_pipeline_queue_item(
       
       &method,
       &host,
@@ -363,22 +369,23 @@ let result = api_impl.as_ref().delete_pipeline_queue_item(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::DeletePipelineQueueItemResponse::Status200_SuccessfullyDeletedQueueItem
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::DeletePipelineQueueItemResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::DeletePipelineQueueItemResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -412,7 +419,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_authenticated_user<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetAuthenticatedUserPathParams>,
@@ -453,7 +460,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_authenticated_user(
+  let result = api_impl.as_ref().get_authenticated_user(
       
       &method,
       &host,
@@ -462,13 +469,12 @@ let result = api_impl.as_ref().get_authenticated_user(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetAuthenticatedUserResponse::Status200_SuccessfullyRetrievedAuthenticatedUserDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -486,11 +492,13 @@ let result = api_impl.as_ref().get_authenticated_user(
                                                 },
                                                 apis::blue_ocean::GetAuthenticatedUserResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetAuthenticatedUserResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -524,7 +532,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_classes<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetClassesPathParams>,
@@ -565,7 +573,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_classes(
+  let result = api_impl.as_ref().get_classes(
       
       &method,
       &host,
@@ -574,13 +582,12 @@ let result = api_impl.as_ref().get_classes(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetClassesResponse::Status200_SuccessfullyRetrievedClassNames
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -598,11 +605,13 @@ let result = api_impl.as_ref().get_classes(
                                                 },
                                                 apis::blue_ocean::GetClassesResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetClassesResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -636,7 +645,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_json_web_key<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   Path(path_params): Path<models::GetJsonWebKeyPathParams>,
  State(api_impl): State<I>,
@@ -668,7 +677,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_json_web_key(
+  let result = api_impl.as_ref().get_json_web_key(
       
       &method,
       &host,
@@ -676,13 +685,12 @@ let result = api_impl.as_ref().get_json_web_key(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetJsonWebKeyResponse::Status200_SuccessfullyRetrievedJWTToken
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -700,11 +708,13 @@ let result = api_impl.as_ref().get_json_web_key(
                                                 },
                                                 apis::blue_ocean::GetJsonWebKeyResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetJsonWebKeyResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -738,7 +748,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_json_web_token<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   QueryExtra(query_params): QueryExtra<models::GetJsonWebTokenQueryParams>,
  State(api_impl): State<I>,
@@ -770,7 +780,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_json_web_token(
+  let result = api_impl.as_ref().get_json_web_token(
       
       &method,
       &host,
@@ -778,13 +788,12 @@ let result = api_impl.as_ref().get_json_web_token(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetJsonWebTokenResponse::Status200_SuccessfullyRetrievedJWTToken
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -802,11 +811,13 @@ let result = api_impl.as_ref().get_json_web_token(
                                                 },
                                                 apis::blue_ocean::GetJsonWebTokenResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetJsonWebTokenResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -840,7 +851,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_organisation<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetOrganisationPathParams>,
@@ -881,7 +892,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_organisation(
+  let result = api_impl.as_ref().get_organisation(
       
       &method,
       &host,
@@ -890,13 +901,12 @@ let result = api_impl.as_ref().get_organisation(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetOrganisationResponse::Status200_SuccessfullyRetrievedPipelineDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -914,16 +924,19 @@ let result = api_impl.as_ref().get_organisation(
                                                 },
                                                 apis::blue_ocean::GetOrganisationResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetOrganisationResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetOrganisationResponse::Status404_PipelineCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -953,7 +966,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_organisations<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
  State(api_impl): State<I>,
@@ -991,7 +1004,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_organisations(
+  let result = api_impl.as_ref().get_organisations(
       
       &method,
       &host,
@@ -999,13 +1012,12 @@ let result = api_impl.as_ref().get_organisations(
         &claims,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetOrganisationsResponse::Status200_SuccessfullyRetrievedPipelinesDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -1023,11 +1035,13 @@ let result = api_impl.as_ref().get_organisations(
                                                 },
                                                 apis::blue_ocean::GetOrganisationsResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetOrganisationsResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -1061,7 +1075,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelinePathParams>,
@@ -1102,7 +1116,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline(
+  let result = api_impl.as_ref().get_pipeline(
       
       &method,
       &host,
@@ -1111,13 +1125,12 @@ let result = api_impl.as_ref().get_pipeline(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineResponse::Status200_SuccessfullyRetrievedPipelineDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -1135,16 +1148,19 @@ let result = api_impl.as_ref().get_pipeline(
                                                 },
                                                 apis::blue_ocean::GetPipelineResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineResponse::Status404_PipelineCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -1178,7 +1194,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_activities<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineActivitiesPathParams>,
@@ -1219,7 +1235,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_activities(
+  let result = api_impl.as_ref().get_pipeline_activities(
       
       &method,
       &host,
@@ -1228,13 +1244,12 @@ let result = api_impl.as_ref().get_pipeline_activities(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineActivitiesResponse::Status200_SuccessfullyRetrievedAllActivitiesDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -1252,11 +1267,13 @@ let result = api_impl.as_ref().get_pipeline_activities(
                                                 },
                                                 apis::blue_ocean::GetPipelineActivitiesResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineActivitiesResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -1290,7 +1307,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_branch<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineBranchPathParams>,
@@ -1331,7 +1348,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_branch(
+  let result = api_impl.as_ref().get_pipeline_branch(
       
       &method,
       &host,
@@ -1340,13 +1357,12 @@ let result = api_impl.as_ref().get_pipeline_branch(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineBranchResponse::Status200_SuccessfullyRetrievedBranchDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -1364,11 +1380,13 @@ let result = api_impl.as_ref().get_pipeline_branch(
                                                 },
                                                 apis::blue_ocean::GetPipelineBranchResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineBranchResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -1402,7 +1420,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_branch_run<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineBranchRunPathParams>,
@@ -1443,7 +1461,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_branch_run(
+  let result = api_impl.as_ref().get_pipeline_branch_run(
       
       &method,
       &host,
@@ -1452,13 +1470,12 @@ let result = api_impl.as_ref().get_pipeline_branch_run(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineBranchRunResponse::Status200_SuccessfullyRetrievedRunDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -1476,11 +1493,13 @@ let result = api_impl.as_ref().get_pipeline_branch_run(
                                                 },
                                                 apis::blue_ocean::GetPipelineBranchRunResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineBranchRunResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -1514,7 +1533,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_branches<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineBranchesPathParams>,
@@ -1555,7 +1574,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_branches(
+  let result = api_impl.as_ref().get_pipeline_branches(
       
       &method,
       &host,
@@ -1564,13 +1583,12 @@ let result = api_impl.as_ref().get_pipeline_branches(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineBranchesResponse::Status200_SuccessfullyRetrievedAllBranchesDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -1588,11 +1606,13 @@ let result = api_impl.as_ref().get_pipeline_branches(
                                                 },
                                                 apis::blue_ocean::GetPipelineBranchesResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineBranchesResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -1626,7 +1646,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_folder<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineFolderPathParams>,
@@ -1667,7 +1687,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_folder(
+  let result = api_impl.as_ref().get_pipeline_folder(
       
       &method,
       &host,
@@ -1676,13 +1696,12 @@ let result = api_impl.as_ref().get_pipeline_folder(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineFolderResponse::Status200_SuccessfullyRetrievedFolderDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -1700,11 +1719,13 @@ let result = api_impl.as_ref().get_pipeline_folder(
                                                 },
                                                 apis::blue_ocean::GetPipelineFolderResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineFolderResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -1738,7 +1759,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_folder_pipeline<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineFolderPipelinePathParams>,
@@ -1779,7 +1800,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_folder_pipeline(
+  let result = api_impl.as_ref().get_pipeline_folder_pipeline(
       
       &method,
       &host,
@@ -1788,13 +1809,12 @@ let result = api_impl.as_ref().get_pipeline_folder_pipeline(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineFolderPipelineResponse::Status200_SuccessfullyRetrievedPipelineDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -1812,11 +1832,13 @@ let result = api_impl.as_ref().get_pipeline_folder_pipeline(
                                                 },
                                                 apis::blue_ocean::GetPipelineFolderPipelineResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineFolderPipelineResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -1850,7 +1872,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_queue<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineQueuePathParams>,
@@ -1891,7 +1913,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_queue(
+  let result = api_impl.as_ref().get_pipeline_queue(
       
       &method,
       &host,
@@ -1900,13 +1922,12 @@ let result = api_impl.as_ref().get_pipeline_queue(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineQueueResponse::Status200_SuccessfullyRetrievedQueueDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -1924,11 +1945,13 @@ let result = api_impl.as_ref().get_pipeline_queue(
                                                 },
                                                 apis::blue_ocean::GetPipelineQueueResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineQueueResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -1962,7 +1985,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_run<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineRunPathParams>,
@@ -2003,7 +2026,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_run(
+  let result = api_impl.as_ref().get_pipeline_run(
       
       &method,
       &host,
@@ -2012,13 +2035,12 @@ let result = api_impl.as_ref().get_pipeline_run(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineRunResponse::Status200_SuccessfullyRetrievedRunDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -2036,11 +2058,13 @@ let result = api_impl.as_ref().get_pipeline_run(
                                                 },
                                                 apis::blue_ocean::GetPipelineRunResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineRunResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -2078,7 +2102,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_run_log<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineRunLogPathParams>,
@@ -2122,7 +2146,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_run_log(
+  let result = api_impl.as_ref().get_pipeline_run_log(
       
       &method,
       &host,
@@ -2132,13 +2156,12 @@ let result = api_impl.as_ref().get_pipeline_run_log(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineRunLogResponse::Status200_SuccessfullyRetrievedPipelineRunLog
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -2156,11 +2179,13 @@ let result = api_impl.as_ref().get_pipeline_run_log(
                                                 },
                                                 apis::blue_ocean::GetPipelineRunLogResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineRunLogResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -2194,7 +2219,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_run_node<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineRunNodePathParams>,
@@ -2235,7 +2260,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_run_node(
+  let result = api_impl.as_ref().get_pipeline_run_node(
       
       &method,
       &host,
@@ -2244,13 +2269,12 @@ let result = api_impl.as_ref().get_pipeline_run_node(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineRunNodeResponse::Status200_SuccessfullyRetrievedRunNodeDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -2268,11 +2292,13 @@ let result = api_impl.as_ref().get_pipeline_run_node(
                                                 },
                                                 apis::blue_ocean::GetPipelineRunNodeResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineRunNodeResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -2306,7 +2332,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_run_node_step<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineRunNodeStepPathParams>,
@@ -2347,7 +2373,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_run_node_step(
+  let result = api_impl.as_ref().get_pipeline_run_node_step(
       
       &method,
       &host,
@@ -2356,13 +2382,12 @@ let result = api_impl.as_ref().get_pipeline_run_node_step(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineRunNodeStepResponse::Status200_SuccessfullyRetrievedRunNodeStepDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -2380,11 +2405,13 @@ let result = api_impl.as_ref().get_pipeline_run_node_step(
                                                 },
                                                 apis::blue_ocean::GetPipelineRunNodeStepResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineRunNodeStepResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -2418,7 +2445,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_run_node_step_log<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineRunNodeStepLogPathParams>,
@@ -2459,7 +2486,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_run_node_step_log(
+  let result = api_impl.as_ref().get_pipeline_run_node_step_log(
       
       &method,
       &host,
@@ -2468,13 +2495,12 @@ let result = api_impl.as_ref().get_pipeline_run_node_step_log(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineRunNodeStepLogResponse::Status200_SuccessfullyRetrievedPipelineRunNodeStepLog
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -2492,11 +2518,13 @@ let result = api_impl.as_ref().get_pipeline_run_node_step_log(
                                                 },
                                                 apis::blue_ocean::GetPipelineRunNodeStepLogResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineRunNodeStepLogResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -2530,7 +2558,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_run_node_steps<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineRunNodeStepsPathParams>,
@@ -2571,7 +2599,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_run_node_steps(
+  let result = api_impl.as_ref().get_pipeline_run_node_steps(
       
       &method,
       &host,
@@ -2580,13 +2608,12 @@ let result = api_impl.as_ref().get_pipeline_run_node_steps(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineRunNodeStepsResponse::Status200_SuccessfullyRetrievedRunNodeStepsDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -2604,11 +2631,13 @@ let result = api_impl.as_ref().get_pipeline_run_node_steps(
                                                 },
                                                 apis::blue_ocean::GetPipelineRunNodeStepsResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineRunNodeStepsResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -2642,7 +2671,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_run_nodes<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineRunNodesPathParams>,
@@ -2683,7 +2712,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_run_nodes(
+  let result = api_impl.as_ref().get_pipeline_run_nodes(
       
       &method,
       &host,
@@ -2692,13 +2721,12 @@ let result = api_impl.as_ref().get_pipeline_run_nodes(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineRunNodesResponse::Status200_SuccessfullyRetrievedRunNodesDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -2716,11 +2744,13 @@ let result = api_impl.as_ref().get_pipeline_run_nodes(
                                                 },
                                                 apis::blue_ocean::GetPipelineRunNodesResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineRunNodesResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -2754,7 +2784,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipeline_runs<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelineRunsPathParams>,
@@ -2795,7 +2825,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipeline_runs(
+  let result = api_impl.as_ref().get_pipeline_runs(
       
       &method,
       &host,
@@ -2804,13 +2834,12 @@ let result = api_impl.as_ref().get_pipeline_runs(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelineRunsResponse::Status200_SuccessfullyRetrievedRunsDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -2828,11 +2857,13 @@ let result = api_impl.as_ref().get_pipeline_runs(
                                                 },
                                                 apis::blue_ocean::GetPipelineRunsResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelineRunsResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -2866,7 +2897,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_pipelines<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetPipelinesPathParams>,
@@ -2907,7 +2938,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_pipelines(
+  let result = api_impl.as_ref().get_pipelines(
       
       &method,
       &host,
@@ -2916,13 +2947,12 @@ let result = api_impl.as_ref().get_pipelines(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetPipelinesResponse::Status200_SuccessfullyRetrievedPipelinesDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -2940,11 +2970,13 @@ let result = api_impl.as_ref().get_pipelines(
                                                 },
                                                 apis::blue_ocean::GetPipelinesResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetPipelinesResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -2978,7 +3010,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_scm<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetScmPathParams>,
@@ -3019,7 +3051,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_scm(
+  let result = api_impl.as_ref().get_scm(
       
       &method,
       &host,
@@ -3028,13 +3060,12 @@ let result = api_impl.as_ref().get_scm(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetScmResponse::Status200_SuccessfullyRetrievedSCMDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -3052,11 +3083,13 @@ let result = api_impl.as_ref().get_scm(
                                                 },
                                                 apis::blue_ocean::GetScmResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetScmResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -3094,7 +3127,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_scm_organisation_repositories<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetScmOrganisationRepositoriesPathParams>,
@@ -3138,7 +3171,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_scm_organisation_repositories(
+  let result = api_impl.as_ref().get_scm_organisation_repositories(
       
       &method,
       &host,
@@ -3148,13 +3181,12 @@ let result = api_impl.as_ref().get_scm_organisation_repositories(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetScmOrganisationRepositoriesResponse::Status200_SuccessfullyRetrievedSCMOrganizationRepositoriesDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -3172,11 +3204,13 @@ let result = api_impl.as_ref().get_scm_organisation_repositories(
                                                 },
                                                 apis::blue_ocean::GetScmOrganisationRepositoriesResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetScmOrganisationRepositoriesResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -3214,7 +3248,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_scm_organisation_repository<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetScmOrganisationRepositoryPathParams>,
@@ -3258,7 +3292,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_scm_organisation_repository(
+  let result = api_impl.as_ref().get_scm_organisation_repository(
       
       &method,
       &host,
@@ -3268,13 +3302,12 @@ let result = api_impl.as_ref().get_scm_organisation_repository(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetScmOrganisationRepositoryResponse::Status200_SuccessfullyRetrievedSCMOrganizationsDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -3292,11 +3325,13 @@ let result = api_impl.as_ref().get_scm_organisation_repository(
                                                 },
                                                 apis::blue_ocean::GetScmOrganisationRepositoryResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetScmOrganisationRepositoryResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -3334,7 +3369,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_scm_organisations<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetScmOrganisationsPathParams>,
@@ -3378,7 +3413,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_scm_organisations(
+  let result = api_impl.as_ref().get_scm_organisations(
       
       &method,
       &host,
@@ -3388,13 +3423,12 @@ let result = api_impl.as_ref().get_scm_organisations(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetScmOrganisationsResponse::Status200_SuccessfullyRetrievedSCMOrganizationsDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -3412,11 +3446,13 @@ let result = api_impl.as_ref().get_scm_organisations(
                                                 },
                                                 apis::blue_ocean::GetScmOrganisationsResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetScmOrganisationsResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -3450,7 +3486,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_user<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetUserPathParams>,
@@ -3491,7 +3527,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_user(
+  let result = api_impl.as_ref().get_user(
       
       &method,
       &host,
@@ -3500,13 +3536,12 @@ let result = api_impl.as_ref().get_user(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetUserResponse::Status200_SuccessfullyRetrievedUsersDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -3524,11 +3559,13 @@ let result = api_impl.as_ref().get_user(
                                                 },
                                                 apis::blue_ocean::GetUserResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetUserResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -3562,7 +3599,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_user_favorites<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetUserFavoritesPathParams>,
@@ -3603,7 +3640,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_user_favorites(
+  let result = api_impl.as_ref().get_user_favorites(
       
       &method,
       &host,
@@ -3612,13 +3649,12 @@ let result = api_impl.as_ref().get_user_favorites(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetUserFavoritesResponse::Status200_SuccessfullyRetrievedUsersFavoritesDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -3636,11 +3672,13 @@ let result = api_impl.as_ref().get_user_favorites(
                                                 },
                                                 apis::blue_ocean::GetUserFavoritesResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetUserFavoritesResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -3674,7 +3712,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_users<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetUsersPathParams>,
@@ -3715,7 +3753,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_users(
+  let result = api_impl.as_ref().get_users(
       
       &method,
       &host,
@@ -3724,13 +3762,12 @@ let result = api_impl.as_ref().get_users(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::GetUsersResponse::Status200_SuccessfullyRetrievedUsersDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -3748,11 +3785,13 @@ let result = api_impl.as_ref().get_users(
                                                 },
                                                 apis::blue_ocean::GetUsersResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::GetUsersResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -3786,7 +3825,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_pipeline_run<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PostPipelineRunPathParams>,
@@ -3827,7 +3866,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_pipeline_run(
+  let result = api_impl.as_ref().post_pipeline_run(
       
       &method,
       &host,
@@ -3836,13 +3875,12 @@ let result = api_impl.as_ref().post_pipeline_run(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::PostPipelineRunResponse::Status200_SuccessfullyReplayedAPipelineRun
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -3860,11 +3898,13 @@ let result = api_impl.as_ref().post_pipeline_run(
                                                 },
                                                 apis::blue_ocean::PostPipelineRunResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::PostPipelineRunResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -3898,7 +3938,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_pipeline_runs<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PostPipelineRunsPathParams>,
@@ -3939,7 +3979,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_pipeline_runs(
+  let result = api_impl.as_ref().post_pipeline_runs(
       
       &method,
       &host,
@@ -3948,13 +3988,12 @@ let result = api_impl.as_ref().post_pipeline_runs(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::PostPipelineRunsResponse::Status200_SuccessfullyStartedABuild
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -3972,11 +4011,13 @@ let result = api_impl.as_ref().post_pipeline_runs(
                                                 },
                                                 apis::blue_ocean::PostPipelineRunsResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::PostPipelineRunsResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -4021,7 +4062,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn put_pipeline_favorite<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PutPipelineFavoritePathParams>,
@@ -4065,7 +4106,7 @@ where
 
 
 
-let result = api_impl.as_ref().put_pipeline_favorite(
+  let result = api_impl.as_ref().put_pipeline_favorite(
       
       &method,
       &host,
@@ -4075,13 +4116,12 @@ let result = api_impl.as_ref().put_pipeline_favorite(
               &body,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::PutPipelineFavoriteResponse::Status200_SuccessfullyFavorited
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -4099,11 +4139,13 @@ let result = api_impl.as_ref().put_pipeline_favorite(
                                                 },
                                                 apis::blue_ocean::PutPipelineFavoriteResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::PutPipelineFavoriteResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -4141,7 +4183,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn put_pipeline_run<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PutPipelineRunPathParams>,
@@ -4185,7 +4227,7 @@ where
 
 
 
-let result = api_impl.as_ref().put_pipeline_run(
+  let result = api_impl.as_ref().put_pipeline_run(
       
       &method,
       &host,
@@ -4195,13 +4237,12 @@ let result = api_impl.as_ref().put_pipeline_run(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::PutPipelineRunResponse::Status200_SuccessfullyStoppedABuild
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -4219,11 +4260,13 @@ let result = api_impl.as_ref().put_pipeline_run(
                                                 },
                                                 apis::blue_ocean::PutPipelineRunResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::PutPipelineRunResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -4257,7 +4300,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn search<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   QueryExtra(query_params): QueryExtra<models::SearchQueryParams>,
@@ -4298,7 +4341,7 @@ where
 
 
 
-let result = api_impl.as_ref().search(
+  let result = api_impl.as_ref().search(
       
       &method,
       &host,
@@ -4307,13 +4350,12 @@ let result = api_impl.as_ref().search(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::SearchResponse::Status200_SuccessfullyRetrievedSearchResult
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -4331,11 +4373,13 @@ let result = api_impl.as_ref().search(
                                                 },
                                                 apis::blue_ocean::SearchResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::SearchResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -4369,7 +4413,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn search_classes<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   QueryExtra(query_params): QueryExtra<models::SearchClassesQueryParams>,
@@ -4410,7 +4454,7 @@ where
 
 
 
-let result = api_impl.as_ref().search_classes(
+  let result = api_impl.as_ref().search_classes(
       
       &method,
       &host,
@@ -4419,13 +4463,12 @@ let result = api_impl.as_ref().search_classes(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::blue_ocean::SearchClassesResponse::Status200_SuccessfullyRetrievedSearchResult
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -4443,11 +4486,13 @@ let result = api_impl.as_ref().search_classes(
                                                 },
                                                 apis::blue_ocean::SearchClassesResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::blue_ocean::SearchClassesResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -4481,7 +4526,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_computer<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   QueryExtra(query_params): QueryExtra<models::GetComputerQueryParams>,
@@ -4522,7 +4567,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_computer(
+  let result = api_impl.as_ref().get_computer(
       
       &method,
       &host,
@@ -4531,13 +4576,12 @@ let result = api_impl.as_ref().get_computer(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::GetComputerResponse::Status200_SuccessfullyRetrievedComputerDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -4555,11 +4599,13 @@ let result = api_impl.as_ref().get_computer(
                                                 },
                                                 apis::remote_access::GetComputerResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetComputerResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -4589,7 +4635,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_jenkins<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
  State(api_impl): State<I>,
@@ -4627,7 +4673,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_jenkins(
+  let result = api_impl.as_ref().get_jenkins(
       
       &method,
       &host,
@@ -4635,13 +4681,12 @@ let result = api_impl.as_ref().get_jenkins(
         &claims,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::GetJenkinsResponse::Status200_SuccessfullyRetrievedJenkinsDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -4659,11 +4704,13 @@ let result = api_impl.as_ref().get_jenkins(
                                                 },
                                                 apis::remote_access::GetJenkinsResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetJenkinsResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -4697,7 +4744,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_job<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetJobPathParams>,
@@ -4738,7 +4785,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_job(
+  let result = api_impl.as_ref().get_job(
       
       &method,
       &host,
@@ -4747,13 +4794,12 @@ let result = api_impl.as_ref().get_job(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::GetJobResponse::Status200_SuccessfullyRetrievedJobDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -4771,16 +4817,19 @@ let result = api_impl.as_ref().get_job(
                                                 },
                                                 apis::remote_access::GetJobResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetJobResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetJobResponse::Status404_JobCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -4814,7 +4863,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_job_config<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetJobConfigPathParams>,
@@ -4855,7 +4904,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_job_config(
+  let result = api_impl.as_ref().get_job_config(
       
       &method,
       &host,
@@ -4864,13 +4913,12 @@ let result = api_impl.as_ref().get_job_config(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::GetJobConfigResponse::Status200_SuccessfullyRetrievedJobConfigurationInConfig
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -4884,16 +4932,19 @@ let result = api_impl.as_ref().get_job_config(
                                                 },
                                                 apis::remote_access::GetJobConfigResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetJobConfigResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetJobConfigResponse::Status404_JobCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -4927,7 +4978,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_job_last_build<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetJobLastBuildPathParams>,
@@ -4968,7 +5019,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_job_last_build(
+  let result = api_impl.as_ref().get_job_last_build(
       
       &method,
       &host,
@@ -4977,13 +5028,12 @@ let result = api_impl.as_ref().get_job_last_build(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::GetJobLastBuildResponse::Status200_SuccessfullyRetrievedJob
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -5001,16 +5051,19 @@ let result = api_impl.as_ref().get_job_last_build(
                                                 },
                                                 apis::remote_access::GetJobLastBuildResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetJobLastBuildResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetJobLastBuildResponse::Status404_JobCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -5048,7 +5101,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_job_progressive_text<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetJobProgressiveTextPathParams>,
@@ -5092,7 +5145,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_job_progressive_text(
+  let result = api_impl.as_ref().get_job_progressive_text(
       
       &method,
       &host,
@@ -5102,27 +5155,29 @@ let result = api_impl.as_ref().get_job_progressive_text(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::GetJobProgressiveTextResponse::Status200_SuccessfullyRetrievedJob
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetJobProgressiveTextResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetJobProgressiveTextResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetJobProgressiveTextResponse::Status404_JobCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -5152,7 +5207,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_queue<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
  State(api_impl): State<I>,
@@ -5190,7 +5245,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_queue(
+  let result = api_impl.as_ref().get_queue(
       
       &method,
       &host,
@@ -5198,13 +5253,12 @@ let result = api_impl.as_ref().get_queue(
         &claims,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::GetQueueResponse::Status200_SuccessfullyRetrievedQueueDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -5222,11 +5276,13 @@ let result = api_impl.as_ref().get_queue(
                                                 },
                                                 apis::remote_access::GetQueueResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetQueueResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -5260,7 +5316,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_queue_item<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetQueueItemPathParams>,
@@ -5301,7 +5357,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_queue_item(
+  let result = api_impl.as_ref().get_queue_item(
       
       &method,
       &host,
@@ -5310,13 +5366,12 @@ let result = api_impl.as_ref().get_queue_item(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::GetQueueItemResponse::Status200_SuccessfullyRetrievedQueuedItemDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -5334,11 +5389,13 @@ let result = api_impl.as_ref().get_queue_item(
                                                 },
                                                 apis::remote_access::GetQueueItemResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetQueueItemResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -5372,7 +5429,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_view<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetViewPathParams>,
@@ -5413,7 +5470,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_view(
+  let result = api_impl.as_ref().get_view(
       
       &method,
       &host,
@@ -5422,13 +5479,12 @@ let result = api_impl.as_ref().get_view(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::GetViewResponse::Status200_SuccessfullyRetrievedViewDetails
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -5446,16 +5502,19 @@ let result = api_impl.as_ref().get_view(
                                                 },
                                                 apis::remote_access::GetViewResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetViewResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetViewResponse::Status404_ViewCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -5489,7 +5548,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn get_view_config<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::GetViewConfigPathParams>,
@@ -5530,7 +5589,7 @@ where
 
 
 
-let result = api_impl.as_ref().get_view_config(
+  let result = api_impl.as_ref().get_view_config(
       
       &method,
       &host,
@@ -5539,13 +5598,12 @@ let result = api_impl.as_ref().get_view_config(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::GetViewConfigResponse::Status200_SuccessfullyRetrievedViewConfigurationInConfig
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -5559,16 +5617,19 @@ let result = api_impl.as_ref().get_view_config(
                                                 },
                                                 apis::remote_access::GetViewConfigResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetViewConfigResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::GetViewConfigResponse::Status404_ViewCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -5598,7 +5659,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn head_jenkins<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
  State(api_impl): State<I>,
@@ -5636,15 +5697,13 @@ where
 
 
 
-let result = api_impl.as_ref().head_jenkins(
+  let result = api_impl.as_ref().head_jenkins(
       
       &method,
       &host,
       &cookies,
         &claims,
   ).await;
-
-  let mut response = Response::builder();
 
   let resp = match result {
                                             Ok(rsp) => match rsp {
@@ -5653,35 +5712,35 @@ let result = api_impl.as_ref().head_jenkins(
                                                         x_jenkins
                                                     }
                                                 => {
-                                                    if let Some(x_jenkins) = x_jenkins {
-                                                    let x_jenkins = match header::IntoHeaderValue(x_jenkins).try_into() {
-                                                        Ok(val) => val,
-                                                        Err(e) => {
-                                                            return Response::builder()
-                                                                    .status(StatusCode::INTERNAL_SERVER_ERROR)
-                                                                    .body(Body::from(format!("An internal server error occurred handling x_jenkins header - {e}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
-                                                        }
-                                                    };
+                                                let mut response = Response::builder();
+                    if let Some(x_jenkins) = x_jenkins {
+                        let x_jenkins = match header::IntoHeaderValue(x_jenkins).try_into() {
+                            Ok(val) => val,
+                            Err(e) => {
+                                return Response::builder()
+                                        .status(StatusCode::INTERNAL_SERVER_ERROR)
+                                        .body(Body::from(format!("An internal server error occurred handling x_jenkins header - {e}"))).map_err(|e| { error!(error = ?e); StatusCode::INTERNAL_SERVER_ERROR });
+                            }
+                        };
 
-
-                                                    {
-                                                      let mut response_headers = response.headers_mut().unwrap();
-                                                      response_headers.insert(
-                                                          HeaderName::from_static("x-jenkins"),
-                                                          x_jenkins
-                                                      );
-                                                    }
-                                                    }
+                        let mut response_headers = response.headers_mut().unwrap();
+                        response_headers.insert(
+                              HeaderName::from_static("x-jenkins"),
+                              x_jenkins
+                        );
+                    }
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::HeadJenkinsResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::HeadJenkinsResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -5733,7 +5792,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_create_item<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   QueryExtra(query_params): QueryExtra<models::PostCreateItemQueryParams>,
@@ -5822,7 +5881,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_create_item(
+  let result = api_impl.as_ref().post_create_item(
       
       &method,
       &host,
@@ -5833,18 +5892,18 @@ let result = api_impl.as_ref().post_create_item(
               &body,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::PostCreateItemResponse::Status200_SuccessfullyCreatedANewJob
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostCreateItemResponse::Status400_AnErrorHasOccurred
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(400);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -5862,11 +5921,13 @@ let result = api_impl.as_ref().post_create_item(
                                                 },
                                                 apis::remote_access::PostCreateItemResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostCreateItemResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -5918,7 +5979,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_create_view<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   QueryExtra(query_params): QueryExtra<models::PostCreateViewQueryParams>,
@@ -6007,7 +6068,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_create_view(
+  let result = api_impl.as_ref().post_create_view(
       
       &method,
       &host,
@@ -6018,18 +6079,18 @@ let result = api_impl.as_ref().post_create_view(
               &body,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::PostCreateViewResponse::Status200_SuccessfullyCreatedTheView
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostCreateViewResponse::Status400_AnErrorHasOccurred
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(400);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -6047,11 +6108,13 @@ let result = api_impl.as_ref().post_create_view(
                                                 },
                                                 apis::remote_access::PostCreateViewResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostCreateViewResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
@@ -6093,7 +6156,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_job_build<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PostJobBuildPathParams>,
@@ -6164,7 +6227,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_job_build(
+  let result = api_impl.as_ref().post_job_build(
       
       &method,
       &host,
@@ -6175,32 +6238,35 @@ let result = api_impl.as_ref().post_job_build(
         &query_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::PostJobBuildResponse::Status200_SuccessfullyBuiltTheJob
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobBuildResponse::Status201_SuccessfullyBuiltTheJob
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(201);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobBuildResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobBuildResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobBuildResponse::Status404_JobCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -6250,7 +6316,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_job_config<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PostJobConfigPathParams>,
@@ -6321,7 +6387,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_job_config(
+  let result = api_impl.as_ref().post_job_config(
       
       &method,
       &host,
@@ -6332,18 +6398,18 @@ let result = api_impl.as_ref().post_job_config(
               &body,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::PostJobConfigResponse::Status200_SuccessfullyRetrievedJobConfigurationInConfig
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobConfigResponse::Status400_AnErrorHasOccurred
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(400);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -6361,16 +6427,19 @@ let result = api_impl.as_ref().post_job_config(
                                                 },
                                                 apis::remote_access::PostJobConfigResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobConfigResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobConfigResponse::Status404_JobCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -6408,7 +6477,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_job_delete<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PostJobDeletePathParams>,
@@ -6476,7 +6545,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_job_delete(
+  let result = api_impl.as_ref().post_job_delete(
       
       &method,
       &host,
@@ -6486,27 +6555,29 @@ let result = api_impl.as_ref().post_job_delete(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::PostJobDeleteResponse::Status200_SuccessfullyDeletedTheJob
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobDeleteResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobDeleteResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobDeleteResponse::Status404_JobCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -6544,7 +6615,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_job_disable<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PostJobDisablePathParams>,
@@ -6612,7 +6683,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_job_disable(
+  let result = api_impl.as_ref().post_job_disable(
       
       &method,
       &host,
@@ -6622,27 +6693,29 @@ let result = api_impl.as_ref().post_job_disable(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::PostJobDisableResponse::Status200_SuccessfullyDisabledTheJob
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobDisableResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobDisableResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobDisableResponse::Status404_JobCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -6680,7 +6753,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_job_enable<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PostJobEnablePathParams>,
@@ -6748,7 +6821,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_job_enable(
+  let result = api_impl.as_ref().post_job_enable(
       
       &method,
       &host,
@@ -6758,27 +6831,29 @@ let result = api_impl.as_ref().post_job_enable(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::PostJobEnableResponse::Status200_SuccessfullyEnabledTheJob
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobEnableResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobEnableResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobEnableResponse::Status404_JobCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -6816,7 +6891,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_job_last_build_stop<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PostJobLastBuildStopPathParams>,
@@ -6884,7 +6959,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_job_last_build_stop(
+  let result = api_impl.as_ref().post_job_last_build_stop(
       
       &method,
       &host,
@@ -6894,27 +6969,29 @@ let result = api_impl.as_ref().post_job_last_build_stop(
         &path_params,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::PostJobLastBuildStopResponse::Status200_SuccessfullyStoppedTheJob
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobLastBuildStopResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobLastBuildStopResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostJobLastBuildStopResponse::Status404_JobCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },
@@ -6964,7 +7041,7 @@ Ok((
 #[tracing::instrument(skip_all)]
 async fn post_view_config<I, A, E, C>(
   method: Method,
-  host: Host,
+  TypedHeader(host): TypedHeader<Host>,
   cookies: CookieJar,
   headers: HeaderMap,
   Path(path_params): Path<models::PostViewConfigPathParams>,
@@ -7035,7 +7112,7 @@ where
 
 
 
-let result = api_impl.as_ref().post_view_config(
+  let result = api_impl.as_ref().post_view_config(
       
       &method,
       &host,
@@ -7046,18 +7123,18 @@ let result = api_impl.as_ref().post_view_config(
               &body,
   ).await;
 
-  let mut response = Response::builder();
-
   let resp = match result {
                                             Ok(rsp) => match rsp {
                                                 apis::remote_access::PostViewConfigResponse::Status200_SuccessfullyUpdatedViewConfiguration
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(200);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostViewConfigResponse::Status400_AnErrorHasOccurred
                                                     (body)
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(400);
                                                   {
                                                     let mut response_headers = response.headers_mut().unwrap();
@@ -7075,16 +7152,19 @@ let result = api_impl.as_ref().post_view_config(
                                                 },
                                                 apis::remote_access::PostViewConfigResponse::Status401_AuthenticationFailed
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(401);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostViewConfigResponse::Status403_JenkinsRequiresAuthentication
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(403);
                                                   response.body(Body::empty())
                                                 },
                                                 apis::remote_access::PostViewConfigResponse::Status404_ViewCannotBeFoundOnJenkinsInstance
                                                 => {
+                                                let mut response = Response::builder();
                                                   let mut response = response.status(404);
                                                   response.body(Body::empty())
                                                 },

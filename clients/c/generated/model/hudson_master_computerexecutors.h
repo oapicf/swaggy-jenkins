@@ -21,10 +21,10 @@ typedef struct hudson_master_computerexecutors_t hudson_master_computerexecutors
 
 typedef struct hudson_master_computerexecutors_t {
     struct free_style_build_t *current_executable; //model
-    int idle; //boolean
-    int likely_stuck; //boolean
-    int number; //numeric
-    int progress; //numeric
+    int *idle; //boolean
+    int *likely_stuck; //boolean
+    int *number; //numeric
+    int *progress; //numeric
     char *_class; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -32,10 +32,10 @@ typedef struct hudson_master_computerexecutors_t {
 
 __attribute__((deprecated)) hudson_master_computerexecutors_t *hudson_master_computerexecutors_create(
     free_style_build_t *current_executable,
-    int idle,
-    int likely_stuck,
-    int number,
-    int progress,
+    int *idle,
+    int *likely_stuck,
+    int *number,
+    int *progress,
     char *_class
 );
 

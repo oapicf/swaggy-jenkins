@@ -86,7 +86,7 @@ ExtensionClassImpllinks::getSelf()
 }
 
 void
-ExtensionClassImpllinks::setSelf(Link  self)
+ExtensionClassImpllinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -98,7 +98,7 @@ ExtensionClassImpllinks::getClass()
 }
 
 void
-ExtensionClassImpllinks::setClass(std::string  _class)
+ExtensionClassImpllinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

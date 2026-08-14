@@ -170,7 +170,7 @@ QueueLeftItem <- R6::R6Class(
       }
       if (!is.null(self$`actions`)) {
         QueueLeftItemObject[["actions"]] <-
-          lapply(self$`actions`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`actions`)
       }
       if (!is.null(self$`blocked`)) {
         QueueLeftItemObject[["blocked"]] <-
@@ -198,7 +198,7 @@ QueueLeftItem <- R6::R6Class(
       }
       if (!is.null(self$`task`)) {
         QueueLeftItemObject[["task"]] <-
-          self$`task`$toSimpleType()
+          self$extractSimpleType(self$`task`)
       }
       if (!is.null(self$`url`)) {
         QueueLeftItemObject[["url"]] <-
@@ -214,9 +214,32 @@ QueueLeftItem <- R6::R6Class(
       }
       if (!is.null(self$`executable`)) {
         QueueLeftItemObject[["executable"]] <-
-          self$`executable`$toSimpleType()
+          self$extractSimpleType(self$`executable`)
       }
       return(QueueLeftItemObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

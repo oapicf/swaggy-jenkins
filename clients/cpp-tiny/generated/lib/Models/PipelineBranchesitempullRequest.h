@@ -52,42 +52,42 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setLinks(PipelineBranchesitempullRequestlinks  _links);
+	void setLinks(PipelineBranchesitempullRequestlinks _links);
 	/*! \brief Get 
 	 */
 	std::string getAuthor();
 
 	/*! \brief Set 
 	 */
-	void setAuthor(std::string  author);
+	void setAuthor(std::string author);
 	/*! \brief Get 
 	 */
 	std::string getId();
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	std::string getTitle();
 
 	/*! \brief Set 
 	 */
-	void setTitle(std::string  title);
+	void setTitle(std::string title);
 	/*! \brief Get 
 	 */
 	std::string getUrl();
 
 	/*! \brief Set 
 	 */
-	void setUrl(std::string  url);
+	void setUrl(std::string url);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

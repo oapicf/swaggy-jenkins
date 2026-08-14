@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 pom.xml
 src/gen/java/org/openapitools/api/ApiApi.java
 src/gen/java/org/openapitools/api/ApiApiService.java

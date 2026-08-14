@@ -11,13 +11,15 @@ static pipeline_folder_impl_t *pipeline_folder_impl_create_internal(
     char *full_name,
     char *name,
     char *organization,
-    int number_of_folders,
-    int number_of_pipelines
+    int *number_of_folders,
+    int *number_of_pipelines
     ) {
     pipeline_folder_impl_t *pipeline_folder_impl_local_var = malloc(sizeof(pipeline_folder_impl_t));
     if (!pipeline_folder_impl_local_var) {
         return NULL;
     }
+    memset(pipeline_folder_impl_local_var, 0, sizeof(pipeline_folder_impl_t));
+    pipeline_folder_impl_local_var->_library_owned = 1;
     pipeline_folder_impl_local_var->_class = _class;
     pipeline_folder_impl_local_var->display_name = display_name;
     pipeline_folder_impl_local_var->full_name = full_name;
@@ -25,8 +27,6 @@ static pipeline_folder_impl_t *pipeline_folder_impl_create_internal(
     pipeline_folder_impl_local_var->organization = organization;
     pipeline_folder_impl_local_var->number_of_folders = number_of_folders;
     pipeline_folder_impl_local_var->number_of_pipelines = number_of_pipelines;
-
-    pipeline_folder_impl_local_var->_library_owned = 1;
     return pipeline_folder_impl_local_var;
 }
 
@@ -36,18 +36,33 @@ __attribute__((deprecated)) pipeline_folder_impl_t *pipeline_folder_impl_create(
     char *full_name,
     char *name,
     char *organization,
-    int number_of_folders,
-    int number_of_pipelines
+    int *number_of_folders,
+    int *number_of_pipelines
     ) {
-    return pipeline_folder_impl_create_internal (
+    int *number_of_folders_copy = NULL;
+    if (number_of_folders) {
+        number_of_folders_copy = malloc(sizeof(int));
+        if (number_of_folders_copy) *number_of_folders_copy = *number_of_folders;
+    }
+    int *number_of_pipelines_copy = NULL;
+    if (number_of_pipelines) {
+        number_of_pipelines_copy = malloc(sizeof(int));
+        if (number_of_pipelines_copy) *number_of_pipelines_copy = *number_of_pipelines;
+    }
+    pipeline_folder_impl_t *result = pipeline_folder_impl_create_internal (
         _class,
         display_name,
         full_name,
         name,
         organization,
-        number_of_folders,
-        number_of_pipelines
+        number_of_folders_copy,
+        number_of_pipelines_copy
         );
+    if (!result) {
+        free(number_of_folders_copy);
+        free(number_of_pipelines_copy);
+    }
+    return result;
 }
 
 void pipeline_folder_impl_free(pipeline_folder_impl_t *pipeline_folder_impl) {
@@ -78,6 +93,14 @@ void pipeline_folder_impl_free(pipeline_folder_impl_t *pipeline_folder_impl) {
     if (pipeline_folder_impl->organization) {
         free(pipeline_folder_impl->organization);
         pipeline_folder_impl->organization = NULL;
+    }
+    if (pipeline_folder_impl->number_of_folders) {
+        free(pipeline_folder_impl->number_of_folders);
+        pipeline_folder_impl->number_of_folders = NULL;
+    }
+    if (pipeline_folder_impl->number_of_pipelines) {
+        free(pipeline_folder_impl->number_of_pipelines);
+        pipeline_folder_impl->number_of_pipelines = NULL;
     }
     free(pipeline_folder_impl);
 }
@@ -127,7 +150,7 @@ cJSON *pipeline_folder_impl_convertToJSON(pipeline_folder_impl_t *pipeline_folde
 
     // pipeline_folder_impl->number_of_folders
     if(pipeline_folder_impl->number_of_folders) {
-    if(cJSON_AddNumberToObject(item, "numberOfFolders", pipeline_folder_impl->number_of_folders) == NULL) {
+    if(cJSON_AddNumberToObject(item, "numberOfFolders", *pipeline_folder_impl->number_of_folders) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -135,7 +158,7 @@ cJSON *pipeline_folder_impl_convertToJSON(pipeline_folder_impl_t *pipeline_folde
 
     // pipeline_folder_impl->number_of_pipelines
     if(pipeline_folder_impl->number_of_pipelines) {
-    if(cJSON_AddNumberToObject(item, "numberOfPipelines", pipeline_folder_impl->number_of_pipelines) == NULL) {
+    if(cJSON_AddNumberToObject(item, "numberOfPipelines", *pipeline_folder_impl->number_of_pipelines) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -151,6 +174,22 @@ fail:
 pipeline_folder_impl_t *pipeline_folder_impl_parseFromJSON(cJSON *pipeline_folder_implJSON){
 
     pipeline_folder_impl_t *pipeline_folder_impl_local_var = NULL;
+
+    char *_class_local_str = NULL;
+
+    char *display_name_local_str = NULL;
+
+    char *full_name_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *organization_local_str = NULL;
+
+    // define the local variable for pipeline_folder_impl->number_of_folders
+    int *number_of_folders_local_var = NULL;
+
+    // define the local variable for pipeline_folder_impl->number_of_pipelines
+    int *number_of_pipelines_local_var = NULL;
 
     // pipeline_folder_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_folder_implJSON, "_class");
@@ -222,6 +261,12 @@ pipeline_folder_impl_t *pipeline_folder_impl_parseFromJSON(cJSON *pipeline_folde
     {
     goto end; //Numeric
     }
+    number_of_folders_local_var = malloc(sizeof(int));
+    if(!number_of_folders_local_var)
+    {
+        goto end;
+    }
+    *number_of_folders_local_var = number_of_folders->valuedouble;
     }
 
     // pipeline_folder_impl->number_of_pipelines
@@ -234,21 +279,65 @@ pipeline_folder_impl_t *pipeline_folder_impl_parseFromJSON(cJSON *pipeline_folde
     {
     goto end; //Numeric
     }
+    number_of_pipelines_local_var = malloc(sizeof(int));
+    if(!number_of_pipelines_local_var)
+    {
+        goto end;
+    }
+    *number_of_pipelines_local_var = number_of_pipelines->valuedouble;
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+    if (full_name && !cJSON_IsNull(full_name)) full_name_local_str = strdup(full_name->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (organization && !cJSON_IsNull(organization)) organization_local_str = strdup(organization->valuestring);
+
     pipeline_folder_impl_local_var = pipeline_folder_impl_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
-        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
-        number_of_folders ? number_of_folders->valuedouble : 0,
-        number_of_pipelines ? number_of_pipelines->valuedouble : 0
+        _class_local_str,
+        display_name_local_str,
+        full_name_local_str,
+        name_local_str,
+        organization_local_str,
+        number_of_folders_local_var,
+        number_of_pipelines_local_var
         );
+
+    if (!pipeline_folder_impl_local_var) {
+        goto end;
+    }
 
     return pipeline_folder_impl_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
+    if (full_name_local_str) {
+        free(full_name_local_str);
+        full_name_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (organization_local_str) {
+        free(organization_local_str);
+        organization_local_str = NULL;
+    }
+    if (number_of_folders_local_var) {
+        free(number_of_folders_local_var);
+        number_of_folders_local_var = NULL;
+    }
+    if (number_of_pipelines_local_var) {
+        free(number_of_pipelines_local_var);
+        number_of_pipelines_local_var = NULL;
+    }
     return NULL;
 
 }

@@ -17,14 +17,14 @@ static pipeline_run_impllinks_t *pipeline_run_impllinks_create_internal(
     if (!pipeline_run_impllinks_local_var) {
         return NULL;
     }
+    memset(pipeline_run_impllinks_local_var, 0, sizeof(pipeline_run_impllinks_t));
+    pipeline_run_impllinks_local_var->_library_owned = 1;
     pipeline_run_impllinks_local_var->nodes = nodes;
     pipeline_run_impllinks_local_var->log = log;
     pipeline_run_impllinks_local_var->self = self;
     pipeline_run_impllinks_local_var->actions = actions;
     pipeline_run_impllinks_local_var->steps = steps;
     pipeline_run_impllinks_local_var->_class = _class;
-
-    pipeline_run_impllinks_local_var->_library_owned = 1;
     return pipeline_run_impllinks_local_var;
 }
 
@@ -36,7 +36,7 @@ __attribute__((deprecated)) pipeline_run_impllinks_t *pipeline_run_impllinks_cre
     link_t *steps,
     char *_class
     ) {
-    return pipeline_run_impllinks_create_internal (
+    pipeline_run_impllinks_t *result = pipeline_run_impllinks_create_internal (
         nodes,
         log,
         self,
@@ -44,6 +44,9 @@ __attribute__((deprecated)) pipeline_run_impllinks_t *pipeline_run_impllinks_cre
         steps,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void pipeline_run_impllinks_free(pipeline_run_impllinks_t *pipeline_run_impllinks) {
@@ -184,6 +187,8 @@ pipeline_run_impllinks_t *pipeline_run_impllinks_parseFromJSON(cJSON *pipeline_r
     // define the local variable for pipeline_run_impllinks->steps
     link_t *steps_local_nonprim = NULL;
 
+    char *_class_local_str = NULL;
+
     // pipeline_run_impllinks->nodes
     cJSON *nodes = cJSON_GetObjectItemCaseSensitive(pipeline_run_impllinksJSON, "nodes");
     if (cJSON_IsNull(nodes)) {
@@ -242,14 +247,20 @@ pipeline_run_impllinks_t *pipeline_run_impllinks_parseFromJSON(cJSON *pipeline_r
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     pipeline_run_impllinks_local_var = pipeline_run_impllinks_create_internal (
         nodes ? nodes_local_nonprim : NULL,
         log ? log_local_nonprim : NULL,
         self ? self_local_nonprim : NULL,
         actions ? actions_local_nonprim : NULL,
         steps ? steps_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!pipeline_run_impllinks_local_var) {
+        goto end;
+    }
 
     return pipeline_run_impllinks_local_var;
 end:
@@ -272,6 +283,10 @@ end:
     if (steps_local_nonprim) {
         link_free(steps_local_nonprim);
         steps_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

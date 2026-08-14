@@ -22,7 +22,7 @@ typedef struct free_style_projecthealth_report_t {
     char *description; // string
     char *icon_class_name; // string
     char *icon_url; // string
-    int score; //numeric
+    int *score; //numeric
     char *_class; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -32,7 +32,7 @@ __attribute__((deprecated)) free_style_projecthealth_report_t *free_style_projec
     char *description,
     char *icon_class_name,
     char *icon_url,
-    int score,
+    int *score,
     char *_class
 );
 

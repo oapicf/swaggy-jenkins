@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	ExtensionClassImpllinks getLinks();
 
 	/*! \brief Set 
 	 */
-	void setLinks(ExtensionClassImpllinks  _links);
+	void setLinks(ExtensionClassImpllinks _links);
 	/*! \brief Get 
 	 */
 	std::list<std::string> getClasses();
 
 	/*! \brief Set 
 	 */
-	void setClasses(std::list <std::string> classes);
+	void setClasses(std::list<std::string> classes);
 
 
     private:

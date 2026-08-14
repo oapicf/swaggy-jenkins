@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 apis/BaseApi.js
 apis/BlueOceanApi.js
@@ -87,7 +86,4 @@ models/UnlabeledLoadStatistics.js
 models/User.js
 operations/actions.js
 package.json
-samples/BaseApi.js
-samples/BlueOceanApi.js
-samples/RemoteAccessApi.js
 utils/utils.js

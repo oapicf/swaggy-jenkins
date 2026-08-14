@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.2.1-pre.0
+ * API version: 3.3.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -71,7 +71,8 @@ type FreeStyleProject struct {
 	Scm NullScm `json:"scm,omitempty"`
 }
 
-// AssertFreeStyleProjectRequired checks if the required fields are not zero-ed
+// AssertFreeStyleProjectRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertFreeStyleProjectRequired(obj FreeStyleProject) error {
 	for _, el := range obj.Actions {
 		if err := AssertFreeStyleProjectactionsRequired(el); err != nil {

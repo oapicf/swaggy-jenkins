@@ -22,21 +22,21 @@ typedef struct free_style_build_t free_style_build_t;
 
 typedef struct free_style_build_t {
     char *_class; // string
-    int number; //numeric
+    int *number; //numeric
     char *url; // string
     list_t *actions; //nonprimitive container
-    int building; //boolean
+    int *building; //boolean
     char *description; // string
     char *display_name; // string
-    int duration; //numeric
-    int estimated_duration; //numeric
+    int *duration; //numeric
+    int *estimated_duration; //numeric
     char *executor; // string
     char *full_display_name; // string
     char *id; // string
-    int keep_log; //boolean
-    int queue_id; //numeric
+    int *keep_log; //boolean
+    int *queue_id; //numeric
     char *result; // string
-    int timestamp; //numeric
+    int *timestamp; //numeric
     char *built_on; // string
     struct empty_change_log_set_t *change_set; //model
 
@@ -45,21 +45,21 @@ typedef struct free_style_build_t {
 
 __attribute__((deprecated)) free_style_build_t *free_style_build_create(
     char *_class,
-    int number,
+    int *number,
     char *url,
     list_t *actions,
-    int building,
+    int *building,
     char *description,
     char *display_name,
-    int duration,
-    int estimated_duration,
+    int *duration,
+    int *estimated_duration,
     char *executor,
     char *full_display_name,
     char *id,
-    int keep_log,
-    int queue_id,
+    int *keep_log,
+    int *queue_id,
     char *result,
-    int timestamp,
+    int *timestamp,
     char *built_on,
     empty_change_log_set_t *change_set
 );

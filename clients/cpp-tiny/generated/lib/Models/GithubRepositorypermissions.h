@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setAdmin(bool  admin);
+	void setAdmin(bool admin);
 	/*! \brief Get 
 	 */
 	bool isPush();
 
 	/*! \brief Set 
 	 */
-	void setPush(bool  push);
+	void setPush(bool push);
 	/*! \brief Get 
 	 */
 	bool isPull();
 
 	/*! \brief Set 
 	 */
-	void setPull(bool  pull);
+	void setPull(bool pull);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

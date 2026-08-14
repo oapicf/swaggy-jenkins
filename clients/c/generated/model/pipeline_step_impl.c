@@ -9,7 +9,7 @@ static pipeline_step_impl_t *pipeline_step_impl_create_internal(
     char *_class,
     pipeline_step_impllinks_t *_links,
     char *display_name,
-    int duration_in_millis,
+    int *duration_in_millis,
     char *id,
     input_step_impl_t *input,
     char *result,
@@ -20,6 +20,8 @@ static pipeline_step_impl_t *pipeline_step_impl_create_internal(
     if (!pipeline_step_impl_local_var) {
         return NULL;
     }
+    memset(pipeline_step_impl_local_var, 0, sizeof(pipeline_step_impl_t));
+    pipeline_step_impl_local_var->_library_owned = 1;
     pipeline_step_impl_local_var->_class = _class;
     pipeline_step_impl_local_var->_links = _links;
     pipeline_step_impl_local_var->display_name = display_name;
@@ -29,8 +31,6 @@ static pipeline_step_impl_t *pipeline_step_impl_create_internal(
     pipeline_step_impl_local_var->result = result;
     pipeline_step_impl_local_var->start_time = start_time;
     pipeline_step_impl_local_var->state = state;
-
-    pipeline_step_impl_local_var->_library_owned = 1;
     return pipeline_step_impl_local_var;
 }
 
@@ -38,24 +38,33 @@ __attribute__((deprecated)) pipeline_step_impl_t *pipeline_step_impl_create(
     char *_class,
     pipeline_step_impllinks_t *_links,
     char *display_name,
-    int duration_in_millis,
+    int *duration_in_millis,
     char *id,
     input_step_impl_t *input,
     char *result,
     char *start_time,
     char *state
     ) {
-    return pipeline_step_impl_create_internal (
+    int *duration_in_millis_copy = NULL;
+    if (duration_in_millis) {
+        duration_in_millis_copy = malloc(sizeof(int));
+        if (duration_in_millis_copy) *duration_in_millis_copy = *duration_in_millis;
+    }
+    pipeline_step_impl_t *result = pipeline_step_impl_create_internal (
         _class,
         _links,
         display_name,
-        duration_in_millis,
+        duration_in_millis_copy,
         id,
         input,
         result,
         start_time,
         state
         );
+    if (!result) {
+        free(duration_in_millis_copy);
+    }
+    return result;
 }
 
 void pipeline_step_impl_free(pipeline_step_impl_t *pipeline_step_impl) {
@@ -78,6 +87,10 @@ void pipeline_step_impl_free(pipeline_step_impl_t *pipeline_step_impl) {
     if (pipeline_step_impl->display_name) {
         free(pipeline_step_impl->display_name);
         pipeline_step_impl->display_name = NULL;
+    }
+    if (pipeline_step_impl->duration_in_millis) {
+        free(pipeline_step_impl->duration_in_millis);
+        pipeline_step_impl->duration_in_millis = NULL;
     }
     if (pipeline_step_impl->id) {
         free(pipeline_step_impl->id);
@@ -136,7 +149,7 @@ cJSON *pipeline_step_impl_convertToJSON(pipeline_step_impl_t *pipeline_step_impl
 
     // pipeline_step_impl->duration_in_millis
     if(pipeline_step_impl->duration_in_millis) {
-    if(cJSON_AddNumberToObject(item, "durationInMillis", pipeline_step_impl->duration_in_millis) == NULL) {
+    if(cJSON_AddNumberToObject(item, "durationInMillis", *pipeline_step_impl->duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -198,11 +211,26 @@ pipeline_step_impl_t *pipeline_step_impl_parseFromJSON(cJSON *pipeline_step_impl
 
     pipeline_step_impl_t *pipeline_step_impl_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local variable for pipeline_step_impl->_links
     pipeline_step_impllinks_t *_links_local_nonprim = NULL;
 
+    char *display_name_local_str = NULL;
+
+    // define the local variable for pipeline_step_impl->duration_in_millis
+    int *duration_in_millis_local_var = NULL;
+
+    char *id_local_str = NULL;
+
     // define the local variable for pipeline_step_impl->input
     input_step_impl_t *input_local_nonprim = NULL;
+
+    char *result_local_str = NULL;
+
+    char *start_time_local_str = NULL;
+
+    char *state_local_str = NULL;
 
     // pipeline_step_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_step_implJSON, "_class");
@@ -247,6 +275,12 @@ pipeline_step_impl_t *pipeline_step_impl_parseFromJSON(cJSON *pipeline_step_impl
     {
     goto end; //Numeric
     }
+    duration_in_millis_local_var = malloc(sizeof(int));
+    if(!duration_in_millis_local_var)
+    {
+        goto end;
+    }
+    *duration_in_millis_local_var = duration_in_millis->valuedouble;
     }
 
     // pipeline_step_impl->id
@@ -307,27 +341,66 @@ pipeline_step_impl_t *pipeline_step_impl_parseFromJSON(cJSON *pipeline_step_impl
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (result && !cJSON_IsNull(result)) result_local_str = strdup(result->valuestring);
+    if (start_time && !cJSON_IsNull(start_time)) start_time_local_str = strdup(start_time->valuestring);
+    if (state && !cJSON_IsNull(state)) state_local_str = strdup(state->valuestring);
+
     pipeline_step_impl_local_var = pipeline_step_impl_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         _links ? _links_local_nonprim : NULL,
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
-        duration_in_millis ? duration_in_millis->valuedouble : 0,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
+        display_name_local_str,
+        duration_in_millis_local_var,
+        id_local_str,
         input ? input_local_nonprim : NULL,
-        result && !cJSON_IsNull(result) ? strdup(result->valuestring) : NULL,
-        start_time && !cJSON_IsNull(start_time) ? strdup(start_time->valuestring) : NULL,
-        state && !cJSON_IsNull(state) ? strdup(state->valuestring) : NULL
+        result_local_str,
+        start_time_local_str,
+        state_local_str
         );
+
+    if (!pipeline_step_impl_local_var) {
+        goto end;
+    }
 
     return pipeline_step_impl_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (_links_local_nonprim) {
         pipeline_step_impllinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;
     }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
+    if (duration_in_millis_local_var) {
+        free(duration_in_millis_local_var);
+        duration_in_millis_local_var = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
     if (input_local_nonprim) {
         input_step_impl_free(input_local_nonprim);
         input_local_nonprim = NULL;
+    }
+    if (result_local_str) {
+        free(result_local_str);
+        result_local_str = NULL;
+    }
+    if (start_time_local_str) {
+        free(start_time_local_str);
+        start_time_local_str = NULL;
+    }
+    if (state_local_str) {
+        free(state_local_str);
+        state_local_str = NULL;
     }
     return NULL;
 

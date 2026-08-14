@@ -85,7 +85,7 @@ PipelineRunNodeedges::getId()
 }
 
 void
-PipelineRunNodeedges::setId(std::string  id)
+PipelineRunNodeedges::setId(std::string id)
 {
 	this->id = id;
 }
@@ -97,7 +97,7 @@ PipelineRunNodeedges::getClass()
 }
 
 void
-PipelineRunNodeedges::setClass(std::string  _class)
+PipelineRunNodeedges::setClass(std::string _class)
 {
 	this->_class = _class;
 }

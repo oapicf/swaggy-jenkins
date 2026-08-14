@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -12,56 +13,73 @@ import org.openapitools.model.EmptyChangeLogSet;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * FreeStyleBuild
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FreeStyleBuild {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer number;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String url;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid CauseAction> actions = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean building;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String description;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer duration;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer estimatedDuration;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String executor;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String fullDisplayName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean keepLog;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer queueId;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String result;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer timestamp;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String builtOn;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable EmptyChangeLogSet changeSet;
 
   public FreeStyleBuild propertyClass(@Nullable String propertyClass) {
@@ -80,6 +98,7 @@ public class FreeStyleBuild {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -100,6 +119,7 @@ public class FreeStyleBuild {
     return number;
   }
 
+  @JsonProperty("number")
   public void setNumber(@Nullable Integer number) {
     this.number = number;
   }
@@ -120,6 +140,7 @@ public class FreeStyleBuild {
     return url;
   }
 
+  @JsonProperty("url")
   public void setUrl(@Nullable String url) {
     this.url = url;
   }
@@ -148,6 +169,7 @@ public class FreeStyleBuild {
     return actions;
   }
 
+  @JsonProperty("actions")
   public void setActions(List<@Valid CauseAction> actions) {
     this.actions = actions;
   }
@@ -168,6 +190,7 @@ public class FreeStyleBuild {
     return building;
   }
 
+  @JsonProperty("building")
   public void setBuilding(@Nullable Boolean building) {
     this.building = building;
   }
@@ -188,6 +211,7 @@ public class FreeStyleBuild {
     return description;
   }
 
+  @JsonProperty("description")
   public void setDescription(@Nullable String description) {
     this.description = description;
   }
@@ -208,6 +232,7 @@ public class FreeStyleBuild {
     return displayName;
   }
 
+  @JsonProperty("displayName")
   public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
@@ -228,6 +253,7 @@ public class FreeStyleBuild {
     return duration;
   }
 
+  @JsonProperty("duration")
   public void setDuration(@Nullable Integer duration) {
     this.duration = duration;
   }
@@ -248,6 +274,7 @@ public class FreeStyleBuild {
     return estimatedDuration;
   }
 
+  @JsonProperty("estimatedDuration")
   public void setEstimatedDuration(@Nullable Integer estimatedDuration) {
     this.estimatedDuration = estimatedDuration;
   }
@@ -268,6 +295,7 @@ public class FreeStyleBuild {
     return executor;
   }
 
+  @JsonProperty("executor")
   public void setExecutor(@Nullable String executor) {
     this.executor = executor;
   }
@@ -288,6 +316,7 @@ public class FreeStyleBuild {
     return fullDisplayName;
   }
 
+  @JsonProperty("fullDisplayName")
   public void setFullDisplayName(@Nullable String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
   }
@@ -308,6 +337,7 @@ public class FreeStyleBuild {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(@Nullable String id) {
     this.id = id;
   }
@@ -328,6 +358,7 @@ public class FreeStyleBuild {
     return keepLog;
   }
 
+  @JsonProperty("keepLog")
   public void setKeepLog(@Nullable Boolean keepLog) {
     this.keepLog = keepLog;
   }
@@ -348,6 +379,7 @@ public class FreeStyleBuild {
     return queueId;
   }
 
+  @JsonProperty("queueId")
   public void setQueueId(@Nullable Integer queueId) {
     this.queueId = queueId;
   }
@@ -368,6 +400,7 @@ public class FreeStyleBuild {
     return result;
   }
 
+  @JsonProperty("result")
   public void setResult(@Nullable String result) {
     this.result = result;
   }
@@ -388,6 +421,7 @@ public class FreeStyleBuild {
     return timestamp;
   }
 
+  @JsonProperty("timestamp")
   public void setTimestamp(@Nullable Integer timestamp) {
     this.timestamp = timestamp;
   }
@@ -408,6 +442,7 @@ public class FreeStyleBuild {
     return builtOn;
   }
 
+  @JsonProperty("builtOn")
   public void setBuiltOn(@Nullable String builtOn) {
     this.builtOn = builtOn;
   }
@@ -428,6 +463,7 @@ public class FreeStyleBuild {
     return changeSet;
   }
 
+  @JsonProperty("changeSet")
   public void setChangeSet(@Nullable EmptyChangeLogSet changeSet) {
     this.changeSet = changeSet;
   }
@@ -496,11 +532,8 @@ public class FreeStyleBuild {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

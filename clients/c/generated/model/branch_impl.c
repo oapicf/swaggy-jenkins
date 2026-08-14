@@ -8,14 +8,14 @@
 static branch_impl_t *branch_impl_create_internal(
     char *_class,
     char *display_name,
-    int estimated_duration_in_millis,
+    int *estimated_duration_in_millis,
     char *full_display_name,
     char *full_name,
     char *name,
     char *organization,
     list_t *parameters,
     branch_implpermissions_t *permissions,
-    int weather_score,
+    int *weather_score,
     char *pull_request,
     branch_impllinks_t *_links,
     pipeline_run_impl_t *latest_run
@@ -24,6 +24,8 @@ static branch_impl_t *branch_impl_create_internal(
     if (!branch_impl_local_var) {
         return NULL;
     }
+    memset(branch_impl_local_var, 0, sizeof(branch_impl_t));
+    branch_impl_local_var->_library_owned = 1;
     branch_impl_local_var->_class = _class;
     branch_impl_local_var->display_name = display_name;
     branch_impl_local_var->estimated_duration_in_millis = estimated_duration_in_millis;
@@ -37,41 +39,54 @@ static branch_impl_t *branch_impl_create_internal(
     branch_impl_local_var->pull_request = pull_request;
     branch_impl_local_var->_links = _links;
     branch_impl_local_var->latest_run = latest_run;
-
-    branch_impl_local_var->_library_owned = 1;
     return branch_impl_local_var;
 }
 
 __attribute__((deprecated)) branch_impl_t *branch_impl_create(
     char *_class,
     char *display_name,
-    int estimated_duration_in_millis,
+    int *estimated_duration_in_millis,
     char *full_display_name,
     char *full_name,
     char *name,
     char *organization,
     list_t *parameters,
     branch_implpermissions_t *permissions,
-    int weather_score,
+    int *weather_score,
     char *pull_request,
     branch_impllinks_t *_links,
     pipeline_run_impl_t *latest_run
     ) {
-    return branch_impl_create_internal (
+    int *estimated_duration_in_millis_copy = NULL;
+    if (estimated_duration_in_millis) {
+        estimated_duration_in_millis_copy = malloc(sizeof(int));
+        if (estimated_duration_in_millis_copy) *estimated_duration_in_millis_copy = *estimated_duration_in_millis;
+    }
+    int *weather_score_copy = NULL;
+    if (weather_score) {
+        weather_score_copy = malloc(sizeof(int));
+        if (weather_score_copy) *weather_score_copy = *weather_score;
+    }
+    branch_impl_t *result = branch_impl_create_internal (
         _class,
         display_name,
-        estimated_duration_in_millis,
+        estimated_duration_in_millis_copy,
         full_display_name,
         full_name,
         name,
         organization,
         parameters,
         permissions,
-        weather_score,
+        weather_score_copy,
         pull_request,
         _links,
         latest_run
         );
+    if (!result) {
+        free(estimated_duration_in_millis_copy);
+        free(weather_score_copy);
+    }
+    return result;
 }
 
 void branch_impl_free(branch_impl_t *branch_impl) {
@@ -90,6 +105,10 @@ void branch_impl_free(branch_impl_t *branch_impl) {
     if (branch_impl->display_name) {
         free(branch_impl->display_name);
         branch_impl->display_name = NULL;
+    }
+    if (branch_impl->estimated_duration_in_millis) {
+        free(branch_impl->estimated_duration_in_millis);
+        branch_impl->estimated_duration_in_millis = NULL;
     }
     if (branch_impl->full_display_name) {
         free(branch_impl->full_display_name);
@@ -117,6 +136,10 @@ void branch_impl_free(branch_impl_t *branch_impl) {
     if (branch_impl->permissions) {
         branch_implpermissions_free(branch_impl->permissions);
         branch_impl->permissions = NULL;
+    }
+    if (branch_impl->weather_score) {
+        free(branch_impl->weather_score);
+        branch_impl->weather_score = NULL;
     }
     if (branch_impl->pull_request) {
         free(branch_impl->pull_request);
@@ -154,7 +177,7 @@ cJSON *branch_impl_convertToJSON(branch_impl_t *branch_impl) {
 
     // branch_impl->estimated_duration_in_millis
     if(branch_impl->estimated_duration_in_millis) {
-    if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", branch_impl->estimated_duration_in_millis) == NULL) {
+    if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", *branch_impl->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -227,7 +250,7 @@ cJSON *branch_impl_convertToJSON(branch_impl_t *branch_impl) {
 
     // branch_impl->weather_score
     if(branch_impl->weather_score) {
-    if(cJSON_AddNumberToObject(item, "weatherScore", branch_impl->weather_score) == NULL) {
+    if(cJSON_AddNumberToObject(item, "weatherScore", *branch_impl->weather_score) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -278,11 +301,31 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
 
     branch_impl_t *branch_impl_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *display_name_local_str = NULL;
+
+    // define the local variable for branch_impl->estimated_duration_in_millis
+    int *estimated_duration_in_millis_local_var = NULL;
+
+    char *full_display_name_local_str = NULL;
+
+    char *full_name_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *organization_local_str = NULL;
+
     // define the local list for branch_impl->parameters
     list_t *parametersList = NULL;
 
     // define the local variable for branch_impl->permissions
     branch_implpermissions_t *permissions_local_nonprim = NULL;
+
+    // define the local variable for branch_impl->weather_score
+    int *weather_score_local_var = NULL;
+
+    char *pull_request_local_str = NULL;
 
     // define the local variable for branch_impl->_links
     branch_impllinks_t *_links_local_nonprim = NULL;
@@ -324,6 +367,12 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
     {
     goto end; //Numeric
     }
+    estimated_duration_in_millis_local_var = malloc(sizeof(int));
+    if(!estimated_duration_in_millis_local_var)
+    {
+        goto end;
+    }
+    *estimated_duration_in_millis_local_var = estimated_duration_in_millis->valuedouble;
     }
 
     // branch_impl->full_display_name
@@ -417,6 +466,12 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
     {
     goto end; //Numeric
     }
+    weather_score_local_var = malloc(sizeof(int));
+    if(!weather_score_local_var)
+    {
+        goto end;
+    }
+    *weather_score_local_var = weather_score->valuedouble;
     }
 
     // branch_impl->pull_request
@@ -450,24 +505,64 @@ branch_impl_t *branch_impl_parseFromJSON(cJSON *branch_implJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+    if (full_display_name && !cJSON_IsNull(full_display_name)) full_display_name_local_str = strdup(full_display_name->valuestring);
+    if (full_name && !cJSON_IsNull(full_name)) full_name_local_str = strdup(full_name->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (organization && !cJSON_IsNull(organization)) organization_local_str = strdup(organization->valuestring);
+    if (pull_request && !cJSON_IsNull(pull_request)) pull_request_local_str = strdup(pull_request->valuestring);
+
     branch_impl_local_var = branch_impl_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
-        estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
-        full_display_name && !cJSON_IsNull(full_display_name) ? strdup(full_display_name->valuestring) : NULL,
-        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
+        _class_local_str,
+        display_name_local_str,
+        estimated_duration_in_millis_local_var,
+        full_display_name_local_str,
+        full_name_local_str,
+        name_local_str,
+        organization_local_str,
         parameters ? parametersList : NULL,
         permissions ? permissions_local_nonprim : NULL,
-        weather_score ? weather_score->valuedouble : 0,
-        pull_request && !cJSON_IsNull(pull_request) ? strdup(pull_request->valuestring) : NULL,
+        weather_score_local_var,
+        pull_request_local_str,
         _links ? _links_local_nonprim : NULL,
         latest_run ? latest_run_local_nonprim : NULL
         );
 
+    if (!branch_impl_local_var) {
+        goto end;
+    }
+
     return branch_impl_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
+    if (estimated_duration_in_millis_local_var) {
+        free(estimated_duration_in_millis_local_var);
+        estimated_duration_in_millis_local_var = NULL;
+    }
+    if (full_display_name_local_str) {
+        free(full_display_name_local_str);
+        full_display_name_local_str = NULL;
+    }
+    if (full_name_local_str) {
+        free(full_name_local_str);
+        full_name_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (organization_local_str) {
+        free(organization_local_str);
+        organization_local_str = NULL;
+    }
     if (parametersList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, parametersList) {
@@ -480,6 +575,14 @@ end:
     if (permissions_local_nonprim) {
         branch_implpermissions_free(permissions_local_nonprim);
         permissions_local_nonprim = NULL;
+    }
+    if (weather_score_local_var) {
+        free(weather_score_local_var);
+        weather_score_local_var = NULL;
+    }
+    if (pull_request_local_str) {
+        free(pull_request_local_str);
+        pull_request_local_str = NULL;
     }
     if (_links_local_nonprim) {
         branch_impllinks_free(_links_local_nonprim);

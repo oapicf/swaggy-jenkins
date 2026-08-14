@@ -55,49 +55,49 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setHudsonnodeMonitorsSwapSpaceMonitor(SwapSpaceMonitorMemoryUsage2  hudsonnode_monitorsSwapSpaceMonitor);
+	void setHudsonnodeMonitorsSwapSpaceMonitor(SwapSpaceMonitorMemoryUsage2 hudsonnode_monitorsSwapSpaceMonitor);
 	/*! \brief Get 
 	 */
 	DiskSpaceMonitorDescriptorDiskSpace getHudsonnodeMonitorsTemporarySpaceMonitor();
 
 	/*! \brief Set 
 	 */
-	void setHudsonnodeMonitorsTemporarySpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace  hudsonnode_monitorsTemporarySpaceMonitor);
+	void setHudsonnodeMonitorsTemporarySpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonnode_monitorsTemporarySpaceMonitor);
 	/*! \brief Get 
 	 */
 	DiskSpaceMonitorDescriptorDiskSpace getHudsonnodeMonitorsDiskSpaceMonitor();
 
 	/*! \brief Set 
 	 */
-	void setHudsonnodeMonitorsDiskSpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace  hudsonnode_monitorsDiskSpaceMonitor);
+	void setHudsonnodeMonitorsDiskSpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonnode_monitorsDiskSpaceMonitor);
 	/*! \brief Get 
 	 */
 	std::string getHudsonnodeMonitorsArchitectureMonitor();
 
 	/*! \brief Set 
 	 */
-	void setHudsonnodeMonitorsArchitectureMonitor(std::string  hudsonnode_monitorsArchitectureMonitor);
+	void setHudsonnodeMonitorsArchitectureMonitor(std::string hudsonnode_monitorsArchitectureMonitor);
 	/*! \brief Get 
 	 */
 	ResponseTimeMonitorData getHudsonnodeMonitorsResponseTimeMonitor();
 
 	/*! \brief Set 
 	 */
-	void setHudsonnodeMonitorsResponseTimeMonitor(ResponseTimeMonitorData  hudsonnode_monitorsResponseTimeMonitor);
+	void setHudsonnodeMonitorsResponseTimeMonitor(ResponseTimeMonitorData hudsonnode_monitorsResponseTimeMonitor);
 	/*! \brief Get 
 	 */
 	ClockDifference getHudsonnodeMonitorsClockMonitor();
 
 	/*! \brief Set 
 	 */
-	void setHudsonnodeMonitorsClockMonitor(ClockDifference  hudsonnode_monitorsClockMonitor);
+	void setHudsonnodeMonitorsClockMonitor(ClockDifference hudsonnode_monitorsClockMonitor);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

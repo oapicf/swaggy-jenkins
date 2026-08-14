@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.2.1-pre.0
+ * API version: 3.3.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -21,7 +21,8 @@ type GithubFile struct {
 	Class string `json:"_class,omitempty"`
 }
 
-// AssertGithubFileRequired checks if the required fields are not zero-ed
+// AssertGithubFileRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertGithubFileRequired(obj GithubFile) error {
 	if err := AssertGithubContentRequired(obj.Content); err != nil {
 		return err

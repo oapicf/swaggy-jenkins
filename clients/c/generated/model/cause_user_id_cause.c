@@ -15,12 +15,12 @@ static cause_user_id_cause_t *cause_user_id_cause_create_internal(
     if (!cause_user_id_cause_local_var) {
         return NULL;
     }
+    memset(cause_user_id_cause_local_var, 0, sizeof(cause_user_id_cause_t));
+    cause_user_id_cause_local_var->_library_owned = 1;
     cause_user_id_cause_local_var->_class = _class;
     cause_user_id_cause_local_var->short_description = short_description;
     cause_user_id_cause_local_var->user_id = user_id;
     cause_user_id_cause_local_var->user_name = user_name;
-
-    cause_user_id_cause_local_var->_library_owned = 1;
     return cause_user_id_cause_local_var;
 }
 
@@ -30,12 +30,15 @@ __attribute__((deprecated)) cause_user_id_cause_t *cause_user_id_cause_create(
     char *user_id,
     char *user_name
     ) {
-    return cause_user_id_cause_create_internal (
+    cause_user_id_cause_t *result = cause_user_id_cause_create_internal (
         _class,
         short_description,
         user_id,
         user_name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void cause_user_id_cause_free(cause_user_id_cause_t *cause_user_id_cause) {
@@ -112,6 +115,14 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
 
     cause_user_id_cause_t *cause_user_id_cause_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *short_description_local_str = NULL;
+
+    char *user_id_local_str = NULL;
+
+    char *user_name_local_str = NULL;
+
     // cause_user_id_cause->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(cause_user_id_causeJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -161,15 +172,40 @@ cause_user_id_cause_t *cause_user_id_cause_parseFromJSON(cJSON *cause_user_id_ca
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (short_description && !cJSON_IsNull(short_description)) short_description_local_str = strdup(short_description->valuestring);
+    if (user_id && !cJSON_IsNull(user_id)) user_id_local_str = strdup(user_id->valuestring);
+    if (user_name && !cJSON_IsNull(user_name)) user_name_local_str = strdup(user_name->valuestring);
+
     cause_user_id_cause_local_var = cause_user_id_cause_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        short_description && !cJSON_IsNull(short_description) ? strdup(short_description->valuestring) : NULL,
-        user_id && !cJSON_IsNull(user_id) ? strdup(user_id->valuestring) : NULL,
-        user_name && !cJSON_IsNull(user_name) ? strdup(user_name->valuestring) : NULL
+        _class_local_str,
+        short_description_local_str,
+        user_id_local_str,
+        user_name_local_str
         );
+
+    if (!cause_user_id_cause_local_var) {
+        goto end;
+    }
 
     return cause_user_id_cause_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (short_description_local_str) {
+        free(short_description_local_str);
+        short_description_local_str = NULL;
+    }
+    if (user_id_local_str) {
+        free(user_id_local_str);
+        user_id_local_str = NULL;
+    }
+    if (user_name_local_str) {
+        free(user_name_local_str);
+        user_name_local_str = NULL;
+    }
     return NULL;
 
 }

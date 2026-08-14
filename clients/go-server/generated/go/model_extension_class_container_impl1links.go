@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.2.1-pre.0
+ * API version: 3.3.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -21,7 +21,8 @@ type ExtensionClassContainerImpl1links struct {
 	Class string `json:"_class,omitempty"`
 }
 
-// AssertExtensionClassContainerImpl1linksRequired checks if the required fields are not zero-ed
+// AssertExtensionClassContainerImpl1linksRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertExtensionClassContainerImpl1linksRequired(obj ExtensionClassContainerImpl1links) error {
 	if err := AssertLinkRequired(obj.Self); err != nil {
 		return err

@@ -7,27 +7,36 @@
 
 static clock_difference_t *clock_difference_create_internal(
     char *_class,
-    int diff
+    int *diff
     ) {
     clock_difference_t *clock_difference_local_var = malloc(sizeof(clock_difference_t));
     if (!clock_difference_local_var) {
         return NULL;
     }
+    memset(clock_difference_local_var, 0, sizeof(clock_difference_t));
+    clock_difference_local_var->_library_owned = 1;
     clock_difference_local_var->_class = _class;
     clock_difference_local_var->diff = diff;
-
-    clock_difference_local_var->_library_owned = 1;
     return clock_difference_local_var;
 }
 
 __attribute__((deprecated)) clock_difference_t *clock_difference_create(
     char *_class,
-    int diff
+    int *diff
     ) {
-    return clock_difference_create_internal (
+    int *diff_copy = NULL;
+    if (diff) {
+        diff_copy = malloc(sizeof(int));
+        if (diff_copy) *diff_copy = *diff;
+    }
+    clock_difference_t *result = clock_difference_create_internal (
         _class,
-        diff
+        diff_copy
         );
+    if (!result) {
+        free(diff_copy);
+    }
+    return result;
 }
 
 void clock_difference_free(clock_difference_t *clock_difference) {
@@ -42,6 +51,10 @@ void clock_difference_free(clock_difference_t *clock_difference) {
     if (clock_difference->_class) {
         free(clock_difference->_class);
         clock_difference->_class = NULL;
+    }
+    if (clock_difference->diff) {
+        free(clock_difference->diff);
+        clock_difference->diff = NULL;
     }
     free(clock_difference);
 }
@@ -59,7 +72,7 @@ cJSON *clock_difference_convertToJSON(clock_difference_t *clock_difference) {
 
     // clock_difference->diff
     if(clock_difference->diff) {
-    if(cJSON_AddNumberToObject(item, "diff", clock_difference->diff) == NULL) {
+    if(cJSON_AddNumberToObject(item, "diff", *clock_difference->diff) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -75,6 +88,11 @@ fail:
 clock_difference_t *clock_difference_parseFromJSON(cJSON *clock_differenceJSON){
 
     clock_difference_t *clock_difference_local_var = NULL;
+
+    char *_class_local_str = NULL;
+
+    // define the local variable for clock_difference->diff
+    int *diff_local_var = NULL;
 
     // clock_difference->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(clock_differenceJSON, "_class");
@@ -98,16 +116,36 @@ clock_difference_t *clock_difference_parseFromJSON(cJSON *clock_differenceJSON){
     {
     goto end; //Numeric
     }
+    diff_local_var = malloc(sizeof(int));
+    if(!diff_local_var)
+    {
+        goto end;
+    }
+    *diff_local_var = diff->valuedouble;
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     clock_difference_local_var = clock_difference_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        diff ? diff->valuedouble : 0
+        _class_local_str,
+        diff_local_var
         );
+
+    if (!clock_difference_local_var) {
+        goto end;
+    }
 
     return clock_difference_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (diff_local_var) {
+        free(diff_local_var);
+        diff_local_var = NULL;
+    }
     return NULL;
 
 }

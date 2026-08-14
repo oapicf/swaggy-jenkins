@@ -667,7 +667,7 @@ FreeStyleProject::getClass()
 }
 
 void
-FreeStyleProject::setClass(std::string  _class)
+FreeStyleProject::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -679,7 +679,7 @@ FreeStyleProject::getName()
 }
 
 void
-FreeStyleProject::setName(std::string  name)
+FreeStyleProject::setName(std::string name)
 {
 	this->name = name;
 }
@@ -691,7 +691,7 @@ FreeStyleProject::getUrl()
 }
 
 void
-FreeStyleProject::setUrl(std::string  url)
+FreeStyleProject::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -703,7 +703,7 @@ FreeStyleProject::getColor()
 }
 
 void
-FreeStyleProject::setColor(std::string  color)
+FreeStyleProject::setColor(std::string color)
 {
 	this->color = color;
 }
@@ -715,7 +715,7 @@ FreeStyleProject::getActions()
 }
 
 void
-FreeStyleProject::setActions(std::list <FreeStyleProjectactions> actions)
+FreeStyleProject::setActions(std::list<FreeStyleProjectactions> actions)
 {
 	this->actions = actions;
 }
@@ -727,7 +727,7 @@ FreeStyleProject::getDescription()
 }
 
 void
-FreeStyleProject::setDescription(std::string  description)
+FreeStyleProject::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -739,7 +739,7 @@ FreeStyleProject::getDisplayName()
 }
 
 void
-FreeStyleProject::setDisplayName(std::string  displayName)
+FreeStyleProject::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -751,7 +751,7 @@ FreeStyleProject::getDisplayNameOrNull()
 }
 
 void
-FreeStyleProject::setDisplayNameOrNull(std::string  displayNameOrNull)
+FreeStyleProject::setDisplayNameOrNull(std::string displayNameOrNull)
 {
 	this->displayNameOrNull = displayNameOrNull;
 }
@@ -763,7 +763,7 @@ FreeStyleProject::getFullDisplayName()
 }
 
 void
-FreeStyleProject::setFullDisplayName(std::string  fullDisplayName)
+FreeStyleProject::setFullDisplayName(std::string fullDisplayName)
 {
 	this->fullDisplayName = fullDisplayName;
 }
@@ -775,7 +775,7 @@ FreeStyleProject::getFullName()
 }
 
 void
-FreeStyleProject::setFullName(std::string  fullName)
+FreeStyleProject::setFullName(std::string fullName)
 {
 	this->fullName = fullName;
 }
@@ -787,7 +787,7 @@ FreeStyleProject::isBuildable()
 }
 
 void
-FreeStyleProject::setBuildable(bool  buildable)
+FreeStyleProject::setBuildable(bool buildable)
 {
 	this->buildable = buildable;
 }
@@ -799,7 +799,7 @@ FreeStyleProject::getBuilds()
 }
 
 void
-FreeStyleProject::setBuilds(std::list <FreeStyleBuild> builds)
+FreeStyleProject::setBuilds(std::list<FreeStyleBuild> builds)
 {
 	this->builds = builds;
 }
@@ -811,7 +811,7 @@ FreeStyleProject::getFirstBuild()
 }
 
 void
-FreeStyleProject::setFirstBuild(FreeStyleBuild  firstBuild)
+FreeStyleProject::setFirstBuild(FreeStyleBuild firstBuild)
 {
 	this->firstBuild = firstBuild;
 }
@@ -823,7 +823,7 @@ FreeStyleProject::getHealthReport()
 }
 
 void
-FreeStyleProject::setHealthReport(std::list <FreeStyleProjecthealthReport> healthReport)
+FreeStyleProject::setHealthReport(std::list<FreeStyleProjecthealthReport> healthReport)
 {
 	this->healthReport = healthReport;
 }
@@ -835,7 +835,7 @@ FreeStyleProject::isInQueue()
 }
 
 void
-FreeStyleProject::setInQueue(bool  inQueue)
+FreeStyleProject::setInQueue(bool inQueue)
 {
 	this->inQueue = inQueue;
 }
@@ -847,7 +847,7 @@ FreeStyleProject::isKeepDependencies()
 }
 
 void
-FreeStyleProject::setKeepDependencies(bool  keepDependencies)
+FreeStyleProject::setKeepDependencies(bool keepDependencies)
 {
 	this->keepDependencies = keepDependencies;
 }
@@ -859,7 +859,7 @@ FreeStyleProject::getLastBuild()
 }
 
 void
-FreeStyleProject::setLastBuild(FreeStyleBuild  lastBuild)
+FreeStyleProject::setLastBuild(FreeStyleBuild lastBuild)
 {
 	this->lastBuild = lastBuild;
 }
@@ -871,7 +871,7 @@ FreeStyleProject::getLastCompletedBuild()
 }
 
 void
-FreeStyleProject::setLastCompletedBuild(FreeStyleBuild  lastCompletedBuild)
+FreeStyleProject::setLastCompletedBuild(FreeStyleBuild lastCompletedBuild)
 {
 	this->lastCompletedBuild = lastCompletedBuild;
 }
@@ -883,7 +883,7 @@ FreeStyleProject::getLastFailedBuild()
 }
 
 void
-FreeStyleProject::setLastFailedBuild(std::string  lastFailedBuild)
+FreeStyleProject::setLastFailedBuild(std::string lastFailedBuild)
 {
 	this->lastFailedBuild = lastFailedBuild;
 }
@@ -895,7 +895,7 @@ FreeStyleProject::getLastStableBuild()
 }
 
 void
-FreeStyleProject::setLastStableBuild(FreeStyleBuild  lastStableBuild)
+FreeStyleProject::setLastStableBuild(FreeStyleBuild lastStableBuild)
 {
 	this->lastStableBuild = lastStableBuild;
 }
@@ -907,7 +907,7 @@ FreeStyleProject::getLastSuccessfulBuild()
 }
 
 void
-FreeStyleProject::setLastSuccessfulBuild(FreeStyleBuild  lastSuccessfulBuild)
+FreeStyleProject::setLastSuccessfulBuild(FreeStyleBuild lastSuccessfulBuild)
 {
 	this->lastSuccessfulBuild = lastSuccessfulBuild;
 }
@@ -919,7 +919,7 @@ FreeStyleProject::getLastUnstableBuild()
 }
 
 void
-FreeStyleProject::setLastUnstableBuild(std::string  lastUnstableBuild)
+FreeStyleProject::setLastUnstableBuild(std::string lastUnstableBuild)
 {
 	this->lastUnstableBuild = lastUnstableBuild;
 }
@@ -931,7 +931,7 @@ FreeStyleProject::getLastUnsuccessfulBuild()
 }
 
 void
-FreeStyleProject::setLastUnsuccessfulBuild(std::string  lastUnsuccessfulBuild)
+FreeStyleProject::setLastUnsuccessfulBuild(std::string lastUnsuccessfulBuild)
 {
 	this->lastUnsuccessfulBuild = lastUnsuccessfulBuild;
 }
@@ -943,7 +943,7 @@ FreeStyleProject::getNextBuildNumber()
 }
 
 void
-FreeStyleProject::setNextBuildNumber(int  nextBuildNumber)
+FreeStyleProject::setNextBuildNumber(int nextBuildNumber)
 {
 	this->nextBuildNumber = nextBuildNumber;
 }
@@ -955,7 +955,7 @@ FreeStyleProject::getQueueItem()
 }
 
 void
-FreeStyleProject::setQueueItem(std::string  queueItem)
+FreeStyleProject::setQueueItem(std::string queueItem)
 {
 	this->queueItem = queueItem;
 }
@@ -967,7 +967,7 @@ FreeStyleProject::isConcurrentBuild()
 }
 
 void
-FreeStyleProject::setConcurrentBuild(bool  concurrentBuild)
+FreeStyleProject::setConcurrentBuild(bool concurrentBuild)
 {
 	this->concurrentBuild = concurrentBuild;
 }
@@ -979,7 +979,7 @@ FreeStyleProject::getScm()
 }
 
 void
-FreeStyleProject::setScm(NullSCM  scm)
+FreeStyleProject::setScm(NullSCM scm)
 {
 	this->scm = scm;
 }

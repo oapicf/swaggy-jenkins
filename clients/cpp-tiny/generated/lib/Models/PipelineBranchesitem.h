@@ -53,63 +53,63 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setDisplayName(std::string  displayName);
+	void setDisplayName(std::string displayName);
 	/*! \brief Get 
 	 */
 	int getEstimatedDurationInMillis();
 
 	/*! \brief Set 
 	 */
-	void setEstimatedDurationInMillis(int  estimatedDurationInMillis);
+	void setEstimatedDurationInMillis(int estimatedDurationInMillis);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	int getWeatherScore();
 
 	/*! \brief Set 
 	 */
-	void setWeatherScore(int  weatherScore);
+	void setWeatherScore(int weatherScore);
 	/*! \brief Get 
 	 */
 	PipelineBranchesitemlatestRun getLatestRun();
 
 	/*! \brief Set 
 	 */
-	void setLatestRun(PipelineBranchesitemlatestRun  latestRun);
+	void setLatestRun(PipelineBranchesitemlatestRun latestRun);
 	/*! \brief Get 
 	 */
 	std::string getOrganization();
 
 	/*! \brief Set 
 	 */
-	void setOrganization(std::string  organization);
+	void setOrganization(std::string organization);
 	/*! \brief Get 
 	 */
 	PipelineBranchesitempullRequest getPullRequest();
 
 	/*! \brief Set 
 	 */
-	void setPullRequest(PipelineBranchesitempullRequest  pullRequest);
+	void setPullRequest(PipelineBranchesitempullRequest pullRequest);
 	/*! \brief Get 
 	 */
 	int getTotalNumberOfPullRequests();
 
 	/*! \brief Set 
 	 */
-	void setTotalNumberOfPullRequests(int  totalNumberOfPullRequests);
+	void setTotalNumberOfPullRequests(int totalNumberOfPullRequests);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

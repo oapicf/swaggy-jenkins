@@ -7,7 +7,7 @@
 
 static pipeline_activityartifacts_t *pipeline_activityartifacts_create_internal(
     char *name,
-    int size,
+    int *size,
     char *url,
     char *_class
     ) {
@@ -15,27 +15,36 @@ static pipeline_activityartifacts_t *pipeline_activityartifacts_create_internal(
     if (!pipeline_activityartifacts_local_var) {
         return NULL;
     }
+    memset(pipeline_activityartifacts_local_var, 0, sizeof(pipeline_activityartifacts_t));
+    pipeline_activityartifacts_local_var->_library_owned = 1;
     pipeline_activityartifacts_local_var->name = name;
     pipeline_activityartifacts_local_var->size = size;
     pipeline_activityartifacts_local_var->url = url;
     pipeline_activityartifacts_local_var->_class = _class;
-
-    pipeline_activityartifacts_local_var->_library_owned = 1;
     return pipeline_activityartifacts_local_var;
 }
 
 __attribute__((deprecated)) pipeline_activityartifacts_t *pipeline_activityartifacts_create(
     char *name,
-    int size,
+    int *size,
     char *url,
     char *_class
     ) {
-    return pipeline_activityartifacts_create_internal (
+    int *size_copy = NULL;
+    if (size) {
+        size_copy = malloc(sizeof(int));
+        if (size_copy) *size_copy = *size;
+    }
+    pipeline_activityartifacts_t *result = pipeline_activityartifacts_create_internal (
         name,
-        size,
+        size_copy,
         url,
         _class
         );
+    if (!result) {
+        free(size_copy);
+    }
+    return result;
 }
 
 void pipeline_activityartifacts_free(pipeline_activityartifacts_t *pipeline_activityartifacts) {
@@ -50,6 +59,10 @@ void pipeline_activityartifacts_free(pipeline_activityartifacts_t *pipeline_acti
     if (pipeline_activityartifacts->name) {
         free(pipeline_activityartifacts->name);
         pipeline_activityartifacts->name = NULL;
+    }
+    if (pipeline_activityartifacts->size) {
+        free(pipeline_activityartifacts->size);
+        pipeline_activityartifacts->size = NULL;
     }
     if (pipeline_activityartifacts->url) {
         free(pipeline_activityartifacts->url);
@@ -75,7 +88,7 @@ cJSON *pipeline_activityartifacts_convertToJSON(pipeline_activityartifacts_t *pi
 
     // pipeline_activityartifacts->size
     if(pipeline_activityartifacts->size) {
-    if(cJSON_AddNumberToObject(item, "size", pipeline_activityartifacts->size) == NULL) {
+    if(cJSON_AddNumberToObject(item, "size", *pipeline_activityartifacts->size) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -108,6 +121,15 @@ pipeline_activityartifacts_t *pipeline_activityartifacts_parseFromJSON(cJSON *pi
 
     pipeline_activityartifacts_t *pipeline_activityartifacts_local_var = NULL;
 
+    char *name_local_str = NULL;
+
+    // define the local variable for pipeline_activityartifacts->size
+    int *size_local_var = NULL;
+
+    char *url_local_str = NULL;
+
+    char *_class_local_str = NULL;
+
     // pipeline_activityartifacts->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(pipeline_activityartifactsJSON, "name");
     if (cJSON_IsNull(name)) {
@@ -130,6 +152,12 @@ pipeline_activityartifacts_t *pipeline_activityartifacts_parseFromJSON(cJSON *pi
     {
     goto end; //Numeric
     }
+    size_local_var = malloc(sizeof(int));
+    if(!size_local_var)
+    {
+        goto end;
+    }
+    *size_local_var = size->valuedouble;
     }
 
     // pipeline_activityartifacts->url
@@ -157,15 +185,39 @@ pipeline_activityartifacts_t *pipeline_activityartifacts_parseFromJSON(cJSON *pi
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     pipeline_activityartifacts_local_var = pipeline_activityartifacts_create_internal (
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        size ? size->valuedouble : 0,
-        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        name_local_str,
+        size_local_var,
+        url_local_str,
+        _class_local_str
         );
+
+    if (!pipeline_activityartifacts_local_var) {
+        goto end;
+    }
 
     return pipeline_activityartifacts_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (size_local_var) {
+        free(size_local_var);
+        size_local_var = NULL;
+    }
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     return NULL;
 
 }

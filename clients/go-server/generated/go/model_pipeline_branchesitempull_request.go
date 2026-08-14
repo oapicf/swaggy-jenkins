@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.2.1-pre.0
+ * API version: 3.3.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -29,7 +29,8 @@ type PipelineBranchesitempullRequest struct {
 	Class string `json:"_class,omitempty"`
 }
 
-// AssertPipelineBranchesitempullRequestRequired checks if the required fields are not zero-ed
+// AssertPipelineBranchesitempullRequestRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertPipelineBranchesitempullRequestRequired(obj PipelineBranchesitempullRequest) error {
 	if err := AssertPipelineBranchesitempullRequestlinksRequired(obj.Links); err != nil {
 		return err

@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setDescription(std::string  description);
+	void setDescription(std::string description);
 	/*! \brief Get 
 	 */
 	std::string getIconClassName();
 
 	/*! \brief Set 
 	 */
-	void setIconClassName(std::string  iconClassName);
+	void setIconClassName(std::string iconClassName);
 	/*! \brief Get 
 	 */
 	std::string getIconUrl();
 
 	/*! \brief Set 
 	 */
-	void setIconUrl(std::string  iconUrl);
+	void setIconUrl(std::string iconUrl);
 	/*! \brief Get 
 	 */
 	int getScore();
 
 	/*! \brief Set 
 	 */
-	void setScore(int  score);
+	void setScore(int score);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

@@ -1,0 +1,7 @@
+## BaseApi
+
+### 
+## 
+GET http://localhost/crumbIssuer/api/json
+Accept: application/json
+Authorization: Basic: {{username-password}}

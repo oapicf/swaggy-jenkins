@@ -16,13 +16,13 @@ static branch_impllinks_t *branch_impllinks_create_internal(
     if (!branch_impllinks_local_var) {
         return NULL;
     }
+    memset(branch_impllinks_local_var, 0, sizeof(branch_impllinks_t));
+    branch_impllinks_local_var->_library_owned = 1;
     branch_impllinks_local_var->self = self;
     branch_impllinks_local_var->actions = actions;
     branch_impllinks_local_var->runs = runs;
     branch_impllinks_local_var->queue = queue;
     branch_impllinks_local_var->_class = _class;
-
-    branch_impllinks_local_var->_library_owned = 1;
     return branch_impllinks_local_var;
 }
 
@@ -33,13 +33,16 @@ __attribute__((deprecated)) branch_impllinks_t *branch_impllinks_create(
     link_t *queue,
     char *_class
     ) {
-    return branch_impllinks_create_internal (
+    branch_impllinks_t *result = branch_impllinks_create_internal (
         self,
         actions,
         runs,
         queue,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void branch_impllinks_free(branch_impllinks_t *branch_impllinks) {
@@ -160,6 +163,8 @@ branch_impllinks_t *branch_impllinks_parseFromJSON(cJSON *branch_impllinksJSON){
     // define the local variable for branch_impllinks->queue
     link_t *queue_local_nonprim = NULL;
 
+    char *_class_local_str = NULL;
+
     // branch_impllinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(branch_impllinksJSON, "self");
     if (cJSON_IsNull(self)) {
@@ -209,13 +214,19 @@ branch_impllinks_t *branch_impllinks_parseFromJSON(cJSON *branch_impllinksJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     branch_impllinks_local_var = branch_impllinks_create_internal (
         self ? self_local_nonprim : NULL,
         actions ? actions_local_nonprim : NULL,
         runs ? runs_local_nonprim : NULL,
         queue ? queue_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!branch_impllinks_local_var) {
+        goto end;
+    }
 
     return branch_impllinks_local_var;
 end:
@@ -234,6 +245,10 @@ end:
     if (queue_local_nonprim) {
         link_free(queue_local_nonprim);
         queue_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

@@ -108,7 +108,7 @@ GithubRespositoryContainer::getClass()
 }
 
 void
-GithubRespositoryContainer::setClass(std::string  _class)
+GithubRespositoryContainer::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -120,7 +120,7 @@ GithubRespositoryContainer::getLinks()
 }
 
 void
-GithubRespositoryContainer::setLinks(GithubRespositoryContainerlinks  _links)
+GithubRespositoryContainer::setLinks(GithubRespositoryContainerlinks _links)
 {
 	this->_links = _links;
 }
@@ -132,7 +132,7 @@ GithubRespositoryContainer::getRepositories()
 }
 
 void
-GithubRespositoryContainer::setRepositories(GithubRepositories  repositories)
+GithubRespositoryContainer::setRepositories(GithubRepositories repositories)
 {
 	this->repositories = repositories;
 }

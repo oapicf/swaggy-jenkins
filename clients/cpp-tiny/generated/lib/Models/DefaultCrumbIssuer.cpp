@@ -106,7 +106,7 @@ DefaultCrumbIssuer::getClass()
 }
 
 void
-DefaultCrumbIssuer::setClass(std::string  _class)
+DefaultCrumbIssuer::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -118,7 +118,7 @@ DefaultCrumbIssuer::getCrumb()
 }
 
 void
-DefaultCrumbIssuer::setCrumb(std::string  crumb)
+DefaultCrumbIssuer::setCrumb(std::string crumb)
 {
 	this->crumb = crumb;
 }
@@ -130,7 +130,7 @@ DefaultCrumbIssuer::getCrumbRequestField()
 }
 
 void
-DefaultCrumbIssuer::setCrumbRequestField(std::string  crumbRequestField)
+DefaultCrumbIssuer::setCrumbRequestField(std::string crumbRequestField)
 {
 	this->crumbRequestField = crumbRequestField;
 }

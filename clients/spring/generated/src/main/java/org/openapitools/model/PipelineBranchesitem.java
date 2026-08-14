@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.PipelineBranchesitemlatestRun;
@@ -9,37 +10,46 @@ import org.openapitools.model.PipelineBranchesitempullRequest;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * PipelineBranchesitem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineBranchesitem {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer estimatedDurationInMillis;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer weatherScore;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable PipelineBranchesitemlatestRun latestRun;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String organization;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable PipelineBranchesitempullRequest pullRequest;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer totalNumberOfPullRequests;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
   public PipelineBranchesitem displayName(@Nullable String displayName) {
@@ -58,6 +68,7 @@ public class PipelineBranchesitem {
     return displayName;
   }
 
+  @JsonProperty("displayName")
   public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
@@ -78,6 +89,7 @@ public class PipelineBranchesitem {
     return estimatedDurationInMillis;
   }
 
+  @JsonProperty("estimatedDurationInMillis")
   public void setEstimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
@@ -98,6 +110,7 @@ public class PipelineBranchesitem {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable String name) {
     this.name = name;
   }
@@ -118,6 +131,7 @@ public class PipelineBranchesitem {
     return weatherScore;
   }
 
+  @JsonProperty("weatherScore")
   public void setWeatherScore(@Nullable Integer weatherScore) {
     this.weatherScore = weatherScore;
   }
@@ -138,6 +152,7 @@ public class PipelineBranchesitem {
     return latestRun;
   }
 
+  @JsonProperty("latestRun")
   public void setLatestRun(@Nullable PipelineBranchesitemlatestRun latestRun) {
     this.latestRun = latestRun;
   }
@@ -158,6 +173,7 @@ public class PipelineBranchesitem {
     return organization;
   }
 
+  @JsonProperty("organization")
   public void setOrganization(@Nullable String organization) {
     this.organization = organization;
   }
@@ -178,6 +194,7 @@ public class PipelineBranchesitem {
     return pullRequest;
   }
 
+  @JsonProperty("pullRequest")
   public void setPullRequest(@Nullable PipelineBranchesitempullRequest pullRequest) {
     this.pullRequest = pullRequest;
   }
@@ -198,6 +215,7 @@ public class PipelineBranchesitem {
     return totalNumberOfPullRequests;
   }
 
+  @JsonProperty("totalNumberOfPullRequests")
   public void setTotalNumberOfPullRequests(@Nullable Integer totalNumberOfPullRequests) {
     this.totalNumberOfPullRequests = totalNumberOfPullRequests;
   }
@@ -218,6 +236,7 @@ public class PipelineBranchesitem {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -268,11 +287,8 @@ public class PipelineBranchesitem {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

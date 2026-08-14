@@ -7,7 +7,7 @@
 
 static pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_create_internal(
     char *name,
-    int size,
+    int *size,
     char *url,
     char *_class
     ) {
@@ -15,27 +15,36 @@ static pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_create_interna
     if (!pipelinelatest_runartifacts_local_var) {
         return NULL;
     }
+    memset(pipelinelatest_runartifacts_local_var, 0, sizeof(pipelinelatest_runartifacts_t));
+    pipelinelatest_runartifacts_local_var->_library_owned = 1;
     pipelinelatest_runartifacts_local_var->name = name;
     pipelinelatest_runartifacts_local_var->size = size;
     pipelinelatest_runartifacts_local_var->url = url;
     pipelinelatest_runartifacts_local_var->_class = _class;
-
-    pipelinelatest_runartifacts_local_var->_library_owned = 1;
     return pipelinelatest_runartifacts_local_var;
 }
 
 __attribute__((deprecated)) pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_create(
     char *name,
-    int size,
+    int *size,
     char *url,
     char *_class
     ) {
-    return pipelinelatest_runartifacts_create_internal (
+    int *size_copy = NULL;
+    if (size) {
+        size_copy = malloc(sizeof(int));
+        if (size_copy) *size_copy = *size;
+    }
+    pipelinelatest_runartifacts_t *result = pipelinelatest_runartifacts_create_internal (
         name,
-        size,
+        size_copy,
         url,
         _class
         );
+    if (!result) {
+        free(size_copy);
+    }
+    return result;
 }
 
 void pipelinelatest_runartifacts_free(pipelinelatest_runartifacts_t *pipelinelatest_runartifacts) {
@@ -50,6 +59,10 @@ void pipelinelatest_runartifacts_free(pipelinelatest_runartifacts_t *pipelinelat
     if (pipelinelatest_runartifacts->name) {
         free(pipelinelatest_runartifacts->name);
         pipelinelatest_runartifacts->name = NULL;
+    }
+    if (pipelinelatest_runartifacts->size) {
+        free(pipelinelatest_runartifacts->size);
+        pipelinelatest_runartifacts->size = NULL;
     }
     if (pipelinelatest_runartifacts->url) {
         free(pipelinelatest_runartifacts->url);
@@ -75,7 +88,7 @@ cJSON *pipelinelatest_runartifacts_convertToJSON(pipelinelatest_runartifacts_t *
 
     // pipelinelatest_runartifacts->size
     if(pipelinelatest_runartifacts->size) {
-    if(cJSON_AddNumberToObject(item, "size", pipelinelatest_runartifacts->size) == NULL) {
+    if(cJSON_AddNumberToObject(item, "size", *pipelinelatest_runartifacts->size) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -108,6 +121,15 @@ pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_parseFromJSON(cJSON *
 
     pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_local_var = NULL;
 
+    char *name_local_str = NULL;
+
+    // define the local variable for pipelinelatest_runartifacts->size
+    int *size_local_var = NULL;
+
+    char *url_local_str = NULL;
+
+    char *_class_local_str = NULL;
+
     // pipelinelatest_runartifacts->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(pipelinelatest_runartifactsJSON, "name");
     if (cJSON_IsNull(name)) {
@@ -130,6 +152,12 @@ pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_parseFromJSON(cJSON *
     {
     goto end; //Numeric
     }
+    size_local_var = malloc(sizeof(int));
+    if(!size_local_var)
+    {
+        goto end;
+    }
+    *size_local_var = size->valuedouble;
     }
 
     // pipelinelatest_runartifacts->url
@@ -157,15 +185,39 @@ pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_parseFromJSON(cJSON *
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     pipelinelatest_runartifacts_local_var = pipelinelatest_runartifacts_create_internal (
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        size ? size->valuedouble : 0,
-        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        name_local_str,
+        size_local_var,
+        url_local_str,
+        _class_local_str
         );
+
+    if (!pipelinelatest_runartifacts_local_var) {
+        goto end;
+    }
 
     return pipelinelatest_runartifacts_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (size_local_var) {
+        free(size_local_var);
+        size_local_var = NULL;
+    }
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     return NULL;
 
 }

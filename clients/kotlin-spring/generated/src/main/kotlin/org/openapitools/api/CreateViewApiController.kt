@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.CreateViewApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -30,7 +29,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:}")
 class CreateViewApiController() {
 
     @Operation(
@@ -46,7 +45,8 @@ class CreateViewApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_POST_CREATE_VIEW /* "/createView" */],
+        // "/createView"
+        value = [PATH_POST_CREATE_VIEW],
         produces = ["*/*"],
         consumes = ["application/json"]
     )

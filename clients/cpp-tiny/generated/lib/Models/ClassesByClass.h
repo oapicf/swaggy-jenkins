@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClasses(std::list <std::string> classes);
+	void setClasses(std::list<std::string> classes);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

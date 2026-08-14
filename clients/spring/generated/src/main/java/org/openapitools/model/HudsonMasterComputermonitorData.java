@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.ClockDifference;
@@ -11,33 +12,40 @@ import org.openapitools.model.SwapSpaceMonitorMemoryUsage2;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * HudsonMasterComputermonitorData
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class HudsonMasterComputermonitorData {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String hudsonNodeMonitorsArchitectureMonitor;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable ClockDifference hudsonNodeMonitorsClockMonitor;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
   public HudsonMasterComputermonitorData hudsonNodeMonitorsSwapSpaceMonitor(@Nullable SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor) {
@@ -56,6 +64,7 @@ public class HudsonMasterComputermonitorData {
     return hudsonNodeMonitorsSwapSpaceMonitor;
   }
 
+  @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
   public void setHudsonNodeMonitorsSwapSpaceMonitor(@Nullable SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor) {
     this.hudsonNodeMonitorsSwapSpaceMonitor = hudsonNodeMonitorsSwapSpaceMonitor;
   }
@@ -76,6 +85,7 @@ public class HudsonMasterComputermonitorData {
     return hudsonNodeMonitorsTemporarySpaceMonitor;
   }
 
+  @JsonProperty("hudson.node_monitors.TemporarySpaceMonitor")
   public void setHudsonNodeMonitorsTemporarySpaceMonitor(@Nullable DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsTemporarySpaceMonitor) {
     this.hudsonNodeMonitorsTemporarySpaceMonitor = hudsonNodeMonitorsTemporarySpaceMonitor;
   }
@@ -96,6 +106,7 @@ public class HudsonMasterComputermonitorData {
     return hudsonNodeMonitorsDiskSpaceMonitor;
   }
 
+  @JsonProperty("hudson.node_monitors.DiskSpaceMonitor")
   public void setHudsonNodeMonitorsDiskSpaceMonitor(@Nullable DiskSpaceMonitorDescriptorDiskSpace hudsonNodeMonitorsDiskSpaceMonitor) {
     this.hudsonNodeMonitorsDiskSpaceMonitor = hudsonNodeMonitorsDiskSpaceMonitor;
   }
@@ -116,6 +127,7 @@ public class HudsonMasterComputermonitorData {
     return hudsonNodeMonitorsArchitectureMonitor;
   }
 
+  @JsonProperty("hudson.node_monitors.ArchitectureMonitor")
   public void setHudsonNodeMonitorsArchitectureMonitor(@Nullable String hudsonNodeMonitorsArchitectureMonitor) {
     this.hudsonNodeMonitorsArchitectureMonitor = hudsonNodeMonitorsArchitectureMonitor;
   }
@@ -136,6 +148,7 @@ public class HudsonMasterComputermonitorData {
     return hudsonNodeMonitorsResponseTimeMonitor;
   }
 
+  @JsonProperty("hudson.node_monitors.ResponseTimeMonitor")
   public void setHudsonNodeMonitorsResponseTimeMonitor(@Nullable ResponseTimeMonitorData hudsonNodeMonitorsResponseTimeMonitor) {
     this.hudsonNodeMonitorsResponseTimeMonitor = hudsonNodeMonitorsResponseTimeMonitor;
   }
@@ -156,6 +169,7 @@ public class HudsonMasterComputermonitorData {
     return hudsonNodeMonitorsClockMonitor;
   }
 
+  @JsonProperty("hudson.node_monitors.ClockMonitor")
   public void setHudsonNodeMonitorsClockMonitor(@Nullable ClockDifference hudsonNodeMonitorsClockMonitor) {
     this.hudsonNodeMonitorsClockMonitor = hudsonNodeMonitorsClockMonitor;
   }
@@ -176,6 +190,7 @@ public class HudsonMasterComputermonitorData {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -222,11 +237,8 @@ public class HudsonMasterComputermonitorData {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

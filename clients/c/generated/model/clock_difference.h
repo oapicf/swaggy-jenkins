@@ -20,14 +20,14 @@ typedef struct clock_difference_t clock_difference_t;
 
 typedef struct clock_difference_t {
     char *_class; // string
-    int diff; //numeric
+    int *diff; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } clock_difference_t;
 
 __attribute__((deprecated)) clock_difference_t *clock_difference_create(
     char *_class,
-    int diff
+    int *diff
 );
 
 void clock_difference_free(clock_difference_t *clock_difference);

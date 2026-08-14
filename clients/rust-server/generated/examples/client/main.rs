@@ -90,66 +90,16 @@ fn main() {
     let matches = Command::new("client")
         .arg(Arg::new("operation")
             .help("Sets the operation to run")
-            .value_parser([
+            .value_parser(Vec::<&str>::from([
                 "GetCrumb",
                 "GetJsonWebToken",
                 "GetOrganisations",
-                "Search",
-                "SearchClasses",
-                "GetAuthenticatedUser",
-                "GetClasses",
                 "GetJsonWebKey",
-                "GetOrganisation",
-                "GetPipelines",
-                "GetUserFavorites",
-                "GetUsers",
-                "GetPipeline",
-                "GetPipelineActivities",
-                "GetPipelineBranches",
-                "GetPipelineFolder",
-                "GetPipelineQueue",
-                "GetPipelineRuns",
-                "GetScm",
-                "GetScmOrganisations",
-                "GetUser",
-                "PostPipelineRuns",
-                "PutPipelineFavorite",
-                "DeletePipelineQueueItem",
-                "GetPipelineBranch",
-                "GetPipelineFolderPipeline",
-                "GetPipelineRun",
-                "GetPipelineRunLog",
-                "GetPipelineRunNodes",
-                "GetScmOrganisationRepositories",
-                "PostPipelineRun",
-                "PutPipelineRun",
-                "GetPipelineBranchRun",
-                "GetPipelineRunNode",
-                "GetPipelineRunNodeSteps",
-                "GetScmOrganisationRepository",
-                "GetPipelineRunNodeStep",
-                "GetPipelineRunNodeStepLog",
                 "GetComputer",
                 "GetJenkins",
                 "GetQueue",
                 "HeadJenkins",
-                "PostCreateItem",
-                "PostCreateView",
-                "GetJob",
-                "GetJobConfig",
-                "GetJobLastBuild",
-                "GetQueueItem",
-                "GetView",
-                "GetViewConfig",
-                "PostJobBuild",
-                "PostJobConfig",
-                "PostJobDelete",
-                "PostJobDisable",
-                "PostJobEnable",
-                "PostJobLastBuildStop",
-                "PostViewConfig",
-                "GetJobProgressiveText",
-            ])
+            ]))
             .required(true)
             .index(1))
         .arg(Arg::new("https")
@@ -199,17 +149,33 @@ fn main() {
     let context: ClientContext =
         swagger::make_context!(ContextBuilder, EmptyContext, auth_data, XSpanIdString::default());
 
-    let mut client : Box<dyn ApiNoContext<ClientContext>> = if is_https {
-        // Using Simple HTTPS
-        let client = Box::new(Client::try_new_https(&base_url)
-            .expect("Failed to create HTTPS client"));
-        Box::new(client.with_context(context))
-    } else {
-        // Using HTTP
-        let client = Box::new(Client::try_new_http(
-            &base_url)
-            .expect("Failed to create HTTP client"));
-        Box::new(client.with_context(context))
+    let mut client : Box<dyn ApiNoContext<ClientContext>> = {
+        #[cfg(feature = "client-tls")]
+        {
+            if is_https {
+                // Using HTTPS with native-tls
+                let client = Box::new(Client::try_new_https(&base_url)
+                    .expect("Failed to create HTTPS client"));
+                Box::new(client.with_context(context))
+            } else {
+                // Using HTTP
+                let client = Box::new(Client::try_new_http(&base_url)
+                    .expect("Failed to create HTTP client"));
+                Box::new(client.with_context(context))
+            }
+        }
+
+        #[cfg(not(feature = "client-tls"))]
+        {
+            if is_https {
+                panic!("HTTPS requested but TLS support not enabled. \
+                        Enable the 'client-tls' feature to use HTTPS.");
+            }
+            // Using HTTP only
+            let client = Box::new(Client::try_new_http(&base_url)
+                .expect("Failed to create HTTP client"));
+            Box::new(client.with_context(context))
+        }
     };
 
     let mut rt = tokio::runtime::Runtime::new().unwrap();
@@ -222,8 +188,8 @@ fn main() {
         },
         Some("GetJsonWebToken") => {
             let result = rt.block_on(client.get_json_web_token(
-                  Some(56),
-                  Some(56)
+                  Some(0),
+                  Some(0)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -232,278 +198,346 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        /* Disabled because there's no example.
         Some("Search") => {
             let result = rt.block_on(client.search(
-                  "q_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("SearchClasses") => {
             let result = rt.block_on(client.search_classes(
-                  "q_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetAuthenticatedUser") => {
             let result = rt.block_on(client.get_authenticated_user(
-                  "organization_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetClasses") => {
             let result = rt.block_on(client.get_classes(
-                  "class_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         Some("GetJsonWebKey") => {
             let result = rt.block_on(client.get_json_web_key(
-                  56
+                  0
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        /* Disabled because there's no example.
         Some("GetOrganisation") => {
             let result = rt.block_on(client.get_organisation(
-                  "organization_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelines") => {
             let result = rt.block_on(client.get_pipelines(
-                  "organization_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetUserFavorites") => {
             let result = rt.block_on(client.get_user_favorites(
-                  "user_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetUsers") => {
             let result = rt.block_on(client.get_users(
-                  "organization_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipeline") => {
             let result = rt.block_on(client.get_pipeline(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineActivities") => {
             let result = rt.block_on(client.get_pipeline_activities(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineBranches") => {
             let result = rt.block_on(client.get_pipeline_branches(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineFolder") => {
             let result = rt.block_on(client.get_pipeline_folder(
-                  "organization_example".to_string(),
-                  "folder_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineQueue") => {
             let result = rt.block_on(client.get_pipeline_queue(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineRuns") => {
             let result = rt.block_on(client.get_pipeline_runs(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetScm") => {
             let result = rt.block_on(client.get_scm(
-                  "organization_example".to_string(),
-                  "scm_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetScmOrganisations") => {
             let result = rt.block_on(client.get_scm_organisations(
-                  "organization_example".to_string(),
-                  "scm_example".to_string(),
-                  Some("credential_id_example".to_string())
+                  ???,
+                  ???,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetUser") => {
             let result = rt.block_on(client.get_user(
-                  "organization_example".to_string(),
-                  "user_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PostPipelineRuns") => {
             let result = rt.block_on(client.post_pipeline_runs(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string()
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PutPipelineFavorite") => {
             let result = rt.block_on(client.put_pipeline_favorite(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
+                  ???,
+                  ???,
                   true
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("DeletePipelineQueueItem") => {
             let result = rt.block_on(client.delete_pipeline_queue_item(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "queue_example".to_string()
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineBranch") => {
             let result = rt.block_on(client.get_pipeline_branch(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "branch_example".to_string()
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineFolderPipeline") => {
             let result = rt.block_on(client.get_pipeline_folder_pipeline(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "folder_example".to_string()
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineRun") => {
             let result = rt.block_on(client.get_pipeline_run(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string()
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineRunLog") => {
             let result = rt.block_on(client.get_pipeline_run_log(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string(),
-                  Some(56),
+                  ???,
+                  ???,
+                  ???,
+                  Some(0),
                   Some(true)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineRunNodes") => {
             let result = rt.block_on(client.get_pipeline_run_nodes(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string()
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetScmOrganisationRepositories") => {
             let result = rt.block_on(client.get_scm_organisation_repositories(
-                  "organization_example".to_string(),
-                  "scm_example".to_string(),
-                  "scm_organisation_example".to_string(),
-                  Some("credential_id_example".to_string()),
-                  Some(56),
-                  Some(56)
+                  ???,
+                  ???,
+                  ???,
+                  None,
+                  Some(0),
+                  Some(0)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PostPipelineRun") => {
             let result = rt.block_on(client.post_pipeline_run(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string()
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PutPipelineRun") => {
             let result = rt.block_on(client.put_pipeline_run(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string(),
-                  Some("blocking_example".to_string()),
-                  Some(56)
+                  ???,
+                  ???,
+                  ???,
+                  None,
+                  Some(0)
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineBranchRun") => {
             let result = rt.block_on(client.get_pipeline_branch_run(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "branch_example".to_string(),
-                  "run_example".to_string()
+                  ???,
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineRunNode") => {
             let result = rt.block_on(client.get_pipeline_run_node(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string(),
-                  "node_example".to_string()
+                  ???,
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineRunNodeSteps") => {
             let result = rt.block_on(client.get_pipeline_run_node_steps(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string(),
-                  "node_example".to_string()
+                  ???,
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetScmOrganisationRepository") => {
             let result = rt.block_on(client.get_scm_organisation_repository(
-                  "organization_example".to_string(),
-                  "scm_example".to_string(),
-                  "scm_organisation_example".to_string(),
-                  "repository_example".to_string(),
-                  Some("credential_id_example".to_string())
+                  ???,
+                  ???,
+                  ???,
+                  ???,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineRunNodeStep") => {
             let result = rt.block_on(client.get_pipeline_run_node_step(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string(),
-                  "node_example".to_string(),
-                  "step_example".to_string()
+                  ???,
+                  ???,
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetPipelineRunNodeStepLog") => {
             let result = rt.block_on(client.get_pipeline_run_node_step_log(
-                  "organization_example".to_string(),
-                  "pipeline_example".to_string(),
-                  "run_example".to_string(),
-                  "node_example".to_string(),
-                  "step_example".to_string()
+                  ???,
+                  ???,
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         Some("GetComputer") => {
             let result = rt.block_on(client.get_computer(
-                  56
+                  0
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
@@ -522,123 +556,155 @@ fn main() {
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        /* Disabled because there's no example.
         Some("PostCreateItem") => {
             let result = rt.block_on(client.post_create_item(
-                  "name_example".to_string(),
-                  Some("from_example".to_string()),
-                  Some("mode_example".to_string()),
-                  Some("jenkins_crumb_example".to_string()),
-                  Some("content_type_example".to_string()),
+                  ???,
+                  None,
+                  None,
+                  None,
+                  None,
                   Some("body_example".to_string())
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PostCreateView") => {
             let result = rt.block_on(client.post_create_view(
-                  "name_example".to_string(),
-                  Some("jenkins_crumb_example".to_string()),
-                  Some("content_type_example".to_string()),
+                  ???,
+                  None,
+                  None,
                   Some("body_example".to_string())
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetJob") => {
             let result = rt.block_on(client.get_job(
-                  "name_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetJobConfig") => {
             let result = rt.block_on(client.get_job_config(
-                  "name_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetJobLastBuild") => {
             let result = rt.block_on(client.get_job_last_build(
-                  "name_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetQueueItem") => {
             let result = rt.block_on(client.get_queue_item(
-                  "number_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetView") => {
             let result = rt.block_on(client.get_view(
-                  "name_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetViewConfig") => {
             let result = rt.block_on(client.get_view_config(
-                  "name_example".to_string()
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PostJobBuild") => {
             let result = rt.block_on(client.post_job_build(
-                  "name_example".to_string(),
-                  "json_example".to_string(),
-                  Some("token_example".to_string()),
-                  Some("jenkins_crumb_example".to_string())
+                  ???,
+                  ???,
+                  None,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PostJobConfig") => {
             let result = rt.block_on(client.post_job_config(
-                  "name_example".to_string(),
+                  ???,
                   "body_example".to_string(),
-                  Some("jenkins_crumb_example".to_string())
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PostJobDelete") => {
             let result = rt.block_on(client.post_job_delete(
-                  "name_example".to_string(),
-                  Some("jenkins_crumb_example".to_string())
+                  ???,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PostJobDisable") => {
             let result = rt.block_on(client.post_job_disable(
-                  "name_example".to_string(),
-                  Some("jenkins_crumb_example".to_string())
+                  ???,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PostJobEnable") => {
             let result = rt.block_on(client.post_job_enable(
-                  "name_example".to_string(),
-                  Some("jenkins_crumb_example".to_string())
+                  ???,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PostJobLastBuildStop") => {
             let result = rt.block_on(client.post_job_last_build_stop(
-                  "name_example".to_string(),
-                  Some("jenkins_crumb_example".to_string())
+                  ???,
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("PostViewConfig") => {
             let result = rt.block_on(client.post_view_config(
-                  "name_example".to_string(),
+                  ???,
                   "body_example".to_string(),
-                  Some("jenkins_crumb_example".to_string())
+                  None
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
+        /* Disabled because there's no example.
         Some("GetJobProgressiveText") => {
             let result = rt.block_on(client.get_job_progressive_text(
-                  "name_example".to_string(),
-                  "number_example".to_string(),
-                  "start_example".to_string()
+                  ???,
+                  ???,
+                  ???
             ));
             info!("{:?} (X-Span-ID: {:?})", result, (client.context() as &dyn Has<XSpanIdString>).get().clone());
         },
+        */
         _ => {
             panic!("Invalid operation provided")
         }

@@ -337,7 +337,7 @@ PipelineBranchesitemlatestRun::getDurationInMillis()
 }
 
 void
-PipelineBranchesitemlatestRun::setDurationInMillis(int  durationInMillis)
+PipelineBranchesitemlatestRun::setDurationInMillis(int durationInMillis)
 {
 	this->durationInMillis = durationInMillis;
 }
@@ -349,7 +349,7 @@ PipelineBranchesitemlatestRun::getEstimatedDurationInMillis()
 }
 
 void
-PipelineBranchesitemlatestRun::setEstimatedDurationInMillis(int  estimatedDurationInMillis)
+PipelineBranchesitemlatestRun::setEstimatedDurationInMillis(int estimatedDurationInMillis)
 {
 	this->estimatedDurationInMillis = estimatedDurationInMillis;
 }
@@ -361,7 +361,7 @@ PipelineBranchesitemlatestRun::getEnQueueTime()
 }
 
 void
-PipelineBranchesitemlatestRun::setEnQueueTime(std::string  enQueueTime)
+PipelineBranchesitemlatestRun::setEnQueueTime(std::string enQueueTime)
 {
 	this->enQueueTime = enQueueTime;
 }
@@ -373,7 +373,7 @@ PipelineBranchesitemlatestRun::getEndTime()
 }
 
 void
-PipelineBranchesitemlatestRun::setEndTime(std::string  endTime)
+PipelineBranchesitemlatestRun::setEndTime(std::string endTime)
 {
 	this->endTime = endTime;
 }
@@ -385,7 +385,7 @@ PipelineBranchesitemlatestRun::getId()
 }
 
 void
-PipelineBranchesitemlatestRun::setId(std::string  id)
+PipelineBranchesitemlatestRun::setId(std::string id)
 {
 	this->id = id;
 }
@@ -397,7 +397,7 @@ PipelineBranchesitemlatestRun::getOrganization()
 }
 
 void
-PipelineBranchesitemlatestRun::setOrganization(std::string  organization)
+PipelineBranchesitemlatestRun::setOrganization(std::string organization)
 {
 	this->organization = organization;
 }
@@ -409,7 +409,7 @@ PipelineBranchesitemlatestRun::getPipeline()
 }
 
 void
-PipelineBranchesitemlatestRun::setPipeline(std::string  pipeline)
+PipelineBranchesitemlatestRun::setPipeline(std::string pipeline)
 {
 	this->pipeline = pipeline;
 }
@@ -421,7 +421,7 @@ PipelineBranchesitemlatestRun::getResult()
 }
 
 void
-PipelineBranchesitemlatestRun::setResult(std::string  result)
+PipelineBranchesitemlatestRun::setResult(std::string result)
 {
 	this->result = result;
 }
@@ -433,7 +433,7 @@ PipelineBranchesitemlatestRun::getRunSummary()
 }
 
 void
-PipelineBranchesitemlatestRun::setRunSummary(std::string  runSummary)
+PipelineBranchesitemlatestRun::setRunSummary(std::string runSummary)
 {
 	this->runSummary = runSummary;
 }
@@ -445,7 +445,7 @@ PipelineBranchesitemlatestRun::getStartTime()
 }
 
 void
-PipelineBranchesitemlatestRun::setStartTime(std::string  startTime)
+PipelineBranchesitemlatestRun::setStartTime(std::string startTime)
 {
 	this->startTime = startTime;
 }
@@ -457,7 +457,7 @@ PipelineBranchesitemlatestRun::getState()
 }
 
 void
-PipelineBranchesitemlatestRun::setState(std::string  state)
+PipelineBranchesitemlatestRun::setState(std::string state)
 {
 	this->state = state;
 }
@@ -469,7 +469,7 @@ PipelineBranchesitemlatestRun::getType()
 }
 
 void
-PipelineBranchesitemlatestRun::setType(std::string  type)
+PipelineBranchesitemlatestRun::setType(std::string type)
 {
 	this->type = type;
 }
@@ -481,7 +481,7 @@ PipelineBranchesitemlatestRun::getCommitId()
 }
 
 void
-PipelineBranchesitemlatestRun::setCommitId(std::string  commitId)
+PipelineBranchesitemlatestRun::setCommitId(std::string commitId)
 {
 	this->commitId = commitId;
 }
@@ -493,7 +493,7 @@ PipelineBranchesitemlatestRun::getClass()
 }
 
 void
-PipelineBranchesitemlatestRun::setClass(std::string  _class)
+PipelineBranchesitemlatestRun::setClass(std::string _class)
 {
 	this->_class = _class;
 }

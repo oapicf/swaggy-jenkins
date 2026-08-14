@@ -25,8 +25,8 @@ typedef struct pipeline_t {
     char *name; // string
     char *display_name; // string
     char *full_name; // string
-    int weather_score; //numeric
-    int estimated_duration_in_millis; //numeric
+    int *weather_score; //numeric
+    int *estimated_duration_in_millis; //numeric
     struct pipelinelatest_run_t *latest_run; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -38,8 +38,8 @@ __attribute__((deprecated)) pipeline_t *pipeline_create(
     char *name,
     char *display_name,
     char *full_name,
-    int weather_score,
-    int estimated_duration_in_millis,
+    int *weather_score,
+    int *estimated_duration_in_millis,
     pipelinelatest_run_t *latest_run
 );
 

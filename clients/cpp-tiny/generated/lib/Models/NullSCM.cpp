@@ -64,7 +64,7 @@ NullSCM::getClass()
 }
 
 void
-NullSCM::setClass(std::string  _class)
+NullSCM::setClass(std::string _class)
 {
 	this->_class = _class;
 }

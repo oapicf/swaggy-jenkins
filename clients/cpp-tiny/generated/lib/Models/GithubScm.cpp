@@ -149,7 +149,7 @@ GithubScm::getClass()
 }
 
 void
-GithubScm::setClass(std::string  _class)
+GithubScm::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -161,7 +161,7 @@ GithubScm::getLinks()
 }
 
 void
-GithubScm::setLinks(GithubScmlinks  _links)
+GithubScm::setLinks(GithubScmlinks _links)
 {
 	this->_links = _links;
 }
@@ -173,7 +173,7 @@ GithubScm::getCredentialId()
 }
 
 void
-GithubScm::setCredentialId(std::string  credentialId)
+GithubScm::setCredentialId(std::string credentialId)
 {
 	this->credentialId = credentialId;
 }
@@ -185,7 +185,7 @@ GithubScm::getId()
 }
 
 void
-GithubScm::setId(std::string  id)
+GithubScm::setId(std::string id)
 {
 	this->id = id;
 }
@@ -197,7 +197,7 @@ GithubScm::getUri()
 }
 
 void
-GithubScm::setUri(std::string  uri)
+GithubScm::setUri(std::string uri)
 {
 	this->uri = uri;
 }

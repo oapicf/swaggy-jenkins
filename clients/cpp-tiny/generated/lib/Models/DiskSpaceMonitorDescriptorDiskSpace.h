@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	int getTimestamp();
 
 	/*! \brief Set 
 	 */
-	void setTimestamp(int  timestamp);
+	void setTimestamp(int timestamp);
 	/*! \brief Get 
 	 */
 	std::string getPath();
 
 	/*! \brief Set 
 	 */
-	void setPath(std::string  path);
+	void setPath(std::string path);
 	/*! \brief Get 
 	 */
 	int getSize();
 
 	/*! \brief Set 
 	 */
-	void setSize(int  size);
+	void setSize(int size);
 
 
     private:

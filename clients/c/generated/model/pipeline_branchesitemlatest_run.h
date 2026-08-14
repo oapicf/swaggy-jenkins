@@ -19,8 +19,8 @@ typedef struct pipeline_branchesitemlatest_run_t pipeline_branchesitemlatest_run
 
 
 typedef struct pipeline_branchesitemlatest_run_t {
-    int duration_in_millis; //numeric
-    int estimated_duration_in_millis; //numeric
+    int *duration_in_millis; //numeric
+    int *estimated_duration_in_millis; //numeric
     char *en_queue_time; // string
     char *end_time; // string
     char *id; // string
@@ -38,8 +38,8 @@ typedef struct pipeline_branchesitemlatest_run_t {
 } pipeline_branchesitemlatest_run_t;
 
 __attribute__((deprecated)) pipeline_branchesitemlatest_run_t *pipeline_branchesitemlatest_run_create(
-    int duration_in_millis,
-    int estimated_duration_in_millis,
+    int *duration_in_millis,
+    int *estimated_duration_in_millis,
     char *en_queue_time,
     char *end_time,
     char *id,

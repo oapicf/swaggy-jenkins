@@ -1,0 +1,1473 @@
+# BlueOceanApi
+
+All URIs are relative to *http://localhost*
+
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**deletePipelineQueueItem**](BlueOceanApi.md#deletePipelineQueueItem) | **DELETE** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue} |  |
+| [**getAuthenticatedUser**](BlueOceanApi.md#getAuthenticatedUser) | **GET** /blue/rest/organizations/{organization}/user/ |  |
+| [**getClasses**](BlueOceanApi.md#getClasses) | **GET** /blue/rest/classes/{class} |  |
+| [**getJsonWebKey**](BlueOceanApi.md#getJsonWebKey) | **GET** /jwt-auth/jwks/{key} |  |
+| [**getJsonWebToken**](BlueOceanApi.md#getJsonWebToken) | **GET** /jwt-auth/token |  |
+| [**getOrganisation**](BlueOceanApi.md#getOrganisation) | **GET** /blue/rest/organizations/{organization} |  |
+| [**getOrganisations**](BlueOceanApi.md#getOrganisations) | **GET** /blue/rest/organizations/ |  |
+| [**getPipeline**](BlueOceanApi.md#getPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline} |  |
+| [**getPipelineActivities**](BlueOceanApi.md#getPipelineActivities) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities |  |
+| [**getPipelineBranch**](BlueOceanApi.md#getPipelineBranch) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/ |  |
+| [**getPipelineBranchRun**](BlueOceanApi.md#getPipelineBranchRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run} |  |
+| [**getPipelineBranches**](BlueOceanApi.md#getPipelineBranches) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches |  |
+| [**getPipelineFolder**](BlueOceanApi.md#getPipelineFolder) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/ |  |
+| [**getPipelineFolderPipeline**](BlueOceanApi.md#getPipelineFolderPipeline) | **GET** /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline} |  |
+| [**getPipelineQueue**](BlueOceanApi.md#getPipelineQueue) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue |  |
+| [**getPipelineRun**](BlueOceanApi.md#getPipelineRun) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run} |  |
+| [**getPipelineRunLog**](BlueOceanApi.md#getPipelineRunLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log |  |
+| [**getPipelineRunNode**](BlueOceanApi.md#getPipelineRunNode) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node} |  |
+| [**getPipelineRunNodeStep**](BlueOceanApi.md#getPipelineRunNodeStep) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step} |  |
+| [**getPipelineRunNodeStepLog**](BlueOceanApi.md#getPipelineRunNodeStepLog) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log |  |
+| [**getPipelineRunNodeSteps**](BlueOceanApi.md#getPipelineRunNodeSteps) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps |  |
+| [**getPipelineRunNodes**](BlueOceanApi.md#getPipelineRunNodes) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes |  |
+| [**getPipelineRuns**](BlueOceanApi.md#getPipelineRuns) | **GET** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs |  |
+| [**getPipelines**](BlueOceanApi.md#getPipelines) | **GET** /blue/rest/organizations/{organization}/pipelines/ |  |
+| [**getSCM**](BlueOceanApi.md#getSCM) | **GET** /blue/rest/organizations/{organization}/scm/{scm} |  |
+| [**getSCMOrganisationRepositories**](BlueOceanApi.md#getSCMOrganisationRepositories) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories |  |
+| [**getSCMOrganisationRepository**](BlueOceanApi.md#getSCMOrganisationRepository) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository} |  |
+| [**getSCMOrganisations**](BlueOceanApi.md#getSCMOrganisations) | **GET** /blue/rest/organizations/{organization}/scm/{scm}/organizations |  |
+| [**getUser**](BlueOceanApi.md#getUser) | **GET** /blue/rest/organizations/{organization}/users/{user} |  |
+| [**getUserFavorites**](BlueOceanApi.md#getUserFavorites) | **GET** /blue/rest/users/{user}/favorites |  |
+| [**getUsers**](BlueOceanApi.md#getUsers) | **GET** /blue/rest/organizations/{organization}/users/ |  |
+| [**postPipelineRun**](BlueOceanApi.md#postPipelineRun) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay |  |
+| [**postPipelineRuns**](BlueOceanApi.md#postPipelineRuns) | **POST** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs |  |
+| [**putPipelineFavorite**](BlueOceanApi.md#putPipelineFavorite) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite |  |
+| [**putPipelineRun**](BlueOceanApi.md#putPipelineRun) | **PUT** /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop |  |
+| [**search**](BlueOceanApi.md#search) | **GET** /blue/rest/search/ |  |
+| [**searchClasses**](BlueOceanApi.md#searchClasses) | **GET** /blue/rest/classes/ |  |
+
+
+
+## deletePipelineQueueItem
+
+> void deletePipelineQueueItem(organization, pipeline, queue)
+
+
+
+Delete queue item from an organization pipeline queue
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **queue** | **String**| Name of the queue item | |
+
+### Return type
+
+[**void**](Void.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully deleted queue item |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getAuthenticatedUser
+
+> User getAuthenticatedUser(organization)
+
+
+
+Retrieve authenticated user details for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved authenticated user details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getClasses
+
+> String getClasses(propertyClass)
+
+
+
+Get a list of class names supported by a given class
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **propertyClass** | **String**| Name of the class | |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved class names |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getJsonWebKey
+
+> String getJsonWebKey(key)
+
+
+
+Retrieve JSON Web Key
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **key** | **Integer**| Key ID received as part of JWT header field kid | |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved JWT token |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getJsonWebToken
+
+> String getJsonWebToken(expiryTimeInMins, maxExpiryTimeInMins)
+
+
+
+Retrieve JSON Web Token
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **expiryTimeInMins** | **Integer**| Token expiry time in minutes, default: 30 minutes | [optional] |
+| **maxExpiryTimeInMins** | **Integer**| Maximum token expiry time in minutes, default: 480 minutes | [optional] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved JWT token |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getOrganisation
+
+> Organisation getOrganisation(organization)
+
+
+
+Retrieve organization details
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+
+### Return type
+
+[**Organisation**](Organisation.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipeline details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+| **404** | Pipeline cannot be found on Jenkins instance |  -  |
+
+
+## getOrganisations
+
+> List&lt;Organisation&gt; getOrganisations()
+
+
+
+Retrieve all organizations details
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List&lt;Organisation&gt;**](Organisation.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipelines details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipeline
+
+> Pipeline getPipeline(organization, pipeline)
+
+
+
+Retrieve pipeline details for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+
+### Return type
+
+[**Pipeline**](Pipeline.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipeline details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+| **404** | Pipeline cannot be found on Jenkins instance |  -  |
+
+
+## getPipelineActivities
+
+> List&lt;PipelineActivity&gt; getPipelineActivities(organization, pipeline)
+
+
+
+Retrieve all activities details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+
+### Return type
+
+[**List&lt;PipelineActivity&gt;**](PipelineActivity.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved all activities details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineBranch
+
+> BranchImpl getPipelineBranch(organization, pipeline, branch)
+
+
+
+Retrieve branch details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **branch** | **String**| Name of the branch | |
+
+### Return type
+
+[**BranchImpl**](BranchImpl.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved branch details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineBranchRun
+
+> PipelineRun getPipelineBranchRun(organization, pipeline, branch, run)
+
+
+
+Retrieve branch run details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **branch** | **String**| Name of the branch | |
+| **run** | **String**| Name of the run | |
+
+### Return type
+
+[**PipelineRun**](PipelineRun.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineBranches
+
+> MultibranchPipeline getPipelineBranches(organization, pipeline)
+
+
+
+Retrieve all branches details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+
+### Return type
+
+[**MultibranchPipeline**](MultibranchPipeline.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved all branches details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineFolder
+
+> PipelineFolderImpl getPipelineFolder(organization, folder)
+
+
+
+Retrieve pipeline folder for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **folder** | **String**| Name of the folder | |
+
+### Return type
+
+[**PipelineFolderImpl**](PipelineFolderImpl.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved folder details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineFolderPipeline
+
+> PipelineImpl getPipelineFolderPipeline(organization, pipeline, folder)
+
+
+
+Retrieve pipeline details for an organization folder
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **folder** | **String**| Name of the folder | |
+
+### Return type
+
+[**PipelineImpl**](PipelineImpl.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipeline details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineQueue
+
+> List&lt;QueueItemImpl&gt; getPipelineQueue(organization, pipeline)
+
+
+
+Retrieve queue details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+
+### Return type
+
+[**List&lt;QueueItemImpl&gt;**](QueueItemImpl.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved queue details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineRun
+
+> PipelineRun getPipelineRun(organization, pipeline, run)
+
+
+
+Retrieve run details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **run** | **String**| Name of the run | |
+
+### Return type
+
+[**PipelineRun**](PipelineRun.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineRunLog
+
+> String getPipelineRunLog(organization, pipeline, run, start, download)
+
+
+
+Get log for a pipeline run
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **run** | **String**| Name of the run | |
+| **start** | **Integer**| Start position of the log | [optional] |
+| **download** | **Boolean**| Set to true in order to download the file, otherwise it&#39;s passed as a response body | [optional] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipeline run log |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineRunNode
+
+> PipelineRunNode getPipelineRunNode(organization, pipeline, run, node)
+
+
+
+Retrieve run node details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **run** | **String**| Name of the run | |
+| **node** | **String**| Name of the node | |
+
+### Return type
+
+[**PipelineRunNode**](PipelineRunNode.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run node details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineRunNodeStep
+
+> PipelineStepImpl getPipelineRunNodeStep(organization, pipeline, run, node, step)
+
+
+
+Retrieve run node details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **run** | **String**| Name of the run | |
+| **node** | **String**| Name of the node | |
+| **step** | **String**| Name of the step | |
+
+### Return type
+
+[**PipelineStepImpl**](PipelineStepImpl.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run node step details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineRunNodeStepLog
+
+> String getPipelineRunNodeStepLog(organization, pipeline, run, node, step)
+
+
+
+Get log for a pipeline run node step
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **run** | **String**| Name of the run | |
+| **node** | **String**| Name of the node | |
+| **step** | **String**| Name of the step | |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipeline run node step log |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineRunNodeSteps
+
+> List&lt;PipelineStepImpl&gt; getPipelineRunNodeSteps(organization, pipeline, run, node)
+
+
+
+Retrieve run node steps details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **run** | **String**| Name of the run | |
+| **node** | **String**| Name of the node | |
+
+### Return type
+
+[**List&lt;PipelineStepImpl&gt;**](PipelineStepImpl.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run node steps details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineRunNodes
+
+> List&lt;PipelineRunNode&gt; getPipelineRunNodes(organization, pipeline, run)
+
+
+
+Retrieve run nodes details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **run** | **String**| Name of the run | |
+
+### Return type
+
+[**List&lt;PipelineRunNode&gt;**](PipelineRunNode.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved run nodes details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelineRuns
+
+> List&lt;PipelineRun&gt; getPipelineRuns(organization, pipeline)
+
+
+
+Retrieve all runs details for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+
+### Return type
+
+[**List&lt;PipelineRun&gt;**](PipelineRun.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved runs details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getPipelines
+
+> List&lt;Pipeline&gt; getPipelines(organization)
+
+
+
+Retrieve all pipelines details for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+
+### Return type
+
+[**List&lt;Pipeline&gt;**](Pipeline.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved pipelines details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getSCM
+
+> GithubScm getSCM(organization, scm)
+
+
+
+Retrieve SCM details for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **scm** | **String**| Name of SCM | |
+
+### Return type
+
+[**GithubScm**](GithubScm.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved SCM details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getSCMOrganisationRepositories
+
+> List&lt;GithubOrganization&gt; getSCMOrganisationRepositories(organization, scm, scmOrganisation, credentialId, pageSize, pageNumber)
+
+
+
+Retrieve SCM organization repositories details for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **scm** | **String**| Name of SCM | |
+| **scmOrganisation** | **String**| Name of the SCM organization | |
+| **credentialId** | **String**| Credential ID | [optional] |
+| **pageSize** | **Integer**| Number of items in a page | [optional] |
+| **pageNumber** | **Integer**| Page number | [optional] |
+
+### Return type
+
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved SCM organization repositories details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getSCMOrganisationRepository
+
+> List&lt;GithubOrganization&gt; getSCMOrganisationRepository(organization, scm, scmOrganisation, repository, credentialId)
+
+
+
+Retrieve SCM organization repository details for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **scm** | **String**| Name of SCM | |
+| **scmOrganisation** | **String**| Name of the SCM organization | |
+| **repository** | **String**| Name of the SCM repository | |
+| **credentialId** | **String**| Credential ID | [optional] |
+
+### Return type
+
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved SCM organizations details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getSCMOrganisations
+
+> List&lt;GithubOrganization&gt; getSCMOrganisations(organization, scm, credentialId)
+
+
+
+Retrieve SCM organizations details for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **scm** | **String**| Name of SCM | |
+| **credentialId** | **String**| Credential ID | [optional] |
+
+### Return type
+
+[**List&lt;GithubOrganization&gt;**](GithubOrganization.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved SCM organizations details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getUser
+
+> User getUser(organization, user)
+
+
+
+Retrieve user details for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **user** | **String**| Name of the user | |
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved users details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getUserFavorites
+
+> List&lt;FavoriteImpl&gt; getUserFavorites(user)
+
+
+
+Retrieve user favorites details for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **user** | **String**| Name of the user | |
+
+### Return type
+
+[**List&lt;FavoriteImpl&gt;**](FavoriteImpl.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved users favorites details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## getUsers
+
+> User getUsers(organization)
+
+
+
+Retrieve users details for an organization
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved users details |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## postPipelineRun
+
+> QueueItemImpl postPipelineRun(organization, pipeline, run)
+
+
+
+Replay an organization pipeline run
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **run** | **String**| Name of the run | |
+
+### Return type
+
+[**QueueItemImpl**](QueueItemImpl.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully replayed a pipeline run |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## postPipelineRuns
+
+> QueueItemImpl postPipelineRuns(organization, pipeline)
+
+
+
+Start a build for an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+
+### Return type
+
+[**QueueItemImpl**](QueueItemImpl.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully started a build |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## putPipelineFavorite
+
+> FavoriteImpl putPipelineFavorite(organization, pipeline, body)
+
+
+
+Favorite/unfavorite a pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **body** | **Boolean**| Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite | |
+
+### Return type
+
+[**FavoriteImpl**](FavoriteImpl.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully favorited/unfavorited a pipeline |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## putPipelineRun
+
+> PipelineRun putPipelineRun(organization, pipeline, run, blocking, timeOutInSecs)
+
+
+
+Stop a build of an organization pipeline
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **organization** | **String**| Name of the organization | |
+| **pipeline** | **String**| Name of the pipeline | |
+| **run** | **String**| Name of the run | |
+| **blocking** | **String**| Set to true to make blocking stop, default: false | [optional] |
+| **timeOutInSecs** | **Integer**| Timeout in seconds, default: 10 seconds | [optional] |
+
+### Return type
+
+[**PipelineRun**](PipelineRun.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully stopped a build |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## search
+
+> String search(q)
+
+
+
+Search for any resource details
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **q** | **String**| Query string | |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved search result |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+
+
+## searchClasses
+
+> String searchClasses(q)
+
+
+
+Get classes details
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **q** | **String**| Query string containing an array of class names | |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved search result |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+

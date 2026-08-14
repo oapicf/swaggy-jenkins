@@ -55,112 +55,112 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::string getDisplayName();
 
 	/*! \brief Set 
 	 */
-	void setDisplayName(std::string  displayName);
+	void setDisplayName(std::string displayName);
 	/*! \brief Get 
 	 */
 	std::list<HudsonMasterComputerexecutors> getExecutors();
 
 	/*! \brief Set 
 	 */
-	void setExecutors(std::list <HudsonMasterComputerexecutors> executors);
+	void setExecutors(std::list<HudsonMasterComputerexecutors> executors);
 	/*! \brief Get 
 	 */
 	std::string getIcon();
 
 	/*! \brief Set 
 	 */
-	void setIcon(std::string  icon);
+	void setIcon(std::string icon);
 	/*! \brief Get 
 	 */
 	std::string getIconClassName();
 
 	/*! \brief Set 
 	 */
-	void setIconClassName(std::string  iconClassName);
+	void setIconClassName(std::string iconClassName);
 	/*! \brief Get 
 	 */
 	bool isIdle();
 
 	/*! \brief Set 
 	 */
-	void setIdle(bool  idle);
+	void setIdle(bool idle);
 	/*! \brief Get 
 	 */
 	bool isJnlpAgent();
 
 	/*! \brief Set 
 	 */
-	void setJnlpAgent(bool  jnlpAgent);
+	void setJnlpAgent(bool jnlpAgent);
 	/*! \brief Get 
 	 */
 	bool isLaunchSupported();
 
 	/*! \brief Set 
 	 */
-	void setLaunchSupported(bool  launchSupported);
+	void setLaunchSupported(bool launchSupported);
 	/*! \brief Get 
 	 */
 	Label1 getLoadStatistics();
 
 	/*! \brief Set 
 	 */
-	void setLoadStatistics(Label1  loadStatistics);
+	void setLoadStatistics(Label1 loadStatistics);
 	/*! \brief Get 
 	 */
 	bool isManualLaunchAllowed();
 
 	/*! \brief Set 
 	 */
-	void setManualLaunchAllowed(bool  manualLaunchAllowed);
+	void setManualLaunchAllowed(bool manualLaunchAllowed);
 	/*! \brief Get 
 	 */
 	HudsonMasterComputermonitorData getMonitorData();
 
 	/*! \brief Set 
 	 */
-	void setMonitorData(HudsonMasterComputermonitorData  monitorData);
+	void setMonitorData(HudsonMasterComputermonitorData monitorData);
 	/*! \brief Get 
 	 */
 	int getNumExecutors();
 
 	/*! \brief Set 
 	 */
-	void setNumExecutors(int  numExecutors);
+	void setNumExecutors(int numExecutors);
 	/*! \brief Get 
 	 */
 	bool isOffline();
 
 	/*! \brief Set 
 	 */
-	void setOffline(bool  offline);
+	void setOffline(bool offline);
 	/*! \brief Get 
 	 */
 	std::string getOfflineCause();
 
 	/*! \brief Set 
 	 */
-	void setOfflineCause(std::string  offlineCause);
+	void setOfflineCause(std::string offlineCause);
 	/*! \brief Get 
 	 */
 	std::string getOfflineCauseReason();
 
 	/*! \brief Set 
 	 */
-	void setOfflineCauseReason(std::string  offlineCauseReason);
+	void setOfflineCauseReason(std::string offlineCauseReason);
 	/*! \brief Get 
 	 */
 	bool isTemporarilyOffline();
 
 	/*! \brief Set 
 	 */
-	void setTemporarilyOffline(bool  temporarilyOffline);
+	void setTemporarilyOffline(bool temporarilyOffline);
 
 
     private:

@@ -213,7 +213,7 @@ GithubRepository::getClass()
 }
 
 void
-GithubRepository::setClass(std::string  _class)
+GithubRepository::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -225,7 +225,7 @@ GithubRepository::getLinks()
 }
 
 void
-GithubRepository::setLinks(GithubRepositorylinks  _links)
+GithubRepository::setLinks(GithubRepositorylinks _links)
 {
 	this->_links = _links;
 }
@@ -237,7 +237,7 @@ GithubRepository::getDefaultBranch()
 }
 
 void
-GithubRepository::setDefaultBranch(std::string  defaultBranch)
+GithubRepository::setDefaultBranch(std::string defaultBranch)
 {
 	this->defaultBranch = defaultBranch;
 }
@@ -249,7 +249,7 @@ GithubRepository::getDescription()
 }
 
 void
-GithubRepository::setDescription(std::string  description)
+GithubRepository::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -261,7 +261,7 @@ GithubRepository::getName()
 }
 
 void
-GithubRepository::setName(std::string  name)
+GithubRepository::setName(std::string name)
 {
 	this->name = name;
 }
@@ -273,7 +273,7 @@ GithubRepository::getPermissions()
 }
 
 void
-GithubRepository::setPermissions(GithubRepositorypermissions  permissions)
+GithubRepository::setPermissions(GithubRepositorypermissions permissions)
 {
 	this->permissions = permissions;
 }
@@ -285,7 +285,7 @@ GithubRepository::isRPrivate()
 }
 
 void
-GithubRepository::setRPrivate(bool  r_private)
+GithubRepository::setRPrivate(bool r_private)
 {
 	this->r_private = r_private;
 }
@@ -297,7 +297,7 @@ GithubRepository::getFullName()
 }
 
 void
-GithubRepository::setFullName(std::string  fullName)
+GithubRepository::setFullName(std::string fullName)
 {
 	this->fullName = fullName;
 }

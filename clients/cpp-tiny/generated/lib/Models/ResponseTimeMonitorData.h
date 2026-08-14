@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	int getTimestamp();
 
 	/*! \brief Set 
 	 */
-	void setTimestamp(int  timestamp);
+	void setTimestamp(int timestamp);
 	/*! \brief Get 
 	 */
 	int getAverage();
 
 	/*! \brief Set 
 	 */
-	void setAverage(int  average);
+	void setAverage(int average);
 
 
     private:

@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::string getShortDescription();
 
 	/*! \brief Set 
 	 */
-	void setShortDescription(std::string  shortDescription);
+	void setShortDescription(std::string shortDescription);
 	/*! \brief Get 
 	 */
 	std::string getUserId();
 
 	/*! \brief Set 
 	 */
-	void setUserId(std::string  userId);
+	void setUserId(std::string userId);
 	/*! \brief Get 
 	 */
 	std::string getUserName();
 
 	/*! \brief Set 
 	 */
-	void setUserName(std::string  userName);
+	void setUserName(std::string userName);
 
 
     private:

@@ -106,7 +106,7 @@ HudsonMasterComputerexecutors <- R6::R6Class(
       HudsonMasterComputerexecutorsObject <- list()
       if (!is.null(self$`currentExecutable`)) {
         HudsonMasterComputerexecutorsObject[["currentExecutable"]] <-
-          self$`currentExecutable`$toSimpleType()
+          self$extractSimpleType(self$`currentExecutable`)
       }
       if (!is.null(self$`idle`)) {
         HudsonMasterComputerexecutorsObject[["idle"]] <-
@@ -129,6 +129,29 @@ HudsonMasterComputerexecutors <- R6::R6Class(
           self$`_class`
       }
       return(HudsonMasterComputerexecutorsObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

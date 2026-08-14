@@ -1,0 +1,43 @@
+# BaseApi
+
+All URIs are relative to *http://localhost*
+
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**getCrumb**](BaseApi.md#getCrumb) | **GET** /crumbIssuer/api/json |  |
+
+
+
+## getCrumb
+
+> DefaultCrumbIssuer getCrumb()
+
+
+
+Retrieve CSRF protection token
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DefaultCrumbIssuer**](DefaultCrumbIssuer.md)
+
+### Authorization
+
+[jenkins_auth](../README.md#jenkins_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successfully retrieved CSRF protection token |  -  |
+| **401** | Authentication failed - incorrect username and/or password |  -  |
+| **403** | Jenkins requires authentication - please set username and password |  -  |
+

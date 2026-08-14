@@ -2,7 +2,7 @@
 
 Jenkins API clients generated from Swagger / Open API specification
 
-The version of the OpenAPI document: 3.2.1-pre.0
+The version of the OpenAPI document: 3.3.1-pre.0
 
 ## Building
 

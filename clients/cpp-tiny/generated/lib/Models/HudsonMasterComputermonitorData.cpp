@@ -195,7 +195,7 @@ HudsonMasterComputermonitorData::getHudsonnodeMonitorsSwapSpaceMonitor()
 }
 
 void
-HudsonMasterComputermonitorData::setHudsonnodeMonitorsSwapSpaceMonitor(SwapSpaceMonitorMemoryUsage2  hudsonnode_monitorsSwapSpaceMonitor)
+HudsonMasterComputermonitorData::setHudsonnodeMonitorsSwapSpaceMonitor(SwapSpaceMonitorMemoryUsage2 hudsonnode_monitorsSwapSpaceMonitor)
 {
 	this->hudsonnode_monitorsSwapSpaceMonitor = hudsonnode_monitorsSwapSpaceMonitor;
 }
@@ -207,7 +207,7 @@ HudsonMasterComputermonitorData::getHudsonnodeMonitorsTemporarySpaceMonitor()
 }
 
 void
-HudsonMasterComputermonitorData::setHudsonnodeMonitorsTemporarySpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace  hudsonnode_monitorsTemporarySpaceMonitor)
+HudsonMasterComputermonitorData::setHudsonnodeMonitorsTemporarySpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonnode_monitorsTemporarySpaceMonitor)
 {
 	this->hudsonnode_monitorsTemporarySpaceMonitor = hudsonnode_monitorsTemporarySpaceMonitor;
 }
@@ -219,7 +219,7 @@ HudsonMasterComputermonitorData::getHudsonnodeMonitorsDiskSpaceMonitor()
 }
 
 void
-HudsonMasterComputermonitorData::setHudsonnodeMonitorsDiskSpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace  hudsonnode_monitorsDiskSpaceMonitor)
+HudsonMasterComputermonitorData::setHudsonnodeMonitorsDiskSpaceMonitor(DiskSpaceMonitorDescriptorDiskSpace hudsonnode_monitorsDiskSpaceMonitor)
 {
 	this->hudsonnode_monitorsDiskSpaceMonitor = hudsonnode_monitorsDiskSpaceMonitor;
 }
@@ -231,7 +231,7 @@ HudsonMasterComputermonitorData::getHudsonnodeMonitorsArchitectureMonitor()
 }
 
 void
-HudsonMasterComputermonitorData::setHudsonnodeMonitorsArchitectureMonitor(std::string  hudsonnode_monitorsArchitectureMonitor)
+HudsonMasterComputermonitorData::setHudsonnodeMonitorsArchitectureMonitor(std::string hudsonnode_monitorsArchitectureMonitor)
 {
 	this->hudsonnode_monitorsArchitectureMonitor = hudsonnode_monitorsArchitectureMonitor;
 }
@@ -243,7 +243,7 @@ HudsonMasterComputermonitorData::getHudsonnodeMonitorsResponseTimeMonitor()
 }
 
 void
-HudsonMasterComputermonitorData::setHudsonnodeMonitorsResponseTimeMonitor(ResponseTimeMonitorData  hudsonnode_monitorsResponseTimeMonitor)
+HudsonMasterComputermonitorData::setHudsonnodeMonitorsResponseTimeMonitor(ResponseTimeMonitorData hudsonnode_monitorsResponseTimeMonitor)
 {
 	this->hudsonnode_monitorsResponseTimeMonitor = hudsonnode_monitorsResponseTimeMonitor;
 }
@@ -255,7 +255,7 @@ HudsonMasterComputermonitorData::getHudsonnodeMonitorsClockMonitor()
 }
 
 void
-HudsonMasterComputermonitorData::setHudsonnodeMonitorsClockMonitor(ClockDifference  hudsonnode_monitorsClockMonitor)
+HudsonMasterComputermonitorData::setHudsonnodeMonitorsClockMonitor(ClockDifference hudsonnode_monitorsClockMonitor)
 {
 	this->hudsonnode_monitorsClockMonitor = hudsonnode_monitorsClockMonitor;
 }
@@ -267,7 +267,7 @@ HudsonMasterComputermonitorData::getClass()
 }
 
 void
-HudsonMasterComputermonitorData::setClass(std::string  _class)
+HudsonMasterComputermonitorData::setClass(std::string _class)
 {
 	this->_class = _class;
 }

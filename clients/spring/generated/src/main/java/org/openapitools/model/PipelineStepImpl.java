@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.InputStepImpl;
@@ -9,37 +10,46 @@ import org.openapitools.model.PipelineStepImpllinks;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * PipelineStepImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineStepImpl {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable PipelineStepImpllinks links;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer durationInMillis;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable InputStepImpl input;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String result;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String startTime;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String state;
 
   public PipelineStepImpl propertyClass(@Nullable String propertyClass) {
@@ -58,6 +68,7 @@ public class PipelineStepImpl {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -78,6 +89,7 @@ public class PipelineStepImpl {
     return links;
   }
 
+  @JsonProperty("_links")
   public void setLinks(@Nullable PipelineStepImpllinks links) {
     this.links = links;
   }
@@ -98,6 +110,7 @@ public class PipelineStepImpl {
     return displayName;
   }
 
+  @JsonProperty("displayName")
   public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
@@ -118,6 +131,7 @@ public class PipelineStepImpl {
     return durationInMillis;
   }
 
+  @JsonProperty("durationInMillis")
   public void setDurationInMillis(@Nullable Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
   }
@@ -138,6 +152,7 @@ public class PipelineStepImpl {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(@Nullable String id) {
     this.id = id;
   }
@@ -158,6 +173,7 @@ public class PipelineStepImpl {
     return input;
   }
 
+  @JsonProperty("input")
   public void setInput(@Nullable InputStepImpl input) {
     this.input = input;
   }
@@ -178,6 +194,7 @@ public class PipelineStepImpl {
     return result;
   }
 
+  @JsonProperty("result")
   public void setResult(@Nullable String result) {
     this.result = result;
   }
@@ -198,6 +215,7 @@ public class PipelineStepImpl {
     return startTime;
   }
 
+  @JsonProperty("startTime")
   public void setStartTime(@Nullable String startTime) {
     this.startTime = startTime;
   }
@@ -218,6 +236,7 @@ public class PipelineStepImpl {
     return state;
   }
 
+  @JsonProperty("state")
   public void setState(@Nullable String state) {
     this.state = state;
   }
@@ -268,11 +287,8 @@ public class PipelineStepImpl {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

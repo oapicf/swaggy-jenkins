@@ -163,7 +163,7 @@ QueueBlockedItem <- R6::R6Class(
       }
       if (!is.null(self$`actions`)) {
         QueueBlockedItemObject[["actions"]] <-
-          lapply(self$`actions`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`actions`)
       }
       if (!is.null(self$`blocked`)) {
         QueueBlockedItemObject[["blocked"]] <-
@@ -191,7 +191,7 @@ QueueBlockedItem <- R6::R6Class(
       }
       if (!is.null(self$`task`)) {
         QueueBlockedItemObject[["task"]] <-
-          self$`task`$toSimpleType()
+          self$extractSimpleType(self$`task`)
       }
       if (!is.null(self$`url`)) {
         QueueBlockedItemObject[["url"]] <-
@@ -206,6 +206,29 @@ QueueBlockedItem <- R6::R6Class(
           self$`buildableStartMilliseconds`
       }
       return(QueueBlockedItemObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

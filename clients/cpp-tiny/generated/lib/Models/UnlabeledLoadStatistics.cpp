@@ -64,7 +64,7 @@ UnlabeledLoadStatistics::getClass()
 }
 
 void
-UnlabeledLoadStatistics::setClass(std::string  _class)
+UnlabeledLoadStatistics::setClass(std::string _class)
 {
 	this->_class = _class;
 }

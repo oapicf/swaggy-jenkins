@@ -12,18 +12,21 @@ static label1_t *label1_create_internal(
     if (!label1_local_var) {
         return NULL;
     }
-    label1_local_var->_class = _class;
-
+    memset(label1_local_var, 0, sizeof(label1_t));
     label1_local_var->_library_owned = 1;
+    label1_local_var->_class = _class;
     return label1_local_var;
 }
 
 __attribute__((deprecated)) label1_t *label1_create(
     char *_class
     ) {
-    return label1_create_internal (
+    label1_t *result = label1_create_internal (
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void label1_free(label1_t *label1) {
@@ -64,6 +67,8 @@ label1_t *label1_parseFromJSON(cJSON *label1JSON){
 
     label1_t *label1_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // label1->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(label1JSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -77,12 +82,22 @@ label1_t *label1_parseFromJSON(cJSON *label1JSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     label1_local_var = label1_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!label1_local_var) {
+        goto end;
+    }
 
     return label1_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     return NULL;
 
 }

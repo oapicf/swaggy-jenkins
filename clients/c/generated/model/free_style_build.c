@@ -7,21 +7,21 @@
 
 static free_style_build_t *free_style_build_create_internal(
     char *_class,
-    int number,
+    int *number,
     char *url,
     list_t *actions,
-    int building,
+    int *building,
     char *description,
     char *display_name,
-    int duration,
-    int estimated_duration,
+    int *duration,
+    int *estimated_duration,
     char *executor,
     char *full_display_name,
     char *id,
-    int keep_log,
-    int queue_id,
+    int *keep_log,
+    int *queue_id,
     char *result,
-    int timestamp,
+    int *timestamp,
     char *built_on,
     empty_change_log_set_t *change_set
     ) {
@@ -29,6 +29,8 @@ static free_style_build_t *free_style_build_create_internal(
     if (!free_style_build_local_var) {
         return NULL;
     }
+    memset(free_style_build_local_var, 0, sizeof(free_style_build_t));
+    free_style_build_local_var->_library_owned = 1;
     free_style_build_local_var->_class = _class;
     free_style_build_local_var->number = number;
     free_style_build_local_var->url = url;
@@ -47,51 +49,94 @@ static free_style_build_t *free_style_build_create_internal(
     free_style_build_local_var->timestamp = timestamp;
     free_style_build_local_var->built_on = built_on;
     free_style_build_local_var->change_set = change_set;
-
-    free_style_build_local_var->_library_owned = 1;
     return free_style_build_local_var;
 }
 
 __attribute__((deprecated)) free_style_build_t *free_style_build_create(
     char *_class,
-    int number,
+    int *number,
     char *url,
     list_t *actions,
-    int building,
+    int *building,
     char *description,
     char *display_name,
-    int duration,
-    int estimated_duration,
+    int *duration,
+    int *estimated_duration,
     char *executor,
     char *full_display_name,
     char *id,
-    int keep_log,
-    int queue_id,
+    int *keep_log,
+    int *queue_id,
     char *result,
-    int timestamp,
+    int *timestamp,
     char *built_on,
     empty_change_log_set_t *change_set
     ) {
-    return free_style_build_create_internal (
+    int *number_copy = NULL;
+    if (number) {
+        number_copy = malloc(sizeof(int));
+        if (number_copy) *number_copy = *number;
+    }
+    int *building_copy = NULL;
+    if (building) {
+        building_copy = malloc(sizeof(int));
+        if (building_copy) *building_copy = *building;
+    }
+    int *duration_copy = NULL;
+    if (duration) {
+        duration_copy = malloc(sizeof(int));
+        if (duration_copy) *duration_copy = *duration;
+    }
+    int *estimated_duration_copy = NULL;
+    if (estimated_duration) {
+        estimated_duration_copy = malloc(sizeof(int));
+        if (estimated_duration_copy) *estimated_duration_copy = *estimated_duration;
+    }
+    int *keep_log_copy = NULL;
+    if (keep_log) {
+        keep_log_copy = malloc(sizeof(int));
+        if (keep_log_copy) *keep_log_copy = *keep_log;
+    }
+    int *queue_id_copy = NULL;
+    if (queue_id) {
+        queue_id_copy = malloc(sizeof(int));
+        if (queue_id_copy) *queue_id_copy = *queue_id;
+    }
+    int *timestamp_copy = NULL;
+    if (timestamp) {
+        timestamp_copy = malloc(sizeof(int));
+        if (timestamp_copy) *timestamp_copy = *timestamp;
+    }
+    free_style_build_t *result = free_style_build_create_internal (
         _class,
-        number,
+        number_copy,
         url,
         actions,
-        building,
+        building_copy,
         description,
         display_name,
-        duration,
-        estimated_duration,
+        duration_copy,
+        estimated_duration_copy,
         executor,
         full_display_name,
         id,
-        keep_log,
-        queue_id,
+        keep_log_copy,
+        queue_id_copy,
         result,
-        timestamp,
+        timestamp_copy,
         built_on,
         change_set
         );
+    if (!result) {
+        free(number_copy);
+        free(building_copy);
+        free(duration_copy);
+        free(estimated_duration_copy);
+        free(keep_log_copy);
+        free(queue_id_copy);
+        free(timestamp_copy);
+    }
+    return result;
 }
 
 void free_style_build_free(free_style_build_t *free_style_build) {
@@ -107,6 +152,10 @@ void free_style_build_free(free_style_build_t *free_style_build) {
         free(free_style_build->_class);
         free_style_build->_class = NULL;
     }
+    if (free_style_build->number) {
+        free(free_style_build->number);
+        free_style_build->number = NULL;
+    }
     if (free_style_build->url) {
         free(free_style_build->url);
         free_style_build->url = NULL;
@@ -118,6 +167,10 @@ void free_style_build_free(free_style_build_t *free_style_build) {
         list_freeList(free_style_build->actions);
         free_style_build->actions = NULL;
     }
+    if (free_style_build->building) {
+        free(free_style_build->building);
+        free_style_build->building = NULL;
+    }
     if (free_style_build->description) {
         free(free_style_build->description);
         free_style_build->description = NULL;
@@ -125,6 +178,14 @@ void free_style_build_free(free_style_build_t *free_style_build) {
     if (free_style_build->display_name) {
         free(free_style_build->display_name);
         free_style_build->display_name = NULL;
+    }
+    if (free_style_build->duration) {
+        free(free_style_build->duration);
+        free_style_build->duration = NULL;
+    }
+    if (free_style_build->estimated_duration) {
+        free(free_style_build->estimated_duration);
+        free_style_build->estimated_duration = NULL;
     }
     if (free_style_build->executor) {
         free(free_style_build->executor);
@@ -138,9 +199,21 @@ void free_style_build_free(free_style_build_t *free_style_build) {
         free(free_style_build->id);
         free_style_build->id = NULL;
     }
+    if (free_style_build->keep_log) {
+        free(free_style_build->keep_log);
+        free_style_build->keep_log = NULL;
+    }
+    if (free_style_build->queue_id) {
+        free(free_style_build->queue_id);
+        free_style_build->queue_id = NULL;
+    }
     if (free_style_build->result) {
         free(free_style_build->result);
         free_style_build->result = NULL;
+    }
+    if (free_style_build->timestamp) {
+        free(free_style_build->timestamp);
+        free_style_build->timestamp = NULL;
     }
     if (free_style_build->built_on) {
         free(free_style_build->built_on);
@@ -166,7 +239,7 @@ cJSON *free_style_build_convertToJSON(free_style_build_t *free_style_build) {
 
     // free_style_build->number
     if(free_style_build->number) {
-    if(cJSON_AddNumberToObject(item, "number", free_style_build->number) == NULL) {
+    if(cJSON_AddNumberToObject(item, "number", *free_style_build->number) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -202,7 +275,7 @@ cJSON *free_style_build_convertToJSON(free_style_build_t *free_style_build) {
 
     // free_style_build->building
     if(free_style_build->building) {
-    if(cJSON_AddBoolToObject(item, "building", free_style_build->building) == NULL) {
+    if(cJSON_AddBoolToObject(item, "building", *free_style_build->building) == NULL) {
     goto fail; //Bool
     }
     }
@@ -226,7 +299,7 @@ cJSON *free_style_build_convertToJSON(free_style_build_t *free_style_build) {
 
     // free_style_build->duration
     if(free_style_build->duration) {
-    if(cJSON_AddNumberToObject(item, "duration", free_style_build->duration) == NULL) {
+    if(cJSON_AddNumberToObject(item, "duration", *free_style_build->duration) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -234,7 +307,7 @@ cJSON *free_style_build_convertToJSON(free_style_build_t *free_style_build) {
 
     // free_style_build->estimated_duration
     if(free_style_build->estimated_duration) {
-    if(cJSON_AddNumberToObject(item, "estimatedDuration", free_style_build->estimated_duration) == NULL) {
+    if(cJSON_AddNumberToObject(item, "estimatedDuration", *free_style_build->estimated_duration) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -266,7 +339,7 @@ cJSON *free_style_build_convertToJSON(free_style_build_t *free_style_build) {
 
     // free_style_build->keep_log
     if(free_style_build->keep_log) {
-    if(cJSON_AddBoolToObject(item, "keepLog", free_style_build->keep_log) == NULL) {
+    if(cJSON_AddBoolToObject(item, "keepLog", *free_style_build->keep_log) == NULL) {
     goto fail; //Bool
     }
     }
@@ -274,7 +347,7 @@ cJSON *free_style_build_convertToJSON(free_style_build_t *free_style_build) {
 
     // free_style_build->queue_id
     if(free_style_build->queue_id) {
-    if(cJSON_AddNumberToObject(item, "queueId", free_style_build->queue_id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "queueId", *free_style_build->queue_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -290,7 +363,7 @@ cJSON *free_style_build_convertToJSON(free_style_build_t *free_style_build) {
 
     // free_style_build->timestamp
     if(free_style_build->timestamp) {
-    if(cJSON_AddNumberToObject(item, "timestamp", free_style_build->timestamp) == NULL) {
+    if(cJSON_AddNumberToObject(item, "timestamp", *free_style_build->timestamp) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -328,8 +401,47 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
 
     free_style_build_t *free_style_build_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    // define the local variable for free_style_build->number
+    int *number_local_var = NULL;
+
+    char *url_local_str = NULL;
+
     // define the local list for free_style_build->actions
     list_t *actionsList = NULL;
+
+    // define the local variable for free_style_build->building
+    int *building_local_var = NULL;
+
+    char *description_local_str = NULL;
+
+    char *display_name_local_str = NULL;
+
+    // define the local variable for free_style_build->duration
+    int *duration_local_var = NULL;
+
+    // define the local variable for free_style_build->estimated_duration
+    int *estimated_duration_local_var = NULL;
+
+    char *executor_local_str = NULL;
+
+    char *full_display_name_local_str = NULL;
+
+    char *id_local_str = NULL;
+
+    // define the local variable for free_style_build->keep_log
+    int *keep_log_local_var = NULL;
+
+    // define the local variable for free_style_build->queue_id
+    int *queue_id_local_var = NULL;
+
+    char *result_local_str = NULL;
+
+    // define the local variable for free_style_build->timestamp
+    int *timestamp_local_var = NULL;
+
+    char *built_on_local_str = NULL;
 
     // define the local variable for free_style_build->change_set
     empty_change_log_set_t *change_set_local_nonprim = NULL;
@@ -356,6 +468,12 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     {
     goto end; //Numeric
     }
+    number_local_var = malloc(sizeof(int));
+    if(!number_local_var)
+    {
+        goto end;
+    }
+    *number_local_var = number->valuedouble;
     }
 
     // free_style_build->url
@@ -404,6 +522,12 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     {
     goto end; //Bool
     }
+    building_local_var = malloc(sizeof(int));
+    if(!building_local_var)
+    {
+        goto end;
+    }
+    *building_local_var = building->valueint;
     }
 
     // free_style_build->description
@@ -440,6 +564,12 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     {
     goto end; //Numeric
     }
+    duration_local_var = malloc(sizeof(int));
+    if(!duration_local_var)
+    {
+        goto end;
+    }
+    *duration_local_var = duration->valuedouble;
     }
 
     // free_style_build->estimated_duration
@@ -452,6 +582,12 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     {
     goto end; //Numeric
     }
+    estimated_duration_local_var = malloc(sizeof(int));
+    if(!estimated_duration_local_var)
+    {
+        goto end;
+    }
+    *estimated_duration_local_var = estimated_duration->valuedouble;
     }
 
     // free_style_build->executor
@@ -500,6 +636,12 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     {
     goto end; //Bool
     }
+    keep_log_local_var = malloc(sizeof(int));
+    if(!keep_log_local_var)
+    {
+        goto end;
+    }
+    *keep_log_local_var = keep_log->valueint;
     }
 
     // free_style_build->queue_id
@@ -512,6 +654,12 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     {
     goto end; //Numeric
     }
+    queue_id_local_var = malloc(sizeof(int));
+    if(!queue_id_local_var)
+    {
+        goto end;
+    }
+    *queue_id_local_var = queue_id->valuedouble;
     }
 
     // free_style_build->result
@@ -536,6 +684,12 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     {
     goto end; //Numeric
     }
+    timestamp_local_var = malloc(sizeof(int));
+    if(!timestamp_local_var)
+    {
+        goto end;
+    }
+    *timestamp_local_var = timestamp->valuedouble;
     }
 
     // free_style_build->built_on
@@ -560,29 +714,55 @@ free_style_build_t *free_style_build_parseFromJSON(cJSON *free_style_buildJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+    if (executor && !cJSON_IsNull(executor)) executor_local_str = strdup(executor->valuestring);
+    if (full_display_name && !cJSON_IsNull(full_display_name)) full_display_name_local_str = strdup(full_display_name->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (result && !cJSON_IsNull(result)) result_local_str = strdup(result->valuestring);
+    if (built_on && !cJSON_IsNull(built_on)) built_on_local_str = strdup(built_on->valuestring);
+
     free_style_build_local_var = free_style_build_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        number ? number->valuedouble : 0,
-        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
+        _class_local_str,
+        number_local_var,
+        url_local_str,
         actions ? actionsList : NULL,
-        building ? building->valueint : 0,
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
-        duration ? duration->valuedouble : 0,
-        estimated_duration ? estimated_duration->valuedouble : 0,
-        executor && !cJSON_IsNull(executor) ? strdup(executor->valuestring) : NULL,
-        full_display_name && !cJSON_IsNull(full_display_name) ? strdup(full_display_name->valuestring) : NULL,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        keep_log ? keep_log->valueint : 0,
-        queue_id ? queue_id->valuedouble : 0,
-        result && !cJSON_IsNull(result) ? strdup(result->valuestring) : NULL,
-        timestamp ? timestamp->valuedouble : 0,
-        built_on && !cJSON_IsNull(built_on) ? strdup(built_on->valuestring) : NULL,
+        building_local_var,
+        description_local_str,
+        display_name_local_str,
+        duration_local_var,
+        estimated_duration_local_var,
+        executor_local_str,
+        full_display_name_local_str,
+        id_local_str,
+        keep_log_local_var,
+        queue_id_local_var,
+        result_local_str,
+        timestamp_local_var,
+        built_on_local_str,
         change_set ? change_set_local_nonprim : NULL
         );
 
+    if (!free_style_build_local_var) {
+        goto end;
+    }
+
     return free_style_build_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (number_local_var) {
+        free(number_local_var);
+        number_local_var = NULL;
+    }
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
     if (actionsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, actionsList) {
@@ -591,6 +771,58 @@ end:
         }
         list_freeList(actionsList);
         actionsList = NULL;
+    }
+    if (building_local_var) {
+        free(building_local_var);
+        building_local_var = NULL;
+    }
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
+    if (duration_local_var) {
+        free(duration_local_var);
+        duration_local_var = NULL;
+    }
+    if (estimated_duration_local_var) {
+        free(estimated_duration_local_var);
+        estimated_duration_local_var = NULL;
+    }
+    if (executor_local_str) {
+        free(executor_local_str);
+        executor_local_str = NULL;
+    }
+    if (full_display_name_local_str) {
+        free(full_display_name_local_str);
+        full_display_name_local_str = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (keep_log_local_var) {
+        free(keep_log_local_var);
+        keep_log_local_var = NULL;
+    }
+    if (queue_id_local_var) {
+        free(queue_id_local_var);
+        queue_id_local_var = NULL;
+    }
+    if (result_local_str) {
+        free(result_local_str);
+        result_local_str = NULL;
+    }
+    if (timestamp_local_var) {
+        free(timestamp_local_var);
+        timestamp_local_var = NULL;
+    }
+    if (built_on_local_str) {
+        free(built_on_local_str);
+        built_on_local_str = NULL;
     }
     if (change_set_local_nonprim) {
         empty_change_log_set_free(change_set_local_nonprim);

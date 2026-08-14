@@ -13,10 +13,10 @@ static organisation_t *organisation_create_internal(
     if (!organisation_local_var) {
         return NULL;
     }
+    memset(organisation_local_var, 0, sizeof(organisation_t));
+    organisation_local_var->_library_owned = 1;
     organisation_local_var->_class = _class;
     organisation_local_var->name = name;
-
-    organisation_local_var->_library_owned = 1;
     return organisation_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) organisation_t *organisation_create(
     char *_class,
     char *name
     ) {
-    return organisation_create_internal (
+    organisation_t *result = organisation_create_internal (
         _class,
         name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void organisation_free(organisation_t *organisation) {
@@ -80,6 +83,10 @@ organisation_t *organisation_parseFromJSON(cJSON *organisationJSON){
 
     organisation_t *organisation_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *name_local_str = NULL;
+
     // organisation->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(organisationJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -105,13 +112,28 @@ organisation_t *organisation_parseFromJSON(cJSON *organisationJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     organisation_local_var = organisation_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL
+        _class_local_str,
+        name_local_str
         );
+
+    if (!organisation_local_var) {
+        goto end;
+    }
 
     return organisation_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     return NULL;
 
 }

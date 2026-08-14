@@ -17,7 +17,7 @@ import javax.validation.Valid;
 */
 @Path("/createItem")
 @Api(description = "the createItem API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-02-01T01:24:35.543085533Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-14T13:27:13.203648304Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateItemApi {
 
     @POST

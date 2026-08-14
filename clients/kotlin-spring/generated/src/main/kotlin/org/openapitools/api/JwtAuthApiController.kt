@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.JwtAuthApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -30,7 +29,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:}")
 class JwtAuthApiController() {
 
     @Operation(
@@ -44,7 +43,8 @@ class JwtAuthApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_JSON_WEB_KEY /* "/jwt-auth/jwks/{key}" */],
+        // "/jwt-auth/jwks/{key}"
+        value = [PATH_GET_JSON_WEB_KEY],
         produces = ["application/json"]
     )
     fun getJsonWebKey(
@@ -64,7 +64,8 @@ class JwtAuthApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_JSON_WEB_TOKEN /* "/jwt-auth/token" */],
+        // "/jwt-auth/token"
+        value = [PATH_GET_JSON_WEB_TOKEN],
         produces = ["application/json"]
     )
     fun getJsonWebToken(

@@ -148,7 +148,7 @@ FreeStyleProjecthealthReport::getDescription()
 }
 
 void
-FreeStyleProjecthealthReport::setDescription(std::string  description)
+FreeStyleProjecthealthReport::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -160,7 +160,7 @@ FreeStyleProjecthealthReport::getIconClassName()
 }
 
 void
-FreeStyleProjecthealthReport::setIconClassName(std::string  iconClassName)
+FreeStyleProjecthealthReport::setIconClassName(std::string iconClassName)
 {
 	this->iconClassName = iconClassName;
 }
@@ -172,7 +172,7 @@ FreeStyleProjecthealthReport::getIconUrl()
 }
 
 void
-FreeStyleProjecthealthReport::setIconUrl(std::string  iconUrl)
+FreeStyleProjecthealthReport::setIconUrl(std::string iconUrl)
 {
 	this->iconUrl = iconUrl;
 }
@@ -184,7 +184,7 @@ FreeStyleProjecthealthReport::getScore()
 }
 
 void
-FreeStyleProjecthealthReport::setScore(int  score)
+FreeStyleProjecthealthReport::setScore(int score)
 {
 	this->score = score;
 }
@@ -196,7 +196,7 @@ FreeStyleProjecthealthReport::getClass()
 }
 
 void
-FreeStyleProjecthealthReport::setClass(std::string  _class)
+FreeStyleProjecthealthReport::setClass(std::string _class)
 {
 	this->_class = _class;
 }

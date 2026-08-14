@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.2.1-pre.0
+ * API version: 3.3.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -19,7 +19,8 @@ type Label1 struct {
 	Class string `json:"_class,omitempty"`
 }
 
-// AssertLabel1Required checks if the required fields are not zero-ed
+// AssertLabel1Required checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertLabel1Required(obj Label1) error {
 	return nil
 }

@@ -108,7 +108,7 @@ PipelineStepImpllinks::getSelf()
 }
 
 void
-PipelineStepImpllinks::setSelf(Link  self)
+PipelineStepImpllinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -120,7 +120,7 @@ PipelineStepImpllinks::getActions()
 }
 
 void
-PipelineStepImpllinks::setActions(Link  actions)
+PipelineStepImpllinks::setActions(Link actions)
 {
 	this->actions = actions;
 }
@@ -132,7 +132,7 @@ PipelineStepImpllinks::getClass()
 }
 
 void
-PipelineStepImpllinks::setClass(std::string  _class)
+PipelineStepImpllinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

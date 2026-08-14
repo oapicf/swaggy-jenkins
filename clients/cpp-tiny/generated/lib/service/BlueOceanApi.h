@@ -35,7 +35,7 @@ class BlueOceanApi : public Service {
 public:
     BlueOceanApi() = default;
 
-    virtual ~BlueOceanApi() = default;
+    virtual ~BlueOceanApi();
 
     /**
     * .

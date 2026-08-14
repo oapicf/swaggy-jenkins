@@ -51,98 +51,98 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setDurationInMillis(int  durationInMillis);
+	void setDurationInMillis(int durationInMillis);
 	/*! \brief Get 
 	 */
 	int getEstimatedDurationInMillis();
 
 	/*! \brief Set 
 	 */
-	void setEstimatedDurationInMillis(int  estimatedDurationInMillis);
+	void setEstimatedDurationInMillis(int estimatedDurationInMillis);
 	/*! \brief Get 
 	 */
 	std::string getEnQueueTime();
 
 	/*! \brief Set 
 	 */
-	void setEnQueueTime(std::string  enQueueTime);
+	void setEnQueueTime(std::string enQueueTime);
 	/*! \brief Get 
 	 */
 	std::string getEndTime();
 
 	/*! \brief Set 
 	 */
-	void setEndTime(std::string  endTime);
+	void setEndTime(std::string endTime);
 	/*! \brief Get 
 	 */
 	std::string getId();
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	std::string getOrganization();
 
 	/*! \brief Set 
 	 */
-	void setOrganization(std::string  organization);
+	void setOrganization(std::string organization);
 	/*! \brief Get 
 	 */
 	std::string getPipeline();
 
 	/*! \brief Set 
 	 */
-	void setPipeline(std::string  pipeline);
+	void setPipeline(std::string pipeline);
 	/*! \brief Get 
 	 */
 	std::string getResult();
 
 	/*! \brief Set 
 	 */
-	void setResult(std::string  result);
+	void setResult(std::string result);
 	/*! \brief Get 
 	 */
 	std::string getRunSummary();
 
 	/*! \brief Set 
 	 */
-	void setRunSummary(std::string  runSummary);
+	void setRunSummary(std::string runSummary);
 	/*! \brief Get 
 	 */
 	std::string getStartTime();
 
 	/*! \brief Set 
 	 */
-	void setStartTime(std::string  startTime);
+	void setStartTime(std::string startTime);
 	/*! \brief Get 
 	 */
 	std::string getState();
 
 	/*! \brief Set 
 	 */
-	void setState(std::string  state);
+	void setState(std::string state);
 	/*! \brief Get 
 	 */
 	std::string getType();
 
 	/*! \brief Set 
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get 
 	 */
 	std::string getCommitId();
 
 	/*! \brief Set 
 	 */
-	void setCommitId(std::string  commitId);
+	void setCommitId(std::string commitId);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

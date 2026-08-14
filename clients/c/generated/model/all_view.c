@@ -14,11 +14,11 @@ static all_view_t *all_view_create_internal(
     if (!all_view_local_var) {
         return NULL;
     }
+    memset(all_view_local_var, 0, sizeof(all_view_t));
+    all_view_local_var->_library_owned = 1;
     all_view_local_var->_class = _class;
     all_view_local_var->name = name;
     all_view_local_var->url = url;
-
-    all_view_local_var->_library_owned = 1;
     return all_view_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) all_view_t *all_view_create(
     char *name,
     char *url
     ) {
-    return all_view_create_internal (
+    all_view_t *result = all_view_create_internal (
         _class,
         name,
         url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void all_view_free(all_view_t *all_view) {
@@ -96,6 +99,12 @@ all_view_t *all_view_parseFromJSON(cJSON *all_viewJSON){
 
     all_view_t *all_view_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *url_local_str = NULL;
+
     // all_view->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(all_viewJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -133,14 +142,34 @@ all_view_t *all_view_parseFromJSON(cJSON *all_viewJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+
     all_view_local_var = all_view_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL
+        _class_local_str,
+        name_local_str,
+        url_local_str
         );
+
+    if (!all_view_local_var) {
+        goto end;
+    }
 
     return all_view_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
     return NULL;
 
 }

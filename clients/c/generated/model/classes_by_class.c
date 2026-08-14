@@ -13,10 +13,10 @@ static classes_by_class_t *classes_by_class_create_internal(
     if (!classes_by_class_local_var) {
         return NULL;
     }
+    memset(classes_by_class_local_var, 0, sizeof(classes_by_class_t));
+    classes_by_class_local_var->_library_owned = 1;
     classes_by_class_local_var->classes = classes;
     classes_by_class_local_var->_class = _class;
-
-    classes_by_class_local_var->_library_owned = 1;
     return classes_by_class_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) classes_by_class_t *classes_by_class_create(
     list_t *classes,
     char *_class
     ) {
-    return classes_by_class_create_internal (
+    classes_by_class_t *result = classes_by_class_create_internal (
         classes,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void classes_by_class_free(classes_by_class_t *classes_by_class) {
@@ -95,6 +98,8 @@ classes_by_class_t *classes_by_class_parseFromJSON(cJSON *classes_by_classJSON){
     // define the local list for classes_by_class->classes
     list_t *classesList = NULL;
 
+    char *_class_local_str = NULL;
+
     // classes_by_class->classes
     cJSON *classes = cJSON_GetObjectItemCaseSensitive(classes_by_classJSON, "classes");
     if (cJSON_IsNull(classes)) {
@@ -130,10 +135,16 @@ classes_by_class_t *classes_by_class_parseFromJSON(cJSON *classes_by_classJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     classes_by_class_local_var = classes_by_class_create_internal (
         classes ? classesList : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!classes_by_class_local_var) {
+        goto end;
+    }
 
     return classes_by_class_local_var;
 end:
@@ -145,6 +156,10 @@ end:
         }
         list_freeList(classesList);
         classesList = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

@@ -51,56 +51,56 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	std::string getSha();
 
 	/*! \brief Set 
 	 */
-	void setSha(std::string  sha);
+	void setSha(std::string sha);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::string getRepo();
 
 	/*! \brief Set 
 	 */
-	void setRepo(std::string  repo);
+	void setRepo(std::string repo);
 	/*! \brief Get 
 	 */
 	int getSize();
 
 	/*! \brief Set 
 	 */
-	void setSize(int  size);
+	void setSize(int size);
 	/*! \brief Get 
 	 */
 	std::string getOwner();
 
 	/*! \brief Set 
 	 */
-	void setOwner(std::string  owner);
+	void setOwner(std::string owner);
 	/*! \brief Get 
 	 */
 	std::string getPath();
 
 	/*! \brief Set 
 	 */
-	void setPath(std::string  path);
+	void setPath(std::string path);
 	/*! \brief Get 
 	 */
 	std::string getBase64Data();
 
 	/*! \brief Set 
 	 */
-	void setBase64Data(std::string  base64Data);
+	void setBase64Data(std::string base64Data);
 
 
     private:

@@ -1,0 +1,3594 @@
+{
+	"info": {
+		"name": "Swaggy Jenkins",
+		"description": {
+		    "content": "Jenkins API clients generated from Swagger / Open API specification",
+		    "type": "text/markdown"
+		},
+		"version": "3.3.1-pre.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+	        {
+	            "name": "base",
+	            "description": "base tag",
+	            "item": [
+	                        {
+    "name": "/crumbIssuer/api/json",
+                "description": "Retrieve CSRF protection token",
+                 "item": [
+                            {
+                                "name": "getCrumb",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/crumbIssuer/api/json",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "crumbIssuer",
+        "api",
+        "json"
+    ],
+    "variable": [
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve CSRF protection token"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        }
+	                    ]
+	        },
+	        {
+	            "name": "remoteAccess",
+	            "description": "remoteAccess tag",
+	            "item": [
+	                        {
+    "name": "/api/json",
+                "description": "Retrieve Jenkins details",
+                 "item": [
+                            {
+                                "name": "getJenkins",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/api/json",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "api",
+        "json"
+    ],
+    "variable": [
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve Jenkins details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/api/json",
+                "description": "Retrieve Jenkins headers",
+                 "item": [
+                            {
+                                "name": "headJenkins",
+                                "request": {
+    "method": "HEAD",
+    "header": [
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/api/json",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "api",
+        "json"
+    ],
+    "variable": [
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve Jenkins headers"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/computer/api/json",
+                "description": "Retrieve computer details",
+                 "item": [
+                            {
+                                "name": "getComputer",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/computer/api/json",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "computer",
+        "api",
+        "json"
+    ],
+    "variable": [
+    ],
+    "query": [
+        {
+        "key": "depth",
+        "value": "56",
+        "description": "Recursion depth in response model",
+        "disabled": false
+        }
+    ]
+    },
+    "description": "Retrieve computer details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/createItem",
+                "description": "Create a new job using job configuration, or copied from an existing job",
+                 "item": [
+                            {
+                                "name": "postCreateItem",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Content-Type",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        },
+        {
+        "key": "Accept",
+        "value": "*/*",
+        "description": "",
+        "disabled": false
+        },
+        {
+        "key": "Jenkins-Crumb",
+        "value": "",
+        "description": "CSRF protection token",
+        "disabled": true
+        },
+        {
+        "key": "Content-Type",
+        "value": "",
+        "description": "Content type header application/xml",
+        "disabled": true
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/createItem",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "createItem"
+    ],
+    "variable": [
+    ],
+    "query": [
+        {
+        "key": "name",
+        "value": "name_example",
+        "description": "Name of the new job",
+        "disabled": false
+        },
+        {
+        "key": "from",
+        "value": "from_example",
+        "description": "Existing job to copy from",
+        "disabled": true
+        },
+        {
+        "key": "mode",
+        "value": "mode_example",
+        "description": "Set to 'copy' for copying an existing job",
+        "disabled": true
+        }
+    ]
+    },
+    "description": "Create a new job using job configuration, or copied from an existing job"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/createView",
+                "description": "Create a new view using view configuration",
+                 "item": [
+                            {
+                                "name": "postCreateView",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Content-Type",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        },
+        {
+        "key": "Accept",
+        "value": "*/*",
+        "description": "",
+        "disabled": false
+        },
+        {
+        "key": "Jenkins-Crumb",
+        "value": "",
+        "description": "CSRF protection token",
+        "disabled": true
+        },
+        {
+        "key": "Content-Type",
+        "value": "",
+        "description": "Content type header application/xml",
+        "disabled": true
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/createView",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "createView"
+    ],
+    "variable": [
+    ],
+    "query": [
+        {
+        "key": "name",
+        "value": "name_example",
+        "description": "Name of the new view",
+        "disabled": false
+        }
+    ]
+    },
+    "description": "Create a new view using view configuration"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/job/:name/:number/logText/progressiveText",
+                "description": "Retrieve job's build progressive text output",
+                 "item": [
+                            {
+                                "name": "getJobProgressiveText",
+                                "request": {
+    "method": "GET",
+    "header": [
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/job/:name/:number/logText/progressiveText",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "job",
+        ":name",
+        ":number",
+        "logText",
+        "progressiveText"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the job"
+        },
+        {
+        "key": "number",
+        "value": "",
+        "description": "Build number"
+        }
+    ],
+    "query": [
+        {
+        "key": "start",
+        "value": "start_example",
+        "description": "Starting point of progressive text output",
+        "disabled": false
+        }
+    ]
+    },
+    "description": "Retrieve job's build progressive text output"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/job/:name/api/json",
+                "description": "Retrieve job details",
+                 "item": [
+                            {
+                                "name": "getJob",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/job/:name/api/json",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "job",
+        ":name",
+        "api",
+        "json"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the job"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve job details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/job/:name/build",
+                "description": "Build a job",
+                 "item": [
+                            {
+                                "name": "postJobBuild",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Jenkins-Crumb",
+        "value": "",
+        "description": "CSRF protection token",
+        "disabled": true
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/job/:name/build",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "job",
+        ":name",
+        "build"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the job"
+        }
+    ],
+    "query": [
+        {
+        "key": "json",
+        "value": "json_example",
+        "description": "",
+        "disabled": false
+        },
+        {
+        "key": "token",
+        "value": "token_example",
+        "description": "",
+        "disabled": true
+        }
+    ]
+    },
+    "description": "Build a job"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/job/:name/config.xml",
+                "description": "Retrieve job configuration",
+                 "item": [
+                            {
+                                "name": "getJobConfig",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "text/xml",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/job/:name/config.xml",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "job",
+        ":name",
+        "config.xml"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the job"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve job configuration"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/job/:name/config.xml",
+                "description": "Update job configuration",
+                 "item": [
+                            {
+                                "name": "postJobConfig",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Content-Type",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        },
+        {
+        "key": "Accept",
+        "value": "*/*",
+        "description": "",
+        "disabled": false
+        },
+        {
+        "key": "Jenkins-Crumb",
+        "value": "",
+        "description": "CSRF protection token",
+        "disabled": true
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/job/:name/config.xml",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "job",
+        ":name",
+        "config.xml"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the job"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Update job configuration"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/job/:name/disable",
+                "description": "Disable a job",
+                 "item": [
+                            {
+                                "name": "postJobDisable",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Jenkins-Crumb",
+        "value": "",
+        "description": "CSRF protection token",
+        "disabled": true
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/job/:name/disable",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "job",
+        ":name",
+        "disable"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the job"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Disable a job"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/job/:name/doDelete",
+                "description": "Delete a job",
+                 "item": [
+                            {
+                                "name": "postJobDelete",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Jenkins-Crumb",
+        "value": "",
+        "description": "CSRF protection token",
+        "disabled": true
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/job/:name/doDelete",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "job",
+        ":name",
+        "doDelete"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the job"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Delete a job"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/job/:name/enable",
+                "description": "Enable a job",
+                 "item": [
+                            {
+                                "name": "postJobEnable",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Jenkins-Crumb",
+        "value": "",
+        "description": "CSRF protection token",
+        "disabled": true
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/job/:name/enable",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "job",
+        ":name",
+        "enable"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the job"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Enable a job"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/job/:name/lastBuild/api/json",
+                "description": "Retrieve job's last build details",
+                 "item": [
+                            {
+                                "name": "getJobLastBuild",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/job/:name/lastBuild/api/json",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "job",
+        ":name",
+        "lastBuild",
+        "api",
+        "json"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the job"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve job's last build details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/job/:name/lastBuild/stop",
+                "description": "Stop a job",
+                 "item": [
+                            {
+                                "name": "postJobLastBuildStop",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Jenkins-Crumb",
+        "value": "",
+        "description": "CSRF protection token",
+        "disabled": true
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/job/:name/lastBuild/stop",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "job",
+        ":name",
+        "lastBuild",
+        "stop"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the job"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Stop a job"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/queue/api/json",
+                "description": "Retrieve queue details",
+                 "item": [
+                            {
+                                "name": "getQueue",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/queue/api/json",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "queue",
+        "api",
+        "json"
+    ],
+    "variable": [
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve queue details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/queue/item/:number/api/json",
+                "description": "Retrieve queued item details",
+                 "item": [
+                            {
+                                "name": "getQueueItem",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/queue/item/:number/api/json",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "queue",
+        "item",
+        ":number",
+        "api",
+        "json"
+    ],
+    "variable": [
+        {
+        "key": "number",
+        "value": "",
+        "description": "Queue number"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve queued item details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/view/:name/api/json",
+                "description": "Retrieve view details",
+                 "item": [
+                            {
+                                "name": "getView",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/view/:name/api/json",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "view",
+        ":name",
+        "api",
+        "json"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the view"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve view details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/view/:name/config.xml",
+                "description": "Retrieve view configuration",
+                 "item": [
+                            {
+                                "name": "getViewConfig",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "text/xml",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/view/:name/config.xml",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "view",
+        ":name",
+        "config.xml"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the view"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve view configuration"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/view/:name/config.xml",
+                "description": "Update view configuration",
+                 "item": [
+                            {
+                                "name": "postViewConfig",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Content-Type",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        },
+        {
+        "key": "Accept",
+        "value": "*/*",
+        "description": "",
+        "disabled": false
+        },
+        {
+        "key": "Jenkins-Crumb",
+        "value": "",
+        "description": "CSRF protection token",
+        "disabled": true
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/view/:name/config.xml",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "view",
+        ":name",
+        "config.xml"
+    ],
+    "variable": [
+        {
+        "key": "name",
+        "value": "",
+        "description": "Name of the view"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Update view configuration"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        }
+	                    ]
+	        },
+	        {
+	            "name": "blueOcean",
+	            "description": "blueOcean tag",
+	            "item": [
+	                        {
+    "name": "/blue/rest/classes/",
+                "description": "Get classes details",
+                 "item": [
+                            {
+                                "name": "searchClasses",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/classes/",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "classes"
+    ],
+    "variable": [
+    ],
+    "query": [
+        {
+        "key": "q",
+        "value": "q_example",
+        "description": "Query string containing an array of class names",
+        "disabled": false
+        }
+    ]
+    },
+    "description": "Get classes details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/classes/:class",
+                "description": "Get a list of class names supported by a given class",
+                 "item": [
+                            {
+                                "name": "getClasses",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/classes/:class",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "classes",
+        ":class"
+    ],
+    "variable": [
+        {
+        "key": "class",
+        "value": "",
+        "description": "Name of the class"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Get a list of class names supported by a given class"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/",
+                "description": "Retrieve all organizations details",
+                 "item": [
+                            {
+                                "name": "getOrganisations",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations"
+    ],
+    "variable": [
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve all organizations details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization",
+                "description": "Retrieve organization details",
+                 "item": [
+                            {
+                                "name": "getOrganisation",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve organization details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/",
+                "description": "Retrieve all pipelines details for an organization",
+                 "item": [
+                            {
+                                "name": "getPipelines",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve all pipelines details for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:folder/",
+                "description": "Retrieve pipeline folder for an organization",
+                 "item": [
+                            {
+                                "name": "getPipelineFolder",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:folder/",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":folder"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "folder",
+        "value": "",
+        "description": "Name of the folder"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve pipeline folder for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:folder/pipelines/:pipeline",
+                "description": "Retrieve pipeline details for an organization folder",
+                 "item": [
+                            {
+                                "name": "getPipelineFolderPipeline",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:folder/pipelines/:pipeline",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":folder",
+        "pipelines",
+        ":pipeline"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "folder",
+        "value": "",
+        "description": "Name of the folder"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve pipeline details for an organization folder"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline",
+                "description": "Retrieve pipeline details for an organization",
+                 "item": [
+                            {
+                                "name": "getPipeline",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve pipeline details for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/activities",
+                "description": "Retrieve all activities details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineActivities",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/activities",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "activities"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve all activities details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/branches",
+                "description": "Retrieve all branches details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineBranches",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/branches",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "branches"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve all branches details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/",
+                "description": "Retrieve branch details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineBranch",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "branches",
+        ":branch"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "branch",
+        "value": "",
+        "description": "Name of the branch"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve branch details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/runs/:run",
+                "description": "Retrieve branch run details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineBranchRun",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/branches/:branch/runs/:run",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "branches",
+        ":branch",
+        "runs",
+        ":run"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "branch",
+        "value": "",
+        "description": "Name of the branch"
+        },
+        {
+        "key": "run",
+        "value": "",
+        "description": "Name of the run"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve branch run details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/favorite",
+                "description": "Favorite/unfavorite a pipeline",
+                 "item": [
+                            {
+                                "name": "putPipelineFavorite",
+                                "request": {
+    "method": "PUT",
+    "header": [
+        {
+        "key": "Content-Type",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        },
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "true",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/favorite",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "favorite"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Favorite/unfavorite a pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/queue",
+                "description": "Retrieve queue details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineQueue",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/queue",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "queue"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve queue details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/queue/:queue",
+                "description": "Delete queue item from an organization pipeline queue",
+                 "item": [
+                            {
+                                "name": "deletePipelineQueueItem",
+                                "request": {
+    "method": "DELETE",
+    "header": [
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/queue/:queue",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "queue",
+        ":queue"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "queue",
+        "value": "",
+        "description": "Name of the queue item"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Delete queue item from an organization pipeline queue"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs",
+                "description": "Retrieve all runs details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineRuns",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve all runs details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs",
+                "description": "Start a build for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "postPipelineRuns",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Start a build for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run",
+                "description": "Retrieve run details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineRun",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs",
+        ":run"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "run",
+        "value": "",
+        "description": "Name of the run"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve run details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/log",
+                "description": "Get log for a pipeline run",
+                 "item": [
+                            {
+                                "name": "getPipelineRunLog",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/log",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs",
+        ":run",
+        "log"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "run",
+        "value": "",
+        "description": "Name of the run"
+        }
+    ],
+    "query": [
+        {
+        "key": "start",
+        "value": "56",
+        "description": "Start position of the log",
+        "disabled": true
+        },
+        {
+        "key": "download",
+        "value": "true",
+        "description": "Set to true in order to download the file, otherwise it's passed as a response body",
+        "disabled": true
+        }
+    ]
+    },
+    "description": "Get log for a pipeline run"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes",
+                "description": "Retrieve run nodes details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineRunNodes",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs",
+        ":run",
+        "nodes"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "run",
+        "value": "",
+        "description": "Name of the run"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve run nodes details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node",
+                "description": "Retrieve run node details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineRunNode",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs",
+        ":run",
+        "nodes",
+        ":node"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "run",
+        "value": "",
+        "description": "Name of the run"
+        },
+        {
+        "key": "node",
+        "value": "",
+        "description": "Name of the node"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve run node details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps",
+                "description": "Retrieve run node steps details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineRunNodeSteps",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs",
+        ":run",
+        "nodes",
+        ":node",
+        "steps"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "run",
+        "value": "",
+        "description": "Name of the run"
+        },
+        {
+        "key": "node",
+        "value": "",
+        "description": "Name of the node"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve run node steps details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step",
+                "description": "Retrieve run node details for an organization pipeline",
+                 "item": [
+                            {
+                                "name": "getPipelineRunNodeStep",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs",
+        ":run",
+        "nodes",
+        ":node",
+        "steps",
+        ":step"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "run",
+        "value": "",
+        "description": "Name of the run"
+        },
+        {
+        "key": "node",
+        "value": "",
+        "description": "Name of the node"
+        },
+        {
+        "key": "step",
+        "value": "",
+        "description": "Name of the step"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve run node details for an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step/log",
+                "description": "Get log for a pipeline run node step",
+                 "item": [
+                            {
+                                "name": "getPipelineRunNodeStepLog",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/nodes/:node/steps/:step/log",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs",
+        ":run",
+        "nodes",
+        ":node",
+        "steps",
+        ":step",
+        "log"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "run",
+        "value": "",
+        "description": "Name of the run"
+        },
+        {
+        "key": "node",
+        "value": "",
+        "description": "Name of the node"
+        },
+        {
+        "key": "step",
+        "value": "",
+        "description": "Name of the step"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Get log for a pipeline run node step"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/replay",
+                "description": "Replay an organization pipeline run",
+                 "item": [
+                            {
+                                "name": "postPipelineRun",
+                                "request": {
+    "method": "POST",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/replay",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs",
+        ":run",
+        "replay"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "run",
+        "value": "",
+        "description": "Name of the run"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Replay an organization pipeline run"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/stop",
+                "description": "Stop a build of an organization pipeline",
+                 "item": [
+                            {
+                                "name": "putPipelineRun",
+                                "request": {
+    "method": "PUT",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/pipelines/:pipeline/runs/:run/stop",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "pipelines",
+        ":pipeline",
+        "runs",
+        ":run",
+        "stop"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "pipeline",
+        "value": "",
+        "description": "Name of the pipeline"
+        },
+        {
+        "key": "run",
+        "value": "",
+        "description": "Name of the run"
+        }
+    ],
+    "query": [
+        {
+        "key": "blocking",
+        "value": "blocking_example",
+        "description": "Set to true to make blocking stop, default: false",
+        "disabled": true
+        },
+        {
+        "key": "timeOutInSecs",
+        "value": "56",
+        "description": "Timeout in seconds, default: 10 seconds",
+        "disabled": true
+        }
+    ]
+    },
+    "description": "Stop a build of an organization pipeline"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/scm/:scm",
+                "description": "Retrieve SCM details for an organization",
+                 "item": [
+                            {
+                                "name": "getSCM",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/scm/:scm",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "scm",
+        ":scm"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "scm",
+        "value": "",
+        "description": "Name of SCM"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve SCM details for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/scm/:scm/organizations",
+                "description": "Retrieve SCM organizations details for an organization",
+                 "item": [
+                            {
+                                "name": "getSCMOrganisations",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/scm/:scm/organizations",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "scm",
+        ":scm",
+        "organizations"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "scm",
+        "value": "",
+        "description": "Name of SCM"
+        }
+    ],
+    "query": [
+        {
+        "key": "credentialId",
+        "value": "credentialId_example",
+        "description": "Credential ID",
+        "disabled": true
+        }
+    ]
+    },
+    "description": "Retrieve SCM organizations details for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories",
+                "description": "Retrieve SCM organization repositories details for an organization",
+                 "item": [
+                            {
+                                "name": "getSCMOrganisationRepositories",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "scm",
+        ":scm",
+        "organizations",
+        ":scmOrganisation",
+        "repositories"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "scm",
+        "value": "",
+        "description": "Name of SCM"
+        },
+        {
+        "key": "scmOrganisation",
+        "value": "",
+        "description": "Name of the SCM organization"
+        }
+    ],
+    "query": [
+        {
+        "key": "credentialId",
+        "value": "credentialId_example",
+        "description": "Credential ID",
+        "disabled": true
+        },
+        {
+        "key": "pageSize",
+        "value": "56",
+        "description": "Number of items in a page",
+        "disabled": true
+        },
+        {
+        "key": "pageNumber",
+        "value": "56",
+        "description": "Page number",
+        "disabled": true
+        }
+    ]
+    },
+    "description": "Retrieve SCM organization repositories details for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories/:repository",
+                "description": "Retrieve SCM organization repository details for an organization",
+                 "item": [
+                            {
+                                "name": "getSCMOrganisationRepository",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/scm/:scm/organizations/:scmOrganisation/repositories/:repository",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "scm",
+        ":scm",
+        "organizations",
+        ":scmOrganisation",
+        "repositories",
+        ":repository"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "scm",
+        "value": "",
+        "description": "Name of SCM"
+        },
+        {
+        "key": "scmOrganisation",
+        "value": "",
+        "description": "Name of the SCM organization"
+        },
+        {
+        "key": "repository",
+        "value": "",
+        "description": "Name of the SCM repository"
+        }
+    ],
+    "query": [
+        {
+        "key": "credentialId",
+        "value": "credentialId_example",
+        "description": "Credential ID",
+        "disabled": true
+        }
+    ]
+    },
+    "description": "Retrieve SCM organization repository details for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/user/",
+                "description": "Retrieve authenticated user details for an organization",
+                 "item": [
+                            {
+                                "name": "getAuthenticatedUser",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/user/",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "user"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve authenticated user details for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/users/",
+                "description": "Retrieve users details for an organization",
+                 "item": [
+                            {
+                                "name": "getUsers",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/users/",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "users"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve users details for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/organizations/:organization/users/:user",
+                "description": "Retrieve user details for an organization",
+                 "item": [
+                            {
+                                "name": "getUser",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/organizations/:organization/users/:user",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "organizations",
+        ":organization",
+        "users",
+        ":user"
+    ],
+    "variable": [
+        {
+        "key": "organization",
+        "value": "",
+        "description": "Name of the organization"
+        },
+        {
+        "key": "user",
+        "value": "",
+        "description": "Name of the user"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve user details for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/search/",
+                "description": "Search for any resource details",
+                 "item": [
+                            {
+                                "name": "search",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/search/",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "search"
+    ],
+    "variable": [
+    ],
+    "query": [
+        {
+        "key": "q",
+        "value": "q_example",
+        "description": "Query string",
+        "disabled": false
+        }
+    ]
+    },
+    "description": "Search for any resource details"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/blue/rest/users/:user/favorites",
+                "description": "Retrieve user favorites details for an organization",
+                 "item": [
+                            {
+                                "name": "getUserFavorites",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/blue/rest/users/:user/favorites",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "blue",
+        "rest",
+        "users",
+        ":user",
+        "favorites"
+    ],
+    "variable": [
+        {
+        "key": "user",
+        "value": "",
+        "description": "Name of the user"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve user favorites details for an organization"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/jwt-auth/jwks/:key",
+                "description": "Retrieve JSON Web Key",
+                 "item": [
+                            {
+                                "name": "getJsonWebKey",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/jwt-auth/jwks/:key",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "jwt-auth",
+        "jwks",
+        ":key"
+    ],
+    "variable": [
+        {
+        "key": "key",
+        "value": "",
+        "description": "Key ID received as part of JWT header field kid"
+        }
+    ],
+    "query": [
+    ]
+    },
+    "description": "Retrieve JSON Web Key"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/jwt-auth/token",
+                "description": "Retrieve JSON Web Token",
+                 "item": [
+                            {
+                                "name": "getJsonWebToken",
+                                "request": {
+    "method": "GET",
+    "header": [
+        {
+        "key": "Accept",
+        "value": "application/json",
+        "description": "",
+        "disabled": false
+        }
+    ],
+    "body": {
+    "mode": "raw",
+    "raw": "",
+    "options": {
+    "raw": {
+    "language": "json"
+    }
+    }
+    },
+    "url": {
+    "raw": "{{baseUrl}}/jwt-auth/token",
+    "host": [
+    "{{baseUrl}}"
+    ],
+    "path": [
+        "jwt-auth",
+        "token"
+    ],
+    "variable": [
+    ],
+    "query": [
+        {
+        "key": "expiryTimeInMins",
+        "value": "56",
+        "description": "Token expiry time in minutes, default: 30 minutes",
+        "disabled": true
+        },
+        {
+        "key": "maxExpiryTimeInMins",
+        "value": "56",
+        "description": "Maximum token expiry time in minutes, default: 480 minutes",
+        "disabled": true
+        }
+    ]
+    },
+    "description": "Retrieve JSON Web Token"
+}
+                                ,"response": [
+                            ]
+                            }
+                            ]
+                        }
+	                    ]
+	        }
+    ],
+    "auth": {
+            		"type": "basic",
+            		"basic": [
+            			{
+            				"key": "username",
+            				"value": "{{USERNAME}}",
+            				"type": "string"
+            			},
+            			{
+            				"key": "password",
+            				"value": "{{PASSWORD}}",
+            				"type": "string"
+            			}
+            		]
+            	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "",
+			"type": "string"
+        },
+        {
+            "key": "Authorization",
+            "value": "",
+            "type": "string"
+        }
+	]
+}
+

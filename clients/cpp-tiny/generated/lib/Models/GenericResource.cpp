@@ -169,7 +169,7 @@ GenericResource::getClass()
 }
 
 void
-GenericResource::setClass(std::string  _class)
+GenericResource::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -181,7 +181,7 @@ GenericResource::getDisplayName()
 }
 
 void
-GenericResource::setDisplayName(std::string  displayName)
+GenericResource::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -193,7 +193,7 @@ GenericResource::getDurationInMillis()
 }
 
 void
-GenericResource::setDurationInMillis(int  durationInMillis)
+GenericResource::setDurationInMillis(int durationInMillis)
 {
 	this->durationInMillis = durationInMillis;
 }
@@ -205,7 +205,7 @@ GenericResource::getId()
 }
 
 void
-GenericResource::setId(std::string  id)
+GenericResource::setId(std::string id)
 {
 	this->id = id;
 }
@@ -217,7 +217,7 @@ GenericResource::getResult()
 }
 
 void
-GenericResource::setResult(std::string  result)
+GenericResource::setResult(std::string result)
 {
 	this->result = result;
 }
@@ -229,7 +229,7 @@ GenericResource::getStartTime()
 }
 
 void
-GenericResource::setStartTime(std::string  startTime)
+GenericResource::setStartTime(std::string startTime)
 {
 	this->startTime = startTime;
 }

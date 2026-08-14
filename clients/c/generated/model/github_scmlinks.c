@@ -13,10 +13,10 @@ static github_scmlinks_t *github_scmlinks_create_internal(
     if (!github_scmlinks_local_var) {
         return NULL;
     }
+    memset(github_scmlinks_local_var, 0, sizeof(github_scmlinks_t));
+    github_scmlinks_local_var->_library_owned = 1;
     github_scmlinks_local_var->self = self;
     github_scmlinks_local_var->_class = _class;
-
-    github_scmlinks_local_var->_library_owned = 1;
     return github_scmlinks_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) github_scmlinks_t *github_scmlinks_create(
     link_t *self,
     char *_class
     ) {
-    return github_scmlinks_create_internal (
+    github_scmlinks_t *result = github_scmlinks_create_internal (
         self,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void github_scmlinks_free(github_scmlinks_t *github_scmlinks) {
@@ -88,6 +91,8 @@ github_scmlinks_t *github_scmlinks_parseFromJSON(cJSON *github_scmlinksJSON){
     // define the local variable for github_scmlinks->self
     link_t *self_local_nonprim = NULL;
 
+    char *_class_local_str = NULL;
+
     // github_scmlinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(github_scmlinksJSON, "self");
     if (cJSON_IsNull(self)) {
@@ -110,16 +115,26 @@ github_scmlinks_t *github_scmlinks_parseFromJSON(cJSON *github_scmlinksJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     github_scmlinks_local_var = github_scmlinks_create_internal (
         self ? self_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!github_scmlinks_local_var) {
+        goto end;
+    }
 
     return github_scmlinks_local_var;
 end:
     if (self_local_nonprim) {
         link_free(self_local_nonprim);
         self_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

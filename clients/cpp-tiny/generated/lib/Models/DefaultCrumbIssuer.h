@@ -51,21 +51,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::string getCrumb();
 
 	/*! \brief Set 
 	 */
-	void setCrumb(std::string  crumb);
+	void setCrumb(std::string crumb);
 	/*! \brief Get 
 	 */
 	std::string getCrumbRequestField();
 
 	/*! \brief Set 
 	 */
-	void setCrumbRequestField(std::string  crumbRequestField);
+	void setCrumbRequestField(std::string crumbRequestField);
 
 
     private:

@@ -13,10 +13,10 @@ static extension_class_container_impl1links_t *extension_class_container_impl1li
     if (!extension_class_container_impl1links_local_var) {
         return NULL;
     }
+    memset(extension_class_container_impl1links_local_var, 0, sizeof(extension_class_container_impl1links_t));
+    extension_class_container_impl1links_local_var->_library_owned = 1;
     extension_class_container_impl1links_local_var->self = self;
     extension_class_container_impl1links_local_var->_class = _class;
-
-    extension_class_container_impl1links_local_var->_library_owned = 1;
     return extension_class_container_impl1links_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) extension_class_container_impl1links_t *extension_cl
     link_t *self,
     char *_class
     ) {
-    return extension_class_container_impl1links_create_internal (
+    extension_class_container_impl1links_t *result = extension_class_container_impl1links_create_internal (
         self,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void extension_class_container_impl1links_free(extension_class_container_impl1links_t *extension_class_container_impl1links) {
@@ -88,6 +91,8 @@ extension_class_container_impl1links_t *extension_class_container_impl1links_par
     // define the local variable for extension_class_container_impl1links->self
     link_t *self_local_nonprim = NULL;
 
+    char *_class_local_str = NULL;
+
     // extension_class_container_impl1links->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(extension_class_container_impl1linksJSON, "self");
     if (cJSON_IsNull(self)) {
@@ -110,16 +115,26 @@ extension_class_container_impl1links_t *extension_class_container_impl1links_par
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     extension_class_container_impl1links_local_var = extension_class_container_impl1links_create_internal (
         self ? self_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!extension_class_container_impl1links_local_var) {
+        goto end;
+    }
 
     return extension_class_container_impl1links_local_var;
 end:
     if (self_local_nonprim) {
         link_free(self_local_nonprim);
         self_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

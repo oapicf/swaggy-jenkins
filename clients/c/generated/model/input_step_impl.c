@@ -18,6 +18,8 @@ static input_step_impl_t *input_step_impl_create_internal(
     if (!input_step_impl_local_var) {
         return NULL;
     }
+    memset(input_step_impl_local_var, 0, sizeof(input_step_impl_t));
+    input_step_impl_local_var->_library_owned = 1;
     input_step_impl_local_var->_class = _class;
     input_step_impl_local_var->_links = _links;
     input_step_impl_local_var->id = id;
@@ -25,8 +27,6 @@ static input_step_impl_t *input_step_impl_create_internal(
     input_step_impl_local_var->ok = ok;
     input_step_impl_local_var->parameters = parameters;
     input_step_impl_local_var->submitter = submitter;
-
-    input_step_impl_local_var->_library_owned = 1;
     return input_step_impl_local_var;
 }
 
@@ -39,7 +39,7 @@ __attribute__((deprecated)) input_step_impl_t *input_step_impl_create(
     list_t *parameters,
     char *submitter
     ) {
-    return input_step_impl_create_internal (
+    input_step_impl_t *result = input_step_impl_create_internal (
         _class,
         _links,
         id,
@@ -48,6 +48,9 @@ __attribute__((deprecated)) input_step_impl_t *input_step_impl_create(
         parameters,
         submitter
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void input_step_impl_free(input_step_impl_t *input_step_impl) {
@@ -180,11 +183,21 @@ input_step_impl_t *input_step_impl_parseFromJSON(cJSON *input_step_implJSON){
 
     input_step_impl_t *input_step_impl_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local variable for input_step_impl->_links
     input_step_impllinks_t *_links_local_nonprim = NULL;
 
+    char *id_local_str = NULL;
+
+    char *message_local_str = NULL;
+
+    char *ok_local_str = NULL;
+
     // define the local list for input_step_impl->parameters
     list_t *parametersList = NULL;
+
+    char *submitter_local_str = NULL;
 
     // input_step_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(input_step_implJSON, "_class");
@@ -280,21 +293,47 @@ input_step_impl_t *input_step_impl_parseFromJSON(cJSON *input_step_implJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (message && !cJSON_IsNull(message)) message_local_str = strdup(message->valuestring);
+    if (ok && !cJSON_IsNull(ok)) ok_local_str = strdup(ok->valuestring);
+    if (submitter && !cJSON_IsNull(submitter)) submitter_local_str = strdup(submitter->valuestring);
+
     input_step_impl_local_var = input_step_impl_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         _links ? _links_local_nonprim : NULL,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        message && !cJSON_IsNull(message) ? strdup(message->valuestring) : NULL,
-        ok && !cJSON_IsNull(ok) ? strdup(ok->valuestring) : NULL,
+        id_local_str,
+        message_local_str,
+        ok_local_str,
         parameters ? parametersList : NULL,
-        submitter && !cJSON_IsNull(submitter) ? strdup(submitter->valuestring) : NULL
+        submitter_local_str
         );
+
+    if (!input_step_impl_local_var) {
+        goto end;
+    }
 
     return input_step_impl_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (_links_local_nonprim) {
         input_step_impllinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (message_local_str) {
+        free(message_local_str);
+        message_local_str = NULL;
+    }
+    if (ok_local_str) {
+        free(ok_local_str);
+        ok_local_str = NULL;
     }
     if (parametersList) {
         listEntry_t *listEntry = NULL;
@@ -304,6 +343,10 @@ end:
         }
         list_freeList(parametersList);
         parametersList = NULL;
+    }
+    if (submitter_local_str) {
+        free(submitter_local_str);
+        submitter_local_str = NULL;
     }
     return NULL;
 

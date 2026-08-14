@@ -211,7 +211,7 @@ GithubContent::getName()
 }
 
 void
-GithubContent::setName(std::string  name)
+GithubContent::setName(std::string name)
 {
 	this->name = name;
 }
@@ -223,7 +223,7 @@ GithubContent::getSha()
 }
 
 void
-GithubContent::setSha(std::string  sha)
+GithubContent::setSha(std::string sha)
 {
 	this->sha = sha;
 }
@@ -235,7 +235,7 @@ GithubContent::getClass()
 }
 
 void
-GithubContent::setClass(std::string  _class)
+GithubContent::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -247,7 +247,7 @@ GithubContent::getRepo()
 }
 
 void
-GithubContent::setRepo(std::string  repo)
+GithubContent::setRepo(std::string repo)
 {
 	this->repo = repo;
 }
@@ -259,7 +259,7 @@ GithubContent::getSize()
 }
 
 void
-GithubContent::setSize(int  size)
+GithubContent::setSize(int size)
 {
 	this->size = size;
 }
@@ -271,7 +271,7 @@ GithubContent::getOwner()
 }
 
 void
-GithubContent::setOwner(std::string  owner)
+GithubContent::setOwner(std::string owner)
 {
 	this->owner = owner;
 }
@@ -283,7 +283,7 @@ GithubContent::getPath()
 }
 
 void
-GithubContent::setPath(std::string  path)
+GithubContent::setPath(std::string path)
 {
 	this->path = path;
 }
@@ -295,7 +295,7 @@ GithubContent::getBase64Data()
 }
 
 void
-GithubContent::setBase64Data(std::string  base64Data)
+GithubContent::setBase64Data(std::string base64Data)
 {
 	this->base64Data = base64Data;
 }

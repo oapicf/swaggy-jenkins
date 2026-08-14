@@ -86,7 +86,7 @@ FavoriteImpllinks::getSelf()
 }
 
 void
-FavoriteImpllinks::setSelf(Link  self)
+FavoriteImpllinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -98,7 +98,7 @@ FavoriteImpllinks::getClass()
 }
 
 void
-FavoriteImpllinks::setClass(std::string  _class)
+FavoriteImpllinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

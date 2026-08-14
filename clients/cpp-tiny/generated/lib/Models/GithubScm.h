@@ -52,35 +52,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	GithubScmlinks getLinks();
 
 	/*! \brief Set 
 	 */
-	void setLinks(GithubScmlinks  _links);
+	void setLinks(GithubScmlinks _links);
 	/*! \brief Get 
 	 */
 	std::string getCredentialId();
 
 	/*! \brief Set 
 	 */
-	void setCredentialId(std::string  credentialId);
+	void setCredentialId(std::string credentialId);
 	/*! \brief Get 
 	 */
 	std::string getId();
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	std::string getUri();
 
 	/*! \brief Set 
 	 */
-	void setUri(std::string  uri);
+	void setUri(std::string uri);
 
 
     private:

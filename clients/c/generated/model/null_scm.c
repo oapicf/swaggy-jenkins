@@ -12,18 +12,21 @@ static null_scm_t *null_scm_create_internal(
     if (!null_scm_local_var) {
         return NULL;
     }
-    null_scm_local_var->_class = _class;
-
+    memset(null_scm_local_var, 0, sizeof(null_scm_t));
     null_scm_local_var->_library_owned = 1;
+    null_scm_local_var->_class = _class;
     return null_scm_local_var;
 }
 
 __attribute__((deprecated)) null_scm_t *null_scm_create(
     char *_class
     ) {
-    return null_scm_create_internal (
+    null_scm_t *result = null_scm_create_internal (
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void null_scm_free(null_scm_t *null_scm) {
@@ -64,6 +67,8 @@ null_scm_t *null_scm_parseFromJSON(cJSON *null_scmJSON){
 
     null_scm_t *null_scm_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // null_scm->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(null_scmJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -77,12 +82,22 @@ null_scm_t *null_scm_parseFromJSON(cJSON *null_scmJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     null_scm_local_var = null_scm_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!null_scm_local_var) {
+        goto end;
+    }
 
     return null_scm_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     return NULL;
 
 }

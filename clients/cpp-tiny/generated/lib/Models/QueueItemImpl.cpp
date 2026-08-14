@@ -148,7 +148,7 @@ QueueItemImpl::getClass()
 }
 
 void
-QueueItemImpl::setClass(std::string  _class)
+QueueItemImpl::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -160,7 +160,7 @@ QueueItemImpl::getExpectedBuildNumber()
 }
 
 void
-QueueItemImpl::setExpectedBuildNumber(int  expectedBuildNumber)
+QueueItemImpl::setExpectedBuildNumber(int expectedBuildNumber)
 {
 	this->expectedBuildNumber = expectedBuildNumber;
 }
@@ -172,7 +172,7 @@ QueueItemImpl::getId()
 }
 
 void
-QueueItemImpl::setId(std::string  id)
+QueueItemImpl::setId(std::string id)
 {
 	this->id = id;
 }
@@ -184,7 +184,7 @@ QueueItemImpl::getPipeline()
 }
 
 void
-QueueItemImpl::setPipeline(std::string  pipeline)
+QueueItemImpl::setPipeline(std::string pipeline)
 {
 	this->pipeline = pipeline;
 }
@@ -196,7 +196,7 @@ QueueItemImpl::getQueuedTime()
 }
 
 void
-QueueItemImpl::setQueuedTime(int  queuedTime)
+QueueItemImpl::setQueuedTime(int queuedTime)
 {
 	this->queuedTime = queuedTime;
 }

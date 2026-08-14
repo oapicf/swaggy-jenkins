@@ -313,7 +313,7 @@ QueueBlockedItem::getClass()
 }
 
 void
-QueueBlockedItem::setClass(std::string  _class)
+QueueBlockedItem::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -325,7 +325,7 @@ QueueBlockedItem::getActions()
 }
 
 void
-QueueBlockedItem::setActions(std::list <CauseAction> actions)
+QueueBlockedItem::setActions(std::list<CauseAction> actions)
 {
 	this->actions = actions;
 }
@@ -337,7 +337,7 @@ QueueBlockedItem::isBlocked()
 }
 
 void
-QueueBlockedItem::setBlocked(bool  blocked)
+QueueBlockedItem::setBlocked(bool blocked)
 {
 	this->blocked = blocked;
 }
@@ -349,7 +349,7 @@ QueueBlockedItem::isBuildable()
 }
 
 void
-QueueBlockedItem::setBuildable(bool  buildable)
+QueueBlockedItem::setBuildable(bool buildable)
 {
 	this->buildable = buildable;
 }
@@ -361,7 +361,7 @@ QueueBlockedItem::getId()
 }
 
 void
-QueueBlockedItem::setId(int  id)
+QueueBlockedItem::setId(int id)
 {
 	this->id = id;
 }
@@ -373,7 +373,7 @@ QueueBlockedItem::getInQueueSince()
 }
 
 void
-QueueBlockedItem::setInQueueSince(int  inQueueSince)
+QueueBlockedItem::setInQueueSince(int inQueueSince)
 {
 	this->inQueueSince = inQueueSince;
 }
@@ -385,7 +385,7 @@ QueueBlockedItem::getParams()
 }
 
 void
-QueueBlockedItem::setParams(std::string  params)
+QueueBlockedItem::setParams(std::string params)
 {
 	this->params = params;
 }
@@ -397,7 +397,7 @@ QueueBlockedItem::isStuck()
 }
 
 void
-QueueBlockedItem::setStuck(bool  stuck)
+QueueBlockedItem::setStuck(bool stuck)
 {
 	this->stuck = stuck;
 }
@@ -409,7 +409,7 @@ QueueBlockedItem::getTask()
 }
 
 void
-QueueBlockedItem::setTask(FreeStyleProject  task)
+QueueBlockedItem::setTask(FreeStyleProject task)
 {
 	this->task = task;
 }
@@ -421,7 +421,7 @@ QueueBlockedItem::getUrl()
 }
 
 void
-QueueBlockedItem::setUrl(std::string  url)
+QueueBlockedItem::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -433,7 +433,7 @@ QueueBlockedItem::getWhy()
 }
 
 void
-QueueBlockedItem::setWhy(std::string  why)
+QueueBlockedItem::setWhy(std::string why)
 {
 	this->why = why;
 }
@@ -445,7 +445,7 @@ QueueBlockedItem::getBuildableStartMilliseconds()
 }
 
 void
-QueueBlockedItem::setBuildableStartMilliseconds(int  buildableStartMilliseconds)
+QueueBlockedItem::setBuildableStartMilliseconds(int buildableStartMilliseconds)
 {
 	this->buildableStartMilliseconds = buildableStartMilliseconds;
 }

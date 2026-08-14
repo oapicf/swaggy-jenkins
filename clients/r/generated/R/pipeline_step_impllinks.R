@@ -77,17 +77,40 @@ PipelineStepImpllinks <- R6::R6Class(
       PipelineStepImpllinksObject <- list()
       if (!is.null(self$`item_self`)) {
         PipelineStepImpllinksObject[["self"]] <-
-          self$`item_self`$toSimpleType()
+          self$extractSimpleType(self$`item_self`)
       }
       if (!is.null(self$`actions`)) {
         PipelineStepImpllinksObject[["actions"]] <-
-          self$`actions`$toSimpleType()
+          self$extractSimpleType(self$`actions`)
       }
       if (!is.null(self$`_class`)) {
         PipelineStepImpllinksObject[["_class"]] <-
           self$`_class`
       }
       return(PipelineStepImpllinksObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

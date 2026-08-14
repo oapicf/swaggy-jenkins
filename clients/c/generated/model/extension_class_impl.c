@@ -14,11 +14,11 @@ static extension_class_impl_t *extension_class_impl_create_internal(
     if (!extension_class_impl_local_var) {
         return NULL;
     }
+    memset(extension_class_impl_local_var, 0, sizeof(extension_class_impl_t));
+    extension_class_impl_local_var->_library_owned = 1;
     extension_class_impl_local_var->_class = _class;
     extension_class_impl_local_var->_links = _links;
     extension_class_impl_local_var->classes = classes;
-
-    extension_class_impl_local_var->_library_owned = 1;
     return extension_class_impl_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) extension_class_impl_t *extension_class_impl_create(
     extension_class_impllinks_t *_links,
     list_t *classes
     ) {
-    return extension_class_impl_create_internal (
+    extension_class_impl_t *result = extension_class_impl_create_internal (
         _class,
         _links,
         classes
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void extension_class_impl_free(extension_class_impl_t *extension_class_impl) {
@@ -113,6 +116,8 @@ extension_class_impl_t *extension_class_impl_parseFromJSON(cJSON *extension_clas
 
     extension_class_impl_t *extension_class_impl_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local variable for extension_class_impl->_links
     extension_class_impllinks_t *_links_local_nonprim = NULL;
 
@@ -163,14 +168,24 @@ extension_class_impl_t *extension_class_impl_parseFromJSON(cJSON *extension_clas
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     extension_class_impl_local_var = extension_class_impl_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         _links ? _links_local_nonprim : NULL,
         classes ? classesList : NULL
         );
 
+    if (!extension_class_impl_local_var) {
+        goto end;
+    }
+
     return extension_class_impl_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (_links_local_nonprim) {
         extension_class_impllinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;

@@ -52,28 +52,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	GithubOrganizationlinks getLinks();
 
 	/*! \brief Set 
 	 */
-	void setLinks(GithubOrganizationlinks  _links);
+	void setLinks(GithubOrganizationlinks _links);
 	/*! \brief Get 
 	 */
 	bool isJenkinsOrganizationPipeline();
 
 	/*! \brief Set 
 	 */
-	void setJenkinsOrganizationPipeline(bool  jenkinsOrganizationPipeline);
+	void setJenkinsOrganizationPipeline(bool jenkinsOrganizationPipeline);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 
 
     private:

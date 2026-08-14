@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.CrumbIssuerApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -31,7 +30,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:}")
 class CrumbIssuerApiController() {
 
     @Operation(
@@ -46,7 +45,8 @@ class CrumbIssuerApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_CRUMB /* "/crumbIssuer/api/json" */],
+        // "/crumbIssuer/api/json"
+        value = [PATH_GET_CRUMB],
         produces = ["application/json"]
     )
     fun getCrumb(): ResponseEntity<DefaultCrumbIssuer> {

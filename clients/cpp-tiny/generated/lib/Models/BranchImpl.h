@@ -56,91 +56,91 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::string getDisplayName();
 
 	/*! \brief Set 
 	 */
-	void setDisplayName(std::string  displayName);
+	void setDisplayName(std::string displayName);
 	/*! \brief Get 
 	 */
 	int getEstimatedDurationInMillis();
 
 	/*! \brief Set 
 	 */
-	void setEstimatedDurationInMillis(int  estimatedDurationInMillis);
+	void setEstimatedDurationInMillis(int estimatedDurationInMillis);
 	/*! \brief Get 
 	 */
 	std::string getFullDisplayName();
 
 	/*! \brief Set 
 	 */
-	void setFullDisplayName(std::string  fullDisplayName);
+	void setFullDisplayName(std::string fullDisplayName);
 	/*! \brief Get 
 	 */
 	std::string getFullName();
 
 	/*! \brief Set 
 	 */
-	void setFullName(std::string  fullName);
+	void setFullName(std::string fullName);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	std::string getOrganization();
 
 	/*! \brief Set 
 	 */
-	void setOrganization(std::string  organization);
+	void setOrganization(std::string organization);
 	/*! \brief Get 
 	 */
 	std::list<StringParameterDefinition> getParameters();
 
 	/*! \brief Set 
 	 */
-	void setParameters(std::list <StringParameterDefinition> parameters);
+	void setParameters(std::list<StringParameterDefinition> parameters);
 	/*! \brief Get 
 	 */
 	BranchImplpermissions getPermissions();
 
 	/*! \brief Set 
 	 */
-	void setPermissions(BranchImplpermissions  permissions);
+	void setPermissions(BranchImplpermissions permissions);
 	/*! \brief Get 
 	 */
 	int getWeatherScore();
 
 	/*! \brief Set 
 	 */
-	void setWeatherScore(int  weatherScore);
+	void setWeatherScore(int weatherScore);
 	/*! \brief Get 
 	 */
 	std::string getPullRequest();
 
 	/*! \brief Set 
 	 */
-	void setPullRequest(std::string  pullRequest);
+	void setPullRequest(std::string pullRequest);
 	/*! \brief Get 
 	 */
 	BranchImpllinks getLinks();
 
 	/*! \brief Set 
 	 */
-	void setLinks(BranchImpllinks  _links);
+	void setLinks(BranchImpllinks _links);
 	/*! \brief Get 
 	 */
 	PipelineRunImpl getLatestRun();
 
 	/*! \brief Set 
 	 */
-	void setLatestRun(PipelineRunImpl  latestRun);
+	void setLatestRun(PipelineRunImpl latestRun);
 
 
     private:

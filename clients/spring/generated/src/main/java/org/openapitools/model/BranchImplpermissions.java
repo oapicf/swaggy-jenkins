@@ -2,34 +2,40 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * BranchImplpermissions
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class BranchImplpermissions {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean create;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean read;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean start;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean stop;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
   public BranchImplpermissions create(@Nullable Boolean create) {
@@ -48,6 +54,7 @@ public class BranchImplpermissions {
     return create;
   }
 
+  @JsonProperty("create")
   public void setCreate(@Nullable Boolean create) {
     this.create = create;
   }
@@ -68,6 +75,7 @@ public class BranchImplpermissions {
     return read;
   }
 
+  @JsonProperty("read")
   public void setRead(@Nullable Boolean read) {
     this.read = read;
   }
@@ -88,6 +96,7 @@ public class BranchImplpermissions {
     return start;
   }
 
+  @JsonProperty("start")
   public void setStart(@Nullable Boolean start) {
     this.start = start;
   }
@@ -108,6 +117,7 @@ public class BranchImplpermissions {
     return stop;
   }
 
+  @JsonProperty("stop")
   public void setStop(@Nullable Boolean stop) {
     this.stop = stop;
   }
@@ -128,6 +138,7 @@ public class BranchImplpermissions {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -170,11 +181,8 @@ public class BranchImplpermissions {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

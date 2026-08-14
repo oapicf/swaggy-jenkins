@@ -85,7 +85,7 @@ Link::getClass()
 }
 
 void
-Link::setClass(std::string  _class)
+Link::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -97,7 +97,7 @@ Link::getHref()
 }
 
 void
-Link::setHref(std::string  href)
+Link::setHref(std::string href)
 {
 	this->href = href;
 }

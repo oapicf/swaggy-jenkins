@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 .travis.yml
 README.md
 api_client.ecf
@@ -185,7 +184,4 @@ src/framework/serialization/api_serializer.e
 src/framework/serialization/json_basic_reflector_deserializer.e
 src/framework/serialization/json_type_utilities_ext.e
 test/api_test.ecf
-test/apis/base_api_test.e
-test/apis/blueocean_api_test.e
-test/apis/remoteaccess_api_test.e
 test/application.e

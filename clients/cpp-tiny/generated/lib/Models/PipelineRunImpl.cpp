@@ -359,7 +359,7 @@ PipelineRunImpl::getClass()
 }
 
 void
-PipelineRunImpl::setClass(std::string  _class)
+PipelineRunImpl::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -371,7 +371,7 @@ PipelineRunImpl::getLinks()
 }
 
 void
-PipelineRunImpl::setLinks(PipelineRunImpllinks  _links)
+PipelineRunImpl::setLinks(PipelineRunImpllinks _links)
 {
 	this->_links = _links;
 }
@@ -383,7 +383,7 @@ PipelineRunImpl::getDurationInMillis()
 }
 
 void
-PipelineRunImpl::setDurationInMillis(int  durationInMillis)
+PipelineRunImpl::setDurationInMillis(int durationInMillis)
 {
 	this->durationInMillis = durationInMillis;
 }
@@ -395,7 +395,7 @@ PipelineRunImpl::getEnQueueTime()
 }
 
 void
-PipelineRunImpl::setEnQueueTime(std::string  enQueueTime)
+PipelineRunImpl::setEnQueueTime(std::string enQueueTime)
 {
 	this->enQueueTime = enQueueTime;
 }
@@ -407,7 +407,7 @@ PipelineRunImpl::getEndTime()
 }
 
 void
-PipelineRunImpl::setEndTime(std::string  endTime)
+PipelineRunImpl::setEndTime(std::string endTime)
 {
 	this->endTime = endTime;
 }
@@ -419,7 +419,7 @@ PipelineRunImpl::getEstimatedDurationInMillis()
 }
 
 void
-PipelineRunImpl::setEstimatedDurationInMillis(int  estimatedDurationInMillis)
+PipelineRunImpl::setEstimatedDurationInMillis(int estimatedDurationInMillis)
 {
 	this->estimatedDurationInMillis = estimatedDurationInMillis;
 }
@@ -431,7 +431,7 @@ PipelineRunImpl::getId()
 }
 
 void
-PipelineRunImpl::setId(std::string  id)
+PipelineRunImpl::setId(std::string id)
 {
 	this->id = id;
 }
@@ -443,7 +443,7 @@ PipelineRunImpl::getOrganization()
 }
 
 void
-PipelineRunImpl::setOrganization(std::string  organization)
+PipelineRunImpl::setOrganization(std::string organization)
 {
 	this->organization = organization;
 }
@@ -455,7 +455,7 @@ PipelineRunImpl::getPipeline()
 }
 
 void
-PipelineRunImpl::setPipeline(std::string  pipeline)
+PipelineRunImpl::setPipeline(std::string pipeline)
 {
 	this->pipeline = pipeline;
 }
@@ -467,7 +467,7 @@ PipelineRunImpl::getResult()
 }
 
 void
-PipelineRunImpl::setResult(std::string  result)
+PipelineRunImpl::setResult(std::string result)
 {
 	this->result = result;
 }
@@ -479,7 +479,7 @@ PipelineRunImpl::getRunSummary()
 }
 
 void
-PipelineRunImpl::setRunSummary(std::string  runSummary)
+PipelineRunImpl::setRunSummary(std::string runSummary)
 {
 	this->runSummary = runSummary;
 }
@@ -491,7 +491,7 @@ PipelineRunImpl::getStartTime()
 }
 
 void
-PipelineRunImpl::setStartTime(std::string  startTime)
+PipelineRunImpl::setStartTime(std::string startTime)
 {
 	this->startTime = startTime;
 }
@@ -503,7 +503,7 @@ PipelineRunImpl::getState()
 }
 
 void
-PipelineRunImpl::setState(std::string  state)
+PipelineRunImpl::setState(std::string state)
 {
 	this->state = state;
 }
@@ -515,7 +515,7 @@ PipelineRunImpl::getType()
 }
 
 void
-PipelineRunImpl::setType(std::string  type)
+PipelineRunImpl::setType(std::string type)
 {
 	this->type = type;
 }
@@ -527,7 +527,7 @@ PipelineRunImpl::getCommitId()
 }
 
 void
-PipelineRunImpl::setCommitId(std::string  commitId)
+PipelineRunImpl::setCommitId(std::string commitId)
 {
 	this->commitId = commitId;
 }

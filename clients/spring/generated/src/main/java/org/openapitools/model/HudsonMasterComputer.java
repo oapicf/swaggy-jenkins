@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -13,52 +14,67 @@ import org.openapitools.model.Label1;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * HudsonMasterComputer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class HudsonMasterComputer {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid HudsonMasterComputerexecutors> executors = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String icon;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String iconClassName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean idle;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean jnlpAgent;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean launchSupported;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Label1 loadStatistics;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean manualLaunchAllowed;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable HudsonMasterComputermonitorData monitorData;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numExecutors;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean offline;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String offlineCause;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String offlineCauseReason;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean temporarilyOffline;
 
   public HudsonMasterComputer propertyClass(@Nullable String propertyClass) {
@@ -77,6 +93,7 @@ public class HudsonMasterComputer {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -97,6 +114,7 @@ public class HudsonMasterComputer {
     return displayName;
   }
 
+  @JsonProperty("displayName")
   public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
@@ -125,6 +143,7 @@ public class HudsonMasterComputer {
     return executors;
   }
 
+  @JsonProperty("executors")
   public void setExecutors(List<@Valid HudsonMasterComputerexecutors> executors) {
     this.executors = executors;
   }
@@ -145,6 +164,7 @@ public class HudsonMasterComputer {
     return icon;
   }
 
+  @JsonProperty("icon")
   public void setIcon(@Nullable String icon) {
     this.icon = icon;
   }
@@ -165,6 +185,7 @@ public class HudsonMasterComputer {
     return iconClassName;
   }
 
+  @JsonProperty("iconClassName")
   public void setIconClassName(@Nullable String iconClassName) {
     this.iconClassName = iconClassName;
   }
@@ -185,6 +206,7 @@ public class HudsonMasterComputer {
     return idle;
   }
 
+  @JsonProperty("idle")
   public void setIdle(@Nullable Boolean idle) {
     this.idle = idle;
   }
@@ -205,6 +227,7 @@ public class HudsonMasterComputer {
     return jnlpAgent;
   }
 
+  @JsonProperty("jnlpAgent")
   public void setJnlpAgent(@Nullable Boolean jnlpAgent) {
     this.jnlpAgent = jnlpAgent;
   }
@@ -225,6 +248,7 @@ public class HudsonMasterComputer {
     return launchSupported;
   }
 
+  @JsonProperty("launchSupported")
   public void setLaunchSupported(@Nullable Boolean launchSupported) {
     this.launchSupported = launchSupported;
   }
@@ -245,6 +269,7 @@ public class HudsonMasterComputer {
     return loadStatistics;
   }
 
+  @JsonProperty("loadStatistics")
   public void setLoadStatistics(@Nullable Label1 loadStatistics) {
     this.loadStatistics = loadStatistics;
   }
@@ -265,6 +290,7 @@ public class HudsonMasterComputer {
     return manualLaunchAllowed;
   }
 
+  @JsonProperty("manualLaunchAllowed")
   public void setManualLaunchAllowed(@Nullable Boolean manualLaunchAllowed) {
     this.manualLaunchAllowed = manualLaunchAllowed;
   }
@@ -285,6 +311,7 @@ public class HudsonMasterComputer {
     return monitorData;
   }
 
+  @JsonProperty("monitorData")
   public void setMonitorData(@Nullable HudsonMasterComputermonitorData monitorData) {
     this.monitorData = monitorData;
   }
@@ -305,6 +332,7 @@ public class HudsonMasterComputer {
     return numExecutors;
   }
 
+  @JsonProperty("numExecutors")
   public void setNumExecutors(@Nullable Integer numExecutors) {
     this.numExecutors = numExecutors;
   }
@@ -325,6 +353,7 @@ public class HudsonMasterComputer {
     return offline;
   }
 
+  @JsonProperty("offline")
   public void setOffline(@Nullable Boolean offline) {
     this.offline = offline;
   }
@@ -345,6 +374,7 @@ public class HudsonMasterComputer {
     return offlineCause;
   }
 
+  @JsonProperty("offlineCause")
   public void setOfflineCause(@Nullable String offlineCause) {
     this.offlineCause = offlineCause;
   }
@@ -365,6 +395,7 @@ public class HudsonMasterComputer {
     return offlineCauseReason;
   }
 
+  @JsonProperty("offlineCauseReason")
   public void setOfflineCauseReason(@Nullable String offlineCauseReason) {
     this.offlineCauseReason = offlineCauseReason;
   }
@@ -385,6 +416,7 @@ public class HudsonMasterComputer {
     return temporarilyOffline;
   }
 
+  @JsonProperty("temporarilyOffline")
   public void setTemporarilyOffline(@Nullable Boolean temporarilyOffline) {
     this.temporarilyOffline = temporarilyOffline;
   }
@@ -449,11 +481,8 @@ public class HudsonMasterComputer {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

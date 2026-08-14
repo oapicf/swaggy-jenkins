@@ -53,56 +53,56 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::string getDisplayName();
 
 	/*! \brief Set 
 	 */
-	void setDisplayName(std::string  displayName);
+	void setDisplayName(std::string displayName);
 	/*! \brief Get 
 	 */
 	int getDurationInMillis();
 
 	/*! \brief Set 
 	 */
-	void setDurationInMillis(int  durationInMillis);
+	void setDurationInMillis(int durationInMillis);
 	/*! \brief Get 
 	 */
 	std::list<PipelineRunNodeedges> getEdges();
 
 	/*! \brief Set 
 	 */
-	void setEdges(std::list <PipelineRunNodeedges> edges);
+	void setEdges(std::list<PipelineRunNodeedges> edges);
 	/*! \brief Get 
 	 */
 	std::string getId();
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	std::string getResult();
 
 	/*! \brief Set 
 	 */
-	void setResult(std::string  result);
+	void setResult(std::string result);
 	/*! \brief Get 
 	 */
 	std::string getStartTime();
 
 	/*! \brief Set 
 	 */
-	void setStartTime(std::string  startTime);
+	void setStartTime(std::string startTime);
 	/*! \brief Get 
 	 */
 	std::string getState();
 
 	/*! \brief Set 
 	 */
-	void setState(std::string  state);
+	void setState(std::string state);
 
 
     private:

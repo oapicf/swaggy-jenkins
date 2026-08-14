@@ -14,11 +14,11 @@ static github_organizationlinks_t *github_organizationlinks_create_internal(
     if (!github_organizationlinks_local_var) {
         return NULL;
     }
+    memset(github_organizationlinks_local_var, 0, sizeof(github_organizationlinks_t));
+    github_organizationlinks_local_var->_library_owned = 1;
     github_organizationlinks_local_var->repositories = repositories;
     github_organizationlinks_local_var->self = self;
     github_organizationlinks_local_var->_class = _class;
-
-    github_organizationlinks_local_var->_library_owned = 1;
     return github_organizationlinks_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) github_organizationlinks_t *github_organizationlinks
     link_t *self,
     char *_class
     ) {
-    return github_organizationlinks_create_internal (
+    github_organizationlinks_t *result = github_organizationlinks_create_internal (
         repositories,
         self,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void github_organizationlinks_free(github_organizationlinks_t *github_organizationlinks) {
@@ -112,6 +115,8 @@ github_organizationlinks_t *github_organizationlinks_parseFromJSON(cJSON *github
     // define the local variable for github_organizationlinks->self
     link_t *self_local_nonprim = NULL;
 
+    char *_class_local_str = NULL;
+
     // github_organizationlinks->repositories
     cJSON *repositories = cJSON_GetObjectItemCaseSensitive(github_organizationlinksJSON, "repositories");
     if (cJSON_IsNull(repositories)) {
@@ -143,11 +148,17 @@ github_organizationlinks_t *github_organizationlinks_parseFromJSON(cJSON *github
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     github_organizationlinks_local_var = github_organizationlinks_create_internal (
         repositories ? repositories_local_nonprim : NULL,
         self ? self_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!github_organizationlinks_local_var) {
+        goto end;
+    }
 
     return github_organizationlinks_local_var;
 end:
@@ -158,6 +169,10 @@ end:
     if (self_local_nonprim) {
         link_free(self_local_nonprim);
         self_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

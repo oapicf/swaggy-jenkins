@@ -375,7 +375,7 @@ PipelinelatestRun::getArtifacts()
 }
 
 void
-PipelinelatestRun::setArtifacts(std::list <PipelinelatestRunartifacts> artifacts)
+PipelinelatestRun::setArtifacts(std::list<PipelinelatestRunartifacts> artifacts)
 {
 	this->artifacts = artifacts;
 }
@@ -387,7 +387,7 @@ PipelinelatestRun::getDurationInMillis()
 }
 
 void
-PipelinelatestRun::setDurationInMillis(int  durationInMillis)
+PipelinelatestRun::setDurationInMillis(int durationInMillis)
 {
 	this->durationInMillis = durationInMillis;
 }
@@ -399,7 +399,7 @@ PipelinelatestRun::getEstimatedDurationInMillis()
 }
 
 void
-PipelinelatestRun::setEstimatedDurationInMillis(int  estimatedDurationInMillis)
+PipelinelatestRun::setEstimatedDurationInMillis(int estimatedDurationInMillis)
 {
 	this->estimatedDurationInMillis = estimatedDurationInMillis;
 }
@@ -411,7 +411,7 @@ PipelinelatestRun::getEnQueueTime()
 }
 
 void
-PipelinelatestRun::setEnQueueTime(std::string  enQueueTime)
+PipelinelatestRun::setEnQueueTime(std::string enQueueTime)
 {
 	this->enQueueTime = enQueueTime;
 }
@@ -423,7 +423,7 @@ PipelinelatestRun::getEndTime()
 }
 
 void
-PipelinelatestRun::setEndTime(std::string  endTime)
+PipelinelatestRun::setEndTime(std::string endTime)
 {
 	this->endTime = endTime;
 }
@@ -435,7 +435,7 @@ PipelinelatestRun::getId()
 }
 
 void
-PipelinelatestRun::setId(std::string  id)
+PipelinelatestRun::setId(std::string id)
 {
 	this->id = id;
 }
@@ -447,7 +447,7 @@ PipelinelatestRun::getOrganization()
 }
 
 void
-PipelinelatestRun::setOrganization(std::string  organization)
+PipelinelatestRun::setOrganization(std::string organization)
 {
 	this->organization = organization;
 }
@@ -459,7 +459,7 @@ PipelinelatestRun::getPipeline()
 }
 
 void
-PipelinelatestRun::setPipeline(std::string  pipeline)
+PipelinelatestRun::setPipeline(std::string pipeline)
 {
 	this->pipeline = pipeline;
 }
@@ -471,7 +471,7 @@ PipelinelatestRun::getResult()
 }
 
 void
-PipelinelatestRun::setResult(std::string  result)
+PipelinelatestRun::setResult(std::string result)
 {
 	this->result = result;
 }
@@ -483,7 +483,7 @@ PipelinelatestRun::getRunSummary()
 }
 
 void
-PipelinelatestRun::setRunSummary(std::string  runSummary)
+PipelinelatestRun::setRunSummary(std::string runSummary)
 {
 	this->runSummary = runSummary;
 }
@@ -495,7 +495,7 @@ PipelinelatestRun::getStartTime()
 }
 
 void
-PipelinelatestRun::setStartTime(std::string  startTime)
+PipelinelatestRun::setStartTime(std::string startTime)
 {
 	this->startTime = startTime;
 }
@@ -507,7 +507,7 @@ PipelinelatestRun::getState()
 }
 
 void
-PipelinelatestRun::setState(std::string  state)
+PipelinelatestRun::setState(std::string state)
 {
 	this->state = state;
 }
@@ -519,7 +519,7 @@ PipelinelatestRun::getType()
 }
 
 void
-PipelinelatestRun::setType(std::string  type)
+PipelinelatestRun::setType(std::string type)
 {
 	this->type = type;
 }
@@ -531,7 +531,7 @@ PipelinelatestRun::getCommitId()
 }
 
 void
-PipelinelatestRun::setCommitId(std::string  commitId)
+PipelinelatestRun::setCommitId(std::string commitId)
 {
 	this->commitId = commitId;
 }
@@ -543,7 +543,7 @@ PipelinelatestRun::getClass()
 }
 
 void
-PipelinelatestRun::setClass(std::string  _class)
+PipelinelatestRun::setClass(std::string _class)
 {
 	this->_class = _class;
 }

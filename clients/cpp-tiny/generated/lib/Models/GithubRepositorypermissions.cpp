@@ -127,7 +127,7 @@ GithubRepositorypermissions::isAdmin()
 }
 
 void
-GithubRepositorypermissions::setAdmin(bool  admin)
+GithubRepositorypermissions::setAdmin(bool admin)
 {
 	this->admin = admin;
 }
@@ -139,7 +139,7 @@ GithubRepositorypermissions::isPush()
 }
 
 void
-GithubRepositorypermissions::setPush(bool  push)
+GithubRepositorypermissions::setPush(bool push)
 {
 	this->push = push;
 }
@@ -151,7 +151,7 @@ GithubRepositorypermissions::isPull()
 }
 
 void
-GithubRepositorypermissions::setPull(bool  pull)
+GithubRepositorypermissions::setPull(bool pull)
 {
 	this->pull = pull;
 }
@@ -163,7 +163,7 @@ GithubRepositorypermissions::getClass()
 }
 
 void
-GithubRepositorypermissions::setClass(std::string  _class)
+GithubRepositorypermissions::setClass(std::string _class)
 {
 	this->_class = _class;
 }

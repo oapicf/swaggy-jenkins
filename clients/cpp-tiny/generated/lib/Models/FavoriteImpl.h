@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	FavoriteImpllinks getLinks();
 
 	/*! \brief Set 
 	 */
-	void setLinks(FavoriteImpllinks  _links);
+	void setLinks(FavoriteImpllinks _links);
 	/*! \brief Get 
 	 */
 	PipelineImpl getItem();
 
 	/*! \brief Set 
 	 */
-	void setItem(PipelineImpl  item);
+	void setItem(PipelineImpl item);
 
 
     private:

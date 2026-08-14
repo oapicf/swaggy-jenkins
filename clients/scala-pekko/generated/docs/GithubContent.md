@@ -1,0 +1,20 @@
+
+
+# GithubContent
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**name** | **String** |  |  [optional]
+**sha** | **String** |  |  [optional]
+**`class`** | **String** |  |  [optional]
+**repo** | **String** |  |  [optional]
+**size** | **Int** |  |  [optional]
+**owner** | **String** |  |  [optional]
+**path** | **String** |  |  [optional]
+**base64Data** | **String** |  |  [optional]
+
+
+

@@ -85,7 +85,7 @@ Organisation::getClass()
 }
 
 void
-Organisation::setClass(std::string  _class)
+Organisation::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -97,7 +97,7 @@ Organisation::getName()
 }
 
 void
-Organisation::setName(std::string  name)
+Organisation::setName(std::string name)
 {
 	this->name = name;
 }

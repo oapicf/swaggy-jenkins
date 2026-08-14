@@ -18,6 +18,8 @@ static hudson_master_computermonitor_data_t *hudson_master_computermonitor_data_
     if (!hudson_master_computermonitor_data_local_var) {
         return NULL;
     }
+    memset(hudson_master_computermonitor_data_local_var, 0, sizeof(hudson_master_computermonitor_data_t));
+    hudson_master_computermonitor_data_local_var->_library_owned = 1;
     hudson_master_computermonitor_data_local_var->hudson_node_monitors_swap_space_monitor = hudson_node_monitors_swap_space_monitor;
     hudson_master_computermonitor_data_local_var->hudson_node_monitors_temporary_space_monitor = hudson_node_monitors_temporary_space_monitor;
     hudson_master_computermonitor_data_local_var->hudson_node_monitors_disk_space_monitor = hudson_node_monitors_disk_space_monitor;
@@ -25,8 +27,6 @@ static hudson_master_computermonitor_data_t *hudson_master_computermonitor_data_
     hudson_master_computermonitor_data_local_var->hudson_node_monitors_response_time_monitor = hudson_node_monitors_response_time_monitor;
     hudson_master_computermonitor_data_local_var->hudson_node_monitors_clock_monitor = hudson_node_monitors_clock_monitor;
     hudson_master_computermonitor_data_local_var->_class = _class;
-
-    hudson_master_computermonitor_data_local_var->_library_owned = 1;
     return hudson_master_computermonitor_data_local_var;
 }
 
@@ -39,7 +39,7 @@ __attribute__((deprecated)) hudson_master_computermonitor_data_t *hudson_master_
     clock_difference_t *hudson_node_monitors_clock_monitor,
     char *_class
     ) {
-    return hudson_master_computermonitor_data_create_internal (
+    hudson_master_computermonitor_data_t *result = hudson_master_computermonitor_data_create_internal (
         hudson_node_monitors_swap_space_monitor,
         hudson_node_monitors_temporary_space_monitor,
         hudson_node_monitors_disk_space_monitor,
@@ -48,6 +48,9 @@ __attribute__((deprecated)) hudson_master_computermonitor_data_t *hudson_master_
         hudson_node_monitors_clock_monitor,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void hudson_master_computermonitor_data_free(hudson_master_computermonitor_data_t *hudson_master_computermonitor_data) {
@@ -194,11 +197,15 @@ hudson_master_computermonitor_data_t *hudson_master_computermonitor_data_parseFr
     // define the local variable for hudson_master_computermonitor_data->hudson_node_monitors_disk_space_monitor
     disk_space_monitor_descriptor_disk_space_t *hudson_node_monitors_disk_space_monitor_local_nonprim = NULL;
 
+    char *hudson_node_monitors_architecture_monitor_local_str = NULL;
+
     // define the local variable for hudson_master_computermonitor_data->hudson_node_monitors_response_time_monitor
     response_time_monitor_data_t *hudson_node_monitors_response_time_monitor_local_nonprim = NULL;
 
     // define the local variable for hudson_master_computermonitor_data->hudson_node_monitors_clock_monitor
     clock_difference_t *hudson_node_monitors_clock_monitor_local_nonprim = NULL;
+
+    char *_class_local_str = NULL;
 
     // hudson_master_computermonitor_data->hudson_node_monitors_swap_space_monitor
     cJSON *hudson_node_monitors_swap_space_monitor = cJSON_GetObjectItemCaseSensitive(hudson_master_computermonitor_dataJSON, "hudson.node_monitors.SwapSpaceMonitor");
@@ -270,15 +277,22 @@ hudson_master_computermonitor_data_t *hudson_master_computermonitor_data_parseFr
     }
 
 
+    if (hudson_node_monitors_architecture_monitor && !cJSON_IsNull(hudson_node_monitors_architecture_monitor)) hudson_node_monitors_architecture_monitor_local_str = strdup(hudson_node_monitors_architecture_monitor->valuestring);
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     hudson_master_computermonitor_data_local_var = hudson_master_computermonitor_data_create_internal (
         hudson_node_monitors_swap_space_monitor ? hudson_node_monitors_swap_space_monitor_local_nonprim : NULL,
         hudson_node_monitors_temporary_space_monitor ? hudson_node_monitors_temporary_space_monitor_local_nonprim : NULL,
         hudson_node_monitors_disk_space_monitor ? hudson_node_monitors_disk_space_monitor_local_nonprim : NULL,
-        hudson_node_monitors_architecture_monitor && !cJSON_IsNull(hudson_node_monitors_architecture_monitor) ? strdup(hudson_node_monitors_architecture_monitor->valuestring) : NULL,
+        hudson_node_monitors_architecture_monitor_local_str,
         hudson_node_monitors_response_time_monitor ? hudson_node_monitors_response_time_monitor_local_nonprim : NULL,
         hudson_node_monitors_clock_monitor ? hudson_node_monitors_clock_monitor_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!hudson_master_computermonitor_data_local_var) {
+        goto end;
+    }
 
     return hudson_master_computermonitor_data_local_var;
 end:
@@ -294,6 +308,10 @@ end:
         disk_space_monitor_descriptor_disk_space_free(hudson_node_monitors_disk_space_monitor_local_nonprim);
         hudson_node_monitors_disk_space_monitor_local_nonprim = NULL;
     }
+    if (hudson_node_monitors_architecture_monitor_local_str) {
+        free(hudson_node_monitors_architecture_monitor_local_str);
+        hudson_node_monitors_architecture_monitor_local_str = NULL;
+    }
     if (hudson_node_monitors_response_time_monitor_local_nonprim) {
         response_time_monitor_data_free(hudson_node_monitors_response_time_monitor_local_nonprim);
         hudson_node_monitors_response_time_monitor_local_nonprim = NULL;
@@ -301,6 +319,10 @@ end:
     if (hudson_node_monitors_clock_monitor_local_nonprim) {
         clock_difference_free(hudson_node_monitors_clock_monitor_local_nonprim);
         hudson_node_monitors_clock_monitor_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

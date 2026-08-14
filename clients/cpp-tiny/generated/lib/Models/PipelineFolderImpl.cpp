@@ -190,7 +190,7 @@ PipelineFolderImpl::getClass()
 }
 
 void
-PipelineFolderImpl::setClass(std::string  _class)
+PipelineFolderImpl::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -202,7 +202,7 @@ PipelineFolderImpl::getDisplayName()
 }
 
 void
-PipelineFolderImpl::setDisplayName(std::string  displayName)
+PipelineFolderImpl::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -214,7 +214,7 @@ PipelineFolderImpl::getFullName()
 }
 
 void
-PipelineFolderImpl::setFullName(std::string  fullName)
+PipelineFolderImpl::setFullName(std::string fullName)
 {
 	this->fullName = fullName;
 }
@@ -226,7 +226,7 @@ PipelineFolderImpl::getName()
 }
 
 void
-PipelineFolderImpl::setName(std::string  name)
+PipelineFolderImpl::setName(std::string name)
 {
 	this->name = name;
 }
@@ -238,7 +238,7 @@ PipelineFolderImpl::getOrganization()
 }
 
 void
-PipelineFolderImpl::setOrganization(std::string  organization)
+PipelineFolderImpl::setOrganization(std::string organization)
 {
 	this->organization = organization;
 }
@@ -250,7 +250,7 @@ PipelineFolderImpl::getNumberOfFolders()
 }
 
 void
-PipelineFolderImpl::setNumberOfFolders(int  numberOfFolders)
+PipelineFolderImpl::setNumberOfFolders(int numberOfFolders)
 {
 	this->numberOfFolders = numberOfFolders;
 }
@@ -262,7 +262,7 @@ PipelineFolderImpl::getNumberOfPipelines()
 }
 
 void
-PipelineFolderImpl::setNumberOfPipelines(int  numberOfPipelines)
+PipelineFolderImpl::setNumberOfPipelines(int numberOfPipelines)
 {
 	this->numberOfPipelines = numberOfPipelines;
 }

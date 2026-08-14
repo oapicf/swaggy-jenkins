@@ -20,7 +20,7 @@ typedef struct pipeline_activityartifacts_t pipeline_activityartifacts_t;
 
 typedef struct pipeline_activityartifacts_t {
     char *name; // string
-    int size; //numeric
+    int *size; //numeric
     char *url; // string
     char *_class; // string
 
@@ -29,7 +29,7 @@ typedef struct pipeline_activityartifacts_t {
 
 __attribute__((deprecated)) pipeline_activityartifacts_t *pipeline_activityartifacts_create(
     char *name,
-    int size,
+    int *size,
     char *url,
     char *_class
 );

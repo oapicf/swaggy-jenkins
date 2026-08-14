@@ -336,7 +336,7 @@ BranchImpl::getClass()
 }
 
 void
-BranchImpl::setClass(std::string  _class)
+BranchImpl::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -348,7 +348,7 @@ BranchImpl::getDisplayName()
 }
 
 void
-BranchImpl::setDisplayName(std::string  displayName)
+BranchImpl::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -360,7 +360,7 @@ BranchImpl::getEstimatedDurationInMillis()
 }
 
 void
-BranchImpl::setEstimatedDurationInMillis(int  estimatedDurationInMillis)
+BranchImpl::setEstimatedDurationInMillis(int estimatedDurationInMillis)
 {
 	this->estimatedDurationInMillis = estimatedDurationInMillis;
 }
@@ -372,7 +372,7 @@ BranchImpl::getFullDisplayName()
 }
 
 void
-BranchImpl::setFullDisplayName(std::string  fullDisplayName)
+BranchImpl::setFullDisplayName(std::string fullDisplayName)
 {
 	this->fullDisplayName = fullDisplayName;
 }
@@ -384,7 +384,7 @@ BranchImpl::getFullName()
 }
 
 void
-BranchImpl::setFullName(std::string  fullName)
+BranchImpl::setFullName(std::string fullName)
 {
 	this->fullName = fullName;
 }
@@ -396,7 +396,7 @@ BranchImpl::getName()
 }
 
 void
-BranchImpl::setName(std::string  name)
+BranchImpl::setName(std::string name)
 {
 	this->name = name;
 }
@@ -408,7 +408,7 @@ BranchImpl::getOrganization()
 }
 
 void
-BranchImpl::setOrganization(std::string  organization)
+BranchImpl::setOrganization(std::string organization)
 {
 	this->organization = organization;
 }
@@ -420,7 +420,7 @@ BranchImpl::getParameters()
 }
 
 void
-BranchImpl::setParameters(std::list <StringParameterDefinition> parameters)
+BranchImpl::setParameters(std::list<StringParameterDefinition> parameters)
 {
 	this->parameters = parameters;
 }
@@ -432,7 +432,7 @@ BranchImpl::getPermissions()
 }
 
 void
-BranchImpl::setPermissions(BranchImplpermissions  permissions)
+BranchImpl::setPermissions(BranchImplpermissions permissions)
 {
 	this->permissions = permissions;
 }
@@ -444,7 +444,7 @@ BranchImpl::getWeatherScore()
 }
 
 void
-BranchImpl::setWeatherScore(int  weatherScore)
+BranchImpl::setWeatherScore(int weatherScore)
 {
 	this->weatherScore = weatherScore;
 }
@@ -456,7 +456,7 @@ BranchImpl::getPullRequest()
 }
 
 void
-BranchImpl::setPullRequest(std::string  pullRequest)
+BranchImpl::setPullRequest(std::string pullRequest)
 {
 	this->pullRequest = pullRequest;
 }
@@ -468,7 +468,7 @@ BranchImpl::getLinks()
 }
 
 void
-BranchImpl::setLinks(BranchImpllinks  _links)
+BranchImpl::setLinks(BranchImpllinks _links)
 {
 	this->_links = _links;
 }
@@ -480,7 +480,7 @@ BranchImpl::getLatestRun()
 }
 
 void
-BranchImpl::setLatestRun(PipelineRunImpl  latestRun)
+BranchImpl::setLatestRun(PipelineRunImpl latestRun)
 {
 	this->latestRun = latestRun;
 }

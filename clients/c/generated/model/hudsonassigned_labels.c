@@ -12,18 +12,21 @@ static hudsonassigned_labels_t *hudsonassigned_labels_create_internal(
     if (!hudsonassigned_labels_local_var) {
         return NULL;
     }
-    hudsonassigned_labels_local_var->_class = _class;
-
+    memset(hudsonassigned_labels_local_var, 0, sizeof(hudsonassigned_labels_t));
     hudsonassigned_labels_local_var->_library_owned = 1;
+    hudsonassigned_labels_local_var->_class = _class;
     return hudsonassigned_labels_local_var;
 }
 
 __attribute__((deprecated)) hudsonassigned_labels_t *hudsonassigned_labels_create(
     char *_class
     ) {
-    return hudsonassigned_labels_create_internal (
+    hudsonassigned_labels_t *result = hudsonassigned_labels_create_internal (
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void hudsonassigned_labels_free(hudsonassigned_labels_t *hudsonassigned_labels) {
@@ -64,6 +67,8 @@ hudsonassigned_labels_t *hudsonassigned_labels_parseFromJSON(cJSON *hudsonassign
 
     hudsonassigned_labels_t *hudsonassigned_labels_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // hudsonassigned_labels->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudsonassigned_labelsJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -77,12 +82,22 @@ hudsonassigned_labels_t *hudsonassigned_labels_parseFromJSON(cJSON *hudsonassign
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     hudsonassigned_labels_local_var = hudsonassigned_labels_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!hudsonassigned_labels_local_var) {
+        goto end;
+    }
 
     return hudsonassigned_labels_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -11,22 +11,24 @@ static hudson_master_computer_t *hudson_master_computer_create_internal(
     list_t *executors,
     char *icon,
     char *icon_class_name,
-    int idle,
-    int jnlp_agent,
-    int launch_supported,
+    int *idle,
+    int *jnlp_agent,
+    int *launch_supported,
     label1_t *load_statistics,
-    int manual_launch_allowed,
+    int *manual_launch_allowed,
     hudson_master_computermonitor_data_t *monitor_data,
-    int num_executors,
-    int offline,
+    int *num_executors,
+    int *offline,
     char *offline_cause,
     char *offline_cause_reason,
-    int temporarily_offline
+    int *temporarily_offline
     ) {
     hudson_master_computer_t *hudson_master_computer_local_var = malloc(sizeof(hudson_master_computer_t));
     if (!hudson_master_computer_local_var) {
         return NULL;
     }
+    memset(hudson_master_computer_local_var, 0, sizeof(hudson_master_computer_t));
+    hudson_master_computer_local_var->_library_owned = 1;
     hudson_master_computer_local_var->_class = _class;
     hudson_master_computer_local_var->display_name = display_name;
     hudson_master_computer_local_var->executors = executors;
@@ -43,8 +45,6 @@ static hudson_master_computer_t *hudson_master_computer_create_internal(
     hudson_master_computer_local_var->offline_cause = offline_cause;
     hudson_master_computer_local_var->offline_cause_reason = offline_cause_reason;
     hudson_master_computer_local_var->temporarily_offline = temporarily_offline;
-
-    hudson_master_computer_local_var->_library_owned = 1;
     return hudson_master_computer_local_var;
 }
 
@@ -54,36 +54,81 @@ __attribute__((deprecated)) hudson_master_computer_t *hudson_master_computer_cre
     list_t *executors,
     char *icon,
     char *icon_class_name,
-    int idle,
-    int jnlp_agent,
-    int launch_supported,
+    int *idle,
+    int *jnlp_agent,
+    int *launch_supported,
     label1_t *load_statistics,
-    int manual_launch_allowed,
+    int *manual_launch_allowed,
     hudson_master_computermonitor_data_t *monitor_data,
-    int num_executors,
-    int offline,
+    int *num_executors,
+    int *offline,
     char *offline_cause,
     char *offline_cause_reason,
-    int temporarily_offline
+    int *temporarily_offline
     ) {
-    return hudson_master_computer_create_internal (
+    int *idle_copy = NULL;
+    if (idle) {
+        idle_copy = malloc(sizeof(int));
+        if (idle_copy) *idle_copy = *idle;
+    }
+    int *jnlp_agent_copy = NULL;
+    if (jnlp_agent) {
+        jnlp_agent_copy = malloc(sizeof(int));
+        if (jnlp_agent_copy) *jnlp_agent_copy = *jnlp_agent;
+    }
+    int *launch_supported_copy = NULL;
+    if (launch_supported) {
+        launch_supported_copy = malloc(sizeof(int));
+        if (launch_supported_copy) *launch_supported_copy = *launch_supported;
+    }
+    int *manual_launch_allowed_copy = NULL;
+    if (manual_launch_allowed) {
+        manual_launch_allowed_copy = malloc(sizeof(int));
+        if (manual_launch_allowed_copy) *manual_launch_allowed_copy = *manual_launch_allowed;
+    }
+    int *num_executors_copy = NULL;
+    if (num_executors) {
+        num_executors_copy = malloc(sizeof(int));
+        if (num_executors_copy) *num_executors_copy = *num_executors;
+    }
+    int *offline_copy = NULL;
+    if (offline) {
+        offline_copy = malloc(sizeof(int));
+        if (offline_copy) *offline_copy = *offline;
+    }
+    int *temporarily_offline_copy = NULL;
+    if (temporarily_offline) {
+        temporarily_offline_copy = malloc(sizeof(int));
+        if (temporarily_offline_copy) *temporarily_offline_copy = *temporarily_offline;
+    }
+    hudson_master_computer_t *result = hudson_master_computer_create_internal (
         _class,
         display_name,
         executors,
         icon,
         icon_class_name,
-        idle,
-        jnlp_agent,
-        launch_supported,
+        idle_copy,
+        jnlp_agent_copy,
+        launch_supported_copy,
         load_statistics,
-        manual_launch_allowed,
+        manual_launch_allowed_copy,
         monitor_data,
-        num_executors,
-        offline,
+        num_executors_copy,
+        offline_copy,
         offline_cause,
         offline_cause_reason,
-        temporarily_offline
+        temporarily_offline_copy
         );
+    if (!result) {
+        free(idle_copy);
+        free(jnlp_agent_copy);
+        free(launch_supported_copy);
+        free(manual_launch_allowed_copy);
+        free(num_executors_copy);
+        free(offline_copy);
+        free(temporarily_offline_copy);
+    }
+    return result;
 }
 
 void hudson_master_computer_free(hudson_master_computer_t *hudson_master_computer) {
@@ -118,13 +163,37 @@ void hudson_master_computer_free(hudson_master_computer_t *hudson_master_compute
         free(hudson_master_computer->icon_class_name);
         hudson_master_computer->icon_class_name = NULL;
     }
+    if (hudson_master_computer->idle) {
+        free(hudson_master_computer->idle);
+        hudson_master_computer->idle = NULL;
+    }
+    if (hudson_master_computer->jnlp_agent) {
+        free(hudson_master_computer->jnlp_agent);
+        hudson_master_computer->jnlp_agent = NULL;
+    }
+    if (hudson_master_computer->launch_supported) {
+        free(hudson_master_computer->launch_supported);
+        hudson_master_computer->launch_supported = NULL;
+    }
     if (hudson_master_computer->load_statistics) {
         label1_free(hudson_master_computer->load_statistics);
         hudson_master_computer->load_statistics = NULL;
     }
+    if (hudson_master_computer->manual_launch_allowed) {
+        free(hudson_master_computer->manual_launch_allowed);
+        hudson_master_computer->manual_launch_allowed = NULL;
+    }
     if (hudson_master_computer->monitor_data) {
         hudson_master_computermonitor_data_free(hudson_master_computer->monitor_data);
         hudson_master_computer->monitor_data = NULL;
+    }
+    if (hudson_master_computer->num_executors) {
+        free(hudson_master_computer->num_executors);
+        hudson_master_computer->num_executors = NULL;
+    }
+    if (hudson_master_computer->offline) {
+        free(hudson_master_computer->offline);
+        hudson_master_computer->offline = NULL;
     }
     if (hudson_master_computer->offline_cause) {
         free(hudson_master_computer->offline_cause);
@@ -133,6 +202,10 @@ void hudson_master_computer_free(hudson_master_computer_t *hudson_master_compute
     if (hudson_master_computer->offline_cause_reason) {
         free(hudson_master_computer->offline_cause_reason);
         hudson_master_computer->offline_cause_reason = NULL;
+    }
+    if (hudson_master_computer->temporarily_offline) {
+        free(hudson_master_computer->temporarily_offline);
+        hudson_master_computer->temporarily_offline = NULL;
     }
     free(hudson_master_computer);
 }
@@ -194,7 +267,7 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
 
     // hudson_master_computer->idle
     if(hudson_master_computer->idle) {
-    if(cJSON_AddBoolToObject(item, "idle", hudson_master_computer->idle) == NULL) {
+    if(cJSON_AddBoolToObject(item, "idle", *hudson_master_computer->idle) == NULL) {
     goto fail; //Bool
     }
     }
@@ -202,7 +275,7 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
 
     // hudson_master_computer->jnlp_agent
     if(hudson_master_computer->jnlp_agent) {
-    if(cJSON_AddBoolToObject(item, "jnlpAgent", hudson_master_computer->jnlp_agent) == NULL) {
+    if(cJSON_AddBoolToObject(item, "jnlpAgent", *hudson_master_computer->jnlp_agent) == NULL) {
     goto fail; //Bool
     }
     }
@@ -210,7 +283,7 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
 
     // hudson_master_computer->launch_supported
     if(hudson_master_computer->launch_supported) {
-    if(cJSON_AddBoolToObject(item, "launchSupported", hudson_master_computer->launch_supported) == NULL) {
+    if(cJSON_AddBoolToObject(item, "launchSupported", *hudson_master_computer->launch_supported) == NULL) {
     goto fail; //Bool
     }
     }
@@ -231,7 +304,7 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
 
     // hudson_master_computer->manual_launch_allowed
     if(hudson_master_computer->manual_launch_allowed) {
-    if(cJSON_AddBoolToObject(item, "manualLaunchAllowed", hudson_master_computer->manual_launch_allowed) == NULL) {
+    if(cJSON_AddBoolToObject(item, "manualLaunchAllowed", *hudson_master_computer->manual_launch_allowed) == NULL) {
     goto fail; //Bool
     }
     }
@@ -252,7 +325,7 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
 
     // hudson_master_computer->num_executors
     if(hudson_master_computer->num_executors) {
-    if(cJSON_AddNumberToObject(item, "numExecutors", hudson_master_computer->num_executors) == NULL) {
+    if(cJSON_AddNumberToObject(item, "numExecutors", *hudson_master_computer->num_executors) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -260,7 +333,7 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
 
     // hudson_master_computer->offline
     if(hudson_master_computer->offline) {
-    if(cJSON_AddBoolToObject(item, "offline", hudson_master_computer->offline) == NULL) {
+    if(cJSON_AddBoolToObject(item, "offline", *hudson_master_computer->offline) == NULL) {
     goto fail; //Bool
     }
     }
@@ -284,7 +357,7 @@ cJSON *hudson_master_computer_convertToJSON(hudson_master_computer_t *hudson_mas
 
     // hudson_master_computer->temporarily_offline
     if(hudson_master_computer->temporarily_offline) {
-    if(cJSON_AddBoolToObject(item, "temporarilyOffline", hudson_master_computer->temporarily_offline) == NULL) {
+    if(cJSON_AddBoolToObject(item, "temporarilyOffline", *hudson_master_computer->temporarily_offline) == NULL) {
     goto fail; //Bool
     }
     }
@@ -301,14 +374,47 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
 
     hudson_master_computer_t *hudson_master_computer_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *display_name_local_str = NULL;
+
     // define the local list for hudson_master_computer->executors
     list_t *executorsList = NULL;
+
+    char *icon_local_str = NULL;
+
+    char *icon_class_name_local_str = NULL;
+
+    // define the local variable for hudson_master_computer->idle
+    int *idle_local_var = NULL;
+
+    // define the local variable for hudson_master_computer->jnlp_agent
+    int *jnlp_agent_local_var = NULL;
+
+    // define the local variable for hudson_master_computer->launch_supported
+    int *launch_supported_local_var = NULL;
 
     // define the local variable for hudson_master_computer->load_statistics
     label1_t *load_statistics_local_nonprim = NULL;
 
+    // define the local variable for hudson_master_computer->manual_launch_allowed
+    int *manual_launch_allowed_local_var = NULL;
+
     // define the local variable for hudson_master_computer->monitor_data
     hudson_master_computermonitor_data_t *monitor_data_local_nonprim = NULL;
+
+    // define the local variable for hudson_master_computer->num_executors
+    int *num_executors_local_var = NULL;
+
+    // define the local variable for hudson_master_computer->offline
+    int *offline_local_var = NULL;
+
+    char *offline_cause_local_str = NULL;
+
+    char *offline_cause_reason_local_str = NULL;
+
+    // define the local variable for hudson_master_computer->temporarily_offline
+    int *temporarily_offline_local_var = NULL;
 
     // hudson_master_computer->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(hudson_master_computerJSON, "_class");
@@ -392,6 +498,12 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     {
     goto end; //Bool
     }
+    idle_local_var = malloc(sizeof(int));
+    if(!idle_local_var)
+    {
+        goto end;
+    }
+    *idle_local_var = idle->valueint;
     }
 
     // hudson_master_computer->jnlp_agent
@@ -404,6 +516,12 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     {
     goto end; //Bool
     }
+    jnlp_agent_local_var = malloc(sizeof(int));
+    if(!jnlp_agent_local_var)
+    {
+        goto end;
+    }
+    *jnlp_agent_local_var = jnlp_agent->valueint;
     }
 
     // hudson_master_computer->launch_supported
@@ -416,6 +534,12 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     {
     goto end; //Bool
     }
+    launch_supported_local_var = malloc(sizeof(int));
+    if(!launch_supported_local_var)
+    {
+        goto end;
+    }
+    *launch_supported_local_var = launch_supported->valueint;
     }
 
     // hudson_master_computer->load_statistics
@@ -437,6 +561,12 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     {
     goto end; //Bool
     }
+    manual_launch_allowed_local_var = malloc(sizeof(int));
+    if(!manual_launch_allowed_local_var)
+    {
+        goto end;
+    }
+    *manual_launch_allowed_local_var = manual_launch_allowed->valueint;
     }
 
     // hudson_master_computer->monitor_data
@@ -458,6 +588,12 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     {
     goto end; //Numeric
     }
+    num_executors_local_var = malloc(sizeof(int));
+    if(!num_executors_local_var)
+    {
+        goto end;
+    }
+    *num_executors_local_var = num_executors->valuedouble;
     }
 
     // hudson_master_computer->offline
@@ -470,6 +606,12 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     {
     goto end; //Bool
     }
+    offline_local_var = malloc(sizeof(int));
+    if(!offline_local_var)
+    {
+        goto end;
+    }
+    *offline_local_var = offline->valueint;
     }
 
     // hudson_master_computer->offline_cause
@@ -506,30 +648,55 @@ hudson_master_computer_t *hudson_master_computer_parseFromJSON(cJSON *hudson_mas
     {
     goto end; //Bool
     }
+    temporarily_offline_local_var = malloc(sizeof(int));
+    if(!temporarily_offline_local_var)
+    {
+        goto end;
+    }
+    *temporarily_offline_local_var = temporarily_offline->valueint;
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+    if (icon && !cJSON_IsNull(icon)) icon_local_str = strdup(icon->valuestring);
+    if (icon_class_name && !cJSON_IsNull(icon_class_name)) icon_class_name_local_str = strdup(icon_class_name->valuestring);
+    if (offline_cause && !cJSON_IsNull(offline_cause)) offline_cause_local_str = strdup(offline_cause->valuestring);
+    if (offline_cause_reason && !cJSON_IsNull(offline_cause_reason)) offline_cause_reason_local_str = strdup(offline_cause_reason->valuestring);
+
     hudson_master_computer_local_var = hudson_master_computer_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
+        _class_local_str,
+        display_name_local_str,
         executors ? executorsList : NULL,
-        icon && !cJSON_IsNull(icon) ? strdup(icon->valuestring) : NULL,
-        icon_class_name && !cJSON_IsNull(icon_class_name) ? strdup(icon_class_name->valuestring) : NULL,
-        idle ? idle->valueint : 0,
-        jnlp_agent ? jnlp_agent->valueint : 0,
-        launch_supported ? launch_supported->valueint : 0,
+        icon_local_str,
+        icon_class_name_local_str,
+        idle_local_var,
+        jnlp_agent_local_var,
+        launch_supported_local_var,
         load_statistics ? load_statistics_local_nonprim : NULL,
-        manual_launch_allowed ? manual_launch_allowed->valueint : 0,
+        manual_launch_allowed_local_var,
         monitor_data ? monitor_data_local_nonprim : NULL,
-        num_executors ? num_executors->valuedouble : 0,
-        offline ? offline->valueint : 0,
-        offline_cause && !cJSON_IsNull(offline_cause) ? strdup(offline_cause->valuestring) : NULL,
-        offline_cause_reason && !cJSON_IsNull(offline_cause_reason) ? strdup(offline_cause_reason->valuestring) : NULL,
-        temporarily_offline ? temporarily_offline->valueint : 0
+        num_executors_local_var,
+        offline_local_var,
+        offline_cause_local_str,
+        offline_cause_reason_local_str,
+        temporarily_offline_local_var
         );
+
+    if (!hudson_master_computer_local_var) {
+        goto end;
+    }
 
     return hudson_master_computer_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
     if (executorsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, executorsList) {
@@ -539,13 +706,57 @@ end:
         list_freeList(executorsList);
         executorsList = NULL;
     }
+    if (icon_local_str) {
+        free(icon_local_str);
+        icon_local_str = NULL;
+    }
+    if (icon_class_name_local_str) {
+        free(icon_class_name_local_str);
+        icon_class_name_local_str = NULL;
+    }
+    if (idle_local_var) {
+        free(idle_local_var);
+        idle_local_var = NULL;
+    }
+    if (jnlp_agent_local_var) {
+        free(jnlp_agent_local_var);
+        jnlp_agent_local_var = NULL;
+    }
+    if (launch_supported_local_var) {
+        free(launch_supported_local_var);
+        launch_supported_local_var = NULL;
+    }
     if (load_statistics_local_nonprim) {
         label1_free(load_statistics_local_nonprim);
         load_statistics_local_nonprim = NULL;
     }
+    if (manual_launch_allowed_local_var) {
+        free(manual_launch_allowed_local_var);
+        manual_launch_allowed_local_var = NULL;
+    }
     if (monitor_data_local_nonprim) {
         hudson_master_computermonitor_data_free(monitor_data_local_nonprim);
         monitor_data_local_nonprim = NULL;
+    }
+    if (num_executors_local_var) {
+        free(num_executors_local_var);
+        num_executors_local_var = NULL;
+    }
+    if (offline_local_var) {
+        free(offline_local_var);
+        offline_local_var = NULL;
+    }
+    if (offline_cause_local_str) {
+        free(offline_cause_local_str);
+        offline_cause_local_str = NULL;
+    }
+    if (offline_cause_reason_local_str) {
+        free(offline_cause_reason_local_str);
+        offline_cause_reason_local_str = NULL;
+    }
+    if (temporarily_offline_local_var) {
+        free(temporarily_offline_local_var);
+        temporarily_offline_local_var = NULL;
     }
     return NULL;
 

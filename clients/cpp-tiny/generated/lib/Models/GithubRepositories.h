@@ -54,42 +54,42 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	GithubRepositorieslinks getLinks();
 
 	/*! \brief Set 
 	 */
-	void setLinks(GithubRepositorieslinks  _links);
+	void setLinks(GithubRepositorieslinks _links);
 	/*! \brief Get 
 	 */
 	std::list<GithubRepository> getItems();
 
 	/*! \brief Set 
 	 */
-	void setItems(std::list <GithubRepository> items);
+	void setItems(std::list<GithubRepository> items);
 	/*! \brief Get 
 	 */
 	int getLastPage();
 
 	/*! \brief Set 
 	 */
-	void setLastPage(int  lastPage);
+	void setLastPage(int lastPage);
 	/*! \brief Get 
 	 */
 	int getNextPage();
 
 	/*! \brief Set 
 	 */
-	void setNextPage(int  nextPage);
+	void setNextPage(int nextPage);
 	/*! \brief Get 
 	 */
 	int getPageSize();
 
 	/*! \brief Set 
 	 */
-	void setPageSize(int  pageSize);
+	void setPageSize(int pageSize);
 
 
     private:

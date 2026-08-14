@@ -53,56 +53,56 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	GithubRepositorylinks getLinks();
 
 	/*! \brief Set 
 	 */
-	void setLinks(GithubRepositorylinks  _links);
+	void setLinks(GithubRepositorylinks _links);
 	/*! \brief Get 
 	 */
 	std::string getDefaultBranch();
 
 	/*! \brief Set 
 	 */
-	void setDefaultBranch(std::string  defaultBranch);
+	void setDefaultBranch(std::string defaultBranch);
 	/*! \brief Get 
 	 */
 	std::string getDescription();
 
 	/*! \brief Set 
 	 */
-	void setDescription(std::string  description);
+	void setDescription(std::string description);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	GithubRepositorypermissions getPermissions();
 
 	/*! \brief Set 
 	 */
-	void setPermissions(GithubRepositorypermissions  permissions);
+	void setPermissions(GithubRepositorypermissions permissions);
 	/*! \brief Get 
 	 */
 	bool isRPrivate();
 
 	/*! \brief Set 
 	 */
-	void setRPrivate(bool  r_private);
+	void setRPrivate(bool r_private);
 	/*! \brief Get 
 	 */
 	std::string getFullName();
 
 	/*! \brief Set 
 	 */
-	void setFullName(std::string  fullName);
+	void setFullName(std::string fullName);
 
 
     private:

@@ -148,7 +148,7 @@ SwapSpaceMonitorMemoryUsage2::getClass()
 }
 
 void
-SwapSpaceMonitorMemoryUsage2::setClass(std::string  _class)
+SwapSpaceMonitorMemoryUsage2::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -160,7 +160,7 @@ SwapSpaceMonitorMemoryUsage2::getAvailablePhysicalMemory()
 }
 
 void
-SwapSpaceMonitorMemoryUsage2::setAvailablePhysicalMemory(int  availablePhysicalMemory)
+SwapSpaceMonitorMemoryUsage2::setAvailablePhysicalMemory(int availablePhysicalMemory)
 {
 	this->availablePhysicalMemory = availablePhysicalMemory;
 }
@@ -172,7 +172,7 @@ SwapSpaceMonitorMemoryUsage2::getAvailableSwapSpace()
 }
 
 void
-SwapSpaceMonitorMemoryUsage2::setAvailableSwapSpace(int  availableSwapSpace)
+SwapSpaceMonitorMemoryUsage2::setAvailableSwapSpace(int availableSwapSpace)
 {
 	this->availableSwapSpace = availableSwapSpace;
 }
@@ -184,7 +184,7 @@ SwapSpaceMonitorMemoryUsage2::getTotalPhysicalMemory()
 }
 
 void
-SwapSpaceMonitorMemoryUsage2::setTotalPhysicalMemory(int  totalPhysicalMemory)
+SwapSpaceMonitorMemoryUsage2::setTotalPhysicalMemory(int totalPhysicalMemory)
 {
 	this->totalPhysicalMemory = totalPhysicalMemory;
 }
@@ -196,7 +196,7 @@ SwapSpaceMonitorMemoryUsage2::getTotalSwapSpace()
 }
 
 void
-SwapSpaceMonitorMemoryUsage2::setTotalSwapSpace(int  totalSwapSpace)
+SwapSpaceMonitorMemoryUsage2::setTotalSwapSpace(int totalSwapSpace)
 {
 	this->totalSwapSpace = totalSwapSpace;
 }

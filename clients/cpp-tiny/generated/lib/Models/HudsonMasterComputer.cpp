@@ -398,7 +398,7 @@ HudsonMasterComputer::getClass()
 }
 
 void
-HudsonMasterComputer::setClass(std::string  _class)
+HudsonMasterComputer::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -410,7 +410,7 @@ HudsonMasterComputer::getDisplayName()
 }
 
 void
-HudsonMasterComputer::setDisplayName(std::string  displayName)
+HudsonMasterComputer::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -422,7 +422,7 @@ HudsonMasterComputer::getExecutors()
 }
 
 void
-HudsonMasterComputer::setExecutors(std::list <HudsonMasterComputerexecutors> executors)
+HudsonMasterComputer::setExecutors(std::list<HudsonMasterComputerexecutors> executors)
 {
 	this->executors = executors;
 }
@@ -434,7 +434,7 @@ HudsonMasterComputer::getIcon()
 }
 
 void
-HudsonMasterComputer::setIcon(std::string  icon)
+HudsonMasterComputer::setIcon(std::string icon)
 {
 	this->icon = icon;
 }
@@ -446,7 +446,7 @@ HudsonMasterComputer::getIconClassName()
 }
 
 void
-HudsonMasterComputer::setIconClassName(std::string  iconClassName)
+HudsonMasterComputer::setIconClassName(std::string iconClassName)
 {
 	this->iconClassName = iconClassName;
 }
@@ -458,7 +458,7 @@ HudsonMasterComputer::isIdle()
 }
 
 void
-HudsonMasterComputer::setIdle(bool  idle)
+HudsonMasterComputer::setIdle(bool idle)
 {
 	this->idle = idle;
 }
@@ -470,7 +470,7 @@ HudsonMasterComputer::isJnlpAgent()
 }
 
 void
-HudsonMasterComputer::setJnlpAgent(bool  jnlpAgent)
+HudsonMasterComputer::setJnlpAgent(bool jnlpAgent)
 {
 	this->jnlpAgent = jnlpAgent;
 }
@@ -482,7 +482,7 @@ HudsonMasterComputer::isLaunchSupported()
 }
 
 void
-HudsonMasterComputer::setLaunchSupported(bool  launchSupported)
+HudsonMasterComputer::setLaunchSupported(bool launchSupported)
 {
 	this->launchSupported = launchSupported;
 }
@@ -494,7 +494,7 @@ HudsonMasterComputer::getLoadStatistics()
 }
 
 void
-HudsonMasterComputer::setLoadStatistics(Label1  loadStatistics)
+HudsonMasterComputer::setLoadStatistics(Label1 loadStatistics)
 {
 	this->loadStatistics = loadStatistics;
 }
@@ -506,7 +506,7 @@ HudsonMasterComputer::isManualLaunchAllowed()
 }
 
 void
-HudsonMasterComputer::setManualLaunchAllowed(bool  manualLaunchAllowed)
+HudsonMasterComputer::setManualLaunchAllowed(bool manualLaunchAllowed)
 {
 	this->manualLaunchAllowed = manualLaunchAllowed;
 }
@@ -518,7 +518,7 @@ HudsonMasterComputer::getMonitorData()
 }
 
 void
-HudsonMasterComputer::setMonitorData(HudsonMasterComputermonitorData  monitorData)
+HudsonMasterComputer::setMonitorData(HudsonMasterComputermonitorData monitorData)
 {
 	this->monitorData = monitorData;
 }
@@ -530,7 +530,7 @@ HudsonMasterComputer::getNumExecutors()
 }
 
 void
-HudsonMasterComputer::setNumExecutors(int  numExecutors)
+HudsonMasterComputer::setNumExecutors(int numExecutors)
 {
 	this->numExecutors = numExecutors;
 }
@@ -542,7 +542,7 @@ HudsonMasterComputer::isOffline()
 }
 
 void
-HudsonMasterComputer::setOffline(bool  offline)
+HudsonMasterComputer::setOffline(bool offline)
 {
 	this->offline = offline;
 }
@@ -554,7 +554,7 @@ HudsonMasterComputer::getOfflineCause()
 }
 
 void
-HudsonMasterComputer::setOfflineCause(std::string  offlineCause)
+HudsonMasterComputer::setOfflineCause(std::string offlineCause)
 {
 	this->offlineCause = offlineCause;
 }
@@ -566,7 +566,7 @@ HudsonMasterComputer::getOfflineCauseReason()
 }
 
 void
-HudsonMasterComputer::setOfflineCauseReason(std::string  offlineCauseReason)
+HudsonMasterComputer::setOfflineCauseReason(std::string offlineCauseReason)
 {
 	this->offlineCauseReason = offlineCauseReason;
 }
@@ -578,7 +578,7 @@ HudsonMasterComputer::isTemporarilyOffline()
 }
 
 void
-HudsonMasterComputer::setTemporarilyOffline(bool  temporarilyOffline)
+HudsonMasterComputer::setTemporarilyOffline(bool temporarilyOffline)
 {
 	this->temporarilyOffline = temporarilyOffline;
 }

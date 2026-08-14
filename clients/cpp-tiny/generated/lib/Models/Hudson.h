@@ -56,105 +56,105 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::list<HudsonassignedLabels> getAssignedLabels();
 
 	/*! \brief Set 
 	 */
-	void setAssignedLabels(std::list <HudsonassignedLabels> assignedLabels);
+	void setAssignedLabels(std::list<HudsonassignedLabels> assignedLabels);
 	/*! \brief Get 
 	 */
 	std::string getMode();
 
 	/*! \brief Set 
 	 */
-	void setMode(std::string  mode);
+	void setMode(std::string mode);
 	/*! \brief Get 
 	 */
 	std::string getNodeDescription();
 
 	/*! \brief Set 
 	 */
-	void setNodeDescription(std::string  nodeDescription);
+	void setNodeDescription(std::string nodeDescription);
 	/*! \brief Get 
 	 */
 	std::string getNodeName();
 
 	/*! \brief Set 
 	 */
-	void setNodeName(std::string  nodeName);
+	void setNodeName(std::string nodeName);
 	/*! \brief Get 
 	 */
 	int getNumExecutors();
 
 	/*! \brief Set 
 	 */
-	void setNumExecutors(int  numExecutors);
+	void setNumExecutors(int numExecutors);
 	/*! \brief Get 
 	 */
 	std::string getDescription();
 
 	/*! \brief Set 
 	 */
-	void setDescription(std::string  description);
+	void setDescription(std::string description);
 	/*! \brief Get 
 	 */
 	std::list<FreeStyleProject> getJobs();
 
 	/*! \brief Set 
 	 */
-	void setJobs(std::list <FreeStyleProject> jobs);
+	void setJobs(std::list<FreeStyleProject> jobs);
 	/*! \brief Get 
 	 */
 	AllView getPrimaryView();
 
 	/*! \brief Set 
 	 */
-	void setPrimaryView(AllView  primaryView);
+	void setPrimaryView(AllView primaryView);
 	/*! \brief Get 
 	 */
 	bool isQuietingDown();
 
 	/*! \brief Set 
 	 */
-	void setQuietingDown(bool  quietingDown);
+	void setQuietingDown(bool quietingDown);
 	/*! \brief Get 
 	 */
 	int getSlaveAgentPort();
 
 	/*! \brief Set 
 	 */
-	void setSlaveAgentPort(int  slaveAgentPort);
+	void setSlaveAgentPort(int slaveAgentPort);
 	/*! \brief Get 
 	 */
 	UnlabeledLoadStatistics getUnlabeledLoad();
 
 	/*! \brief Set 
 	 */
-	void setUnlabeledLoad(UnlabeledLoadStatistics  unlabeledLoad);
+	void setUnlabeledLoad(UnlabeledLoadStatistics unlabeledLoad);
 	/*! \brief Get 
 	 */
 	bool isUseCrumbs();
 
 	/*! \brief Set 
 	 */
-	void setUseCrumbs(bool  useCrumbs);
+	void setUseCrumbs(bool useCrumbs);
 	/*! \brief Get 
 	 */
 	bool isUseSecurity();
 
 	/*! \brief Set 
 	 */
-	void setUseSecurity(bool  useSecurity);
+	void setUseSecurity(bool useSecurity);
 	/*! \brief Get 
 	 */
 	std::list<AllView> getViews();
 
 	/*! \brief Set 
 	 */
-	void setViews(std::list <AllView> views);
+	void setViews(std::list<AllView> views);
 
 
     private:

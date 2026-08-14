@@ -7,39 +7,54 @@
 
 static queue_item_impl_t *queue_item_impl_create_internal(
     char *_class,
-    int expected_build_number,
+    int *expected_build_number,
     char *id,
     char *pipeline,
-    int queued_time
+    int *queued_time
     ) {
     queue_item_impl_t *queue_item_impl_local_var = malloc(sizeof(queue_item_impl_t));
     if (!queue_item_impl_local_var) {
         return NULL;
     }
+    memset(queue_item_impl_local_var, 0, sizeof(queue_item_impl_t));
+    queue_item_impl_local_var->_library_owned = 1;
     queue_item_impl_local_var->_class = _class;
     queue_item_impl_local_var->expected_build_number = expected_build_number;
     queue_item_impl_local_var->id = id;
     queue_item_impl_local_var->pipeline = pipeline;
     queue_item_impl_local_var->queued_time = queued_time;
-
-    queue_item_impl_local_var->_library_owned = 1;
     return queue_item_impl_local_var;
 }
 
 __attribute__((deprecated)) queue_item_impl_t *queue_item_impl_create(
     char *_class,
-    int expected_build_number,
+    int *expected_build_number,
     char *id,
     char *pipeline,
-    int queued_time
+    int *queued_time
     ) {
-    return queue_item_impl_create_internal (
+    int *expected_build_number_copy = NULL;
+    if (expected_build_number) {
+        expected_build_number_copy = malloc(sizeof(int));
+        if (expected_build_number_copy) *expected_build_number_copy = *expected_build_number;
+    }
+    int *queued_time_copy = NULL;
+    if (queued_time) {
+        queued_time_copy = malloc(sizeof(int));
+        if (queued_time_copy) *queued_time_copy = *queued_time;
+    }
+    queue_item_impl_t *result = queue_item_impl_create_internal (
         _class,
-        expected_build_number,
+        expected_build_number_copy,
         id,
         pipeline,
-        queued_time
+        queued_time_copy
         );
+    if (!result) {
+        free(expected_build_number_copy);
+        free(queued_time_copy);
+    }
+    return result;
 }
 
 void queue_item_impl_free(queue_item_impl_t *queue_item_impl) {
@@ -55,6 +70,10 @@ void queue_item_impl_free(queue_item_impl_t *queue_item_impl) {
         free(queue_item_impl->_class);
         queue_item_impl->_class = NULL;
     }
+    if (queue_item_impl->expected_build_number) {
+        free(queue_item_impl->expected_build_number);
+        queue_item_impl->expected_build_number = NULL;
+    }
     if (queue_item_impl->id) {
         free(queue_item_impl->id);
         queue_item_impl->id = NULL;
@@ -62,6 +81,10 @@ void queue_item_impl_free(queue_item_impl_t *queue_item_impl) {
     if (queue_item_impl->pipeline) {
         free(queue_item_impl->pipeline);
         queue_item_impl->pipeline = NULL;
+    }
+    if (queue_item_impl->queued_time) {
+        free(queue_item_impl->queued_time);
+        queue_item_impl->queued_time = NULL;
     }
     free(queue_item_impl);
 }
@@ -79,7 +102,7 @@ cJSON *queue_item_impl_convertToJSON(queue_item_impl_t *queue_item_impl) {
 
     // queue_item_impl->expected_build_number
     if(queue_item_impl->expected_build_number) {
-    if(cJSON_AddNumberToObject(item, "expectedBuildNumber", queue_item_impl->expected_build_number) == NULL) {
+    if(cJSON_AddNumberToObject(item, "expectedBuildNumber", *queue_item_impl->expected_build_number) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -103,7 +126,7 @@ cJSON *queue_item_impl_convertToJSON(queue_item_impl_t *queue_item_impl) {
 
     // queue_item_impl->queued_time
     if(queue_item_impl->queued_time) {
-    if(cJSON_AddNumberToObject(item, "queuedTime", queue_item_impl->queued_time) == NULL) {
+    if(cJSON_AddNumberToObject(item, "queuedTime", *queue_item_impl->queued_time) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -119,6 +142,18 @@ fail:
 queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
 
     queue_item_impl_t *queue_item_impl_local_var = NULL;
+
+    char *_class_local_str = NULL;
+
+    // define the local variable for queue_item_impl->expected_build_number
+    int *expected_build_number_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    char *pipeline_local_str = NULL;
+
+    // define the local variable for queue_item_impl->queued_time
+    int *queued_time_local_var = NULL;
 
     // queue_item_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(queue_item_implJSON, "_class");
@@ -142,6 +177,12 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
     {
     goto end; //Numeric
     }
+    expected_build_number_local_var = malloc(sizeof(int));
+    if(!expected_build_number_local_var)
+    {
+        goto end;
+    }
+    *expected_build_number_local_var = expected_build_number->valuedouble;
     }
 
     // queue_item_impl->id
@@ -178,19 +219,53 @@ queue_item_impl_t *queue_item_impl_parseFromJSON(cJSON *queue_item_implJSON){
     {
     goto end; //Numeric
     }
+    queued_time_local_var = malloc(sizeof(int));
+    if(!queued_time_local_var)
+    {
+        goto end;
+    }
+    *queued_time_local_var = queued_time->valuedouble;
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (pipeline && !cJSON_IsNull(pipeline)) pipeline_local_str = strdup(pipeline->valuestring);
+
     queue_item_impl_local_var = queue_item_impl_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        expected_build_number ? expected_build_number->valuedouble : 0,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        pipeline && !cJSON_IsNull(pipeline) ? strdup(pipeline->valuestring) : NULL,
-        queued_time ? queued_time->valuedouble : 0
+        _class_local_str,
+        expected_build_number_local_var,
+        id_local_str,
+        pipeline_local_str,
+        queued_time_local_var
         );
+
+    if (!queue_item_impl_local_var) {
+        goto end;
+    }
 
     return queue_item_impl_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (expected_build_number_local_var) {
+        free(expected_build_number_local_var);
+        expected_build_number_local_var = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (pipeline_local_str) {
+        free(pipeline_local_str);
+        pipeline_local_str = NULL;
+    }
+    if (queued_time_local_var) {
+        free(queued_time_local_var);
+        queued_time_local_var = NULL;
+    }
     return NULL;
 
 }

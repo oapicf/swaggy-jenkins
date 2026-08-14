@@ -13,10 +13,10 @@ static queue_t *queue_create_internal(
     if (!queue_local_var) {
         return NULL;
     }
+    memset(queue_local_var, 0, sizeof(queue_t));
+    queue_local_var->_library_owned = 1;
     queue_local_var->_class = _class;
     queue_local_var->items = items;
-
-    queue_local_var->_library_owned = 1;
     return queue_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) queue_t *queue_create(
     char *_class,
     list_t *items
     ) {
-    return queue_create_internal (
+    queue_t *result = queue_create_internal (
         _class,
         items
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void queue_free(queue_t *queue) {
@@ -95,6 +98,8 @@ queue_t *queue_parseFromJSON(cJSON *queueJSON){
 
     queue_t *queue_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local list for queue->items
     list_t *itemsList = NULL;
 
@@ -135,13 +140,23 @@ queue_t *queue_parseFromJSON(cJSON *queueJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     queue_local_var = queue_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         items ? itemsList : NULL
         );
 
+    if (!queue_local_var) {
+        goto end;
+    }
+
     return queue_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (itemsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, itemsList) {

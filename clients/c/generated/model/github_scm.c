@@ -16,13 +16,13 @@ static github_scm_t *github_scm_create_internal(
     if (!github_scm_local_var) {
         return NULL;
     }
+    memset(github_scm_local_var, 0, sizeof(github_scm_t));
+    github_scm_local_var->_library_owned = 1;
     github_scm_local_var->_class = _class;
     github_scm_local_var->_links = _links;
     github_scm_local_var->credential_id = credential_id;
     github_scm_local_var->id = id;
     github_scm_local_var->uri = uri;
-
-    github_scm_local_var->_library_owned = 1;
     return github_scm_local_var;
 }
 
@@ -33,13 +33,16 @@ __attribute__((deprecated)) github_scm_t *github_scm_create(
     char *id,
     char *uri
     ) {
-    return github_scm_create_internal (
+    github_scm_t *result = github_scm_create_internal (
         _class,
         _links,
         credential_id,
         id,
         uri
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void github_scm_free(github_scm_t *github_scm) {
@@ -133,8 +136,16 @@ github_scm_t *github_scm_parseFromJSON(cJSON *github_scmJSON){
 
     github_scm_t *github_scm_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local variable for github_scm->_links
     github_scmlinks_t *_links_local_nonprim = NULL;
+
+    char *credential_id_local_str = NULL;
+
+    char *id_local_str = NULL;
+
+    char *uri_local_str = NULL;
 
     // github_scm->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_scmJSON, "_class");
@@ -194,19 +205,44 @@ github_scm_t *github_scm_parseFromJSON(cJSON *github_scmJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (credential_id && !cJSON_IsNull(credential_id)) credential_id_local_str = strdup(credential_id->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (uri && !cJSON_IsNull(uri)) uri_local_str = strdup(uri->valuestring);
+
     github_scm_local_var = github_scm_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         _links ? _links_local_nonprim : NULL,
-        credential_id && !cJSON_IsNull(credential_id) ? strdup(credential_id->valuestring) : NULL,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        uri && !cJSON_IsNull(uri) ? strdup(uri->valuestring) : NULL
+        credential_id_local_str,
+        id_local_str,
+        uri_local_str
         );
+
+    if (!github_scm_local_var) {
+        goto end;
+    }
 
     return github_scm_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (_links_local_nonprim) {
         github_scmlinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;
+    }
+    if (credential_id_local_str) {
+        free(credential_id_local_str);
+        credential_id_local_str = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (uri_local_str) {
+        free(uri_local_str);
+        uri_local_str = NULL;
     }
     return NULL;
 

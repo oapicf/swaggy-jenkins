@@ -106,7 +106,7 @@ ResponseTimeMonitorData::getClass()
 }
 
 void
-ResponseTimeMonitorData::setClass(std::string  _class)
+ResponseTimeMonitorData::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -118,7 +118,7 @@ ResponseTimeMonitorData::getTimestamp()
 }
 
 void
-ResponseTimeMonitorData::setTimestamp(int  timestamp)
+ResponseTimeMonitorData::setTimestamp(int timestamp)
 {
 	this->timestamp = timestamp;
 }
@@ -130,7 +130,7 @@ ResponseTimeMonitorData::getAverage()
 }
 
 void
-ResponseTimeMonitorData::setAverage(int  average)
+ResponseTimeMonitorData::setAverage(int average)
 {
 	this->average = average;
 }

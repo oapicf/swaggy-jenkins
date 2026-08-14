@@ -192,11 +192,11 @@ BranchImpl <- R6::R6Class(
       }
       if (!is.null(self$`parameters`)) {
         BranchImplObject[["parameters"]] <-
-          lapply(self$`parameters`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`parameters`)
       }
       if (!is.null(self$`permissions`)) {
         BranchImplObject[["permissions"]] <-
-          self$`permissions`$toSimpleType()
+          self$extractSimpleType(self$`permissions`)
       }
       if (!is.null(self$`weatherScore`)) {
         BranchImplObject[["weatherScore"]] <-
@@ -208,13 +208,36 @@ BranchImpl <- R6::R6Class(
       }
       if (!is.null(self$`_links`)) {
         BranchImplObject[["_links"]] <-
-          self$`_links`$toSimpleType()
+          self$extractSimpleType(self$`_links`)
       }
       if (!is.null(self$`latestRun`)) {
         BranchImplObject[["latestRun"]] <-
-          self$`latestRun`$toSimpleType()
+          self$extractSimpleType(self$`latestRun`)
       }
       return(BranchImplObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

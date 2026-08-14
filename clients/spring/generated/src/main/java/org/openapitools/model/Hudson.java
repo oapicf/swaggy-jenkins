@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -14,52 +15,64 @@ import org.openapitools.model.UnlabeledLoadStatistics;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * Hudson
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class Hudson {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid HudsonassignedLabels> assignedLabels = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String mode;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String nodeDescription;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String nodeName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numExecutors;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String description;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AllView primaryView;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean quietingDown;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer slaveAgentPort;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable UnlabeledLoadStatistics unlabeledLoad;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean useCrumbs;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean useSecurity;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid AllView> views = new ArrayList<>();
 
   public Hudson propertyClass(@Nullable String propertyClass) {
@@ -78,6 +91,7 @@ public class Hudson {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -106,6 +120,7 @@ public class Hudson {
     return assignedLabels;
   }
 
+  @JsonProperty("assignedLabels")
   public void setAssignedLabels(List<@Valid HudsonassignedLabels> assignedLabels) {
     this.assignedLabels = assignedLabels;
   }
@@ -126,6 +141,7 @@ public class Hudson {
     return mode;
   }
 
+  @JsonProperty("mode")
   public void setMode(@Nullable String mode) {
     this.mode = mode;
   }
@@ -146,6 +162,7 @@ public class Hudson {
     return nodeDescription;
   }
 
+  @JsonProperty("nodeDescription")
   public void setNodeDescription(@Nullable String nodeDescription) {
     this.nodeDescription = nodeDescription;
   }
@@ -166,6 +183,7 @@ public class Hudson {
     return nodeName;
   }
 
+  @JsonProperty("nodeName")
   public void setNodeName(@Nullable String nodeName) {
     this.nodeName = nodeName;
   }
@@ -186,6 +204,7 @@ public class Hudson {
     return numExecutors;
   }
 
+  @JsonProperty("numExecutors")
   public void setNumExecutors(@Nullable Integer numExecutors) {
     this.numExecutors = numExecutors;
   }
@@ -206,6 +225,7 @@ public class Hudson {
     return description;
   }
 
+  @JsonProperty("description")
   public void setDescription(@Nullable String description) {
     this.description = description;
   }
@@ -234,6 +254,7 @@ public class Hudson {
     return jobs;
   }
 
+  @JsonProperty("jobs")
   public void setJobs(List<@Valid FreeStyleProject> jobs) {
     this.jobs = jobs;
   }
@@ -254,6 +275,7 @@ public class Hudson {
     return primaryView;
   }
 
+  @JsonProperty("primaryView")
   public void setPrimaryView(@Nullable AllView primaryView) {
     this.primaryView = primaryView;
   }
@@ -274,6 +296,7 @@ public class Hudson {
     return quietingDown;
   }
 
+  @JsonProperty("quietingDown")
   public void setQuietingDown(@Nullable Boolean quietingDown) {
     this.quietingDown = quietingDown;
   }
@@ -294,6 +317,7 @@ public class Hudson {
     return slaveAgentPort;
   }
 
+  @JsonProperty("slaveAgentPort")
   public void setSlaveAgentPort(@Nullable Integer slaveAgentPort) {
     this.slaveAgentPort = slaveAgentPort;
   }
@@ -314,6 +338,7 @@ public class Hudson {
     return unlabeledLoad;
   }
 
+  @JsonProperty("unlabeledLoad")
   public void setUnlabeledLoad(@Nullable UnlabeledLoadStatistics unlabeledLoad) {
     this.unlabeledLoad = unlabeledLoad;
   }
@@ -334,6 +359,7 @@ public class Hudson {
     return useCrumbs;
   }
 
+  @JsonProperty("useCrumbs")
   public void setUseCrumbs(@Nullable Boolean useCrumbs) {
     this.useCrumbs = useCrumbs;
   }
@@ -354,6 +380,7 @@ public class Hudson {
     return useSecurity;
   }
 
+  @JsonProperty("useSecurity")
   public void setUseSecurity(@Nullable Boolean useSecurity) {
     this.useSecurity = useSecurity;
   }
@@ -382,6 +409,7 @@ public class Hudson {
     return views;
   }
 
+  @JsonProperty("views")
   public void setViews(List<@Valid AllView> views) {
     this.views = views;
   }
@@ -444,11 +472,8 @@ public class Hudson {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

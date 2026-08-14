@@ -13,10 +13,10 @@ static cause_action_t *cause_action_create_internal(
     if (!cause_action_local_var) {
         return NULL;
     }
+    memset(cause_action_local_var, 0, sizeof(cause_action_t));
+    cause_action_local_var->_library_owned = 1;
     cause_action_local_var->_class = _class;
     cause_action_local_var->causes = causes;
-
-    cause_action_local_var->_library_owned = 1;
     return cause_action_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) cause_action_t *cause_action_create(
     char *_class,
     list_t *causes
     ) {
-    return cause_action_create_internal (
+    cause_action_t *result = cause_action_create_internal (
         _class,
         causes
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void cause_action_free(cause_action_t *cause_action) {
@@ -95,6 +98,8 @@ cause_action_t *cause_action_parseFromJSON(cJSON *cause_actionJSON){
 
     cause_action_t *cause_action_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local list for cause_action->causes
     list_t *causesList = NULL;
 
@@ -135,13 +140,23 @@ cause_action_t *cause_action_parseFromJSON(cJSON *cause_actionJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     cause_action_local_var = cause_action_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         causes ? causesList : NULL
         );
 
+    if (!cause_action_local_var) {
+        goto end;
+    }
+
     return cause_action_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (causesList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, causesList) {

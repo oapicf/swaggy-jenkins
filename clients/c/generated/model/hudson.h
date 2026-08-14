@@ -28,15 +28,15 @@ typedef struct hudson_t {
     char *mode; // string
     char *node_description; // string
     char *node_name; // string
-    int num_executors; //numeric
+    int *num_executors; //numeric
     char *description; // string
     list_t *jobs; //nonprimitive container
     struct all_view_t *primary_view; //model
-    int quieting_down; //boolean
-    int slave_agent_port; //numeric
+    int *quieting_down; //boolean
+    int *slave_agent_port; //numeric
     struct unlabeled_load_statistics_t *unlabeled_load; //model
-    int use_crumbs; //boolean
-    int use_security; //boolean
+    int *use_crumbs; //boolean
+    int *use_security; //boolean
     list_t *views; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -48,15 +48,15 @@ __attribute__((deprecated)) hudson_t *hudson_create(
     char *mode,
     char *node_description,
     char *node_name,
-    int num_executors,
+    int *num_executors,
     char *description,
     list_t *jobs,
     all_view_t *primary_view,
-    int quieting_down,
-    int slave_agent_port,
+    int *quieting_down,
+    int *slave_agent_port,
     unlabeled_load_statistics_t *unlabeled_load,
-    int use_crumbs,
-    int use_security,
+    int *use_crumbs,
+    int *use_security,
     list_t *views
 );
 

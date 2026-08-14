@@ -32,7 +32,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-02-01T01:24:25.254098692Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-08-14T13:26:59.253718445Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public interface BlueApiService {
       public Response deletePipelineQueueItem(String organization, String pipeline, String queue, SecurityContext securityContext);
       public Response getAuthenticatedUser(String organization, SecurityContext securityContext);

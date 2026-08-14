@@ -11,7 +11,7 @@ import org.openapitools.model.PipelineStepImpllinks;
 /**
  * PipelineStepImpl
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-02-01T01:24:06.543745401Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-14T13:26:36.965911138Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineStepImpl   {
   @JsonProperty("_class")
   private String propertyClass;
@@ -251,10 +251,7 @@ public class PipelineStepImpl   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

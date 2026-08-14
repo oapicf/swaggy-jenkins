@@ -1,0 +1,6 @@
+.openapi-generator-ignore
+Apis/BaseApi.http
+Apis/BlueOceanApi.http
+Apis/RemoteAccessApi.http
+Apis/http-client.template.env.json
+README.md

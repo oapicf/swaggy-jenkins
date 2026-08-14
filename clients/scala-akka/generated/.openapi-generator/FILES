@@ -1,4 +1,4 @@
-.openapi-generator-ignore
+.scalafmt.conf
 README.md
 build.sbt
 docs/AllView.md
@@ -86,6 +86,7 @@ docs/UnlabeledLoadStatistics.md
 docs/User.md
 pom.xml
 project/build.properties
+project/plugins.sbt
 src/main/resources/reference.conf
 src/main/scala/org/openapitools/client/api/BaseApi.scala
 src/main/scala/org/openapitools/client/api/BlueOceanApi.scala

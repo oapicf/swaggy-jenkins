@@ -14,11 +14,11 @@ static extension_class_container_impl1_t *extension_class_container_impl1_create
     if (!extension_class_container_impl1_local_var) {
         return NULL;
     }
+    memset(extension_class_container_impl1_local_var, 0, sizeof(extension_class_container_impl1_t));
+    extension_class_container_impl1_local_var->_library_owned = 1;
     extension_class_container_impl1_local_var->_class = _class;
     extension_class_container_impl1_local_var->_links = _links;
     extension_class_container_impl1_local_var->map = map;
-
-    extension_class_container_impl1_local_var->_library_owned = 1;
     return extension_class_container_impl1_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) extension_class_container_impl1_t *extension_class_c
     extension_class_container_impl1links_t *_links,
     extension_class_container_impl1map_t *map
     ) {
-    return extension_class_container_impl1_create_internal (
+    extension_class_container_impl1_t *result = extension_class_container_impl1_create_internal (
         _class,
         _links,
         map
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void extension_class_container_impl1_free(extension_class_container_impl1_t *extension_class_container_impl1) {
@@ -106,6 +109,8 @@ extension_class_container_impl1_t *extension_class_container_impl1_parseFromJSON
 
     extension_class_container_impl1_t *extension_class_container_impl1_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local variable for extension_class_container_impl1->_links
     extension_class_container_impl1links_t *_links_local_nonprim = NULL;
 
@@ -143,14 +148,24 @@ extension_class_container_impl1_t *extension_class_container_impl1_parseFromJSON
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     extension_class_container_impl1_local_var = extension_class_container_impl1_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         _links ? _links_local_nonprim : NULL,
         map ? map_local_nonprim : NULL
         );
 
+    if (!extension_class_container_impl1_local_var) {
+        goto end;
+    }
+
     return extension_class_container_impl1_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (_links_local_nonprim) {
         extension_class_container_impl1links_free(_links_local_nonprim);
         _links_local_nonprim = NULL;

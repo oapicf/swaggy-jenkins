@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-02-01T01:24:33.282701546Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-14T13:27:10.481581255Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CrumbIssuerApiServiceImpl implements CrumbIssuerApi {
       public Response getCrumb(SecurityContext securityContext) {
       // do some magic!

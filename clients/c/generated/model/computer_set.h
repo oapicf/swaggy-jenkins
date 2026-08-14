@@ -21,20 +21,20 @@ typedef struct computer_set_t computer_set_t;
 
 typedef struct computer_set_t {
     char *_class; // string
-    int busy_executors; //numeric
+    int *busy_executors; //numeric
     list_t *computer; //nonprimitive container
     char *display_name; // string
-    int total_executors; //numeric
+    int *total_executors; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } computer_set_t;
 
 __attribute__((deprecated)) computer_set_t *computer_set_create(
     char *_class,
-    int busy_executors,
+    int *busy_executors,
     list_t *computer,
     char *display_name,
-    int total_executors
+    int *total_executors
 );
 
 void computer_set_free(computer_set_t *computer_set);

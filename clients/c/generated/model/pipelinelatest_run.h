@@ -21,8 +21,8 @@ typedef struct pipelinelatest_run_t pipelinelatest_run_t;
 
 typedef struct pipelinelatest_run_t {
     list_t *artifacts; //nonprimitive container
-    int duration_in_millis; //numeric
-    int estimated_duration_in_millis; //numeric
+    int *duration_in_millis; //numeric
+    int *estimated_duration_in_millis; //numeric
     char *en_queue_time; // string
     char *end_time; // string
     char *id; // string
@@ -41,8 +41,8 @@ typedef struct pipelinelatest_run_t {
 
 __attribute__((deprecated)) pipelinelatest_run_t *pipelinelatest_run_create(
     list_t *artifacts,
-    int duration_in_millis,
-    int estimated_duration_in_millis,
+    int *duration_in_millis,
+    int *estimated_duration_in_millis,
     char *en_queue_time,
     char *end_time,
     char *id,

@@ -7,24 +7,26 @@
 
 static multibranch_pipeline_t *multibranch_pipeline_create_internal(
     char *display_name,
-    int estimated_duration_in_millis,
+    int *estimated_duration_in_millis,
     char *latest_run,
     char *name,
     char *organization,
-    int weather_score,
+    int *weather_score,
     list_t *branch_names,
-    int number_of_failing_branches,
-    int number_of_failing_pull_requests,
-    int number_of_successful_branches,
-    int number_of_successful_pull_requests,
-    int total_number_of_branches,
-    int total_number_of_pull_requests,
+    int *number_of_failing_branches,
+    int *number_of_failing_pull_requests,
+    int *number_of_successful_branches,
+    int *number_of_successful_pull_requests,
+    int *total_number_of_branches,
+    int *total_number_of_pull_requests,
     char *_class
     ) {
     multibranch_pipeline_t *multibranch_pipeline_local_var = malloc(sizeof(multibranch_pipeline_t));
     if (!multibranch_pipeline_local_var) {
         return NULL;
     }
+    memset(multibranch_pipeline_local_var, 0, sizeof(multibranch_pipeline_t));
+    multibranch_pipeline_local_var->_library_owned = 1;
     multibranch_pipeline_local_var->display_name = display_name;
     multibranch_pipeline_local_var->estimated_duration_in_millis = estimated_duration_in_millis;
     multibranch_pipeline_local_var->latest_run = latest_run;
@@ -39,43 +41,92 @@ static multibranch_pipeline_t *multibranch_pipeline_create_internal(
     multibranch_pipeline_local_var->total_number_of_branches = total_number_of_branches;
     multibranch_pipeline_local_var->total_number_of_pull_requests = total_number_of_pull_requests;
     multibranch_pipeline_local_var->_class = _class;
-
-    multibranch_pipeline_local_var->_library_owned = 1;
     return multibranch_pipeline_local_var;
 }
 
 __attribute__((deprecated)) multibranch_pipeline_t *multibranch_pipeline_create(
     char *display_name,
-    int estimated_duration_in_millis,
+    int *estimated_duration_in_millis,
     char *latest_run,
     char *name,
     char *organization,
-    int weather_score,
+    int *weather_score,
     list_t *branch_names,
-    int number_of_failing_branches,
-    int number_of_failing_pull_requests,
-    int number_of_successful_branches,
-    int number_of_successful_pull_requests,
-    int total_number_of_branches,
-    int total_number_of_pull_requests,
+    int *number_of_failing_branches,
+    int *number_of_failing_pull_requests,
+    int *number_of_successful_branches,
+    int *number_of_successful_pull_requests,
+    int *total_number_of_branches,
+    int *total_number_of_pull_requests,
     char *_class
     ) {
-    return multibranch_pipeline_create_internal (
+    int *estimated_duration_in_millis_copy = NULL;
+    if (estimated_duration_in_millis) {
+        estimated_duration_in_millis_copy = malloc(sizeof(int));
+        if (estimated_duration_in_millis_copy) *estimated_duration_in_millis_copy = *estimated_duration_in_millis;
+    }
+    int *weather_score_copy = NULL;
+    if (weather_score) {
+        weather_score_copy = malloc(sizeof(int));
+        if (weather_score_copy) *weather_score_copy = *weather_score;
+    }
+    int *number_of_failing_branches_copy = NULL;
+    if (number_of_failing_branches) {
+        number_of_failing_branches_copy = malloc(sizeof(int));
+        if (number_of_failing_branches_copy) *number_of_failing_branches_copy = *number_of_failing_branches;
+    }
+    int *number_of_failing_pull_requests_copy = NULL;
+    if (number_of_failing_pull_requests) {
+        number_of_failing_pull_requests_copy = malloc(sizeof(int));
+        if (number_of_failing_pull_requests_copy) *number_of_failing_pull_requests_copy = *number_of_failing_pull_requests;
+    }
+    int *number_of_successful_branches_copy = NULL;
+    if (number_of_successful_branches) {
+        number_of_successful_branches_copy = malloc(sizeof(int));
+        if (number_of_successful_branches_copy) *number_of_successful_branches_copy = *number_of_successful_branches;
+    }
+    int *number_of_successful_pull_requests_copy = NULL;
+    if (number_of_successful_pull_requests) {
+        number_of_successful_pull_requests_copy = malloc(sizeof(int));
+        if (number_of_successful_pull_requests_copy) *number_of_successful_pull_requests_copy = *number_of_successful_pull_requests;
+    }
+    int *total_number_of_branches_copy = NULL;
+    if (total_number_of_branches) {
+        total_number_of_branches_copy = malloc(sizeof(int));
+        if (total_number_of_branches_copy) *total_number_of_branches_copy = *total_number_of_branches;
+    }
+    int *total_number_of_pull_requests_copy = NULL;
+    if (total_number_of_pull_requests) {
+        total_number_of_pull_requests_copy = malloc(sizeof(int));
+        if (total_number_of_pull_requests_copy) *total_number_of_pull_requests_copy = *total_number_of_pull_requests;
+    }
+    multibranch_pipeline_t *result = multibranch_pipeline_create_internal (
         display_name,
-        estimated_duration_in_millis,
+        estimated_duration_in_millis_copy,
         latest_run,
         name,
         organization,
-        weather_score,
+        weather_score_copy,
         branch_names,
-        number_of_failing_branches,
-        number_of_failing_pull_requests,
-        number_of_successful_branches,
-        number_of_successful_pull_requests,
-        total_number_of_branches,
-        total_number_of_pull_requests,
+        number_of_failing_branches_copy,
+        number_of_failing_pull_requests_copy,
+        number_of_successful_branches_copy,
+        number_of_successful_pull_requests_copy,
+        total_number_of_branches_copy,
+        total_number_of_pull_requests_copy,
         _class
         );
+    if (!result) {
+        free(estimated_duration_in_millis_copy);
+        free(weather_score_copy);
+        free(number_of_failing_branches_copy);
+        free(number_of_failing_pull_requests_copy);
+        free(number_of_successful_branches_copy);
+        free(number_of_successful_pull_requests_copy);
+        free(total_number_of_branches_copy);
+        free(total_number_of_pull_requests_copy);
+    }
+    return result;
 }
 
 void multibranch_pipeline_free(multibranch_pipeline_t *multibranch_pipeline) {
@@ -91,6 +142,10 @@ void multibranch_pipeline_free(multibranch_pipeline_t *multibranch_pipeline) {
         free(multibranch_pipeline->display_name);
         multibranch_pipeline->display_name = NULL;
     }
+    if (multibranch_pipeline->estimated_duration_in_millis) {
+        free(multibranch_pipeline->estimated_duration_in_millis);
+        multibranch_pipeline->estimated_duration_in_millis = NULL;
+    }
     if (multibranch_pipeline->latest_run) {
         free(multibranch_pipeline->latest_run);
         multibranch_pipeline->latest_run = NULL;
@@ -103,12 +158,40 @@ void multibranch_pipeline_free(multibranch_pipeline_t *multibranch_pipeline) {
         free(multibranch_pipeline->organization);
         multibranch_pipeline->organization = NULL;
     }
+    if (multibranch_pipeline->weather_score) {
+        free(multibranch_pipeline->weather_score);
+        multibranch_pipeline->weather_score = NULL;
+    }
     if (multibranch_pipeline->branch_names) {
         list_ForEach(listEntry, multibranch_pipeline->branch_names) {
             free(listEntry->data);
         }
         list_freeList(multibranch_pipeline->branch_names);
         multibranch_pipeline->branch_names = NULL;
+    }
+    if (multibranch_pipeline->number_of_failing_branches) {
+        free(multibranch_pipeline->number_of_failing_branches);
+        multibranch_pipeline->number_of_failing_branches = NULL;
+    }
+    if (multibranch_pipeline->number_of_failing_pull_requests) {
+        free(multibranch_pipeline->number_of_failing_pull_requests);
+        multibranch_pipeline->number_of_failing_pull_requests = NULL;
+    }
+    if (multibranch_pipeline->number_of_successful_branches) {
+        free(multibranch_pipeline->number_of_successful_branches);
+        multibranch_pipeline->number_of_successful_branches = NULL;
+    }
+    if (multibranch_pipeline->number_of_successful_pull_requests) {
+        free(multibranch_pipeline->number_of_successful_pull_requests);
+        multibranch_pipeline->number_of_successful_pull_requests = NULL;
+    }
+    if (multibranch_pipeline->total_number_of_branches) {
+        free(multibranch_pipeline->total_number_of_branches);
+        multibranch_pipeline->total_number_of_branches = NULL;
+    }
+    if (multibranch_pipeline->total_number_of_pull_requests) {
+        free(multibranch_pipeline->total_number_of_pull_requests);
+        multibranch_pipeline->total_number_of_pull_requests = NULL;
     }
     if (multibranch_pipeline->_class) {
         free(multibranch_pipeline->_class);
@@ -130,7 +213,7 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
 
     // multibranch_pipeline->estimated_duration_in_millis
     if(multibranch_pipeline->estimated_duration_in_millis) {
-    if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", multibranch_pipeline->estimated_duration_in_millis) == NULL) {
+    if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", *multibranch_pipeline->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -162,7 +245,7 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
 
     // multibranch_pipeline->weather_score
     if(multibranch_pipeline->weather_score) {
-    if(cJSON_AddNumberToObject(item, "weatherScore", multibranch_pipeline->weather_score) == NULL) {
+    if(cJSON_AddNumberToObject(item, "weatherScore", *multibranch_pipeline->weather_score) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -187,7 +270,7 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
 
     // multibranch_pipeline->number_of_failing_branches
     if(multibranch_pipeline->number_of_failing_branches) {
-    if(cJSON_AddNumberToObject(item, "numberOfFailingBranches", multibranch_pipeline->number_of_failing_branches) == NULL) {
+    if(cJSON_AddNumberToObject(item, "numberOfFailingBranches", *multibranch_pipeline->number_of_failing_branches) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -195,7 +278,7 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
 
     // multibranch_pipeline->number_of_failing_pull_requests
     if(multibranch_pipeline->number_of_failing_pull_requests) {
-    if(cJSON_AddNumberToObject(item, "numberOfFailingPullRequests", multibranch_pipeline->number_of_failing_pull_requests) == NULL) {
+    if(cJSON_AddNumberToObject(item, "numberOfFailingPullRequests", *multibranch_pipeline->number_of_failing_pull_requests) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -203,7 +286,7 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
 
     // multibranch_pipeline->number_of_successful_branches
     if(multibranch_pipeline->number_of_successful_branches) {
-    if(cJSON_AddNumberToObject(item, "numberOfSuccessfulBranches", multibranch_pipeline->number_of_successful_branches) == NULL) {
+    if(cJSON_AddNumberToObject(item, "numberOfSuccessfulBranches", *multibranch_pipeline->number_of_successful_branches) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -211,7 +294,7 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
 
     // multibranch_pipeline->number_of_successful_pull_requests
     if(multibranch_pipeline->number_of_successful_pull_requests) {
-    if(cJSON_AddNumberToObject(item, "numberOfSuccessfulPullRequests", multibranch_pipeline->number_of_successful_pull_requests) == NULL) {
+    if(cJSON_AddNumberToObject(item, "numberOfSuccessfulPullRequests", *multibranch_pipeline->number_of_successful_pull_requests) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -219,7 +302,7 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
 
     // multibranch_pipeline->total_number_of_branches
     if(multibranch_pipeline->total_number_of_branches) {
-    if(cJSON_AddNumberToObject(item, "totalNumberOfBranches", multibranch_pipeline->total_number_of_branches) == NULL) {
+    if(cJSON_AddNumberToObject(item, "totalNumberOfBranches", *multibranch_pipeline->total_number_of_branches) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -227,7 +310,7 @@ cJSON *multibranch_pipeline_convertToJSON(multibranch_pipeline_t *multibranch_pi
 
     // multibranch_pipeline->total_number_of_pull_requests
     if(multibranch_pipeline->total_number_of_pull_requests) {
-    if(cJSON_AddNumberToObject(item, "totalNumberOfPullRequests", multibranch_pipeline->total_number_of_pull_requests) == NULL) {
+    if(cJSON_AddNumberToObject(item, "totalNumberOfPullRequests", *multibranch_pipeline->total_number_of_pull_requests) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -252,8 +335,42 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
 
     multibranch_pipeline_t *multibranch_pipeline_local_var = NULL;
 
+    char *display_name_local_str = NULL;
+
+    // define the local variable for multibranch_pipeline->estimated_duration_in_millis
+    int *estimated_duration_in_millis_local_var = NULL;
+
+    char *latest_run_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *organization_local_str = NULL;
+
+    // define the local variable for multibranch_pipeline->weather_score
+    int *weather_score_local_var = NULL;
+
     // define the local list for multibranch_pipeline->branch_names
     list_t *branch_namesList = NULL;
+
+    // define the local variable for multibranch_pipeline->number_of_failing_branches
+    int *number_of_failing_branches_local_var = NULL;
+
+    // define the local variable for multibranch_pipeline->number_of_failing_pull_requests
+    int *number_of_failing_pull_requests_local_var = NULL;
+
+    // define the local variable for multibranch_pipeline->number_of_successful_branches
+    int *number_of_successful_branches_local_var = NULL;
+
+    // define the local variable for multibranch_pipeline->number_of_successful_pull_requests
+    int *number_of_successful_pull_requests_local_var = NULL;
+
+    // define the local variable for multibranch_pipeline->total_number_of_branches
+    int *total_number_of_branches_local_var = NULL;
+
+    // define the local variable for multibranch_pipeline->total_number_of_pull_requests
+    int *total_number_of_pull_requests_local_var = NULL;
+
+    char *_class_local_str = NULL;
 
     // multibranch_pipeline->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(multibranch_pipelineJSON, "displayName");
@@ -277,6 +394,12 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
     {
     goto end; //Numeric
     }
+    estimated_duration_in_millis_local_var = malloc(sizeof(int));
+    if(!estimated_duration_in_millis_local_var)
+    {
+        goto end;
+    }
+    *estimated_duration_in_millis_local_var = estimated_duration_in_millis->valuedouble;
     }
 
     // multibranch_pipeline->latest_run
@@ -325,6 +448,12 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
     {
     goto end; //Numeric
     }
+    weather_score_local_var = malloc(sizeof(int));
+    if(!weather_score_local_var)
+    {
+        goto end;
+    }
+    *weather_score_local_var = weather_score->valuedouble;
     }
 
     // multibranch_pipeline->branch_names
@@ -359,6 +488,12 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
     {
     goto end; //Numeric
     }
+    number_of_failing_branches_local_var = malloc(sizeof(int));
+    if(!number_of_failing_branches_local_var)
+    {
+        goto end;
+    }
+    *number_of_failing_branches_local_var = number_of_failing_branches->valuedouble;
     }
 
     // multibranch_pipeline->number_of_failing_pull_requests
@@ -371,6 +506,12 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
     {
     goto end; //Numeric
     }
+    number_of_failing_pull_requests_local_var = malloc(sizeof(int));
+    if(!number_of_failing_pull_requests_local_var)
+    {
+        goto end;
+    }
+    *number_of_failing_pull_requests_local_var = number_of_failing_pull_requests->valuedouble;
     }
 
     // multibranch_pipeline->number_of_successful_branches
@@ -383,6 +524,12 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
     {
     goto end; //Numeric
     }
+    number_of_successful_branches_local_var = malloc(sizeof(int));
+    if(!number_of_successful_branches_local_var)
+    {
+        goto end;
+    }
+    *number_of_successful_branches_local_var = number_of_successful_branches->valuedouble;
     }
 
     // multibranch_pipeline->number_of_successful_pull_requests
@@ -395,6 +542,12 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
     {
     goto end; //Numeric
     }
+    number_of_successful_pull_requests_local_var = malloc(sizeof(int));
+    if(!number_of_successful_pull_requests_local_var)
+    {
+        goto end;
+    }
+    *number_of_successful_pull_requests_local_var = number_of_successful_pull_requests->valuedouble;
     }
 
     // multibranch_pipeline->total_number_of_branches
@@ -407,6 +560,12 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
     {
     goto end; //Numeric
     }
+    total_number_of_branches_local_var = malloc(sizeof(int));
+    if(!total_number_of_branches_local_var)
+    {
+        goto end;
+    }
+    *total_number_of_branches_local_var = total_number_of_branches->valuedouble;
     }
 
     // multibranch_pipeline->total_number_of_pull_requests
@@ -419,6 +578,12 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
     {
     goto end; //Numeric
     }
+    total_number_of_pull_requests_local_var = malloc(sizeof(int));
+    if(!total_number_of_pull_requests_local_var)
+    {
+        goto end;
+    }
+    *total_number_of_pull_requests_local_var = total_number_of_pull_requests->valuedouble;
     }
 
     // multibranch_pipeline->_class
@@ -434,25 +599,59 @@ multibranch_pipeline_t *multibranch_pipeline_parseFromJSON(cJSON *multibranch_pi
     }
 
 
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+    if (latest_run && !cJSON_IsNull(latest_run)) latest_run_local_str = strdup(latest_run->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (organization && !cJSON_IsNull(organization)) organization_local_str = strdup(organization->valuestring);
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     multibranch_pipeline_local_var = multibranch_pipeline_create_internal (
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
-        estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
-        latest_run && !cJSON_IsNull(latest_run) ? strdup(latest_run->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
-        weather_score ? weather_score->valuedouble : 0,
+        display_name_local_str,
+        estimated_duration_in_millis_local_var,
+        latest_run_local_str,
+        name_local_str,
+        organization_local_str,
+        weather_score_local_var,
         branch_names ? branch_namesList : NULL,
-        number_of_failing_branches ? number_of_failing_branches->valuedouble : 0,
-        number_of_failing_pull_requests ? number_of_failing_pull_requests->valuedouble : 0,
-        number_of_successful_branches ? number_of_successful_branches->valuedouble : 0,
-        number_of_successful_pull_requests ? number_of_successful_pull_requests->valuedouble : 0,
-        total_number_of_branches ? total_number_of_branches->valuedouble : 0,
-        total_number_of_pull_requests ? total_number_of_pull_requests->valuedouble : 0,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        number_of_failing_branches_local_var,
+        number_of_failing_pull_requests_local_var,
+        number_of_successful_branches_local_var,
+        number_of_successful_pull_requests_local_var,
+        total_number_of_branches_local_var,
+        total_number_of_pull_requests_local_var,
+        _class_local_str
         );
+
+    if (!multibranch_pipeline_local_var) {
+        goto end;
+    }
 
     return multibranch_pipeline_local_var;
 end:
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
+    if (estimated_duration_in_millis_local_var) {
+        free(estimated_duration_in_millis_local_var);
+        estimated_duration_in_millis_local_var = NULL;
+    }
+    if (latest_run_local_str) {
+        free(latest_run_local_str);
+        latest_run_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (organization_local_str) {
+        free(organization_local_str);
+        organization_local_str = NULL;
+    }
+    if (weather_score_local_var) {
+        free(weather_score_local_var);
+        weather_score_local_var = NULL;
+    }
     if (branch_namesList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, branch_namesList) {
@@ -461,6 +660,34 @@ end:
         }
         list_freeList(branch_namesList);
         branch_namesList = NULL;
+    }
+    if (number_of_failing_branches_local_var) {
+        free(number_of_failing_branches_local_var);
+        number_of_failing_branches_local_var = NULL;
+    }
+    if (number_of_failing_pull_requests_local_var) {
+        free(number_of_failing_pull_requests_local_var);
+        number_of_failing_pull_requests_local_var = NULL;
+    }
+    if (number_of_successful_branches_local_var) {
+        free(number_of_successful_branches_local_var);
+        number_of_successful_branches_local_var = NULL;
+    }
+    if (number_of_successful_pull_requests_local_var) {
+        free(number_of_successful_pull_requests_local_var);
+        number_of_successful_pull_requests_local_var = NULL;
+    }
+    if (total_number_of_branches_local_var) {
+        free(total_number_of_branches_local_var);
+        total_number_of_branches_local_var = NULL;
+    }
+    if (total_number_of_pull_requests_local_var) {
+        free(total_number_of_pull_requests_local_var);
+        total_number_of_pull_requests_local_var = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

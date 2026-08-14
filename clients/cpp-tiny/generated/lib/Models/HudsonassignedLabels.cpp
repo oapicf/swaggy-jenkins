@@ -64,7 +64,7 @@ HudsonassignedLabels::getClass()
 }
 
 void
-HudsonassignedLabels::setClass(std::string  _class)
+HudsonassignedLabels::setClass(std::string _class)
 {
 	this->_class = _class;
 }

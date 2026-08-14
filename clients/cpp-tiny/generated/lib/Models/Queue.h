@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::list<QueueBlockedItem> getItems();
 
 	/*! \brief Set 
 	 */
-	void setItems(std::list <QueueBlockedItem> items);
+	void setItems(std::list<QueueBlockedItem> items);
 
 
     private:

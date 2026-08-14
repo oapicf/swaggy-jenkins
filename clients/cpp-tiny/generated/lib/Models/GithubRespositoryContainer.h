@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	GithubRespositoryContainerlinks getLinks();
 
 	/*! \brief Set 
 	 */
-	void setLinks(GithubRespositoryContainerlinks  _links);
+	void setLinks(GithubRespositoryContainerlinks _links);
 	/*! \brief Get 
 	 */
 	GithubRepositories getRepositories();
 
 	/*! \brief Set 
 	 */
-	void setRepositories(GithubRepositories  repositories);
+	void setRepositories(GithubRepositories repositories);
 
 
     private:

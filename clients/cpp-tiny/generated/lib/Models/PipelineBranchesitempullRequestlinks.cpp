@@ -85,7 +85,7 @@ PipelineBranchesitempullRequestlinks::getSelf()
 }
 
 void
-PipelineBranchesitempullRequestlinks::setSelf(std::string  self)
+PipelineBranchesitempullRequestlinks::setSelf(std::string self)
 {
 	this->self = self;
 }
@@ -97,7 +97,7 @@ PipelineBranchesitempullRequestlinks::getClass()
 }
 
 void
-PipelineBranchesitempullRequestlinks::setClass(std::string  _class)
+PipelineBranchesitempullRequestlinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

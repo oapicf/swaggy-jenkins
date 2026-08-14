@@ -7,35 +7,50 @@
 
 static disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space_create_internal(
     char *_class,
-    int timestamp,
+    int *timestamp,
     char *path,
-    int size
+    int *size
     ) {
     disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space_local_var = malloc(sizeof(disk_space_monitor_descriptor_disk_space_t));
     if (!disk_space_monitor_descriptor_disk_space_local_var) {
         return NULL;
     }
+    memset(disk_space_monitor_descriptor_disk_space_local_var, 0, sizeof(disk_space_monitor_descriptor_disk_space_t));
+    disk_space_monitor_descriptor_disk_space_local_var->_library_owned = 1;
     disk_space_monitor_descriptor_disk_space_local_var->_class = _class;
     disk_space_monitor_descriptor_disk_space_local_var->timestamp = timestamp;
     disk_space_monitor_descriptor_disk_space_local_var->path = path;
     disk_space_monitor_descriptor_disk_space_local_var->size = size;
-
-    disk_space_monitor_descriptor_disk_space_local_var->_library_owned = 1;
     return disk_space_monitor_descriptor_disk_space_local_var;
 }
 
 __attribute__((deprecated)) disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space_create(
     char *_class,
-    int timestamp,
+    int *timestamp,
     char *path,
-    int size
+    int *size
     ) {
-    return disk_space_monitor_descriptor_disk_space_create_internal (
+    int *timestamp_copy = NULL;
+    if (timestamp) {
+        timestamp_copy = malloc(sizeof(int));
+        if (timestamp_copy) *timestamp_copy = *timestamp;
+    }
+    int *size_copy = NULL;
+    if (size) {
+        size_copy = malloc(sizeof(int));
+        if (size_copy) *size_copy = *size;
+    }
+    disk_space_monitor_descriptor_disk_space_t *result = disk_space_monitor_descriptor_disk_space_create_internal (
         _class,
-        timestamp,
+        timestamp_copy,
         path,
-        size
+        size_copy
         );
+    if (!result) {
+        free(timestamp_copy);
+        free(size_copy);
+    }
+    return result;
 }
 
 void disk_space_monitor_descriptor_disk_space_free(disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space) {
@@ -51,9 +66,17 @@ void disk_space_monitor_descriptor_disk_space_free(disk_space_monitor_descriptor
         free(disk_space_monitor_descriptor_disk_space->_class);
         disk_space_monitor_descriptor_disk_space->_class = NULL;
     }
+    if (disk_space_monitor_descriptor_disk_space->timestamp) {
+        free(disk_space_monitor_descriptor_disk_space->timestamp);
+        disk_space_monitor_descriptor_disk_space->timestamp = NULL;
+    }
     if (disk_space_monitor_descriptor_disk_space->path) {
         free(disk_space_monitor_descriptor_disk_space->path);
         disk_space_monitor_descriptor_disk_space->path = NULL;
+    }
+    if (disk_space_monitor_descriptor_disk_space->size) {
+        free(disk_space_monitor_descriptor_disk_space->size);
+        disk_space_monitor_descriptor_disk_space->size = NULL;
     }
     free(disk_space_monitor_descriptor_disk_space);
 }
@@ -71,7 +94,7 @@ cJSON *disk_space_monitor_descriptor_disk_space_convertToJSON(disk_space_monitor
 
     // disk_space_monitor_descriptor_disk_space->timestamp
     if(disk_space_monitor_descriptor_disk_space->timestamp) {
-    if(cJSON_AddNumberToObject(item, "timestamp", disk_space_monitor_descriptor_disk_space->timestamp) == NULL) {
+    if(cJSON_AddNumberToObject(item, "timestamp", *disk_space_monitor_descriptor_disk_space->timestamp) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -87,7 +110,7 @@ cJSON *disk_space_monitor_descriptor_disk_space_convertToJSON(disk_space_monitor
 
     // disk_space_monitor_descriptor_disk_space->size
     if(disk_space_monitor_descriptor_disk_space->size) {
-    if(cJSON_AddNumberToObject(item, "size", disk_space_monitor_descriptor_disk_space->size) == NULL) {
+    if(cJSON_AddNumberToObject(item, "size", *disk_space_monitor_descriptor_disk_space->size) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -103,6 +126,16 @@ fail:
 disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space_parseFromJSON(cJSON *disk_space_monitor_descriptor_disk_spaceJSON){
 
     disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space_local_var = NULL;
+
+    char *_class_local_str = NULL;
+
+    // define the local variable for disk_space_monitor_descriptor_disk_space->timestamp
+    int *timestamp_local_var = NULL;
+
+    char *path_local_str = NULL;
+
+    // define the local variable for disk_space_monitor_descriptor_disk_space->size
+    int *size_local_var = NULL;
 
     // disk_space_monitor_descriptor_disk_space->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(disk_space_monitor_descriptor_disk_spaceJSON, "_class");
@@ -126,6 +159,12 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
     {
     goto end; //Numeric
     }
+    timestamp_local_var = malloc(sizeof(int));
+    if(!timestamp_local_var)
+    {
+        goto end;
+    }
+    *timestamp_local_var = timestamp->valuedouble;
     }
 
     // disk_space_monitor_descriptor_disk_space->path
@@ -150,18 +189,47 @@ disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_s
     {
     goto end; //Numeric
     }
+    size_local_var = malloc(sizeof(int));
+    if(!size_local_var)
+    {
+        goto end;
+    }
+    *size_local_var = size->valuedouble;
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (path && !cJSON_IsNull(path)) path_local_str = strdup(path->valuestring);
+
     disk_space_monitor_descriptor_disk_space_local_var = disk_space_monitor_descriptor_disk_space_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        timestamp ? timestamp->valuedouble : 0,
-        path && !cJSON_IsNull(path) ? strdup(path->valuestring) : NULL,
-        size ? size->valuedouble : 0
+        _class_local_str,
+        timestamp_local_var,
+        path_local_str,
+        size_local_var
         );
+
+    if (!disk_space_monitor_descriptor_disk_space_local_var) {
+        goto end;
+    }
 
     return disk_space_monitor_descriptor_disk_space_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (timestamp_local_var) {
+        free(timestamp_local_var);
+        timestamp_local_var = NULL;
+    }
+    if (path_local_str) {
+        free(path_local_str);
+        path_local_str = NULL;
+    }
+    if (size_local_var) {
+        free(size_local_var);
+        size_local_var = NULL;
+    }
     return NULL;
 
 }

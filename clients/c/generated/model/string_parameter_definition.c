@@ -16,13 +16,13 @@ static string_parameter_definition_t *string_parameter_definition_create_interna
     if (!string_parameter_definition_local_var) {
         return NULL;
     }
+    memset(string_parameter_definition_local_var, 0, sizeof(string_parameter_definition_t));
+    string_parameter_definition_local_var->_library_owned = 1;
     string_parameter_definition_local_var->_class = _class;
     string_parameter_definition_local_var->default_parameter_value = default_parameter_value;
     string_parameter_definition_local_var->description = description;
     string_parameter_definition_local_var->name = name;
     string_parameter_definition_local_var->type = type;
-
-    string_parameter_definition_local_var->_library_owned = 1;
     return string_parameter_definition_local_var;
 }
 
@@ -33,13 +33,16 @@ __attribute__((deprecated)) string_parameter_definition_t *string_parameter_defi
     char *name,
     char *type
     ) {
-    return string_parameter_definition_create_internal (
+    string_parameter_definition_t *result = string_parameter_definition_create_internal (
         _class,
         default_parameter_value,
         description,
         name,
         type
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void string_parameter_definition_free(string_parameter_definition_t *string_parameter_definition) {
@@ -133,8 +136,16 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
 
     string_parameter_definition_t *string_parameter_definition_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local variable for string_parameter_definition->default_parameter_value
     string_parameter_value_t *default_parameter_value_local_nonprim = NULL;
+
+    char *description_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *type_local_str = NULL;
 
     // string_parameter_definition->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(string_parameter_definitionJSON, "_class");
@@ -194,19 +205,44 @@ string_parameter_definition_t *string_parameter_definition_parseFromJSON(cJSON *
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (type && !cJSON_IsNull(type)) type_local_str = strdup(type->valuestring);
+
     string_parameter_definition_local_var = string_parameter_definition_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         default_parameter_value ? default_parameter_value_local_nonprim : NULL,
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        type && !cJSON_IsNull(type) ? strdup(type->valuestring) : NULL
+        description_local_str,
+        name_local_str,
+        type_local_str
         );
+
+    if (!string_parameter_definition_local_var) {
+        goto end;
+    }
 
     return string_parameter_definition_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (default_parameter_value_local_nonprim) {
         string_parameter_value_free(default_parameter_value_local_nonprim);
         default_parameter_value_local_nonprim = NULL;
+    }
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (type_local_str) {
+        free(type_local_str);
+        type_local_str = NULL;
     }
     return NULL;
 

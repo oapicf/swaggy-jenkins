@@ -8,7 +8,7 @@
 static pipeline_run_node_t *pipeline_run_node_create_internal(
     char *_class,
     char *display_name,
-    int duration_in_millis,
+    int *duration_in_millis,
     list_t *edges,
     char *id,
     char *result,
@@ -19,6 +19,8 @@ static pipeline_run_node_t *pipeline_run_node_create_internal(
     if (!pipeline_run_node_local_var) {
         return NULL;
     }
+    memset(pipeline_run_node_local_var, 0, sizeof(pipeline_run_node_t));
+    pipeline_run_node_local_var->_library_owned = 1;
     pipeline_run_node_local_var->_class = _class;
     pipeline_run_node_local_var->display_name = display_name;
     pipeline_run_node_local_var->duration_in_millis = duration_in_millis;
@@ -27,31 +29,38 @@ static pipeline_run_node_t *pipeline_run_node_create_internal(
     pipeline_run_node_local_var->result = result;
     pipeline_run_node_local_var->start_time = start_time;
     pipeline_run_node_local_var->state = state;
-
-    pipeline_run_node_local_var->_library_owned = 1;
     return pipeline_run_node_local_var;
 }
 
 __attribute__((deprecated)) pipeline_run_node_t *pipeline_run_node_create(
     char *_class,
     char *display_name,
-    int duration_in_millis,
+    int *duration_in_millis,
     list_t *edges,
     char *id,
     char *result,
     char *start_time,
     char *state
     ) {
-    return pipeline_run_node_create_internal (
+    int *duration_in_millis_copy = NULL;
+    if (duration_in_millis) {
+        duration_in_millis_copy = malloc(sizeof(int));
+        if (duration_in_millis_copy) *duration_in_millis_copy = *duration_in_millis;
+    }
+    pipeline_run_node_t *result = pipeline_run_node_create_internal (
         _class,
         display_name,
-        duration_in_millis,
+        duration_in_millis_copy,
         edges,
         id,
         result,
         start_time,
         state
         );
+    if (!result) {
+        free(duration_in_millis_copy);
+    }
+    return result;
 }
 
 void pipeline_run_node_free(pipeline_run_node_t *pipeline_run_node) {
@@ -70,6 +79,10 @@ void pipeline_run_node_free(pipeline_run_node_t *pipeline_run_node) {
     if (pipeline_run_node->display_name) {
         free(pipeline_run_node->display_name);
         pipeline_run_node->display_name = NULL;
+    }
+    if (pipeline_run_node->duration_in_millis) {
+        free(pipeline_run_node->duration_in_millis);
+        pipeline_run_node->duration_in_millis = NULL;
     }
     if (pipeline_run_node->edges) {
         list_ForEach(listEntry, pipeline_run_node->edges) {
@@ -118,7 +131,7 @@ cJSON *pipeline_run_node_convertToJSON(pipeline_run_node_t *pipeline_run_node) {
 
     // pipeline_run_node->duration_in_millis
     if(pipeline_run_node->duration_in_millis) {
-    if(cJSON_AddNumberToObject(item, "durationInMillis", pipeline_run_node->duration_in_millis) == NULL) {
+    if(cJSON_AddNumberToObject(item, "durationInMillis", *pipeline_run_node->duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -187,8 +200,23 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
 
     pipeline_run_node_t *pipeline_run_node_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *display_name_local_str = NULL;
+
+    // define the local variable for pipeline_run_node->duration_in_millis
+    int *duration_in_millis_local_var = NULL;
+
     // define the local list for pipeline_run_node->edges
     list_t *edgesList = NULL;
+
+    char *id_local_str = NULL;
+
+    char *result_local_str = NULL;
+
+    char *start_time_local_str = NULL;
+
+    char *state_local_str = NULL;
 
     // pipeline_run_node->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeJSON, "_class");
@@ -224,6 +252,12 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
     {
     goto end; //Numeric
     }
+    duration_in_millis_local_var = malloc(sizeof(int));
+    if(!duration_in_millis_local_var)
+    {
+        goto end;
+    }
+    *duration_in_millis_local_var = duration_in_millis->valuedouble;
     }
 
     // pipeline_run_node->edges
@@ -299,19 +333,42 @@ pipeline_run_node_t *pipeline_run_node_parseFromJSON(cJSON *pipeline_run_nodeJSO
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (result && !cJSON_IsNull(result)) result_local_str = strdup(result->valuestring);
+    if (start_time && !cJSON_IsNull(start_time)) start_time_local_str = strdup(start_time->valuestring);
+    if (state && !cJSON_IsNull(state)) state_local_str = strdup(state->valuestring);
+
     pipeline_run_node_local_var = pipeline_run_node_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
-        duration_in_millis ? duration_in_millis->valuedouble : 0,
+        _class_local_str,
+        display_name_local_str,
+        duration_in_millis_local_var,
         edges ? edgesList : NULL,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        result && !cJSON_IsNull(result) ? strdup(result->valuestring) : NULL,
-        start_time && !cJSON_IsNull(start_time) ? strdup(start_time->valuestring) : NULL,
-        state && !cJSON_IsNull(state) ? strdup(state->valuestring) : NULL
+        id_local_str,
+        result_local_str,
+        start_time_local_str,
+        state_local_str
         );
+
+    if (!pipeline_run_node_local_var) {
+        goto end;
+    }
 
     return pipeline_run_node_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
+    if (duration_in_millis_local_var) {
+        free(duration_in_millis_local_var);
+        duration_in_millis_local_var = NULL;
+    }
     if (edgesList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, edgesList) {
@@ -320,6 +377,22 @@ end:
         }
         list_freeList(edgesList);
         edgesList = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (result_local_str) {
+        free(result_local_str);
+        result_local_str = NULL;
+    }
+    if (start_time_local_str) {
+        free(start_time_local_str);
+        start_time_local_str = NULL;
+    }
+    if (state_local_str) {
+        free(state_local_str);
+        state_local_str = NULL;
     }
     return NULL;
 

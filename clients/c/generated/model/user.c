@@ -16,13 +16,13 @@ static user_t *user_create_internal(
     if (!user_local_var) {
         return NULL;
     }
+    memset(user_local_var, 0, sizeof(user_t));
+    user_local_var->_library_owned = 1;
     user_local_var->_class = _class;
     user_local_var->id = id;
     user_local_var->full_name = full_name;
     user_local_var->email = email;
     user_local_var->name = name;
-
-    user_local_var->_library_owned = 1;
     return user_local_var;
 }
 
@@ -33,13 +33,16 @@ __attribute__((deprecated)) user_t *user_create(
     char *email,
     char *name
     ) {
-    return user_create_internal (
+    user_t *result = user_create_internal (
         _class,
         id,
         full_name,
         email,
         name
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void user_free(user_t *user) {
@@ -128,6 +131,16 @@ user_t *user_parseFromJSON(cJSON *userJSON){
 
     user_t *user_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *id_local_str = NULL;
+
+    char *full_name_local_str = NULL;
+
+    char *email_local_str = NULL;
+
+    char *name_local_str = NULL;
+
     // user->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(userJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -189,16 +202,46 @@ user_t *user_parseFromJSON(cJSON *userJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (full_name && !cJSON_IsNull(full_name)) full_name_local_str = strdup(full_name->valuestring);
+    if (email && !cJSON_IsNull(email)) email_local_str = strdup(email->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+
     user_local_var = user_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL,
-        email && !cJSON_IsNull(email) ? strdup(email->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL
+        _class_local_str,
+        id_local_str,
+        full_name_local_str,
+        email_local_str,
+        name_local_str
         );
+
+    if (!user_local_var) {
+        goto end;
+    }
 
     return user_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (full_name_local_str) {
+        free(full_name_local_str);
+        full_name_local_str = NULL;
+    }
+    if (email_local_str) {
+        free(email_local_str);
+        email_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
     return NULL;
 
 }

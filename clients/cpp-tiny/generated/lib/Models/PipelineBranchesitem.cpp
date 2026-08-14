@@ -234,7 +234,7 @@ PipelineBranchesitem::getDisplayName()
 }
 
 void
-PipelineBranchesitem::setDisplayName(std::string  displayName)
+PipelineBranchesitem::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -246,7 +246,7 @@ PipelineBranchesitem::getEstimatedDurationInMillis()
 }
 
 void
-PipelineBranchesitem::setEstimatedDurationInMillis(int  estimatedDurationInMillis)
+PipelineBranchesitem::setEstimatedDurationInMillis(int estimatedDurationInMillis)
 {
 	this->estimatedDurationInMillis = estimatedDurationInMillis;
 }
@@ -258,7 +258,7 @@ PipelineBranchesitem::getName()
 }
 
 void
-PipelineBranchesitem::setName(std::string  name)
+PipelineBranchesitem::setName(std::string name)
 {
 	this->name = name;
 }
@@ -270,7 +270,7 @@ PipelineBranchesitem::getWeatherScore()
 }
 
 void
-PipelineBranchesitem::setWeatherScore(int  weatherScore)
+PipelineBranchesitem::setWeatherScore(int weatherScore)
 {
 	this->weatherScore = weatherScore;
 }
@@ -282,7 +282,7 @@ PipelineBranchesitem::getLatestRun()
 }
 
 void
-PipelineBranchesitem::setLatestRun(PipelineBranchesitemlatestRun  latestRun)
+PipelineBranchesitem::setLatestRun(PipelineBranchesitemlatestRun latestRun)
 {
 	this->latestRun = latestRun;
 }
@@ -294,7 +294,7 @@ PipelineBranchesitem::getOrganization()
 }
 
 void
-PipelineBranchesitem::setOrganization(std::string  organization)
+PipelineBranchesitem::setOrganization(std::string organization)
 {
 	this->organization = organization;
 }
@@ -306,7 +306,7 @@ PipelineBranchesitem::getPullRequest()
 }
 
 void
-PipelineBranchesitem::setPullRequest(PipelineBranchesitempullRequest  pullRequest)
+PipelineBranchesitem::setPullRequest(PipelineBranchesitempullRequest pullRequest)
 {
 	this->pullRequest = pullRequest;
 }
@@ -318,7 +318,7 @@ PipelineBranchesitem::getTotalNumberOfPullRequests()
 }
 
 void
-PipelineBranchesitem::setTotalNumberOfPullRequests(int  totalNumberOfPullRequests)
+PipelineBranchesitem::setTotalNumberOfPullRequests(int totalNumberOfPullRequests)
 {
 	this->totalNumberOfPullRequests = totalNumberOfPullRequests;
 }
@@ -330,7 +330,7 @@ PipelineBranchesitem::getClass()
 }
 
 void
-PipelineBranchesitem::setClass(std::string  _class)
+PipelineBranchesitem::setClass(std::string _class)
 {
 	this->_class = _class;
 }

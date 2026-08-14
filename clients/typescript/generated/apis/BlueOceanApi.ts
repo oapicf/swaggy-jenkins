@@ -58,9 +58,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'queue' + '}', encodeURIComponent(String(queue)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{queue}', encodeURIComponent(String(queue)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -97,7 +97,7 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/user/'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)));
+            .replace('{organization}', encodeURIComponent(String(organization)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -134,7 +134,7 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/classes/{class}'
-            .replace('{' + 'class' + '}', encodeURIComponent(String(_class)));
+            .replace('{class}', encodeURIComponent(String(_class)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -171,7 +171,7 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/jwt-auth/jwks/{key}'
-            .replace('{' + 'key' + '}', encodeURIComponent(String(key)));
+            .replace('{key}', encodeURIComponent(String(key)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -239,7 +239,7 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)));
+            .replace('{organization}', encodeURIComponent(String(organization)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -312,8 +312,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -357,8 +357,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -409,9 +409,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'branch' + '}', encodeURIComponent(String(branch)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{branch}', encodeURIComponent(String(branch)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -469,10 +469,10 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'branch' + '}', encodeURIComponent(String(branch)))
-            .replace('{' + 'run' + '}', encodeURIComponent(String(run)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{branch}', encodeURIComponent(String(branch)))
+            .replace('{run}', encodeURIComponent(String(run)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -516,8 +516,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -561,8 +561,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{folder}/'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'folder' + '}', encodeURIComponent(String(folder)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{folder}', encodeURIComponent(String(folder)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -613,9 +613,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'folder' + '}', encodeURIComponent(String(folder)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{folder}', encodeURIComponent(String(folder)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -659,8 +659,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -711,9 +711,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'run' + '}', encodeURIComponent(String(run)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{run}', encodeURIComponent(String(run)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -768,9 +768,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'run' + '}', encodeURIComponent(String(run)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{run}', encodeURIComponent(String(run)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -838,10 +838,10 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'run' + '}', encodeURIComponent(String(run)))
-            .replace('{' + 'node' + '}', encodeURIComponent(String(node)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{run}', encodeURIComponent(String(run)))
+            .replace('{node}', encodeURIComponent(String(node)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -906,11 +906,11 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'run' + '}', encodeURIComponent(String(run)))
-            .replace('{' + 'node' + '}', encodeURIComponent(String(node)))
-            .replace('{' + 'step' + '}', encodeURIComponent(String(step)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{run}', encodeURIComponent(String(run)))
+            .replace('{node}', encodeURIComponent(String(node)))
+            .replace('{step}', encodeURIComponent(String(step)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -975,11 +975,11 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'run' + '}', encodeURIComponent(String(run)))
-            .replace('{' + 'node' + '}', encodeURIComponent(String(node)))
-            .replace('{' + 'step' + '}', encodeURIComponent(String(step)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{run}', encodeURIComponent(String(run)))
+            .replace('{node}', encodeURIComponent(String(node)))
+            .replace('{step}', encodeURIComponent(String(step)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1037,10 +1037,10 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'run' + '}', encodeURIComponent(String(run)))
-            .replace('{' + 'node' + '}', encodeURIComponent(String(node)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{run}', encodeURIComponent(String(run)))
+            .replace('{node}', encodeURIComponent(String(node)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1091,9 +1091,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'run' + '}', encodeURIComponent(String(run)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{run}', encodeURIComponent(String(run)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1137,8 +1137,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1175,7 +1175,7 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)));
+            .replace('{organization}', encodeURIComponent(String(organization)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1219,8 +1219,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/scm/{scm}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'scm' + '}', encodeURIComponent(String(scm)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{scm}', encodeURIComponent(String(scm)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1277,9 +1277,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'scm' + '}', encodeURIComponent(String(scm)))
-            .replace('{' + 'scmOrganisation' + '}', encodeURIComponent(String(scmOrganisation)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{scm}', encodeURIComponent(String(scm)))
+            .replace('{scmOrganisation}', encodeURIComponent(String(scmOrganisation)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1354,10 +1354,10 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'scm' + '}', encodeURIComponent(String(scm)))
-            .replace('{' + 'scmOrganisation' + '}', encodeURIComponent(String(scmOrganisation)))
-            .replace('{' + 'repository' + '}', encodeURIComponent(String(repository)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{scm}', encodeURIComponent(String(scm)))
+            .replace('{scmOrganisation}', encodeURIComponent(String(scmOrganisation)))
+            .replace('{repository}', encodeURIComponent(String(repository)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1408,8 +1408,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/scm/{scm}/organizations'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'scm' + '}', encodeURIComponent(String(scm)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{scm}', encodeURIComponent(String(scm)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1458,8 +1458,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/users/{user}'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'user' + '}', encodeURIComponent(String(user)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{user}', encodeURIComponent(String(user)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1496,7 +1496,7 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/users/{user}/favorites'
-            .replace('{' + 'user' + '}', encodeURIComponent(String(user)));
+            .replace('{user}', encodeURIComponent(String(user)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1533,7 +1533,7 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/users/'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)));
+            .replace('{organization}', encodeURIComponent(String(organization)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1584,9 +1584,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'run' + '}', encodeURIComponent(String(run)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{run}', encodeURIComponent(String(run)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -1630,8 +1630,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -1682,8 +1682,8 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -1749,9 +1749,9 @@ export class BlueOceanApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop'
-            .replace('{' + 'organization' + '}', encodeURIComponent(String(organization)))
-            .replace('{' + 'pipeline' + '}', encodeURIComponent(String(pipeline)))
-            .replace('{' + 'run' + '}', encodeURIComponent(String(run)));
+            .replace('{organization}', encodeURIComponent(String(organization)))
+            .replace('{pipeline}', encodeURIComponent(String(pipeline)))
+            .replace('{run}', encodeURIComponent(String(run)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);

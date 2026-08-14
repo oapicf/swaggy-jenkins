@@ -187,7 +187,7 @@ GithubRepositories::getClass()
 }
 
 void
-GithubRepositories::setClass(std::string  _class)
+GithubRepositories::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -199,7 +199,7 @@ GithubRepositories::getLinks()
 }
 
 void
-GithubRepositories::setLinks(GithubRepositorieslinks  _links)
+GithubRepositories::setLinks(GithubRepositorieslinks _links)
 {
 	this->_links = _links;
 }
@@ -211,7 +211,7 @@ GithubRepositories::getItems()
 }
 
 void
-GithubRepositories::setItems(std::list <GithubRepository> items)
+GithubRepositories::setItems(std::list<GithubRepository> items)
 {
 	this->items = items;
 }
@@ -223,7 +223,7 @@ GithubRepositories::getLastPage()
 }
 
 void
-GithubRepositories::setLastPage(int  lastPage)
+GithubRepositories::setLastPage(int lastPage)
 {
 	this->lastPage = lastPage;
 }
@@ -235,7 +235,7 @@ GithubRepositories::getNextPage()
 }
 
 void
-GithubRepositories::setNextPage(int  nextPage)
+GithubRepositories::setNextPage(int nextPage)
 {
 	this->nextPage = nextPage;
 }
@@ -247,7 +247,7 @@ GithubRepositories::getPageSize()
 }
 
 void
-GithubRepositories::setPageSize(int  pageSize)
+GithubRepositories::setPageSize(int pageSize)
 {
 	this->pageSize = pageSize;
 }

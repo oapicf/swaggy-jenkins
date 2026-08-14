@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.2.1-pre.0
+ * API version: 3.3.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -27,7 +27,8 @@ type BranchImplpermissions struct {
 	Class string `json:"_class,omitempty"`
 }
 
-// AssertBranchImplpermissionsRequired checks if the required fields are not zero-ed
+// AssertBranchImplpermissionsRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertBranchImplpermissionsRequired(obj BranchImplpermissions) error {
 	return nil
 }

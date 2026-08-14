@@ -127,7 +127,7 @@ DiskSpaceMonitorDescriptorDiskSpace::getClass()
 }
 
 void
-DiskSpaceMonitorDescriptorDiskSpace::setClass(std::string  _class)
+DiskSpaceMonitorDescriptorDiskSpace::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -139,7 +139,7 @@ DiskSpaceMonitorDescriptorDiskSpace::getTimestamp()
 }
 
 void
-DiskSpaceMonitorDescriptorDiskSpace::setTimestamp(int  timestamp)
+DiskSpaceMonitorDescriptorDiskSpace::setTimestamp(int timestamp)
 {
 	this->timestamp = timestamp;
 }
@@ -151,7 +151,7 @@ DiskSpaceMonitorDescriptorDiskSpace::getPath()
 }
 
 void
-DiskSpaceMonitorDescriptorDiskSpace::setPath(std::string  path)
+DiskSpaceMonitorDescriptorDiskSpace::setPath(std::string path)
 {
 	this->path = path;
 }
@@ -163,7 +163,7 @@ DiskSpaceMonitorDescriptorDiskSpace::getSize()
 }
 
 void
-DiskSpaceMonitorDescriptorDiskSpace::setSize(int  size)
+DiskSpaceMonitorDescriptorDiskSpace::setSize(int size)
 {
 	this->size = size;
 }

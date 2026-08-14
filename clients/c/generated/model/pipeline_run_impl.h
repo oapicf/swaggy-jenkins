@@ -22,10 +22,10 @@ typedef struct pipeline_run_impl_t pipeline_run_impl_t;
 typedef struct pipeline_run_impl_t {
     char *_class; // string
     struct pipeline_run_impllinks_t *_links; //model
-    int duration_in_millis; //numeric
+    int *duration_in_millis; //numeric
     char *en_queue_time; // string
     char *end_time; // string
-    int estimated_duration_in_millis; //numeric
+    int *estimated_duration_in_millis; //numeric
     char *id; // string
     char *organization; // string
     char *pipeline; // string
@@ -42,10 +42,10 @@ typedef struct pipeline_run_impl_t {
 __attribute__((deprecated)) pipeline_run_impl_t *pipeline_run_impl_create(
     char *_class,
     pipeline_run_impllinks_t *_links,
-    int duration_in_millis,
+    int *duration_in_millis,
     char *en_queue_time,
     char *end_time,
-    int estimated_duration_in_millis,
+    int *estimated_duration_in_millis,
     char *id,
     char *organization,
     char *pipeline,

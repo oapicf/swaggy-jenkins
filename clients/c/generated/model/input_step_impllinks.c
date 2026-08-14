@@ -13,10 +13,10 @@ static input_step_impllinks_t *input_step_impllinks_create_internal(
     if (!input_step_impllinks_local_var) {
         return NULL;
     }
+    memset(input_step_impllinks_local_var, 0, sizeof(input_step_impllinks_t));
+    input_step_impllinks_local_var->_library_owned = 1;
     input_step_impllinks_local_var->self = self;
     input_step_impllinks_local_var->_class = _class;
-
-    input_step_impllinks_local_var->_library_owned = 1;
     return input_step_impllinks_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) input_step_impllinks_t *input_step_impllinks_create(
     link_t *self,
     char *_class
     ) {
-    return input_step_impllinks_create_internal (
+    input_step_impllinks_t *result = input_step_impllinks_create_internal (
         self,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void input_step_impllinks_free(input_step_impllinks_t *input_step_impllinks) {
@@ -88,6 +91,8 @@ input_step_impllinks_t *input_step_impllinks_parseFromJSON(cJSON *input_step_imp
     // define the local variable for input_step_impllinks->self
     link_t *self_local_nonprim = NULL;
 
+    char *_class_local_str = NULL;
+
     // input_step_impllinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(input_step_impllinksJSON, "self");
     if (cJSON_IsNull(self)) {
@@ -110,16 +115,26 @@ input_step_impllinks_t *input_step_impllinks_parseFromJSON(cJSON *input_step_imp
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     input_step_impllinks_local_var = input_step_impllinks_create_internal (
         self ? self_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!input_step_impllinks_local_var) {
+        goto end;
+    }
 
     return input_step_impllinks_local_var;
 end:
     if (self_local_nonprim) {
         link_free(self_local_nonprim);
         self_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

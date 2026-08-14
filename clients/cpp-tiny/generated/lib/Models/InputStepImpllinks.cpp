@@ -86,7 +86,7 @@ InputStepImpllinks::getSelf()
 }
 
 void
-InputStepImpllinks::setSelf(Link  self)
+InputStepImpllinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -98,7 +98,7 @@ InputStepImpllinks::getClass()
 }
 
 void
-InputStepImpllinks::setClass(std::string  _class)
+InputStepImpllinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

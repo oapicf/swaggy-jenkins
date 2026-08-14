@@ -11,14 +11,16 @@ static pipeline_t *pipeline_create_internal(
     char *name,
     char *display_name,
     char *full_name,
-    int weather_score,
-    int estimated_duration_in_millis,
+    int *weather_score,
+    int *estimated_duration_in_millis,
     pipelinelatest_run_t *latest_run
     ) {
     pipeline_t *pipeline_local_var = malloc(sizeof(pipeline_t));
     if (!pipeline_local_var) {
         return NULL;
     }
+    memset(pipeline_local_var, 0, sizeof(pipeline_t));
+    pipeline_local_var->_library_owned = 1;
     pipeline_local_var->_class = _class;
     pipeline_local_var->organization = organization;
     pipeline_local_var->name = name;
@@ -27,8 +29,6 @@ static pipeline_t *pipeline_create_internal(
     pipeline_local_var->weather_score = weather_score;
     pipeline_local_var->estimated_duration_in_millis = estimated_duration_in_millis;
     pipeline_local_var->latest_run = latest_run;
-
-    pipeline_local_var->_library_owned = 1;
     return pipeline_local_var;
 }
 
@@ -38,20 +38,35 @@ __attribute__((deprecated)) pipeline_t *pipeline_create(
     char *name,
     char *display_name,
     char *full_name,
-    int weather_score,
-    int estimated_duration_in_millis,
+    int *weather_score,
+    int *estimated_duration_in_millis,
     pipelinelatest_run_t *latest_run
     ) {
-    return pipeline_create_internal (
+    int *weather_score_copy = NULL;
+    if (weather_score) {
+        weather_score_copy = malloc(sizeof(int));
+        if (weather_score_copy) *weather_score_copy = *weather_score;
+    }
+    int *estimated_duration_in_millis_copy = NULL;
+    if (estimated_duration_in_millis) {
+        estimated_duration_in_millis_copy = malloc(sizeof(int));
+        if (estimated_duration_in_millis_copy) *estimated_duration_in_millis_copy = *estimated_duration_in_millis;
+    }
+    pipeline_t *result = pipeline_create_internal (
         _class,
         organization,
         name,
         display_name,
         full_name,
-        weather_score,
-        estimated_duration_in_millis,
+        weather_score_copy,
+        estimated_duration_in_millis_copy,
         latest_run
         );
+    if (!result) {
+        free(weather_score_copy);
+        free(estimated_duration_in_millis_copy);
+    }
+    return result;
 }
 
 void pipeline_free(pipeline_t *pipeline) {
@@ -82,6 +97,14 @@ void pipeline_free(pipeline_t *pipeline) {
     if (pipeline->full_name) {
         free(pipeline->full_name);
         pipeline->full_name = NULL;
+    }
+    if (pipeline->weather_score) {
+        free(pipeline->weather_score);
+        pipeline->weather_score = NULL;
+    }
+    if (pipeline->estimated_duration_in_millis) {
+        free(pipeline->estimated_duration_in_millis);
+        pipeline->estimated_duration_in_millis = NULL;
     }
     if (pipeline->latest_run) {
         pipelinelatest_run_free(pipeline->latest_run);
@@ -135,7 +158,7 @@ cJSON *pipeline_convertToJSON(pipeline_t *pipeline) {
 
     // pipeline->weather_score
     if(pipeline->weather_score) {
-    if(cJSON_AddNumberToObject(item, "weatherScore", pipeline->weather_score) == NULL) {
+    if(cJSON_AddNumberToObject(item, "weatherScore", *pipeline->weather_score) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -143,7 +166,7 @@ cJSON *pipeline_convertToJSON(pipeline_t *pipeline) {
 
     // pipeline->estimated_duration_in_millis
     if(pipeline->estimated_duration_in_millis) {
-    if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", pipeline->estimated_duration_in_millis) == NULL) {
+    if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", *pipeline->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -172,6 +195,22 @@ fail:
 pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
 
     pipeline_t *pipeline_local_var = NULL;
+
+    char *_class_local_str = NULL;
+
+    char *organization_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *display_name_local_str = NULL;
+
+    char *full_name_local_str = NULL;
+
+    // define the local variable for pipeline->weather_score
+    int *weather_score_local_var = NULL;
+
+    // define the local variable for pipeline->estimated_duration_in_millis
+    int *estimated_duration_in_millis_local_var = NULL;
 
     // define the local variable for pipeline->latest_run
     pipelinelatest_run_t *latest_run_local_nonprim = NULL;
@@ -246,6 +285,12 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
     {
     goto end; //Numeric
     }
+    weather_score_local_var = malloc(sizeof(int));
+    if(!weather_score_local_var)
+    {
+        goto end;
+    }
+    *weather_score_local_var = weather_score->valuedouble;
     }
 
     // pipeline->estimated_duration_in_millis
@@ -258,6 +303,12 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
     {
     goto end; //Numeric
     }
+    estimated_duration_in_millis_local_var = malloc(sizeof(int));
+    if(!estimated_duration_in_millis_local_var)
+    {
+        goto end;
+    }
+    *estimated_duration_in_millis_local_var = estimated_duration_in_millis->valuedouble;
     }
 
     // pipeline->latest_run
@@ -270,19 +321,57 @@ pipeline_t *pipeline_parseFromJSON(cJSON *pipelineJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (organization && !cJSON_IsNull(organization)) organization_local_str = strdup(organization->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+    if (full_name && !cJSON_IsNull(full_name)) full_name_local_str = strdup(full_name->valuestring);
+
     pipeline_local_var = pipeline_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
-        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL,
-        weather_score ? weather_score->valuedouble : 0,
-        estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
+        _class_local_str,
+        organization_local_str,
+        name_local_str,
+        display_name_local_str,
+        full_name_local_str,
+        weather_score_local_var,
+        estimated_duration_in_millis_local_var,
         latest_run ? latest_run_local_nonprim : NULL
         );
 
+    if (!pipeline_local_var) {
+        goto end;
+    }
+
     return pipeline_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (organization_local_str) {
+        free(organization_local_str);
+        organization_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
+    if (full_name_local_str) {
+        free(full_name_local_str);
+        full_name_local_str = NULL;
+    }
+    if (weather_score_local_var) {
+        free(weather_score_local_var);
+        weather_score_local_var = NULL;
+    }
+    if (estimated_duration_in_millis_local_var) {
+        free(estimated_duration_in_millis_local_var);
+        estimated_duration_in_millis_local_var = NULL;
+    }
     if (latest_run_local_nonprim) {
         pipelinelatest_run_free(latest_run_local_nonprim);
         latest_run_local_nonprim = NULL;

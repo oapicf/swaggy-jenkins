@@ -2,37 +2,44 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.FreeStyleBuild;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * HudsonMasterComputerexecutors
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class HudsonMasterComputerexecutors {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild currentExecutable;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean idle;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean likelyStuck;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer number;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer progress;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
   public HudsonMasterComputerexecutors currentExecutable(@Nullable FreeStyleBuild currentExecutable) {
@@ -51,6 +58,7 @@ public class HudsonMasterComputerexecutors {
     return currentExecutable;
   }
 
+  @JsonProperty("currentExecutable")
   public void setCurrentExecutable(@Nullable FreeStyleBuild currentExecutable) {
     this.currentExecutable = currentExecutable;
   }
@@ -71,6 +79,7 @@ public class HudsonMasterComputerexecutors {
     return idle;
   }
 
+  @JsonProperty("idle")
   public void setIdle(@Nullable Boolean idle) {
     this.idle = idle;
   }
@@ -91,6 +100,7 @@ public class HudsonMasterComputerexecutors {
     return likelyStuck;
   }
 
+  @JsonProperty("likelyStuck")
   public void setLikelyStuck(@Nullable Boolean likelyStuck) {
     this.likelyStuck = likelyStuck;
   }
@@ -111,6 +121,7 @@ public class HudsonMasterComputerexecutors {
     return number;
   }
 
+  @JsonProperty("number")
   public void setNumber(@Nullable Integer number) {
     this.number = number;
   }
@@ -131,6 +142,7 @@ public class HudsonMasterComputerexecutors {
     return progress;
   }
 
+  @JsonProperty("progress")
   public void setProgress(@Nullable Integer progress) {
     this.progress = progress;
   }
@@ -151,6 +163,7 @@ public class HudsonMasterComputerexecutors {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -195,11 +208,8 @@ public class HudsonMasterComputerexecutors {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

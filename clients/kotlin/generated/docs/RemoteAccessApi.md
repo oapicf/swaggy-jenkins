@@ -66,9 +66,15 @@ try {
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -112,9 +118,15 @@ This endpoint does not need any parameter.
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -161,9 +173,15 @@ try {
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -210,9 +228,15 @@ try {
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -259,9 +283,15 @@ try {
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -311,9 +341,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -357,9 +393,15 @@ This endpoint does not need any parameter.
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -406,9 +448,15 @@ try {
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -455,9 +503,15 @@ try {
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -504,9 +558,15 @@ try {
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -549,9 +609,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -607,9 +673,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -661,9 +733,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -715,9 +793,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -767,9 +851,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -817,9 +907,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -867,9 +963,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -917,9 +1019,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -967,9 +1075,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 
@@ -1019,9 +1133,15 @@ null (empty response body)
 ### Authorization
 
 
-Configure jenkins_auth:
-    ApiClient.username = ""
-    ApiClient.password = ""
+Configure jenkins_auth statically:
+```kotlin
+ApiClient.username = ""
+ApiClient.password = ""
+```
+Configure jenkins_auth dynamically:
+```kotlin
+apiInstance.userCredentialProvider = { "user" to "pass" }
+```
 
 ### HTTP request headers
 

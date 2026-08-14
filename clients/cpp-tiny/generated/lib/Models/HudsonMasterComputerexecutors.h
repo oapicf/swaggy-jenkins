@@ -52,42 +52,42 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setCurrentExecutable(FreeStyleBuild  currentExecutable);
+	void setCurrentExecutable(FreeStyleBuild currentExecutable);
 	/*! \brief Get 
 	 */
 	bool isIdle();
 
 	/*! \brief Set 
 	 */
-	void setIdle(bool  idle);
+	void setIdle(bool idle);
 	/*! \brief Get 
 	 */
 	bool isLikelyStuck();
 
 	/*! \brief Set 
 	 */
-	void setLikelyStuck(bool  likelyStuck);
+	void setLikelyStuck(bool likelyStuck);
 	/*! \brief Get 
 	 */
 	int getNumber();
 
 	/*! \brief Set 
 	 */
-	void setNumber(int  number);
+	void setNumber(int number);
 	/*! \brief Get 
 	 */
 	int getProgress();
 
 	/*! \brief Set 
 	 */
-	void setProgress(int  progress);
+	void setProgress(int progress);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

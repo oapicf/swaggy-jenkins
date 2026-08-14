@@ -106,7 +106,7 @@ StringParameterValue::getClass()
 }
 
 void
-StringParameterValue::setClass(std::string  _class)
+StringParameterValue::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -118,7 +118,7 @@ StringParameterValue::getName()
 }
 
 void
-StringParameterValue::setName(std::string  name)
+StringParameterValue::setName(std::string name)
 {
 	this->name = name;
 }
@@ -130,7 +130,7 @@ StringParameterValue::getValue()
 }
 
 void
-StringParameterValue::setValue(std::string  value)
+StringParameterValue::setValue(std::string value)
 {
 	this->value = value;
 }

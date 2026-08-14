@@ -105,10 +105,6 @@ class CauseUserIdCause {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CauseUserIdCause[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CauseUserIdCause[$key]" has a null value in JSON.');
-        });
         return true;
       }());
 

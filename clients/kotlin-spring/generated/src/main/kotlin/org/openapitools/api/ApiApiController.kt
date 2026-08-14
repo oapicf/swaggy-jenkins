@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.ApiApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -31,7 +30,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:}")
 class ApiApiController() {
 
     @Operation(
@@ -46,7 +45,8 @@ class ApiApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_JENKINS /* "/api/json" */],
+        // "/api/json"
+        value = [PATH_GET_JENKINS],
         produces = ["application/json"]
     )
     fun getJenkins(): ResponseEntity<Hudson> {
@@ -65,7 +65,8 @@ class ApiApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.HEAD],
-        value = [PATH_HEAD_JENKINS /* "/api/json" */]
+        // "/api/json"
+        value = [PATH_HEAD_JENKINS]
     )
     fun headJenkins(): ResponseEntity<Unit> {
         return ResponseEntity(HttpStatus.NOT_IMPLEMENTED)

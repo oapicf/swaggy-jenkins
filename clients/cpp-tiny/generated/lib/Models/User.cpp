@@ -148,7 +148,7 @@ User::getClass()
 }
 
 void
-User::setClass(std::string  _class)
+User::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -160,7 +160,7 @@ User::getId()
 }
 
 void
-User::setId(std::string  id)
+User::setId(std::string id)
 {
 	this->id = id;
 }
@@ -172,7 +172,7 @@ User::getFullName()
 }
 
 void
-User::setFullName(std::string  fullName)
+User::setFullName(std::string fullName)
 {
 	this->fullName = fullName;
 }
@@ -184,7 +184,7 @@ User::getEmail()
 }
 
 void
-User::setEmail(std::string  email)
+User::setEmail(std::string email)
 {
 	this->email = email;
 }
@@ -196,7 +196,7 @@ User::getName()
 }
 
 void
-User::setName(std::string  name)
+User::setName(std::string name)
 {
 	this->name = name;
 }

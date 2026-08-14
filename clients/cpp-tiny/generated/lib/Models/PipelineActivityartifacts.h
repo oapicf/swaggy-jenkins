@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	int getSize();
 
 	/*! \brief Set 
 	 */
-	void setSize(int  size);
+	void setSize(int size);
 	/*! \brief Get 
 	 */
 	std::string getUrl();
 
 	/*! \brief Set 
 	 */
-	void setUrl(std::string  url);
+	void setUrl(std::string url);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

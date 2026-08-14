@@ -108,7 +108,7 @@ GithubOrganizationlinks::getRepositories()
 }
 
 void
-GithubOrganizationlinks::setRepositories(Link  repositories)
+GithubOrganizationlinks::setRepositories(Link repositories)
 {
 	this->repositories = repositories;
 }
@@ -120,7 +120,7 @@ GithubOrganizationlinks::getSelf()
 }
 
 void
-GithubOrganizationlinks::setSelf(Link  self)
+GithubOrganizationlinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -132,7 +132,7 @@ GithubOrganizationlinks::getClass()
 }
 
 void
-GithubOrganizationlinks::setClass(std::string  _class)
+GithubOrganizationlinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

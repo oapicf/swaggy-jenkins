@@ -53,35 +53,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	int getBusyExecutors();
 
 	/*! \brief Set 
 	 */
-	void setBusyExecutors(int  busyExecutors);
+	void setBusyExecutors(int busyExecutors);
 	/*! \brief Get 
 	 */
 	std::list<HudsonMasterComputer> getComputer();
 
 	/*! \brief Set 
 	 */
-	void setComputer(std::list <HudsonMasterComputer> computer);
+	void setComputer(std::list<HudsonMasterComputer> computer);
 	/*! \brief Get 
 	 */
 	std::string getDisplayName();
 
 	/*! \brief Set 
 	 */
-	void setDisplayName(std::string  displayName);
+	void setDisplayName(std::string displayName);
 	/*! \brief Get 
 	 */
 	int getTotalExecutors();
 
 	/*! \brief Set 
 	 */
-	void setTotalExecutors(int  totalExecutors);
+	void setTotalExecutors(int totalExecutors);
 
 
     private:

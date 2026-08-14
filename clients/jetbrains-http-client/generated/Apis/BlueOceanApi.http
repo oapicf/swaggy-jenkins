@@ -1,0 +1,224 @@
+## BlueOceanApi
+
+### 
+## 
+DELETE http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/queue/{{queue}}
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/user/
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/classes/{{class}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/jwt-auth/jwks/{{key}}
+Accept: application/json
+
+### 
+## 
+GET http://localhost/jwt-auth/token?expiryTimeInMins={{expiryTimeInMins}}&maxExpiryTimeInMins={{maxExpiryTimeInMins}}
+Accept: application/json
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/activities
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/branches/{{branch}}/
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/branches/{{branch}}/runs/{{run}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/branches
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{folder}}/
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{folder}}/pipelines/{{pipeline}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/queue
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs/{{run}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs/{{run}}/log?start={{start}}&download={{download}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs/{{run}}/nodes/{{node}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs/{{run}}/nodes/{{node}}/steps/{{step}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs/{{run}}/nodes/{{node}}/steps/{{step}}/log
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs/{{run}}/nodes/{{node}}/steps
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs/{{run}}/nodes
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/pipelines/
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/scm/{{scm}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/scm/{{scm}}/organizations/{{scmOrganisation}}/repositories?credentialId={{credentialId}}&pageSize={{pageSize}}&pageNumber={{pageNumber}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/scm/{{scm}}/organizations/{{scmOrganisation}}/repositories/{{repository}}?credentialId={{credentialId}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/scm/{{scm}}/organizations?credentialId={{credentialId}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/users/{{user}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/users/{{user}}/favorites
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/organizations/{{organization}}/users/
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+POST http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs/{{run}}/replay
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+POST http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+PUT http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/favorite
+Content-Type: application/json
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+true
+
+
+### 
+## 
+PUT http://localhost/blue/rest/organizations/{{organization}}/pipelines/{{pipeline}}/runs/{{run}}/stop?blocking={{blocking}}&timeOutInSecs={{timeOutInSecs}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/search/?q={{q}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/blue/rest/classes/?q={{q}}
+Accept: application/json
+Authorization: Basic: {{username-password}}

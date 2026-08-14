@@ -52,98 +52,98 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setDisplayName(std::string  displayName);
+	void setDisplayName(std::string displayName);
 	/*! \brief Get 
 	 */
 	int getEstimatedDurationInMillis();
 
 	/*! \brief Set 
 	 */
-	void setEstimatedDurationInMillis(int  estimatedDurationInMillis);
+	void setEstimatedDurationInMillis(int estimatedDurationInMillis);
 	/*! \brief Get 
 	 */
 	std::string getLatestRun();
 
 	/*! \brief Set 
 	 */
-	void setLatestRun(std::string  latestRun);
+	void setLatestRun(std::string latestRun);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	std::string getOrganization();
 
 	/*! \brief Set 
 	 */
-	void setOrganization(std::string  organization);
+	void setOrganization(std::string organization);
 	/*! \brief Get 
 	 */
 	int getWeatherScore();
 
 	/*! \brief Set 
 	 */
-	void setWeatherScore(int  weatherScore);
+	void setWeatherScore(int weatherScore);
 	/*! \brief Get 
 	 */
 	std::list<std::string> getBranchNames();
 
 	/*! \brief Set 
 	 */
-	void setBranchNames(std::list <std::string> branchNames);
+	void setBranchNames(std::list<std::string> branchNames);
 	/*! \brief Get 
 	 */
 	int getNumberOfFailingBranches();
 
 	/*! \brief Set 
 	 */
-	void setNumberOfFailingBranches(int  numberOfFailingBranches);
+	void setNumberOfFailingBranches(int numberOfFailingBranches);
 	/*! \brief Get 
 	 */
 	int getNumberOfFailingPullRequests();
 
 	/*! \brief Set 
 	 */
-	void setNumberOfFailingPullRequests(int  numberOfFailingPullRequests);
+	void setNumberOfFailingPullRequests(int numberOfFailingPullRequests);
 	/*! \brief Get 
 	 */
 	int getNumberOfSuccessfulBranches();
 
 	/*! \brief Set 
 	 */
-	void setNumberOfSuccessfulBranches(int  numberOfSuccessfulBranches);
+	void setNumberOfSuccessfulBranches(int numberOfSuccessfulBranches);
 	/*! \brief Get 
 	 */
 	int getNumberOfSuccessfulPullRequests();
 
 	/*! \brief Set 
 	 */
-	void setNumberOfSuccessfulPullRequests(int  numberOfSuccessfulPullRequests);
+	void setNumberOfSuccessfulPullRequests(int numberOfSuccessfulPullRequests);
 	/*! \brief Get 
 	 */
 	int getTotalNumberOfBranches();
 
 	/*! \brief Set 
 	 */
-	void setTotalNumberOfBranches(int  totalNumberOfBranches);
+	void setTotalNumberOfBranches(int totalNumberOfBranches);
 	/*! \brief Get 
 	 */
 	int getTotalNumberOfPullRequests();
 
 	/*! \brief Set 
 	 */
-	void setTotalNumberOfPullRequests(int  totalNumberOfPullRequests);
+	void setTotalNumberOfPullRequests(int totalNumberOfPullRequests);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

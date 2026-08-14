@@ -8,10 +8,10 @@
 static pipeline_run_impl_t *pipeline_run_impl_create_internal(
     char *_class,
     pipeline_run_impllinks_t *_links,
-    int duration_in_millis,
+    int *duration_in_millis,
     char *en_queue_time,
     char *end_time,
-    int estimated_duration_in_millis,
+    int *estimated_duration_in_millis,
     char *id,
     char *organization,
     char *pipeline,
@@ -26,6 +26,8 @@ static pipeline_run_impl_t *pipeline_run_impl_create_internal(
     if (!pipeline_run_impl_local_var) {
         return NULL;
     }
+    memset(pipeline_run_impl_local_var, 0, sizeof(pipeline_run_impl_t));
+    pipeline_run_impl_local_var->_library_owned = 1;
     pipeline_run_impl_local_var->_class = _class;
     pipeline_run_impl_local_var->_links = _links;
     pipeline_run_impl_local_var->duration_in_millis = duration_in_millis;
@@ -41,18 +43,16 @@ static pipeline_run_impl_t *pipeline_run_impl_create_internal(
     pipeline_run_impl_local_var->state = state;
     pipeline_run_impl_local_var->type = type;
     pipeline_run_impl_local_var->commit_id = commit_id;
-
-    pipeline_run_impl_local_var->_library_owned = 1;
     return pipeline_run_impl_local_var;
 }
 
 __attribute__((deprecated)) pipeline_run_impl_t *pipeline_run_impl_create(
     char *_class,
     pipeline_run_impllinks_t *_links,
-    int duration_in_millis,
+    int *duration_in_millis,
     char *en_queue_time,
     char *end_time,
-    int estimated_duration_in_millis,
+    int *estimated_duration_in_millis,
     char *id,
     char *organization,
     char *pipeline,
@@ -63,13 +63,23 @@ __attribute__((deprecated)) pipeline_run_impl_t *pipeline_run_impl_create(
     char *type,
     char *commit_id
     ) {
-    return pipeline_run_impl_create_internal (
+    int *duration_in_millis_copy = NULL;
+    if (duration_in_millis) {
+        duration_in_millis_copy = malloc(sizeof(int));
+        if (duration_in_millis_copy) *duration_in_millis_copy = *duration_in_millis;
+    }
+    int *estimated_duration_in_millis_copy = NULL;
+    if (estimated_duration_in_millis) {
+        estimated_duration_in_millis_copy = malloc(sizeof(int));
+        if (estimated_duration_in_millis_copy) *estimated_duration_in_millis_copy = *estimated_duration_in_millis;
+    }
+    pipeline_run_impl_t *result = pipeline_run_impl_create_internal (
         _class,
         _links,
-        duration_in_millis,
+        duration_in_millis_copy,
         en_queue_time,
         end_time,
-        estimated_duration_in_millis,
+        estimated_duration_in_millis_copy,
         id,
         organization,
         pipeline,
@@ -80,6 +90,11 @@ __attribute__((deprecated)) pipeline_run_impl_t *pipeline_run_impl_create(
         type,
         commit_id
         );
+    if (!result) {
+        free(duration_in_millis_copy);
+        free(estimated_duration_in_millis_copy);
+    }
+    return result;
 }
 
 void pipeline_run_impl_free(pipeline_run_impl_t *pipeline_run_impl) {
@@ -99,6 +114,10 @@ void pipeline_run_impl_free(pipeline_run_impl_t *pipeline_run_impl) {
         pipeline_run_impllinks_free(pipeline_run_impl->_links);
         pipeline_run_impl->_links = NULL;
     }
+    if (pipeline_run_impl->duration_in_millis) {
+        free(pipeline_run_impl->duration_in_millis);
+        pipeline_run_impl->duration_in_millis = NULL;
+    }
     if (pipeline_run_impl->en_queue_time) {
         free(pipeline_run_impl->en_queue_time);
         pipeline_run_impl->en_queue_time = NULL;
@@ -106,6 +125,10 @@ void pipeline_run_impl_free(pipeline_run_impl_t *pipeline_run_impl) {
     if (pipeline_run_impl->end_time) {
         free(pipeline_run_impl->end_time);
         pipeline_run_impl->end_time = NULL;
+    }
+    if (pipeline_run_impl->estimated_duration_in_millis) {
+        free(pipeline_run_impl->estimated_duration_in_millis);
+        pipeline_run_impl->estimated_duration_in_millis = NULL;
     }
     if (pipeline_run_impl->id) {
         free(pipeline_run_impl->id);
@@ -172,7 +195,7 @@ cJSON *pipeline_run_impl_convertToJSON(pipeline_run_impl_t *pipeline_run_impl) {
 
     // pipeline_run_impl->duration_in_millis
     if(pipeline_run_impl->duration_in_millis) {
-    if(cJSON_AddNumberToObject(item, "durationInMillis", pipeline_run_impl->duration_in_millis) == NULL) {
+    if(cJSON_AddNumberToObject(item, "durationInMillis", *pipeline_run_impl->duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -196,7 +219,7 @@ cJSON *pipeline_run_impl_convertToJSON(pipeline_run_impl_t *pipeline_run_impl) {
 
     // pipeline_run_impl->estimated_duration_in_millis
     if(pipeline_run_impl->estimated_duration_in_millis) {
-    if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", pipeline_run_impl->estimated_duration_in_millis) == NULL) {
+    if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", *pipeline_run_impl->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -285,8 +308,38 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
 
     pipeline_run_impl_t *pipeline_run_impl_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local variable for pipeline_run_impl->_links
     pipeline_run_impllinks_t *_links_local_nonprim = NULL;
+
+    // define the local variable for pipeline_run_impl->duration_in_millis
+    int *duration_in_millis_local_var = NULL;
+
+    char *en_queue_time_local_str = NULL;
+
+    char *end_time_local_str = NULL;
+
+    // define the local variable for pipeline_run_impl->estimated_duration_in_millis
+    int *estimated_duration_in_millis_local_var = NULL;
+
+    char *id_local_str = NULL;
+
+    char *organization_local_str = NULL;
+
+    char *pipeline_local_str = NULL;
+
+    char *result_local_str = NULL;
+
+    char *run_summary_local_str = NULL;
+
+    char *start_time_local_str = NULL;
+
+    char *state_local_str = NULL;
+
+    char *type_local_str = NULL;
+
+    char *commit_id_local_str = NULL;
 
     // pipeline_run_impl->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(pipeline_run_implJSON, "_class");
@@ -319,6 +372,12 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
     {
     goto end; //Numeric
     }
+    duration_in_millis_local_var = malloc(sizeof(int));
+    if(!duration_in_millis_local_var)
+    {
+        goto end;
+    }
+    *duration_in_millis_local_var = duration_in_millis->valuedouble;
     }
 
     // pipeline_run_impl->en_queue_time
@@ -355,6 +414,12 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
     {
     goto end; //Numeric
     }
+    estimated_duration_in_millis_local_var = malloc(sizeof(int));
+    if(!estimated_duration_in_millis_local_var)
+    {
+        goto end;
+    }
+    *estimated_duration_in_millis_local_var = estimated_duration_in_millis->valuedouble;
     }
 
     // pipeline_run_impl->id
@@ -466,29 +531,102 @@ pipeline_run_impl_t *pipeline_run_impl_parseFromJSON(cJSON *pipeline_run_implJSO
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (en_queue_time && !cJSON_IsNull(en_queue_time)) en_queue_time_local_str = strdup(en_queue_time->valuestring);
+    if (end_time && !cJSON_IsNull(end_time)) end_time_local_str = strdup(end_time->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (organization && !cJSON_IsNull(organization)) organization_local_str = strdup(organization->valuestring);
+    if (pipeline && !cJSON_IsNull(pipeline)) pipeline_local_str = strdup(pipeline->valuestring);
+    if (result && !cJSON_IsNull(result)) result_local_str = strdup(result->valuestring);
+    if (run_summary && !cJSON_IsNull(run_summary)) run_summary_local_str = strdup(run_summary->valuestring);
+    if (start_time && !cJSON_IsNull(start_time)) start_time_local_str = strdup(start_time->valuestring);
+    if (state && !cJSON_IsNull(state)) state_local_str = strdup(state->valuestring);
+    if (type && !cJSON_IsNull(type)) type_local_str = strdup(type->valuestring);
+    if (commit_id && !cJSON_IsNull(commit_id)) commit_id_local_str = strdup(commit_id->valuestring);
+
     pipeline_run_impl_local_var = pipeline_run_impl_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         _links ? _links_local_nonprim : NULL,
-        duration_in_millis ? duration_in_millis->valuedouble : 0,
-        en_queue_time && !cJSON_IsNull(en_queue_time) ? strdup(en_queue_time->valuestring) : NULL,
-        end_time && !cJSON_IsNull(end_time) ? strdup(end_time->valuestring) : NULL,
-        estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
-        pipeline && !cJSON_IsNull(pipeline) ? strdup(pipeline->valuestring) : NULL,
-        result && !cJSON_IsNull(result) ? strdup(result->valuestring) : NULL,
-        run_summary && !cJSON_IsNull(run_summary) ? strdup(run_summary->valuestring) : NULL,
-        start_time && !cJSON_IsNull(start_time) ? strdup(start_time->valuestring) : NULL,
-        state && !cJSON_IsNull(state) ? strdup(state->valuestring) : NULL,
-        type && !cJSON_IsNull(type) ? strdup(type->valuestring) : NULL,
-        commit_id && !cJSON_IsNull(commit_id) ? strdup(commit_id->valuestring) : NULL
+        duration_in_millis_local_var,
+        en_queue_time_local_str,
+        end_time_local_str,
+        estimated_duration_in_millis_local_var,
+        id_local_str,
+        organization_local_str,
+        pipeline_local_str,
+        result_local_str,
+        run_summary_local_str,
+        start_time_local_str,
+        state_local_str,
+        type_local_str,
+        commit_id_local_str
         );
+
+    if (!pipeline_run_impl_local_var) {
+        goto end;
+    }
 
     return pipeline_run_impl_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (_links_local_nonprim) {
         pipeline_run_impllinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;
+    }
+    if (duration_in_millis_local_var) {
+        free(duration_in_millis_local_var);
+        duration_in_millis_local_var = NULL;
+    }
+    if (en_queue_time_local_str) {
+        free(en_queue_time_local_str);
+        en_queue_time_local_str = NULL;
+    }
+    if (end_time_local_str) {
+        free(end_time_local_str);
+        end_time_local_str = NULL;
+    }
+    if (estimated_duration_in_millis_local_var) {
+        free(estimated_duration_in_millis_local_var);
+        estimated_duration_in_millis_local_var = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (organization_local_str) {
+        free(organization_local_str);
+        organization_local_str = NULL;
+    }
+    if (pipeline_local_str) {
+        free(pipeline_local_str);
+        pipeline_local_str = NULL;
+    }
+    if (result_local_str) {
+        free(result_local_str);
+        result_local_str = NULL;
+    }
+    if (run_summary_local_str) {
+        free(run_summary_local_str);
+        run_summary_local_str = NULL;
+    }
+    if (start_time_local_str) {
+        free(start_time_local_str);
+        start_time_local_str = NULL;
+    }
+    if (state_local_str) {
+        free(state_local_str);
+        state_local_str = NULL;
+    }
+    if (type_local_str) {
+        free(type_local_str);
+        type_local_str = NULL;
+    }
+    if (commit_id_local_str) {
+        free(commit_id_local_str);
+        commit_id_local_str = NULL;
     }
     return NULL;
 

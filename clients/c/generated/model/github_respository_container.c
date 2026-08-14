@@ -14,11 +14,11 @@ static github_respository_container_t *github_respository_container_create_inter
     if (!github_respository_container_local_var) {
         return NULL;
     }
+    memset(github_respository_container_local_var, 0, sizeof(github_respository_container_t));
+    github_respository_container_local_var->_library_owned = 1;
     github_respository_container_local_var->_class = _class;
     github_respository_container_local_var->_links = _links;
     github_respository_container_local_var->repositories = repositories;
-
-    github_respository_container_local_var->_library_owned = 1;
     return github_respository_container_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) github_respository_container_t *github_respository_c
     github_respository_containerlinks_t *_links,
     github_repositories_t *repositories
     ) {
-    return github_respository_container_create_internal (
+    github_respository_container_t *result = github_respository_container_create_internal (
         _class,
         _links,
         repositories
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void github_respository_container_free(github_respository_container_t *github_respository_container) {
@@ -106,6 +109,8 @@ github_respository_container_t *github_respository_container_parseFromJSON(cJSON
 
     github_respository_container_t *github_respository_container_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local variable for github_respository_container->_links
     github_respository_containerlinks_t *_links_local_nonprim = NULL;
 
@@ -143,14 +148,24 @@ github_respository_container_t *github_respository_container_parseFromJSON(cJSON
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     github_respository_container_local_var = github_respository_container_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         _links ? _links_local_nonprim : NULL,
         repositories ? repositories_local_nonprim : NULL
         );
 
+    if (!github_respository_container_local_var) {
+        goto end;
+    }
+
     return github_respository_container_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (_links_local_nonprim) {
         github_respository_containerlinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;

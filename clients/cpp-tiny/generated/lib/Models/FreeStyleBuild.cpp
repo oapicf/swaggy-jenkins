@@ -439,7 +439,7 @@ FreeStyleBuild::getClass()
 }
 
 void
-FreeStyleBuild::setClass(std::string  _class)
+FreeStyleBuild::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -451,7 +451,7 @@ FreeStyleBuild::getNumber()
 }
 
 void
-FreeStyleBuild::setNumber(int  number)
+FreeStyleBuild::setNumber(int number)
 {
 	this->number = number;
 }
@@ -463,7 +463,7 @@ FreeStyleBuild::getUrl()
 }
 
 void
-FreeStyleBuild::setUrl(std::string  url)
+FreeStyleBuild::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -475,7 +475,7 @@ FreeStyleBuild::getActions()
 }
 
 void
-FreeStyleBuild::setActions(std::list <CauseAction> actions)
+FreeStyleBuild::setActions(std::list<CauseAction> actions)
 {
 	this->actions = actions;
 }
@@ -487,7 +487,7 @@ FreeStyleBuild::isBuilding()
 }
 
 void
-FreeStyleBuild::setBuilding(bool  building)
+FreeStyleBuild::setBuilding(bool building)
 {
 	this->building = building;
 }
@@ -499,7 +499,7 @@ FreeStyleBuild::getDescription()
 }
 
 void
-FreeStyleBuild::setDescription(std::string  description)
+FreeStyleBuild::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -511,7 +511,7 @@ FreeStyleBuild::getDisplayName()
 }
 
 void
-FreeStyleBuild::setDisplayName(std::string  displayName)
+FreeStyleBuild::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -523,7 +523,7 @@ FreeStyleBuild::getDuration()
 }
 
 void
-FreeStyleBuild::setDuration(int  duration)
+FreeStyleBuild::setDuration(int duration)
 {
 	this->duration = duration;
 }
@@ -535,7 +535,7 @@ FreeStyleBuild::getEstimatedDuration()
 }
 
 void
-FreeStyleBuild::setEstimatedDuration(int  estimatedDuration)
+FreeStyleBuild::setEstimatedDuration(int estimatedDuration)
 {
 	this->estimatedDuration = estimatedDuration;
 }
@@ -547,7 +547,7 @@ FreeStyleBuild::getExecutor()
 }
 
 void
-FreeStyleBuild::setExecutor(std::string  executor)
+FreeStyleBuild::setExecutor(std::string executor)
 {
 	this->executor = executor;
 }
@@ -559,7 +559,7 @@ FreeStyleBuild::getFullDisplayName()
 }
 
 void
-FreeStyleBuild::setFullDisplayName(std::string  fullDisplayName)
+FreeStyleBuild::setFullDisplayName(std::string fullDisplayName)
 {
 	this->fullDisplayName = fullDisplayName;
 }
@@ -571,7 +571,7 @@ FreeStyleBuild::getId()
 }
 
 void
-FreeStyleBuild::setId(std::string  id)
+FreeStyleBuild::setId(std::string id)
 {
 	this->id = id;
 }
@@ -583,7 +583,7 @@ FreeStyleBuild::isKeepLog()
 }
 
 void
-FreeStyleBuild::setKeepLog(bool  keepLog)
+FreeStyleBuild::setKeepLog(bool keepLog)
 {
 	this->keepLog = keepLog;
 }
@@ -595,7 +595,7 @@ FreeStyleBuild::getQueueId()
 }
 
 void
-FreeStyleBuild::setQueueId(int  queueId)
+FreeStyleBuild::setQueueId(int queueId)
 {
 	this->queueId = queueId;
 }
@@ -607,7 +607,7 @@ FreeStyleBuild::getResult()
 }
 
 void
-FreeStyleBuild::setResult(std::string  result)
+FreeStyleBuild::setResult(std::string result)
 {
 	this->result = result;
 }
@@ -619,7 +619,7 @@ FreeStyleBuild::getTimestamp()
 }
 
 void
-FreeStyleBuild::setTimestamp(int  timestamp)
+FreeStyleBuild::setTimestamp(int timestamp)
 {
 	this->timestamp = timestamp;
 }
@@ -631,7 +631,7 @@ FreeStyleBuild::getBuiltOn()
 }
 
 void
-FreeStyleBuild::setBuiltOn(std::string  builtOn)
+FreeStyleBuild::setBuiltOn(std::string builtOn)
 {
 	this->builtOn = builtOn;
 }
@@ -643,7 +643,7 @@ FreeStyleBuild::getChangeSet()
 }
 
 void
-FreeStyleBuild::setChangeSet(EmptyChangeLogSet  changeSet)
+FreeStyleBuild::setChangeSet(EmptyChangeLogSet changeSet)
 {
 	this->changeSet = changeSet;
 }

@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+.scalafmt.conf
+build.sbt
+project/build.properties
+project/plugins.sbt
+src/main/scala/org/openapitools/api.scala
+src/main/scala/org/openapitools/apis/BaseApi.scala
+src/main/scala/org/openapitools/apis/BlueOceanApi.scala
+src/main/scala/org/openapitools/apis/RemoteAccessApi.scala
+src/main/scala/org/openapitools/apis/path.scala
+src/main/scala/org/openapitools/apis/query.scala
+src/main/scala/org/openapitools/models/types.scala

@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.2.1-pre.0
+ * API version: 3.3.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -27,7 +27,8 @@ type StringParameterDefinition struct {
 	Type string `json:"type,omitempty"`
 }
 
-// AssertStringParameterDefinitionRequired checks if the required fields are not zero-ed
+// AssertStringParameterDefinitionRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertStringParameterDefinitionRequired(obj StringParameterDefinition) error {
 	if err := AssertStringParameterValueRequired(obj.DefaultParameterValue); err != nil {
 		return err

@@ -85,7 +85,7 @@ ClockDifference::getClass()
 }
 
 void
-ClockDifference::setClass(std::string  _class)
+ClockDifference::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -97,7 +97,7 @@ ClockDifference::getDiff()
 }
 
 void
-ClockDifference::setDiff(int  diff)
+ClockDifference::setDiff(int diff)
 {
 	this->diff = diff;
 }

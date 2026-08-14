@@ -2,34 +2,40 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * QueueItemImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class QueueItemImpl {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer expectedBuildNumber;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String pipeline;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer queuedTime;
 
   public QueueItemImpl propertyClass(@Nullable String propertyClass) {
@@ -48,6 +54,7 @@ public class QueueItemImpl {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -68,6 +75,7 @@ public class QueueItemImpl {
     return expectedBuildNumber;
   }
 
+  @JsonProperty("expectedBuildNumber")
   public void setExpectedBuildNumber(@Nullable Integer expectedBuildNumber) {
     this.expectedBuildNumber = expectedBuildNumber;
   }
@@ -88,6 +96,7 @@ public class QueueItemImpl {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(@Nullable String id) {
     this.id = id;
   }
@@ -108,6 +117,7 @@ public class QueueItemImpl {
     return pipeline;
   }
 
+  @JsonProperty("pipeline")
   public void setPipeline(@Nullable String pipeline) {
     this.pipeline = pipeline;
   }
@@ -128,6 +138,7 @@ public class QueueItemImpl {
     return queuedTime;
   }
 
+  @JsonProperty("queuedTime")
   public void setQueuedTime(@Nullable Integer queuedTime) {
     this.queuedTime = queuedTime;
   }
@@ -170,11 +181,8 @@ public class QueueItemImpl {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

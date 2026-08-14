@@ -24,8 +24,8 @@ typedef struct pipeline_folder_impl_t {
     char *full_name; // string
     char *name; // string
     char *organization; // string
-    int number_of_folders; //numeric
-    int number_of_pipelines; //numeric
+    int *number_of_folders; //numeric
+    int *number_of_pipelines; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } pipeline_folder_impl_t;
@@ -36,8 +36,8 @@ __attribute__((deprecated)) pipeline_folder_impl_t *pipeline_folder_impl_create(
     char *full_name,
     char *name,
     char *organization,
-    int number_of_folders,
-    int number_of_pipelines
+    int *number_of_folders,
+    int *number_of_pipelines
 );
 
 void pipeline_folder_impl_free(pipeline_folder_impl_t *pipeline_folder_impl);

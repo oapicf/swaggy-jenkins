@@ -26,7 +26,7 @@ class RemoteAccessApi : public Service {
 public:
     RemoteAccessApi() = default;
 
-    virtual ~RemoteAccessApi() = default;
+    virtual ~RemoteAccessApi();
 
     /**
     * .

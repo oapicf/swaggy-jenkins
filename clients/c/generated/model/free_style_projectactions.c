@@ -12,18 +12,21 @@ static free_style_projectactions_t *free_style_projectactions_create_internal(
     if (!free_style_projectactions_local_var) {
         return NULL;
     }
-    free_style_projectactions_local_var->_class = _class;
-
+    memset(free_style_projectactions_local_var, 0, sizeof(free_style_projectactions_t));
     free_style_projectactions_local_var->_library_owned = 1;
+    free_style_projectactions_local_var->_class = _class;
     return free_style_projectactions_local_var;
 }
 
 __attribute__((deprecated)) free_style_projectactions_t *free_style_projectactions_create(
     char *_class
     ) {
-    return free_style_projectactions_create_internal (
+    free_style_projectactions_t *result = free_style_projectactions_create_internal (
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void free_style_projectactions_free(free_style_projectactions_t *free_style_projectactions) {
@@ -64,6 +67,8 @@ free_style_projectactions_t *free_style_projectactions_parseFromJSON(cJSON *free
 
     free_style_projectactions_t *free_style_projectactions_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // free_style_projectactions->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(free_style_projectactionsJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -77,12 +82,22 @@ free_style_projectactions_t *free_style_projectactions_parseFromJSON(cJSON *free
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     free_style_projectactions_local_var = free_style_projectactions_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!free_style_projectactions_local_var) {
+        goto end;
+    }
 
     return free_style_projectactions_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     return NULL;
 
 }

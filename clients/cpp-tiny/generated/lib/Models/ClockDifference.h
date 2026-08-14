@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	int getDiff();
 
 	/*! \brief Set 
 	 */
-	void setDiff(int  diff);
+	void setDiff(int diff);
 
 
     private:

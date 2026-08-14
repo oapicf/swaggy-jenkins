@@ -149,7 +149,7 @@ StringParameterDefinition::getClass()
 }
 
 void
-StringParameterDefinition::setClass(std::string  _class)
+StringParameterDefinition::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -161,7 +161,7 @@ StringParameterDefinition::getDefaultParameterValue()
 }
 
 void
-StringParameterDefinition::setDefaultParameterValue(StringParameterValue  defaultParameterValue)
+StringParameterDefinition::setDefaultParameterValue(StringParameterValue defaultParameterValue)
 {
 	this->defaultParameterValue = defaultParameterValue;
 }
@@ -173,7 +173,7 @@ StringParameterDefinition::getDescription()
 }
 
 void
-StringParameterDefinition::setDescription(std::string  description)
+StringParameterDefinition::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -185,7 +185,7 @@ StringParameterDefinition::getName()
 }
 
 void
-StringParameterDefinition::setName(std::string  name)
+StringParameterDefinition::setName(std::string name)
 {
 	this->name = name;
 }
@@ -197,7 +197,7 @@ StringParameterDefinition::getType()
 }
 
 void
-StringParameterDefinition::setType(std::string  type)
+StringParameterDefinition::setType(std::string type)
 {
 	this->type = type;
 }

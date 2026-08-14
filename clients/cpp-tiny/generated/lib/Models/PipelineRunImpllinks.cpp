@@ -174,7 +174,7 @@ PipelineRunImpllinks::getNodes()
 }
 
 void
-PipelineRunImpllinks::setNodes(Link  nodes)
+PipelineRunImpllinks::setNodes(Link nodes)
 {
 	this->nodes = nodes;
 }
@@ -186,7 +186,7 @@ PipelineRunImpllinks::getLog()
 }
 
 void
-PipelineRunImpllinks::setLog(Link  log)
+PipelineRunImpllinks::setLog(Link log)
 {
 	this->log = log;
 }
@@ -198,7 +198,7 @@ PipelineRunImpllinks::getSelf()
 }
 
 void
-PipelineRunImpllinks::setSelf(Link  self)
+PipelineRunImpllinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -210,7 +210,7 @@ PipelineRunImpllinks::getActions()
 }
 
 void
-PipelineRunImpllinks::setActions(Link  actions)
+PipelineRunImpllinks::setActions(Link actions)
 {
 	this->actions = actions;
 }
@@ -222,7 +222,7 @@ PipelineRunImpllinks::getSteps()
 }
 
 void
-PipelineRunImpllinks::setSteps(Link  steps)
+PipelineRunImpllinks::setSteps(Link steps)
 {
 	this->steps = steps;
 }
@@ -234,7 +234,7 @@ PipelineRunImpllinks::getClass()
 }
 
 void
-PipelineRunImpllinks::setClass(std::string  _class)
+PipelineRunImpllinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.BlueApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -45,7 +44,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:}")
 class BlueApiController() {
 
     @Operation(
@@ -60,7 +59,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.DELETE],
-        value = [PATH_DELETE_PIPELINE_QUEUE_ITEM /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}" */]
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}"
+        value = [PATH_DELETE_PIPELINE_QUEUE_ITEM]
     )
     fun deletePipelineQueueItem(
         @Parameter(description = "Name of the organization", required = true) @PathVariable("organization") organization: kotlin.String,
@@ -82,7 +82,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_AUTHENTICATED_USER /* "/blue/rest/organizations/{organization}/user/" */],
+        // "/blue/rest/organizations/{organization}/user/"
+        value = [PATH_GET_AUTHENTICATED_USER],
         produces = ["application/json"]
     )
     fun getAuthenticatedUser(
@@ -103,7 +104,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_CLASSES /* "/blue/rest/classes/{class}" */],
+        // "/blue/rest/classes/{class}"
+        value = [PATH_GET_CLASSES],
         produces = ["application/json"]
     )
     fun getClasses(
@@ -125,7 +127,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_ORGANISATION /* "/blue/rest/organizations/{organization}" */],
+        // "/blue/rest/organizations/{organization}"
+        value = [PATH_GET_ORGANISATION],
         produces = ["application/json"]
     )
     fun getOrganisation(
@@ -146,7 +149,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_ORGANISATIONS /* "/blue/rest/organizations/" */],
+        // "/blue/rest/organizations/"
+        value = [PATH_GET_ORGANISATIONS],
         produces = ["application/json"]
     )
     fun getOrganisations(): ResponseEntity<List<Organisation>> {
@@ -166,7 +170,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}"
+        value = [PATH_GET_PIPELINE],
         produces = ["application/json"]
     )
     fun getPipeline(
@@ -188,7 +193,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_ACTIVITIES /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities"
+        value = [PATH_GET_PIPELINE_ACTIVITIES],
         produces = ["application/json"]
     )
     fun getPipelineActivities(
@@ -210,7 +216,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_BRANCH /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/"
+        value = [PATH_GET_PIPELINE_BRANCH],
         produces = ["application/json"]
     )
     fun getPipelineBranch(
@@ -233,7 +240,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_BRANCH_RUN /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}"
+        value = [PATH_GET_PIPELINE_BRANCH_RUN],
         produces = ["application/json"]
     )
     fun getPipelineBranchRun(
@@ -257,7 +265,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_BRANCHES /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches"
+        value = [PATH_GET_PIPELINE_BRANCHES],
         produces = ["application/json"]
     )
     fun getPipelineBranches(
@@ -279,7 +288,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_FOLDER /* "/blue/rest/organizations/{organization}/pipelines/{folder}/" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{folder}/"
+        value = [PATH_GET_PIPELINE_FOLDER],
         produces = ["application/json"]
     )
     fun getPipelineFolder(
@@ -301,7 +311,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_FOLDER_PIPELINE /* "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}"
+        value = [PATH_GET_PIPELINE_FOLDER_PIPELINE],
         produces = ["application/json"]
     )
     fun getPipelineFolderPipeline(
@@ -324,7 +335,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_QUEUE /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue"
+        value = [PATH_GET_PIPELINE_QUEUE],
         produces = ["application/json"]
     )
     fun getPipelineQueue(
@@ -346,7 +358,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_RUN /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}"
+        value = [PATH_GET_PIPELINE_RUN],
         produces = ["application/json"]
     )
     fun getPipelineRun(
@@ -369,7 +382,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_RUN_LOG /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log"
+        value = [PATH_GET_PIPELINE_RUN_LOG],
         produces = ["application/json"]
     )
     fun getPipelineRunLog(
@@ -394,7 +408,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_RUN_NODE /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}"
+        value = [PATH_GET_PIPELINE_RUN_NODE],
         produces = ["application/json"]
     )
     fun getPipelineRunNode(
@@ -418,7 +433,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_RUN_NODE_STEP /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}"
+        value = [PATH_GET_PIPELINE_RUN_NODE_STEP],
         produces = ["application/json"]
     )
     fun getPipelineRunNodeStep(
@@ -443,7 +459,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_RUN_NODE_STEP_LOG /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log"
+        value = [PATH_GET_PIPELINE_RUN_NODE_STEP_LOG],
         produces = ["application/json"]
     )
     fun getPipelineRunNodeStepLog(
@@ -468,7 +485,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_RUN_NODE_STEPS /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps"
+        value = [PATH_GET_PIPELINE_RUN_NODE_STEPS],
         produces = ["application/json"]
     )
     fun getPipelineRunNodeSteps(
@@ -492,7 +510,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_RUN_NODES /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes"
+        value = [PATH_GET_PIPELINE_RUN_NODES],
         produces = ["application/json"]
     )
     fun getPipelineRunNodes(
@@ -515,7 +534,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINE_RUNS /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"
+        value = [PATH_GET_PIPELINE_RUNS],
         produces = ["application/json"]
     )
     fun getPipelineRuns(
@@ -537,7 +557,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_PIPELINES /* "/blue/rest/organizations/{organization}/pipelines/" */],
+        // "/blue/rest/organizations/{organization}/pipelines/"
+        value = [PATH_GET_PIPELINES],
         produces = ["application/json"]
     )
     fun getPipelines(
@@ -558,7 +579,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_SCM /* "/blue/rest/organizations/{organization}/scm/{scm}" */],
+        // "/blue/rest/organizations/{organization}/scm/{scm}"
+        value = [PATH_GET_SCM],
         produces = ["application/json"]
     )
     fun getSCM(
@@ -580,7 +602,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_SCM_ORGANISATION_REPOSITORIES /* "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories" */],
+        // "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories"
+        value = [PATH_GET_SCM_ORGANISATION_REPOSITORIES],
         produces = ["application/json"]
     )
     fun getSCMOrganisationRepositories(
@@ -606,7 +629,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_SCM_ORGANISATION_REPOSITORY /* "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}" */],
+        // "/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}"
+        value = [PATH_GET_SCM_ORGANISATION_REPOSITORY],
         produces = ["application/json"]
     )
     fun getSCMOrganisationRepository(
@@ -631,7 +655,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_SCM_ORGANISATIONS /* "/blue/rest/organizations/{organization}/scm/{scm}/organizations" */],
+        // "/blue/rest/organizations/{organization}/scm/{scm}/organizations"
+        value = [PATH_GET_SCM_ORGANISATIONS],
         produces = ["application/json"]
     )
     fun getSCMOrganisations(
@@ -654,7 +679,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_USER /* "/blue/rest/organizations/{organization}/users/{user}" */],
+        // "/blue/rest/organizations/{organization}/users/{user}"
+        value = [PATH_GET_USER],
         produces = ["application/json"]
     )
     fun getUser(
@@ -676,7 +702,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_USER_FAVORITES /* "/blue/rest/users/{user}/favorites" */],
+        // "/blue/rest/users/{user}/favorites"
+        value = [PATH_GET_USER_FAVORITES],
         produces = ["application/json"]
     )
     fun getUserFavorites(
@@ -697,7 +724,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_USERS /* "/blue/rest/organizations/{organization}/users/" */],
+        // "/blue/rest/organizations/{organization}/users/"
+        value = [PATH_GET_USERS],
         produces = ["application/json"]
     )
     fun getUsers(
@@ -718,7 +746,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_POST_PIPELINE_RUN /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay"
+        value = [PATH_POST_PIPELINE_RUN],
         produces = ["application/json"]
     )
     fun postPipelineRun(
@@ -741,7 +770,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_POST_PIPELINE_RUNS /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs"
+        value = [PATH_POST_PIPELINE_RUNS],
         produces = ["application/json"]
     )
     fun postPipelineRuns(
@@ -763,7 +793,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.PUT],
-        value = [PATH_PUT_PIPELINE_FAVORITE /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite"
+        value = [PATH_PUT_PIPELINE_FAVORITE],
         produces = ["application/json"],
         consumes = ["application/json"]
     )
@@ -787,7 +818,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.PUT],
-        value = [PATH_PUT_PIPELINE_RUN /* "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop" */],
+        // "/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop"
+        value = [PATH_PUT_PIPELINE_RUN],
         produces = ["application/json"]
     )
     fun putPipelineRun(
@@ -812,7 +844,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_SEARCH /* "/blue/rest/search/" */],
+        // "/blue/rest/search/"
+        value = [PATH_SEARCH],
         produces = ["application/json"]
     )
     fun search(
@@ -833,7 +866,8 @@ class BlueApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_SEARCH_CLASSES /* "/blue/rest/classes/" */],
+        // "/blue/rest/classes/"
+        value = [PATH_SEARCH_CLASSES],
         produces = ["application/json"]
     )
     fun searchClasses(

@@ -20,7 +20,7 @@ typedef struct pipelinelatest_runartifacts_t pipelinelatest_runartifacts_t;
 
 typedef struct pipelinelatest_runartifacts_t {
     char *name; // string
-    int size; //numeric
+    int *size; //numeric
     char *url; // string
     char *_class; // string
 
@@ -29,7 +29,7 @@ typedef struct pipelinelatest_runartifacts_t {
 
 __attribute__((deprecated)) pipelinelatest_runartifacts_t *pipelinelatest_runartifacts_create(
     char *name,
-    int size,
+    int *size,
     char *url,
     char *_class
 );

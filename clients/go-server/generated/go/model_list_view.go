@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.2.1-pre.0
+ * API version: 3.3.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -27,7 +27,8 @@ type ListView struct {
 	Url string `json:"url,omitempty"`
 }
 
-// AssertListViewRequired checks if the required fields are not zero-ed
+// AssertListViewRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertListViewRequired(obj ListView) error {
 	for _, el := range obj.Jobs {
 		if err := AssertFreeStyleProjectRequired(el); err != nil {

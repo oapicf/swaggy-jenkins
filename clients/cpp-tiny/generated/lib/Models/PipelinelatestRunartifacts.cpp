@@ -127,7 +127,7 @@ PipelinelatestRunartifacts::getName()
 }
 
 void
-PipelinelatestRunartifacts::setName(std::string  name)
+PipelinelatestRunartifacts::setName(std::string name)
 {
 	this->name = name;
 }
@@ -139,7 +139,7 @@ PipelinelatestRunartifacts::getSize()
 }
 
 void
-PipelinelatestRunartifacts::setSize(int  size)
+PipelinelatestRunartifacts::setSize(int size)
 {
 	this->size = size;
 }
@@ -151,7 +151,7 @@ PipelinelatestRunartifacts::getUrl()
 }
 
 void
-PipelinelatestRunartifacts::setUrl(std::string  url)
+PipelinelatestRunartifacts::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -163,7 +163,7 @@ PipelinelatestRunartifacts::getClass()
 }
 
 void
-PipelinelatestRunartifacts::setClass(std::string  _class)
+PipelinelatestRunartifacts::setClass(std::string _class)
 {
 	this->_class = _class;
 }

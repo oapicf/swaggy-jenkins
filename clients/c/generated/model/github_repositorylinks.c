@@ -13,10 +13,10 @@ static github_repositorylinks_t *github_repositorylinks_create_internal(
     if (!github_repositorylinks_local_var) {
         return NULL;
     }
+    memset(github_repositorylinks_local_var, 0, sizeof(github_repositorylinks_t));
+    github_repositorylinks_local_var->_library_owned = 1;
     github_repositorylinks_local_var->self = self;
     github_repositorylinks_local_var->_class = _class;
-
-    github_repositorylinks_local_var->_library_owned = 1;
     return github_repositorylinks_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) github_repositorylinks_t *github_repositorylinks_cre
     link_t *self,
     char *_class
     ) {
-    return github_repositorylinks_create_internal (
+    github_repositorylinks_t *result = github_repositorylinks_create_internal (
         self,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void github_repositorylinks_free(github_repositorylinks_t *github_repositorylinks) {
@@ -88,6 +91,8 @@ github_repositorylinks_t *github_repositorylinks_parseFromJSON(cJSON *github_rep
     // define the local variable for github_repositorylinks->self
     link_t *self_local_nonprim = NULL;
 
+    char *_class_local_str = NULL;
+
     // github_repositorylinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(github_repositorylinksJSON, "self");
     if (cJSON_IsNull(self)) {
@@ -110,16 +115,26 @@ github_repositorylinks_t *github_repositorylinks_parseFromJSON(cJSON *github_rep
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     github_repositorylinks_local_var = github_repositorylinks_create_internal (
         self ? self_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!github_repositorylinks_local_var) {
+        goto end;
+    }
 
     return github_repositorylinks_local_var;
 end:
     if (self_local_nonprim) {
         link_free(self_local_nonprim);
         self_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

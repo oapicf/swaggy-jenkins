@@ -9,22 +9,22 @@ static github_repositories_t *github_repositories_create_internal(
     char *_class,
     github_repositorieslinks_t *_links,
     list_t *items,
-    int last_page,
-    int next_page,
-    int page_size
+    int *last_page,
+    int *next_page,
+    int *page_size
     ) {
     github_repositories_t *github_repositories_local_var = malloc(sizeof(github_repositories_t));
     if (!github_repositories_local_var) {
         return NULL;
     }
+    memset(github_repositories_local_var, 0, sizeof(github_repositories_t));
+    github_repositories_local_var->_library_owned = 1;
     github_repositories_local_var->_class = _class;
     github_repositories_local_var->_links = _links;
     github_repositories_local_var->items = items;
     github_repositories_local_var->last_page = last_page;
     github_repositories_local_var->next_page = next_page;
     github_repositories_local_var->page_size = page_size;
-
-    github_repositories_local_var->_library_owned = 1;
     return github_repositories_local_var;
 }
 
@@ -32,18 +32,39 @@ __attribute__((deprecated)) github_repositories_t *github_repositories_create(
     char *_class,
     github_repositorieslinks_t *_links,
     list_t *items,
-    int last_page,
-    int next_page,
-    int page_size
+    int *last_page,
+    int *next_page,
+    int *page_size
     ) {
-    return github_repositories_create_internal (
+    int *last_page_copy = NULL;
+    if (last_page) {
+        last_page_copy = malloc(sizeof(int));
+        if (last_page_copy) *last_page_copy = *last_page;
+    }
+    int *next_page_copy = NULL;
+    if (next_page) {
+        next_page_copy = malloc(sizeof(int));
+        if (next_page_copy) *next_page_copy = *next_page;
+    }
+    int *page_size_copy = NULL;
+    if (page_size) {
+        page_size_copy = malloc(sizeof(int));
+        if (page_size_copy) *page_size_copy = *page_size;
+    }
+    github_repositories_t *result = github_repositories_create_internal (
         _class,
         _links,
         items,
-        last_page,
-        next_page,
-        page_size
+        last_page_copy,
+        next_page_copy,
+        page_size_copy
         );
+    if (!result) {
+        free(last_page_copy);
+        free(next_page_copy);
+        free(page_size_copy);
+    }
+    return result;
 }
 
 void github_repositories_free(github_repositories_t *github_repositories) {
@@ -69,6 +90,18 @@ void github_repositories_free(github_repositories_t *github_repositories) {
         }
         list_freeList(github_repositories->items);
         github_repositories->items = NULL;
+    }
+    if (github_repositories->last_page) {
+        free(github_repositories->last_page);
+        github_repositories->last_page = NULL;
+    }
+    if (github_repositories->next_page) {
+        free(github_repositories->next_page);
+        github_repositories->next_page = NULL;
+    }
+    if (github_repositories->page_size) {
+        free(github_repositories->page_size);
+        github_repositories->page_size = NULL;
     }
     free(github_repositories);
 }
@@ -119,7 +152,7 @@ cJSON *github_repositories_convertToJSON(github_repositories_t *github_repositor
 
     // github_repositories->last_page
     if(github_repositories->last_page) {
-    if(cJSON_AddNumberToObject(item, "lastPage", github_repositories->last_page) == NULL) {
+    if(cJSON_AddNumberToObject(item, "lastPage", *github_repositories->last_page) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -127,7 +160,7 @@ cJSON *github_repositories_convertToJSON(github_repositories_t *github_repositor
 
     // github_repositories->next_page
     if(github_repositories->next_page) {
-    if(cJSON_AddNumberToObject(item, "nextPage", github_repositories->next_page) == NULL) {
+    if(cJSON_AddNumberToObject(item, "nextPage", *github_repositories->next_page) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -135,7 +168,7 @@ cJSON *github_repositories_convertToJSON(github_repositories_t *github_repositor
 
     // github_repositories->page_size
     if(github_repositories->page_size) {
-    if(cJSON_AddNumberToObject(item, "pageSize", github_repositories->page_size) == NULL) {
+    if(cJSON_AddNumberToObject(item, "pageSize", *github_repositories->page_size) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -152,11 +185,22 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
 
     github_repositories_t *github_repositories_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local variable for github_repositories->_links
     github_repositorieslinks_t *_links_local_nonprim = NULL;
 
     // define the local list for github_repositories->items
     list_t *itemsList = NULL;
+
+    // define the local variable for github_repositories->last_page
+    int *last_page_local_var = NULL;
+
+    // define the local variable for github_repositories->next_page
+    int *next_page_local_var = NULL;
+
+    // define the local variable for github_repositories->page_size
+    int *page_size_local_var = NULL;
 
     // github_repositories->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(github_repositoriesJSON, "_class");
@@ -213,6 +257,12 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
     {
     goto end; //Numeric
     }
+    last_page_local_var = malloc(sizeof(int));
+    if(!last_page_local_var)
+    {
+        goto end;
+    }
+    *last_page_local_var = last_page->valuedouble;
     }
 
     // github_repositories->next_page
@@ -225,6 +275,12 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
     {
     goto end; //Numeric
     }
+    next_page_local_var = malloc(sizeof(int));
+    if(!next_page_local_var)
+    {
+        goto end;
+    }
+    *next_page_local_var = next_page->valuedouble;
     }
 
     // github_repositories->page_size
@@ -237,20 +293,36 @@ github_repositories_t *github_repositories_parseFromJSON(cJSON *github_repositor
     {
     goto end; //Numeric
     }
+    page_size_local_var = malloc(sizeof(int));
+    if(!page_size_local_var)
+    {
+        goto end;
+    }
+    *page_size_local_var = page_size->valuedouble;
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     github_repositories_local_var = github_repositories_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         _links ? _links_local_nonprim : NULL,
         items ? itemsList : NULL,
-        last_page ? last_page->valuedouble : 0,
-        next_page ? next_page->valuedouble : 0,
-        page_size ? page_size->valuedouble : 0
+        last_page_local_var,
+        next_page_local_var,
+        page_size_local_var
         );
+
+    if (!github_repositories_local_var) {
+        goto end;
+    }
 
     return github_repositories_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (_links_local_nonprim) {
         github_repositorieslinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;
@@ -263,6 +335,18 @@ end:
         }
         list_freeList(itemsList);
         itemsList = NULL;
+    }
+    if (last_page_local_var) {
+        free(last_page_local_var);
+        last_page_local_var = NULL;
+    }
+    if (next_page_local_var) {
+        free(next_page_local_var);
+        next_page_local_var = NULL;
+    }
+    if (page_size_local_var) {
+        free(page_size_local_var);
+        page_size_local_var = NULL;
     }
     return NULL;
 

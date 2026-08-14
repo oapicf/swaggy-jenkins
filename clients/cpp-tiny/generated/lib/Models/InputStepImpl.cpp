@@ -208,7 +208,7 @@ InputStepImpl::getClass()
 }
 
 void
-InputStepImpl::setClass(std::string  _class)
+InputStepImpl::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -220,7 +220,7 @@ InputStepImpl::getLinks()
 }
 
 void
-InputStepImpl::setLinks(InputStepImpllinks  _links)
+InputStepImpl::setLinks(InputStepImpllinks _links)
 {
 	this->_links = _links;
 }
@@ -232,7 +232,7 @@ InputStepImpl::getId()
 }
 
 void
-InputStepImpl::setId(std::string  id)
+InputStepImpl::setId(std::string id)
 {
 	this->id = id;
 }
@@ -244,7 +244,7 @@ InputStepImpl::getMessage()
 }
 
 void
-InputStepImpl::setMessage(std::string  message)
+InputStepImpl::setMessage(std::string message)
 {
 	this->message = message;
 }
@@ -256,7 +256,7 @@ InputStepImpl::getOk()
 }
 
 void
-InputStepImpl::setOk(std::string  ok)
+InputStepImpl::setOk(std::string ok)
 {
 	this->ok = ok;
 }
@@ -268,7 +268,7 @@ InputStepImpl::getParameters()
 }
 
 void
-InputStepImpl::setParameters(std::list <StringParameterDefinition> parameters)
+InputStepImpl::setParameters(std::list<StringParameterDefinition> parameters)
 {
 	this->parameters = parameters;
 }
@@ -280,7 +280,7 @@ InputStepImpl::getSubmitter()
 }
 
 void
-InputStepImpl::setSubmitter(std::string  submitter)
+InputStepImpl::setSubmitter(std::string submitter)
 {
 	this->submitter = submitter;
 }

@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -12,34 +13,40 @@ import org.openapitools.model.StringParameterDefinition;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * InputStepImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class InputStepImpl {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable InputStepImpllinks links;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String message;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String ok;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String submitter;
 
   public InputStepImpl propertyClass(@Nullable String propertyClass) {
@@ -58,6 +65,7 @@ public class InputStepImpl {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -78,6 +86,7 @@ public class InputStepImpl {
     return links;
   }
 
+  @JsonProperty("_links")
   public void setLinks(@Nullable InputStepImpllinks links) {
     this.links = links;
   }
@@ -98,6 +107,7 @@ public class InputStepImpl {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(@Nullable String id) {
     this.id = id;
   }
@@ -118,6 +128,7 @@ public class InputStepImpl {
     return message;
   }
 
+  @JsonProperty("message")
   public void setMessage(@Nullable String message) {
     this.message = message;
   }
@@ -138,6 +149,7 @@ public class InputStepImpl {
     return ok;
   }
 
+  @JsonProperty("ok")
   public void setOk(@Nullable String ok) {
     this.ok = ok;
   }
@@ -166,6 +178,7 @@ public class InputStepImpl {
     return parameters;
   }
 
+  @JsonProperty("parameters")
   public void setParameters(List<@Valid StringParameterDefinition> parameters) {
     this.parameters = parameters;
   }
@@ -186,6 +199,7 @@ public class InputStepImpl {
     return submitter;
   }
 
+  @JsonProperty("submitter")
   public void setSubmitter(@Nullable String submitter) {
     this.submitter = submitter;
   }
@@ -232,11 +246,8 @@ public class InputStepImpl {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

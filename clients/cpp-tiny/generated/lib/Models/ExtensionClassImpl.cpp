@@ -125,7 +125,7 @@ ExtensionClassImpl::getClass()
 }
 
 void
-ExtensionClassImpl::setClass(std::string  _class)
+ExtensionClassImpl::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -137,7 +137,7 @@ ExtensionClassImpl::getLinks()
 }
 
 void
-ExtensionClassImpl::setLinks(ExtensionClassImpllinks  _links)
+ExtensionClassImpl::setLinks(ExtensionClassImpllinks _links)
 {
 	this->_links = _links;
 }
@@ -149,7 +149,7 @@ ExtensionClassImpl::getClasses()
 }
 
 void
-ExtensionClassImpl::setClasses(std::list <std::string> classes)
+ExtensionClassImpl::setClasses(std::list<std::string> classes)
 {
 	this->classes = classes;
 }

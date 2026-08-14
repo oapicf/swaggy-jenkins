@@ -201,7 +201,7 @@ HudsonMasterComputer <- R6::R6Class(
       }
       if (!is.null(self$`executors`)) {
         HudsonMasterComputerObject[["executors"]] <-
-          lapply(self$`executors`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`executors`)
       }
       if (!is.null(self$`icon`)) {
         HudsonMasterComputerObject[["icon"]] <-
@@ -225,7 +225,7 @@ HudsonMasterComputer <- R6::R6Class(
       }
       if (!is.null(self$`loadStatistics`)) {
         HudsonMasterComputerObject[["loadStatistics"]] <-
-          self$`loadStatistics`$toSimpleType()
+          self$extractSimpleType(self$`loadStatistics`)
       }
       if (!is.null(self$`manualLaunchAllowed`)) {
         HudsonMasterComputerObject[["manualLaunchAllowed"]] <-
@@ -233,7 +233,7 @@ HudsonMasterComputer <- R6::R6Class(
       }
       if (!is.null(self$`monitorData`)) {
         HudsonMasterComputerObject[["monitorData"]] <-
-          self$`monitorData`$toSimpleType()
+          self$extractSimpleType(self$`monitorData`)
       }
       if (!is.null(self$`numExecutors`)) {
         HudsonMasterComputerObject[["numExecutors"]] <-
@@ -256,6 +256,29 @@ HudsonMasterComputer <- R6::R6Class(
           self$`temporarilyOffline`
       }
       return(HudsonMasterComputerObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

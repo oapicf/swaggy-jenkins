@@ -19,7 +19,7 @@ class BaseApi {
   /// Retrieve CSRF protection token
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getCrumbWithHttpInfo() async {
+  Future<Response> getCrumbWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/crumbIssuer/api/json';
 
@@ -41,12 +41,13 @@ class BaseApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Retrieve CSRF protection token
-  Future<DefaultCrumbIssuer?> getCrumb() async {
-    final response = await getCrumbWithHttpInfo();
+  Future<DefaultCrumbIssuer?> getCrumb({ Future<void>? abortTrigger, }) async {
+    final response = await getCrumbWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

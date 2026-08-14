@@ -228,7 +228,7 @@ PipelineRunNode::getClass()
 }
 
 void
-PipelineRunNode::setClass(std::string  _class)
+PipelineRunNode::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -240,7 +240,7 @@ PipelineRunNode::getDisplayName()
 }
 
 void
-PipelineRunNode::setDisplayName(std::string  displayName)
+PipelineRunNode::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -252,7 +252,7 @@ PipelineRunNode::getDurationInMillis()
 }
 
 void
-PipelineRunNode::setDurationInMillis(int  durationInMillis)
+PipelineRunNode::setDurationInMillis(int durationInMillis)
 {
 	this->durationInMillis = durationInMillis;
 }
@@ -264,7 +264,7 @@ PipelineRunNode::getEdges()
 }
 
 void
-PipelineRunNode::setEdges(std::list <PipelineRunNodeedges> edges)
+PipelineRunNode::setEdges(std::list<PipelineRunNodeedges> edges)
 {
 	this->edges = edges;
 }
@@ -276,7 +276,7 @@ PipelineRunNode::getId()
 }
 
 void
-PipelineRunNode::setId(std::string  id)
+PipelineRunNode::setId(std::string id)
 {
 	this->id = id;
 }
@@ -288,7 +288,7 @@ PipelineRunNode::getResult()
 }
 
 void
-PipelineRunNode::setResult(std::string  result)
+PipelineRunNode::setResult(std::string result)
 {
 	this->result = result;
 }
@@ -300,7 +300,7 @@ PipelineRunNode::getStartTime()
 }
 
 void
-PipelineRunNode::setStartTime(std::string  startTime)
+PipelineRunNode::setStartTime(std::string startTime)
 {
 	this->startTime = startTime;
 }
@@ -312,7 +312,7 @@ PipelineRunNode::getState()
 }
 
 void
-PipelineRunNode::setState(std::string  state)
+PipelineRunNode::setState(std::string state)
 {
 	this->state = state;
 }

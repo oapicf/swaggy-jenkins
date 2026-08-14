@@ -188,7 +188,7 @@ PipelinelatestRun <- R6::R6Class(
       PipelinelatestRunObject <- list()
       if (!is.null(self$`artifacts`)) {
         PipelinelatestRunObject[["artifacts"]] <-
-          lapply(self$`artifacts`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`artifacts`)
       }
       if (!is.null(self$`durationInMillis`)) {
         PipelinelatestRunObject[["durationInMillis"]] <-
@@ -247,6 +247,29 @@ PipelinelatestRun <- R6::R6Class(
           self$`_class`
       }
       return(PipelinelatestRunObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

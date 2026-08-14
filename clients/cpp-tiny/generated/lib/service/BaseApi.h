@@ -21,7 +21,7 @@ class BaseApi : public Service {
 public:
     BaseApi() = default;
 
-    virtual ~BaseApi() = default;
+    virtual ~BaseApi();
 
     /**
     * .

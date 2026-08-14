@@ -14,11 +14,11 @@ static string_parameter_value_t *string_parameter_value_create_internal(
     if (!string_parameter_value_local_var) {
         return NULL;
     }
+    memset(string_parameter_value_local_var, 0, sizeof(string_parameter_value_t));
+    string_parameter_value_local_var->_library_owned = 1;
     string_parameter_value_local_var->_class = _class;
     string_parameter_value_local_var->name = name;
     string_parameter_value_local_var->value = value;
-
-    string_parameter_value_local_var->_library_owned = 1;
     return string_parameter_value_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) string_parameter_value_t *string_parameter_value_cre
     char *name,
     char *value
     ) {
-    return string_parameter_value_create_internal (
+    string_parameter_value_t *result = string_parameter_value_create_internal (
         _class,
         name,
         value
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void string_parameter_value_free(string_parameter_value_t *string_parameter_value) {
@@ -96,6 +99,12 @@ string_parameter_value_t *string_parameter_value_parseFromJSON(cJSON *string_par
 
     string_parameter_value_t *string_parameter_value_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *value_local_str = NULL;
+
     // string_parameter_value->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(string_parameter_valueJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -133,14 +142,34 @@ string_parameter_value_t *string_parameter_value_parseFromJSON(cJSON *string_par
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (value && !cJSON_IsNull(value)) value_local_str = strdup(value->valuestring);
+
     string_parameter_value_local_var = string_parameter_value_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        value && !cJSON_IsNull(value) ? strdup(value->valuestring) : NULL
+        _class_local_str,
+        name_local_str,
+        value_local_str
         );
+
+    if (!string_parameter_value_local_var) {
+        goto end;
+    }
 
     return string_parameter_value_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (value_local_str) {
+        free(value_local_str);
+        value_local_str = NULL;
+    }
     return NULL;
 
 }

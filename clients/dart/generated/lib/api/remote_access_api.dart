@@ -24,7 +24,7 @@ class RemoteAccessApi {
   ///
   /// * [int] depth (required):
   ///   Recursion depth in response model
-  Future<Response> getComputerWithHttpInfo(int depth,) async {
+  Future<Response> getComputerWithHttpInfo(int depth, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/computer/api/json';
 
@@ -48,6 +48,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -57,8 +58,8 @@ class RemoteAccessApi {
   ///
   /// * [int] depth (required):
   ///   Recursion depth in response model
-  Future<ComputerSet?> getComputer(int depth,) async {
-    final response = await getComputerWithHttpInfo(depth,);
+  Future<ComputerSet?> getComputer(int depth, { Future<void>? abortTrigger, }) async {
+    final response = await getComputerWithHttpInfo(depth, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -75,7 +76,7 @@ class RemoteAccessApi {
   /// Retrieve Jenkins details
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getJenkinsWithHttpInfo() async {
+  Future<Response> getJenkinsWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/json';
 
@@ -97,12 +98,13 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Retrieve Jenkins details
-  Future<Hudson?> getJenkins() async {
-    final response = await getJenkinsWithHttpInfo();
+  Future<Hudson?> getJenkins({ Future<void>? abortTrigger, }) async {
+    final response = await getJenkinsWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -124,7 +126,7 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the job
-  Future<Response> getJobWithHttpInfo(String name,) async {
+  Future<Response> getJobWithHttpInfo(String name, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/api/json'
       .replaceAll('{name}', name);
@@ -147,6 +149,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -156,8 +159,8 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the job
-  Future<FreeStyleProject?> getJob(String name,) async {
-    final response = await getJobWithHttpInfo(name,);
+  Future<FreeStyleProject?> getJob(String name, { Future<void>? abortTrigger, }) async {
+    final response = await getJobWithHttpInfo(name, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -179,7 +182,7 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the job
-  Future<Response> getJobConfigWithHttpInfo(String name,) async {
+  Future<Response> getJobConfigWithHttpInfo(String name, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/config.xml'
       .replaceAll('{name}', name);
@@ -202,6 +205,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -211,8 +215,8 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the job
-  Future<String?> getJobConfig(String name,) async {
-    final response = await getJobConfigWithHttpInfo(name,);
+  Future<String?> getJobConfig(String name, { Future<void>? abortTrigger, }) async {
+    final response = await getJobConfigWithHttpInfo(name, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -234,7 +238,7 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the job
-  Future<Response> getJobLastBuildWithHttpInfo(String name,) async {
+  Future<Response> getJobLastBuildWithHttpInfo(String name, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/lastBuild/api/json'
       .replaceAll('{name}', name);
@@ -257,6 +261,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -266,8 +271,8 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the job
-  Future<FreeStyleBuild?> getJobLastBuild(String name,) async {
-    final response = await getJobLastBuildWithHttpInfo(name,);
+  Future<FreeStyleBuild?> getJobLastBuild(String name, { Future<void>? abortTrigger, }) async {
+    final response = await getJobLastBuildWithHttpInfo(name, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -295,7 +300,7 @@ class RemoteAccessApi {
   ///
   /// * [String] start (required):
   ///   Starting point of progressive text output
-  Future<Response> getJobProgressiveTextWithHttpInfo(String name, String number, String start,) async {
+  Future<Response> getJobProgressiveTextWithHttpInfo(String name, String number, String start, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/{number}/logText/progressiveText'
       .replaceAll('{name}', name)
@@ -321,6 +326,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -336,8 +342,8 @@ class RemoteAccessApi {
   ///
   /// * [String] start (required):
   ///   Starting point of progressive text output
-  Future<void> getJobProgressiveText(String name, String number, String start,) async {
-    final response = await getJobProgressiveTextWithHttpInfo(name, number, start,);
+  Future<void> getJobProgressiveText(String name, String number, String start, { Future<void>? abortTrigger, }) async {
+    final response = await getJobProgressiveTextWithHttpInfo(name, number, start, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -346,7 +352,7 @@ class RemoteAccessApi {
   /// Retrieve queue details
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getQueueWithHttpInfo() async {
+  Future<Response> getQueueWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/queue/api/json';
 
@@ -368,12 +374,13 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Retrieve queue details
-  Future<Queue?> getQueue() async {
-    final response = await getQueueWithHttpInfo();
+  Future<Queue?> getQueue({ Future<void>? abortTrigger, }) async {
+    final response = await getQueueWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -395,7 +402,7 @@ class RemoteAccessApi {
   ///
   /// * [String] number (required):
   ///   Queue number
-  Future<Response> getQueueItemWithHttpInfo(String number,) async {
+  Future<Response> getQueueItemWithHttpInfo(String number, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/queue/item/{number}/api/json'
       .replaceAll('{number}', number);
@@ -418,6 +425,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -427,8 +435,8 @@ class RemoteAccessApi {
   ///
   /// * [String] number (required):
   ///   Queue number
-  Future<Queue?> getQueueItem(String number,) async {
-    final response = await getQueueItemWithHttpInfo(number,);
+  Future<Queue?> getQueueItem(String number, { Future<void>? abortTrigger, }) async {
+    final response = await getQueueItemWithHttpInfo(number, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -450,7 +458,7 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the view
-  Future<Response> getViewWithHttpInfo(String name,) async {
+  Future<Response> getViewWithHttpInfo(String name, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/view/{name}/api/json'
       .replaceAll('{name}', name);
@@ -473,6 +481,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -482,8 +491,8 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the view
-  Future<ListView?> getView(String name,) async {
-    final response = await getViewWithHttpInfo(name,);
+  Future<ListView?> getView(String name, { Future<void>? abortTrigger, }) async {
+    final response = await getViewWithHttpInfo(name, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -505,7 +514,7 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the view
-  Future<Response> getViewConfigWithHttpInfo(String name,) async {
+  Future<Response> getViewConfigWithHttpInfo(String name, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/view/{name}/config.xml'
       .replaceAll('{name}', name);
@@ -528,6 +537,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -537,8 +547,8 @@ class RemoteAccessApi {
   ///
   /// * [String] name (required):
   ///   Name of the view
-  Future<String?> getViewConfig(String name,) async {
-    final response = await getViewConfigWithHttpInfo(name,);
+  Future<String?> getViewConfig(String name, { Future<void>? abortTrigger, }) async {
+    final response = await getViewConfigWithHttpInfo(name, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -555,7 +565,7 @@ class RemoteAccessApi {
   /// Retrieve Jenkins headers
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> headJenkinsWithHttpInfo() async {
+  Future<Response> headJenkinsWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/json';
 
@@ -577,12 +587,13 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Retrieve Jenkins headers
-  Future<void> headJenkins() async {
-    final response = await headJenkinsWithHttpInfo();
+  Future<void> headJenkins({ Future<void>? abortTrigger, }) async {
+    final response = await headJenkinsWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -611,7 +622,7 @@ class RemoteAccessApi {
   ///
   /// * [String] body:
   ///   Job configuration in config.xml format
-  Future<Response> postCreateItemWithHttpInfo(String name, { String? from, String? mode, String? jenkinsCrumb, String? contentType, String? body, }) async {
+  Future<Response> postCreateItemWithHttpInfo(String name, { String? from, String? mode, String? jenkinsCrumb, String? contentType, String? body, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/createItem';
 
@@ -648,6 +659,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -672,8 +684,8 @@ class RemoteAccessApi {
   ///
   /// * [String] body:
   ///   Job configuration in config.xml format
-  Future<void> postCreateItem(String name, { String? from, String? mode, String? jenkinsCrumb, String? contentType, String? body, }) async {
-    final response = await postCreateItemWithHttpInfo(name,  from: from, mode: mode, jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body, );
+  Future<void> postCreateItem(String name, { String? from, String? mode, String? jenkinsCrumb, String? contentType, String? body, Future<void>? abortTrigger, }) async {
+    final response = await postCreateItemWithHttpInfo(name, from: from, mode: mode, jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -696,7 +708,7 @@ class RemoteAccessApi {
   ///
   /// * [String] body:
   ///   View configuration in config.xml format
-  Future<Response> postCreateViewWithHttpInfo(String name, { String? jenkinsCrumb, String? contentType, String? body, }) async {
+  Future<Response> postCreateViewWithHttpInfo(String name, { String? jenkinsCrumb, String? contentType, String? body, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/createView';
 
@@ -727,6 +739,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -745,8 +758,8 @@ class RemoteAccessApi {
   ///
   /// * [String] body:
   ///   View configuration in config.xml format
-  Future<void> postCreateView(String name, { String? jenkinsCrumb, String? contentType, String? body, }) async {
-    final response = await postCreateViewWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body, );
+  Future<void> postCreateView(String name, { String? jenkinsCrumb, String? contentType, String? body, Future<void>? abortTrigger, }) async {
+    final response = await postCreateViewWithHttpInfo(name, jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -767,7 +780,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobBuildWithHttpInfo(String name, String json, { String? token, String? jenkinsCrumb, }) async {
+  Future<Response> postJobBuildWithHttpInfo(String name, String json, { String? token, String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/build'
       .replaceAll('{name}', name);
@@ -799,6 +812,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -815,8 +829,8 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobBuild(String name, String json, { String? token, String? jenkinsCrumb, }) async {
-    final response = await postJobBuildWithHttpInfo(name, json,  token: token, jenkinsCrumb: jenkinsCrumb, );
+  Future<void> postJobBuild(String name, String json, { String? token, String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
+    final response = await postJobBuildWithHttpInfo(name, json, token: token, jenkinsCrumb: jenkinsCrumb, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -836,7 +850,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobConfigWithHttpInfo(String name, String body, { String? jenkinsCrumb, }) async {
+  Future<Response> postJobConfigWithHttpInfo(String name, String body, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/config.xml'
       .replaceAll('{name}', name);
@@ -863,6 +877,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -878,8 +893,8 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobConfig(String name, String body, { String? jenkinsCrumb, }) async {
-    final response = await postJobConfigWithHttpInfo(name, body,  jenkinsCrumb: jenkinsCrumb, );
+  Future<void> postJobConfig(String name, String body, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
+    final response = await postJobConfigWithHttpInfo(name, body, jenkinsCrumb: jenkinsCrumb, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -896,7 +911,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobDeleteWithHttpInfo(String name, { String? jenkinsCrumb, }) async {
+  Future<Response> postJobDeleteWithHttpInfo(String name, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/doDelete'
       .replaceAll('{name}', name);
@@ -923,6 +938,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -935,8 +951,8 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobDelete(String name, { String? jenkinsCrumb, }) async {
-    final response = await postJobDeleteWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
+  Future<void> postJobDelete(String name, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
+    final response = await postJobDeleteWithHttpInfo(name, jenkinsCrumb: jenkinsCrumb, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -953,7 +969,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobDisableWithHttpInfo(String name, { String? jenkinsCrumb, }) async {
+  Future<Response> postJobDisableWithHttpInfo(String name, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/disable'
       .replaceAll('{name}', name);
@@ -980,6 +996,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -992,8 +1009,8 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobDisable(String name, { String? jenkinsCrumb, }) async {
-    final response = await postJobDisableWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
+  Future<void> postJobDisable(String name, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
+    final response = await postJobDisableWithHttpInfo(name, jenkinsCrumb: jenkinsCrumb, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1010,7 +1027,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobEnableWithHttpInfo(String name, { String? jenkinsCrumb, }) async {
+  Future<Response> postJobEnableWithHttpInfo(String name, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/enable'
       .replaceAll('{name}', name);
@@ -1037,6 +1054,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1049,8 +1067,8 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobEnable(String name, { String? jenkinsCrumb, }) async {
-    final response = await postJobEnableWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
+  Future<void> postJobEnable(String name, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
+    final response = await postJobEnableWithHttpInfo(name, jenkinsCrumb: jenkinsCrumb, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1067,7 +1085,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postJobLastBuildStopWithHttpInfo(String name, { String? jenkinsCrumb, }) async {
+  Future<Response> postJobLastBuildStopWithHttpInfo(String name, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/job/{name}/lastBuild/stop'
       .replaceAll('{name}', name);
@@ -1094,6 +1112,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1106,8 +1125,8 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postJobLastBuildStop(String name, { String? jenkinsCrumb, }) async {
-    final response = await postJobLastBuildStopWithHttpInfo(name,  jenkinsCrumb: jenkinsCrumb, );
+  Future<void> postJobLastBuildStop(String name, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
+    final response = await postJobLastBuildStopWithHttpInfo(name, jenkinsCrumb: jenkinsCrumb, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1127,7 +1146,7 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<Response> postViewConfigWithHttpInfo(String name, String body, { String? jenkinsCrumb, }) async {
+  Future<Response> postViewConfigWithHttpInfo(String name, String body, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/view/{name}/config.xml'
       .replaceAll('{name}', name);
@@ -1154,6 +1173,7 @@ class RemoteAccessApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1169,8 +1189,8 @@ class RemoteAccessApi {
   ///
   /// * [String] jenkinsCrumb:
   ///   CSRF protection token
-  Future<void> postViewConfig(String name, String body, { String? jenkinsCrumb, }) async {
-    final response = await postViewConfigWithHttpInfo(name, body,  jenkinsCrumb: jenkinsCrumb, );
+  Future<void> postViewConfig(String name, String body, { String? jenkinsCrumb, Future<void>? abortTrigger, }) async {
+    final response = await postViewConfigWithHttpInfo(name, body, jenkinsCrumb: jenkinsCrumb, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

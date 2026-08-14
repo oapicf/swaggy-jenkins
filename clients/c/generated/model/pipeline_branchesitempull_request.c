@@ -17,14 +17,14 @@ static pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_cr
     if (!pipeline_branchesitempull_request_local_var) {
         return NULL;
     }
+    memset(pipeline_branchesitempull_request_local_var, 0, sizeof(pipeline_branchesitempull_request_t));
+    pipeline_branchesitempull_request_local_var->_library_owned = 1;
     pipeline_branchesitempull_request_local_var->_links = _links;
     pipeline_branchesitempull_request_local_var->author = author;
     pipeline_branchesitempull_request_local_var->id = id;
     pipeline_branchesitempull_request_local_var->title = title;
     pipeline_branchesitempull_request_local_var->url = url;
     pipeline_branchesitempull_request_local_var->_class = _class;
-
-    pipeline_branchesitempull_request_local_var->_library_owned = 1;
     return pipeline_branchesitempull_request_local_var;
 }
 
@@ -36,7 +36,7 @@ __attribute__((deprecated)) pipeline_branchesitempull_request_t *pipeline_branch
     char *url,
     char *_class
     ) {
-    return pipeline_branchesitempull_request_create_internal (
+    pipeline_branchesitempull_request_t *result = pipeline_branchesitempull_request_create_internal (
         _links,
         author,
         id,
@@ -44,6 +44,9 @@ __attribute__((deprecated)) pipeline_branchesitempull_request_t *pipeline_branch
         url,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void pipeline_branchesitempull_request_free(pipeline_branchesitempull_request_t *pipeline_branchesitempull_request) {
@@ -152,6 +155,16 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
     // define the local variable for pipeline_branchesitempull_request->_links
     pipeline_branchesitempull_requestlinks_t *_links_local_nonprim = NULL;
 
+    char *author_local_str = NULL;
+
+    char *id_local_str = NULL;
+
+    char *title_local_str = NULL;
+
+    char *url_local_str = NULL;
+
+    char *_class_local_str = NULL;
+
     // pipeline_branchesitempull_request->_links
     cJSON *_links = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestJSON, "_links");
     if (cJSON_IsNull(_links)) {
@@ -222,20 +235,50 @@ pipeline_branchesitempull_request_t *pipeline_branchesitempull_request_parseFrom
     }
 
 
+    if (author && !cJSON_IsNull(author)) author_local_str = strdup(author->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (title && !cJSON_IsNull(title)) title_local_str = strdup(title->valuestring);
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     pipeline_branchesitempull_request_local_var = pipeline_branchesitempull_request_create_internal (
         _links ? _links_local_nonprim : NULL,
-        author && !cJSON_IsNull(author) ? strdup(author->valuestring) : NULL,
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        title && !cJSON_IsNull(title) ? strdup(title->valuestring) : NULL,
-        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        author_local_str,
+        id_local_str,
+        title_local_str,
+        url_local_str,
+        _class_local_str
         );
+
+    if (!pipeline_branchesitempull_request_local_var) {
+        goto end;
+    }
 
     return pipeline_branchesitempull_request_local_var;
 end:
     if (_links_local_nonprim) {
         pipeline_branchesitempull_requestlinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;
+    }
+    if (author_local_str) {
+        free(author_local_str);
+        author_local_str = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (title_local_str) {
+        free(title_local_str);
+        title_local_str = NULL;
+    }
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

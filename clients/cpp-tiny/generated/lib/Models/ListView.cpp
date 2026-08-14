@@ -165,7 +165,7 @@ ListView::getClass()
 }
 
 void
-ListView::setClass(std::string  _class)
+ListView::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -177,7 +177,7 @@ ListView::getDescription()
 }
 
 void
-ListView::setDescription(std::string  description)
+ListView::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -189,7 +189,7 @@ ListView::getJobs()
 }
 
 void
-ListView::setJobs(std::list <FreeStyleProject> jobs)
+ListView::setJobs(std::list<FreeStyleProject> jobs)
 {
 	this->jobs = jobs;
 }
@@ -201,7 +201,7 @@ ListView::getName()
 }
 
 void
-ListView::setName(std::string  name)
+ListView::setName(std::string name)
 {
 	this->name = name;
 }
@@ -213,7 +213,7 @@ ListView::getUrl()
 }
 
 void
-ListView::setUrl(std::string  url)
+ListView::setUrl(std::string url)
 {
 	this->url = url;
 }

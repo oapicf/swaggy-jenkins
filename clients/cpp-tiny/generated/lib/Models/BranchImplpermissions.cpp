@@ -148,7 +148,7 @@ BranchImplpermissions::isCreate()
 }
 
 void
-BranchImplpermissions::setCreate(bool  create)
+BranchImplpermissions::setCreate(bool create)
 {
 	this->create = create;
 }
@@ -160,7 +160,7 @@ BranchImplpermissions::isRead()
 }
 
 void
-BranchImplpermissions::setRead(bool  read)
+BranchImplpermissions::setRead(bool read)
 {
 	this->read = read;
 }
@@ -172,7 +172,7 @@ BranchImplpermissions::isStart()
 }
 
 void
-BranchImplpermissions::setStart(bool  start)
+BranchImplpermissions::setStart(bool start)
 {
 	this->start = start;
 }
@@ -184,7 +184,7 @@ BranchImplpermissions::isStop()
 }
 
 void
-BranchImplpermissions::setStop(bool  stop)
+BranchImplpermissions::setStop(bool stop)
 {
 	this->stop = stop;
 }
@@ -196,7 +196,7 @@ BranchImplpermissions::getClass()
 }
 
 void
-BranchImplpermissions::setClass(std::string  _class)
+BranchImplpermissions::setClass(std::string _class)
 {
 	this->_class = _class;
 }

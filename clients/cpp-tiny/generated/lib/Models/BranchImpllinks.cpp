@@ -152,7 +152,7 @@ BranchImpllinks::getSelf()
 }
 
 void
-BranchImpllinks::setSelf(Link  self)
+BranchImpllinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -164,7 +164,7 @@ BranchImpllinks::getActions()
 }
 
 void
-BranchImpllinks::setActions(Link  actions)
+BranchImpllinks::setActions(Link actions)
 {
 	this->actions = actions;
 }
@@ -176,7 +176,7 @@ BranchImpllinks::getRuns()
 }
 
 void
-BranchImpllinks::setRuns(Link  runs)
+BranchImpllinks::setRuns(Link runs)
 {
 	this->runs = runs;
 }
@@ -188,7 +188,7 @@ BranchImpllinks::getQueue()
 }
 
 void
-BranchImpllinks::setQueue(Link  queue)
+BranchImpllinks::setQueue(Link queue)
 {
 	this->queue = queue;
 }
@@ -200,7 +200,7 @@ BranchImpllinks::getClass()
 }
 
 void
-BranchImpllinks::setClass(std::string  _class)
+BranchImpllinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

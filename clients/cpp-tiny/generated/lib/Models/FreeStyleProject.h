@@ -56,189 +56,189 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	std::string getUrl();
 
 	/*! \brief Set 
 	 */
-	void setUrl(std::string  url);
+	void setUrl(std::string url);
 	/*! \brief Get 
 	 */
 	std::string getColor();
 
 	/*! \brief Set 
 	 */
-	void setColor(std::string  color);
+	void setColor(std::string color);
 	/*! \brief Get 
 	 */
 	std::list<FreeStyleProjectactions> getActions();
 
 	/*! \brief Set 
 	 */
-	void setActions(std::list <FreeStyleProjectactions> actions);
+	void setActions(std::list<FreeStyleProjectactions> actions);
 	/*! \brief Get 
 	 */
 	std::string getDescription();
 
 	/*! \brief Set 
 	 */
-	void setDescription(std::string  description);
+	void setDescription(std::string description);
 	/*! \brief Get 
 	 */
 	std::string getDisplayName();
 
 	/*! \brief Set 
 	 */
-	void setDisplayName(std::string  displayName);
+	void setDisplayName(std::string displayName);
 	/*! \brief Get 
 	 */
 	std::string getDisplayNameOrNull();
 
 	/*! \brief Set 
 	 */
-	void setDisplayNameOrNull(std::string  displayNameOrNull);
+	void setDisplayNameOrNull(std::string displayNameOrNull);
 	/*! \brief Get 
 	 */
 	std::string getFullDisplayName();
 
 	/*! \brief Set 
 	 */
-	void setFullDisplayName(std::string  fullDisplayName);
+	void setFullDisplayName(std::string fullDisplayName);
 	/*! \brief Get 
 	 */
 	std::string getFullName();
 
 	/*! \brief Set 
 	 */
-	void setFullName(std::string  fullName);
+	void setFullName(std::string fullName);
 	/*! \brief Get 
 	 */
 	bool isBuildable();
 
 	/*! \brief Set 
 	 */
-	void setBuildable(bool  buildable);
+	void setBuildable(bool buildable);
 	/*! \brief Get 
 	 */
 	std::list<FreeStyleBuild> getBuilds();
 
 	/*! \brief Set 
 	 */
-	void setBuilds(std::list <FreeStyleBuild> builds);
+	void setBuilds(std::list<FreeStyleBuild> builds);
 	/*! \brief Get 
 	 */
 	FreeStyleBuild getFirstBuild();
 
 	/*! \brief Set 
 	 */
-	void setFirstBuild(FreeStyleBuild  firstBuild);
+	void setFirstBuild(FreeStyleBuild firstBuild);
 	/*! \brief Get 
 	 */
 	std::list<FreeStyleProjecthealthReport> getHealthReport();
 
 	/*! \brief Set 
 	 */
-	void setHealthReport(std::list <FreeStyleProjecthealthReport> healthReport);
+	void setHealthReport(std::list<FreeStyleProjecthealthReport> healthReport);
 	/*! \brief Get 
 	 */
 	bool isInQueue();
 
 	/*! \brief Set 
 	 */
-	void setInQueue(bool  inQueue);
+	void setInQueue(bool inQueue);
 	/*! \brief Get 
 	 */
 	bool isKeepDependencies();
 
 	/*! \brief Set 
 	 */
-	void setKeepDependencies(bool  keepDependencies);
+	void setKeepDependencies(bool keepDependencies);
 	/*! \brief Get 
 	 */
 	FreeStyleBuild getLastBuild();
 
 	/*! \brief Set 
 	 */
-	void setLastBuild(FreeStyleBuild  lastBuild);
+	void setLastBuild(FreeStyleBuild lastBuild);
 	/*! \brief Get 
 	 */
 	FreeStyleBuild getLastCompletedBuild();
 
 	/*! \brief Set 
 	 */
-	void setLastCompletedBuild(FreeStyleBuild  lastCompletedBuild);
+	void setLastCompletedBuild(FreeStyleBuild lastCompletedBuild);
 	/*! \brief Get 
 	 */
 	std::string getLastFailedBuild();
 
 	/*! \brief Set 
 	 */
-	void setLastFailedBuild(std::string  lastFailedBuild);
+	void setLastFailedBuild(std::string lastFailedBuild);
 	/*! \brief Get 
 	 */
 	FreeStyleBuild getLastStableBuild();
 
 	/*! \brief Set 
 	 */
-	void setLastStableBuild(FreeStyleBuild  lastStableBuild);
+	void setLastStableBuild(FreeStyleBuild lastStableBuild);
 	/*! \brief Get 
 	 */
 	FreeStyleBuild getLastSuccessfulBuild();
 
 	/*! \brief Set 
 	 */
-	void setLastSuccessfulBuild(FreeStyleBuild  lastSuccessfulBuild);
+	void setLastSuccessfulBuild(FreeStyleBuild lastSuccessfulBuild);
 	/*! \brief Get 
 	 */
 	std::string getLastUnstableBuild();
 
 	/*! \brief Set 
 	 */
-	void setLastUnstableBuild(std::string  lastUnstableBuild);
+	void setLastUnstableBuild(std::string lastUnstableBuild);
 	/*! \brief Get 
 	 */
 	std::string getLastUnsuccessfulBuild();
 
 	/*! \brief Set 
 	 */
-	void setLastUnsuccessfulBuild(std::string  lastUnsuccessfulBuild);
+	void setLastUnsuccessfulBuild(std::string lastUnsuccessfulBuild);
 	/*! \brief Get 
 	 */
 	int getNextBuildNumber();
 
 	/*! \brief Set 
 	 */
-	void setNextBuildNumber(int  nextBuildNumber);
+	void setNextBuildNumber(int nextBuildNumber);
 	/*! \brief Get 
 	 */
 	std::string getQueueItem();
 
 	/*! \brief Set 
 	 */
-	void setQueueItem(std::string  queueItem);
+	void setQueueItem(std::string queueItem);
 	/*! \brief Get 
 	 */
 	bool isConcurrentBuild();
 
 	/*! \brief Set 
 	 */
-	void setConcurrentBuild(bool  concurrentBuild);
+	void setConcurrentBuild(bool concurrentBuild);
 	/*! \brief Get 
 	 */
 	NullSCM getScm();
 
 	/*! \brief Set 
 	 */
-	void setScm(NullSCM  scm);
+	void setScm(NullSCM scm);
 
 
     private:

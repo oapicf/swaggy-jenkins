@@ -53,21 +53,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	ExtensionClassContainerImpl1links getLinks();
 
 	/*! \brief Set 
 	 */
-	void setLinks(ExtensionClassContainerImpl1links  _links);
+	void setLinks(ExtensionClassContainerImpl1links _links);
 	/*! \brief Get 
 	 */
 	ExtensionClassContainerImpl1map getMap();
 
 	/*! \brief Set 
 	 */
-	void setMap(ExtensionClassContainerImpl1map  map);
+	void setMap(ExtensionClassContainerImpl1map map);
 
 
     private:

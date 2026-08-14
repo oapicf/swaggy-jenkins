@@ -52,35 +52,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setSelf(Link  self);
+	void setSelf(Link self);
 	/*! \brief Get 
 	 */
 	Link getActions();
 
 	/*! \brief Set 
 	 */
-	void setActions(Link  actions);
+	void setActions(Link actions);
 	/*! \brief Get 
 	 */
 	Link getRuns();
 
 	/*! \brief Set 
 	 */
-	void setRuns(Link  runs);
+	void setRuns(Link runs);
 	/*! \brief Get 
 	 */
 	Link getQueue();
 
 	/*! \brief Set 
 	 */
-	void setQueue(Link  queue);
+	void setQueue(Link queue);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

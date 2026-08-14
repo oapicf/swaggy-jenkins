@@ -86,7 +86,7 @@ GithubFile::getContent()
 }
 
 void
-GithubFile::setContent(GithubContent  content)
+GithubFile::setContent(GithubContent content)
 {
 	this->content = content;
 }
@@ -98,7 +98,7 @@ GithubFile::getClass()
 }
 
 void
-GithubFile::setClass(std::string  _class)
+GithubFile::setClass(std::string _class)
 {
 	this->_class = _class;
 }

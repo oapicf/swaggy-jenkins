@@ -102,7 +102,7 @@ CauseAction::getClass()
 }
 
 void
-CauseAction::setClass(std::string  _class)
+CauseAction::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -114,7 +114,7 @@ CauseAction::getCauses()
 }
 
 void
-CauseAction::setCauses(std::list <CauseUserIdCause> causes)
+CauseAction::setCauses(std::list<CauseUserIdCause> causes)
 {
 	this->causes = causes;
 }

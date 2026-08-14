@@ -1,0 +1,141 @@
+## RemoteAccessApi
+
+### 
+## 
+GET http://localhost/computer/api/json?depth={{depth}}
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/api/json
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/job/{{name}}/api/json
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/job/{{name}}/config.xml
+Accept: text/xml
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/job/{{name}}/lastBuild/api/json
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/job/{{name}}/{{number}}/logText/progressiveText?start={{start}}
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/queue/api/json
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/queue/item/{{number}}/api/json
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/view/{{name}}/api/json
+Accept: application/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+GET http://localhost/view/{{name}}/config.xml
+Accept: text/xml
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+HEAD http://localhost/api/json
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+POST http://localhost/createItem?name={{name}}&from={{from}}&mode={{mode}}
+Content-Type: application/json
+Accept: */*
+Jenkins-Crumb: {{jenkinsCrumb}}
+Content-Type: {{contentType}}
+Authorization: Basic: {{username-password}}
+
+
+
+
+### 
+## 
+POST http://localhost/createView?name={{name}}
+Content-Type: application/json
+Accept: */*
+Jenkins-Crumb: {{jenkinsCrumb}}
+Content-Type: {{contentType}}
+Authorization: Basic: {{username-password}}
+
+
+
+
+### 
+## 
+POST http://localhost/job/{{name}}/build?json={{json}}&token={{token}}
+Jenkins-Crumb: {{jenkinsCrumb}}
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+POST http://localhost/job/{{name}}/config.xml
+Content-Type: application/json
+Accept: */*
+Jenkins-Crumb: {{jenkinsCrumb}}
+Authorization: Basic: {{username-password}}
+
+
+
+
+### 
+## 
+POST http://localhost/job/{{name}}/doDelete
+Jenkins-Crumb: {{jenkinsCrumb}}
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+POST http://localhost/job/{{name}}/disable
+Jenkins-Crumb: {{jenkinsCrumb}}
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+POST http://localhost/job/{{name}}/enable
+Jenkins-Crumb: {{jenkinsCrumb}}
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+POST http://localhost/job/{{name}}/lastBuild/stop
+Jenkins-Crumb: {{jenkinsCrumb}}
+Authorization: Basic: {{username-password}}
+
+### 
+## 
+POST http://localhost/view/{{name}}/config.xml
+Content-Type: application/json
+Accept: */*
+Jenkins-Crumb: {{jenkinsCrumb}}
+Authorization: Basic: {{username-password}}
+
+
+

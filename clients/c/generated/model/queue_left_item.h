@@ -24,16 +24,16 @@ typedef struct queue_left_item_t queue_left_item_t;
 typedef struct queue_left_item_t {
     char *_class; // string
     list_t *actions; //nonprimitive container
-    int blocked; //boolean
-    int buildable; //boolean
-    int id; //numeric
-    int in_queue_since; //numeric
+    int *blocked; //boolean
+    int *buildable; //boolean
+    int *id; //numeric
+    int *in_queue_since; //numeric
     char *params; // string
-    int stuck; //boolean
+    int *stuck; //boolean
     struct free_style_project_t *task; //model
     char *url; // string
     char *why; // string
-    int cancelled; //boolean
+    int *cancelled; //boolean
     struct free_style_build_t *executable; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -42,16 +42,16 @@ typedef struct queue_left_item_t {
 __attribute__((deprecated)) queue_left_item_t *queue_left_item_create(
     char *_class,
     list_t *actions,
-    int blocked,
-    int buildable,
-    int id,
-    int in_queue_since,
+    int *blocked,
+    int *buildable,
+    int *id,
+    int *in_queue_since,
     char *params,
-    int stuck,
+    int *stuck,
     free_style_project_t *task,
     char *url,
     char *why,
-    int cancelled,
+    int *cancelled,
     free_style_build_t *executable
 );
 

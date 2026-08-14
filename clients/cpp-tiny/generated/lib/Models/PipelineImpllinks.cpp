@@ -152,7 +152,7 @@ PipelineImpllinks::getSelf()
 }
 
 void
-PipelineImpllinks::setSelf(Link  self)
+PipelineImpllinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -164,7 +164,7 @@ PipelineImpllinks::getActions()
 }
 
 void
-PipelineImpllinks::setActions(Link  actions)
+PipelineImpllinks::setActions(Link actions)
 {
 	this->actions = actions;
 }
@@ -176,7 +176,7 @@ PipelineImpllinks::getRuns()
 }
 
 void
-PipelineImpllinks::setRuns(Link  runs)
+PipelineImpllinks::setRuns(Link runs)
 {
 	this->runs = runs;
 }
@@ -188,7 +188,7 @@ PipelineImpllinks::getQueue()
 }
 
 void
-PipelineImpllinks::setQueue(Link  queue)
+PipelineImpllinks::setQueue(Link queue)
 {
 	this->queue = queue;
 }
@@ -200,7 +200,7 @@ PipelineImpllinks::getClass()
 }
 
 void
-PipelineImpllinks::setClass(std::string  _class)
+PipelineImpllinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

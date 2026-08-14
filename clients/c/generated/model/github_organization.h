@@ -22,7 +22,7 @@ typedef struct github_organization_t github_organization_t;
 typedef struct github_organization_t {
     char *_class; // string
     struct github_organizationlinks_t *_links; //model
-    int jenkins_organization_pipeline; //boolean
+    int *jenkins_organization_pipeline; //boolean
     char *name; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -31,7 +31,7 @@ typedef struct github_organization_t {
 __attribute__((deprecated)) github_organization_t *github_organization_create(
     char *_class,
     github_organizationlinks_t *_links,
-    int jenkins_organization_pipeline,
+    int *jenkins_organization_pipeline,
     char *name
 );
 

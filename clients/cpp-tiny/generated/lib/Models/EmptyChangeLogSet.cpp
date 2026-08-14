@@ -85,7 +85,7 @@ EmptyChangeLogSet::getClass()
 }
 
 void
-EmptyChangeLogSet::setClass(std::string  _class)
+EmptyChangeLogSet::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -97,7 +97,7 @@ EmptyChangeLogSet::getKind()
 }
 
 void
-EmptyChangeLogSet::setKind(std::string  kind)
+EmptyChangeLogSet::setKind(std::string kind)
 {
 	this->kind = kind;
 }

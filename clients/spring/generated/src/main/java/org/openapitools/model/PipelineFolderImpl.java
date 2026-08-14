@@ -2,38 +2,46 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * PipelineFolderImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineFolderImpl {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String fullName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String organization;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numberOfFolders;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numberOfPipelines;
 
   public PipelineFolderImpl propertyClass(@Nullable String propertyClass) {
@@ -52,6 +60,7 @@ public class PipelineFolderImpl {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -72,6 +81,7 @@ public class PipelineFolderImpl {
     return displayName;
   }
 
+  @JsonProperty("displayName")
   public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
@@ -92,6 +102,7 @@ public class PipelineFolderImpl {
     return fullName;
   }
 
+  @JsonProperty("fullName")
   public void setFullName(@Nullable String fullName) {
     this.fullName = fullName;
   }
@@ -112,6 +123,7 @@ public class PipelineFolderImpl {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable String name) {
     this.name = name;
   }
@@ -132,6 +144,7 @@ public class PipelineFolderImpl {
     return organization;
   }
 
+  @JsonProperty("organization")
   public void setOrganization(@Nullable String organization) {
     this.organization = organization;
   }
@@ -152,6 +165,7 @@ public class PipelineFolderImpl {
     return numberOfFolders;
   }
 
+  @JsonProperty("numberOfFolders")
   public void setNumberOfFolders(@Nullable Integer numberOfFolders) {
     this.numberOfFolders = numberOfFolders;
   }
@@ -172,6 +186,7 @@ public class PipelineFolderImpl {
     return numberOfPipelines;
   }
 
+  @JsonProperty("numberOfPipelines")
   public void setNumberOfPipelines(@Nullable Integer numberOfPipelines) {
     this.numberOfPipelines = numberOfPipelines;
   }
@@ -218,11 +233,8 @@ public class PipelineFolderImpl {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

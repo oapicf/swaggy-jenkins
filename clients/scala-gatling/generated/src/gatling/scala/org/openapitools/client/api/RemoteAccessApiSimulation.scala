@@ -247,9 +247,9 @@ class RemoteAccessApiSimulation extends Simulation {
         .feed(postCreateItemHEADERFeeder)
         .exec(http("postCreateItem")
         .httpRequest("POST","/createItem")
-        .queryParam("from","${from}")
-        .queryParam("name","${name}")
         .queryParam("mode","${mode}")
+        .queryParam("name","${name}")
+        .queryParam("from","${from}")
         .header("Content-Type","${Content-Type}")
 )
 
@@ -282,8 +282,8 @@ class RemoteAccessApiSimulation extends Simulation {
         .feed(postJobBuildQUERYFeeder)
         .exec(http("postJobBuild")
         .httpRequest("POST","/job/${name}/build")
-        .queryParam("token","${token}")
         .queryParam("json","${json}")
+        .queryParam("token","${token}")
 )
 
     // Run scnpostJobBuild with warm up and reach a constant rate for entire duration

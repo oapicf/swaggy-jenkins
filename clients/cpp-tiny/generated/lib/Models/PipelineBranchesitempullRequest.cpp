@@ -170,7 +170,7 @@ PipelineBranchesitempullRequest::getLinks()
 }
 
 void
-PipelineBranchesitempullRequest::setLinks(PipelineBranchesitempullRequestlinks  _links)
+PipelineBranchesitempullRequest::setLinks(PipelineBranchesitempullRequestlinks _links)
 {
 	this->_links = _links;
 }
@@ -182,7 +182,7 @@ PipelineBranchesitempullRequest::getAuthor()
 }
 
 void
-PipelineBranchesitempullRequest::setAuthor(std::string  author)
+PipelineBranchesitempullRequest::setAuthor(std::string author)
 {
 	this->author = author;
 }
@@ -194,7 +194,7 @@ PipelineBranchesitempullRequest::getId()
 }
 
 void
-PipelineBranchesitempullRequest::setId(std::string  id)
+PipelineBranchesitempullRequest::setId(std::string id)
 {
 	this->id = id;
 }
@@ -206,7 +206,7 @@ PipelineBranchesitempullRequest::getTitle()
 }
 
 void
-PipelineBranchesitempullRequest::setTitle(std::string  title)
+PipelineBranchesitempullRequest::setTitle(std::string title)
 {
 	this->title = title;
 }
@@ -218,7 +218,7 @@ PipelineBranchesitempullRequest::getUrl()
 }
 
 void
-PipelineBranchesitempullRequest::setUrl(std::string  url)
+PipelineBranchesitempullRequest::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -230,7 +230,7 @@ PipelineBranchesitempullRequest::getClass()
 }
 
 void
-PipelineBranchesitempullRequest::setClass(std::string  _class)
+PipelineBranchesitempullRequest::setClass(std::string _class)
 {
 	this->_class = _class;
 }

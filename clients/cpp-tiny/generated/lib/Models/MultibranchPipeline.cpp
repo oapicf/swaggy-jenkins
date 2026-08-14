@@ -355,7 +355,7 @@ MultibranchPipeline::getDisplayName()
 }
 
 void
-MultibranchPipeline::setDisplayName(std::string  displayName)
+MultibranchPipeline::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -367,7 +367,7 @@ MultibranchPipeline::getEstimatedDurationInMillis()
 }
 
 void
-MultibranchPipeline::setEstimatedDurationInMillis(int  estimatedDurationInMillis)
+MultibranchPipeline::setEstimatedDurationInMillis(int estimatedDurationInMillis)
 {
 	this->estimatedDurationInMillis = estimatedDurationInMillis;
 }
@@ -379,7 +379,7 @@ MultibranchPipeline::getLatestRun()
 }
 
 void
-MultibranchPipeline::setLatestRun(std::string  latestRun)
+MultibranchPipeline::setLatestRun(std::string latestRun)
 {
 	this->latestRun = latestRun;
 }
@@ -391,7 +391,7 @@ MultibranchPipeline::getName()
 }
 
 void
-MultibranchPipeline::setName(std::string  name)
+MultibranchPipeline::setName(std::string name)
 {
 	this->name = name;
 }
@@ -403,7 +403,7 @@ MultibranchPipeline::getOrganization()
 }
 
 void
-MultibranchPipeline::setOrganization(std::string  organization)
+MultibranchPipeline::setOrganization(std::string organization)
 {
 	this->organization = organization;
 }
@@ -415,7 +415,7 @@ MultibranchPipeline::getWeatherScore()
 }
 
 void
-MultibranchPipeline::setWeatherScore(int  weatherScore)
+MultibranchPipeline::setWeatherScore(int weatherScore)
 {
 	this->weatherScore = weatherScore;
 }
@@ -427,7 +427,7 @@ MultibranchPipeline::getBranchNames()
 }
 
 void
-MultibranchPipeline::setBranchNames(std::list <std::string> branchNames)
+MultibranchPipeline::setBranchNames(std::list<std::string> branchNames)
 {
 	this->branchNames = branchNames;
 }
@@ -439,7 +439,7 @@ MultibranchPipeline::getNumberOfFailingBranches()
 }
 
 void
-MultibranchPipeline::setNumberOfFailingBranches(int  numberOfFailingBranches)
+MultibranchPipeline::setNumberOfFailingBranches(int numberOfFailingBranches)
 {
 	this->numberOfFailingBranches = numberOfFailingBranches;
 }
@@ -451,7 +451,7 @@ MultibranchPipeline::getNumberOfFailingPullRequests()
 }
 
 void
-MultibranchPipeline::setNumberOfFailingPullRequests(int  numberOfFailingPullRequests)
+MultibranchPipeline::setNumberOfFailingPullRequests(int numberOfFailingPullRequests)
 {
 	this->numberOfFailingPullRequests = numberOfFailingPullRequests;
 }
@@ -463,7 +463,7 @@ MultibranchPipeline::getNumberOfSuccessfulBranches()
 }
 
 void
-MultibranchPipeline::setNumberOfSuccessfulBranches(int  numberOfSuccessfulBranches)
+MultibranchPipeline::setNumberOfSuccessfulBranches(int numberOfSuccessfulBranches)
 {
 	this->numberOfSuccessfulBranches = numberOfSuccessfulBranches;
 }
@@ -475,7 +475,7 @@ MultibranchPipeline::getNumberOfSuccessfulPullRequests()
 }
 
 void
-MultibranchPipeline::setNumberOfSuccessfulPullRequests(int  numberOfSuccessfulPullRequests)
+MultibranchPipeline::setNumberOfSuccessfulPullRequests(int numberOfSuccessfulPullRequests)
 {
 	this->numberOfSuccessfulPullRequests = numberOfSuccessfulPullRequests;
 }
@@ -487,7 +487,7 @@ MultibranchPipeline::getTotalNumberOfBranches()
 }
 
 void
-MultibranchPipeline::setTotalNumberOfBranches(int  totalNumberOfBranches)
+MultibranchPipeline::setTotalNumberOfBranches(int totalNumberOfBranches)
 {
 	this->totalNumberOfBranches = totalNumberOfBranches;
 }
@@ -499,7 +499,7 @@ MultibranchPipeline::getTotalNumberOfPullRequests()
 }
 
 void
-MultibranchPipeline::setTotalNumberOfPullRequests(int  totalNumberOfPullRequests)
+MultibranchPipeline::setTotalNumberOfPullRequests(int totalNumberOfPullRequests)
 {
 	this->totalNumberOfPullRequests = totalNumberOfPullRequests;
 }
@@ -511,7 +511,7 @@ MultibranchPipeline::getClass()
 }
 
 void
-MultibranchPipeline::setClass(std::string  _class)
+MultibranchPipeline::setClass(std::string _class)
 {
 	this->_class = _class;
 }

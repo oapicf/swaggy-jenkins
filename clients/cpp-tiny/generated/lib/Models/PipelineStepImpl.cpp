@@ -234,7 +234,7 @@ PipelineStepImpl::getClass()
 }
 
 void
-PipelineStepImpl::setClass(std::string  _class)
+PipelineStepImpl::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -246,7 +246,7 @@ PipelineStepImpl::getLinks()
 }
 
 void
-PipelineStepImpl::setLinks(PipelineStepImpllinks  _links)
+PipelineStepImpl::setLinks(PipelineStepImpllinks _links)
 {
 	this->_links = _links;
 }
@@ -258,7 +258,7 @@ PipelineStepImpl::getDisplayName()
 }
 
 void
-PipelineStepImpl::setDisplayName(std::string  displayName)
+PipelineStepImpl::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -270,7 +270,7 @@ PipelineStepImpl::getDurationInMillis()
 }
 
 void
-PipelineStepImpl::setDurationInMillis(int  durationInMillis)
+PipelineStepImpl::setDurationInMillis(int durationInMillis)
 {
 	this->durationInMillis = durationInMillis;
 }
@@ -282,7 +282,7 @@ PipelineStepImpl::getId()
 }
 
 void
-PipelineStepImpl::setId(std::string  id)
+PipelineStepImpl::setId(std::string id)
 {
 	this->id = id;
 }
@@ -294,7 +294,7 @@ PipelineStepImpl::getInput()
 }
 
 void
-PipelineStepImpl::setInput(InputStepImpl  input)
+PipelineStepImpl::setInput(InputStepImpl input)
 {
 	this->input = input;
 }
@@ -306,7 +306,7 @@ PipelineStepImpl::getResult()
 }
 
 void
-PipelineStepImpl::setResult(std::string  result)
+PipelineStepImpl::setResult(std::string result)
 {
 	this->result = result;
 }
@@ -318,7 +318,7 @@ PipelineStepImpl::getStartTime()
 }
 
 void
-PipelineStepImpl::setStartTime(std::string  startTime)
+PipelineStepImpl::setStartTime(std::string startTime)
 {
 	this->startTime = startTime;
 }
@@ -330,7 +330,7 @@ PipelineStepImpl::getState()
 }
 
 void
-PipelineStepImpl::setState(std::string  state)
+PipelineStepImpl::setState(std::string state)
 {
 	this->state = state;
 }

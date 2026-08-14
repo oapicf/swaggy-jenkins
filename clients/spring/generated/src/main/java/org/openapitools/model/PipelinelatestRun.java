@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -11,50 +12,64 @@ import org.openapitools.model.PipelinelatestRunartifacts;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * PipelinelatestRun
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelinelatestRun {
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid PipelinelatestRunartifacts> artifacts = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer durationInMillis;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer estimatedDurationInMillis;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String enQueueTime;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String endTime;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String organization;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String pipeline;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String result;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String runSummary;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String startTime;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String state;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String type;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String commitId;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
   public PipelinelatestRun artifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
@@ -81,6 +96,7 @@ public class PipelinelatestRun {
     return artifacts;
   }
 
+  @JsonProperty("artifacts")
   public void setArtifacts(List<@Valid PipelinelatestRunartifacts> artifacts) {
     this.artifacts = artifacts;
   }
@@ -101,6 +117,7 @@ public class PipelinelatestRun {
     return durationInMillis;
   }
 
+  @JsonProperty("durationInMillis")
   public void setDurationInMillis(@Nullable Integer durationInMillis) {
     this.durationInMillis = durationInMillis;
   }
@@ -121,6 +138,7 @@ public class PipelinelatestRun {
     return estimatedDurationInMillis;
   }
 
+  @JsonProperty("estimatedDurationInMillis")
   public void setEstimatedDurationInMillis(@Nullable Integer estimatedDurationInMillis) {
     this.estimatedDurationInMillis = estimatedDurationInMillis;
   }
@@ -141,6 +159,7 @@ public class PipelinelatestRun {
     return enQueueTime;
   }
 
+  @JsonProperty("enQueueTime")
   public void setEnQueueTime(@Nullable String enQueueTime) {
     this.enQueueTime = enQueueTime;
   }
@@ -161,6 +180,7 @@ public class PipelinelatestRun {
     return endTime;
   }
 
+  @JsonProperty("endTime")
   public void setEndTime(@Nullable String endTime) {
     this.endTime = endTime;
   }
@@ -181,6 +201,7 @@ public class PipelinelatestRun {
     return id;
   }
 
+  @JsonProperty("id")
   public void setId(@Nullable String id) {
     this.id = id;
   }
@@ -201,6 +222,7 @@ public class PipelinelatestRun {
     return organization;
   }
 
+  @JsonProperty("organization")
   public void setOrganization(@Nullable String organization) {
     this.organization = organization;
   }
@@ -221,6 +243,7 @@ public class PipelinelatestRun {
     return pipeline;
   }
 
+  @JsonProperty("pipeline")
   public void setPipeline(@Nullable String pipeline) {
     this.pipeline = pipeline;
   }
@@ -241,6 +264,7 @@ public class PipelinelatestRun {
     return result;
   }
 
+  @JsonProperty("result")
   public void setResult(@Nullable String result) {
     this.result = result;
   }
@@ -261,6 +285,7 @@ public class PipelinelatestRun {
     return runSummary;
   }
 
+  @JsonProperty("runSummary")
   public void setRunSummary(@Nullable String runSummary) {
     this.runSummary = runSummary;
   }
@@ -281,6 +306,7 @@ public class PipelinelatestRun {
     return startTime;
   }
 
+  @JsonProperty("startTime")
   public void setStartTime(@Nullable String startTime) {
     this.startTime = startTime;
   }
@@ -301,6 +327,7 @@ public class PipelinelatestRun {
     return state;
   }
 
+  @JsonProperty("state")
   public void setState(@Nullable String state) {
     this.state = state;
   }
@@ -321,6 +348,7 @@ public class PipelinelatestRun {
     return type;
   }
 
+  @JsonProperty("type")
   public void setType(@Nullable String type) {
     this.type = type;
   }
@@ -341,6 +369,7 @@ public class PipelinelatestRun {
     return commitId;
   }
 
+  @JsonProperty("commitId")
   public void setCommitId(@Nullable String commitId) {
     this.commitId = commitId;
   }
@@ -361,6 +390,7 @@ public class PipelinelatestRun {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -423,11 +453,8 @@ public class PipelinelatestRun {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

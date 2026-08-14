@@ -9,14 +9,11 @@ To see how to make this your own, look here:
 
 [README]((https://openapi-generator.tech))
 
-- API version: 3.2.1-pre.0
-- Generator version: 7.18.0
+- API version: 3.3.1-pre.0
+- Generator version: 7.24.0
 For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)
 
 ## QHTTPEngine
-
-[![Build Status](https://travis-ci.org/nitroshare/qhttpengine.svg?branch=master)](https://travis-ci.org/nitroshare/qhttpengine)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
 
 Simple set of classes for developing HTTP server applications in Qt.
 

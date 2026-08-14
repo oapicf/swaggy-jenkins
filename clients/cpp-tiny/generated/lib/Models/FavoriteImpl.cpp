@@ -108,7 +108,7 @@ FavoriteImpl::getClass()
 }
 
 void
-FavoriteImpl::setClass(std::string  _class)
+FavoriteImpl::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -120,7 +120,7 @@ FavoriteImpl::getLinks()
 }
 
 void
-FavoriteImpl::setLinks(FavoriteImpllinks  _links)
+FavoriteImpl::setLinks(FavoriteImpllinks _links)
 {
 	this->_links = _links;
 }
@@ -132,7 +132,7 @@ FavoriteImpl::getItem()
 }
 
 void
-FavoriteImpl::setItem(PipelineImpl  item)
+FavoriteImpl::setItem(PipelineImpl item)
 {
 	this->item = item;
 }

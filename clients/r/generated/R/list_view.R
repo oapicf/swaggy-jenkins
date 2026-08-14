@@ -106,7 +106,7 @@ ListView <- R6::R6Class(
       }
       if (!is.null(self$`jobs`)) {
         ListViewObject[["jobs"]] <-
-          lapply(self$`jobs`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`jobs`)
       }
       if (!is.null(self$`name`)) {
         ListViewObject[["name"]] <-
@@ -117,6 +117,29 @@ ListView <- R6::R6Class(
           self$`url`
       }
       return(ListViewObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

@@ -128,7 +128,7 @@ GithubOrganization::getClass()
 }
 
 void
-GithubOrganization::setClass(std::string  _class)
+GithubOrganization::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -140,7 +140,7 @@ GithubOrganization::getLinks()
 }
 
 void
-GithubOrganization::setLinks(GithubOrganizationlinks  _links)
+GithubOrganization::setLinks(GithubOrganizationlinks _links)
 {
 	this->_links = _links;
 }
@@ -152,7 +152,7 @@ GithubOrganization::isJenkinsOrganizationPipeline()
 }
 
 void
-GithubOrganization::setJenkinsOrganizationPipeline(bool  jenkinsOrganizationPipeline)
+GithubOrganization::setJenkinsOrganizationPipeline(bool jenkinsOrganizationPipeline)
 {
 	this->jenkinsOrganizationPipeline = jenkinsOrganizationPipeline;
 }
@@ -164,7 +164,7 @@ GithubOrganization::getName()
 }
 
 void
-GithubOrganization::setName(std::string  name)
+GithubOrganization::setName(std::string name)
 {
 	this->name = name;
 }

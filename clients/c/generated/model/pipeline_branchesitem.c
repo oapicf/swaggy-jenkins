@@ -7,19 +7,21 @@
 
 static pipeline_branchesitem_t *pipeline_branchesitem_create_internal(
     char *display_name,
-    int estimated_duration_in_millis,
+    int *estimated_duration_in_millis,
     char *name,
-    int weather_score,
+    int *weather_score,
     pipeline_branchesitemlatest_run_t *latest_run,
     char *organization,
     pipeline_branchesitempull_request_t *pull_request,
-    int total_number_of_pull_requests,
+    int *total_number_of_pull_requests,
     char *_class
     ) {
     pipeline_branchesitem_t *pipeline_branchesitem_local_var = malloc(sizeof(pipeline_branchesitem_t));
     if (!pipeline_branchesitem_local_var) {
         return NULL;
     }
+    memset(pipeline_branchesitem_local_var, 0, sizeof(pipeline_branchesitem_t));
+    pipeline_branchesitem_local_var->_library_owned = 1;
     pipeline_branchesitem_local_var->display_name = display_name;
     pipeline_branchesitem_local_var->estimated_duration_in_millis = estimated_duration_in_millis;
     pipeline_branchesitem_local_var->name = name;
@@ -29,33 +31,52 @@ static pipeline_branchesitem_t *pipeline_branchesitem_create_internal(
     pipeline_branchesitem_local_var->pull_request = pull_request;
     pipeline_branchesitem_local_var->total_number_of_pull_requests = total_number_of_pull_requests;
     pipeline_branchesitem_local_var->_class = _class;
-
-    pipeline_branchesitem_local_var->_library_owned = 1;
     return pipeline_branchesitem_local_var;
 }
 
 __attribute__((deprecated)) pipeline_branchesitem_t *pipeline_branchesitem_create(
     char *display_name,
-    int estimated_duration_in_millis,
+    int *estimated_duration_in_millis,
     char *name,
-    int weather_score,
+    int *weather_score,
     pipeline_branchesitemlatest_run_t *latest_run,
     char *organization,
     pipeline_branchesitempull_request_t *pull_request,
-    int total_number_of_pull_requests,
+    int *total_number_of_pull_requests,
     char *_class
     ) {
-    return pipeline_branchesitem_create_internal (
+    int *estimated_duration_in_millis_copy = NULL;
+    if (estimated_duration_in_millis) {
+        estimated_duration_in_millis_copy = malloc(sizeof(int));
+        if (estimated_duration_in_millis_copy) *estimated_duration_in_millis_copy = *estimated_duration_in_millis;
+    }
+    int *weather_score_copy = NULL;
+    if (weather_score) {
+        weather_score_copy = malloc(sizeof(int));
+        if (weather_score_copy) *weather_score_copy = *weather_score;
+    }
+    int *total_number_of_pull_requests_copy = NULL;
+    if (total_number_of_pull_requests) {
+        total_number_of_pull_requests_copy = malloc(sizeof(int));
+        if (total_number_of_pull_requests_copy) *total_number_of_pull_requests_copy = *total_number_of_pull_requests;
+    }
+    pipeline_branchesitem_t *result = pipeline_branchesitem_create_internal (
         display_name,
-        estimated_duration_in_millis,
+        estimated_duration_in_millis_copy,
         name,
-        weather_score,
+        weather_score_copy,
         latest_run,
         organization,
         pull_request,
-        total_number_of_pull_requests,
+        total_number_of_pull_requests_copy,
         _class
         );
+    if (!result) {
+        free(estimated_duration_in_millis_copy);
+        free(weather_score_copy);
+        free(total_number_of_pull_requests_copy);
+    }
+    return result;
 }
 
 void pipeline_branchesitem_free(pipeline_branchesitem_t *pipeline_branchesitem) {
@@ -71,9 +92,17 @@ void pipeline_branchesitem_free(pipeline_branchesitem_t *pipeline_branchesitem) 
         free(pipeline_branchesitem->display_name);
         pipeline_branchesitem->display_name = NULL;
     }
+    if (pipeline_branchesitem->estimated_duration_in_millis) {
+        free(pipeline_branchesitem->estimated_duration_in_millis);
+        pipeline_branchesitem->estimated_duration_in_millis = NULL;
+    }
     if (pipeline_branchesitem->name) {
         free(pipeline_branchesitem->name);
         pipeline_branchesitem->name = NULL;
+    }
+    if (pipeline_branchesitem->weather_score) {
+        free(pipeline_branchesitem->weather_score);
+        pipeline_branchesitem->weather_score = NULL;
     }
     if (pipeline_branchesitem->latest_run) {
         pipeline_branchesitemlatest_run_free(pipeline_branchesitem->latest_run);
@@ -86,6 +115,10 @@ void pipeline_branchesitem_free(pipeline_branchesitem_t *pipeline_branchesitem) 
     if (pipeline_branchesitem->pull_request) {
         pipeline_branchesitempull_request_free(pipeline_branchesitem->pull_request);
         pipeline_branchesitem->pull_request = NULL;
+    }
+    if (pipeline_branchesitem->total_number_of_pull_requests) {
+        free(pipeline_branchesitem->total_number_of_pull_requests);
+        pipeline_branchesitem->total_number_of_pull_requests = NULL;
     }
     if (pipeline_branchesitem->_class) {
         free(pipeline_branchesitem->_class);
@@ -107,7 +140,7 @@ cJSON *pipeline_branchesitem_convertToJSON(pipeline_branchesitem_t *pipeline_bra
 
     // pipeline_branchesitem->estimated_duration_in_millis
     if(pipeline_branchesitem->estimated_duration_in_millis) {
-    if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", pipeline_branchesitem->estimated_duration_in_millis) == NULL) {
+    if(cJSON_AddNumberToObject(item, "estimatedDurationInMillis", *pipeline_branchesitem->estimated_duration_in_millis) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -123,7 +156,7 @@ cJSON *pipeline_branchesitem_convertToJSON(pipeline_branchesitem_t *pipeline_bra
 
     // pipeline_branchesitem->weather_score
     if(pipeline_branchesitem->weather_score) {
-    if(cJSON_AddNumberToObject(item, "weatherScore", pipeline_branchesitem->weather_score) == NULL) {
+    if(cJSON_AddNumberToObject(item, "weatherScore", *pipeline_branchesitem->weather_score) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -165,7 +198,7 @@ cJSON *pipeline_branchesitem_convertToJSON(pipeline_branchesitem_t *pipeline_bra
 
     // pipeline_branchesitem->total_number_of_pull_requests
     if(pipeline_branchesitem->total_number_of_pull_requests) {
-    if(cJSON_AddNumberToObject(item, "totalNumberOfPullRequests", pipeline_branchesitem->total_number_of_pull_requests) == NULL) {
+    if(cJSON_AddNumberToObject(item, "totalNumberOfPullRequests", *pipeline_branchesitem->total_number_of_pull_requests) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -190,11 +223,28 @@ pipeline_branchesitem_t *pipeline_branchesitem_parseFromJSON(cJSON *pipeline_bra
 
     pipeline_branchesitem_t *pipeline_branchesitem_local_var = NULL;
 
+    char *display_name_local_str = NULL;
+
+    // define the local variable for pipeline_branchesitem->estimated_duration_in_millis
+    int *estimated_duration_in_millis_local_var = NULL;
+
+    char *name_local_str = NULL;
+
+    // define the local variable for pipeline_branchesitem->weather_score
+    int *weather_score_local_var = NULL;
+
     // define the local variable for pipeline_branchesitem->latest_run
     pipeline_branchesitemlatest_run_t *latest_run_local_nonprim = NULL;
 
+    char *organization_local_str = NULL;
+
     // define the local variable for pipeline_branchesitem->pull_request
     pipeline_branchesitempull_request_t *pull_request_local_nonprim = NULL;
+
+    // define the local variable for pipeline_branchesitem->total_number_of_pull_requests
+    int *total_number_of_pull_requests_local_var = NULL;
+
+    char *_class_local_str = NULL;
 
     // pipeline_branchesitem->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitemJSON, "displayName");
@@ -218,6 +268,12 @@ pipeline_branchesitem_t *pipeline_branchesitem_parseFromJSON(cJSON *pipeline_bra
     {
     goto end; //Numeric
     }
+    estimated_duration_in_millis_local_var = malloc(sizeof(int));
+    if(!estimated_duration_in_millis_local_var)
+    {
+        goto end;
+    }
+    *estimated_duration_in_millis_local_var = estimated_duration_in_millis->valuedouble;
     }
 
     // pipeline_branchesitem->name
@@ -242,6 +298,12 @@ pipeline_branchesitem_t *pipeline_branchesitem_parseFromJSON(cJSON *pipeline_bra
     {
     goto end; //Numeric
     }
+    weather_score_local_var = malloc(sizeof(int));
+    if(!weather_score_local_var)
+    {
+        goto end;
+    }
+    *weather_score_local_var = weather_score->valuedouble;
     }
 
     // pipeline_branchesitem->latest_run
@@ -284,6 +346,12 @@ pipeline_branchesitem_t *pipeline_branchesitem_parseFromJSON(cJSON *pipeline_bra
     {
     goto end; //Numeric
     }
+    total_number_of_pull_requests_local_var = malloc(sizeof(int));
+    if(!total_number_of_pull_requests_local_var)
+    {
+        goto end;
+    }
+    *total_number_of_pull_requests_local_var = total_number_of_pull_requests->valuedouble;
     }
 
     // pipeline_branchesitem->_class
@@ -299,27 +367,64 @@ pipeline_branchesitem_t *pipeline_branchesitem_parseFromJSON(cJSON *pipeline_bra
     }
 
 
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (organization && !cJSON_IsNull(organization)) organization_local_str = strdup(organization->valuestring);
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     pipeline_branchesitem_local_var = pipeline_branchesitem_create_internal (
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
-        estimated_duration_in_millis ? estimated_duration_in_millis->valuedouble : 0,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        weather_score ? weather_score->valuedouble : 0,
+        display_name_local_str,
+        estimated_duration_in_millis_local_var,
+        name_local_str,
+        weather_score_local_var,
         latest_run ? latest_run_local_nonprim : NULL,
-        organization && !cJSON_IsNull(organization) ? strdup(organization->valuestring) : NULL,
+        organization_local_str,
         pull_request ? pull_request_local_nonprim : NULL,
-        total_number_of_pull_requests ? total_number_of_pull_requests->valuedouble : 0,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        total_number_of_pull_requests_local_var,
+        _class_local_str
         );
+
+    if (!pipeline_branchesitem_local_var) {
+        goto end;
+    }
 
     return pipeline_branchesitem_local_var;
 end:
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
+    if (estimated_duration_in_millis_local_var) {
+        free(estimated_duration_in_millis_local_var);
+        estimated_duration_in_millis_local_var = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (weather_score_local_var) {
+        free(weather_score_local_var);
+        weather_score_local_var = NULL;
+    }
     if (latest_run_local_nonprim) {
         pipeline_branchesitemlatest_run_free(latest_run_local_nonprim);
         latest_run_local_nonprim = NULL;
     }
+    if (organization_local_str) {
+        free(organization_local_str);
+        organization_local_str = NULL;
+    }
     if (pull_request_local_nonprim) {
         pipeline_branchesitempull_request_free(pull_request_local_nonprim);
         pull_request_local_nonprim = NULL;
+    }
+    if (total_number_of_pull_requests_local_var) {
+        free(total_number_of_pull_requests_local_var);
+        total_number_of_pull_requests_local_var = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

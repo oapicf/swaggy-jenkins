@@ -86,7 +86,7 @@ GithubScmlinks::getSelf()
 }
 
 void
-GithubScmlinks::setSelf(Link  self)
+GithubScmlinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -98,7 +98,7 @@ GithubScmlinks::getClass()
 }
 
 void
-GithubScmlinks::setClass(std::string  _class)
+GithubScmlinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

@@ -52,42 +52,42 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setNodes(Link  nodes);
+	void setNodes(Link nodes);
 	/*! \brief Get 
 	 */
 	Link getLog();
 
 	/*! \brief Set 
 	 */
-	void setLog(Link  log);
+	void setLog(Link log);
 	/*! \brief Get 
 	 */
 	Link getSelf();
 
 	/*! \brief Set 
 	 */
-	void setSelf(Link  self);
+	void setSelf(Link self);
 	/*! \brief Get 
 	 */
 	Link getActions();
 
 	/*! \brief Set 
 	 */
-	void setActions(Link  actions);
+	void setActions(Link actions);
 	/*! \brief Get 
 	 */
 	Link getSteps();
 
 	/*! \brief Set 
 	 */
-	void setSteps(Link  steps);
+	void setSteps(Link steps);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

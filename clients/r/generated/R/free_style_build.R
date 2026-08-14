@@ -225,7 +225,7 @@ FreeStyleBuild <- R6::R6Class(
       }
       if (!is.null(self$`actions`)) {
         FreeStyleBuildObject[["actions"]] <-
-          lapply(self$`actions`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`actions`)
       }
       if (!is.null(self$`building`)) {
         FreeStyleBuildObject[["building"]] <-
@@ -281,9 +281,32 @@ FreeStyleBuild <- R6::R6Class(
       }
       if (!is.null(self$`changeSet`)) {
         FreeStyleBuildObject[["changeSet"]] <-
-          self$`changeSet`$toSimpleType()
+          self$extractSimpleType(self$`changeSet`)
       }
       return(FreeStyleBuildObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

@@ -1,0 +1,134 @@
+package org.openapitools.model;
+
+import org.openapitools.model.HudsonMasterComputer;
+import java.util.*;
+import java.util.Objects;
+import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.annotation.Generated;
+import java.time.*;
+import java.math.*;
+@Generated(value = "org.openapitools.codegen.languages.JavaDubboServerCodegen", comments = "Generator version: 7.24.0")
+
+public class ComputerSet implements Serializable {
+  private static final long serialVersionUID = 1L;
+
+  @JsonProperty("_class")
+  private String propertyClass;
+
+  @JsonProperty("busyExecutors")
+  private Integer busyExecutors;
+
+  @JsonProperty("computer")
+  private List<HudsonMasterComputer> computer = new ArrayList<>();
+
+  @JsonProperty("displayName")
+  private String displayName;
+
+  @JsonProperty("totalExecutors")
+  private Integer totalExecutors;
+
+  /**
+   * 
+   * @return propertyClass
+   */
+  public String getPropertyClass() {
+    return propertyClass;
+  }
+
+  public void setPropertyClass(String propertyClass) {
+    this.propertyClass = propertyClass;
+  }
+
+  /**
+   * 
+   * @return busyExecutors
+   */
+  public Integer getBusyExecutors() {
+    return busyExecutors;
+  }
+
+  public void setBusyExecutors(Integer busyExecutors) {
+    this.busyExecutors = busyExecutors;
+  }
+
+  /**
+   * 
+   * @return computer
+   */
+  public List<HudsonMasterComputer> getComputer() {
+    return computer;
+  }
+
+  public void setComputer(List<HudsonMasterComputer> computer) {
+    this.computer = computer;
+  }
+
+  /**
+   * 
+   * @return displayName
+   */
+  public String getDisplayName() {
+    return displayName;
+  }
+
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
+  }
+
+  /**
+   * 
+   * @return totalExecutors
+   */
+  public Integer getTotalExecutors() {
+    return totalExecutors;
+  }
+
+  public void setTotalExecutors(Integer totalExecutors) {
+    this.totalExecutors = totalExecutors;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ComputerSet computerSet = (ComputerSet) o;
+    return Objects.equals(this.propertyClass, computerSet.propertyClass) &&
+        Objects.equals(this.busyExecutors, computerSet.busyExecutors) &&
+        Objects.equals(this.computer, computerSet.computer) &&
+        Objects.equals(this.displayName, computerSet.displayName) &&
+        Objects.equals(this.totalExecutors, computerSet.totalExecutors);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(propertyClass, busyExecutors, computer, displayName, totalExecutors);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ComputerSet {\n");
+    
+    sb.append("    propertyClass: ").append(toIndentedString(propertyClass)).append("\n");
+    sb.append("    busyExecutors: ").append(toIndentedString(busyExecutors)).append("\n");
+    sb.append("    computer: ").append(toIndentedString(computer)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    totalExecutors: ").append(toIndentedString(totalExecutors)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
+  }
+}

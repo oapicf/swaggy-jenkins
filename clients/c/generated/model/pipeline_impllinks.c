@@ -16,13 +16,13 @@ static pipeline_impllinks_t *pipeline_impllinks_create_internal(
     if (!pipeline_impllinks_local_var) {
         return NULL;
     }
+    memset(pipeline_impllinks_local_var, 0, sizeof(pipeline_impllinks_t));
+    pipeline_impllinks_local_var->_library_owned = 1;
     pipeline_impllinks_local_var->self = self;
     pipeline_impllinks_local_var->actions = actions;
     pipeline_impllinks_local_var->runs = runs;
     pipeline_impllinks_local_var->queue = queue;
     pipeline_impllinks_local_var->_class = _class;
-
-    pipeline_impllinks_local_var->_library_owned = 1;
     return pipeline_impllinks_local_var;
 }
 
@@ -33,13 +33,16 @@ __attribute__((deprecated)) pipeline_impllinks_t *pipeline_impllinks_create(
     link_t *queue,
     char *_class
     ) {
-    return pipeline_impllinks_create_internal (
+    pipeline_impllinks_t *result = pipeline_impllinks_create_internal (
         self,
         actions,
         runs,
         queue,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void pipeline_impllinks_free(pipeline_impllinks_t *pipeline_impllinks) {
@@ -160,6 +163,8 @@ pipeline_impllinks_t *pipeline_impllinks_parseFromJSON(cJSON *pipeline_impllinks
     // define the local variable for pipeline_impllinks->queue
     link_t *queue_local_nonprim = NULL;
 
+    char *_class_local_str = NULL;
+
     // pipeline_impllinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(pipeline_impllinksJSON, "self");
     if (cJSON_IsNull(self)) {
@@ -209,13 +214,19 @@ pipeline_impllinks_t *pipeline_impllinks_parseFromJSON(cJSON *pipeline_impllinks
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     pipeline_impllinks_local_var = pipeline_impllinks_create_internal (
         self ? self_local_nonprim : NULL,
         actions ? actions_local_nonprim : NULL,
         runs ? runs_local_nonprim : NULL,
         queue ? queue_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!pipeline_impllinks_local_var) {
+        goto end;
+    }
 
     return pipeline_impllinks_local_var;
 end:
@@ -234,6 +245,10 @@ end:
     if (queue_local_nonprim) {
         link_free(queue_local_nonprim);
         queue_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

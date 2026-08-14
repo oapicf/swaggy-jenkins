@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setRepositories(Link  repositories);
+	void setRepositories(Link repositories);
 	/*! \brief Get 
 	 */
 	Link getSelf();
 
 	/*! \brief Set 
 	 */
-	void setSelf(Link  self);
+	void setSelf(Link self);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

@@ -22,7 +22,7 @@ typedef struct pipeline_run_node_t pipeline_run_node_t;
 typedef struct pipeline_run_node_t {
     char *_class; // string
     char *display_name; // string
-    int duration_in_millis; //numeric
+    int *duration_in_millis; //numeric
     list_t *edges; //nonprimitive container
     char *id; // string
     char *result; // string
@@ -35,7 +35,7 @@ typedef struct pipeline_run_node_t {
 __attribute__((deprecated)) pipeline_run_node_t *pipeline_run_node_create(
     char *_class,
     char *display_name,
-    int duration_in_millis,
+    int *duration_in_millis,
     list_t *edges,
     char *id,
     char *result,

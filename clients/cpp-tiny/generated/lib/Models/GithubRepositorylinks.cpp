@@ -86,7 +86,7 @@ GithubRepositorylinks::getSelf()
 }
 
 void
-GithubRepositorylinks::setSelf(Link  self)
+GithubRepositorylinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -98,7 +98,7 @@ GithubRepositorylinks::getClass()
 }
 
 void
-GithubRepositorylinks::setClass(std::string  _class)
+GithubRepositorylinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

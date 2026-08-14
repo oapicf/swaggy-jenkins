@@ -108,7 +108,7 @@ ExtensionClassContainerImpl1map::getIojenkinsblueoceanserviceembeddedrestPipelin
 }
 
 void
-ExtensionClassContainerImpl1map::setIojenkinsblueoceanserviceembeddedrestPipelineImpl(ExtensionClassImpl  iojenkinsblueoceanserviceembeddedrestPipelineImpl)
+ExtensionClassContainerImpl1map::setIojenkinsblueoceanserviceembeddedrestPipelineImpl(ExtensionClassImpl iojenkinsblueoceanserviceembeddedrestPipelineImpl)
 {
 	this->iojenkinsblueoceanserviceembeddedrestPipelineImpl = iojenkinsblueoceanserviceembeddedrestPipelineImpl;
 }
@@ -120,7 +120,7 @@ ExtensionClassContainerImpl1map::getIojenkinsblueoceanserviceembeddedrestMultiBr
 }
 
 void
-ExtensionClassContainerImpl1map::setIojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl(ExtensionClassImpl  iojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl)
+ExtensionClassContainerImpl1map::setIojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl(ExtensionClassImpl iojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl)
 {
 	this->iojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl = iojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl;
 }
@@ -132,7 +132,7 @@ ExtensionClassContainerImpl1map::getClass()
 }
 
 void
-ExtensionClassContainerImpl1map::setClass(std::string  _class)
+ExtensionClassContainerImpl1map::setClass(std::string _class)
 {
 	this->_class = _class;
 }

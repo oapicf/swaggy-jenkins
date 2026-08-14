@@ -2,6 +2,7 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -14,76 +15,100 @@ import org.openapitools.model.NullSCM;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * FreeStyleProject
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FreeStyleProject {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String url;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String color;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String description;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayNameOrNull;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String fullDisplayName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String fullName;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean buildable;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid FreeStyleBuild> builds = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild firstBuild;
 
-  @Valid
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean inQueue;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean keepDependencies;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild lastBuild;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild lastCompletedBuild;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String lastFailedBuild;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild lastStableBuild;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild lastSuccessfulBuild;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String lastUnstableBuild;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String lastUnsuccessfulBuild;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer nextBuildNumber;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String queueItem;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean concurrentBuild;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable NullSCM scm;
 
   public FreeStyleProject propertyClass(@Nullable String propertyClass) {
@@ -102,6 +127,7 @@ public class FreeStyleProject {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -122,6 +148,7 @@ public class FreeStyleProject {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable String name) {
     this.name = name;
   }
@@ -142,6 +169,7 @@ public class FreeStyleProject {
     return url;
   }
 
+  @JsonProperty("url")
   public void setUrl(@Nullable String url) {
     this.url = url;
   }
@@ -162,6 +190,7 @@ public class FreeStyleProject {
     return color;
   }
 
+  @JsonProperty("color")
   public void setColor(@Nullable String color) {
     this.color = color;
   }
@@ -190,6 +219,7 @@ public class FreeStyleProject {
     return actions;
   }
 
+  @JsonProperty("actions")
   public void setActions(List<@Valid FreeStyleProjectactions> actions) {
     this.actions = actions;
   }
@@ -210,6 +240,7 @@ public class FreeStyleProject {
     return description;
   }
 
+  @JsonProperty("description")
   public void setDescription(@Nullable String description) {
     this.description = description;
   }
@@ -230,6 +261,7 @@ public class FreeStyleProject {
     return displayName;
   }
 
+  @JsonProperty("displayName")
   public void setDisplayName(@Nullable String displayName) {
     this.displayName = displayName;
   }
@@ -250,6 +282,7 @@ public class FreeStyleProject {
     return displayNameOrNull;
   }
 
+  @JsonProperty("displayNameOrNull")
   public void setDisplayNameOrNull(@Nullable String displayNameOrNull) {
     this.displayNameOrNull = displayNameOrNull;
   }
@@ -270,6 +303,7 @@ public class FreeStyleProject {
     return fullDisplayName;
   }
 
+  @JsonProperty("fullDisplayName")
   public void setFullDisplayName(@Nullable String fullDisplayName) {
     this.fullDisplayName = fullDisplayName;
   }
@@ -290,6 +324,7 @@ public class FreeStyleProject {
     return fullName;
   }
 
+  @JsonProperty("fullName")
   public void setFullName(@Nullable String fullName) {
     this.fullName = fullName;
   }
@@ -310,6 +345,7 @@ public class FreeStyleProject {
     return buildable;
   }
 
+  @JsonProperty("buildable")
   public void setBuildable(@Nullable Boolean buildable) {
     this.buildable = buildable;
   }
@@ -338,6 +374,7 @@ public class FreeStyleProject {
     return builds;
   }
 
+  @JsonProperty("builds")
   public void setBuilds(List<@Valid FreeStyleBuild> builds) {
     this.builds = builds;
   }
@@ -358,6 +395,7 @@ public class FreeStyleProject {
     return firstBuild;
   }
 
+  @JsonProperty("firstBuild")
   public void setFirstBuild(@Nullable FreeStyleBuild firstBuild) {
     this.firstBuild = firstBuild;
   }
@@ -386,6 +424,7 @@ public class FreeStyleProject {
     return healthReport;
   }
 
+  @JsonProperty("healthReport")
   public void setHealthReport(List<@Valid FreeStyleProjecthealthReport> healthReport) {
     this.healthReport = healthReport;
   }
@@ -406,6 +445,7 @@ public class FreeStyleProject {
     return inQueue;
   }
 
+  @JsonProperty("inQueue")
   public void setInQueue(@Nullable Boolean inQueue) {
     this.inQueue = inQueue;
   }
@@ -426,6 +466,7 @@ public class FreeStyleProject {
     return keepDependencies;
   }
 
+  @JsonProperty("keepDependencies")
   public void setKeepDependencies(@Nullable Boolean keepDependencies) {
     this.keepDependencies = keepDependencies;
   }
@@ -446,6 +487,7 @@ public class FreeStyleProject {
     return lastBuild;
   }
 
+  @JsonProperty("lastBuild")
   public void setLastBuild(@Nullable FreeStyleBuild lastBuild) {
     this.lastBuild = lastBuild;
   }
@@ -466,6 +508,7 @@ public class FreeStyleProject {
     return lastCompletedBuild;
   }
 
+  @JsonProperty("lastCompletedBuild")
   public void setLastCompletedBuild(@Nullable FreeStyleBuild lastCompletedBuild) {
     this.lastCompletedBuild = lastCompletedBuild;
   }
@@ -486,6 +529,7 @@ public class FreeStyleProject {
     return lastFailedBuild;
   }
 
+  @JsonProperty("lastFailedBuild")
   public void setLastFailedBuild(@Nullable String lastFailedBuild) {
     this.lastFailedBuild = lastFailedBuild;
   }
@@ -506,6 +550,7 @@ public class FreeStyleProject {
     return lastStableBuild;
   }
 
+  @JsonProperty("lastStableBuild")
   public void setLastStableBuild(@Nullable FreeStyleBuild lastStableBuild) {
     this.lastStableBuild = lastStableBuild;
   }
@@ -526,6 +571,7 @@ public class FreeStyleProject {
     return lastSuccessfulBuild;
   }
 
+  @JsonProperty("lastSuccessfulBuild")
   public void setLastSuccessfulBuild(@Nullable FreeStyleBuild lastSuccessfulBuild) {
     this.lastSuccessfulBuild = lastSuccessfulBuild;
   }
@@ -546,6 +592,7 @@ public class FreeStyleProject {
     return lastUnstableBuild;
   }
 
+  @JsonProperty("lastUnstableBuild")
   public void setLastUnstableBuild(@Nullable String lastUnstableBuild) {
     this.lastUnstableBuild = lastUnstableBuild;
   }
@@ -566,6 +613,7 @@ public class FreeStyleProject {
     return lastUnsuccessfulBuild;
   }
 
+  @JsonProperty("lastUnsuccessfulBuild")
   public void setLastUnsuccessfulBuild(@Nullable String lastUnsuccessfulBuild) {
     this.lastUnsuccessfulBuild = lastUnsuccessfulBuild;
   }
@@ -586,6 +634,7 @@ public class FreeStyleProject {
     return nextBuildNumber;
   }
 
+  @JsonProperty("nextBuildNumber")
   public void setNextBuildNumber(@Nullable Integer nextBuildNumber) {
     this.nextBuildNumber = nextBuildNumber;
   }
@@ -606,6 +655,7 @@ public class FreeStyleProject {
     return queueItem;
   }
 
+  @JsonProperty("queueItem")
   public void setQueueItem(@Nullable String queueItem) {
     this.queueItem = queueItem;
   }
@@ -626,6 +676,7 @@ public class FreeStyleProject {
     return concurrentBuild;
   }
 
+  @JsonProperty("concurrentBuild")
   public void setConcurrentBuild(@Nullable Boolean concurrentBuild) {
     this.concurrentBuild = concurrentBuild;
   }
@@ -646,6 +697,7 @@ public class FreeStyleProject {
     return scm;
   }
 
+  @JsonProperty("scm")
   public void setScm(@Nullable NullSCM scm) {
     this.scm = scm;
   }
@@ -732,11 +784,8 @@ public class FreeStyleProject {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

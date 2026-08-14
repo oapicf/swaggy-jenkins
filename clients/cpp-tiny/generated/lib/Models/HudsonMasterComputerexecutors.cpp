@@ -170,7 +170,7 @@ HudsonMasterComputerexecutors::getCurrentExecutable()
 }
 
 void
-HudsonMasterComputerexecutors::setCurrentExecutable(FreeStyleBuild  currentExecutable)
+HudsonMasterComputerexecutors::setCurrentExecutable(FreeStyleBuild currentExecutable)
 {
 	this->currentExecutable = currentExecutable;
 }
@@ -182,7 +182,7 @@ HudsonMasterComputerexecutors::isIdle()
 }
 
 void
-HudsonMasterComputerexecutors::setIdle(bool  idle)
+HudsonMasterComputerexecutors::setIdle(bool idle)
 {
 	this->idle = idle;
 }
@@ -194,7 +194,7 @@ HudsonMasterComputerexecutors::isLikelyStuck()
 }
 
 void
-HudsonMasterComputerexecutors::setLikelyStuck(bool  likelyStuck)
+HudsonMasterComputerexecutors::setLikelyStuck(bool likelyStuck)
 {
 	this->likelyStuck = likelyStuck;
 }
@@ -206,7 +206,7 @@ HudsonMasterComputerexecutors::getNumber()
 }
 
 void
-HudsonMasterComputerexecutors::setNumber(int  number)
+HudsonMasterComputerexecutors::setNumber(int number)
 {
 	this->number = number;
 }
@@ -218,7 +218,7 @@ HudsonMasterComputerexecutors::getProgress()
 }
 
 void
-HudsonMasterComputerexecutors::setProgress(int  progress)
+HudsonMasterComputerexecutors::setProgress(int progress)
 {
 	this->progress = progress;
 }
@@ -230,7 +230,7 @@ HudsonMasterComputerexecutors::getClass()
 }
 
 void
-HudsonMasterComputerexecutors::setClass(std::string  _class)
+HudsonMasterComputerexecutors::setClass(std::string _class)
 {
 	this->_class = _class;
 }

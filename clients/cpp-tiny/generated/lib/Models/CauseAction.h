@@ -53,14 +53,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::list<CauseUserIdCause> getCauses();
 
 	/*! \brief Set 
 	 */
-	void setCauses(std::list <CauseUserIdCause> causes);
+	void setCauses(std::list<CauseUserIdCause> causes);
 
 
     private:

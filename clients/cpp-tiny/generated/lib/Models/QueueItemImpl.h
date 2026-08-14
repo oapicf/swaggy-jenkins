@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	int getExpectedBuildNumber();
 
 	/*! \brief Set 
 	 */
-	void setExpectedBuildNumber(int  expectedBuildNumber);
+	void setExpectedBuildNumber(int expectedBuildNumber);
 	/*! \brief Get 
 	 */
 	std::string getId();
 
 	/*! \brief Set 
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get 
 	 */
 	std::string getPipeline();
 
 	/*! \brief Set 
 	 */
-	void setPipeline(std::string  pipeline);
+	void setPipeline(std::string pipeline);
 	/*! \brief Get 
 	 */
 	int getQueuedTime();
 
 	/*! \brief Set 
 	 */
-	void setQueuedTime(int  queuedTime);
+	void setQueuedTime(int queuedTime);
 
 
     private:

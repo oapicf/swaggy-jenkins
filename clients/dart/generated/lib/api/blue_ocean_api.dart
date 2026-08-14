@@ -30,7 +30,7 @@ class BlueOceanApi {
   ///
   /// * [String] queue (required):
   ///   Name of the queue item
-  Future<Response> deletePipelineQueueItemWithHttpInfo(String organization, String pipeline, String queue,) async {
+  Future<Response> deletePipelineQueueItemWithHttpInfo(String organization, String pipeline, String queue, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}'
       .replaceAll('{organization}', organization)
@@ -55,6 +55,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -70,8 +71,8 @@ class BlueOceanApi {
   ///
   /// * [String] queue (required):
   ///   Name of the queue item
-  Future<void> deletePipelineQueueItem(String organization, String pipeline, String queue,) async {
-    final response = await deletePipelineQueueItemWithHttpInfo(organization, pipeline, queue,);
+  Future<void> deletePipelineQueueItem(String organization, String pipeline, String queue, { Future<void>? abortTrigger, }) async {
+    final response = await deletePipelineQueueItemWithHttpInfo(organization, pipeline, queue, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -85,7 +86,7 @@ class BlueOceanApi {
   ///
   /// * [String] organization (required):
   ///   Name of the organization
-  Future<Response> getAuthenticatedUserWithHttpInfo(String organization,) async {
+  Future<Response> getAuthenticatedUserWithHttpInfo(String organization, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/user/'
       .replaceAll('{organization}', organization);
@@ -108,6 +109,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -117,8 +119,8 @@ class BlueOceanApi {
   ///
   /// * [String] organization (required):
   ///   Name of the organization
-  Future<User?> getAuthenticatedUser(String organization,) async {
-    final response = await getAuthenticatedUserWithHttpInfo(organization,);
+  Future<User?> getAuthenticatedUser(String organization, { Future<void>? abortTrigger, }) async {
+    final response = await getAuthenticatedUserWithHttpInfo(organization, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -140,7 +142,7 @@ class BlueOceanApi {
   ///
   /// * [String] class_ (required):
   ///   Name of the class
-  Future<Response> getClassesWithHttpInfo(String class_,) async {
+  Future<Response> getClassesWithHttpInfo(String class_, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/classes/{class}'
       .replaceAll('{class}', class_);
@@ -163,6 +165,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -172,8 +175,8 @@ class BlueOceanApi {
   ///
   /// * [String] class_ (required):
   ///   Name of the class
-  Future<String?> getClasses(String class_,) async {
-    final response = await getClassesWithHttpInfo(class_,);
+  Future<String?> getClasses(String class_, { Future<void>? abortTrigger, }) async {
+    final response = await getClassesWithHttpInfo(class_, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -195,7 +198,7 @@ class BlueOceanApi {
   ///
   /// * [int] key (required):
   ///   Key ID received as part of JWT header field kid
-  Future<Response> getJsonWebKeyWithHttpInfo(int key,) async {
+  Future<Response> getJsonWebKeyWithHttpInfo(int key, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/jwt-auth/jwks/{key}'
       .replaceAll('{key}', key.toString());
@@ -218,6 +221,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -227,8 +231,8 @@ class BlueOceanApi {
   ///
   /// * [int] key (required):
   ///   Key ID received as part of JWT header field kid
-  Future<String?> getJsonWebKey(int key,) async {
-    final response = await getJsonWebKeyWithHttpInfo(key,);
+  Future<String?> getJsonWebKey(int key, { Future<void>? abortTrigger, }) async {
+    final response = await getJsonWebKeyWithHttpInfo(key, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -253,7 +257,7 @@ class BlueOceanApi {
   ///
   /// * [int] maxExpiryTimeInMins:
   ///   Maximum token expiry time in minutes, default: 480 minutes
-  Future<Response> getJsonWebTokenWithHttpInfo({ int? expiryTimeInMins, int? maxExpiryTimeInMins, }) async {
+  Future<Response> getJsonWebTokenWithHttpInfo({ int? expiryTimeInMins, int? maxExpiryTimeInMins, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/jwt-auth/token';
 
@@ -282,6 +286,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -294,8 +299,8 @@ class BlueOceanApi {
   ///
   /// * [int] maxExpiryTimeInMins:
   ///   Maximum token expiry time in minutes, default: 480 minutes
-  Future<String?> getJsonWebToken({ int? expiryTimeInMins, int? maxExpiryTimeInMins, }) async {
-    final response = await getJsonWebTokenWithHttpInfo( expiryTimeInMins: expiryTimeInMins, maxExpiryTimeInMins: maxExpiryTimeInMins, );
+  Future<String?> getJsonWebToken({ int? expiryTimeInMins, int? maxExpiryTimeInMins, Future<void>? abortTrigger, }) async {
+    final response = await getJsonWebTokenWithHttpInfo(expiryTimeInMins: expiryTimeInMins, maxExpiryTimeInMins: maxExpiryTimeInMins, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -317,7 +322,7 @@ class BlueOceanApi {
   ///
   /// * [String] organization (required):
   ///   Name of the organization
-  Future<Response> getOrganisationWithHttpInfo(String organization,) async {
+  Future<Response> getOrganisationWithHttpInfo(String organization, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}'
       .replaceAll('{organization}', organization);
@@ -340,6 +345,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -349,8 +355,8 @@ class BlueOceanApi {
   ///
   /// * [String] organization (required):
   ///   Name of the organization
-  Future<Organisation?> getOrganisation(String organization,) async {
-    final response = await getOrganisationWithHttpInfo(organization,);
+  Future<Organisation?> getOrganisation(String organization, { Future<void>? abortTrigger, }) async {
+    final response = await getOrganisationWithHttpInfo(organization, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -367,7 +373,7 @@ class BlueOceanApi {
   /// Retrieve all organizations details
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getOrganisationsWithHttpInfo() async {
+  Future<Response> getOrganisationsWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/';
 
@@ -389,12 +395,13 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Retrieve all organizations details
-  Future<List<Organisation>?> getOrganisations() async {
-    final response = await getOrganisationsWithHttpInfo();
+  Future<List<Organisation>?> getOrganisations({ Future<void>? abortTrigger, }) async {
+    final response = await getOrganisationsWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -422,7 +429,7 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<Response> getPipelineWithHttpInfo(String organization, String pipeline,) async {
+  Future<Response> getPipelineWithHttpInfo(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}'
       .replaceAll('{organization}', organization)
@@ -446,6 +453,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -458,8 +466,8 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<Pipeline?> getPipeline(String organization, String pipeline,) async {
-    final response = await getPipelineWithHttpInfo(organization, pipeline,);
+  Future<Pipeline?> getPipeline(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineWithHttpInfo(organization, pipeline, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -484,7 +492,7 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<Response> getPipelineActivitiesWithHttpInfo(String organization, String pipeline,) async {
+  Future<Response> getPipelineActivitiesWithHttpInfo(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/activities'
       .replaceAll('{organization}', organization)
@@ -508,6 +516,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -520,8 +529,8 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<List<PipelineActivity>?> getPipelineActivities(String organization, String pipeline,) async {
-    final response = await getPipelineActivitiesWithHttpInfo(organization, pipeline,);
+  Future<List<PipelineActivity>?> getPipelineActivities(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineActivitiesWithHttpInfo(organization, pipeline, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -552,7 +561,7 @@ class BlueOceanApi {
   ///
   /// * [String] branch (required):
   ///   Name of the branch
-  Future<Response> getPipelineBranchWithHttpInfo(String organization, String pipeline, String branch,) async {
+  Future<Response> getPipelineBranchWithHttpInfo(String organization, String pipeline, String branch, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/'
       .replaceAll('{organization}', organization)
@@ -577,6 +586,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -592,8 +602,8 @@ class BlueOceanApi {
   ///
   /// * [String] branch (required):
   ///   Name of the branch
-  Future<BranchImpl?> getPipelineBranch(String organization, String pipeline, String branch,) async {
-    final response = await getPipelineBranchWithHttpInfo(organization, pipeline, branch,);
+  Future<BranchImpl?> getPipelineBranch(String organization, String pipeline, String branch, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineBranchWithHttpInfo(organization, pipeline, branch, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -624,7 +634,7 @@ class BlueOceanApi {
   ///
   /// * [String] run (required):
   ///   Name of the run
-  Future<Response> getPipelineBranchRunWithHttpInfo(String organization, String pipeline, String branch, String run,) async {
+  Future<Response> getPipelineBranchRunWithHttpInfo(String organization, String pipeline, String branch, String run, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}'
       .replaceAll('{organization}', organization)
@@ -650,6 +660,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -668,8 +679,8 @@ class BlueOceanApi {
   ///
   /// * [String] run (required):
   ///   Name of the run
-  Future<PipelineRun?> getPipelineBranchRun(String organization, String pipeline, String branch, String run,) async {
-    final response = await getPipelineBranchRunWithHttpInfo(organization, pipeline, branch, run,);
+  Future<PipelineRun?> getPipelineBranchRun(String organization, String pipeline, String branch, String run, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineBranchRunWithHttpInfo(organization, pipeline, branch, run, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -694,7 +705,7 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<Response> getPipelineBranchesWithHttpInfo(String organization, String pipeline,) async {
+  Future<Response> getPipelineBranchesWithHttpInfo(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/branches'
       .replaceAll('{organization}', organization)
@@ -718,6 +729,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -730,8 +742,8 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<MultibranchPipeline?> getPipelineBranches(String organization, String pipeline,) async {
-    final response = await getPipelineBranchesWithHttpInfo(organization, pipeline,);
+  Future<MultibranchPipeline?> getPipelineBranches(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineBranchesWithHttpInfo(organization, pipeline, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -756,7 +768,7 @@ class BlueOceanApi {
   ///
   /// * [String] folder (required):
   ///   Name of the folder
-  Future<Response> getPipelineFolderWithHttpInfo(String organization, String folder,) async {
+  Future<Response> getPipelineFolderWithHttpInfo(String organization, String folder, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{folder}/'
       .replaceAll('{organization}', organization)
@@ -780,6 +792,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -792,8 +805,8 @@ class BlueOceanApi {
   ///
   /// * [String] folder (required):
   ///   Name of the folder
-  Future<PipelineFolderImpl?> getPipelineFolder(String organization, String folder,) async {
-    final response = await getPipelineFolderWithHttpInfo(organization, folder,);
+  Future<PipelineFolderImpl?> getPipelineFolder(String organization, String folder, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineFolderWithHttpInfo(organization, folder, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -821,7 +834,7 @@ class BlueOceanApi {
   ///
   /// * [String] folder (required):
   ///   Name of the folder
-  Future<Response> getPipelineFolderPipelineWithHttpInfo(String organization, String pipeline, String folder,) async {
+  Future<Response> getPipelineFolderPipelineWithHttpInfo(String organization, String pipeline, String folder, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}'
       .replaceAll('{organization}', organization)
@@ -846,6 +859,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -861,8 +875,8 @@ class BlueOceanApi {
   ///
   /// * [String] folder (required):
   ///   Name of the folder
-  Future<PipelineImpl?> getPipelineFolderPipeline(String organization, String pipeline, String folder,) async {
-    final response = await getPipelineFolderPipelineWithHttpInfo(organization, pipeline, folder,);
+  Future<PipelineImpl?> getPipelineFolderPipeline(String organization, String pipeline, String folder, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineFolderPipelineWithHttpInfo(organization, pipeline, folder, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -887,7 +901,7 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<Response> getPipelineQueueWithHttpInfo(String organization, String pipeline,) async {
+  Future<Response> getPipelineQueueWithHttpInfo(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue'
       .replaceAll('{organization}', organization)
@@ -911,6 +925,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -923,8 +938,8 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<List<QueueItemImpl>?> getPipelineQueue(String organization, String pipeline,) async {
-    final response = await getPipelineQueueWithHttpInfo(organization, pipeline,);
+  Future<List<QueueItemImpl>?> getPipelineQueue(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineQueueWithHttpInfo(organization, pipeline, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -955,7 +970,7 @@ class BlueOceanApi {
   ///
   /// * [String] run (required):
   ///   Name of the run
-  Future<Response> getPipelineRunWithHttpInfo(String organization, String pipeline, String run,) async {
+  Future<Response> getPipelineRunWithHttpInfo(String organization, String pipeline, String run, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}'
       .replaceAll('{organization}', organization)
@@ -980,6 +995,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -995,8 +1011,8 @@ class BlueOceanApi {
   ///
   /// * [String] run (required):
   ///   Name of the run
-  Future<PipelineRun?> getPipelineRun(String organization, String pipeline, String run,) async {
-    final response = await getPipelineRunWithHttpInfo(organization, pipeline, run,);
+  Future<PipelineRun?> getPipelineRun(String organization, String pipeline, String run, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineRunWithHttpInfo(organization, pipeline, run, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1030,7 +1046,7 @@ class BlueOceanApi {
   ///
   /// * [bool] download:
   ///   Set to true in order to download the file, otherwise it's passed as a response body
-  Future<Response> getPipelineRunLogWithHttpInfo(String organization, String pipeline, String run, { int? start, bool? download, }) async {
+  Future<Response> getPipelineRunLogWithHttpInfo(String organization, String pipeline, String run, { int? start, bool? download, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log'
       .replaceAll('{organization}', organization)
@@ -1062,6 +1078,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1083,8 +1100,8 @@ class BlueOceanApi {
   ///
   /// * [bool] download:
   ///   Set to true in order to download the file, otherwise it's passed as a response body
-  Future<String?> getPipelineRunLog(String organization, String pipeline, String run, { int? start, bool? download, }) async {
-    final response = await getPipelineRunLogWithHttpInfo(organization, pipeline, run,  start: start, download: download, );
+  Future<String?> getPipelineRunLog(String organization, String pipeline, String run, { int? start, bool? download, Future<void>? abortTrigger, }) async {
+    final response = await getPipelineRunLogWithHttpInfo(organization, pipeline, run, start: start, download: download, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1115,7 +1132,7 @@ class BlueOceanApi {
   ///
   /// * [String] node (required):
   ///   Name of the node
-  Future<Response> getPipelineRunNodeWithHttpInfo(String organization, String pipeline, String run, String node,) async {
+  Future<Response> getPipelineRunNodeWithHttpInfo(String organization, String pipeline, String run, String node, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}'
       .replaceAll('{organization}', organization)
@@ -1141,6 +1158,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1159,8 +1177,8 @@ class BlueOceanApi {
   ///
   /// * [String] node (required):
   ///   Name of the node
-  Future<PipelineRunNode?> getPipelineRunNode(String organization, String pipeline, String run, String node,) async {
-    final response = await getPipelineRunNodeWithHttpInfo(organization, pipeline, run, node,);
+  Future<PipelineRunNode?> getPipelineRunNode(String organization, String pipeline, String run, String node, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineRunNodeWithHttpInfo(organization, pipeline, run, node, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1194,7 +1212,7 @@ class BlueOceanApi {
   ///
   /// * [String] step (required):
   ///   Name of the step
-  Future<Response> getPipelineRunNodeStepWithHttpInfo(String organization, String pipeline, String run, String node, String step,) async {
+  Future<Response> getPipelineRunNodeStepWithHttpInfo(String organization, String pipeline, String run, String node, String step, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}'
       .replaceAll('{organization}', organization)
@@ -1221,6 +1239,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1242,8 +1261,8 @@ class BlueOceanApi {
   ///
   /// * [String] step (required):
   ///   Name of the step
-  Future<PipelineStepImpl?> getPipelineRunNodeStep(String organization, String pipeline, String run, String node, String step,) async {
-    final response = await getPipelineRunNodeStepWithHttpInfo(organization, pipeline, run, node, step,);
+  Future<PipelineStepImpl?> getPipelineRunNodeStep(String organization, String pipeline, String run, String node, String step, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineRunNodeStepWithHttpInfo(organization, pipeline, run, node, step, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1277,7 +1296,7 @@ class BlueOceanApi {
   ///
   /// * [String] step (required):
   ///   Name of the step
-  Future<Response> getPipelineRunNodeStepLogWithHttpInfo(String organization, String pipeline, String run, String node, String step,) async {
+  Future<Response> getPipelineRunNodeStepLogWithHttpInfo(String organization, String pipeline, String run, String node, String step, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log'
       .replaceAll('{organization}', organization)
@@ -1304,6 +1323,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1325,8 +1345,8 @@ class BlueOceanApi {
   ///
   /// * [String] step (required):
   ///   Name of the step
-  Future<String?> getPipelineRunNodeStepLog(String organization, String pipeline, String run, String node, String step,) async {
-    final response = await getPipelineRunNodeStepLogWithHttpInfo(organization, pipeline, run, node, step,);
+  Future<String?> getPipelineRunNodeStepLog(String organization, String pipeline, String run, String node, String step, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineRunNodeStepLogWithHttpInfo(organization, pipeline, run, node, step, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1357,7 +1377,7 @@ class BlueOceanApi {
   ///
   /// * [String] node (required):
   ///   Name of the node
-  Future<Response> getPipelineRunNodeStepsWithHttpInfo(String organization, String pipeline, String run, String node,) async {
+  Future<Response> getPipelineRunNodeStepsWithHttpInfo(String organization, String pipeline, String run, String node, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps'
       .replaceAll('{organization}', organization)
@@ -1383,6 +1403,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1401,8 +1422,8 @@ class BlueOceanApi {
   ///
   /// * [String] node (required):
   ///   Name of the node
-  Future<List<PipelineStepImpl>?> getPipelineRunNodeSteps(String organization, String pipeline, String run, String node,) async {
-    final response = await getPipelineRunNodeStepsWithHttpInfo(organization, pipeline, run, node,);
+  Future<List<PipelineStepImpl>?> getPipelineRunNodeSteps(String organization, String pipeline, String run, String node, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineRunNodeStepsWithHttpInfo(organization, pipeline, run, node, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1433,7 +1454,7 @@ class BlueOceanApi {
   ///
   /// * [String] run (required):
   ///   Name of the run
-  Future<Response> getPipelineRunNodesWithHttpInfo(String organization, String pipeline, String run,) async {
+  Future<Response> getPipelineRunNodesWithHttpInfo(String organization, String pipeline, String run, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes'
       .replaceAll('{organization}', organization)
@@ -1458,6 +1479,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1473,8 +1495,8 @@ class BlueOceanApi {
   ///
   /// * [String] run (required):
   ///   Name of the run
-  Future<List<PipelineRunNode>?> getPipelineRunNodes(String organization, String pipeline, String run,) async {
-    final response = await getPipelineRunNodesWithHttpInfo(organization, pipeline, run,);
+  Future<List<PipelineRunNode>?> getPipelineRunNodes(String organization, String pipeline, String run, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineRunNodesWithHttpInfo(organization, pipeline, run, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1502,7 +1524,7 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<Response> getPipelineRunsWithHttpInfo(String organization, String pipeline,) async {
+  Future<Response> getPipelineRunsWithHttpInfo(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'
       .replaceAll('{organization}', organization)
@@ -1526,6 +1548,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1538,8 +1561,8 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<List<PipelineRun>?> getPipelineRuns(String organization, String pipeline,) async {
-    final response = await getPipelineRunsWithHttpInfo(organization, pipeline,);
+  Future<List<PipelineRun>?> getPipelineRuns(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelineRunsWithHttpInfo(organization, pipeline, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1564,7 +1587,7 @@ class BlueOceanApi {
   ///
   /// * [String] organization (required):
   ///   Name of the organization
-  Future<Response> getPipelinesWithHttpInfo(String organization,) async {
+  Future<Response> getPipelinesWithHttpInfo(String organization, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/'
       .replaceAll('{organization}', organization);
@@ -1587,6 +1610,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1596,8 +1620,8 @@ class BlueOceanApi {
   ///
   /// * [String] organization (required):
   ///   Name of the organization
-  Future<List<Pipeline>?> getPipelines(String organization,) async {
-    final response = await getPipelinesWithHttpInfo(organization,);
+  Future<List<Pipeline>?> getPipelines(String organization, { Future<void>? abortTrigger, }) async {
+    final response = await getPipelinesWithHttpInfo(organization, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1625,7 +1649,7 @@ class BlueOceanApi {
   ///
   /// * [String] scm (required):
   ///   Name of SCM
-  Future<Response> getSCMWithHttpInfo(String organization, String scm,) async {
+  Future<Response> getSCMWithHttpInfo(String organization, String scm, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/scm/{scm}'
       .replaceAll('{organization}', organization)
@@ -1649,6 +1673,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1661,8 +1686,8 @@ class BlueOceanApi {
   ///
   /// * [String] scm (required):
   ///   Name of SCM
-  Future<GithubScm?> getSCM(String organization, String scm,) async {
-    final response = await getSCMWithHttpInfo(organization, scm,);
+  Future<GithubScm?> getSCM(String organization, String scm, { Future<void>? abortTrigger, }) async {
+    final response = await getSCMWithHttpInfo(organization, scm, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1699,7 +1724,7 @@ class BlueOceanApi {
   ///
   /// * [int] pageNumber:
   ///   Page number
-  Future<Response> getSCMOrganisationRepositoriesWithHttpInfo(String organization, String scm, String scmOrganisation, { String? credentialId, int? pageSize, int? pageNumber, }) async {
+  Future<Response> getSCMOrganisationRepositoriesWithHttpInfo(String organization, String scm, String scmOrganisation, { String? credentialId, int? pageSize, int? pageNumber, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories'
       .replaceAll('{organization}', organization)
@@ -1734,6 +1759,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1758,8 +1784,8 @@ class BlueOceanApi {
   ///
   /// * [int] pageNumber:
   ///   Page number
-  Future<List<GithubOrganization>?> getSCMOrganisationRepositories(String organization, String scm, String scmOrganisation, { String? credentialId, int? pageSize, int? pageNumber, }) async {
-    final response = await getSCMOrganisationRepositoriesWithHttpInfo(organization, scm, scmOrganisation,  credentialId: credentialId, pageSize: pageSize, pageNumber: pageNumber, );
+  Future<List<GithubOrganization>?> getSCMOrganisationRepositories(String organization, String scm, String scmOrganisation, { String? credentialId, int? pageSize, int? pageNumber, Future<void>? abortTrigger, }) async {
+    final response = await getSCMOrganisationRepositoriesWithHttpInfo(organization, scm, scmOrganisation, credentialId: credentialId, pageSize: pageSize, pageNumber: pageNumber, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1796,7 +1822,7 @@ class BlueOceanApi {
   ///
   /// * [String] credentialId:
   ///   Credential ID
-  Future<Response> getSCMOrganisationRepositoryWithHttpInfo(String organization, String scm, String scmOrganisation, String repository, { String? credentialId, }) async {
+  Future<Response> getSCMOrganisationRepositoryWithHttpInfo(String organization, String scm, String scmOrganisation, String repository, { String? credentialId, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}'
       .replaceAll('{organization}', organization)
@@ -1826,6 +1852,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1847,8 +1874,8 @@ class BlueOceanApi {
   ///
   /// * [String] credentialId:
   ///   Credential ID
-  Future<List<GithubOrganization>?> getSCMOrganisationRepository(String organization, String scm, String scmOrganisation, String repository, { String? credentialId, }) async {
-    final response = await getSCMOrganisationRepositoryWithHttpInfo(organization, scm, scmOrganisation, repository,  credentialId: credentialId, );
+  Future<List<GithubOrganization>?> getSCMOrganisationRepository(String organization, String scm, String scmOrganisation, String repository, { String? credentialId, Future<void>? abortTrigger, }) async {
+    final response = await getSCMOrganisationRepositoryWithHttpInfo(organization, scm, scmOrganisation, repository, credentialId: credentialId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1879,7 +1906,7 @@ class BlueOceanApi {
   ///
   /// * [String] credentialId:
   ///   Credential ID
-  Future<Response> getSCMOrganisationsWithHttpInfo(String organization, String scm, { String? credentialId, }) async {
+  Future<Response> getSCMOrganisationsWithHttpInfo(String organization, String scm, { String? credentialId, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/scm/{scm}/organizations'
       .replaceAll('{organization}', organization)
@@ -1907,6 +1934,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1922,8 +1950,8 @@ class BlueOceanApi {
   ///
   /// * [String] credentialId:
   ///   Credential ID
-  Future<List<GithubOrganization>?> getSCMOrganisations(String organization, String scm, { String? credentialId, }) async {
-    final response = await getSCMOrganisationsWithHttpInfo(organization, scm,  credentialId: credentialId, );
+  Future<List<GithubOrganization>?> getSCMOrganisations(String organization, String scm, { String? credentialId, Future<void>? abortTrigger, }) async {
+    final response = await getSCMOrganisationsWithHttpInfo(organization, scm, credentialId: credentialId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -1951,7 +1979,7 @@ class BlueOceanApi {
   ///
   /// * [String] user (required):
   ///   Name of the user
-  Future<Response> getUserWithHttpInfo(String organization, String user,) async {
+  Future<Response> getUserWithHttpInfo(String organization, String user, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/users/{user}'
       .replaceAll('{organization}', organization)
@@ -1975,6 +2003,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -1987,8 +2016,8 @@ class BlueOceanApi {
   ///
   /// * [String] user (required):
   ///   Name of the user
-  Future<User?> getUser(String organization, String user,) async {
-    final response = await getUserWithHttpInfo(organization, user,);
+  Future<User?> getUser(String organization, String user, { Future<void>? abortTrigger, }) async {
+    final response = await getUserWithHttpInfo(organization, user, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2010,7 +2039,7 @@ class BlueOceanApi {
   ///
   /// * [String] user (required):
   ///   Name of the user
-  Future<Response> getUserFavoritesWithHttpInfo(String user,) async {
+  Future<Response> getUserFavoritesWithHttpInfo(String user, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/users/{user}/favorites'
       .replaceAll('{user}', user);
@@ -2033,6 +2062,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2042,8 +2072,8 @@ class BlueOceanApi {
   ///
   /// * [String] user (required):
   ///   Name of the user
-  Future<List<FavoriteImpl>?> getUserFavorites(String user,) async {
-    final response = await getUserFavoritesWithHttpInfo(user,);
+  Future<List<FavoriteImpl>?> getUserFavorites(String user, { Future<void>? abortTrigger, }) async {
+    final response = await getUserFavoritesWithHttpInfo(user, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2068,7 +2098,7 @@ class BlueOceanApi {
   ///
   /// * [String] organization (required):
   ///   Name of the organization
-  Future<Response> getUsersWithHttpInfo(String organization,) async {
+  Future<Response> getUsersWithHttpInfo(String organization, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/users/'
       .replaceAll('{organization}', organization);
@@ -2091,6 +2121,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2100,8 +2131,8 @@ class BlueOceanApi {
   ///
   /// * [String] organization (required):
   ///   Name of the organization
-  Future<User?> getUsers(String organization,) async {
-    final response = await getUsersWithHttpInfo(organization,);
+  Future<User?> getUsers(String organization, { Future<void>? abortTrigger, }) async {
+    final response = await getUsersWithHttpInfo(organization, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2129,7 +2160,7 @@ class BlueOceanApi {
   ///
   /// * [String] run (required):
   ///   Name of the run
-  Future<Response> postPipelineRunWithHttpInfo(String organization, String pipeline, String run,) async {
+  Future<Response> postPipelineRunWithHttpInfo(String organization, String pipeline, String run, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay'
       .replaceAll('{organization}', organization)
@@ -2154,6 +2185,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2169,8 +2201,8 @@ class BlueOceanApi {
   ///
   /// * [String] run (required):
   ///   Name of the run
-  Future<QueueItemImpl?> postPipelineRun(String organization, String pipeline, String run,) async {
-    final response = await postPipelineRunWithHttpInfo(organization, pipeline, run,);
+  Future<QueueItemImpl?> postPipelineRun(String organization, String pipeline, String run, { Future<void>? abortTrigger, }) async {
+    final response = await postPipelineRunWithHttpInfo(organization, pipeline, run, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2195,7 +2227,7 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<Response> postPipelineRunsWithHttpInfo(String organization, String pipeline,) async {
+  Future<Response> postPipelineRunsWithHttpInfo(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs'
       .replaceAll('{organization}', organization)
@@ -2219,6 +2251,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2231,8 +2264,8 @@ class BlueOceanApi {
   ///
   /// * [String] pipeline (required):
   ///   Name of the pipeline
-  Future<QueueItemImpl?> postPipelineRuns(String organization, String pipeline,) async {
-    final response = await postPipelineRunsWithHttpInfo(organization, pipeline,);
+  Future<QueueItemImpl?> postPipelineRuns(String organization, String pipeline, { Future<void>? abortTrigger, }) async {
+    final response = await postPipelineRunsWithHttpInfo(organization, pipeline, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2260,7 +2293,7 @@ class BlueOceanApi {
   ///
   /// * [bool] body (required):
   ///   Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-  Future<Response> putPipelineFavoriteWithHttpInfo(String organization, String pipeline, bool body,) async {
+  Future<Response> putPipelineFavoriteWithHttpInfo(String organization, String pipeline, bool body, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite'
       .replaceAll('{organization}', organization)
@@ -2284,6 +2317,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2299,8 +2333,8 @@ class BlueOceanApi {
   ///
   /// * [bool] body (required):
   ///   Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
-  Future<FavoriteImpl?> putPipelineFavorite(String organization, String pipeline, bool body,) async {
-    final response = await putPipelineFavoriteWithHttpInfo(organization, pipeline, body,);
+  Future<FavoriteImpl?> putPipelineFavorite(String organization, String pipeline, bool body, { Future<void>? abortTrigger, }) async {
+    final response = await putPipelineFavoriteWithHttpInfo(organization, pipeline, body, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2334,7 +2368,7 @@ class BlueOceanApi {
   ///
   /// * [int] timeOutInSecs:
   ///   Timeout in seconds, default: 10 seconds
-  Future<Response> putPipelineRunWithHttpInfo(String organization, String pipeline, String run, { String? blocking, int? timeOutInSecs, }) async {
+  Future<Response> putPipelineRunWithHttpInfo(String organization, String pipeline, String run, { String? blocking, int? timeOutInSecs, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop'
       .replaceAll('{organization}', organization)
@@ -2366,6 +2400,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2387,8 +2422,8 @@ class BlueOceanApi {
   ///
   /// * [int] timeOutInSecs:
   ///   Timeout in seconds, default: 10 seconds
-  Future<PipelineRun?> putPipelineRun(String organization, String pipeline, String run, { String? blocking, int? timeOutInSecs, }) async {
-    final response = await putPipelineRunWithHttpInfo(organization, pipeline, run,  blocking: blocking, timeOutInSecs: timeOutInSecs, );
+  Future<PipelineRun?> putPipelineRun(String organization, String pipeline, String run, { String? blocking, int? timeOutInSecs, Future<void>? abortTrigger, }) async {
+    final response = await putPipelineRunWithHttpInfo(organization, pipeline, run, blocking: blocking, timeOutInSecs: timeOutInSecs, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2410,7 +2445,7 @@ class BlueOceanApi {
   ///
   /// * [String] q (required):
   ///   Query string
-  Future<Response> searchWithHttpInfo(String q,) async {
+  Future<Response> searchWithHttpInfo(String q, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/search/';
 
@@ -2434,6 +2469,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2443,8 +2479,8 @@ class BlueOceanApi {
   ///
   /// * [String] q (required):
   ///   Query string
-  Future<String?> search(String q,) async {
-    final response = await searchWithHttpInfo(q,);
+  Future<String?> search(String q, { Future<void>? abortTrigger, }) async {
+    final response = await searchWithHttpInfo(q, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -2466,7 +2502,7 @@ class BlueOceanApi {
   ///
   /// * [String] q (required):
   ///   Query string containing an array of class names
-  Future<Response> searchClassesWithHttpInfo(String q,) async {
+  Future<Response> searchClassesWithHttpInfo(String q, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/blue/rest/classes/';
 
@@ -2490,6 +2526,7 @@ class BlueOceanApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -2499,8 +2536,8 @@ class BlueOceanApi {
   ///
   /// * [String] q (required):
   ///   Query string containing an array of class names
-  Future<String?> searchClasses(String q,) async {
-    final response = await searchClassesWithHttpInfo(q,);
+  Future<String?> searchClasses(String q, { Future<void>? abortTrigger, }) async {
+    final response = await searchClassesWithHttpInfo(q, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

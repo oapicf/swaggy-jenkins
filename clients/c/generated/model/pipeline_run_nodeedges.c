@@ -13,10 +13,10 @@ static pipeline_run_nodeedges_t *pipeline_run_nodeedges_create_internal(
     if (!pipeline_run_nodeedges_local_var) {
         return NULL;
     }
+    memset(pipeline_run_nodeedges_local_var, 0, sizeof(pipeline_run_nodeedges_t));
+    pipeline_run_nodeedges_local_var->_library_owned = 1;
     pipeline_run_nodeedges_local_var->id = id;
     pipeline_run_nodeedges_local_var->_class = _class;
-
-    pipeline_run_nodeedges_local_var->_library_owned = 1;
     return pipeline_run_nodeedges_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) pipeline_run_nodeedges_t *pipeline_run_nodeedges_cre
     char *id,
     char *_class
     ) {
-    return pipeline_run_nodeedges_create_internal (
+    pipeline_run_nodeedges_t *result = pipeline_run_nodeedges_create_internal (
         id,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void pipeline_run_nodeedges_free(pipeline_run_nodeedges_t *pipeline_run_nodeedges) {
@@ -80,6 +83,10 @@ pipeline_run_nodeedges_t *pipeline_run_nodeedges_parseFromJSON(cJSON *pipeline_r
 
     pipeline_run_nodeedges_t *pipeline_run_nodeedges_local_var = NULL;
 
+    char *id_local_str = NULL;
+
+    char *_class_local_str = NULL;
+
     // pipeline_run_nodeedges->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(pipeline_run_nodeedgesJSON, "id");
     if (cJSON_IsNull(id)) {
@@ -105,13 +112,28 @@ pipeline_run_nodeedges_t *pipeline_run_nodeedges_parseFromJSON(cJSON *pipeline_r
     }
 
 
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     pipeline_run_nodeedges_local_var = pipeline_run_nodeedges_create_internal (
-        id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        id_local_str,
+        _class_local_str
         );
+
+    if (!pipeline_run_nodeedges_local_var) {
+        goto end;
+    }
 
     return pipeline_run_nodeedges_local_var;
 end:
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     return NULL;
 
 }

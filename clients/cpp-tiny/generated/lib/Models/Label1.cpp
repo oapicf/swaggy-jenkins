@@ -64,7 +64,7 @@ Label1::getClass()
 }
 
 void
-Label1::setClass(std::string  _class)
+Label1::setClass(std::string _class)
 {
 	this->_class = _class;
 }

@@ -12,18 +12,21 @@ static unlabeled_load_statistics_t *unlabeled_load_statistics_create_internal(
     if (!unlabeled_load_statistics_local_var) {
         return NULL;
     }
-    unlabeled_load_statistics_local_var->_class = _class;
-
+    memset(unlabeled_load_statistics_local_var, 0, sizeof(unlabeled_load_statistics_t));
     unlabeled_load_statistics_local_var->_library_owned = 1;
+    unlabeled_load_statistics_local_var->_class = _class;
     return unlabeled_load_statistics_local_var;
 }
 
 __attribute__((deprecated)) unlabeled_load_statistics_t *unlabeled_load_statistics_create(
     char *_class
     ) {
-    return unlabeled_load_statistics_create_internal (
+    unlabeled_load_statistics_t *result = unlabeled_load_statistics_create_internal (
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void unlabeled_load_statistics_free(unlabeled_load_statistics_t *unlabeled_load_statistics) {
@@ -64,6 +67,8 @@ unlabeled_load_statistics_t *unlabeled_load_statistics_parseFromJSON(cJSON *unla
 
     unlabeled_load_statistics_t *unlabeled_load_statistics_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // unlabeled_load_statistics->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(unlabeled_load_statisticsJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -77,12 +82,22 @@ unlabeled_load_statistics_t *unlabeled_load_statistics_parseFromJSON(cJSON *unla
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     unlabeled_load_statistics_local_var = unlabeled_load_statistics_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!unlabeled_load_statistics_local_var) {
+        goto end;
+    }
 
     return unlabeled_load_statistics_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     return NULL;
 
 }

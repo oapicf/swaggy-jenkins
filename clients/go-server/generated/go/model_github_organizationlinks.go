@@ -5,7 +5,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * API version: 3.2.1-pre.0
+ * API version: 3.3.1-pre.0
  * Contact: blah+oapicf@cliffano.com
  */
 
@@ -23,7 +23,8 @@ type GithubOrganizationlinks struct {
 	Class string `json:"_class,omitempty"`
 }
 
-// AssertGithubOrganizationlinksRequired checks if the required fields are not zero-ed
+// AssertGithubOrganizationlinksRequired checks complex required fields (models, arrays, maps) and embedded parents.
+// Primitive required fields are validated for JSON request bodies in UnmarshalJSON so zero values remain valid.
 func AssertGithubOrganizationlinksRequired(obj GithubOrganizationlinks) error {
 	if err := AssertLinkRequired(obj.Repositories); err != nil {
 		return err

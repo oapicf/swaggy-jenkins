@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.JobApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -32,7 +31,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:}")
 class JobApiController() {
 
     @Operation(
@@ -48,7 +47,8 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_JOB /* "/job/{name}/api/json" */],
+        // "/job/{name}/api/json"
+        value = [PATH_GET_JOB],
         produces = ["application/json"]
     )
     fun getJob(
@@ -70,7 +70,8 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_JOB_CONFIG /* "/job/{name}/config.xml" */],
+        // "/job/{name}/config.xml"
+        value = [PATH_GET_JOB_CONFIG],
         produces = ["text/xml"]
     )
     fun getJobConfig(
@@ -92,7 +93,8 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_JOB_LAST_BUILD /* "/job/{name}/lastBuild/api/json" */],
+        // "/job/{name}/lastBuild/api/json"
+        value = [PATH_GET_JOB_LAST_BUILD],
         produces = ["application/json"]
     )
     fun getJobLastBuild(
@@ -114,7 +116,8 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_JOB_PROGRESSIVE_TEXT /* "/job/{name}/{number}/logText/progressiveText" */]
+        // "/job/{name}/{number}/logText/progressiveText"
+        value = [PATH_GET_JOB_PROGRESSIVE_TEXT]
     )
     fun getJobProgressiveText(
         @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
@@ -138,7 +141,8 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_POST_JOB_BUILD /* "/job/{name}/build" */]
+        // "/job/{name}/build"
+        value = [PATH_POST_JOB_BUILD]
     )
     fun postJobBuild(
         @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
@@ -163,7 +167,8 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_POST_JOB_CONFIG /* "/job/{name}/config.xml" */],
+        // "/job/{name}/config.xml"
+        value = [PATH_POST_JOB_CONFIG],
         produces = ["*/*"],
         consumes = ["application/json"]
     )
@@ -188,7 +193,8 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_POST_JOB_DELETE /* "/job/{name}/doDelete" */]
+        // "/job/{name}/doDelete"
+        value = [PATH_POST_JOB_DELETE]
     )
     fun postJobDelete(
         @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
@@ -210,7 +216,8 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_POST_JOB_DISABLE /* "/job/{name}/disable" */]
+        // "/job/{name}/disable"
+        value = [PATH_POST_JOB_DISABLE]
     )
     fun postJobDisable(
         @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
@@ -232,7 +239,8 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_POST_JOB_ENABLE /* "/job/{name}/enable" */]
+        // "/job/{name}/enable"
+        value = [PATH_POST_JOB_ENABLE]
     )
     fun postJobEnable(
         @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,
@@ -254,7 +262,8 @@ class JobApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_POST_JOB_LAST_BUILD_STOP /* "/job/{name}/lastBuild/stop" */]
+        // "/job/{name}/lastBuild/stop"
+        value = [PATH_POST_JOB_LAST_BUILD_STOP]
     )
     fun postJobLastBuildStop(
         @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,

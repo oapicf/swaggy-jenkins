@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::string getHref();
 
 	/*! \brief Set 
 	 */
-	void setHref(std::string  href);
+	void setHref(std::string href);
 
 
     private:

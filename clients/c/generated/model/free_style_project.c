@@ -16,12 +16,12 @@ static free_style_project_t *free_style_project_create_internal(
     char *display_name_or_null,
     char *full_display_name,
     char *full_name,
-    int buildable,
+    int *buildable,
     list_t *builds,
     free_style_build_t *first_build,
     list_t *health_report,
-    int in_queue,
-    int keep_dependencies,
+    int *in_queue,
+    int *keep_dependencies,
     free_style_build_t *last_build,
     free_style_build_t *last_completed_build,
     char *last_failed_build,
@@ -29,15 +29,17 @@ static free_style_project_t *free_style_project_create_internal(
     free_style_build_t *last_successful_build,
     char *last_unstable_build,
     char *last_unsuccessful_build,
-    int next_build_number,
+    int *next_build_number,
     char *queue_item,
-    int concurrent_build,
+    int *concurrent_build,
     null_scm_t *scm
     ) {
     free_style_project_t *free_style_project_local_var = malloc(sizeof(free_style_project_t));
     if (!free_style_project_local_var) {
         return NULL;
     }
+    memset(free_style_project_local_var, 0, sizeof(free_style_project_t));
+    free_style_project_local_var->_library_owned = 1;
     free_style_project_local_var->_class = _class;
     free_style_project_local_var->name = name;
     free_style_project_local_var->url = url;
@@ -65,8 +67,6 @@ static free_style_project_t *free_style_project_create_internal(
     free_style_project_local_var->queue_item = queue_item;
     free_style_project_local_var->concurrent_build = concurrent_build;
     free_style_project_local_var->scm = scm;
-
-    free_style_project_local_var->_library_owned = 1;
     return free_style_project_local_var;
 }
 
@@ -81,12 +81,12 @@ __attribute__((deprecated)) free_style_project_t *free_style_project_create(
     char *display_name_or_null,
     char *full_display_name,
     char *full_name,
-    int buildable,
+    int *buildable,
     list_t *builds,
     free_style_build_t *first_build,
     list_t *health_report,
-    int in_queue,
-    int keep_dependencies,
+    int *in_queue,
+    int *keep_dependencies,
     free_style_build_t *last_build,
     free_style_build_t *last_completed_build,
     char *last_failed_build,
@@ -94,12 +94,37 @@ __attribute__((deprecated)) free_style_project_t *free_style_project_create(
     free_style_build_t *last_successful_build,
     char *last_unstable_build,
     char *last_unsuccessful_build,
-    int next_build_number,
+    int *next_build_number,
     char *queue_item,
-    int concurrent_build,
+    int *concurrent_build,
     null_scm_t *scm
     ) {
-    return free_style_project_create_internal (
+    int *buildable_copy = NULL;
+    if (buildable) {
+        buildable_copy = malloc(sizeof(int));
+        if (buildable_copy) *buildable_copy = *buildable;
+    }
+    int *in_queue_copy = NULL;
+    if (in_queue) {
+        in_queue_copy = malloc(sizeof(int));
+        if (in_queue_copy) *in_queue_copy = *in_queue;
+    }
+    int *keep_dependencies_copy = NULL;
+    if (keep_dependencies) {
+        keep_dependencies_copy = malloc(sizeof(int));
+        if (keep_dependencies_copy) *keep_dependencies_copy = *keep_dependencies;
+    }
+    int *next_build_number_copy = NULL;
+    if (next_build_number) {
+        next_build_number_copy = malloc(sizeof(int));
+        if (next_build_number_copy) *next_build_number_copy = *next_build_number;
+    }
+    int *concurrent_build_copy = NULL;
+    if (concurrent_build) {
+        concurrent_build_copy = malloc(sizeof(int));
+        if (concurrent_build_copy) *concurrent_build_copy = *concurrent_build;
+    }
+    free_style_project_t *result = free_style_project_create_internal (
         _class,
         name,
         url,
@@ -110,12 +135,12 @@ __attribute__((deprecated)) free_style_project_t *free_style_project_create(
         display_name_or_null,
         full_display_name,
         full_name,
-        buildable,
+        buildable_copy,
         builds,
         first_build,
         health_report,
-        in_queue,
-        keep_dependencies,
+        in_queue_copy,
+        keep_dependencies_copy,
         last_build,
         last_completed_build,
         last_failed_build,
@@ -123,11 +148,19 @@ __attribute__((deprecated)) free_style_project_t *free_style_project_create(
         last_successful_build,
         last_unstable_build,
         last_unsuccessful_build,
-        next_build_number,
+        next_build_number_copy,
         queue_item,
-        concurrent_build,
+        concurrent_build_copy,
         scm
         );
+    if (!result) {
+        free(buildable_copy);
+        free(in_queue_copy);
+        free(keep_dependencies_copy);
+        free(next_build_number_copy);
+        free(concurrent_build_copy);
+    }
+    return result;
 }
 
 void free_style_project_free(free_style_project_t *free_style_project) {
@@ -182,6 +215,10 @@ void free_style_project_free(free_style_project_t *free_style_project) {
         free(free_style_project->full_name);
         free_style_project->full_name = NULL;
     }
+    if (free_style_project->buildable) {
+        free(free_style_project->buildable);
+        free_style_project->buildable = NULL;
+    }
     if (free_style_project->builds) {
         list_ForEach(listEntry, free_style_project->builds) {
             free_style_build_free(listEntry->data);
@@ -199,6 +236,14 @@ void free_style_project_free(free_style_project_t *free_style_project) {
         }
         list_freeList(free_style_project->health_report);
         free_style_project->health_report = NULL;
+    }
+    if (free_style_project->in_queue) {
+        free(free_style_project->in_queue);
+        free_style_project->in_queue = NULL;
+    }
+    if (free_style_project->keep_dependencies) {
+        free(free_style_project->keep_dependencies);
+        free_style_project->keep_dependencies = NULL;
     }
     if (free_style_project->last_build) {
         free_style_build_free(free_style_project->last_build);
@@ -228,9 +273,17 @@ void free_style_project_free(free_style_project_t *free_style_project) {
         free(free_style_project->last_unsuccessful_build);
         free_style_project->last_unsuccessful_build = NULL;
     }
+    if (free_style_project->next_build_number) {
+        free(free_style_project->next_build_number);
+        free_style_project->next_build_number = NULL;
+    }
     if (free_style_project->queue_item) {
         free(free_style_project->queue_item);
         free_style_project->queue_item = NULL;
+    }
+    if (free_style_project->concurrent_build) {
+        free(free_style_project->concurrent_build);
+        free_style_project->concurrent_build = NULL;
     }
     if (free_style_project->scm) {
         null_scm_free(free_style_project->scm);
@@ -336,7 +389,7 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
 
     // free_style_project->buildable
     if(free_style_project->buildable) {
-    if(cJSON_AddBoolToObject(item, "buildable", free_style_project->buildable) == NULL) {
+    if(cJSON_AddBoolToObject(item, "buildable", *free_style_project->buildable) == NULL) {
     goto fail; //Bool
     }
     }
@@ -397,7 +450,7 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
 
     // free_style_project->in_queue
     if(free_style_project->in_queue) {
-    if(cJSON_AddBoolToObject(item, "inQueue", free_style_project->in_queue) == NULL) {
+    if(cJSON_AddBoolToObject(item, "inQueue", *free_style_project->in_queue) == NULL) {
     goto fail; //Bool
     }
     }
@@ -405,7 +458,7 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
 
     // free_style_project->keep_dependencies
     if(free_style_project->keep_dependencies) {
-    if(cJSON_AddBoolToObject(item, "keepDependencies", free_style_project->keep_dependencies) == NULL) {
+    if(cJSON_AddBoolToObject(item, "keepDependencies", *free_style_project->keep_dependencies) == NULL) {
     goto fail; //Bool
     }
     }
@@ -489,7 +542,7 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
 
     // free_style_project->next_build_number
     if(free_style_project->next_build_number) {
-    if(cJSON_AddNumberToObject(item, "nextBuildNumber", free_style_project->next_build_number) == NULL) {
+    if(cJSON_AddNumberToObject(item, "nextBuildNumber", *free_style_project->next_build_number) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -505,7 +558,7 @@ cJSON *free_style_project_convertToJSON(free_style_project_t *free_style_project
 
     // free_style_project->concurrent_build
     if(free_style_project->concurrent_build) {
-    if(cJSON_AddBoolToObject(item, "concurrentBuild", free_style_project->concurrent_build) == NULL) {
+    if(cJSON_AddBoolToObject(item, "concurrentBuild", *free_style_project->concurrent_build) == NULL) {
     goto fail; //Bool
     }
     }
@@ -535,8 +588,29 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
 
     free_style_project_t *free_style_project_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *name_local_str = NULL;
+
+    char *url_local_str = NULL;
+
+    char *color_local_str = NULL;
+
     // define the local list for free_style_project->actions
     list_t *actionsList = NULL;
+
+    char *description_local_str = NULL;
+
+    char *display_name_local_str = NULL;
+
+    char *display_name_or_null_local_str = NULL;
+
+    char *full_display_name_local_str = NULL;
+
+    char *full_name_local_str = NULL;
+
+    // define the local variable for free_style_project->buildable
+    int *buildable_local_var = NULL;
 
     // define the local list for free_style_project->builds
     list_t *buildsList = NULL;
@@ -547,17 +621,37 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     // define the local list for free_style_project->health_report
     list_t *health_reportList = NULL;
 
+    // define the local variable for free_style_project->in_queue
+    int *in_queue_local_var = NULL;
+
+    // define the local variable for free_style_project->keep_dependencies
+    int *keep_dependencies_local_var = NULL;
+
     // define the local variable for free_style_project->last_build
     free_style_build_t *last_build_local_nonprim = NULL;
 
     // define the local variable for free_style_project->last_completed_build
     free_style_build_t *last_completed_build_local_nonprim = NULL;
 
+    char *last_failed_build_local_str = NULL;
+
     // define the local variable for free_style_project->last_stable_build
     free_style_build_t *last_stable_build_local_nonprim = NULL;
 
     // define the local variable for free_style_project->last_successful_build
     free_style_build_t *last_successful_build_local_nonprim = NULL;
+
+    char *last_unstable_build_local_str = NULL;
+
+    char *last_unsuccessful_build_local_str = NULL;
+
+    // define the local variable for free_style_project->next_build_number
+    int *next_build_number_local_var = NULL;
+
+    char *queue_item_local_str = NULL;
+
+    // define the local variable for free_style_project->concurrent_build
+    int *concurrent_build_local_var = NULL;
 
     // define the local variable for free_style_project->scm
     null_scm_t *scm_local_nonprim = NULL;
@@ -704,6 +798,12 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     {
     goto end; //Bool
     }
+    buildable_local_var = malloc(sizeof(int));
+    if(!buildable_local_var)
+    {
+        goto end;
+    }
+    *buildable_local_var = buildable->valueint;
     }
 
     // free_style_project->builds
@@ -773,6 +873,12 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     {
     goto end; //Bool
     }
+    in_queue_local_var = malloc(sizeof(int));
+    if(!in_queue_local_var)
+    {
+        goto end;
+    }
+    *in_queue_local_var = in_queue->valueint;
     }
 
     // free_style_project->keep_dependencies
@@ -785,6 +891,12 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     {
     goto end; //Bool
     }
+    keep_dependencies_local_var = malloc(sizeof(int));
+    if(!keep_dependencies_local_var)
+    {
+        goto end;
+    }
+    *keep_dependencies_local_var = keep_dependencies->valueint;
     }
 
     // free_style_project->last_build
@@ -869,6 +981,12 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     {
     goto end; //Numeric
     }
+    next_build_number_local_var = malloc(sizeof(int));
+    if(!next_build_number_local_var)
+    {
+        goto end;
+    }
+    *next_build_number_local_var = next_build_number->valuedouble;
     }
 
     // free_style_project->queue_item
@@ -893,6 +1011,12 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     {
     goto end; //Bool
     }
+    concurrent_build_local_var = malloc(sizeof(int));
+    if(!concurrent_build_local_var)
+    {
+        goto end;
+    }
+    *concurrent_build_local_var = concurrent_build->valueint;
     }
 
     // free_style_project->scm
@@ -905,38 +1029,72 @@ free_style_project_t *free_style_project_parseFromJSON(cJSON *free_style_project
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+    if (color && !cJSON_IsNull(color)) color_local_str = strdup(color->valuestring);
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+    if (display_name_or_null && !cJSON_IsNull(display_name_or_null)) display_name_or_null_local_str = strdup(display_name_or_null->valuestring);
+    if (full_display_name && !cJSON_IsNull(full_display_name)) full_display_name_local_str = strdup(full_display_name->valuestring);
+    if (full_name && !cJSON_IsNull(full_name)) full_name_local_str = strdup(full_name->valuestring);
+    if (last_failed_build && !cJSON_IsNull(last_failed_build)) last_failed_build_local_str = strdup(last_failed_build->valuestring);
+    if (last_unstable_build && !cJSON_IsNull(last_unstable_build)) last_unstable_build_local_str = strdup(last_unstable_build->valuestring);
+    if (last_unsuccessful_build && !cJSON_IsNull(last_unsuccessful_build)) last_unsuccessful_build_local_str = strdup(last_unsuccessful_build->valuestring);
+    if (queue_item && !cJSON_IsNull(queue_item)) queue_item_local_str = strdup(queue_item->valuestring);
+
     free_style_project_local_var = free_style_project_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL,
-        color && !cJSON_IsNull(color) ? strdup(color->valuestring) : NULL,
+        _class_local_str,
+        name_local_str,
+        url_local_str,
+        color_local_str,
         actions ? actionsList : NULL,
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
-        display_name_or_null && !cJSON_IsNull(display_name_or_null) ? strdup(display_name_or_null->valuestring) : NULL,
-        full_display_name && !cJSON_IsNull(full_display_name) ? strdup(full_display_name->valuestring) : NULL,
-        full_name && !cJSON_IsNull(full_name) ? strdup(full_name->valuestring) : NULL,
-        buildable ? buildable->valueint : 0,
+        description_local_str,
+        display_name_local_str,
+        display_name_or_null_local_str,
+        full_display_name_local_str,
+        full_name_local_str,
+        buildable_local_var,
         builds ? buildsList : NULL,
         first_build ? first_build_local_nonprim : NULL,
         health_report ? health_reportList : NULL,
-        in_queue ? in_queue->valueint : 0,
-        keep_dependencies ? keep_dependencies->valueint : 0,
+        in_queue_local_var,
+        keep_dependencies_local_var,
         last_build ? last_build_local_nonprim : NULL,
         last_completed_build ? last_completed_build_local_nonprim : NULL,
-        last_failed_build && !cJSON_IsNull(last_failed_build) ? strdup(last_failed_build->valuestring) : NULL,
+        last_failed_build_local_str,
         last_stable_build ? last_stable_build_local_nonprim : NULL,
         last_successful_build ? last_successful_build_local_nonprim : NULL,
-        last_unstable_build && !cJSON_IsNull(last_unstable_build) ? strdup(last_unstable_build->valuestring) : NULL,
-        last_unsuccessful_build && !cJSON_IsNull(last_unsuccessful_build) ? strdup(last_unsuccessful_build->valuestring) : NULL,
-        next_build_number ? next_build_number->valuedouble : 0,
-        queue_item && !cJSON_IsNull(queue_item) ? strdup(queue_item->valuestring) : NULL,
-        concurrent_build ? concurrent_build->valueint : 0,
+        last_unstable_build_local_str,
+        last_unsuccessful_build_local_str,
+        next_build_number_local_var,
+        queue_item_local_str,
+        concurrent_build_local_var,
         scm ? scm_local_nonprim : NULL
         );
 
+    if (!free_style_project_local_var) {
+        goto end;
+    }
+
     return free_style_project_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
+    }
+    if (color_local_str) {
+        free(color_local_str);
+        color_local_str = NULL;
+    }
     if (actionsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, actionsList) {
@@ -945,6 +1103,30 @@ end:
         }
         list_freeList(actionsList);
         actionsList = NULL;
+    }
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
+    if (display_name_or_null_local_str) {
+        free(display_name_or_null_local_str);
+        display_name_or_null_local_str = NULL;
+    }
+    if (full_display_name_local_str) {
+        free(full_display_name_local_str);
+        full_display_name_local_str = NULL;
+    }
+    if (full_name_local_str) {
+        free(full_name_local_str);
+        full_name_local_str = NULL;
+    }
+    if (buildable_local_var) {
+        free(buildable_local_var);
+        buildable_local_var = NULL;
     }
     if (buildsList) {
         listEntry_t *listEntry = NULL;
@@ -968,6 +1150,14 @@ end:
         list_freeList(health_reportList);
         health_reportList = NULL;
     }
+    if (in_queue_local_var) {
+        free(in_queue_local_var);
+        in_queue_local_var = NULL;
+    }
+    if (keep_dependencies_local_var) {
+        free(keep_dependencies_local_var);
+        keep_dependencies_local_var = NULL;
+    }
     if (last_build_local_nonprim) {
         free_style_build_free(last_build_local_nonprim);
         last_build_local_nonprim = NULL;
@@ -976,6 +1166,10 @@ end:
         free_style_build_free(last_completed_build_local_nonprim);
         last_completed_build_local_nonprim = NULL;
     }
+    if (last_failed_build_local_str) {
+        free(last_failed_build_local_str);
+        last_failed_build_local_str = NULL;
+    }
     if (last_stable_build_local_nonprim) {
         free_style_build_free(last_stable_build_local_nonprim);
         last_stable_build_local_nonprim = NULL;
@@ -983,6 +1177,26 @@ end:
     if (last_successful_build_local_nonprim) {
         free_style_build_free(last_successful_build_local_nonprim);
         last_successful_build_local_nonprim = NULL;
+    }
+    if (last_unstable_build_local_str) {
+        free(last_unstable_build_local_str);
+        last_unstable_build_local_str = NULL;
+    }
+    if (last_unsuccessful_build_local_str) {
+        free(last_unsuccessful_build_local_str);
+        last_unsuccessful_build_local_str = NULL;
+    }
+    if (next_build_number_local_var) {
+        free(next_build_number_local_var);
+        next_build_number_local_var = NULL;
+    }
+    if (queue_item_local_str) {
+        free(queue_item_local_str);
+        queue_item_local_str = NULL;
+    }
+    if (concurrent_build_local_var) {
+        free(concurrent_build_local_var);
+        concurrent_build_local_var = NULL;
     }
     if (scm_local_nonprim) {
         null_scm_free(scm_local_nonprim);

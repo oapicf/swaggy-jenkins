@@ -51,49 +51,49 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::string getDisplayName();
 
 	/*! \brief Set 
 	 */
-	void setDisplayName(std::string  displayName);
+	void setDisplayName(std::string displayName);
 	/*! \brief Get 
 	 */
 	std::string getFullName();
 
 	/*! \brief Set 
 	 */
-	void setFullName(std::string  fullName);
+	void setFullName(std::string fullName);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	std::string getOrganization();
 
 	/*! \brief Set 
 	 */
-	void setOrganization(std::string  organization);
+	void setOrganization(std::string organization);
 	/*! \brief Get 
 	 */
 	int getNumberOfFolders();
 
 	/*! \brief Set 
 	 */
-	void setNumberOfFolders(int  numberOfFolders);
+	void setNumberOfFolders(int numberOfFolders);
 	/*! \brief Get 
 	 */
 	int getNumberOfPipelines();
 
 	/*! \brief Set 
 	 */
-	void setNumberOfPipelines(int  numberOfPipelines);
+	void setNumberOfPipelines(int numberOfPipelines);
 
 
     private:

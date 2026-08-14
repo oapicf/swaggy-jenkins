@@ -77,17 +77,40 @@ ExtensionClassContainerImpl1map <- R6::R6Class(
       ExtensionClassContainerImpl1mapObject <- list()
       if (!is.null(self$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`)) {
         ExtensionClassContainerImpl1mapObject[["io.jenkins.blueocean.service.embedded.rest.PipelineImpl"]] <-
-          self$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`$toSimpleType()
+          self$extractSimpleType(self$`io.jenkins.blueocean.service.embedded.rest.PipelineImpl`)
       }
       if (!is.null(self$`io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl`)) {
         ExtensionClassContainerImpl1mapObject[["io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl"]] <-
-          self$`io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl`$toSimpleType()
+          self$extractSimpleType(self$`io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl`)
       }
       if (!is.null(self$`_class`)) {
         ExtensionClassContainerImpl1mapObject[["_class"]] <-
           self$`_class`
       }
       return(ExtensionClassContainerImpl1mapObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

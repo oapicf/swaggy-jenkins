@@ -298,7 +298,7 @@ FreeStyleProject <- R6::R6Class(
       }
       if (!is.null(self$`actions`)) {
         FreeStyleProjectObject[["actions"]] <-
-          lapply(self$`actions`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`actions`)
       }
       if (!is.null(self$`description`)) {
         FreeStyleProjectObject[["description"]] <-
@@ -326,15 +326,15 @@ FreeStyleProject <- R6::R6Class(
       }
       if (!is.null(self$`builds`)) {
         FreeStyleProjectObject[["builds"]] <-
-          lapply(self$`builds`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`builds`)
       }
       if (!is.null(self$`firstBuild`)) {
         FreeStyleProjectObject[["firstBuild"]] <-
-          self$`firstBuild`$toSimpleType()
+          self$extractSimpleType(self$`firstBuild`)
       }
       if (!is.null(self$`healthReport`)) {
         FreeStyleProjectObject[["healthReport"]] <-
-          lapply(self$`healthReport`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`healthReport`)
       }
       if (!is.null(self$`inQueue`)) {
         FreeStyleProjectObject[["inQueue"]] <-
@@ -346,11 +346,11 @@ FreeStyleProject <- R6::R6Class(
       }
       if (!is.null(self$`lastBuild`)) {
         FreeStyleProjectObject[["lastBuild"]] <-
-          self$`lastBuild`$toSimpleType()
+          self$extractSimpleType(self$`lastBuild`)
       }
       if (!is.null(self$`lastCompletedBuild`)) {
         FreeStyleProjectObject[["lastCompletedBuild"]] <-
-          self$`lastCompletedBuild`$toSimpleType()
+          self$extractSimpleType(self$`lastCompletedBuild`)
       }
       if (!is.null(self$`lastFailedBuild`)) {
         FreeStyleProjectObject[["lastFailedBuild"]] <-
@@ -358,11 +358,11 @@ FreeStyleProject <- R6::R6Class(
       }
       if (!is.null(self$`lastStableBuild`)) {
         FreeStyleProjectObject[["lastStableBuild"]] <-
-          self$`lastStableBuild`$toSimpleType()
+          self$extractSimpleType(self$`lastStableBuild`)
       }
       if (!is.null(self$`lastSuccessfulBuild`)) {
         FreeStyleProjectObject[["lastSuccessfulBuild"]] <-
-          self$`lastSuccessfulBuild`$toSimpleType()
+          self$extractSimpleType(self$`lastSuccessfulBuild`)
       }
       if (!is.null(self$`lastUnstableBuild`)) {
         FreeStyleProjectObject[["lastUnstableBuild"]] <-
@@ -386,9 +386,32 @@ FreeStyleProject <- R6::R6Class(
       }
       if (!is.null(self$`scm`)) {
         FreeStyleProjectObject[["scm"]] <-
-          self$`scm`$toSimpleType()
+          self$extractSimpleType(self$`scm`)
       }
       return(FreeStyleProjectObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

@@ -27,7 +27,7 @@ typedef struct github_repository_t {
     char *description; // string
     char *name; // string
     struct github_repositorypermissions_t *permissions; //model
-    int _private; //boolean
+    int *_private; //boolean
     char *full_name; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -40,7 +40,7 @@ __attribute__((deprecated)) github_repository_t *github_repository_create(
     char *description,
     char *name,
     github_repositorypermissions_t *permissions,
-    int _private,
+    int *_private,
     char *full_name
 );
 

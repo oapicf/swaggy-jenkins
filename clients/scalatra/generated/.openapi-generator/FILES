@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 build.sbt
 project/build.properties

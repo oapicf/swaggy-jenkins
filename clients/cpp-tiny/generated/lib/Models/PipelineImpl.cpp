@@ -233,7 +233,7 @@ PipelineImpl::getClass()
 }
 
 void
-PipelineImpl::setClass(std::string  _class)
+PipelineImpl::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -245,7 +245,7 @@ PipelineImpl::getDisplayName()
 }
 
 void
-PipelineImpl::setDisplayName(std::string  displayName)
+PipelineImpl::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -257,7 +257,7 @@ PipelineImpl::getEstimatedDurationInMillis()
 }
 
 void
-PipelineImpl::setEstimatedDurationInMillis(int  estimatedDurationInMillis)
+PipelineImpl::setEstimatedDurationInMillis(int estimatedDurationInMillis)
 {
 	this->estimatedDurationInMillis = estimatedDurationInMillis;
 }
@@ -269,7 +269,7 @@ PipelineImpl::getFullName()
 }
 
 void
-PipelineImpl::setFullName(std::string  fullName)
+PipelineImpl::setFullName(std::string fullName)
 {
 	this->fullName = fullName;
 }
@@ -281,7 +281,7 @@ PipelineImpl::getLatestRun()
 }
 
 void
-PipelineImpl::setLatestRun(std::string  latestRun)
+PipelineImpl::setLatestRun(std::string latestRun)
 {
 	this->latestRun = latestRun;
 }
@@ -293,7 +293,7 @@ PipelineImpl::getName()
 }
 
 void
-PipelineImpl::setName(std::string  name)
+PipelineImpl::setName(std::string name)
 {
 	this->name = name;
 }
@@ -305,7 +305,7 @@ PipelineImpl::getOrganization()
 }
 
 void
-PipelineImpl::setOrganization(std::string  organization)
+PipelineImpl::setOrganization(std::string organization)
 {
 	this->organization = organization;
 }
@@ -317,7 +317,7 @@ PipelineImpl::getWeatherScore()
 }
 
 void
-PipelineImpl::setWeatherScore(int  weatherScore)
+PipelineImpl::setWeatherScore(int weatherScore)
 {
 	this->weatherScore = weatherScore;
 }
@@ -329,7 +329,7 @@ PipelineImpl::getLinks()
 }
 
 void
-PipelineImpl::setLinks(PipelineImpllinks  _links)
+PipelineImpl::setLinks(PipelineImpllinks _links)
 {
 	this->_links = _links;
 }

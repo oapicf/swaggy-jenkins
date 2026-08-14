@@ -106,7 +106,7 @@ AllView::getClass()
 }
 
 void
-AllView::setClass(std::string  _class)
+AllView::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -118,7 +118,7 @@ AllView::getName()
 }
 
 void
-AllView::setName(std::string  name)
+AllView::setName(std::string name)
 {
 	this->name = name;
 }
@@ -130,7 +130,7 @@ AllView::getUrl()
 }
 
 void
-AllView::setUrl(std::string  url)
+AllView::setUrl(std::string url)
 {
 	this->url = url;
 }

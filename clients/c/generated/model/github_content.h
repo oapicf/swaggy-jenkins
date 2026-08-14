@@ -23,7 +23,7 @@ typedef struct github_content_t {
     char *sha; // string
     char *_class; // string
     char *repo; // string
-    int size; //numeric
+    int *size; //numeric
     char *owner; // string
     char *path; // string
     char *base64_data; // string
@@ -36,7 +36,7 @@ __attribute__((deprecated)) github_content_t *github_content_create(
     char *sha,
     char *_class,
     char *repo,
-    int size,
+    int *size,
     char *owner,
     char *path,
     char *base64_data

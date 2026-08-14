@@ -52,56 +52,56 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 	/*! \brief Get 
 	 */
 	std::string getOrganization();
 
 	/*! \brief Set 
 	 */
-	void setOrganization(std::string  organization);
+	void setOrganization(std::string organization);
 	/*! \brief Get 
 	 */
 	std::string getName();
 
 	/*! \brief Set 
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 	/*! \brief Get 
 	 */
 	std::string getDisplayName();
 
 	/*! \brief Set 
 	 */
-	void setDisplayName(std::string  displayName);
+	void setDisplayName(std::string displayName);
 	/*! \brief Get 
 	 */
 	std::string getFullName();
 
 	/*! \brief Set 
 	 */
-	void setFullName(std::string  fullName);
+	void setFullName(std::string fullName);
 	/*! \brief Get 
 	 */
 	int getWeatherScore();
 
 	/*! \brief Set 
 	 */
-	void setWeatherScore(int  weatherScore);
+	void setWeatherScore(int weatherScore);
 	/*! \brief Get 
 	 */
 	int getEstimatedDurationInMillis();
 
 	/*! \brief Set 
 	 */
-	void setEstimatedDurationInMillis(int  estimatedDurationInMillis);
+	void setEstimatedDurationInMillis(int estimatedDurationInMillis);
 	/*! \brief Get 
 	 */
 	PipelinelatestRun getLatestRun();
 
 	/*! \brief Set 
 	 */
-	void setLatestRun(PipelinelatestRun  latestRun);
+	void setLatestRun(PipelinelatestRun latestRun);
 
 
     private:

@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * PipelineActivityartifacts
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-02-01T01:24:09.085498338Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-14T13:26:39.686051535Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineActivityartifacts   {
   @JsonProperty("name")
   private String name;
@@ -139,10 +139,7 @@ public class PipelineActivityartifacts   {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

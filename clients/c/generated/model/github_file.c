@@ -13,10 +13,10 @@ static github_file_t *github_file_create_internal(
     if (!github_file_local_var) {
         return NULL;
     }
+    memset(github_file_local_var, 0, sizeof(github_file_t));
+    github_file_local_var->_library_owned = 1;
     github_file_local_var->content = content;
     github_file_local_var->_class = _class;
-
-    github_file_local_var->_library_owned = 1;
     return github_file_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) github_file_t *github_file_create(
     github_content_t *content,
     char *_class
     ) {
-    return github_file_create_internal (
+    github_file_t *result = github_file_create_internal (
         content,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void github_file_free(github_file_t *github_file) {
@@ -88,6 +91,8 @@ github_file_t *github_file_parseFromJSON(cJSON *github_fileJSON){
     // define the local variable for github_file->content
     github_content_t *content_local_nonprim = NULL;
 
+    char *_class_local_str = NULL;
+
     // github_file->content
     cJSON *content = cJSON_GetObjectItemCaseSensitive(github_fileJSON, "content");
     if (cJSON_IsNull(content)) {
@@ -110,16 +115,26 @@ github_file_t *github_file_parseFromJSON(cJSON *github_fileJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     github_file_local_var = github_file_create_internal (
         content ? content_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!github_file_local_var) {
+        goto end;
+    }
 
     return github_file_local_var;
 end:
     if (content_local_nonprim) {
         github_content_free(content_local_nonprim);
         content_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

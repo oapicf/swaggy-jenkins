@@ -21,7 +21,7 @@ typedef struct generic_resource_t generic_resource_t;
 typedef struct generic_resource_t {
     char *_class; // string
     char *display_name; // string
-    int duration_in_millis; //numeric
+    int *duration_in_millis; //numeric
     char *id; // string
     char *result; // string
     char *start_time; // string
@@ -32,7 +32,7 @@ typedef struct generic_resource_t {
 __attribute__((deprecated)) generic_resource_t *generic_resource_create(
     char *_class,
     char *display_name,
-    int duration_in_millis,
+    int *duration_in_millis,
     char *id,
     char *result,
     char *start_time

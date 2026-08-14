@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setCreate(bool  create);
+	void setCreate(bool create);
 	/*! \brief Get 
 	 */
 	bool isRead();
 
 	/*! \brief Set 
 	 */
-	void setRead(bool  read);
+	void setRead(bool read);
 	/*! \brief Get 
 	 */
 	bool isStart();
 
 	/*! \brief Set 
 	 */
-	void setStart(bool  start);
+	void setStart(bool start);
 	/*! \brief Get 
 	 */
 	bool isStop();
 
 	/*! \brief Set 
 	 */
-	void setStop(bool  stop);
+	void setStop(bool stop);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

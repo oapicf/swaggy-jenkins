@@ -10,7 +10,7 @@ static github_content_t *github_content_create_internal(
     char *sha,
     char *_class,
     char *repo,
-    int size,
+    int *size,
     char *owner,
     char *path,
     char *base64_data
@@ -19,6 +19,8 @@ static github_content_t *github_content_create_internal(
     if (!github_content_local_var) {
         return NULL;
     }
+    memset(github_content_local_var, 0, sizeof(github_content_t));
+    github_content_local_var->_library_owned = 1;
     github_content_local_var->name = name;
     github_content_local_var->sha = sha;
     github_content_local_var->_class = _class;
@@ -27,8 +29,6 @@ static github_content_t *github_content_create_internal(
     github_content_local_var->owner = owner;
     github_content_local_var->path = path;
     github_content_local_var->base64_data = base64_data;
-
-    github_content_local_var->_library_owned = 1;
     return github_content_local_var;
 }
 
@@ -37,21 +37,30 @@ __attribute__((deprecated)) github_content_t *github_content_create(
     char *sha,
     char *_class,
     char *repo,
-    int size,
+    int *size,
     char *owner,
     char *path,
     char *base64_data
     ) {
-    return github_content_create_internal (
+    int *size_copy = NULL;
+    if (size) {
+        size_copy = malloc(sizeof(int));
+        if (size_copy) *size_copy = *size;
+    }
+    github_content_t *result = github_content_create_internal (
         name,
         sha,
         _class,
         repo,
-        size,
+        size_copy,
         owner,
         path,
         base64_data
         );
+    if (!result) {
+        free(size_copy);
+    }
+    return result;
 }
 
 void github_content_free(github_content_t *github_content) {
@@ -78,6 +87,10 @@ void github_content_free(github_content_t *github_content) {
     if (github_content->repo) {
         free(github_content->repo);
         github_content->repo = NULL;
+    }
+    if (github_content->size) {
+        free(github_content->size);
+        github_content->size = NULL;
     }
     if (github_content->owner) {
         free(github_content->owner);
@@ -131,7 +144,7 @@ cJSON *github_content_convertToJSON(github_content_t *github_content) {
 
     // github_content->size
     if(github_content->size) {
-    if(cJSON_AddNumberToObject(item, "size", github_content->size) == NULL) {
+    if(cJSON_AddNumberToObject(item, "size", *github_content->size) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -171,6 +184,23 @@ fail:
 github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
 
     github_content_t *github_content_local_var = NULL;
+
+    char *name_local_str = NULL;
+
+    char *sha_local_str = NULL;
+
+    char *_class_local_str = NULL;
+
+    char *repo_local_str = NULL;
+
+    // define the local variable for github_content->size
+    int *size_local_var = NULL;
+
+    char *owner_local_str = NULL;
+
+    char *path_local_str = NULL;
+
+    char *base64_data_local_str = NULL;
 
     // github_content->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(github_contentJSON, "name");
@@ -230,6 +260,12 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
     {
     goto end; //Numeric
     }
+    size_local_var = malloc(sizeof(int));
+    if(!size_local_var)
+    {
+        goto end;
+    }
+    *size_local_var = size->valuedouble;
     }
 
     // github_content->owner
@@ -269,19 +305,63 @@ github_content_t *github_content_parseFromJSON(cJSON *github_contentJSON){
     }
 
 
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (sha && !cJSON_IsNull(sha)) sha_local_str = strdup(sha->valuestring);
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (repo && !cJSON_IsNull(repo)) repo_local_str = strdup(repo->valuestring);
+    if (owner && !cJSON_IsNull(owner)) owner_local_str = strdup(owner->valuestring);
+    if (path && !cJSON_IsNull(path)) path_local_str = strdup(path->valuestring);
+    if (base64_data && !cJSON_IsNull(base64_data)) base64_data_local_str = strdup(base64_data->valuestring);
+
     github_content_local_var = github_content_create_internal (
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        sha && !cJSON_IsNull(sha) ? strdup(sha->valuestring) : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        repo && !cJSON_IsNull(repo) ? strdup(repo->valuestring) : NULL,
-        size ? size->valuedouble : 0,
-        owner && !cJSON_IsNull(owner) ? strdup(owner->valuestring) : NULL,
-        path && !cJSON_IsNull(path) ? strdup(path->valuestring) : NULL,
-        base64_data && !cJSON_IsNull(base64_data) ? strdup(base64_data->valuestring) : NULL
+        name_local_str,
+        sha_local_str,
+        _class_local_str,
+        repo_local_str,
+        size_local_var,
+        owner_local_str,
+        path_local_str,
+        base64_data_local_str
         );
+
+    if (!github_content_local_var) {
+        goto end;
+    }
 
     return github_content_local_var;
 end:
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (sha_local_str) {
+        free(sha_local_str);
+        sha_local_str = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (repo_local_str) {
+        free(repo_local_str);
+        repo_local_str = NULL;
+    }
+    if (size_local_var) {
+        free(size_local_var);
+        size_local_var = NULL;
+    }
+    if (owner_local_str) {
+        free(owner_local_str);
+        owner_local_str = NULL;
+    }
+    if (path_local_str) {
+        free(path_local_str);
+        path_local_str = NULL;
+    }
+    if (base64_data_local_str) {
+        free(base64_data_local_str);
+        base64_data_local_str = NULL;
+    }
     return NULL;
 
 }

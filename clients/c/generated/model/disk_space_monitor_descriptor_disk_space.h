@@ -20,18 +20,18 @@ typedef struct disk_space_monitor_descriptor_disk_space_t disk_space_monitor_des
 
 typedef struct disk_space_monitor_descriptor_disk_space_t {
     char *_class; // string
-    int timestamp; //numeric
+    int *timestamp; //numeric
     char *path; // string
-    int size; //numeric
+    int *size; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } disk_space_monitor_descriptor_disk_space_t;
 
 __attribute__((deprecated)) disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space_create(
     char *_class,
-    int timestamp,
+    int *timestamp,
     char *path,
-    int size
+    int *size
 );
 
 void disk_space_monitor_descriptor_disk_space_free(disk_space_monitor_descriptor_disk_space_t *disk_space_monitor_descriptor_disk_space);

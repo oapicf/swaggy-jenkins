@@ -16,13 +16,13 @@ static list_view_t *list_view_create_internal(
     if (!list_view_local_var) {
         return NULL;
     }
+    memset(list_view_local_var, 0, sizeof(list_view_t));
+    list_view_local_var->_library_owned = 1;
     list_view_local_var->_class = _class;
     list_view_local_var->description = description;
     list_view_local_var->jobs = jobs;
     list_view_local_var->name = name;
     list_view_local_var->url = url;
-
-    list_view_local_var->_library_owned = 1;
     return list_view_local_var;
 }
 
@@ -33,13 +33,16 @@ __attribute__((deprecated)) list_view_t *list_view_create(
     char *name,
     char *url
     ) {
-    return list_view_create_internal (
+    list_view_t *result = list_view_create_internal (
         _class,
         description,
         jobs,
         name,
         url
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void list_view_free(list_view_t *list_view) {
@@ -143,8 +146,16 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
 
     list_view_t *list_view_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *description_local_str = NULL;
+
     // define the local list for list_view->jobs
     list_t *jobsList = NULL;
+
+    char *name_local_str = NULL;
+
+    char *url_local_str = NULL;
 
     // list_view->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(list_viewJSON, "_class");
@@ -219,16 +230,33 @@ list_view_t *list_view_parseFromJSON(cJSON *list_viewJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+    if (name && !cJSON_IsNull(name)) name_local_str = strdup(name->valuestring);
+    if (url && !cJSON_IsNull(url)) url_local_str = strdup(url->valuestring);
+
     list_view_local_var = list_view_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
+        _class_local_str,
+        description_local_str,
         jobs ? jobsList : NULL,
-        name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL,
-        url && !cJSON_IsNull(url) ? strdup(url->valuestring) : NULL
+        name_local_str,
+        url_local_str
         );
+
+    if (!list_view_local_var) {
+        goto end;
+    }
 
     return list_view_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
+    }
     if (jobsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, jobsList) {
@@ -237,6 +265,14 @@ end:
         }
         list_freeList(jobsList);
         jobsList = NULL;
+    }
+    if (name_local_str) {
+        free(name_local_str);
+        name_local_str = NULL;
+    }
+    if (url_local_str) {
+        free(url_local_str);
+        url_local_str = NULL;
     }
     return NULL;
 

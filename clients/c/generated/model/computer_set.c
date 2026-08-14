@@ -7,39 +7,54 @@
 
 static computer_set_t *computer_set_create_internal(
     char *_class,
-    int busy_executors,
+    int *busy_executors,
     list_t *computer,
     char *display_name,
-    int total_executors
+    int *total_executors
     ) {
     computer_set_t *computer_set_local_var = malloc(sizeof(computer_set_t));
     if (!computer_set_local_var) {
         return NULL;
     }
+    memset(computer_set_local_var, 0, sizeof(computer_set_t));
+    computer_set_local_var->_library_owned = 1;
     computer_set_local_var->_class = _class;
     computer_set_local_var->busy_executors = busy_executors;
     computer_set_local_var->computer = computer;
     computer_set_local_var->display_name = display_name;
     computer_set_local_var->total_executors = total_executors;
-
-    computer_set_local_var->_library_owned = 1;
     return computer_set_local_var;
 }
 
 __attribute__((deprecated)) computer_set_t *computer_set_create(
     char *_class,
-    int busy_executors,
+    int *busy_executors,
     list_t *computer,
     char *display_name,
-    int total_executors
+    int *total_executors
     ) {
-    return computer_set_create_internal (
+    int *busy_executors_copy = NULL;
+    if (busy_executors) {
+        busy_executors_copy = malloc(sizeof(int));
+        if (busy_executors_copy) *busy_executors_copy = *busy_executors;
+    }
+    int *total_executors_copy = NULL;
+    if (total_executors) {
+        total_executors_copy = malloc(sizeof(int));
+        if (total_executors_copy) *total_executors_copy = *total_executors;
+    }
+    computer_set_t *result = computer_set_create_internal (
         _class,
-        busy_executors,
+        busy_executors_copy,
         computer,
         display_name,
-        total_executors
+        total_executors_copy
         );
+    if (!result) {
+        free(busy_executors_copy);
+        free(total_executors_copy);
+    }
+    return result;
 }
 
 void computer_set_free(computer_set_t *computer_set) {
@@ -55,6 +70,10 @@ void computer_set_free(computer_set_t *computer_set) {
         free(computer_set->_class);
         computer_set->_class = NULL;
     }
+    if (computer_set->busy_executors) {
+        free(computer_set->busy_executors);
+        computer_set->busy_executors = NULL;
+    }
     if (computer_set->computer) {
         list_ForEach(listEntry, computer_set->computer) {
             hudson_master_computer_free(listEntry->data);
@@ -65,6 +84,10 @@ void computer_set_free(computer_set_t *computer_set) {
     if (computer_set->display_name) {
         free(computer_set->display_name);
         computer_set->display_name = NULL;
+    }
+    if (computer_set->total_executors) {
+        free(computer_set->total_executors);
+        computer_set->total_executors = NULL;
     }
     free(computer_set);
 }
@@ -82,7 +105,7 @@ cJSON *computer_set_convertToJSON(computer_set_t *computer_set) {
 
     // computer_set->busy_executors
     if(computer_set->busy_executors) {
-    if(cJSON_AddNumberToObject(item, "busyExecutors", computer_set->busy_executors) == NULL) {
+    if(cJSON_AddNumberToObject(item, "busyExecutors", *computer_set->busy_executors) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -118,7 +141,7 @@ cJSON *computer_set_convertToJSON(computer_set_t *computer_set) {
 
     // computer_set->total_executors
     if(computer_set->total_executors) {
-    if(cJSON_AddNumberToObject(item, "totalExecutors", computer_set->total_executors) == NULL) {
+    if(cJSON_AddNumberToObject(item, "totalExecutors", *computer_set->total_executors) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -135,8 +158,18 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
 
     computer_set_t *computer_set_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    // define the local variable for computer_set->busy_executors
+    int *busy_executors_local_var = NULL;
+
     // define the local list for computer_set->computer
     list_t *computerList = NULL;
+
+    char *display_name_local_str = NULL;
+
+    // define the local variable for computer_set->total_executors
+    int *total_executors_local_var = NULL;
 
     // computer_set->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(computer_setJSON, "_class");
@@ -160,6 +193,12 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
     {
     goto end; //Numeric
     }
+    busy_executors_local_var = malloc(sizeof(int));
+    if(!busy_executors_local_var)
+    {
+        goto end;
+    }
+    *busy_executors_local_var = busy_executors->valuedouble;
     }
 
     // computer_set->computer
@@ -208,19 +247,40 @@ computer_set_t *computer_set_parseFromJSON(cJSON *computer_setJSON){
     {
     goto end; //Numeric
     }
+    total_executors_local_var = malloc(sizeof(int));
+    if(!total_executors_local_var)
+    {
+        goto end;
+    }
+    *total_executors_local_var = total_executors->valuedouble;
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (display_name && !cJSON_IsNull(display_name)) display_name_local_str = strdup(display_name->valuestring);
+
     computer_set_local_var = computer_set_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        busy_executors ? busy_executors->valuedouble : 0,
+        _class_local_str,
+        busy_executors_local_var,
         computer ? computerList : NULL,
-        display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,
-        total_executors ? total_executors->valuedouble : 0
+        display_name_local_str,
+        total_executors_local_var
         );
+
+    if (!computer_set_local_var) {
+        goto end;
+    }
 
     return computer_set_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (busy_executors_local_var) {
+        free(busy_executors_local_var);
+        busy_executors_local_var = NULL;
+    }
     if (computerList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, computerList) {
@@ -229,6 +289,14 @@ end:
         }
         list_freeList(computerList);
         computerList = NULL;
+    }
+    if (display_name_local_str) {
+        free(display_name_local_str);
+        display_name_local_str = NULL;
+    }
+    if (total_executors_local_var) {
+        free(total_executors_local_var);
+        total_executors_local_var = NULL;
     }
     return NULL;
 

@@ -2,33 +2,38 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.GithubOrganizationlinks;
 import org.springframework.lang.Nullable;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
 import java.util.*;
-import javax.annotation.Generated;
+import jakarta.annotation.Generated;
 
 /**
  * GithubOrganization
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-02-01T01:27:11.559404227Z[Etc/UTC]", comments = "Generator version: 7.18.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-14T13:30:31.619187222Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class GithubOrganization {
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable GithubOrganizationlinks links;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean jenkinsOrganizationPipeline;
 
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
   public GithubOrganization propertyClass(@Nullable String propertyClass) {
@@ -47,6 +52,7 @@ public class GithubOrganization {
     return propertyClass;
   }
 
+  @JsonProperty("_class")
   public void setPropertyClass(@Nullable String propertyClass) {
     this.propertyClass = propertyClass;
   }
@@ -67,6 +73,7 @@ public class GithubOrganization {
     return links;
   }
 
+  @JsonProperty("_links")
   public void setLinks(@Nullable GithubOrganizationlinks links) {
     this.links = links;
   }
@@ -87,6 +94,7 @@ public class GithubOrganization {
     return jenkinsOrganizationPipeline;
   }
 
+  @JsonProperty("jenkinsOrganizationPipeline")
   public void setJenkinsOrganizationPipeline(@Nullable Boolean jenkinsOrganizationPipeline) {
     this.jenkinsOrganizationPipeline = jenkinsOrganizationPipeline;
   }
@@ -107,6 +115,7 @@ public class GithubOrganization {
     return name;
   }
 
+  @JsonProperty("name")
   public void setName(@Nullable String name) {
     this.name = name;
   }
@@ -147,11 +156,8 @@ public class GithubOrganization {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+  private String toIndentedString(@Nullable Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

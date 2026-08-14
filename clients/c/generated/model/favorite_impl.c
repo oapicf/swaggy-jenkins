@@ -14,11 +14,11 @@ static favorite_impl_t *favorite_impl_create_internal(
     if (!favorite_impl_local_var) {
         return NULL;
     }
+    memset(favorite_impl_local_var, 0, sizeof(favorite_impl_t));
+    favorite_impl_local_var->_library_owned = 1;
     favorite_impl_local_var->_class = _class;
     favorite_impl_local_var->_links = _links;
     favorite_impl_local_var->item = item;
-
-    favorite_impl_local_var->_library_owned = 1;
     return favorite_impl_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) favorite_impl_t *favorite_impl_create(
     favorite_impllinks_t *_links,
     pipeline_impl_t *item
     ) {
-    return favorite_impl_create_internal (
+    favorite_impl_t *result = favorite_impl_create_internal (
         _class,
         _links,
         item
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void favorite_impl_free(favorite_impl_t *favorite_impl) {
@@ -106,6 +109,8 @@ favorite_impl_t *favorite_impl_parseFromJSON(cJSON *favorite_implJSON){
 
     favorite_impl_t *favorite_impl_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local variable for favorite_impl->_links
     favorite_impllinks_t *_links_local_nonprim = NULL;
 
@@ -143,14 +148,24 @@ favorite_impl_t *favorite_impl_parseFromJSON(cJSON *favorite_implJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     favorite_impl_local_var = favorite_impl_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         _links ? _links_local_nonprim : NULL,
         item ? item_local_nonprim : NULL
         );
 
+    if (!favorite_impl_local_var) {
+        goto end;
+    }
+
     return favorite_impl_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (_links_local_nonprim) {
         favorite_impllinks_free(_links_local_nonprim);
         _links_local_nonprim = NULL;

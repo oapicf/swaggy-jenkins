@@ -13,10 +13,10 @@ static empty_change_log_set_t *empty_change_log_set_create_internal(
     if (!empty_change_log_set_local_var) {
         return NULL;
     }
+    memset(empty_change_log_set_local_var, 0, sizeof(empty_change_log_set_t));
+    empty_change_log_set_local_var->_library_owned = 1;
     empty_change_log_set_local_var->_class = _class;
     empty_change_log_set_local_var->kind = kind;
-
-    empty_change_log_set_local_var->_library_owned = 1;
     return empty_change_log_set_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) empty_change_log_set_t *empty_change_log_set_create(
     char *_class,
     char *kind
     ) {
-    return empty_change_log_set_create_internal (
+    empty_change_log_set_t *result = empty_change_log_set_create_internal (
         _class,
         kind
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void empty_change_log_set_free(empty_change_log_set_t *empty_change_log_set) {
@@ -80,6 +83,10 @@ empty_change_log_set_t *empty_change_log_set_parseFromJSON(cJSON *empty_change_l
 
     empty_change_log_set_t *empty_change_log_set_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
+    char *kind_local_str = NULL;
+
     // empty_change_log_set->_class
     cJSON *_class = cJSON_GetObjectItemCaseSensitive(empty_change_log_setJSON, "_class");
     if (cJSON_IsNull(_class)) {
@@ -105,13 +112,28 @@ empty_change_log_set_t *empty_change_log_set_parseFromJSON(cJSON *empty_change_l
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (kind && !cJSON_IsNull(kind)) kind_local_str = strdup(kind->valuestring);
+
     empty_change_log_set_local_var = empty_change_log_set_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
-        kind && !cJSON_IsNull(kind) ? strdup(kind->valuestring) : NULL
+        _class_local_str,
+        kind_local_str
         );
+
+    if (!empty_change_log_set_local_var) {
+        goto end;
+    }
 
     return empty_change_log_set_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
+    if (kind_local_str) {
+        free(kind_local_str);
+        kind_local_str = NULL;
+    }
     return NULL;
 
 }

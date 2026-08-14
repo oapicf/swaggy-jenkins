@@ -108,7 +108,7 @@ ExtensionClassContainerImpl1::getClass()
 }
 
 void
-ExtensionClassContainerImpl1::setClass(std::string  _class)
+ExtensionClassContainerImpl1::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -120,7 +120,7 @@ ExtensionClassContainerImpl1::getLinks()
 }
 
 void
-ExtensionClassContainerImpl1::setLinks(ExtensionClassContainerImpl1links  _links)
+ExtensionClassContainerImpl1::setLinks(ExtensionClassContainerImpl1links _links)
 {
 	this->_links = _links;
 }
@@ -132,7 +132,7 @@ ExtensionClassContainerImpl1::getMap()
 }
 
 void
-ExtensionClassContainerImpl1::setMap(ExtensionClassContainerImpl1map  map)
+ExtensionClassContainerImpl1::setMap(ExtensionClassContainerImpl1map map)
 {
 	this->map = map;
 }

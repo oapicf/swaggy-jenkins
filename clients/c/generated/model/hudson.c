@@ -11,21 +11,23 @@ static hudson_t *hudson_create_internal(
     char *mode,
     char *node_description,
     char *node_name,
-    int num_executors,
+    int *num_executors,
     char *description,
     list_t *jobs,
     all_view_t *primary_view,
-    int quieting_down,
-    int slave_agent_port,
+    int *quieting_down,
+    int *slave_agent_port,
     unlabeled_load_statistics_t *unlabeled_load,
-    int use_crumbs,
-    int use_security,
+    int *use_crumbs,
+    int *use_security,
     list_t *views
     ) {
     hudson_t *hudson_local_var = malloc(sizeof(hudson_t));
     if (!hudson_local_var) {
         return NULL;
     }
+    memset(hudson_local_var, 0, sizeof(hudson_t));
+    hudson_local_var->_library_owned = 1;
     hudson_local_var->_class = _class;
     hudson_local_var->assigned_labels = assigned_labels;
     hudson_local_var->mode = mode;
@@ -41,8 +43,6 @@ static hudson_t *hudson_create_internal(
     hudson_local_var->use_crumbs = use_crumbs;
     hudson_local_var->use_security = use_security;
     hudson_local_var->views = views;
-
-    hudson_local_var->_library_owned = 1;
     return hudson_local_var;
 }
 
@@ -52,34 +52,67 @@ __attribute__((deprecated)) hudson_t *hudson_create(
     char *mode,
     char *node_description,
     char *node_name,
-    int num_executors,
+    int *num_executors,
     char *description,
     list_t *jobs,
     all_view_t *primary_view,
-    int quieting_down,
-    int slave_agent_port,
+    int *quieting_down,
+    int *slave_agent_port,
     unlabeled_load_statistics_t *unlabeled_load,
-    int use_crumbs,
-    int use_security,
+    int *use_crumbs,
+    int *use_security,
     list_t *views
     ) {
-    return hudson_create_internal (
+    int *num_executors_copy = NULL;
+    if (num_executors) {
+        num_executors_copy = malloc(sizeof(int));
+        if (num_executors_copy) *num_executors_copy = *num_executors;
+    }
+    int *quieting_down_copy = NULL;
+    if (quieting_down) {
+        quieting_down_copy = malloc(sizeof(int));
+        if (quieting_down_copy) *quieting_down_copy = *quieting_down;
+    }
+    int *slave_agent_port_copy = NULL;
+    if (slave_agent_port) {
+        slave_agent_port_copy = malloc(sizeof(int));
+        if (slave_agent_port_copy) *slave_agent_port_copy = *slave_agent_port;
+    }
+    int *use_crumbs_copy = NULL;
+    if (use_crumbs) {
+        use_crumbs_copy = malloc(sizeof(int));
+        if (use_crumbs_copy) *use_crumbs_copy = *use_crumbs;
+    }
+    int *use_security_copy = NULL;
+    if (use_security) {
+        use_security_copy = malloc(sizeof(int));
+        if (use_security_copy) *use_security_copy = *use_security;
+    }
+    hudson_t *result = hudson_create_internal (
         _class,
         assigned_labels,
         mode,
         node_description,
         node_name,
-        num_executors,
+        num_executors_copy,
         description,
         jobs,
         primary_view,
-        quieting_down,
-        slave_agent_port,
+        quieting_down_copy,
+        slave_agent_port_copy,
         unlabeled_load,
-        use_crumbs,
-        use_security,
+        use_crumbs_copy,
+        use_security_copy,
         views
         );
+    if (!result) {
+        free(num_executors_copy);
+        free(quieting_down_copy);
+        free(slave_agent_port_copy);
+        free(use_crumbs_copy);
+        free(use_security_copy);
+    }
+    return result;
 }
 
 void hudson_free(hudson_t *hudson) {
@@ -114,6 +147,10 @@ void hudson_free(hudson_t *hudson) {
         free(hudson->node_name);
         hudson->node_name = NULL;
     }
+    if (hudson->num_executors) {
+        free(hudson->num_executors);
+        hudson->num_executors = NULL;
+    }
     if (hudson->description) {
         free(hudson->description);
         hudson->description = NULL;
@@ -129,9 +166,25 @@ void hudson_free(hudson_t *hudson) {
         all_view_free(hudson->primary_view);
         hudson->primary_view = NULL;
     }
+    if (hudson->quieting_down) {
+        free(hudson->quieting_down);
+        hudson->quieting_down = NULL;
+    }
+    if (hudson->slave_agent_port) {
+        free(hudson->slave_agent_port);
+        hudson->slave_agent_port = NULL;
+    }
     if (hudson->unlabeled_load) {
         unlabeled_load_statistics_free(hudson->unlabeled_load);
         hudson->unlabeled_load = NULL;
+    }
+    if (hudson->use_crumbs) {
+        free(hudson->use_crumbs);
+        hudson->use_crumbs = NULL;
+    }
+    if (hudson->use_security) {
+        free(hudson->use_security);
+        hudson->use_security = NULL;
     }
     if (hudson->views) {
         list_ForEach(listEntry, hudson->views) {
@@ -200,7 +253,7 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
 
     // hudson->num_executors
     if(hudson->num_executors) {
-    if(cJSON_AddNumberToObject(item, "numExecutors", hudson->num_executors) == NULL) {
+    if(cJSON_AddNumberToObject(item, "numExecutors", *hudson->num_executors) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -249,7 +302,7 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
 
     // hudson->quieting_down
     if(hudson->quieting_down) {
-    if(cJSON_AddBoolToObject(item, "quietingDown", hudson->quieting_down) == NULL) {
+    if(cJSON_AddBoolToObject(item, "quietingDown", *hudson->quieting_down) == NULL) {
     goto fail; //Bool
     }
     }
@@ -257,7 +310,7 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
 
     // hudson->slave_agent_port
     if(hudson->slave_agent_port) {
-    if(cJSON_AddNumberToObject(item, "slaveAgentPort", hudson->slave_agent_port) == NULL) {
+    if(cJSON_AddNumberToObject(item, "slaveAgentPort", *hudson->slave_agent_port) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -278,7 +331,7 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
 
     // hudson->use_crumbs
     if(hudson->use_crumbs) {
-    if(cJSON_AddBoolToObject(item, "useCrumbs", hudson->use_crumbs) == NULL) {
+    if(cJSON_AddBoolToObject(item, "useCrumbs", *hudson->use_crumbs) == NULL) {
     goto fail; //Bool
     }
     }
@@ -286,7 +339,7 @@ cJSON *hudson_convertToJSON(hudson_t *hudson) {
 
     // hudson->use_security
     if(hudson->use_security) {
-    if(cJSON_AddBoolToObject(item, "useSecurity", hudson->use_security) == NULL) {
+    if(cJSON_AddBoolToObject(item, "useSecurity", *hudson->use_security) == NULL) {
     goto fail; //Bool
     }
     }
@@ -323,8 +376,21 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
 
     hudson_t *hudson_local_var = NULL;
 
+    char *_class_local_str = NULL;
+
     // define the local list for hudson->assigned_labels
     list_t *assigned_labelsList = NULL;
+
+    char *mode_local_str = NULL;
+
+    char *node_description_local_str = NULL;
+
+    char *node_name_local_str = NULL;
+
+    // define the local variable for hudson->num_executors
+    int *num_executors_local_var = NULL;
+
+    char *description_local_str = NULL;
 
     // define the local list for hudson->jobs
     list_t *jobsList = NULL;
@@ -332,8 +398,20 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     // define the local variable for hudson->primary_view
     all_view_t *primary_view_local_nonprim = NULL;
 
+    // define the local variable for hudson->quieting_down
+    int *quieting_down_local_var = NULL;
+
+    // define the local variable for hudson->slave_agent_port
+    int *slave_agent_port_local_var = NULL;
+
     // define the local variable for hudson->unlabeled_load
     unlabeled_load_statistics_t *unlabeled_load_local_nonprim = NULL;
+
+    // define the local variable for hudson->use_crumbs
+    int *use_crumbs_local_var = NULL;
+
+    // define the local variable for hudson->use_security
+    int *use_security_local_var = NULL;
 
     // define the local list for hudson->views
     list_t *viewsList = NULL;
@@ -420,6 +498,12 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     {
     goto end; //Numeric
     }
+    num_executors_local_var = malloc(sizeof(int));
+    if(!num_executors_local_var)
+    {
+        goto end;
+    }
+    *num_executors_local_var = num_executors->valuedouble;
     }
 
     // hudson->description
@@ -477,6 +561,12 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     {
     goto end; //Bool
     }
+    quieting_down_local_var = malloc(sizeof(int));
+    if(!quieting_down_local_var)
+    {
+        goto end;
+    }
+    *quieting_down_local_var = quieting_down->valueint;
     }
 
     // hudson->slave_agent_port
@@ -489,6 +579,12 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     {
     goto end; //Numeric
     }
+    slave_agent_port_local_var = malloc(sizeof(int));
+    if(!slave_agent_port_local_var)
+    {
+        goto end;
+    }
+    *slave_agent_port_local_var = slave_agent_port->valuedouble;
     }
 
     // hudson->unlabeled_load
@@ -510,6 +606,12 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     {
     goto end; //Bool
     }
+    use_crumbs_local_var = malloc(sizeof(int));
+    if(!use_crumbs_local_var)
+    {
+        goto end;
+    }
+    *use_crumbs_local_var = use_crumbs->valueint;
     }
 
     // hudson->use_security
@@ -522,6 +624,12 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     {
     goto end; //Bool
     }
+    use_security_local_var = malloc(sizeof(int));
+    if(!use_security_local_var)
+    {
+        goto end;
+    }
+    *use_security_local_var = use_security->valueint;
     }
 
     // hudson->views
@@ -549,26 +657,40 @@ hudson_t *hudson_parseFromJSON(cJSON *hudsonJSON){
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+    if (mode && !cJSON_IsNull(mode)) mode_local_str = strdup(mode->valuestring);
+    if (node_description && !cJSON_IsNull(node_description)) node_description_local_str = strdup(node_description->valuestring);
+    if (node_name && !cJSON_IsNull(node_name)) node_name_local_str = strdup(node_name->valuestring);
+    if (description && !cJSON_IsNull(description)) description_local_str = strdup(description->valuestring);
+
     hudson_local_var = hudson_create_internal (
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL,
+        _class_local_str,
         assigned_labels ? assigned_labelsList : NULL,
-        mode && !cJSON_IsNull(mode) ? strdup(mode->valuestring) : NULL,
-        node_description && !cJSON_IsNull(node_description) ? strdup(node_description->valuestring) : NULL,
-        node_name && !cJSON_IsNull(node_name) ? strdup(node_name->valuestring) : NULL,
-        num_executors ? num_executors->valuedouble : 0,
-        description && !cJSON_IsNull(description) ? strdup(description->valuestring) : NULL,
+        mode_local_str,
+        node_description_local_str,
+        node_name_local_str,
+        num_executors_local_var,
+        description_local_str,
         jobs ? jobsList : NULL,
         primary_view ? primary_view_local_nonprim : NULL,
-        quieting_down ? quieting_down->valueint : 0,
-        slave_agent_port ? slave_agent_port->valuedouble : 0,
+        quieting_down_local_var,
+        slave_agent_port_local_var,
         unlabeled_load ? unlabeled_load_local_nonprim : NULL,
-        use_crumbs ? use_crumbs->valueint : 0,
-        use_security ? use_security->valueint : 0,
+        use_crumbs_local_var,
+        use_security_local_var,
         views ? viewsList : NULL
         );
 
+    if (!hudson_local_var) {
+        goto end;
+    }
+
     return hudson_local_var;
 end:
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     if (assigned_labelsList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, assigned_labelsList) {
@@ -577,6 +699,26 @@ end:
         }
         list_freeList(assigned_labelsList);
         assigned_labelsList = NULL;
+    }
+    if (mode_local_str) {
+        free(mode_local_str);
+        mode_local_str = NULL;
+    }
+    if (node_description_local_str) {
+        free(node_description_local_str);
+        node_description_local_str = NULL;
+    }
+    if (node_name_local_str) {
+        free(node_name_local_str);
+        node_name_local_str = NULL;
+    }
+    if (num_executors_local_var) {
+        free(num_executors_local_var);
+        num_executors_local_var = NULL;
+    }
+    if (description_local_str) {
+        free(description_local_str);
+        description_local_str = NULL;
     }
     if (jobsList) {
         listEntry_t *listEntry = NULL;
@@ -591,9 +733,25 @@ end:
         all_view_free(primary_view_local_nonprim);
         primary_view_local_nonprim = NULL;
     }
+    if (quieting_down_local_var) {
+        free(quieting_down_local_var);
+        quieting_down_local_var = NULL;
+    }
+    if (slave_agent_port_local_var) {
+        free(slave_agent_port_local_var);
+        slave_agent_port_local_var = NULL;
+    }
     if (unlabeled_load_local_nonprim) {
         unlabeled_load_statistics_free(unlabeled_load_local_nonprim);
         unlabeled_load_local_nonprim = NULL;
+    }
+    if (use_crumbs_local_var) {
+        free(use_crumbs_local_var);
+        use_crumbs_local_var = NULL;
+    }
+    if (use_security_local_var) {
+        free(use_security_local_var);
+        use_security_local_var = NULL;
     }
     if (viewsList) {
         listEntry_t *listEntry = NULL;

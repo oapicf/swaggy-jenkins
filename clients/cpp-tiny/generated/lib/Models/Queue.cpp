@@ -102,7 +102,7 @@ Queue::getClass()
 }
 
 void
-Queue::setClass(std::string  _class)
+Queue::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -114,7 +114,7 @@ Queue::getItems()
 }
 
 void
-Queue::setItems(std::list <QueueBlockedItem> items)
+Queue::setItems(std::list<QueueBlockedItem> items)
 {
 	this->items = items;
 }

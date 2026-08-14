@@ -165,7 +165,7 @@ ComputerSet::getClass()
 }
 
 void
-ComputerSet::setClass(std::string  _class)
+ComputerSet::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -177,7 +177,7 @@ ComputerSet::getBusyExecutors()
 }
 
 void
-ComputerSet::setBusyExecutors(int  busyExecutors)
+ComputerSet::setBusyExecutors(int busyExecutors)
 {
 	this->busyExecutors = busyExecutors;
 }
@@ -189,7 +189,7 @@ ComputerSet::getComputer()
 }
 
 void
-ComputerSet::setComputer(std::list <HudsonMasterComputer> computer)
+ComputerSet::setComputer(std::list<HudsonMasterComputer> computer)
 {
 	this->computer = computer;
 }
@@ -201,7 +201,7 @@ ComputerSet::getDisplayName()
 }
 
 void
-ComputerSet::setDisplayName(std::string  displayName)
+ComputerSet::setDisplayName(std::string displayName)
 {
 	this->displayName = displayName;
 }
@@ -213,7 +213,7 @@ ComputerSet::getTotalExecutors()
 }
 
 void
-ComputerSet::setTotalExecutors(int  totalExecutors)
+ComputerSet::setTotalExecutors(int totalExecutors)
 {
 	this->totalExecutors = totalExecutors;
 }

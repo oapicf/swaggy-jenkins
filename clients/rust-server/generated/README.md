@@ -13,9 +13,9 @@ To see how to make this your own, look here:
 
 [README]((https://openapi-generator.tech))
 
-- API version: 3.2.1-pre.0
-- Build date: 2026-02-01T01:26:45.873874265Z[Etc/UTC]
-- Generator version: 7.18.0
+- API version: 3.3.1-pre.0
+- Build date: 2026-08-14T13:29:48.228566311Z[Etc/UTC]
+- Generator version: 7.24.0
 
 For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)
 
@@ -67,91 +67,41 @@ You'll find the binary at `target/release/cli`.
 Run examples with:
 
 ```
-cargo run --example <example-name>
+cargo run --example openapi_client-<client|server>
 ```
 
 To pass in arguments to the examples, put them after `--`, for example:
 
 ```
-cargo run --example client -- --help
+cargo run --example openapi_client-client -- --help
 ```
 
 ### Running the example server
 To run the server, follow these simple steps:
 
 ```
-cargo run --example server
+cargo run --example openapi_client-server
 ```
 
 ### Running the example client
 To run a client, follow one of the following simple steps:
 
 ```
-cargo run --example client GetCrumb
-cargo run --example client GetJsonWebToken
-cargo run --example client GetOrganisations
-cargo run --example client Search
-cargo run --example client SearchClasses
-cargo run --example client GetAuthenticatedUser
-cargo run --example client GetClasses
-cargo run --example client GetJsonWebKey
-cargo run --example client GetOrganisation
-cargo run --example client GetPipelines
-cargo run --example client GetUserFavorites
-cargo run --example client GetUsers
-cargo run --example client GetPipeline
-cargo run --example client GetPipelineActivities
-cargo run --example client GetPipelineBranches
-cargo run --example client GetPipelineFolder
-cargo run --example client GetPipelineQueue
-cargo run --example client GetPipelineRuns
-cargo run --example client GetScm
-cargo run --example client GetScmOrganisations
-cargo run --example client GetUser
-cargo run --example client PostPipelineRuns
-cargo run --example client PutPipelineFavorite
-cargo run --example client DeletePipelineQueueItem
-cargo run --example client GetPipelineBranch
-cargo run --example client GetPipelineFolderPipeline
-cargo run --example client GetPipelineRun
-cargo run --example client GetPipelineRunLog
-cargo run --example client GetPipelineRunNodes
-cargo run --example client GetScmOrganisationRepositories
-cargo run --example client PostPipelineRun
-cargo run --example client PutPipelineRun
-cargo run --example client GetPipelineBranchRun
-cargo run --example client GetPipelineRunNode
-cargo run --example client GetPipelineRunNodeSteps
-cargo run --example client GetScmOrganisationRepository
-cargo run --example client GetPipelineRunNodeStep
-cargo run --example client GetPipelineRunNodeStepLog
-cargo run --example client GetComputer
-cargo run --example client GetJenkins
-cargo run --example client GetQueue
-cargo run --example client HeadJenkins
-cargo run --example client PostCreateItem
-cargo run --example client PostCreateView
-cargo run --example client GetJob
-cargo run --example client GetJobConfig
-cargo run --example client GetJobLastBuild
-cargo run --example client GetQueueItem
-cargo run --example client GetView
-cargo run --example client GetViewConfig
-cargo run --example client PostJobBuild
-cargo run --example client PostJobConfig
-cargo run --example client PostJobDelete
-cargo run --example client PostJobDisable
-cargo run --example client PostJobEnable
-cargo run --example client PostJobLastBuildStop
-cargo run --example client PostViewConfig
-cargo run --example client GetJobProgressiveText
+cargo run --example openapi_client-client GetCrumb
+cargo run --example openapi_client-client GetJsonWebToken
+cargo run --example openapi_client-client GetOrganisations
+cargo run --example openapi_client-client GetJsonWebKey
+cargo run --example openapi_client-client GetComputer
+cargo run --example openapi_client-client GetJenkins
+cargo run --example openapi_client-client GetQueue
+cargo run --example openapi_client-client HeadJenkins
 ```
 
 ### HTTPS
 The examples can be run in HTTPS mode by passing in the flag `--https`, for example:
 
 ```
-cargo run --example server -- --https
+cargo run --example openapi_client-server -- --https
 ```
 
 This will use the keys/certificates from the examples directory. Note that the
@@ -167,6 +117,10 @@ The generated library has a few optional features that can be activated through 
 * `client`
     * This defaults to enabled and creates the basic skeleton of a client implementation based on hyper
     * The constructed client implements the API trait by making remote API call.
+* `client-tls`
+    * This default to enabled and provides HTTPS support with automatic TLS backend selection:
+        - macOS/Windows/iOS: native-tls + hyper-tls
+        - Linux/Unix/others: OpenSSL + hyper-openssl
 * `conversions`
     * This defaults to disabled and creates extra derives on models to allow "transmogrification" between objects of structurally similar types.
 * `cli`
@@ -174,6 +128,25 @@ The generated library has a few optional features that can be activated through 
 * `validate`
     * This defaults to disabled and allows JSON Schema validation of received data using `MakeService::set_validation` or `Service::set_validation`.
     * Note, enabling validation will have a performance penalty, especially if the API heavily uses regex based checks.
+
+### HTTPS/TLS Support
+
+HTTPS support is included by default. To disable it (for example, to reduce dependencies), you can:
+
+```toml
+[dependencies]
+openapi_client = { version = "3.3.1-pre.0", default-features = false, features = ["client", "server"] }
+```
+
+**For server with callbacks that need HTTPS:**
+```toml
+[dependencies]
+openapi_client = { version = "3.3.1-pre.0", features = ["server", "client-tls"] }
+```
+
+The TLS backend is automatically selected based on your target platform:
+- **macOS, Windows, iOS**: Uses `native-tls` (system TLS libraries)
+- **Linux, Unix, other platforms**: Uses `openssl`
 
 See https://doc.rust-lang.org/cargo/reference/manifest.html#the-features-section for how to use features in your `Cargo.toml`.
 

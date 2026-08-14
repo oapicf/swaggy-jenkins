@@ -81,13 +81,36 @@ GithubRespositoryContainer <- R6::R6Class(
       }
       if (!is.null(self$`_links`)) {
         GithubRespositoryContainerObject[["_links"]] <-
-          self$`_links`$toSimpleType()
+          self$extractSimpleType(self$`_links`)
       }
       if (!is.null(self$`repositories`)) {
         GithubRespositoryContainerObject[["repositories"]] <-
-          self$`repositories`$toSimpleType()
+          self$extractSimpleType(self$`repositories`)
       }
       return(GithubRespositoryContainerObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

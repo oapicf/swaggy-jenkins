@@ -86,7 +86,7 @@ GithubRespositoryContainerlinks::getSelf()
 }
 
 void
-GithubRespositoryContainerlinks::setSelf(Link  self)
+GithubRespositoryContainerlinks::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -98,7 +98,7 @@ GithubRespositoryContainerlinks::getClass()
 }
 
 void
-GithubRespositoryContainerlinks::setClass(std::string  _class)
+GithubRespositoryContainerlinks::setClass(std::string _class)
 {
 	this->_class = _class;
 }

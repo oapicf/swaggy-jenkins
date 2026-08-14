@@ -103,7 +103,7 @@ ClassesByClass::getClasses()
 }
 
 void
-ClassesByClass::setClasses(std::list <std::string> classes)
+ClassesByClass::setClasses(std::list<std::string> classes)
 {
 	this->classes = classes;
 }
@@ -115,7 +115,7 @@ ClassesByClass::getClass()
 }
 
 void
-ClassesByClass::setClass(std::string  _class)
+ClassesByClass::setClass(std::string _class)
 {
 	this->_class = _class;
 }

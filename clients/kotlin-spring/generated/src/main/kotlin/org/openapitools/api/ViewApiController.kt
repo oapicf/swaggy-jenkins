@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.context.request.NativeWebRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.openapitools.api.ViewApiController.Companion.BASE_PATH
 
 import javax.validation.Valid
 import javax.validation.constraints.DecimalMax
@@ -31,7 +30,7 @@ import kotlin.collections.Map
 
 @RestController
 @Validated
-@RequestMapping("\${openapi.swaggyJenkins.base-path:\${api.base-path:$BASE_PATH}}")
+@RequestMapping("\${api.base-path:}")
 class ViewApiController() {
 
     @Operation(
@@ -47,7 +46,8 @@ class ViewApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_VIEW /* "/view/{name}/api/json" */],
+        // "/view/{name}/api/json"
+        value = [PATH_GET_VIEW],
         produces = ["application/json"]
     )
     fun getView(
@@ -69,7 +69,8 @@ class ViewApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.GET],
-        value = [PATH_GET_VIEW_CONFIG /* "/view/{name}/config.xml" */],
+        // "/view/{name}/config.xml"
+        value = [PATH_GET_VIEW_CONFIG],
         produces = ["text/xml"]
     )
     fun getViewConfig(
@@ -92,7 +93,8 @@ class ViewApiController() {
     )
     @RequestMapping(
         method = [RequestMethod.POST],
-        value = [PATH_POST_VIEW_CONFIG /* "/view/{name}/config.xml" */],
+        // "/view/{name}/config.xml"
+        value = [PATH_POST_VIEW_CONFIG],
         produces = ["*/*"],
         consumes = ["application/json"]
     )

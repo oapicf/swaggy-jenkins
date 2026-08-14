@@ -22,8 +22,8 @@ typedef struct pipeline_activity_t pipeline_activity_t;
 typedef struct pipeline_activity_t {
     char *_class; // string
     list_t *artifacts; //nonprimitive container
-    int duration_in_millis; //numeric
-    int estimated_duration_in_millis; //numeric
+    int *duration_in_millis; //numeric
+    int *estimated_duration_in_millis; //numeric
     char *en_queue_time; // string
     char *end_time; // string
     char *id; // string
@@ -42,8 +42,8 @@ typedef struct pipeline_activity_t {
 __attribute__((deprecated)) pipeline_activity_t *pipeline_activity_create(
     char *_class,
     list_t *artifacts,
-    int duration_in_millis,
-    int estimated_duration_in_millis,
+    int *duration_in_millis,
+    int *estimated_duration_in_millis,
     char *en_queue_time,
     char *end_time,
     char *id,

@@ -105,7 +105,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/job/{name}/api/json'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -142,7 +142,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/job/{name}/config.xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -179,7 +179,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/job/{name}/lastBuild/api/json'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -230,8 +230,8 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/job/{name}/{number}/logText/progressiveText'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'number' + '}', encodeURIComponent(String(number)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{number}', encodeURIComponent(String(number)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -302,7 +302,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/queue/item/{number}/api/json'
-            .replace('{' + 'number' + '}', encodeURIComponent(String(number)));
+            .replace('{number}', encodeURIComponent(String(number)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -339,7 +339,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/view/{name}/api/json'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -376,7 +376,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/view/{name}/config.xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -595,7 +595,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/job/{name}/build'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -654,7 +654,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/job/{name}/config.xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -707,7 +707,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/job/{name}/doDelete'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -749,7 +749,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/job/{name}/disable'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -791,7 +791,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/job/{name}/enable'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -833,7 +833,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/job/{name}/lastBuild/stop'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -882,7 +882,7 @@ export class RemoteAccessApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/view/{name}/config.xml'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);

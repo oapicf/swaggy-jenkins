@@ -22,12 +22,12 @@ typedef struct pipeline_impl_t pipeline_impl_t;
 typedef struct pipeline_impl_t {
     char *_class; // string
     char *display_name; // string
-    int estimated_duration_in_millis; //numeric
+    int *estimated_duration_in_millis; //numeric
     char *full_name; // string
     char *latest_run; // string
     char *name; // string
     char *organization; // string
-    int weather_score; //numeric
+    int *weather_score; //numeric
     struct pipeline_impllinks_t *_links; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -36,12 +36,12 @@ typedef struct pipeline_impl_t {
 __attribute__((deprecated)) pipeline_impl_t *pipeline_impl_create(
     char *_class,
     char *display_name,
-    int estimated_duration_in_millis,
+    int *estimated_duration_in_millis,
     char *full_name,
     char *latest_run,
     char *name,
     char *organization,
-    int weather_score,
+    int *weather_score,
     pipeline_impllinks_t *_links
 );
 

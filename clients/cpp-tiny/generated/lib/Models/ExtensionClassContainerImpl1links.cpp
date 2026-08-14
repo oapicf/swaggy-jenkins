@@ -86,7 +86,7 @@ ExtensionClassContainerImpl1links::getSelf()
 }
 
 void
-ExtensionClassContainerImpl1links::setSelf(Link  self)
+ExtensionClassContainerImpl1links::setSelf(Link self)
 {
 	this->self = self;
 }
@@ -98,7 +98,7 @@ ExtensionClassContainerImpl1links::getClass()
 }
 
 void
-ExtensionClassContainerImpl1links::setClass(std::string  _class)
+ExtensionClassContainerImpl1links::setClass(std::string _class)
 {
 	this->_class = _class;
 }

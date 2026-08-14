@@ -13,10 +13,10 @@ static pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_reque
     if (!pipeline_branchesitempull_requestlinks_local_var) {
         return NULL;
     }
+    memset(pipeline_branchesitempull_requestlinks_local_var, 0, sizeof(pipeline_branchesitempull_requestlinks_t));
+    pipeline_branchesitempull_requestlinks_local_var->_library_owned = 1;
     pipeline_branchesitempull_requestlinks_local_var->self = self;
     pipeline_branchesitempull_requestlinks_local_var->_class = _class;
-
-    pipeline_branchesitempull_requestlinks_local_var->_library_owned = 1;
     return pipeline_branchesitempull_requestlinks_local_var;
 }
 
@@ -24,10 +24,13 @@ __attribute__((deprecated)) pipeline_branchesitempull_requestlinks_t *pipeline_b
     char *self,
     char *_class
     ) {
-    return pipeline_branchesitempull_requestlinks_create_internal (
+    pipeline_branchesitempull_requestlinks_t *result = pipeline_branchesitempull_requestlinks_create_internal (
         self,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void pipeline_branchesitempull_requestlinks_free(pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks) {
@@ -80,6 +83,10 @@ pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks
 
     pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks_local_var = NULL;
 
+    char *self_local_str = NULL;
+
+    char *_class_local_str = NULL;
+
     // pipeline_branchesitempull_requestlinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(pipeline_branchesitempull_requestlinksJSON, "self");
     if (cJSON_IsNull(self)) {
@@ -105,13 +112,28 @@ pipeline_branchesitempull_requestlinks_t *pipeline_branchesitempull_requestlinks
     }
 
 
+    if (self && !cJSON_IsNull(self)) self_local_str = strdup(self->valuestring);
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     pipeline_branchesitempull_requestlinks_local_var = pipeline_branchesitempull_requestlinks_create_internal (
-        self && !cJSON_IsNull(self) ? strdup(self->valuestring) : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        self_local_str,
+        _class_local_str
         );
+
+    if (!pipeline_branchesitempull_requestlinks_local_var) {
+        goto end;
+    }
 
     return pipeline_branchesitempull_requestlinks_local_var;
 end:
+    if (self_local_str) {
+        free(self_local_str);
+        self_local_str = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
+    }
     return NULL;
 
 }

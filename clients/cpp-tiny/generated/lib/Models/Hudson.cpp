@@ -411,7 +411,7 @@ Hudson::getClass()
 }
 
 void
-Hudson::setClass(std::string  _class)
+Hudson::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -423,7 +423,7 @@ Hudson::getAssignedLabels()
 }
 
 void
-Hudson::setAssignedLabels(std::list <HudsonassignedLabels> assignedLabels)
+Hudson::setAssignedLabels(std::list<HudsonassignedLabels> assignedLabels)
 {
 	this->assignedLabels = assignedLabels;
 }
@@ -435,7 +435,7 @@ Hudson::getMode()
 }
 
 void
-Hudson::setMode(std::string  mode)
+Hudson::setMode(std::string mode)
 {
 	this->mode = mode;
 }
@@ -447,7 +447,7 @@ Hudson::getNodeDescription()
 }
 
 void
-Hudson::setNodeDescription(std::string  nodeDescription)
+Hudson::setNodeDescription(std::string nodeDescription)
 {
 	this->nodeDescription = nodeDescription;
 }
@@ -459,7 +459,7 @@ Hudson::getNodeName()
 }
 
 void
-Hudson::setNodeName(std::string  nodeName)
+Hudson::setNodeName(std::string nodeName)
 {
 	this->nodeName = nodeName;
 }
@@ -471,7 +471,7 @@ Hudson::getNumExecutors()
 }
 
 void
-Hudson::setNumExecutors(int  numExecutors)
+Hudson::setNumExecutors(int numExecutors)
 {
 	this->numExecutors = numExecutors;
 }
@@ -483,7 +483,7 @@ Hudson::getDescription()
 }
 
 void
-Hudson::setDescription(std::string  description)
+Hudson::setDescription(std::string description)
 {
 	this->description = description;
 }
@@ -495,7 +495,7 @@ Hudson::getJobs()
 }
 
 void
-Hudson::setJobs(std::list <FreeStyleProject> jobs)
+Hudson::setJobs(std::list<FreeStyleProject> jobs)
 {
 	this->jobs = jobs;
 }
@@ -507,7 +507,7 @@ Hudson::getPrimaryView()
 }
 
 void
-Hudson::setPrimaryView(AllView  primaryView)
+Hudson::setPrimaryView(AllView primaryView)
 {
 	this->primaryView = primaryView;
 }
@@ -519,7 +519,7 @@ Hudson::isQuietingDown()
 }
 
 void
-Hudson::setQuietingDown(bool  quietingDown)
+Hudson::setQuietingDown(bool quietingDown)
 {
 	this->quietingDown = quietingDown;
 }
@@ -531,7 +531,7 @@ Hudson::getSlaveAgentPort()
 }
 
 void
-Hudson::setSlaveAgentPort(int  slaveAgentPort)
+Hudson::setSlaveAgentPort(int slaveAgentPort)
 {
 	this->slaveAgentPort = slaveAgentPort;
 }
@@ -543,7 +543,7 @@ Hudson::getUnlabeledLoad()
 }
 
 void
-Hudson::setUnlabeledLoad(UnlabeledLoadStatistics  unlabeledLoad)
+Hudson::setUnlabeledLoad(UnlabeledLoadStatistics unlabeledLoad)
 {
 	this->unlabeledLoad = unlabeledLoad;
 }
@@ -555,7 +555,7 @@ Hudson::isUseCrumbs()
 }
 
 void
-Hudson::setUseCrumbs(bool  useCrumbs)
+Hudson::setUseCrumbs(bool useCrumbs)
 {
 	this->useCrumbs = useCrumbs;
 }
@@ -567,7 +567,7 @@ Hudson::isUseSecurity()
 }
 
 void
-Hudson::setUseSecurity(bool  useSecurity)
+Hudson::setUseSecurity(bool useSecurity)
 {
 	this->useSecurity = useSecurity;
 }
@@ -579,7 +579,7 @@ Hudson::getViews()
 }
 
 void
-Hudson::setViews(std::list <AllView> views)
+Hudson::setViews(std::list<AllView> views)
 {
 	this->views = views;
 }

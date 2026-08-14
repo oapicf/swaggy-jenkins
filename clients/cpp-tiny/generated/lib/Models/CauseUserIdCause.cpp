@@ -127,7 +127,7 @@ CauseUserIdCause::getClass()
 }
 
 void
-CauseUserIdCause::setClass(std::string  _class)
+CauseUserIdCause::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -139,7 +139,7 @@ CauseUserIdCause::getShortDescription()
 }
 
 void
-CauseUserIdCause::setShortDescription(std::string  shortDescription)
+CauseUserIdCause::setShortDescription(std::string shortDescription)
 {
 	this->shortDescription = shortDescription;
 }
@@ -151,7 +151,7 @@ CauseUserIdCause::getUserId()
 }
 
 void
-CauseUserIdCause::setUserId(std::string  userId)
+CauseUserIdCause::setUserId(std::string userId)
 {
 	this->userId = userId;
 }
@@ -163,7 +163,7 @@ CauseUserIdCause::getUserName()
 }
 
 void
-CauseUserIdCause::setUserName(std::string  userName)
+CauseUserIdCause::setUserName(std::string userName)
 {
 	this->userName = userName;
 }

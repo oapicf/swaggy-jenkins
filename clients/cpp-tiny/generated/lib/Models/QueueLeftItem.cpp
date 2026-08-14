@@ -335,7 +335,7 @@ QueueLeftItem::getClass()
 }
 
 void
-QueueLeftItem::setClass(std::string  _class)
+QueueLeftItem::setClass(std::string _class)
 {
 	this->_class = _class;
 }
@@ -347,7 +347,7 @@ QueueLeftItem::getActions()
 }
 
 void
-QueueLeftItem::setActions(std::list <CauseAction> actions)
+QueueLeftItem::setActions(std::list<CauseAction> actions)
 {
 	this->actions = actions;
 }
@@ -359,7 +359,7 @@ QueueLeftItem::isBlocked()
 }
 
 void
-QueueLeftItem::setBlocked(bool  blocked)
+QueueLeftItem::setBlocked(bool blocked)
 {
 	this->blocked = blocked;
 }
@@ -371,7 +371,7 @@ QueueLeftItem::isBuildable()
 }
 
 void
-QueueLeftItem::setBuildable(bool  buildable)
+QueueLeftItem::setBuildable(bool buildable)
 {
 	this->buildable = buildable;
 }
@@ -383,7 +383,7 @@ QueueLeftItem::getId()
 }
 
 void
-QueueLeftItem::setId(int  id)
+QueueLeftItem::setId(int id)
 {
 	this->id = id;
 }
@@ -395,7 +395,7 @@ QueueLeftItem::getInQueueSince()
 }
 
 void
-QueueLeftItem::setInQueueSince(int  inQueueSince)
+QueueLeftItem::setInQueueSince(int inQueueSince)
 {
 	this->inQueueSince = inQueueSince;
 }
@@ -407,7 +407,7 @@ QueueLeftItem::getParams()
 }
 
 void
-QueueLeftItem::setParams(std::string  params)
+QueueLeftItem::setParams(std::string params)
 {
 	this->params = params;
 }
@@ -419,7 +419,7 @@ QueueLeftItem::isStuck()
 }
 
 void
-QueueLeftItem::setStuck(bool  stuck)
+QueueLeftItem::setStuck(bool stuck)
 {
 	this->stuck = stuck;
 }
@@ -431,7 +431,7 @@ QueueLeftItem::getTask()
 }
 
 void
-QueueLeftItem::setTask(FreeStyleProject  task)
+QueueLeftItem::setTask(FreeStyleProject task)
 {
 	this->task = task;
 }
@@ -443,7 +443,7 @@ QueueLeftItem::getUrl()
 }
 
 void
-QueueLeftItem::setUrl(std::string  url)
+QueueLeftItem::setUrl(std::string url)
 {
 	this->url = url;
 }
@@ -455,7 +455,7 @@ QueueLeftItem::getWhy()
 }
 
 void
-QueueLeftItem::setWhy(std::string  why)
+QueueLeftItem::setWhy(std::string why)
 {
 	this->why = why;
 }
@@ -467,7 +467,7 @@ QueueLeftItem::isCancelled()
 }
 
 void
-QueueLeftItem::setCancelled(bool  cancelled)
+QueueLeftItem::setCancelled(bool cancelled)
 {
 	this->cancelled = cancelled;
 }
@@ -479,7 +479,7 @@ QueueLeftItem::getExecutable()
 }
 
 void
-QueueLeftItem::setExecutable(FreeStyleBuild  executable)
+QueueLeftItem::setExecutable(FreeStyleBuild executable)
 {
 	this->executable = executable;
 }

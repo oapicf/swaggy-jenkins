@@ -24,9 +24,9 @@ typedef struct github_repositories_t {
     char *_class; // string
     struct github_repositorieslinks_t *_links; //model
     list_t *items; //nonprimitive container
-    int last_page; //numeric
-    int next_page; //numeric
-    int page_size; //numeric
+    int *last_page; //numeric
+    int *next_page; //numeric
+    int *page_size; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } github_repositories_t;
@@ -35,9 +35,9 @@ __attribute__((deprecated)) github_repositories_t *github_repositories_create(
     char *_class,
     github_repositorieslinks_t *_links,
     list_t *items,
-    int last_page,
-    int next_page,
-    int page_size
+    int *last_page,
+    int *next_page,
+    int *page_size
 );
 
 void github_repositories_free(github_repositories_t *github_repositories);

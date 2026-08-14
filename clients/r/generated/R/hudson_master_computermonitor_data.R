@@ -107,15 +107,15 @@ HudsonMasterComputermonitorData <- R6::R6Class(
       HudsonMasterComputermonitorDataObject <- list()
       if (!is.null(self$`hudson.node_monitors.SwapSpaceMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.SwapSpaceMonitor"]] <-
-          self$`hudson.node_monitors.SwapSpaceMonitor`$toSimpleType()
+          self$extractSimpleType(self$`hudson.node_monitors.SwapSpaceMonitor`)
       }
       if (!is.null(self$`hudson.node_monitors.TemporarySpaceMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.TemporarySpaceMonitor"]] <-
-          self$`hudson.node_monitors.TemporarySpaceMonitor`$toSimpleType()
+          self$extractSimpleType(self$`hudson.node_monitors.TemporarySpaceMonitor`)
       }
       if (!is.null(self$`hudson.node_monitors.DiskSpaceMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.DiskSpaceMonitor"]] <-
-          self$`hudson.node_monitors.DiskSpaceMonitor`$toSimpleType()
+          self$extractSimpleType(self$`hudson.node_monitors.DiskSpaceMonitor`)
       }
       if (!is.null(self$`hudson.node_monitors.ArchitectureMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.ArchitectureMonitor"]] <-
@@ -123,17 +123,40 @@ HudsonMasterComputermonitorData <- R6::R6Class(
       }
       if (!is.null(self$`hudson.node_monitors.ResponseTimeMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.ResponseTimeMonitor"]] <-
-          self$`hudson.node_monitors.ResponseTimeMonitor`$toSimpleType()
+          self$extractSimpleType(self$`hudson.node_monitors.ResponseTimeMonitor`)
       }
       if (!is.null(self$`hudson.node_monitors.ClockMonitor`)) {
         HudsonMasterComputermonitorDataObject[["hudson.node_monitors.ClockMonitor"]] <-
-          self$`hudson.node_monitors.ClockMonitor`$toSimpleType()
+          self$extractSimpleType(self$`hudson.node_monitors.ClockMonitor`)
       }
       if (!is.null(self$`_class`)) {
         HudsonMasterComputermonitorDataObject[["_class"]] <-
           self$`_class`
       }
       return(HudsonMasterComputermonitorDataObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

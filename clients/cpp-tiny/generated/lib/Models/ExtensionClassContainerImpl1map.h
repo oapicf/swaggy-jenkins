@@ -52,21 +52,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setIojenkinsblueoceanserviceembeddedrestPipelineImpl(ExtensionClassImpl  iojenkinsblueoceanserviceembeddedrestPipelineImpl);
+	void setIojenkinsblueoceanserviceembeddedrestPipelineImpl(ExtensionClassImpl iojenkinsblueoceanserviceembeddedrestPipelineImpl);
 	/*! \brief Get 
 	 */
 	ExtensionClassImpl getIojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl();
 
 	/*! \brief Set 
 	 */
-	void setIojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl(ExtensionClassImpl  iojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl);
+	void setIojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl(ExtensionClassImpl iojenkinsblueoceanserviceembeddedrestMultiBranchPipelineImpl);
 	/*! \brief Get 
 	 */
 	std::string getClass();
 
 	/*! \brief Set 
 	 */
-	void setClass(std::string  _class);
+	void setClass(std::string _class);
 
 
     private:

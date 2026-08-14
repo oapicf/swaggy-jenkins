@@ -14,11 +14,11 @@ static pipeline_step_impllinks_t *pipeline_step_impllinks_create_internal(
     if (!pipeline_step_impllinks_local_var) {
         return NULL;
     }
+    memset(pipeline_step_impllinks_local_var, 0, sizeof(pipeline_step_impllinks_t));
+    pipeline_step_impllinks_local_var->_library_owned = 1;
     pipeline_step_impllinks_local_var->self = self;
     pipeline_step_impllinks_local_var->actions = actions;
     pipeline_step_impllinks_local_var->_class = _class;
-
-    pipeline_step_impllinks_local_var->_library_owned = 1;
     return pipeline_step_impllinks_local_var;
 }
 
@@ -27,11 +27,14 @@ __attribute__((deprecated)) pipeline_step_impllinks_t *pipeline_step_impllinks_c
     link_t *actions,
     char *_class
     ) {
-    return pipeline_step_impllinks_create_internal (
+    pipeline_step_impllinks_t *result = pipeline_step_impllinks_create_internal (
         self,
         actions,
         _class
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void pipeline_step_impllinks_free(pipeline_step_impllinks_t *pipeline_step_impllinks) {
@@ -112,6 +115,8 @@ pipeline_step_impllinks_t *pipeline_step_impllinks_parseFromJSON(cJSON *pipeline
     // define the local variable for pipeline_step_impllinks->actions
     link_t *actions_local_nonprim = NULL;
 
+    char *_class_local_str = NULL;
+
     // pipeline_step_impllinks->self
     cJSON *self = cJSON_GetObjectItemCaseSensitive(pipeline_step_impllinksJSON, "self");
     if (cJSON_IsNull(self)) {
@@ -143,11 +148,17 @@ pipeline_step_impllinks_t *pipeline_step_impllinks_parseFromJSON(cJSON *pipeline
     }
 
 
+    if (_class && !cJSON_IsNull(_class)) _class_local_str = strdup(_class->valuestring);
+
     pipeline_step_impllinks_local_var = pipeline_step_impllinks_create_internal (
         self ? self_local_nonprim : NULL,
         actions ? actions_local_nonprim : NULL,
-        _class && !cJSON_IsNull(_class) ? strdup(_class->valuestring) : NULL
+        _class_local_str
         );
+
+    if (!pipeline_step_impllinks_local_var) {
+        goto end;
+    }
 
     return pipeline_step_impllinks_local_var;
 end:
@@ -158,6 +169,10 @@ end:
     if (actions_local_nonprim) {
         link_free(actions_local_nonprim);
         actions_local_nonprim = NULL;
+    }
+    if (_class_local_str) {
+        free(_class_local_str);
+        _class_local_str = NULL;
     }
     return NULL;
 

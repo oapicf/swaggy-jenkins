@@ -1,7 +1,10 @@
 package org.openapitools.model
 
 import java.util.Objects
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ExtensionClassImpl
 import javax.validation.constraints.DecimalMax
 import javax.validation.constraints.DecimalMin
@@ -23,14 +26,23 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ExtensionClassContainerImpl1map(
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl")
     @get:JsonProperty("io.jenkins.blueocean.service.embedded.rest.PipelineImpl") val ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl: ExtensionClassImpl? = null,
 
     @field:Valid
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl")
     @get:JsonProperty("io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl") val ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl: ExtensionClassImpl? = null,
 
-    @Schema(example = "null", description = "")
+    @Schema(description = "")
+    @field:JsonInclude(JsonInclude.Include.NON_NULL)
+    @field:JsonSetter(nulls = Nulls.SKIP)
+    @param:JsonProperty("_class")
     @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {
 
