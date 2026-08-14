@@ -1,4 +1,0 @@
-name: 'Publish Python'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'

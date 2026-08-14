@@ -1,4 +1,0 @@
-name: 'Publish JavaScript'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
