@@ -1,6 +1,6 @@
 ---
 spec_uri: specification/jenkins.yml
-version: 3.3.1-pre.0
+version: 3.4.0
 contact:
   name: OpenAPI Clients Factory
   url: https://github.com/oapicf/swaggy-jenkins
@@ -18,7 +18,9 @@ generator:
   inputs:
     project_id: jenkins
     project_name: Swaggy Jenkins
-    project_desc: A set of Jenkins API clients in multiple languages generated from Swagger / Open API specification
+    project_desc: >-
+      A set of Jenkins API clients in multiple languages generated from Swagger
+      / Open API specification
     author_name: OpenAPI Clients Factory
     author_email: blah+oapicf@cliffano.com
     author_url: https://github.com/oapicf
