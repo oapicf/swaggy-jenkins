@@ -16,7 +16,7 @@ base_dir:
 generator:
   component: oag-file-spec
   inputs:
-    project_id: swaggy-jenkins
+    project_id: jenkins
     project_name: Swaggy Jenkins
     project_desc: A set of Jenkins API clients in multiple languages generated from Swagger / Open API specification
     author_name: OpenAPI Clients Factory

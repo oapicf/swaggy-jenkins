@@ -3,7 +3,7 @@
 <!-- END:AVATAR -->
 
 <!-- BEGIN:BADGES -->
-[![Build Status](https://github.com/oapicf/swaggy-jenkins/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/oapicf/swaggy-jenkins/actions/workflows/ci-workflow.yaml)
+[![Build Status](https://github.com/oapicf/swaggy-jenkins/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/oapicf/jenkins/actions/workflows/ci-workflow.yaml)
 <!-- END:BADGES -->
 
 # Swaggy Jenkins
