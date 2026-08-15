@@ -118,36 +118,41 @@ class _$StringParameterDefinitionSerializer implements PrimitiveSerializer<Strin
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'defaultParameterValue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(StringParameterValue),
-          ) as StringParameterValue;
+            specifiedType: const FullType.nullable(StringParameterValue),
+          ) as StringParameterValue?;
+          if (valueDes == null) continue;
           result.defaultParameterValue.replace(valueDes);
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         default:

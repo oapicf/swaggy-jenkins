@@ -46,7 +46,7 @@ import javax.annotation.Generated;
   PipelinelatestRun.JSON_PROPERTY_PROPERTY_CLASS
 })
 @JsonTypeName("PipelinelatestRun")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-14T13:26:31.096433078Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-15T02:28:01.146311600Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class PipelinelatestRun {
     public static final String JSON_PROPERTY_ARTIFACTS = "artifacts";

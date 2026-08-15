@@ -152,57 +152,65 @@ class _$PipelineRunNodeSerializer implements PrimitiveSerializer<PipelineRunNode
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'displayName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.displayName = valueDes;
           break;
         case r'durationInMillis':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.durationInMillis = valueDes;
           break;
         case r'edges':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(PipelineRunNodeedges)]),
-          ) as BuiltList<PipelineRunNodeedges>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(PipelineRunNodeedges)]),
+          ) as BuiltList<PipelineRunNodeedges>?;
+          if (valueDes == null) continue;
           result.edges.replace(valueDes);
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'result':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.result = valueDes;
           break;
         case r'startTime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.startTime = valueDes;
           break;
         case r'state':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.state = valueDes;
           break;
         default:

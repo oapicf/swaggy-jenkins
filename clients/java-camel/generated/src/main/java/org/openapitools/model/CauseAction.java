@@ -23,7 +23,7 @@ import jakarta.annotation.Generated;
  * CauseAction
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-14T13:26:50.843239268Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-15T02:28:14.400014467Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CauseAction {
 
   private String propertyClass;

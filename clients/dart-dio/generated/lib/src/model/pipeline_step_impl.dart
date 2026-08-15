@@ -163,64 +163,73 @@ class _$PipelineStepImplSerializer implements PrimitiveSerializer<PipelineStepIm
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'_links':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PipelineStepImpllinks),
-          ) as PipelineStepImpllinks;
+            specifiedType: const FullType.nullable(PipelineStepImpllinks),
+          ) as PipelineStepImpllinks?;
+          if (valueDes == null) continue;
           result.links.replace(valueDes);
           break;
         case r'displayName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.displayName = valueDes;
           break;
         case r'durationInMillis':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.durationInMillis = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'input':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(InputStepImpl),
-          ) as InputStepImpl;
+            specifiedType: const FullType.nullable(InputStepImpl),
+          ) as InputStepImpl?;
+          if (valueDes == null) continue;
           result.input.replace(valueDes);
           break;
         case r'result':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.result = valueDes;
           break;
         case r'startTime':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.startTime = valueDes;
           break;
         case r'state':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.state = valueDes;
           break;
         default:

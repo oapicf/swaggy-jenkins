@@ -18,7 +18,7 @@ import java.util.List;
  * PipelineRun
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-14T13:26:39.686051535Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-15T02:28:07.105300501Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineRun   {
   @JsonProperty("_class")
   private String propertyClass;

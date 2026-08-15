@@ -97,22 +97,25 @@ class _$GithubRespositoryContainerSerializer implements PrimitiveSerializer<Gith
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'_links':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GithubRespositoryContainerlinks),
-          ) as GithubRespositoryContainerlinks;
+            specifiedType: const FullType.nullable(GithubRespositoryContainerlinks),
+          ) as GithubRespositoryContainerlinks?;
+          if (valueDes == null) continue;
           result.links.replace(valueDes);
           break;
         case r'repositories':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GithubRepositories),
-          ) as GithubRepositories;
+            specifiedType: const FullType.nullable(GithubRepositories),
+          ) as GithubRepositories?;
+          if (valueDes == null) continue;
           result.repositories.replace(valueDes);
           break;
         default:

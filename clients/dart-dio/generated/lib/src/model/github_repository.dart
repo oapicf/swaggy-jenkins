@@ -152,57 +152,65 @@ class _$GithubRepositorySerializer implements PrimitiveSerializer<GithubReposito
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'_links':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GithubRepositorylinks),
-          ) as GithubRepositorylinks;
+            specifiedType: const FullType.nullable(GithubRepositorylinks),
+          ) as GithubRepositorylinks?;
+          if (valueDes == null) continue;
           result.links.replace(valueDes);
           break;
         case r'defaultBranch':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.defaultBranch = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'permissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GithubRepositorypermissions),
-          ) as GithubRepositorypermissions;
+            specifiedType: const FullType.nullable(GithubRepositorypermissions),
+          ) as GithubRepositorypermissions?;
+          if (valueDes == null) continue;
           result.permissions.replace(valueDes);
           break;
         case r'private':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.private = valueDes;
           break;
         case r'fullName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fullName = valueDes;
           break;
         default:

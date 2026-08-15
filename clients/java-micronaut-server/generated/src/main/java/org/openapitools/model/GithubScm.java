@@ -34,7 +34,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   GithubScm.JSON_PROPERTY_URI
 })
 @JsonTypeName("GithubScm")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-14T13:26:34.038115979Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-15T02:28:03.329329798Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class GithubScm {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

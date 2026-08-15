@@ -129,43 +129,49 @@ class _$PipelineRunImpllinksSerializer implements PrimitiveSerializer<PipelineRu
         case r'nodes':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Link),
-          ) as Link;
+            specifiedType: const FullType.nullable(Link),
+          ) as Link?;
+          if (valueDes == null) continue;
           result.nodes.replace(valueDes);
           break;
         case r'log':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Link),
-          ) as Link;
+            specifiedType: const FullType.nullable(Link),
+          ) as Link?;
+          if (valueDes == null) continue;
           result.log.replace(valueDes);
           break;
         case r'self':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Link),
-          ) as Link;
+            specifiedType: const FullType.nullable(Link),
+          ) as Link?;
+          if (valueDes == null) continue;
           result.self.replace(valueDes);
           break;
         case r'actions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Link),
-          ) as Link;
+            specifiedType: const FullType.nullable(Link),
+          ) as Link?;
+          if (valueDes == null) continue;
           result.actions.replace(valueDes);
           break;
         case r'steps':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Link),
-          ) as Link;
+            specifiedType: const FullType.nullable(Link),
+          ) as Link?;
+          if (valueDes == null) continue;
           result.steps.replace(valueDes);
           break;
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         default:

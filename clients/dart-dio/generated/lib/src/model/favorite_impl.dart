@@ -97,22 +97,25 @@ class _$FavoriteImplSerializer implements PrimitiveSerializer<FavoriteImpl> {
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'_links':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FavoriteImpllinks),
-          ) as FavoriteImpllinks;
+            specifiedType: const FullType.nullable(FavoriteImpllinks),
+          ) as FavoriteImpllinks?;
+          if (valueDes == null) continue;
           result.links.replace(valueDes);
           break;
         case r'item':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PipelineImpl),
-          ) as PipelineImpl;
+            specifiedType: const FullType.nullable(PipelineImpl),
+          ) as PipelineImpl?;
+          if (valueDes == null) continue;
           result.item.replace(valueDes);
           break;
         default:

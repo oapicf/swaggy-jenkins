@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-14T13:26:45.152928399Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-15T02:28:10.536237888Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FreeStyleProjecthealthReport   {
   
   private String description;

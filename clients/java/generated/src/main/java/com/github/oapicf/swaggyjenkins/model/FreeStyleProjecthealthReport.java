@@ -48,7 +48,7 @@ import com.github.oapicf.swaggyjenkins.JSON;
 /**
  * FreeStyleProjecthealthReport
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-14T13:26:12.346512963Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-08-15T02:27:48.075808055Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class FreeStyleProjecthealthReport {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)

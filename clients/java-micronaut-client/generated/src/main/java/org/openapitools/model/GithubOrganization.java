@@ -32,7 +32,7 @@ import javax.annotation.Generated;
   GithubOrganization.JSON_PROPERTY_NAME
 })
 @JsonTypeName("GithubOrganization")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-14T13:26:31.096433078Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-15T02:28:01.146311600Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class GithubOrganization {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

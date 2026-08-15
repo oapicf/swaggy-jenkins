@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  * HudsonMasterComputermonitorData
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-14T13:26:39.686051535Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-15T02:28:07.105300501Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class HudsonMasterComputermonitorData   {
   @JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
   private SwapSpaceMonitorMemoryUsage2 hudsonNodeMonitorsSwapSpaceMonitor;

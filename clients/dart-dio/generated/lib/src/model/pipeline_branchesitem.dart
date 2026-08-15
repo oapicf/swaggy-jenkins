@@ -163,64 +163,73 @@ class _$PipelineBranchesitemSerializer implements PrimitiveSerializer<PipelineBr
         case r'displayName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.displayName = valueDes;
           break;
         case r'estimatedDurationInMillis':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.estimatedDurationInMillis = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'weatherScore':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.weatherScore = valueDes;
           break;
         case r'latestRun':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PipelineBranchesitemlatestRun),
-          ) as PipelineBranchesitemlatestRun;
+            specifiedType: const FullType.nullable(PipelineBranchesitemlatestRun),
+          ) as PipelineBranchesitemlatestRun?;
+          if (valueDes == null) continue;
           result.latestRun.replace(valueDes);
           break;
         case r'organization':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.organization = valueDes;
           break;
         case r'pullRequest':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PipelineBranchesitempullRequest),
-          ) as PipelineBranchesitempullRequest;
+            specifiedType: const FullType.nullable(PipelineBranchesitempullRequest),
+          ) as PipelineBranchesitempullRequest?;
+          if (valueDes == null) continue;
           result.pullRequest.replace(valueDes);
           break;
         case r'totalNumberOfPullRequests':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalNumberOfPullRequests = valueDes;
           break;
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         default:

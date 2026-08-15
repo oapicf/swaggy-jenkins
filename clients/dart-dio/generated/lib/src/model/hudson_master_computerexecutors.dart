@@ -129,43 +129,49 @@ class _$HudsonMasterComputerexecutorsSerializer implements PrimitiveSerializer<H
         case r'currentExecutable':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FreeStyleBuild),
-          ) as FreeStyleBuild;
+            specifiedType: const FullType.nullable(FreeStyleBuild),
+          ) as FreeStyleBuild?;
+          if (valueDes == null) continue;
           result.currentExecutable.replace(valueDes);
           break;
         case r'idle':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.idle = valueDes;
           break;
         case r'likelyStuck':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.likelyStuck = valueDes;
           break;
         case r'number':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.number = valueDes;
           break;
         case r'progress':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.progress = valueDes;
           break;
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         default:

@@ -197,85 +197,97 @@ class _$QueueBlockedItemSerializer implements PrimitiveSerializer<QueueBlockedIt
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'actions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CauseAction)]),
-          ) as BuiltList<CauseAction>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CauseAction)]),
+          ) as BuiltList<CauseAction>?;
+          if (valueDes == null) continue;
           result.actions.replace(valueDes);
           break;
         case r'blocked':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.blocked = valueDes;
           break;
         case r'buildable':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.buildable = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'inQueueSince':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.inQueueSince = valueDes;
           break;
         case r'params':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.params = valueDes;
           break;
         case r'stuck':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.stuck = valueDes;
           break;
         case r'task':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FreeStyleProject),
-          ) as FreeStyleProject;
+            specifiedType: const FullType.nullable(FreeStyleProject),
+          ) as FreeStyleProject?;
+          if (valueDes == null) continue;
           result.task.replace(valueDes);
           break;
         case r'url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.url = valueDes;
           break;
         case r'why':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.why = valueDes;
           break;
         case r'buildableStartMilliseconds':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.buildableStartMilliseconds = valueDes;
           break;
         default:

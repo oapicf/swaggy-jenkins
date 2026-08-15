@@ -119,36 +119,41 @@ class _$ComputerSetSerializer implements PrimitiveSerializer<ComputerSet> {
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'busyExecutors':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.busyExecutors = valueDes;
           break;
         case r'computer':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(HudsonMasterComputer)]),
-          ) as BuiltList<HudsonMasterComputer>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(HudsonMasterComputer)]),
+          ) as BuiltList<HudsonMasterComputer>?;
+          if (valueDes == null) continue;
           result.computer.replace(valueDes);
           break;
         case r'displayName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.displayName = valueDes;
           break;
         case r'totalExecutors':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.totalExecutors = valueDes;
           break;
         default:

@@ -41,7 +41,7 @@ import javax.validation.Valid;
   PipelineBranchesitemlatestRun.JSON_PROPERTY_COMMIT_ID,
   PipelineBranchesitemlatestRun.JSON_PROPERTY_PROPERTY_CLASS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-14T13:27:02.079609998Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-15T02:28:22.149338174Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineBranchesitemlatestRun   {
   public static final String JSON_PROPERTY_DURATION_IN_MILLIS = "durationInMillis";
   @JsonProperty(JSON_PROPERTY_DURATION_IN_MILLIS)

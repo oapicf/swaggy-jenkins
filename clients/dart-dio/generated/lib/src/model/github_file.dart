@@ -85,15 +85,17 @@ class _$GithubFileSerializer implements PrimitiveSerializer<GithubFile> {
         case r'content':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GithubContent),
-          ) as GithubContent;
+            specifiedType: const FullType.nullable(GithubContent),
+          ) as GithubContent?;
+          if (valueDes == null) continue;
           result.content.replace(valueDes);
           break;
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         default:

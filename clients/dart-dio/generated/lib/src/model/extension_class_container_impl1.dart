@@ -97,22 +97,25 @@ class _$ExtensionClassContainerImpl1Serializer implements PrimitiveSerializer<Ex
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'_links':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ExtensionClassContainerImpl1links),
-          ) as ExtensionClassContainerImpl1links;
+            specifiedType: const FullType.nullable(ExtensionClassContainerImpl1links),
+          ) as ExtensionClassContainerImpl1links?;
+          if (valueDes == null) continue;
           result.links.replace(valueDes);
           break;
         case r'map':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ExtensionClassContainerImpl1map),
-          ) as ExtensionClassContainerImpl1map;
+            specifiedType: const FullType.nullable(ExtensionClassContainerImpl1map),
+          ) as ExtensionClassContainerImpl1map?;
+          if (valueDes == null) continue;
           result.map.replace(valueDes);
           break;
         default:

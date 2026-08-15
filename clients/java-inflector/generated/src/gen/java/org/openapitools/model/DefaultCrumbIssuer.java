@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-14T13:26:28.298663867Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-15T02:27:59.167299127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class DefaultCrumbIssuer   {
   @JsonProperty("_class")
   private String propertyClass;

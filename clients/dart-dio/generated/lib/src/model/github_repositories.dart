@@ -131,43 +131,49 @@ class _$GithubRepositoriesSerializer implements PrimitiveSerializer<GithubReposi
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'_links':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GithubRepositorieslinks),
-          ) as GithubRepositorieslinks;
+            specifiedType: const FullType.nullable(GithubRepositorieslinks),
+          ) as GithubRepositorieslinks?;
+          if (valueDes == null) continue;
           result.links.replace(valueDes);
           break;
         case r'items':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(GithubRepository)]),
-          ) as BuiltList<GithubRepository>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(GithubRepository)]),
+          ) as BuiltList<GithubRepository>?;
+          if (valueDes == null) continue;
           result.items.replace(valueDes);
           break;
         case r'lastPage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.lastPage = valueDes;
           break;
         case r'nextPage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.nextPage = valueDes;
           break;
         case r'pageSize':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.pageSize = valueDes;
           break;
         default:

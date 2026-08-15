@@ -129,43 +129,49 @@ class _$PipelineBranchesitempullRequestSerializer implements PrimitiveSerializer
         case r'_links':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PipelineBranchesitempullRequestlinks),
-          ) as PipelineBranchesitempullRequestlinks;
+            specifiedType: const FullType.nullable(PipelineBranchesitempullRequestlinks),
+          ) as PipelineBranchesitempullRequestlinks?;
+          if (valueDes == null) continue;
           result.links.replace(valueDes);
           break;
         case r'author':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.author = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'title':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.title = valueDes;
           break;
         case r'url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.url = valueDes;
           break;
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         default:

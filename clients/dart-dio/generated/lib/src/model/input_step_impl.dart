@@ -142,50 +142,57 @@ class _$InputStepImplSerializer implements PrimitiveSerializer<InputStepImpl> {
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'_links':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(InputStepImpllinks),
-          ) as InputStepImpllinks;
+            specifiedType: const FullType.nullable(InputStepImpllinks),
+          ) as InputStepImpllinks?;
+          if (valueDes == null) continue;
           result.links.replace(valueDes);
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'ok':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.ok = valueDes;
           break;
         case r'parameters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(StringParameterDefinition)]),
-          ) as BuiltList<StringParameterDefinition>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(StringParameterDefinition)]),
+          ) as BuiltList<StringParameterDefinition>?;
+          if (valueDes == null) continue;
           result.parameters.replace(valueDes);
           break;
         case r'submitter':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.submitter = valueDes;
           break;
         default:

@@ -118,36 +118,41 @@ class _$PipelineImpllinksSerializer implements PrimitiveSerializer<PipelineImpll
         case r'self':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Link),
-          ) as Link;
+            specifiedType: const FullType.nullable(Link),
+          ) as Link?;
+          if (valueDes == null) continue;
           result.self.replace(valueDes);
           break;
         case r'actions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Link),
-          ) as Link;
+            specifiedType: const FullType.nullable(Link),
+          ) as Link?;
+          if (valueDes == null) continue;
           result.actions.replace(valueDes);
           break;
         case r'runs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Link),
-          ) as Link;
+            specifiedType: const FullType.nullable(Link),
+          ) as Link?;
+          if (valueDes == null) continue;
           result.runs.replace(valueDes);
           break;
         case r'queue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Link),
-          ) as Link;
+            specifiedType: const FullType.nullable(Link),
+          ) as Link?;
+          if (valueDes == null) continue;
           result.queue.replace(valueDes);
           break;
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         default:

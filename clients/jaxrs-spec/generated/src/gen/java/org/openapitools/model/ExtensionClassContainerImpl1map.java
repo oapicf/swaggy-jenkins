@@ -17,7 +17,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("ExtensionClassContainerImpl1map")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-14T13:27:13.203648304Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-15T02:28:30.432551497Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ExtensionClassContainerImpl1map   {
   private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
   private ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;

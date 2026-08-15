@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("ClassesByClass")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-14T13:27:13.203648304Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-15T02:28:30.432551497Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ClassesByClass   {
   private @Valid List<String> classes = new ArrayList<>();
   private String propertyClass;

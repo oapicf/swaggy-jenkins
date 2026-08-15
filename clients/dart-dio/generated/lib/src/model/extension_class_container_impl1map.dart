@@ -96,22 +96,25 @@ class _$ExtensionClassContainerImpl1mapSerializer implements PrimitiveSerializer
         case r'io.jenkins.blueocean.service.embedded.rest.PipelineImpl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ExtensionClassImpl),
-          ) as ExtensionClassImpl;
+            specifiedType: const FullType.nullable(ExtensionClassImpl),
+          ) as ExtensionClassImpl?;
+          if (valueDes == null) continue;
           result.ioPeriodJenkinsPeriodBlueoceanPeriodServicePeriodEmbeddedPeriodRestPeriodPipelineImpl.replace(valueDes);
           break;
         case r'io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ExtensionClassImpl),
-          ) as ExtensionClassImpl;
+            specifiedType: const FullType.nullable(ExtensionClassImpl),
+          ) as ExtensionClassImpl?;
+          if (valueDes == null) continue;
           result.ioPeriodJenkinsPeriodBlueoceanPeriodServicePeriodEmbeddedPeriodRestPeriodMultiBranchPipelineImpl.replace(valueDes);
           break;
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         default:

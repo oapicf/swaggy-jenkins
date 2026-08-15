@@ -143,50 +143,57 @@ class _$HudsonMasterComputermonitorDataSerializer implements PrimitiveSerializer
         case r'hudson.node_monitors.SwapSpaceMonitor':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SwapSpaceMonitorMemoryUsage2),
-          ) as SwapSpaceMonitorMemoryUsage2;
+            specifiedType: const FullType.nullable(SwapSpaceMonitorMemoryUsage2),
+          ) as SwapSpaceMonitorMemoryUsage2?;
+          if (valueDes == null) continue;
           result.hudsonPeriodNodeMonitorsPeriodSwapSpaceMonitor.replace(valueDes);
           break;
         case r'hudson.node_monitors.TemporarySpaceMonitor':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DiskSpaceMonitorDescriptorDiskSpace),
-          ) as DiskSpaceMonitorDescriptorDiskSpace;
+            specifiedType: const FullType.nullable(DiskSpaceMonitorDescriptorDiskSpace),
+          ) as DiskSpaceMonitorDescriptorDiskSpace?;
+          if (valueDes == null) continue;
           result.hudsonPeriodNodeMonitorsPeriodTemporarySpaceMonitor.replace(valueDes);
           break;
         case r'hudson.node_monitors.DiskSpaceMonitor':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DiskSpaceMonitorDescriptorDiskSpace),
-          ) as DiskSpaceMonitorDescriptorDiskSpace;
+            specifiedType: const FullType.nullable(DiskSpaceMonitorDescriptorDiskSpace),
+          ) as DiskSpaceMonitorDescriptorDiskSpace?;
+          if (valueDes == null) continue;
           result.hudsonPeriodNodeMonitorsPeriodDiskSpaceMonitor.replace(valueDes);
           break;
         case r'hudson.node_monitors.ArchitectureMonitor':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.hudsonPeriodNodeMonitorsPeriodArchitectureMonitor = valueDes;
           break;
         case r'hudson.node_monitors.ResponseTimeMonitor':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ResponseTimeMonitorData),
-          ) as ResponseTimeMonitorData;
+            specifiedType: const FullType.nullable(ResponseTimeMonitorData),
+          ) as ResponseTimeMonitorData?;
+          if (valueDes == null) continue;
           result.hudsonPeriodNodeMonitorsPeriodResponseTimeMonitor.replace(valueDes);
           break;
         case r'hudson.node_monitors.ClockMonitor':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(ClockDifference),
-          ) as ClockDifference;
+            specifiedType: const FullType.nullable(ClockDifference),
+          ) as ClockDifference?;
+          if (valueDes == null) continue;
           result.hudsonPeriodNodeMonitorsPeriodClockMonitor.replace(valueDes);
           break;
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         default:

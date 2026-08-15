@@ -242,113 +242,129 @@ class _$HudsonMasterComputerSerializer implements PrimitiveSerializer<HudsonMast
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'displayName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.displayName = valueDes;
           break;
         case r'executors':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(HudsonMasterComputerexecutors)]),
-          ) as BuiltList<HudsonMasterComputerexecutors>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(HudsonMasterComputerexecutors)]),
+          ) as BuiltList<HudsonMasterComputerexecutors>?;
+          if (valueDes == null) continue;
           result.executors.replace(valueDes);
           break;
         case r'icon':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.icon = valueDes;
           break;
         case r'iconClassName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.iconClassName = valueDes;
           break;
         case r'idle':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.idle = valueDes;
           break;
         case r'jnlpAgent':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.jnlpAgent = valueDes;
           break;
         case r'launchSupported':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.launchSupported = valueDes;
           break;
         case r'loadStatistics':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Label1),
-          ) as Label1;
+            specifiedType: const FullType.nullable(Label1),
+          ) as Label1?;
+          if (valueDes == null) continue;
           result.loadStatistics.replace(valueDes);
           break;
         case r'manualLaunchAllowed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.manualLaunchAllowed = valueDes;
           break;
         case r'monitorData':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(HudsonMasterComputermonitorData),
-          ) as HudsonMasterComputermonitorData;
+            specifiedType: const FullType.nullable(HudsonMasterComputermonitorData),
+          ) as HudsonMasterComputermonitorData?;
+          if (valueDes == null) continue;
           result.monitorData.replace(valueDes);
           break;
         case r'numExecutors':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.numExecutors = valueDes;
           break;
         case r'offline':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.offline = valueDes;
           break;
         case r'offlineCause':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.offlineCause = valueDes;
           break;
         case r'offlineCauseReason':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.offlineCauseReason = valueDes;
           break;
         case r'temporarilyOffline':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.temporarilyOffline = valueDes;
           break;
         default:

@@ -104,13 +104,3 @@ src/main/java/org/openapitools/model/SwapSpaceMonitorMemoryUsage2.java
 src/main/java/org/openapitools/model/UnlabeledLoadStatistics.java
 src/main/java/org/openapitools/model/User.java
 src/main/resources/application.properties
-src/test/java/org/openapitools/api/ApiApiTest.java
-src/test/java/org/openapitools/api/BlueApiTest.java
-src/test/java/org/openapitools/api/ComputerApiTest.java
-src/test/java/org/openapitools/api/CreateItemApiTest.java
-src/test/java/org/openapitools/api/CreateViewApiTest.java
-src/test/java/org/openapitools/api/CrumbIssuerApiTest.java
-src/test/java/org/openapitools/api/JobApiTest.java
-src/test/java/org/openapitools/api/JwtAuthApiTest.java
-src/test/java/org/openapitools/api/QueueApiTest.java
-src/test/java/org/openapitools/api/ViewApiTest.java

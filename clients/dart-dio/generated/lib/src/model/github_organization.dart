@@ -107,29 +107,33 @@ class _$GithubOrganizationSerializer implements PrimitiveSerializer<GithubOrgani
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'_links':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(GithubOrganizationlinks),
-          ) as GithubOrganizationlinks;
+            specifiedType: const FullType.nullable(GithubOrganizationlinks),
+          ) as GithubOrganizationlinks?;
+          if (valueDes == null) continue;
           result.links.replace(valueDes);
           break;
         case r'jenkinsOrganizationPipeline':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.jenkinsOrganizationPipeline = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         default:

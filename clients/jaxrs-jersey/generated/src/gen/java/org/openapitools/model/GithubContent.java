@@ -35,7 +35,7 @@ import javax.validation.Valid;
   GithubContent.JSON_PROPERTY_PATH,
   GithubContent.JSON_PROPERTY_BASE64_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-14T13:27:02.079609998Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-15T02:28:22.149338174Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class GithubContent   {
   public static final String JSON_PROPERTY_NAME = "name";
   @JsonProperty(JSON_PROPERTY_NAME)

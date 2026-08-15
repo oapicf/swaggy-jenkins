@@ -25,7 +25,7 @@ import javax.ws.rs.*;
 
 
 @io.swagger.annotations.Api(description = "the createItem API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-14T13:26:36.965911138Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-15T02:28:05.195858827Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateItemApi  {
    private final CreateItemApiService delegate = CreateItemApiServiceFactory.getCreateItemApi();
 

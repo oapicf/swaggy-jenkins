@@ -364,190 +364,217 @@ class _$FreeStyleProjectSerializer implements PrimitiveSerializer<FreeStyleProje
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.url = valueDes;
           break;
         case r'color':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.color = valueDes;
           break;
         case r'actions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(FreeStyleProjectactions)]),
-          ) as BuiltList<FreeStyleProjectactions>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(FreeStyleProjectactions)]),
+          ) as BuiltList<FreeStyleProjectactions>?;
+          if (valueDes == null) continue;
           result.actions.replace(valueDes);
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'displayName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.displayName = valueDes;
           break;
         case r'displayNameOrNull':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.displayNameOrNull = valueDes;
           break;
         case r'fullDisplayName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fullDisplayName = valueDes;
           break;
         case r'fullName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fullName = valueDes;
           break;
         case r'buildable':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.buildable = valueDes;
           break;
         case r'builds':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(FreeStyleBuild)]),
-          ) as BuiltList<FreeStyleBuild>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(FreeStyleBuild)]),
+          ) as BuiltList<FreeStyleBuild>?;
+          if (valueDes == null) continue;
           result.builds.replace(valueDes);
           break;
         case r'firstBuild':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FreeStyleBuild),
-          ) as FreeStyleBuild;
+            specifiedType: const FullType.nullable(FreeStyleBuild),
+          ) as FreeStyleBuild?;
+          if (valueDes == null) continue;
           result.firstBuild.replace(valueDes);
           break;
         case r'healthReport':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(FreeStyleProjecthealthReport)]),
-          ) as BuiltList<FreeStyleProjecthealthReport>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(FreeStyleProjecthealthReport)]),
+          ) as BuiltList<FreeStyleProjecthealthReport>?;
+          if (valueDes == null) continue;
           result.healthReport.replace(valueDes);
           break;
         case r'inQueue':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.inQueue = valueDes;
           break;
         case r'keepDependencies':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.keepDependencies = valueDes;
           break;
         case r'lastBuild':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FreeStyleBuild),
-          ) as FreeStyleBuild;
+            specifiedType: const FullType.nullable(FreeStyleBuild),
+          ) as FreeStyleBuild?;
+          if (valueDes == null) continue;
           result.lastBuild.replace(valueDes);
           break;
         case r'lastCompletedBuild':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FreeStyleBuild),
-          ) as FreeStyleBuild;
+            specifiedType: const FullType.nullable(FreeStyleBuild),
+          ) as FreeStyleBuild?;
+          if (valueDes == null) continue;
           result.lastCompletedBuild.replace(valueDes);
           break;
         case r'lastFailedBuild':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.lastFailedBuild = valueDes;
           break;
         case r'lastStableBuild':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FreeStyleBuild),
-          ) as FreeStyleBuild;
+            specifiedType: const FullType.nullable(FreeStyleBuild),
+          ) as FreeStyleBuild?;
+          if (valueDes == null) continue;
           result.lastStableBuild.replace(valueDes);
           break;
         case r'lastSuccessfulBuild':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(FreeStyleBuild),
-          ) as FreeStyleBuild;
+            specifiedType: const FullType.nullable(FreeStyleBuild),
+          ) as FreeStyleBuild?;
+          if (valueDes == null) continue;
           result.lastSuccessfulBuild.replace(valueDes);
           break;
         case r'lastUnstableBuild':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.lastUnstableBuild = valueDes;
           break;
         case r'lastUnsuccessfulBuild':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.lastUnsuccessfulBuild = valueDes;
           break;
         case r'nextBuildNumber':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.nextBuildNumber = valueDes;
           break;
         case r'queueItem':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.queueItem = valueDes;
           break;
         case r'concurrentBuild':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.concurrentBuild = valueDes;
           break;
         case r'scm':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(NullSCM),
-          ) as NullSCM;
+            specifiedType: const FullType.nullable(NullSCM),
+          ) as NullSCM?;
+          if (valueDes == null) continue;
           result.scm.replace(valueDes);
           break;
         default:

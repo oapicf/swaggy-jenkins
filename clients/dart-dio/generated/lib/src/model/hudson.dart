@@ -232,106 +232,121 @@ class _$HudsonSerializer implements PrimitiveSerializer<Hudson> {
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'assignedLabels':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(HudsonassignedLabels)]),
-          ) as BuiltList<HudsonassignedLabels>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(HudsonassignedLabels)]),
+          ) as BuiltList<HudsonassignedLabels>?;
+          if (valueDes == null) continue;
           result.assignedLabels.replace(valueDes);
           break;
         case r'mode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.mode = valueDes;
           break;
         case r'nodeDescription':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nodeDescription = valueDes;
           break;
         case r'nodeName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nodeName = valueDes;
           break;
         case r'numExecutors':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.numExecutors = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'jobs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(FreeStyleProject)]),
-          ) as BuiltList<FreeStyleProject>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(FreeStyleProject)]),
+          ) as BuiltList<FreeStyleProject>?;
+          if (valueDes == null) continue;
           result.jobs.replace(valueDes);
           break;
         case r'primaryView':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AllView),
-          ) as AllView;
+            specifiedType: const FullType.nullable(AllView),
+          ) as AllView?;
+          if (valueDes == null) continue;
           result.primaryView.replace(valueDes);
           break;
         case r'quietingDown':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.quietingDown = valueDes;
           break;
         case r'slaveAgentPort':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.slaveAgentPort = valueDes;
           break;
         case r'unlabeledLoad':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UnlabeledLoadStatistics),
-          ) as UnlabeledLoadStatistics;
+            specifiedType: const FullType.nullable(UnlabeledLoadStatistics),
+          ) as UnlabeledLoadStatistics?;
+          if (valueDes == null) continue;
           result.unlabeledLoad.replace(valueDes);
           break;
         case r'useCrumbs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.useCrumbs = valueDes;
           break;
         case r'useSecurity':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.useSecurity = valueDes;
           break;
         case r'views':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(AllView)]),
-          ) as BuiltList<AllView>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(AllView)]),
+          ) as BuiltList<AllView>?;
+          if (valueDes == null) continue;
           result.views.replace(valueDes);
           break;
         default:

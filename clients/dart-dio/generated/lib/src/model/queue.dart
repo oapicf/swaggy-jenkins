@@ -86,15 +86,17 @@ class _$QueueSerializer implements PrimitiveSerializer<Queue> {
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'items':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(QueueBlockedItem)]),
-          ) as BuiltList<QueueBlockedItem>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(QueueBlockedItem)]),
+          ) as BuiltList<QueueBlockedItem>?;
+          if (valueDes == null) continue;
           result.items.replace(valueDes);
           break;
         default:

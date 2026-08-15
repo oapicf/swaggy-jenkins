@@ -181,40 +181,112 @@ part 'serializers.g.dart';
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(Pipeline)]),
-        () => ListBuilder<Pipeline>(),
+        const FullType(BuiltList, [FullType(HudsonassignedLabels)]),
+        () => ListBuilder<HudsonassignedLabels>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(FavoriteImpl)]),
         () => ListBuilder<FavoriteImpl>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(PipelineActivity)]),
-        () => ListBuilder<PipelineActivity>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(PipelineStepImpl)]),
-        () => ListBuilder<PipelineStepImpl>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(PipelineRun)]),
-        () => ListBuilder<PipelineRun>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(PipelineRunNode)]),
         () => ListBuilder<PipelineRunNode>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AllView)]),
+        () => ListBuilder<AllView>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(QueueBlockedItem)]),
+        () => ListBuilder<QueueBlockedItem>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Organisation)]),
         () => ListBuilder<Organisation>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PipelineActivityartifacts)]),
+        () => ListBuilder<PipelineActivityartifacts>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PipelineRunNodeedges)]),
+        () => ListBuilder<PipelineRunNodeedges>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(QueueItemImpl)]),
         () => ListBuilder<QueueItemImpl>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PipelineStepImpl)]),
+        () => ListBuilder<PipelineStepImpl>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PipelinelatestRunartifacts)]),
+        () => ListBuilder<PipelinelatestRunartifacts>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FreeStyleProject)]),
+        () => ListBuilder<FreeStyleProject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FreeStyleBuild)]),
+        () => ListBuilder<FreeStyleBuild>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(GithubOrganization)]),
         () => ListBuilder<GithubOrganization>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FreeStyleProjectactions)]),
+        () => ListBuilder<FreeStyleProjectactions>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(StringParameterDefinition)]),
+        () => ListBuilder<StringParameterDefinition>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(HudsonMasterComputer)]),
+        () => ListBuilder<HudsonMasterComputer>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PipelineRun)]),
+        () => ListBuilder<PipelineRun>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(HudsonMasterComputerexecutors)]),
+        () => ListBuilder<HudsonMasterComputerexecutors>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CauseUserIdCause)]),
+        () => ListBuilder<CauseUserIdCause>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(FreeStyleProjecthealthReport)]),
+        () => ListBuilder<FreeStyleProjecthealthReport>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Pipeline)]),
+        () => ListBuilder<Pipeline>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PipelineActivity)]),
+        () => ListBuilder<PipelineActivity>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(PipelineRunartifacts)]),
+        () => ListBuilder<PipelineRunartifacts>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(GithubRepository)]),
+        () => ListBuilder<GithubRepository>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(CauseAction)]),
+        () => ListBuilder<CauseAction>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(String)]),
+        () => ListBuilder<String>(),
       )
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())

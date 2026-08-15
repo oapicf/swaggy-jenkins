@@ -86,15 +86,17 @@ class _$CauseActionSerializer implements PrimitiveSerializer<CauseAction> {
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'causes':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(CauseUserIdCause)]),
-          ) as BuiltList<CauseUserIdCause>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(CauseUserIdCause)]),
+          ) as BuiltList<CauseUserIdCause>?;
+          if (valueDes == null) continue;
           result.causes.replace(valueDes);
           break;
         default:

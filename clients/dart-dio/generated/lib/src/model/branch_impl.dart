@@ -210,92 +210,105 @@ class _$BranchImplSerializer implements PrimitiveSerializer<BranchImpl> {
         case r'_class':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.class_ = valueDes;
           break;
         case r'displayName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.displayName = valueDes;
           break;
         case r'estimatedDurationInMillis':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.estimatedDurationInMillis = valueDes;
           break;
         case r'fullDisplayName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fullDisplayName = valueDes;
           break;
         case r'fullName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.fullName = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'organization':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.organization = valueDes;
           break;
         case r'parameters':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(StringParameterDefinition)]),
-          ) as BuiltList<StringParameterDefinition>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(StringParameterDefinition)]),
+          ) as BuiltList<StringParameterDefinition>?;
+          if (valueDes == null) continue;
           result.parameters.replace(valueDes);
           break;
         case r'permissions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BranchImplpermissions),
-          ) as BranchImplpermissions;
+            specifiedType: const FullType.nullable(BranchImplpermissions),
+          ) as BranchImplpermissions?;
+          if (valueDes == null) continue;
           result.permissions.replace(valueDes);
           break;
         case r'weatherScore':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.weatherScore = valueDes;
           break;
         case r'pullRequest':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.pullRequest = valueDes;
           break;
         case r'_links':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BranchImpllinks),
-          ) as BranchImpllinks;
+            specifiedType: const FullType.nullable(BranchImpllinks),
+          ) as BranchImpllinks?;
+          if (valueDes == null) continue;
           result.links.replace(valueDes);
           break;
         case r'latestRun':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PipelineRunImpl),
-          ) as PipelineRunImpl;
+            specifiedType: const FullType.nullable(PipelineRunImpl),
+          ) as PipelineRunImpl?;
+          if (valueDes == null) continue;
           result.latestRun.replace(valueDes);
           break;
         default:
