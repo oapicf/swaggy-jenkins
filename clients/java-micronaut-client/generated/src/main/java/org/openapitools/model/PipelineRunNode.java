@@ -39,7 +39,7 @@ import javax.annotation.Generated;
   PipelineRunNode.JSON_PROPERTY_STATE
 })
 @JsonTypeName("PipelineRunNode")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-15T02:28:01.146311600Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-15T12:29:27.994797926Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class PipelineRunNode {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

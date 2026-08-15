@@ -29,7 +29,7 @@ import javax.annotation.Generated;
   EmptyChangeLogSet.JSON_PROPERTY_KIND
 })
 @JsonTypeName("EmptyChangeLogSet")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-15T02:28:01.146311600Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-15T12:29:27.994797926Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class EmptyChangeLogSet {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

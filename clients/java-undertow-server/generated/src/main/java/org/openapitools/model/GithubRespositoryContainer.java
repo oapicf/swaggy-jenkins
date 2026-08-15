@@ -22,7 +22,7 @@ import org.openapitools.model.GithubRespositoryContainerlinks;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-15T02:28:10.536237888Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-15T12:29:42.212187125Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class GithubRespositoryContainer   {
   
   private String propertyClass;

@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * QueueItemImpl
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-15T02:28:07.105300501Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-15T12:29:36.716803219Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class QueueItemImpl   {
   @JsonProperty("_class")
   private String propertyClass;

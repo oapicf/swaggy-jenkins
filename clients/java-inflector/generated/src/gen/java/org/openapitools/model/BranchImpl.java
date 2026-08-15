@@ -17,7 +17,7 @@ import org.openapitools.model.StringParameterDefinition;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-15T02:27:59.167299127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-15T12:29:25.123260055Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class BranchImpl   {
   @JsonProperty("_class")
   private String propertyClass;

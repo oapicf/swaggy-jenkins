@@ -31,7 +31,7 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-15T02:28:01.146311600Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-15T12:29:27.994797926Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Client("${openapi-micronaut-client-base-path}")
 public interface RemoteAccessApi {
     /**

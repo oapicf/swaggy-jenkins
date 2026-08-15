@@ -12,7 +12,7 @@ import org.openapitools.model.*;
 
 import org.openapitools.model.Hudson;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-15T02:27:59.167299127Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-15T12:29:25.123260055Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ApiController  {
   /**
    * Uncomment and implement as you see fit.  These operations will map

@@ -22,7 +22,7 @@ import jakarta.annotation.Generated;
  * PipelineStepImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-15T02:30:56.014530473Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-15T12:33:21.937757652Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineStepImpl {
 
   @JsonInclude(JsonInclude.Include.NON_NULL)

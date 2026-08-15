@@ -31,7 +31,7 @@ import javax.validation.Valid;
   ExtensionClassContainerImpl1map.JSON_PROPERTY_IO_JENKINS_BLUEOCEAN_SERVICE_EMBEDDED_REST_MULTI_BRANCH_PIPELINE_IMPL,
   ExtensionClassContainerImpl1map.JSON_PROPERTY_PROPERTY_CLASS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-15T02:28:22.149338174Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-15T12:29:58.536782281Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ExtensionClassContainerImpl1map   {
   public static final String JSON_PROPERTY_IO_JENKINS_BLUEOCEAN_SERVICE_EMBEDDED_REST_PIPELINE_IMPL = "io.jenkins.blueocean.service.embedded.rest.PipelineImpl";
   @JsonProperty(JSON_PROPERTY_IO_JENKINS_BLUEOCEAN_SERVICE_EMBEDDED_REST_PIPELINE_IMPL)

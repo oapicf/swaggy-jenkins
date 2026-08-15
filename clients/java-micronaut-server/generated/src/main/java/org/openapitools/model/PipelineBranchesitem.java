@@ -39,7 +39,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   PipelineBranchesitem.JSON_PROPERTY_PROPERTY_CLASS
 })
 @JsonTypeName("PipelineBranchesitem")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-15T02:28:03.329329798Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-15T12:29:31.009235739Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class PipelineBranchesitem {
     public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";

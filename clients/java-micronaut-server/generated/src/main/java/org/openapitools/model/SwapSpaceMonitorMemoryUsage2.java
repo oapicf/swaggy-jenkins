@@ -33,7 +33,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   SwapSpaceMonitorMemoryUsage2.JSON_PROPERTY_TOTAL_SWAP_SPACE
 })
 @JsonTypeName("SwapSpaceMonitorMemoryUsage2")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-15T02:28:03.329329798Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-15T12:29:31.009235739Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class SwapSpaceMonitorMemoryUsage2 {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";
