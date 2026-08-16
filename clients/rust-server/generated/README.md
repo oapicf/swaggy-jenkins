@@ -13,8 +13,8 @@ To see how to make this your own, look here:
 
 [README]((https://openapi-generator.tech))
 
-- API version: 3.3.1-pre.0
-- Build date: 2026-08-15T12:32:40.720053538Z[Etc/UTC]
+- API version: 3.4.1-pre.0
+- Build date: 2026-08-16T01:41:29.067143691Z[Etc/UTC]
 - Generator version: 7.24.0
 
 For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)
@@ -135,13 +135,13 @@ HTTPS support is included by default. To disable it (for example, to reduce depe
 
 ```toml
 [dependencies]
-openapi_client = { version = "3.3.1-pre.0", default-features = false, features = ["client", "server"] }
+openapi_client = { version = "3.4.1-pre.0", default-features = false, features = ["client", "server"] }
 ```
 
 **For server with callbacks that need HTTPS:**
 ```toml
 [dependencies]
-openapi_client = { version = "3.3.1-pre.0", features = ["server", "client-tls"] }
+openapi_client = { version = "3.4.1-pre.0", features = ["server", "client-tls"] }
 ```
 
 The TLS backend is automatically selected based on your target platform:

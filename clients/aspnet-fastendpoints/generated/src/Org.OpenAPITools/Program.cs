@@ -15,7 +15,7 @@ builder.Services
             s.Description = """
 Jenkins API clients generated from Swagger / Open API specification
 """;
-            s.Version = "3.3.1-pre.0";
+            s.Version = "3.4.1-pre.0";
         };
         o.AutoTagPathSegmentIndex = 0;
     })

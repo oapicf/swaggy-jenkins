@@ -6,7 +6,7 @@ info:
     url: https://github.com/oapicf/swaggy-jenkins
   description: Jenkins API clients generated from Swagger / Open API specification
   title: Swaggy Jenkins
-  version: 3.3.1-pre.0
+  version: 3.4.1-pre.0
 servers:
 - url: /
 paths:

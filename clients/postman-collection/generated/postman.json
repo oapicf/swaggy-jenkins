@@ -5,7 +5,7 @@
 		    "content": "Jenkins API clients generated from Swagger / Open API specification",
 		    "type": "text/markdown"
 		},
-		"version": "3.3.1-pre.0",
+		"version": "3.4.1-pre.0",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [

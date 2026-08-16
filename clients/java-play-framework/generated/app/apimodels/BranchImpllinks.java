@@ -10,7 +10,7 @@ import javax.validation.Valid;
 /**
  * BranchImpllinks
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-15T12:29:39.416368792Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-08-16T01:38:59.468575530Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 public class BranchImpllinks   {
   @JsonProperty("self")

@@ -5,7 +5,7 @@
 Jenkins API clients generated from Swagger / Open API specification
 
 * API basepath : [http://localhost](http://localhost)
-* Version : 3.3.1-pre.0
+* Version : 3.4.1-pre.0
 
 ## Documentation for API Endpoints
 

@@ -5,7 +5,7 @@
  * Swaggy Jenkins
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * OpenAPI spec version: 3.3.1-pre.0
+ * OpenAPI spec version: 3.4.1-pre.0
  *
  * Contact: blah+oapicf@cliffano.com
  *

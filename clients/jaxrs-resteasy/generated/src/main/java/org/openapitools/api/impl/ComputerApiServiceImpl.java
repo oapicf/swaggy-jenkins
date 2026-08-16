@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-15T12:30:03.915500622Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-08-16T01:39:19.365092041Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ComputerApiServiceImpl implements ComputerApiService {
       public Response getComputer(Integer depth,SecurityContext securityContext)
       throws NotFoundException {

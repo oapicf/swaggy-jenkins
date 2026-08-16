@@ -27,7 +27,7 @@ import org.openapitools.model.PipelineStepImpl;
 import org.openapitools.model.QueueItemImpl;
 import org.openapitools.model.User;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-15T12:29:25.123260055Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-16T01:38:48.446404622Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class BlueController  {
   /**
    * Uncomment and implement as you see fit.  These operations will map

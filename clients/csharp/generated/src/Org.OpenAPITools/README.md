@@ -11,7 +11,7 @@ outputDir: out
 
 # https://openapi-generator.tech/docs/generators/csharp
 additionalProperties:
-  packageGuid: '{827B590C-55EE-44C6-B45D-CA2849C21EED}'
+  packageGuid: '{582C6E89-D299-4479-AD34-36C900CB9644}'
 
 # https://openapi-generator.tech/docs/integrations/#github-integration
 # gitHost:
@@ -108,7 +108,7 @@ namespace YourProject
 
 ## Api Information
 - appName: Swaggy Jenkins
-- appVersion: 3.3.1-pre.0
+- appVersion: 3.4.1-pre.0
 - appDescription: Jenkins API clients generated from Swagger / Open API specification
 
 ## Build

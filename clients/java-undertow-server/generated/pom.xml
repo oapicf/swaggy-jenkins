@@ -10,7 +10,7 @@
     <artifactId>openapi-undertow-server</artifactId>
     <packaging>jar</packaging>
     <name>openapi-undertow-server</name>
-    <version>3.3.1-pre.0</version>
+    <version>3.4.1-pre.0</version>
 
     <properties>
         <java.version>1.8</java.version>

@@ -3,7 +3,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * OpenAPI document version: 3.3.1-pre.0
+ * OpenAPI document version: 3.4.1-pre.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -24,7 +24,7 @@ import org.openapitools.model.PipelineRunartifacts;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-15T12:29:42.212187125Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-08-16T01:39:01.680111099Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineRun   {
   
   private String propertyClass;

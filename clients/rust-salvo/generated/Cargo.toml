@@ -1,6 +1,6 @@
 [package]
 name = "salvo_openapi"
-version = "3.3.1-pre.0"
+version = "3.4.1-pre.0"
 authors = ["blah+oapicf@cliffano.com"]
 description = "Jenkins API clients generated from Swagger / Open API specification"
 license = "Unlicense"

@@ -5,7 +5,7 @@
     <artifactId>swaggyjenkins</artifactId>
     <packaging>jar</packaging>
     <name>swaggyjenkins</name>
-    <version>3.3.1-pre.0</version>
+    <version>3.4.1-pre.0</version>
     <url>https://github.com/oapicf/swaggy-jenkins</url>
     <description>Jenkins API client generated from Swagger / Open API specification</description>
     <scm>

@@ -186,7 +186,7 @@ Hudson <- R6::R6Class(
       }
       if (!is.null(self$`assignedLabels`)) {
         HudsonObject[["assignedLabels"]] <-
-          lapply(self$`assignedLabels`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`assignedLabels`)
       }
       if (!is.null(self$`mode`)) {
         HudsonObject[["mode"]] <-
@@ -210,11 +210,11 @@ Hudson <- R6::R6Class(
       }
       if (!is.null(self$`jobs`)) {
         HudsonObject[["jobs"]] <-
-          lapply(self$`jobs`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`jobs`)
       }
       if (!is.null(self$`primaryView`)) {
         HudsonObject[["primaryView"]] <-
-          self$`primaryView`$toSimpleType()
+          self$extractSimpleType(self$`primaryView`)
       }
       if (!is.null(self$`quietingDown`)) {
         HudsonObject[["quietingDown"]] <-
@@ -226,7 +226,7 @@ Hudson <- R6::R6Class(
       }
       if (!is.null(self$`unlabeledLoad`)) {
         HudsonObject[["unlabeledLoad"]] <-
-          self$`unlabeledLoad`$toSimpleType()
+          self$extractSimpleType(self$`unlabeledLoad`)
       }
       if (!is.null(self$`useCrumbs`)) {
         HudsonObject[["useCrumbs"]] <-
@@ -238,9 +238,32 @@ Hudson <- R6::R6Class(
       }
       if (!is.null(self$`views`)) {
         HudsonObject[["views"]] <-
-          lapply(self$`views`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`views`)
       }
       return(HudsonObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

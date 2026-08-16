@@ -20,6 +20,6 @@ public class RestConfiguration extends RouteBuilder {
             .bindingMode(RestBindingMode.auto)
             .clientRequestValidation(false)
             .apiProperty("api.title", "Swaggy Jenkins")
-            .apiProperty("api.version", "3.3.1-pre.0");
+            .apiProperty("api.version", "3.4.1-pre.0");
     }
 }

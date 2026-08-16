@@ -79,7 +79,7 @@ type ClientContext = swagger::make_context_ty!(
 #[derive(Parser, Debug)]
 #[clap(
     name = "Swaggy Jenkins",
-    version = "3.3.1-pre.0",
+    version = "3.4.1-pre.0",
     about = "CLI access to Swaggy Jenkins"
 )]
 struct Cli {

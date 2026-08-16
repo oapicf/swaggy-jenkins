@@ -1,6 +1,6 @@
 [project]
 name = "swaggyjenkins"
-version = "3.3.1-pre.0"
+version = "3.4.1-pre.0"
 description = "Swaggy Jenkins"
 authors = [
   {name = "OpenAPI Clients Factory",email = "blah+oapicf@cliffano.com"},

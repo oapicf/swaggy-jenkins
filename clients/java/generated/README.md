@@ -1,8 +1,8 @@
 # swaggyjenkins
 
 Swaggy Jenkins
-- API version: 3.3.1-pre.0
-  - Build date: 2026-08-15T12:29:08.927412665Z[Etc/UTC]
+- API version: 3.4.1-pre.0
+  - Build date: 2026-08-16T01:38:35.684332638Z[Etc/UTC]
   - Generator version: 7.24.0
 
 Jenkins API clients generated from Swagger / Open API specification
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.github.oapicf</groupId>
   <artifactId>swaggyjenkins</artifactId>
-  <version>3.3.1-pre.0</version>
+  <version>3.4.1-pre.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.github.oapicf:swaggyjenkins:3.3.1-pre.0"
+     implementation "com.github.oapicf:swaggyjenkins:3.4.1-pre.0"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/swaggyjenkins-3.3.1-pre.0.jar`
+* `target/swaggyjenkins-3.4.1-pre.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-08-15T12:29:55.797827812Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-08-16T01:39:12.693690954Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public interface ApiApiService {
       public Response getJenkins(SecurityContext securityContext);
       public Response headJenkins(SecurityContext securityContext);

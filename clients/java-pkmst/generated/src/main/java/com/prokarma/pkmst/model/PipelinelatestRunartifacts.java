@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  * PipelinelatestRunartifacts
  */
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-15T12:29:36.716803219Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-16T01:38:57.295171275Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelinelatestRunartifacts   {
   @JsonProperty("name")
   private String name;

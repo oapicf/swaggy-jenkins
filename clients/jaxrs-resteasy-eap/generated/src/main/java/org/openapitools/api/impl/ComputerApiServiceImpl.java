@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-15T12:30:06.549169108Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-16T01:39:21.535296905Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ComputerApiServiceImpl implements ComputerApi {
       public Response getComputer(Integer depth,SecurityContext securityContext) {
       // do some magic!

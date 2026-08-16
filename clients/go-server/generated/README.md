@@ -11,8 +11,8 @@ To see how to make this your own, look here:
 
 [README](https://openapi-generator.tech)
 
-- API version: 3.3.1-pre.0
-- Build date: 2026-08-15T12:28:48.024158006Z[Etc/UTC]
+- API version: 3.4.1-pre.0
+- Build date: 2026-08-16T01:38:19.476198171Z[Etc/UTC]
 - Generator version: 7.24.0
 For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)
 

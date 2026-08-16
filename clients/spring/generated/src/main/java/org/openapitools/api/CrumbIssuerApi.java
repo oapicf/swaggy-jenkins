@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-15T12:33:21.937757652Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-16T01:42:02.317096987Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Validated
 @Tag(name = "base", description = "the base API")
 public interface CrumbIssuerApi {

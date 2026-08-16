@@ -1,4 +1,4 @@
-# Documentation for Swaggy Jenkins 3.3.1-pre.0 Tizen Client SDK
+# Documentation for Swaggy Jenkins 3.4.1-pre.0 Tizen Client SDK
 
 ## How do I get the doc files?
 First generate source code by running `openapi-generator`

@@ -23,7 +23,7 @@ import jakarta.annotation.Generated;
  * PipelineRunNode
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-15T12:29:47.849605618Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-16T01:39:06.105967437Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineRunNode {
 
   private String propertyClass;
