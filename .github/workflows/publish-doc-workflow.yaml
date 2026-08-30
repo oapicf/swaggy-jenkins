@@ -1,4 +1,3 @@
----
 name: Publish API Documentation
 'on':
   push:
@@ -17,7 +16,7 @@ jobs:
           image: cliffano/studio:3.8.0
           shell: bash
           command: |
-            make deps init-spec doc-latest doc-version
+             make deps init-spec doc-latest doc-version
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.OAPICF_GITHUB_TOKEN }}

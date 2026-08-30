@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgrade Swaggy C to 6.7.0
+
 ### Fixed
 - Fix JavaScript error by re-including encodeURIComponent is run hook x-pre-build-javascript
 
