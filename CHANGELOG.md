@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fix JavaScript error by re-including encodeURIComponent is run hook x-pre-build-javascript
+- Fix job and view config.xml request body content type from application/json to application/xml
 
 ## 3.4.0 - 2026-08-15
 ### Added

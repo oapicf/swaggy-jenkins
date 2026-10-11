@@ -120,7 +120,7 @@ paths:
         - remoteAccess
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: Job configuration in config.xml format
@@ -157,7 +157,7 @@ paths:
         - remoteAccess
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: View configuration in config.xml format
@@ -283,7 +283,7 @@ paths:
         - remoteAccess
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: Job configuration in config.xml format
@@ -536,7 +536,7 @@ paths:
         - remoteAccess
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: View configuration in config.xml format
