@@ -828,7 +828,7 @@ sub post_create_item {
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/xml');
 
     # query params
     if ( exists $args{'name'}) {
@@ -932,7 +932,7 @@ sub post_create_view {
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/xml');
 
     # query params
     if ( exists $args{'name'}) {
@@ -1126,7 +1126,7 @@ sub post_job_config {
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/xml');
 
     # header params
     if ( exists $args{'jenkins_crumb'}) {
@@ -1512,7 +1512,7 @@ sub post_view_config {
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }
-    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/json');
+    $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type('application/xml');
 
     # header params
     if ( exists $args{'jenkins_crumb'}) {

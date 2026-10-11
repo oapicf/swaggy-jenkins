@@ -26,7 +26,7 @@ import javax.ws.rs.*;
 
 
 @io.swagger.annotations.Api(description = "the view API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-08-16T01:38:55.201542255Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-10-11T12:05:09.738703971Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class ViewApi  {
    private final ViewApiService delegate = ViewApiServiceFactory.getViewApi();
 
@@ -72,7 +72,7 @@ public class ViewApi  {
     }
     @POST
     @Path("/config.xml")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Update view configuration", response = Void.class, authorizations = {
         @io.swagger.annotations.Authorization(value = "jenkins_auth")

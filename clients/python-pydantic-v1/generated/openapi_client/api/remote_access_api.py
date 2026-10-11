@@ -1753,7 +1753,7 @@ class RemoteAccessApi:
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json']))
+                ['application/xml']))
         if _content_types_list:
                 _header_params['Content-Type'] = _content_types_list
 
@@ -1922,7 +1922,7 @@ class RemoteAccessApi:
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json']))
+                ['application/xml']))
         if _content_types_list:
                 _header_params['Content-Type'] = _content_types_list
 
@@ -2241,7 +2241,7 @@ class RemoteAccessApi:
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json']))
+                ['application/xml']))
         if _content_types_list:
                 _header_params['Content-Type'] = _content_types_list
 
@@ -2970,7 +2970,7 @@ class RemoteAccessApi:
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json']))
+                ['application/xml']))
         if _content_types_list:
                 _header_params['Content-Type'] = _content_types_list
 

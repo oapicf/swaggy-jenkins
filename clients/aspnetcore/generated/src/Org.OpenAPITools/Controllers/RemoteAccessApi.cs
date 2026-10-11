@@ -397,7 +397,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpPost]
         [Route("/createItem")]
-        [Consumes("application/json")]
+        [Consumes("application/xml")]
         [ValidateModelState]
         [SwaggerOperation("PostCreateItem")]
         [SwaggerResponse(statusCode: 400, type: typeof(string), description: "An error has occurred - error message is embedded inside the HTML response")]
@@ -430,7 +430,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="403">Jenkins requires authentication - please set username and password</response>
         [HttpPost]
         [Route("/createView")]
-        [Consumes("application/json")]
+        [Consumes("application/xml")]
         [ValidateModelState]
         [SwaggerOperation("PostCreateView")]
         [SwaggerResponse(statusCode: 400, type: typeof(string), description: "An error has occurred - error message is embedded inside the HTML response")]
@@ -497,7 +497,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="404">Job cannot be found on Jenkins instance</response>
         [HttpPost]
         [Route("/job/{name}/config.xml")]
-        [Consumes("application/json")]
+        [Consumes("application/xml")]
         [ValidateModelState]
         [SwaggerOperation("PostJobConfig")]
         [SwaggerResponse(statusCode: 400, type: typeof(string), description: "An error has occurred - error message is embedded inside the HTML response")]
@@ -648,7 +648,7 @@ namespace Org.OpenAPITools.Controllers
         /// <response code="404">View cannot be found on Jenkins instance</response>
         [HttpPost]
         [Route("/view/{name}/config.xml")]
-        [Consumes("application/json")]
+        [Consumes("application/xml")]
         [ValidateModelState]
         [SwaggerOperation("PostViewConfig")]
         [SwaggerResponse(statusCode: 400, type: typeof(string), description: "An error has occurred - error message is embedded inside the HTML response")]

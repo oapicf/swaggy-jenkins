@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 * **jenkins_auth**
 
 ### HTTP request headers
- - **Accepts Content-Type**: `application/json`
+ - **Accepts Content-Type**: `application/xml`
  - **Produces Content-Type**: Not defined
 
 <a id="postCreateView"></a>
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 * **jenkins_auth**
 
 ### HTTP request headers
- - **Accepts Content-Type**: `application/json`
+ - **Accepts Content-Type**: `application/xml`
  - **Produces Content-Type**: Not defined
 
 <a id="postJobBuild"></a>
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 * **jenkins_auth**
 
 ### HTTP request headers
- - **Accepts Content-Type**: `application/json`
+ - **Accepts Content-Type**: `application/xml`
  - **Produces Content-Type**: Not defined
 
 <a id="postJobDelete"></a>
@@ -511,6 +511,6 @@ Name | Type | Description  | Notes
 * **jenkins_auth**
 
 ### HTTP request headers
- - **Accepts Content-Type**: `application/json`
+ - **Accepts Content-Type**: `application/xml`
  - **Produces Content-Type**: Not defined
 

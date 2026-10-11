@@ -959,7 +959,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/xml
  - **Accept**: */*
 
 ### HTTP response details
@@ -1042,7 +1042,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/xml
  - **Accept**: */*
 
 ### HTTP response details
@@ -1207,7 +1207,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/xml
  - **Accept**: */*
 
 ### HTTP response details
@@ -1605,7 +1605,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: application/xml
  - **Accept**: */*
 
 ### HTTP response details

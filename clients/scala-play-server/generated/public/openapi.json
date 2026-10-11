@@ -159,7 +159,7 @@
         } ],
         "requestBody" : {
           "content" : {
-            "application/json" : {
+            "application/xml" : {
               "schema" : {
                 "type" : "string"
               }
@@ -216,7 +216,7 @@
         } ],
         "requestBody" : {
           "content" : {
-            "application/json" : {
+            "application/xml" : {
               "schema" : {
                 "type" : "string"
               }
@@ -399,7 +399,7 @@
         } ],
         "requestBody" : {
           "content" : {
-            "application/json" : {
+            "application/xml" : {
               "schema" : {
                 "type" : "string"
               }
@@ -772,7 +772,7 @@
         } ],
         "requestBody" : {
           "content" : {
-            "application/json" : {
+            "application/xml" : {
               "schema" : {
                 "type" : "string"
               }

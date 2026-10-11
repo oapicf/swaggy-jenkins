@@ -344,7 +344,7 @@ class RemoteAccessApi {
             headerParams.put("Content-Type", contentType)
         }
 
-        contentType = 'application/json';
+        contentType = 'application/xml';
         bodyParams = body
 
 
@@ -382,7 +382,7 @@ class RemoteAccessApi {
             headerParams.put("Content-Type", contentType)
         }
 
-        contentType = 'application/json';
+        contentType = 'application/xml';
         bodyParams = body
 
 
@@ -458,7 +458,7 @@ class RemoteAccessApi {
             headerParams.put("Jenkins-Crumb", jenkinsCrumb)
         }
 
-        contentType = 'application/json';
+        contentType = 'application/xml';
         bodyParams = body
 
 
@@ -614,7 +614,7 @@ class RemoteAccessApi {
             headerParams.put("Jenkins-Crumb", jenkinsCrumb)
         }
 
-        contentType = 'application/json';
+        contentType = 'application/xml';
         bodyParams = body
 
 

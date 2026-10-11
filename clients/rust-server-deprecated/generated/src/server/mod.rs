@@ -5983,7 +5983,7 @@ where
                      Ok(body) => {
                                 let mut unused_elements : Vec<String> = vec![];
                                 let param_body: Option<String> = if !body.is_empty() {
-                                    let deserializer = &mut serde_json::Deserializer::from_slice(&body);
+                                    let deserializer = &mut serde_xml_rs::de::Deserializer::new_from_reader(&*body);
                                     serde_ignored::deserialize(deserializer, |path| {
                                         warn!("Ignoring unknown field in body: {path}");
                                         unused_elements.push(path.to_string());
@@ -6160,7 +6160,7 @@ where
                      Ok(body) => {
                                 let mut unused_elements : Vec<String> = vec![];
                                 let param_body: Option<String> = if !body.is_empty() {
-                                    let deserializer = &mut serde_json::Deserializer::from_slice(&body);
+                                    let deserializer = &mut serde_xml_rs::de::Deserializer::new_from_reader(&*body);
                                     serde_ignored::deserialize(deserializer, |path| {
                                         warn!("Ignoring unknown field in body: {path}");
                                         unused_elements.push(path.to_string());
@@ -7073,7 +7073,7 @@ where
                      Ok(body) => {
                                 let mut unused_elements : Vec<String> = vec![];
                                 let param_body: Option<String> = if !body.is_empty() {
-                                    let deserializer = &mut serde_json::Deserializer::from_slice(&body);
+                                    let deserializer = &mut serde_xml_rs::de::Deserializer::new_from_reader(&*body);
                                     match serde_ignored::deserialize(deserializer, |path| {
                                             warn!("Ignoring unknown field in body: {path}");
                                             unused_elements.push(path.to_string());
@@ -7699,7 +7699,7 @@ where
                      Ok(body) => {
                                 let mut unused_elements : Vec<String> = vec![];
                                 let param_body: Option<String> = if !body.is_empty() {
-                                    let deserializer = &mut serde_json::Deserializer::from_slice(&body);
+                                    let deserializer = &mut serde_xml_rs::de::Deserializer::new_from_reader(&*body);
                                     match serde_ignored::deserialize(deserializer, |path| {
                                             warn!("Ignoring unknown field in body: {path}");
                                             unused_elements.push(path.to_string());

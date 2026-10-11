@@ -677,7 +677,7 @@ function postCreateItemRaw<T>(requestParameters: PostCreateItemRequest, requestC
 
     const headerParameters : runtime.HttpHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters['Content-Type'] = 'application/xml';
 
     if (requestParameters.jenkinsCrumb !== undefined && requestParameters.jenkinsCrumb !== null) {
         headerParameters['Jenkins-Crumb'] = String(requestParameters.jenkinsCrumb);
@@ -739,7 +739,7 @@ function postCreateViewRaw<T>(requestParameters: PostCreateViewRequest, requestC
 
     const headerParameters : runtime.HttpHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters['Content-Type'] = 'application/xml';
 
     if (requestParameters.jenkinsCrumb !== undefined && requestParameters.jenkinsCrumb !== null) {
         headerParameters['Jenkins-Crumb'] = String(requestParameters.jenkinsCrumb);
@@ -864,7 +864,7 @@ function postJobConfigRaw<T>(requestParameters: PostJobConfigRequest, requestCon
 
     const headerParameters : runtime.HttpHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters['Content-Type'] = 'application/xml';
 
     if (requestParameters.jenkinsCrumb !== undefined && requestParameters.jenkinsCrumb !== null) {
         headerParameters['Jenkins-Crumb'] = String(requestParameters.jenkinsCrumb);
@@ -1120,7 +1120,7 @@ function postViewConfigRaw<T>(requestParameters: PostViewConfigRequest, requestC
 
     const headerParameters : runtime.HttpHeaders = {};
 
-    headerParameters['Content-Type'] = 'application/json';
+    headerParameters['Content-Type'] = 'application/xml';
 
     if (requestParameters.jenkinsCrumb !== undefined && requestParameters.jenkinsCrumb !== null) {
         headerParameters['Jenkins-Crumb'] = String(requestParameters.jenkinsCrumb);

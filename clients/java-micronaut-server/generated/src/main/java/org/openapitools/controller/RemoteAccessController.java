@@ -42,7 +42,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-16T01:38:52.864546964Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-10-11T12:05:06.774202963Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Controller
 @Tag(name = "RemoteAccess", description = "The RemoteAccess API")
 public class RemoteAccessController {
@@ -430,7 +430,7 @@ public class RemoteAccessController {
     )
     @Post(uri="/createItem")
     @Produces(value = {})
-    @Consumes(value = {"application/json"})
+    @Consumes(value = {"application/xml"})
     @Secured({SecurityRule.IS_AUTHENTICATED})
     public Mono<Void> postCreateItem(
         @QueryValue(value="name") @NotNull String name, 
@@ -474,7 +474,7 @@ public class RemoteAccessController {
     )
     @Post(uri="/createView")
     @Produces(value = {})
-    @Consumes(value = {"application/json"})
+    @Consumes(value = {"application/xml"})
     @Secured({SecurityRule.IS_AUTHENTICATED})
     public Mono<Void> postCreateView(
         @QueryValue(value="name") @NotNull String name, 
@@ -556,7 +556,7 @@ public class RemoteAccessController {
     )
     @Post(uri="/job/{name}/config.xml")
     @Produces(value = {})
-    @Consumes(value = {"application/json"})
+    @Consumes(value = {"application/xml"})
     @Secured({SecurityRule.IS_AUTHENTICATED})
     public Mono<Void> postJobConfig(
         @PathVariable(value="name") @NotNull String name, 
@@ -732,7 +732,7 @@ public class RemoteAccessController {
     )
     @Post(uri="/view/{name}/config.xml")
     @Produces(value = {})
-    @Consumes(value = {"application/json"})
+    @Consumes(value = {"application/xml"})
     @Secured({SecurityRule.IS_AUTHENTICATED})
     public Mono<Void> postViewConfig(
         @PathVariable(value="name") @NotNull String name, 

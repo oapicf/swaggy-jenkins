@@ -406,17 +406,17 @@ content_types_accepted(Req, #state{operation_id = 'headJenkins'} = State) ->
     {[], Req, State};
 content_types_accepted(Req, #state{operation_id = 'postCreateItem'} = State) ->
     {[
-      {<<"application/json">>, handle_type_accepted}
+      {<<"application/xml">>, handle_type_accepted}
      ], Req, State};
 content_types_accepted(Req, #state{operation_id = 'postCreateView'} = State) ->
     {[
-      {<<"application/json">>, handle_type_accepted}
+      {<<"application/xml">>, handle_type_accepted}
      ], Req, State};
 content_types_accepted(Req, #state{operation_id = 'postJobBuild'} = State) ->
     {[], Req, State};
 content_types_accepted(Req, #state{operation_id = 'postJobConfig'} = State) ->
     {[
-      {<<"application/json">>, handle_type_accepted}
+      {<<"application/xml">>, handle_type_accepted}
      ], Req, State};
 content_types_accepted(Req, #state{operation_id = 'postJobDelete'} = State) ->
     {[], Req, State};
@@ -428,7 +428,7 @@ content_types_accepted(Req, #state{operation_id = 'postJobLastBuildStop'} = Stat
     {[], Req, State};
 content_types_accepted(Req, #state{operation_id = 'postViewConfig'} = State) ->
     {[
-      {<<"application/json">>, handle_type_accepted}
+      {<<"application/xml">>, handle_type_accepted}
      ], Req, State};
 content_types_accepted(Req, State) ->
     {[], Req, State}.

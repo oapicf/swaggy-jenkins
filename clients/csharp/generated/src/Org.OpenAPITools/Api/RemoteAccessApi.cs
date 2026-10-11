@@ -4591,7 +4591,7 @@ namespace Org.OpenAPITools.Api
                     basicTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar, "");
 
                     string[] contentTypes = new string[] {
-                        "application/json"
+                        "application/xml"
                     };
 
                     string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
@@ -4938,7 +4938,7 @@ namespace Org.OpenAPITools.Api
                     basicTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar, "");
 
                     string[] contentTypes = new string[] {
-                        "application/json"
+                        "application/xml"
                     };
 
                     string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
@@ -5541,7 +5541,7 @@ namespace Org.OpenAPITools.Api
                     basicTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar, "");
 
                     string[] contentTypes = new string[] {
-                        "application/json"
+                        "application/xml"
                     };
 
                     string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);
@@ -6871,7 +6871,7 @@ namespace Org.OpenAPITools.Api
                     basicTokenLocalVar1.UseInHeader(httpRequestMessageLocalVar, "");
 
                     string[] contentTypes = new string[] {
-                        "application/json"
+                        "application/xml"
                     };
 
                     string? contentTypeLocalVar = ClientUtils.SelectHeaderContentType(contentTypes);

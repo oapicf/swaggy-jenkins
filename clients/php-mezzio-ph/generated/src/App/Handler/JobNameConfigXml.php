@@ -33,7 +33,7 @@ class JobNameConfigXml
     /**
      * @PHA\Post()
      * TODO check if consumer is valid, if it has correct priority and if it can be moved to class annotation
-     * @PHA\Consumer(name=PHConsumer\Json::class, mediaRange="application/json")
+     * @PHA\Consumer(name=PHConsumer\Json::class, mediaRange="application/xml")
      * TODO check if producer is valid, if it has correct priority and if it can be moved to class annotation
      * @PHA\Producer(name=PHProducer\Transfer::class, mediaType="n/a")
      * @param ServerRequestInterface $request

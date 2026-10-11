@@ -31,7 +31,7 @@ import javax.annotation.Generated;
   ExtensionClassContainerImpl1map.JSON_PROPERTY_PROPERTY_CLASS
 })
 @JsonTypeName("ExtensionClassContainerImpl1map")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-16T01:38:50.633047249Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-10-11T12:05:03.866233126Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class ExtensionClassContainerImpl1map {
     public static final String JSON_PROPERTY_IO_JENKINS_BLUEOCEAN_SERVICE_EMBEDDED_REST_PIPELINE_IMPL = "io.jenkins.blueocean.service.embedded.rest.PipelineImpl";

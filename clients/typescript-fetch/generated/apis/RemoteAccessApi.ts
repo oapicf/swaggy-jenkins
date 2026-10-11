@@ -697,7 +697,7 @@ export class RemoteAccessApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'application/xml';
 
         if (requestParameters['jenkinsCrumb'] != null) {
             headerParameters['Jenkins-Crumb'] = String(requestParameters['jenkinsCrumb']);
@@ -758,7 +758,7 @@ export class RemoteAccessApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'application/xml';
 
         if (requestParameters['jenkinsCrumb'] != null) {
             headerParameters['Jenkins-Crumb'] = String(requestParameters['jenkinsCrumb']);
@@ -888,7 +888,7 @@ export class RemoteAccessApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'application/xml';
 
         if (requestParameters['jenkinsCrumb'] != null) {
             headerParameters['Jenkins-Crumb'] = String(requestParameters['jenkinsCrumb']);
@@ -1153,7 +1153,7 @@ export class RemoteAccessApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        headerParameters['Content-Type'] = 'application/json';
+        headerParameters['Content-Type'] = 'application/xml';
 
         if (requestParameters['jenkinsCrumb'] != null) {
             headerParameters['Jenkins-Crumb'] = String(requestParameters['jenkinsCrumb']);

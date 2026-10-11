@@ -721,7 +721,7 @@ void JobNameConfig_xmlResource::handler_POST_internal(const std::shared_ptr<rest
         "*/*",
     };
     static const std::string acceptTypes{
-        "application/json, "
+        "application/xml, "
     };
     
     if (status_code == 200) {
@@ -1619,7 +1619,7 @@ void ViewNameConfig_xmlResource::handler_POST_internal(const std::shared_ptr<res
         "*/*",
     };
     static const std::string acceptTypes{
-        "application/json, "
+        "application/xml, "
     };
     
     if (status_code == 200) {
@@ -1775,7 +1775,7 @@ void CreateItemResource::handler_POST_internal(const std::shared_ptr<restbed::Se
         "*/*",
     };
     static const std::string acceptTypes{
-        "application/json, "
+        "application/xml, "
     };
     
     if (status_code == 200) {
@@ -1918,7 +1918,7 @@ void CreateViewResource::handler_POST_internal(const std::shared_ptr<restbed::Se
         "*/*",
     };
     static const std::string acceptTypes{
-        "application/json, "
+        "application/xml, "
     };
     
     if (status_code == 200) {

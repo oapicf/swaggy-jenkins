@@ -904,7 +904,7 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `application/xml`
 - **Accept**: `*/*`
 
 
@@ -988,7 +988,7 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `application/xml`
 - **Accept**: `*/*`
 
 
@@ -1154,7 +1154,7 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `application/xml`
 - **Accept**: `*/*`
 
 
@@ -1548,7 +1548,7 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
+- **Content-Type**: `application/xml`
 - **Accept**: `*/*`
 
 

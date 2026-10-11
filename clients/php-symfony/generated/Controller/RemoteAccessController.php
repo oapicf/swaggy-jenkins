@@ -883,7 +883,7 @@ class RemoteAccessController extends Controller
     public function postCreateItemAction(Request $request)
     {
         // Make sure that the client is providing something that we can consume
-        $consumes = ['application/json'];
+        $consumes = ['application/xml'];
         if (!static::isContentTypeAllowed($request, $consumes)) {
             // We can't consume the content that the client is sending us
             return new Response('', 415);
@@ -1001,7 +1001,7 @@ class RemoteAccessController extends Controller
     public function postCreateViewAction(Request $request)
     {
         // Make sure that the client is providing something that we can consume
-        $consumes = ['application/json'];
+        $consumes = ['application/xml'];
         if (!static::isContentTypeAllowed($request, $consumes)) {
             // We can't consume the content that the client is sending us
             return new Response('', 415);
@@ -1198,7 +1198,7 @@ class RemoteAccessController extends Controller
     public function postJobConfigAction(Request $request, $name)
     {
         // Make sure that the client is providing something that we can consume
-        $consumes = ['application/json'];
+        $consumes = ['application/xml'];
         if (!static::isContentTypeAllowed($request, $consumes)) {
             // We can't consume the content that the client is sending us
             return new Response('', 415);
@@ -1601,7 +1601,7 @@ class RemoteAccessController extends Controller
     public function postViewConfigAction(Request $request, $name)
     {
         // Make sure that the client is providing something that we can consume
-        $consumes = ['application/json'];
+        $consumes = ['application/xml'];
         if (!static::isContentTypeAllowed($request, $consumes)) {
             // We can't consume the content that the client is sending us
             return new Response('', 415);

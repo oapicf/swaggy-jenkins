@@ -834,14 +834,14 @@ request_params('postCreateItem') ->
         'mode',
         'Jenkins-Crumb',
         'Content-Type',
-        'string'
+        'binary'
     ];
 request_params('postCreateView') ->
     [
         'name',
         'Jenkins-Crumb',
         'Content-Type',
-        'string'
+        'binary'
     ];
 request_params('postJobBuild') ->
     [
@@ -853,7 +853,7 @@ request_params('postJobBuild') ->
 request_params('postJobConfig') ->
     [
         'name',
-        'string',
+        'binary',
         'Jenkins-Crumb'
     ];
 request_params('postJobDelete') ->
@@ -879,7 +879,7 @@ request_params('postJobLastBuildStop') ->
 request_params('postViewConfig') ->
     [
         'name',
-        'string',
+        'binary',
         'Jenkins-Crumb'
     ];
 request_params(_) ->
@@ -1775,7 +1775,7 @@ request_param_info('postCreateItem', 'Content-Type') ->
             not_required
         ]
     };
-request_param_info('postCreateItem', 'string') ->
+request_param_info('postCreateItem', 'binary') ->
     #{
         source => body,
         rules => [
@@ -1807,7 +1807,7 @@ request_param_info('postCreateView', 'Content-Type') ->
             not_required
         ]
     };
-request_param_info('postCreateView', 'string') ->
+request_param_info('postCreateView', 'binary') ->
     #{
         source => body,
         rules => [
@@ -1855,7 +1855,7 @@ request_param_info('postJobConfig', 'name') ->
             required
         ]
     };
-request_param_info('postJobConfig', 'string') ->
+request_param_info('postJobConfig', 'binary') ->
     #{
         source => body,
         rules => [
@@ -1943,7 +1943,7 @@ request_param_info('postViewConfig', 'name') ->
             required
         ]
     };
-request_param_info('postViewConfig', 'string') ->
+request_param_info('postViewConfig', 'binary') ->
     #{
         source => body,
         rules => [

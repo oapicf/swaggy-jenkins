@@ -1,0 +1,6742 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: blah+oapicf@cliffano.com
+    name: OpenAPI Clients Factory
+    url: https://github.com/oapicf/swaggy-jenkins
+  description: Jenkins API clients generated from Swagger / Open API specification
+  title: Swaggy Jenkins
+  version: 3.4.1-pre.0
+servers:
+- url: /
+paths:
+  /api/json:
+    get:
+      description: Retrieve Jenkins details
+      operationId: getJenkins
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Hudson"
+          description: Successfully retrieved Jenkins details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+    head:
+      description: Retrieve Jenkins headers
+      operationId: headJenkins
+      responses:
+        "200":
+          description: Successfully retrieved Jenkins headers
+          headers:
+            x-jenkins:
+              description: Jenkins version number
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /computer/api/json:
+    get:
+      description: Retrieve computer details
+      operationId: getComputer
+      parameters:
+      - description: Recursion depth in response model
+        explode: true
+        in: query
+        name: depth
+        required: true
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ComputerSet"
+          description: Successfully retrieved computer details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /createItem:
+    post:
+      description: "Create a new job using job configuration, or copied from an existing\
+        \ job"
+      operationId: postCreateItem
+      parameters:
+      - description: Name of the new job
+        explode: true
+        in: query
+        name: name
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Existing job to copy from
+        explode: true
+        in: query
+        name: from
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Set to 'copy' for copying an existing job
+        explode: true
+        in: query
+        name: mode
+        required: false
+        schema:
+          type: string
+        style: form
+      - $ref: "#/components/parameters/crumb"
+      - description: Content type header application/xml
+        explode: false
+        in: header
+        name: Content-Type
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              type: string
+        description: Job configuration in config.xml format
+      responses:
+        "200":
+          description: Successfully created a new job
+        "400":
+          $ref: "#/components/responses/errorInHtml"
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /createView:
+    post:
+      description: Create a new view using view configuration
+      operationId: postCreateView
+      parameters:
+      - description: Name of the new view
+        explode: true
+        in: query
+        name: name
+        required: true
+        schema:
+          type: string
+        style: form
+      - $ref: "#/components/parameters/crumb"
+      - description: Content type header application/xml
+        explode: false
+        in: header
+        name: Content-Type
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              type: string
+        description: View configuration in config.xml format
+      responses:
+        "200":
+          description: Successfully created the view
+        "400":
+          $ref: "#/components/responses/errorInHtml"
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /crumbIssuer/api/json:
+    get:
+      description: Retrieve CSRF protection token
+      operationId: getCrumb
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DefaultCrumbIssuer"
+          description: Successfully retrieved CSRF protection token
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - base
+  /job/{name}/api/json:
+    get:
+      description: Retrieve job details
+      operationId: getJob
+      parameters:
+      - $ref: "#/components/parameters/jobName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FreeStyleProject"
+          description: Successfully retrieved job details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/jobNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /job/{name}/build:
+    post:
+      description: Build a job
+      operationId: postJobBuild
+      parameters:
+      - $ref: "#/components/parameters/jobName"
+      - explode: true
+        in: query
+        name: json
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: token
+        required: false
+        schema:
+          type: string
+        style: form
+      - $ref: "#/components/parameters/crumb"
+      responses:
+        "200":
+          description: Successfully built the job (backward compatibility for older
+            versions of Jenkins)
+        "201":
+          description: Successfully built the job
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/jobNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /job/{name}/config.xml:
+    get:
+      description: Retrieve job configuration
+      operationId: getJobConfig
+      parameters:
+      - $ref: "#/components/parameters/jobName"
+      responses:
+        "200":
+          content:
+            text/xml:
+              schema:
+                type: string
+          description: Successfully retrieved job configuration in config.xml format
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/jobNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+    post:
+      description: Update job configuration
+      operationId: postJobConfig
+      parameters:
+      - $ref: "#/components/parameters/jobName"
+      - $ref: "#/components/parameters/crumb"
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              type: string
+        description: Job configuration in config.xml format
+        required: true
+      responses:
+        "200":
+          description: Successfully retrieved job configuration in config.xml format
+        "400":
+          $ref: "#/components/responses/errorInHtml"
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/jobNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /job/{name}/doDelete:
+    post:
+      description: Delete a job
+      operationId: postJobDelete
+      parameters:
+      - $ref: "#/components/parameters/jobName"
+      - $ref: "#/components/parameters/crumb"
+      responses:
+        "200":
+          description: Successfully deleted the job
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/jobNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /job/{name}/disable:
+    post:
+      description: Disable a job
+      operationId: postJobDisable
+      parameters:
+      - $ref: "#/components/parameters/jobName"
+      - $ref: "#/components/parameters/crumb"
+      responses:
+        "200":
+          description: Successfully disabled the job
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/jobNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /job/{name}/enable:
+    post:
+      description: Enable a job
+      operationId: postJobEnable
+      parameters:
+      - $ref: "#/components/parameters/jobName"
+      - $ref: "#/components/parameters/crumb"
+      responses:
+        "200":
+          description: Successfully enabled the job
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/jobNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /job/{name}/lastBuild/api/json:
+    get:
+      description: Retrieve job's last build details
+      operationId: getJobLastBuild
+      parameters:
+      - $ref: "#/components/parameters/jobName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FreeStyleBuild"
+          description: Successfully retrieved job's last build details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/jobNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /job/{name}/lastBuild/stop:
+    post:
+      description: Stop a job
+      operationId: postJobLastBuildStop
+      parameters:
+      - $ref: "#/components/parameters/jobName"
+      - $ref: "#/components/parameters/crumb"
+      responses:
+        "200":
+          description: Successfully stopped the job
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/jobNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /job/{name}/{number}/logText/progressiveText:
+    get:
+      description: Retrieve job's build progressive text output
+      operationId: getJobProgressiveText
+      parameters:
+      - $ref: "#/components/parameters/jobName"
+      - description: Build number
+        explode: false
+        in: path
+        name: number
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Starting point of progressive text output
+        explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Successfully retrieved job's build progressive text output
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/jobNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /queue/api/json:
+    get:
+      description: Retrieve queue details
+      operationId: getQueue
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Queue"
+          description: Successfully retrieved queue details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /queue/item/{number}/api/json:
+    get:
+      description: Retrieve queued item details
+      operationId: getQueueItem
+      parameters:
+      - description: Queue number
+        explode: false
+        in: path
+        name: number
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Queue"
+          description: Successfully retrieved queued item details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /view/{name}/api/json:
+    get:
+      description: Retrieve view details
+      operationId: getView
+      parameters:
+      - $ref: "#/components/parameters/viewName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListView"
+          description: Successfully retrieved view details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/viewNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /view/{name}/config.xml:
+    get:
+      description: Retrieve view configuration
+      operationId: getViewConfig
+      parameters:
+      - $ref: "#/components/parameters/viewName"
+      responses:
+        "200":
+          content:
+            text/xml:
+              schema:
+                type: string
+          description: Successfully retrieved view configuration in config.xml format
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/viewNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+    post:
+      description: Update view configuration
+      operationId: postViewConfig
+      parameters:
+      - $ref: "#/components/parameters/viewName"
+      - $ref: "#/components/parameters/crumb"
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              type: string
+        description: View configuration in config.xml format
+        required: true
+      responses:
+        "200":
+          description: Successfully updated view configuration
+        "400":
+          $ref: "#/components/responses/errorInHtml"
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/viewNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - remoteAccess
+  /jwt-auth/token:
+    get:
+      description: Retrieve JSON Web Token
+      operationId: getJsonWebToken
+      parameters:
+      - description: "Token expiry time in minutes, default: 30 minutes"
+        explode: true
+        in: query
+        name: expiryTimeInMins
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Maximum token expiry time in minutes, default: 480 minutes"
+        explode: true
+        in: query
+        name: maxExpiryTimeInMins
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Successfully retrieved JWT token
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      tags:
+      - blueOcean
+  /jwt-auth/jwks/{key}:
+    get:
+      description: Retrieve JSON Web Key
+      operationId: getJsonWebKey
+      parameters:
+      - description: Key ID received as part of JWT header field kid
+        explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Successfully retrieved JWT token
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      tags:
+      - blueOcean
+  /blue/rest/classes/:
+    get:
+      description: Get classes details
+      operationId: searchClasses
+      parameters:
+      - description: Query string containing an array of class names
+        explode: true
+        in: query
+        name: q
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Successfully retrieved search result
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/classes/{class}:
+    get:
+      description: Get a list of class names supported by a given class
+      operationId: getClasses
+      parameters:
+      - $ref: "#/components/parameters/className"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Successfully retrieved class names
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/search/:
+    get:
+      description: Search for any resource details
+      operationId: search
+      parameters:
+      - description: Query string
+        explode: true
+        in: query
+        name: q
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Successfully retrieved search result
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/:
+    get:
+      description: Retrieve all organizations details
+      operationId: getOrganisations
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Organisations"
+          description: Successfully retrieved pipelines details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}:
+    get:
+      description: Retrieve organization details
+      operationId: getOrganisation
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Organisation"
+          description: Successfully retrieved pipeline details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/pipelineNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/:
+    get:
+      description: Retrieve all pipelines details for an organization
+      operationId: getPipelines
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pipelines"
+          description: Successfully retrieved pipelines details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}:
+    get:
+      description: Retrieve pipeline details for an organization
+      operationId: getPipeline
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pipeline"
+          description: Successfully retrieved pipeline details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+        "404":
+          $ref: "#/components/responses/pipelineNotFound"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/activities:
+    get:
+      description: Retrieve all activities details for an organization pipeline
+      operationId: getPipelineActivities
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineActivities"
+          description: Successfully retrieved all activities details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches:
+    get:
+      description: Retrieve all branches details for an organization pipeline
+      operationId: getPipelineBranches
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MultibranchPipeline"
+          description: Successfully retrieved all branches details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/:
+    get:
+      description: Retrieve branch details for an organization pipeline
+      operationId: getPipelineBranch
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/branchName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BranchImpl"
+          description: Successfully retrieved branch details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/branches/{branch}/runs/{run}:
+    get:
+      description: Retrieve branch run details for an organization pipeline
+      operationId: getPipelineBranchRun
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/branchName"
+      - $ref: "#/components/parameters/runName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineRun"
+          description: Successfully retrieved run details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{folder}/:
+    get:
+      description: Retrieve pipeline folder for an organization
+      operationId: getPipelineFolder
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/folderName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineFolderImpl"
+          description: Successfully retrieved folder details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{folder}/pipelines/{pipeline}:
+    get:
+      description: Retrieve pipeline details for an organization folder
+      operationId: getPipelineFolderPipeline
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/folderName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineImpl"
+          description: Successfully retrieved pipeline details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/favorite:
+    put:
+      description: Favorite/unfavorite a pipeline
+      operationId: putPipelineFavorite
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: boolean
+        description: "Set JSON string body to {\"favorite\": true} to favorite, set\
+          \ value to false to unfavorite"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FavoriteImpl"
+          description: Successfully favorited/unfavorited a pipeline
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue:
+    get:
+      description: Retrieve queue details for an organization pipeline
+      operationId: getPipelineQueue
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineQueue"
+          description: Successfully retrieved queue details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}:
+    delete:
+      description: Delete queue item from an organization pipeline queue
+      operationId: deletePipelineQueueItem
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/queueItemName"
+      responses:
+        "200":
+          description: Successfully deleted queue item
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs:
+    get:
+      description: Retrieve all runs details for an organization pipeline
+      operationId: getPipelineRuns
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineRuns"
+          description: Successfully retrieved runs details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+    post:
+      description: Start a build for an organization pipeline
+      operationId: postPipelineRuns
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueItemImpl"
+          description: Successfully started a build
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}:
+    get:
+      description: Retrieve run details for an organization pipeline
+      operationId: getPipelineRun
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineRun"
+          description: Successfully retrieved run details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes:
+    get:
+      description: Retrieve run nodes details for an organization pipeline
+      operationId: getPipelineRunNodes
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineRunNodes"
+          description: Successfully retrieved run nodes details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}:
+    get:
+      description: Retrieve run node details for an organization pipeline
+      operationId: getPipelineRunNode
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      - $ref: "#/components/parameters/nodeName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineRunNode"
+          description: Successfully retrieved run node details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps:
+    get:
+      description: Retrieve run node steps details for an organization pipeline
+      operationId: getPipelineRunNodeSteps
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      - $ref: "#/components/parameters/nodeName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineRunNodeSteps"
+          description: Successfully retrieved run node steps details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}:
+    get:
+      description: Retrieve run node details for an organization pipeline
+      operationId: getPipelineRunNodeStep
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      - $ref: "#/components/parameters/nodeName"
+      - $ref: "#/components/parameters/stepName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineStepImpl"
+          description: Successfully retrieved run node step details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/nodes/{node}/steps/{step}/log:
+    get:
+      description: Get log for a pipeline run node step
+      operationId: getPipelineRunNodeStepLog
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      - $ref: "#/components/parameters/nodeName"
+      - $ref: "#/components/parameters/stepName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Successfully retrieved pipeline run node step log
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/log:
+    get:
+      description: Get log for a pipeline run
+      operationId: getPipelineRunLog
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      - description: Start position of the log
+        explode: true
+        in: query
+        name: start
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Set to true in order to download the file, otherwise it's passed\
+          \ as a response body"
+        explode: true
+        in: query
+        name: download
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: string
+          description: Successfully retrieved pipeline run log
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/replay:
+    post:
+      description: Replay an organization pipeline run
+      operationId: postPipelineRun
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueueItemImpl"
+          description: Successfully replayed a pipeline run
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/pipelines/{pipeline}/runs/{run}/stop:
+    put:
+      description: Stop a build of an organization pipeline
+      operationId: putPipelineRun
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/pipelineName"
+      - $ref: "#/components/parameters/runName"
+      - description: "Set to true to make blocking stop, default: false"
+        explode: true
+        in: query
+        name: blocking
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Timeout in seconds, default: 10 seconds"
+        explode: true
+        in: query
+        name: timeOutInSecs
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineRun"
+          description: Successfully stopped a build
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/scm/{scm}:
+    get:
+      description: Retrieve SCM details for an organization
+      operationId: getSCM
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/scmName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GithubScm"
+          description: Successfully retrieved SCM details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations:
+    get:
+      description: Retrieve SCM organizations details for an organization
+      operationId: getSCMOrganisations
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/scmName"
+      - description: Credential ID
+        explode: true
+        in: query
+        name: credentialId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScmOrganisations"
+          description: Successfully retrieved SCM organizations details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories:
+    get:
+      description: Retrieve SCM organization repositories details for an organization
+      operationId: getSCMOrganisationRepositories
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/scmName"
+      - $ref: "#/components/parameters/scmOrgName"
+      - description: Credential ID
+        explode: true
+        in: query
+        name: credentialId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of items in a page
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Page number
+        explode: true
+        in: query
+        name: pageNumber
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScmOrganisations"
+          description: Successfully retrieved SCM organization repositories details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/scm/{scm}/organizations/{scmOrganisation}/repositories/{repository}:
+    get:
+      description: Retrieve SCM organization repository details for an organization
+      operationId: getSCMOrganisationRepository
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/scmName"
+      - $ref: "#/components/parameters/scmOrgName"
+      - $ref: "#/components/parameters/repositoryName"
+      - description: Credential ID
+        explode: true
+        in: query
+        name: credentialId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScmOrganisations"
+          description: Successfully retrieved SCM organizations details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/user/:
+    get:
+      description: Retrieve authenticated user details for an organization
+      operationId: getAuthenticatedUser
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: Successfully retrieved authenticated user details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/users/:
+    get:
+      description: Retrieve users details for an organization
+      operationId: getUsers
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: Successfully retrieved users details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/organizations/{organization}/users/{user}:
+    get:
+      description: Retrieve user details for an organization
+      operationId: getUser
+      parameters:
+      - $ref: "#/components/parameters/orgName"
+      - $ref: "#/components/parameters/userName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: Successfully retrieved users details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+  /blue/rest/users/{user}/favorites:
+    get:
+      description: Retrieve user favorites details for an organization
+      operationId: getUserFavorites
+      parameters:
+      - $ref: "#/components/parameters/userName"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserFavorites"
+          description: Successfully retrieved users favorites details
+        "401":
+          $ref: "#/components/responses/unauthorized"
+        "403":
+          $ref: "#/components/responses/forbidden"
+      security:
+      - jenkins_auth: []
+      tags:
+      - blueOcean
+components:
+  parameters:
+    jobName:
+      description: Name of the job
+      explode: false
+      in: path
+      name: name
+      required: true
+      schema:
+        type: string
+      style: simple
+    viewName:
+      description: Name of the view
+      explode: false
+      in: path
+      name: name
+      required: true
+      schema:
+        type: string
+      style: simple
+    crumb:
+      description: CSRF protection token
+      explode: false
+      in: header
+      name: Jenkins-Crumb
+      required: false
+      schema:
+        type: string
+      style: simple
+    orgName:
+      description: Name of the organization
+      explode: false
+      in: path
+      name: organization
+      required: true
+      schema:
+        type: string
+      style: simple
+    pipelineName:
+      description: Name of the pipeline
+      explode: false
+      in: path
+      name: pipeline
+      required: true
+      schema:
+        type: string
+      style: simple
+    branchName:
+      description: Name of the branch
+      explode: false
+      in: path
+      name: branch
+      required: true
+      schema:
+        type: string
+      style: simple
+    queueItemName:
+      description: Name of the queue item
+      explode: false
+      in: path
+      name: queue
+      required: true
+      schema:
+        type: string
+      style: simple
+    runName:
+      description: Name of the run
+      explode: false
+      in: path
+      name: run
+      required: true
+      schema:
+        type: string
+      style: simple
+    nodeName:
+      description: Name of the node
+      explode: false
+      in: path
+      name: node
+      required: true
+      schema:
+        type: string
+      style: simple
+    stepName:
+      description: Name of the step
+      explode: false
+      in: path
+      name: step
+      required: true
+      schema:
+        type: string
+      style: simple
+    scmName:
+      description: Name of SCM
+      explode: false
+      in: path
+      name: scm
+      required: true
+      schema:
+        type: string
+      style: simple
+    scmOrgName:
+      description: Name of the SCM organization
+      explode: false
+      in: path
+      name: scmOrganisation
+      required: true
+      schema:
+        type: string
+      style: simple
+    repositoryName:
+      description: Name of the SCM repository
+      explode: false
+      in: path
+      name: repository
+      required: true
+      schema:
+        type: string
+      style: simple
+    className:
+      description: Name of the class
+      explode: false
+      in: path
+      name: class
+      required: true
+      schema:
+        type: string
+      style: simple
+    folderName:
+      description: Name of the folder
+      explode: false
+      in: path
+      name: folder
+      required: true
+      schema:
+        type: string
+      style: simple
+    userName:
+      description: Name of the user
+      explode: false
+      in: path
+      name: user
+      required: true
+      schema:
+        type: string
+      style: simple
+  responses:
+    unauthorized:
+      description: Authentication failed - incorrect username and/or password
+    forbidden:
+      description: Jenkins requires authentication - please set username and password
+    jobNotFound:
+      description: Job cannot be found on Jenkins instance
+    viewNotFound:
+      description: View cannot be found on Jenkins instance
+    pipelineNotFound:
+      description: Pipeline cannot be found on Jenkins instance
+    errorInHtml:
+      content:
+        '*/*':
+          schema:
+            type: string
+      description: An error has occurred - error message is embedded inside the HTML
+        response
+  schemas:
+    FreeStyleBuild:
+      example:
+        _class: _class
+        number: 6
+        url: url
+        actions:
+        - _class: _class
+          causes:
+          - _class: _class
+            shortDescription: shortDescription
+            userId: userId
+            userName: userName
+          - _class: _class
+            shortDescription: shortDescription
+            userId: userId
+            userName: userName
+        - _class: _class
+          causes:
+          - _class: _class
+            shortDescription: shortDescription
+            userId: userId
+            userName: userName
+          - _class: _class
+            shortDescription: shortDescription
+            userId: userId
+            userName: userName
+        building: true
+        description: description
+        displayName: displayName
+        duration: 1
+        estimatedDuration: 5
+        executor: executor
+        fullDisplayName: fullDisplayName
+        id: id
+        keepLog: true
+        queueId: 5
+        result: result
+        timestamp: 2
+        builtOn: builtOn
+        changeSet:
+          _class: _class
+          kind: kind
+      properties:
+        _class:
+          type: string
+        number:
+          type: integer
+        url:
+          type: string
+        actions:
+          items:
+            $ref: "#/components/schemas/CauseAction"
+          type: array
+          default: null
+        building:
+          type: boolean
+        description:
+          type: string
+        displayName:
+          type: string
+        duration:
+          type: integer
+        estimatedDuration:
+          type: integer
+        executor:
+          type: string
+        fullDisplayName:
+          type: string
+        id:
+          type: string
+        keepLog:
+          type: boolean
+        queueId:
+          type: integer
+        result:
+          type: string
+        timestamp:
+          type: integer
+        builtOn:
+          type: string
+        changeSet:
+          $ref: "#/components/schemas/EmptyChangeLogSet"
+    HudsonMasterComputerexecutors:
+      example:
+        currentExecutable:
+          _class: _class
+          number: 6
+          url: url
+          actions:
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          building: true
+          description: description
+          displayName: displayName
+          duration: 1
+          estimatedDuration: 5
+          executor: executor
+          fullDisplayName: fullDisplayName
+          id: id
+          keepLog: true
+          queueId: 5
+          result: result
+          timestamp: 2
+          builtOn: builtOn
+          changeSet:
+            _class: _class
+            kind: kind
+        idle: true
+        likelyStuck: true
+        number: 6
+        progress: 1
+        _class: _class
+      properties:
+        currentExecutable:
+          $ref: "#/components/schemas/FreeStyleBuild"
+        idle:
+          type: boolean
+        likelyStuck:
+          type: boolean
+        number:
+          type: integer
+        progress:
+          type: integer
+        _class:
+          type: string
+    Label1:
+      example:
+        _class: _class
+      properties:
+        _class:
+          type: string
+    SwapSpaceMonitorMemoryUsage2:
+      example:
+        _class: _class
+        availablePhysicalMemory: 5
+        availableSwapSpace: 5
+        totalPhysicalMemory: 2
+        totalSwapSpace: 7
+      properties:
+        _class:
+          type: string
+        availablePhysicalMemory:
+          type: integer
+        availableSwapSpace:
+          type: integer
+        totalPhysicalMemory:
+          type: integer
+        totalSwapSpace:
+          type: integer
+    DiskSpaceMonitorDescriptorDiskSpace:
+      example:
+        _class: _class
+        timestamp: 9
+        path: path
+        size: 3
+      properties:
+        _class:
+          type: string
+        timestamp:
+          type: integer
+        path:
+          type: string
+        size:
+          type: integer
+    ResponseTimeMonitorData:
+      example:
+        _class: _class
+        timestamp: 2
+        average: 4
+      properties:
+        _class:
+          type: string
+        timestamp:
+          type: integer
+        average:
+          type: integer
+    ClockDifference:
+      example:
+        _class: _class
+        diff: 7
+      properties:
+        _class:
+          type: string
+        diff:
+          type: integer
+    HudsonMasterComputermonitorData:
+      example:
+        hudson.node_monitors.SwapSpaceMonitor:
+          _class: _class
+          availablePhysicalMemory: 5
+          availableSwapSpace: 5
+          totalPhysicalMemory: 2
+          totalSwapSpace: 7
+        hudson.node_monitors.TemporarySpaceMonitor:
+          _class: _class
+          timestamp: 9
+          path: path
+          size: 3
+        hudson.node_monitors.DiskSpaceMonitor:
+          _class: _class
+          timestamp: 9
+          path: path
+          size: 3
+        hudson.node_monitors.ArchitectureMonitor: hudson.node_monitors.ArchitectureMonitor
+        hudson.node_monitors.ResponseTimeMonitor:
+          _class: _class
+          timestamp: 2
+          average: 4
+        hudson.node_monitors.ClockMonitor:
+          _class: _class
+          diff: 7
+        _class: _class
+      properties:
+        hudson.node_monitors.SwapSpaceMonitor:
+          $ref: "#/components/schemas/SwapSpaceMonitorMemoryUsage2"
+        hudson.node_monitors.TemporarySpaceMonitor:
+          $ref: "#/components/schemas/DiskSpaceMonitorDescriptorDiskSpace"
+        hudson.node_monitors.DiskSpaceMonitor:
+          $ref: "#/components/schemas/DiskSpaceMonitorDescriptorDiskSpace"
+        hudson.node_monitors.ArchitectureMonitor:
+          type: string
+        hudson.node_monitors.ResponseTimeMonitor:
+          $ref: "#/components/schemas/ResponseTimeMonitorData"
+        hudson.node_monitors.ClockMonitor:
+          $ref: "#/components/schemas/ClockDifference"
+        _class:
+          type: string
+    HudsonMasterComputer:
+      example:
+        _class: _class
+        displayName: displayName
+        executors:
+        - currentExecutable:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          idle: true
+          likelyStuck: true
+          number: 6
+          progress: 1
+          _class: _class
+        - currentExecutable:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          idle: true
+          likelyStuck: true
+          number: 6
+          progress: 1
+          _class: _class
+        icon: icon
+        iconClassName: iconClassName
+        idle: true
+        jnlpAgent: true
+        launchSupported: true
+        loadStatistics:
+          _class: _class
+        manualLaunchAllowed: true
+        monitorData:
+          hudson.node_monitors.SwapSpaceMonitor:
+            _class: _class
+            availablePhysicalMemory: 5
+            availableSwapSpace: 5
+            totalPhysicalMemory: 2
+            totalSwapSpace: 7
+          hudson.node_monitors.TemporarySpaceMonitor:
+            _class: _class
+            timestamp: 9
+            path: path
+            size: 3
+          hudson.node_monitors.DiskSpaceMonitor:
+            _class: _class
+            timestamp: 9
+            path: path
+            size: 3
+          hudson.node_monitors.ArchitectureMonitor: hudson.node_monitors.ArchitectureMonitor
+          hudson.node_monitors.ResponseTimeMonitor:
+            _class: _class
+            timestamp: 2
+            average: 4
+          hudson.node_monitors.ClockMonitor:
+            _class: _class
+            diff: 7
+          _class: _class
+        numExecutors: 1
+        offline: true
+        offlineCause: offlineCause
+        offlineCauseReason: offlineCauseReason
+        temporarilyOffline: true
+      properties:
+        _class:
+          type: string
+        displayName:
+          type: string
+        executors:
+          items:
+            $ref: "#/components/schemas/HudsonMasterComputerexecutors"
+          type: array
+          default: null
+        icon:
+          type: string
+        iconClassName:
+          type: string
+        idle:
+          type: boolean
+        jnlpAgent:
+          type: boolean
+        launchSupported:
+          type: boolean
+        loadStatistics:
+          $ref: "#/components/schemas/Label1"
+        manualLaunchAllowed:
+          type: boolean
+        monitorData:
+          $ref: "#/components/schemas/HudsonMasterComputermonitorData"
+        numExecutors:
+          type: integer
+        offline:
+          type: boolean
+        offlineCause:
+          type: string
+        offlineCauseReason:
+          type: string
+        temporarilyOffline:
+          type: boolean
+    ComputerSet:
+      example:
+        _class: _class
+        busyExecutors: 0
+        computer:
+        - _class: _class
+          displayName: displayName
+          executors:
+          - currentExecutable:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            idle: true
+            likelyStuck: true
+            number: 6
+            progress: 1
+            _class: _class
+          - currentExecutable:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            idle: true
+            likelyStuck: true
+            number: 6
+            progress: 1
+            _class: _class
+          icon: icon
+          iconClassName: iconClassName
+          idle: true
+          jnlpAgent: true
+          launchSupported: true
+          loadStatistics:
+            _class: _class
+          manualLaunchAllowed: true
+          monitorData:
+            hudson.node_monitors.SwapSpaceMonitor:
+              _class: _class
+              availablePhysicalMemory: 5
+              availableSwapSpace: 5
+              totalPhysicalMemory: 2
+              totalSwapSpace: 7
+            hudson.node_monitors.TemporarySpaceMonitor:
+              _class: _class
+              timestamp: 9
+              path: path
+              size: 3
+            hudson.node_monitors.DiskSpaceMonitor:
+              _class: _class
+              timestamp: 9
+              path: path
+              size: 3
+            hudson.node_monitors.ArchitectureMonitor: hudson.node_monitors.ArchitectureMonitor
+            hudson.node_monitors.ResponseTimeMonitor:
+              _class: _class
+              timestamp: 2
+              average: 4
+            hudson.node_monitors.ClockMonitor:
+              _class: _class
+              diff: 7
+            _class: _class
+          numExecutors: 1
+          offline: true
+          offlineCause: offlineCause
+          offlineCauseReason: offlineCauseReason
+          temporarilyOffline: true
+        - _class: _class
+          displayName: displayName
+          executors:
+          - currentExecutable:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            idle: true
+            likelyStuck: true
+            number: 6
+            progress: 1
+            _class: _class
+          - currentExecutable:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            idle: true
+            likelyStuck: true
+            number: 6
+            progress: 1
+            _class: _class
+          icon: icon
+          iconClassName: iconClassName
+          idle: true
+          jnlpAgent: true
+          launchSupported: true
+          loadStatistics:
+            _class: _class
+          manualLaunchAllowed: true
+          monitorData:
+            hudson.node_monitors.SwapSpaceMonitor:
+              _class: _class
+              availablePhysicalMemory: 5
+              availableSwapSpace: 5
+              totalPhysicalMemory: 2
+              totalSwapSpace: 7
+            hudson.node_monitors.TemporarySpaceMonitor:
+              _class: _class
+              timestamp: 9
+              path: path
+              size: 3
+            hudson.node_monitors.DiskSpaceMonitor:
+              _class: _class
+              timestamp: 9
+              path: path
+              size: 3
+            hudson.node_monitors.ArchitectureMonitor: hudson.node_monitors.ArchitectureMonitor
+            hudson.node_monitors.ResponseTimeMonitor:
+              _class: _class
+              timestamp: 2
+              average: 4
+            hudson.node_monitors.ClockMonitor:
+              _class: _class
+              diff: 7
+            _class: _class
+          numExecutors: 1
+          offline: true
+          offlineCause: offlineCause
+          offlineCauseReason: offlineCauseReason
+          temporarilyOffline: true
+        displayName: displayName
+        totalExecutors: 1
+      properties:
+        _class:
+          type: string
+        busyExecutors:
+          type: integer
+        computer:
+          items:
+            $ref: "#/components/schemas/HudsonMasterComputer"
+          type: array
+          default: null
+        displayName:
+          type: string
+        totalExecutors:
+          type: integer
+    DefaultCrumbIssuer:
+      example:
+        _class: _class
+        crumb: crumb
+        crumbRequestField: crumbRequestField
+      properties:
+        _class:
+          type: string
+        crumb:
+          type: string
+        crumbRequestField:
+          type: string
+    HudsonassignedLabels:
+      example:
+        _class: _class
+      properties:
+        _class:
+          type: string
+    FreeStyleProject:
+      example:
+        _class: _class
+        name: name
+        url: url
+        color: color
+        actions:
+        - _class: _class
+        - _class: _class
+        description: description
+        displayName: displayName
+        displayNameOrNull: displayNameOrNull
+        fullDisplayName: fullDisplayName
+        fullName: fullName
+        buildable: true
+        builds:
+        - _class: _class
+          number: 6
+          url: url
+          actions:
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          building: true
+          description: description
+          displayName: displayName
+          duration: 1
+          estimatedDuration: 5
+          executor: executor
+          fullDisplayName: fullDisplayName
+          id: id
+          keepLog: true
+          queueId: 5
+          result: result
+          timestamp: 2
+          builtOn: builtOn
+          changeSet:
+            _class: _class
+            kind: kind
+        - _class: _class
+          number: 6
+          url: url
+          actions:
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          building: true
+          description: description
+          displayName: displayName
+          duration: 1
+          estimatedDuration: 5
+          executor: executor
+          fullDisplayName: fullDisplayName
+          id: id
+          keepLog: true
+          queueId: 5
+          result: result
+          timestamp: 2
+          builtOn: builtOn
+          changeSet:
+            _class: _class
+            kind: kind
+        firstBuild:
+          _class: _class
+          number: 6
+          url: url
+          actions:
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          building: true
+          description: description
+          displayName: displayName
+          duration: 1
+          estimatedDuration: 5
+          executor: executor
+          fullDisplayName: fullDisplayName
+          id: id
+          keepLog: true
+          queueId: 5
+          result: result
+          timestamp: 2
+          builtOn: builtOn
+          changeSet:
+            _class: _class
+            kind: kind
+        healthReport:
+        - description: description
+          iconClassName: iconClassName
+          iconUrl: iconUrl
+          score: 7
+          _class: _class
+        - description: description
+          iconClassName: iconClassName
+          iconUrl: iconUrl
+          score: 7
+          _class: _class
+        inQueue: true
+        keepDependencies: true
+        lastBuild:
+          _class: _class
+          number: 6
+          url: url
+          actions:
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          building: true
+          description: description
+          displayName: displayName
+          duration: 1
+          estimatedDuration: 5
+          executor: executor
+          fullDisplayName: fullDisplayName
+          id: id
+          keepLog: true
+          queueId: 5
+          result: result
+          timestamp: 2
+          builtOn: builtOn
+          changeSet:
+            _class: _class
+            kind: kind
+        lastCompletedBuild:
+          _class: _class
+          number: 6
+          url: url
+          actions:
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          building: true
+          description: description
+          displayName: displayName
+          duration: 1
+          estimatedDuration: 5
+          executor: executor
+          fullDisplayName: fullDisplayName
+          id: id
+          keepLog: true
+          queueId: 5
+          result: result
+          timestamp: 2
+          builtOn: builtOn
+          changeSet:
+            _class: _class
+            kind: kind
+        lastFailedBuild: lastFailedBuild
+        lastStableBuild:
+          _class: _class
+          number: 6
+          url: url
+          actions:
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          building: true
+          description: description
+          displayName: displayName
+          duration: 1
+          estimatedDuration: 5
+          executor: executor
+          fullDisplayName: fullDisplayName
+          id: id
+          keepLog: true
+          queueId: 5
+          result: result
+          timestamp: 2
+          builtOn: builtOn
+          changeSet:
+            _class: _class
+            kind: kind
+        lastSuccessfulBuild:
+          _class: _class
+          number: 6
+          url: url
+          actions:
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          building: true
+          description: description
+          displayName: displayName
+          duration: 1
+          estimatedDuration: 5
+          executor: executor
+          fullDisplayName: fullDisplayName
+          id: id
+          keepLog: true
+          queueId: 5
+          result: result
+          timestamp: 2
+          builtOn: builtOn
+          changeSet:
+            _class: _class
+            kind: kind
+        lastUnstableBuild: lastUnstableBuild
+        lastUnsuccessfulBuild: lastUnsuccessfulBuild
+        nextBuildNumber: 9
+        queueItem: queueItem
+        concurrentBuild: true
+        scm:
+          _class: _class
+      properties:
+        _class:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+        color:
+          type: string
+        actions:
+          items:
+            $ref: "#/components/schemas/FreeStyleProjectactions"
+          type: array
+          default: null
+        description:
+          type: string
+        displayName:
+          type: string
+        displayNameOrNull:
+          type: string
+        fullDisplayName:
+          type: string
+        fullName:
+          type: string
+        buildable:
+          type: boolean
+        builds:
+          items:
+            $ref: "#/components/schemas/FreeStyleBuild"
+          type: array
+          default: null
+        firstBuild:
+          $ref: "#/components/schemas/FreeStyleBuild"
+        healthReport:
+          items:
+            $ref: "#/components/schemas/FreeStyleProjecthealthReport"
+          type: array
+          default: null
+        inQueue:
+          type: boolean
+        keepDependencies:
+          type: boolean
+        lastBuild:
+          $ref: "#/components/schemas/FreeStyleBuild"
+        lastCompletedBuild:
+          $ref: "#/components/schemas/FreeStyleBuild"
+        lastFailedBuild:
+          type: string
+        lastStableBuild:
+          $ref: "#/components/schemas/FreeStyleBuild"
+        lastSuccessfulBuild:
+          $ref: "#/components/schemas/FreeStyleBuild"
+        lastUnstableBuild:
+          type: string
+        lastUnsuccessfulBuild:
+          type: string
+        nextBuildNumber:
+          type: integer
+        queueItem:
+          type: string
+        concurrentBuild:
+          type: boolean
+        scm:
+          $ref: "#/components/schemas/NullSCM"
+    AllView:
+      example:
+        _class: _class
+        name: name
+        url: url
+      properties:
+        _class:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+    UnlabeledLoadStatistics:
+      example:
+        _class: _class
+      properties:
+        _class:
+          type: string
+    Hudson:
+      example:
+        _class: _class
+        assignedLabels:
+        - _class: _class
+        - _class: _class
+        mode: mode
+        nodeDescription: nodeDescription
+        nodeName: nodeName
+        numExecutors: 0
+        description: description
+        jobs:
+        - _class: _class
+          name: name
+          url: url
+          color: color
+          actions:
+          - _class: _class
+          - _class: _class
+          description: description
+          displayName: displayName
+          displayNameOrNull: displayNameOrNull
+          fullDisplayName: fullDisplayName
+          fullName: fullName
+          buildable: true
+          builds:
+          - _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          - _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          firstBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          healthReport:
+          - description: description
+            iconClassName: iconClassName
+            iconUrl: iconUrl
+            score: 7
+            _class: _class
+          - description: description
+            iconClassName: iconClassName
+            iconUrl: iconUrl
+            score: 7
+            _class: _class
+          inQueue: true
+          keepDependencies: true
+          lastBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastCompletedBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastFailedBuild: lastFailedBuild
+          lastStableBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastSuccessfulBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastUnstableBuild: lastUnstableBuild
+          lastUnsuccessfulBuild: lastUnsuccessfulBuild
+          nextBuildNumber: 9
+          queueItem: queueItem
+          concurrentBuild: true
+          scm:
+            _class: _class
+        - _class: _class
+          name: name
+          url: url
+          color: color
+          actions:
+          - _class: _class
+          - _class: _class
+          description: description
+          displayName: displayName
+          displayNameOrNull: displayNameOrNull
+          fullDisplayName: fullDisplayName
+          fullName: fullName
+          buildable: true
+          builds:
+          - _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          - _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          firstBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          healthReport:
+          - description: description
+            iconClassName: iconClassName
+            iconUrl: iconUrl
+            score: 7
+            _class: _class
+          - description: description
+            iconClassName: iconClassName
+            iconUrl: iconUrl
+            score: 7
+            _class: _class
+          inQueue: true
+          keepDependencies: true
+          lastBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastCompletedBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastFailedBuild: lastFailedBuild
+          lastStableBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastSuccessfulBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastUnstableBuild: lastUnstableBuild
+          lastUnsuccessfulBuild: lastUnsuccessfulBuild
+          nextBuildNumber: 9
+          queueItem: queueItem
+          concurrentBuild: true
+          scm:
+            _class: _class
+        primaryView:
+          _class: _class
+          name: name
+          url: url
+        quietingDown: true
+        slaveAgentPort: 3
+        unlabeledLoad:
+          _class: _class
+        useCrumbs: true
+        useSecurity: true
+        views:
+        - _class: _class
+          name: name
+          url: url
+        - _class: _class
+          name: name
+          url: url
+      properties:
+        _class:
+          type: string
+        assignedLabels:
+          items:
+            $ref: "#/components/schemas/HudsonassignedLabels"
+          type: array
+          default: null
+        mode:
+          type: string
+        nodeDescription:
+          type: string
+        nodeName:
+          type: string
+        numExecutors:
+          type: integer
+        description:
+          type: string
+        jobs:
+          items:
+            $ref: "#/components/schemas/FreeStyleProject"
+          type: array
+          default: null
+        primaryView:
+          $ref: "#/components/schemas/AllView"
+        quietingDown:
+          type: boolean
+        slaveAgentPort:
+          type: integer
+        unlabeledLoad:
+          $ref: "#/components/schemas/UnlabeledLoadStatistics"
+        useCrumbs:
+          type: boolean
+        useSecurity:
+          type: boolean
+        views:
+          items:
+            $ref: "#/components/schemas/AllView"
+          type: array
+          default: null
+    FreeStyleProjectactions:
+      example:
+        _class: _class
+      properties:
+        _class:
+          type: string
+    FreeStyleProjecthealthReport:
+      example:
+        description: description
+        iconClassName: iconClassName
+        iconUrl: iconUrl
+        score: 7
+        _class: _class
+      properties:
+        description:
+          type: string
+        iconClassName:
+          type: string
+        iconUrl:
+          type: string
+        score:
+          type: integer
+        _class:
+          type: string
+    NullSCM:
+      example:
+        _class: _class
+      properties:
+        _class:
+          type: string
+    CauseUserIdCause:
+      example:
+        _class: _class
+        shortDescription: shortDescription
+        userId: userId
+        userName: userName
+      properties:
+        _class:
+          type: string
+        shortDescription:
+          type: string
+        userId:
+          type: string
+        userName:
+          type: string
+    CauseAction:
+      example:
+        _class: _class
+        causes:
+        - _class: _class
+          shortDescription: shortDescription
+          userId: userId
+          userName: userName
+        - _class: _class
+          shortDescription: shortDescription
+          userId: userId
+          userName: userName
+      properties:
+        _class:
+          type: string
+        causes:
+          items:
+            $ref: "#/components/schemas/CauseUserIdCause"
+          type: array
+          default: null
+    EmptyChangeLogSet:
+      example:
+        _class: _class
+        kind: kind
+      properties:
+        _class:
+          type: string
+        kind:
+          type: string
+    QueueBlockedItem:
+      example:
+        _class: _class
+        actions:
+        - _class: _class
+          causes:
+          - _class: _class
+            shortDescription: shortDescription
+            userId: userId
+            userName: userName
+          - _class: _class
+            shortDescription: shortDescription
+            userId: userId
+            userName: userName
+        - _class: _class
+          causes:
+          - _class: _class
+            shortDescription: shortDescription
+            userId: userId
+            userName: userName
+          - _class: _class
+            shortDescription: shortDescription
+            userId: userId
+            userName: userName
+        blocked: true
+        buildable: true
+        id: 0
+        inQueueSince: 6
+        params: params
+        stuck: true
+        task:
+          _class: _class
+          name: name
+          url: url
+          color: color
+          actions:
+          - _class: _class
+          - _class: _class
+          description: description
+          displayName: displayName
+          displayNameOrNull: displayNameOrNull
+          fullDisplayName: fullDisplayName
+          fullName: fullName
+          buildable: true
+          builds:
+          - _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          - _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          firstBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          healthReport:
+          - description: description
+            iconClassName: iconClassName
+            iconUrl: iconUrl
+            score: 7
+            _class: _class
+          - description: description
+            iconClassName: iconClassName
+            iconUrl: iconUrl
+            score: 7
+            _class: _class
+          inQueue: true
+          keepDependencies: true
+          lastBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastCompletedBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastFailedBuild: lastFailedBuild
+          lastStableBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastSuccessfulBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastUnstableBuild: lastUnstableBuild
+          lastUnsuccessfulBuild: lastUnsuccessfulBuild
+          nextBuildNumber: 9
+          queueItem: queueItem
+          concurrentBuild: true
+          scm:
+            _class: _class
+        url: url
+        why: why
+        buildableStartMilliseconds: 1
+      properties:
+        _class:
+          type: string
+        actions:
+          items:
+            $ref: "#/components/schemas/CauseAction"
+          type: array
+          default: null
+        blocked:
+          type: boolean
+        buildable:
+          type: boolean
+        id:
+          type: integer
+        inQueueSince:
+          type: integer
+        params:
+          type: string
+        stuck:
+          type: boolean
+        task:
+          $ref: "#/components/schemas/FreeStyleProject"
+        url:
+          type: string
+        why:
+          type: string
+        buildableStartMilliseconds:
+          type: integer
+    Queue:
+      example:
+        _class: _class
+        items:
+        - _class: _class
+          actions:
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          blocked: true
+          buildable: true
+          id: 0
+          inQueueSince: 6
+          params: params
+          stuck: true
+          task:
+            _class: _class
+            name: name
+            url: url
+            color: color
+            actions:
+            - _class: _class
+            - _class: _class
+            description: description
+            displayName: displayName
+            displayNameOrNull: displayNameOrNull
+            fullDisplayName: fullDisplayName
+            fullName: fullName
+            buildable: true
+            builds:
+            - _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            - _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            firstBuild:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            healthReport:
+            - description: description
+              iconClassName: iconClassName
+              iconUrl: iconUrl
+              score: 7
+              _class: _class
+            - description: description
+              iconClassName: iconClassName
+              iconUrl: iconUrl
+              score: 7
+              _class: _class
+            inQueue: true
+            keepDependencies: true
+            lastBuild:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            lastCompletedBuild:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            lastFailedBuild: lastFailedBuild
+            lastStableBuild:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            lastSuccessfulBuild:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            lastUnstableBuild: lastUnstableBuild
+            lastUnsuccessfulBuild: lastUnsuccessfulBuild
+            nextBuildNumber: 9
+            queueItem: queueItem
+            concurrentBuild: true
+            scm:
+              _class: _class
+          url: url
+          why: why
+          buildableStartMilliseconds: 1
+        - _class: _class
+          actions:
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          - _class: _class
+            causes:
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+            - _class: _class
+              shortDescription: shortDescription
+              userId: userId
+              userName: userName
+          blocked: true
+          buildable: true
+          id: 0
+          inQueueSince: 6
+          params: params
+          stuck: true
+          task:
+            _class: _class
+            name: name
+            url: url
+            color: color
+            actions:
+            - _class: _class
+            - _class: _class
+            description: description
+            displayName: displayName
+            displayNameOrNull: displayNameOrNull
+            fullDisplayName: fullDisplayName
+            fullName: fullName
+            buildable: true
+            builds:
+            - _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            - _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            firstBuild:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            healthReport:
+            - description: description
+              iconClassName: iconClassName
+              iconUrl: iconUrl
+              score: 7
+              _class: _class
+            - description: description
+              iconClassName: iconClassName
+              iconUrl: iconUrl
+              score: 7
+              _class: _class
+            inQueue: true
+            keepDependencies: true
+            lastBuild:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            lastCompletedBuild:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            lastFailedBuild: lastFailedBuild
+            lastStableBuild:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            lastSuccessfulBuild:
+              _class: _class
+              number: 6
+              url: url
+              actions:
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              - _class: _class
+                causes:
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+                - _class: _class
+                  shortDescription: shortDescription
+                  userId: userId
+                  userName: userName
+              building: true
+              description: description
+              displayName: displayName
+              duration: 1
+              estimatedDuration: 5
+              executor: executor
+              fullDisplayName: fullDisplayName
+              id: id
+              keepLog: true
+              queueId: 5
+              result: result
+              timestamp: 2
+              builtOn: builtOn
+              changeSet:
+                _class: _class
+                kind: kind
+            lastUnstableBuild: lastUnstableBuild
+            lastUnsuccessfulBuild: lastUnsuccessfulBuild
+            nextBuildNumber: 9
+            queueItem: queueItem
+            concurrentBuild: true
+            scm:
+              _class: _class
+          url: url
+          why: why
+          buildableStartMilliseconds: 1
+      properties:
+        _class:
+          type: string
+        items:
+          items:
+            $ref: "#/components/schemas/QueueBlockedItem"
+          type: array
+          default: null
+    QueueLeftItem:
+      properties:
+        _class:
+          type: string
+        actions:
+          items:
+            $ref: "#/components/schemas/CauseAction"
+          type: array
+          default: null
+        blocked:
+          type: boolean
+        buildable:
+          type: boolean
+        id:
+          type: integer
+        inQueueSince:
+          type: integer
+        params:
+          type: string
+        stuck:
+          type: boolean
+        task:
+          $ref: "#/components/schemas/FreeStyleProject"
+        url:
+          type: string
+        why:
+          type: string
+        cancelled:
+          type: boolean
+        executable:
+          $ref: "#/components/schemas/FreeStyleBuild"
+    ListView:
+      example:
+        _class: _class
+        description: description
+        jobs:
+        - _class: _class
+          name: name
+          url: url
+          color: color
+          actions:
+          - _class: _class
+          - _class: _class
+          description: description
+          displayName: displayName
+          displayNameOrNull: displayNameOrNull
+          fullDisplayName: fullDisplayName
+          fullName: fullName
+          buildable: true
+          builds:
+          - _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          - _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          firstBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          healthReport:
+          - description: description
+            iconClassName: iconClassName
+            iconUrl: iconUrl
+            score: 7
+            _class: _class
+          - description: description
+            iconClassName: iconClassName
+            iconUrl: iconUrl
+            score: 7
+            _class: _class
+          inQueue: true
+          keepDependencies: true
+          lastBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastCompletedBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastFailedBuild: lastFailedBuild
+          lastStableBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastSuccessfulBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastUnstableBuild: lastUnstableBuild
+          lastUnsuccessfulBuild: lastUnsuccessfulBuild
+          nextBuildNumber: 9
+          queueItem: queueItem
+          concurrentBuild: true
+          scm:
+            _class: _class
+        - _class: _class
+          name: name
+          url: url
+          color: color
+          actions:
+          - _class: _class
+          - _class: _class
+          description: description
+          displayName: displayName
+          displayNameOrNull: displayNameOrNull
+          fullDisplayName: fullDisplayName
+          fullName: fullName
+          buildable: true
+          builds:
+          - _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          - _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          firstBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          healthReport:
+          - description: description
+            iconClassName: iconClassName
+            iconUrl: iconUrl
+            score: 7
+            _class: _class
+          - description: description
+            iconClassName: iconClassName
+            iconUrl: iconUrl
+            score: 7
+            _class: _class
+          inQueue: true
+          keepDependencies: true
+          lastBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastCompletedBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastFailedBuild: lastFailedBuild
+          lastStableBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastSuccessfulBuild:
+            _class: _class
+            number: 6
+            url: url
+            actions:
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            - _class: _class
+              causes:
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+              - _class: _class
+                shortDescription: shortDescription
+                userId: userId
+                userName: userName
+            building: true
+            description: description
+            displayName: displayName
+            duration: 1
+            estimatedDuration: 5
+            executor: executor
+            fullDisplayName: fullDisplayName
+            id: id
+            keepLog: true
+            queueId: 5
+            result: result
+            timestamp: 2
+            builtOn: builtOn
+            changeSet:
+              _class: _class
+              kind: kind
+          lastUnstableBuild: lastUnstableBuild
+          lastUnsuccessfulBuild: lastUnsuccessfulBuild
+          nextBuildNumber: 9
+          queueItem: queueItem
+          concurrentBuild: true
+          scm:
+            _class: _class
+        name: name
+        url: url
+      properties:
+        _class:
+          type: string
+        description:
+          type: string
+        jobs:
+          items:
+            $ref: "#/components/schemas/FreeStyleProject"
+          type: array
+          default: null
+        name:
+          type: string
+        url:
+          type: string
+    Link:
+      example:
+        _class: _class
+        href: href
+      properties:
+        _class:
+          type: string
+        href:
+          type: string
+    ExtensionClassContainerImpl1links:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    ExtensionClassImpllinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    ExtensionClassImpl:
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/ExtensionClassImpllinks"
+        classes:
+          items:
+            type: string
+          type: array
+          default: null
+    ExtensionClassContainerImpl1map:
+      properties:
+        io.jenkins.blueocean.service.embedded.rest.PipelineImpl:
+          $ref: "#/components/schemas/ExtensionClassImpl"
+        io.jenkins.blueocean.service.embedded.rest.MultiBranchPipelineImpl:
+          $ref: "#/components/schemas/ExtensionClassImpl"
+        _class:
+          type: string
+    ExtensionClassContainerImpl1:
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/ExtensionClassContainerImpl1links"
+        map:
+          $ref: "#/components/schemas/ExtensionClassContainerImpl1map"
+    ClassesByClass:
+      properties:
+        classes:
+          items:
+            type: string
+          type: array
+          default: null
+        _class:
+          type: string
+    MultibranchPipeline:
+      example:
+        displayName: displayName
+        estimatedDurationInMillis: 0
+        latestRun: latestRun
+        name: name
+        organization: organization
+        weatherScore: 6
+        branchNames:
+        - branchNames
+        - branchNames
+        numberOfFailingBranches: 1
+        numberOfFailingPullRequests: 5
+        numberOfSuccessfulBranches: 5
+        numberOfSuccessfulPullRequests: 2
+        totalNumberOfBranches: 7
+        totalNumberOfPullRequests: 9
+        _class: _class
+      properties:
+        displayName:
+          type: string
+        estimatedDurationInMillis:
+          type: integer
+        latestRun:
+          type: string
+        name:
+          type: string
+        organization:
+          type: string
+        weatherScore:
+          type: integer
+        branchNames:
+          items:
+            type: string
+          type: array
+          default: null
+        numberOfFailingBranches:
+          type: integer
+        numberOfFailingPullRequests:
+          type: integer
+        numberOfSuccessfulBranches:
+          type: integer
+        numberOfSuccessfulPullRequests:
+          type: integer
+        totalNumberOfBranches:
+          type: integer
+        totalNumberOfPullRequests:
+          type: integer
+        _class:
+          type: string
+    PipelineImpl:
+      example:
+        _class: _class
+        displayName: displayName
+        estimatedDurationInMillis: 0
+        fullName: fullName
+        latestRun: latestRun
+        name: name
+        organization: organization
+        weatherScore: 6
+        _links:
+          self:
+            _class: _class
+            href: href
+          actions:
+            _class: _class
+            href: href
+          runs:
+            _class: _class
+            href: href
+          queue:
+            _class: _class
+            href: href
+          _class: _class
+      properties:
+        _class:
+          type: string
+        displayName:
+          type: string
+        estimatedDurationInMillis:
+          type: integer
+        fullName:
+          type: string
+        latestRun:
+          type: string
+        name:
+          type: string
+        organization:
+          type: string
+        weatherScore:
+          type: integer
+        _links:
+          $ref: "#/components/schemas/PipelineImpllinks"
+    Organisation:
+      example:
+        _class: _class
+        name: name
+      properties:
+        _class:
+          type: string
+        name:
+          type: string
+    Organisations:
+      items:
+        $ref: "#/components/schemas/Organisation"
+      type: array
+      default: null
+    PipelinelatestRunartifacts:
+      example:
+        name: name
+        size: 1
+        url: url
+        _class: _class
+      properties:
+        name:
+          type: string
+        size:
+          type: integer
+        url:
+          type: string
+        _class:
+          type: string
+    PipelinelatestRun:
+      example:
+        artifacts:
+        - name: name
+          size: 1
+          url: url
+          _class: _class
+        - name: name
+          size: 1
+          url: url
+          _class: _class
+        durationInMillis: 5
+        estimatedDurationInMillis: 5
+        enQueueTime: enQueueTime
+        endTime: endTime
+        id: id
+        organization: organization
+        pipeline: pipeline
+        result: result
+        runSummary: runSummary
+        startTime: startTime
+        state: state
+        type: type
+        commitId: commitId
+        _class: _class
+      properties:
+        artifacts:
+          items:
+            $ref: "#/components/schemas/PipelinelatestRunartifacts"
+          type: array
+          default: null
+        durationInMillis:
+          type: integer
+        estimatedDurationInMillis:
+          type: integer
+        enQueueTime:
+          type: string
+        endTime:
+          type: string
+        id:
+          type: string
+        organization:
+          type: string
+        pipeline:
+          type: string
+        result:
+          type: string
+        runSummary:
+          type: string
+        startTime:
+          type: string
+        state:
+          type: string
+        type:
+          type: string
+        commitId:
+          type: string
+        _class:
+          type: string
+    Pipeline:
+      example:
+        _class: _class
+        organization: organization
+        name: name
+        displayName: displayName
+        fullName: fullName
+        weatherScore: 0
+        estimatedDurationInMillis: 6
+        latestRun:
+          artifacts:
+          - name: name
+            size: 1
+            url: url
+            _class: _class
+          - name: name
+            size: 1
+            url: url
+            _class: _class
+          durationInMillis: 5
+          estimatedDurationInMillis: 5
+          enQueueTime: enQueueTime
+          endTime: endTime
+          id: id
+          organization: organization
+          pipeline: pipeline
+          result: result
+          runSummary: runSummary
+          startTime: startTime
+          state: state
+          type: type
+          commitId: commitId
+          _class: _class
+      properties:
+        _class:
+          type: string
+        organization:
+          type: string
+        name:
+          type: string
+        displayName:
+          type: string
+        fullName:
+          type: string
+        weatherScore:
+          type: integer
+        estimatedDurationInMillis:
+          type: integer
+        latestRun:
+          $ref: "#/components/schemas/PipelinelatestRun"
+    PipelineActivityartifacts:
+      example:
+        name: name
+        size: 1
+        url: url
+        _class: _class
+      properties:
+        name:
+          type: string
+        size:
+          type: integer
+        url:
+          type: string
+        _class:
+          type: string
+    PipelineActivity:
+      example:
+        _class: _class
+        artifacts:
+        - name: name
+          size: 1
+          url: url
+          _class: _class
+        - name: name
+          size: 1
+          url: url
+          _class: _class
+        durationInMillis: 0
+        estimatedDurationInMillis: 6
+        enQueueTime: enQueueTime
+        endTime: endTime
+        id: id
+        organization: organization
+        pipeline: pipeline
+        result: result
+        runSummary: runSummary
+        startTime: startTime
+        state: state
+        type: type
+        commitId: commitId
+      properties:
+        _class:
+          type: string
+        artifacts:
+          items:
+            $ref: "#/components/schemas/PipelineActivityartifacts"
+          type: array
+          default: null
+        durationInMillis:
+          type: integer
+        estimatedDurationInMillis:
+          type: integer
+        enQueueTime:
+          type: string
+        endTime:
+          type: string
+        id:
+          type: string
+        organization:
+          type: string
+        pipeline:
+          type: string
+        result:
+          type: string
+        runSummary:
+          type: string
+        startTime:
+          type: string
+        state:
+          type: string
+        type:
+          type: string
+        commitId:
+          type: string
+    PipelineActivities:
+      items:
+        $ref: "#/components/schemas/PipelineActivity"
+      type: array
+      default: null
+    StringParameterValue:
+      example:
+        _class: _class
+        name: name
+        value: value
+      properties:
+        _class:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+    StringParameterDefinition:
+      example:
+        _class: _class
+        defaultParameterValue:
+          _class: _class
+          name: name
+          value: value
+        description: description
+        name: name
+        type: type
+      properties:
+        _class:
+          type: string
+        defaultParameterValue:
+          $ref: "#/components/schemas/StringParameterValue"
+        description:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+    BranchImplpermissions:
+      example:
+        create: true
+        read: true
+        start: true
+        stop: true
+        _class: _class
+      properties:
+        create:
+          type: boolean
+        read:
+          type: boolean
+        start:
+          type: boolean
+        stop:
+          type: boolean
+        _class:
+          type: string
+    BranchImpl:
+      example:
+        _class: _class
+        displayName: displayName
+        estimatedDurationInMillis: 0
+        fullDisplayName: fullDisplayName
+        fullName: fullName
+        name: name
+        organization: organization
+        parameters:
+        - _class: _class
+          defaultParameterValue:
+            _class: _class
+            name: name
+            value: value
+          description: description
+          name: name
+          type: type
+        - _class: _class
+          defaultParameterValue:
+            _class: _class
+            name: name
+            value: value
+          description: description
+          name: name
+          type: type
+        permissions:
+          create: true
+          read: true
+          start: true
+          stop: true
+          _class: _class
+        weatherScore: 6
+        pullRequest: pullRequest
+        _links:
+          self:
+            _class: _class
+            href: href
+          actions:
+            _class: _class
+            href: href
+          runs:
+            _class: _class
+            href: href
+          queue:
+            _class: _class
+            href: href
+          _class: _class
+        latestRun:
+          _class: _class
+          _links:
+            nodes:
+              _class: _class
+              href: href
+            log:
+              _class: _class
+              href: href
+            self:
+              _class: _class
+              href: href
+            actions:
+              _class: _class
+              href: href
+            steps:
+              _class: _class
+              href: href
+            _class: _class
+          durationInMillis: 1
+          enQueueTime: enQueueTime
+          endTime: endTime
+          estimatedDurationInMillis: 5
+          id: id
+          organization: organization
+          pipeline: pipeline
+          result: result
+          runSummary: runSummary
+          startTime: startTime
+          state: state
+          type: type
+          commitId: commitId
+      properties:
+        _class:
+          type: string
+        displayName:
+          type: string
+        estimatedDurationInMillis:
+          type: integer
+        fullDisplayName:
+          type: string
+        fullName:
+          type: string
+        name:
+          type: string
+        organization:
+          type: string
+        parameters:
+          items:
+            $ref: "#/components/schemas/StringParameterDefinition"
+          type: array
+          default: null
+        permissions:
+          $ref: "#/components/schemas/BranchImplpermissions"
+        weatherScore:
+          type: integer
+        pullRequest:
+          type: string
+        _links:
+          $ref: "#/components/schemas/BranchImpllinks"
+        latestRun:
+          $ref: "#/components/schemas/PipelineRunImpl"
+    PipelineBranchesitemlatestRun:
+      properties:
+        durationInMillis:
+          type: integer
+        estimatedDurationInMillis:
+          type: integer
+        enQueueTime:
+          type: string
+        endTime:
+          type: string
+        id:
+          type: string
+        organization:
+          type: string
+        pipeline:
+          type: string
+        result:
+          type: string
+        runSummary:
+          type: string
+        startTime:
+          type: string
+        state:
+          type: string
+        type:
+          type: string
+        commitId:
+          type: string
+        _class:
+          type: string
+    PipelineBranchesitempullRequestlinks:
+      properties:
+        self:
+          type: string
+        _class:
+          type: string
+    PipelineBranchesitempullRequest:
+      properties:
+        _links:
+          $ref: "#/components/schemas/PipelineBranchesitempullRequestlinks"
+        author:
+          type: string
+        id:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+        _class:
+          type: string
+    PipelineBranchesitem:
+      properties:
+        displayName:
+          type: string
+        estimatedDurationInMillis:
+          type: integer
+        name:
+          type: string
+        weatherScore:
+          type: integer
+        latestRun:
+          $ref: "#/components/schemas/PipelineBranchesitemlatestRun"
+        organization:
+          type: string
+        pullRequest:
+          $ref: "#/components/schemas/PipelineBranchesitempullRequest"
+        totalNumberOfPullRequests:
+          type: integer
+        _class:
+          type: string
+    PipelineBranches:
+      items:
+        $ref: "#/components/schemas/PipelineBranchesitem"
+      type: array
+      default: null
+    FavoriteImpllinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    PipelineImpllinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        actions:
+          _class: _class
+          href: href
+        runs:
+          _class: _class
+          href: href
+        queue:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        actions:
+          $ref: "#/components/schemas/Link"
+        runs:
+          $ref: "#/components/schemas/Link"
+        queue:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    FavoriteImpl:
+      example:
+        _class: _class
+        _links:
+          self:
+            _class: _class
+            href: href
+          _class: _class
+        item:
+          _class: _class
+          displayName: displayName
+          estimatedDurationInMillis: 0
+          fullName: fullName
+          latestRun: latestRun
+          name: name
+          organization: organization
+          weatherScore: 6
+          _links:
+            self:
+              _class: _class
+              href: href
+            actions:
+              _class: _class
+              href: href
+            runs:
+              _class: _class
+              href: href
+            queue:
+              _class: _class
+              href: href
+            _class: _class
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/FavoriteImpllinks"
+        item:
+          $ref: "#/components/schemas/PipelineImpl"
+    PipelineFolderImpl:
+      example:
+        _class: _class
+        displayName: displayName
+        fullName: fullName
+        name: name
+        organization: organization
+        numberOfFolders: 0
+        numberOfPipelines: 6
+      properties:
+        _class:
+          type: string
+        displayName:
+          type: string
+        fullName:
+          type: string
+        name:
+          type: string
+        organization:
+          type: string
+        numberOfFolders:
+          type: integer
+        numberOfPipelines:
+          type: integer
+    QueueItemImpl:
+      example:
+        _class: _class
+        expectedBuildNumber: 0
+        id: id
+        pipeline: pipeline
+        queuedTime: 6
+      properties:
+        _class:
+          type: string
+        expectedBuildNumber:
+          type: integer
+        id:
+          type: string
+        pipeline:
+          type: string
+        queuedTime:
+          type: integer
+    PipelineQueue:
+      items:
+        $ref: "#/components/schemas/QueueItemImpl"
+      type: array
+      default: null
+    PipelineRunartifacts:
+      example:
+        name: name
+        size: 1
+        url: url
+        _class: _class
+      properties:
+        name:
+          type: string
+        size:
+          type: integer
+        url:
+          type: string
+        _class:
+          type: string
+    PipelineRun:
+      example:
+        _class: _class
+        artifacts:
+        - name: name
+          size: 1
+          url: url
+          _class: _class
+        - name: name
+          size: 1
+          url: url
+          _class: _class
+        durationInMillis: 0
+        estimatedDurationInMillis: 6
+        enQueueTime: enQueueTime
+        endTime: endTime
+        id: id
+        organization: organization
+        pipeline: pipeline
+        result: result
+        runSummary: runSummary
+        startTime: startTime
+        state: state
+        type: type
+        commitId: commitId
+      properties:
+        _class:
+          type: string
+        artifacts:
+          items:
+            $ref: "#/components/schemas/PipelineRunartifacts"
+          type: array
+          default: null
+        durationInMillis:
+          type: integer
+        estimatedDurationInMillis:
+          type: integer
+        enQueueTime:
+          type: string
+        endTime:
+          type: string
+        id:
+          type: string
+        organization:
+          type: string
+        pipeline:
+          type: string
+        result:
+          type: string
+        runSummary:
+          type: string
+        startTime:
+          type: string
+        state:
+          type: string
+        type:
+          type: string
+        commitId:
+          type: string
+    PipelineStepImpllinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        actions:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        actions:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    InputStepImpllinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    InputStepImpl:
+      example:
+        _class: _class
+        _links:
+          self:
+            _class: _class
+            href: href
+          _class: _class
+        id: id
+        message: message
+        ok: ok
+        parameters:
+        - _class: _class
+          defaultParameterValue:
+            _class: _class
+            name: name
+            value: value
+          description: description
+          name: name
+          type: type
+        - _class: _class
+          defaultParameterValue:
+            _class: _class
+            name: name
+            value: value
+          description: description
+          name: name
+          type: type
+        submitter: submitter
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/InputStepImpllinks"
+        id:
+          type: string
+        message:
+          type: string
+        ok:
+          type: string
+        parameters:
+          items:
+            $ref: "#/components/schemas/StringParameterDefinition"
+          type: array
+          default: null
+        submitter:
+          type: string
+    PipelineStepImpl:
+      example:
+        _class: _class
+        _links:
+          self:
+            _class: _class
+            href: href
+          actions:
+            _class: _class
+            href: href
+          _class: _class
+        displayName: displayName
+        durationInMillis: 0
+        id: id
+        input:
+          _class: _class
+          _links:
+            self:
+              _class: _class
+              href: href
+            _class: _class
+          id: id
+          message: message
+          ok: ok
+          parameters:
+          - _class: _class
+            defaultParameterValue:
+              _class: _class
+              name: name
+              value: value
+            description: description
+            name: name
+            type: type
+          - _class: _class
+            defaultParameterValue:
+              _class: _class
+              name: name
+              value: value
+            description: description
+            name: name
+            type: type
+          submitter: submitter
+        result: result
+        startTime: startTime
+        state: state
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/PipelineStepImpllinks"
+        displayName:
+          type: string
+        durationInMillis:
+          type: integer
+        id:
+          type: string
+        input:
+          $ref: "#/components/schemas/InputStepImpl"
+        result:
+          type: string
+        startTime:
+          type: string
+        state:
+          type: string
+    PipelineRunNodeSteps:
+      items:
+        $ref: "#/components/schemas/PipelineStepImpl"
+      type: array
+      default: null
+    PipelineRunNodeedges:
+      example:
+        id: id
+        _class: _class
+      properties:
+        id:
+          type: string
+        _class:
+          type: string
+    PipelineRunNode:
+      example:
+        _class: _class
+        displayName: displayName
+        durationInMillis: 0
+        edges:
+        - id: id
+          _class: _class
+        - id: id
+          _class: _class
+        id: id
+        result: result
+        startTime: startTime
+        state: state
+      properties:
+        _class:
+          type: string
+        displayName:
+          type: string
+        durationInMillis:
+          type: integer
+        edges:
+          items:
+            $ref: "#/components/schemas/PipelineRunNodeedges"
+          type: array
+          default: null
+        id:
+          type: string
+        result:
+          type: string
+        startTime:
+          type: string
+        state:
+          type: string
+    PipelineRunNodes:
+      items:
+        $ref: "#/components/schemas/PipelineRunNode"
+      type: array
+      default: null
+    GenericResource:
+      properties:
+        _class:
+          type: string
+        displayName:
+          type: string
+        durationInMillis:
+          type: integer
+        id:
+          type: string
+        result:
+          type: string
+        startTime:
+          type: string
+    PipelineRunSteps:
+      items:
+        $ref: "#/components/schemas/GenericResource"
+      type: array
+      default: null
+    PipelineRuns:
+      items:
+        $ref: "#/components/schemas/PipelineRun"
+      type: array
+      default: null
+    Pipelines:
+      items:
+        $ref: "#/components/schemas/Pipeline"
+      type: array
+      default: null
+    GithubScmlinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    GithubScm:
+      example:
+        _class: _class
+        _links:
+          self:
+            _class: _class
+            href: href
+          _class: _class
+        credentialId: credentialId
+        id: id
+        uri: uri
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/GithubScmlinks"
+        credentialId:
+          type: string
+        id:
+          type: string
+        uri:
+          type: string
+    GithubContent:
+      properties:
+        name:
+          type: string
+        sha:
+          type: string
+        _class:
+          type: string
+        repo:
+          type: string
+        size:
+          type: integer
+        owner:
+          type: string
+        path:
+          type: string
+        base64Data:
+          type: string
+    GithubFile:
+      properties:
+        content:
+          $ref: "#/components/schemas/GithubContent"
+        _class:
+          type: string
+    GithubRespositoryContainerlinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    GithubRepositorieslinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    GithubRepositorylinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    GithubRepositorypermissions:
+      properties:
+        admin:
+          type: boolean
+        push:
+          type: boolean
+        pull:
+          type: boolean
+        _class:
+          type: string
+    GithubRepository:
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/GithubRepositorylinks"
+        defaultBranch:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+        permissions:
+          $ref: "#/components/schemas/GithubRepositorypermissions"
+        private:
+          type: boolean
+        fullName:
+          type: string
+    GithubRepositories:
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/GithubRepositorieslinks"
+        items:
+          items:
+            $ref: "#/components/schemas/GithubRepository"
+          type: array
+          default: null
+        lastPage:
+          type: integer
+        nextPage:
+          type: integer
+        pageSize:
+          type: integer
+    GithubRespositoryContainer:
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/GithubRespositoryContainerlinks"
+        repositories:
+          $ref: "#/components/schemas/GithubRepositories"
+    GithubOrganizationlinks:
+      example:
+        repositories:
+          _class: _class
+          href: href
+        self:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        repositories:
+          $ref: "#/components/schemas/Link"
+        self:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    GithubOrganization:
+      example:
+        _class: _class
+        _links:
+          repositories:
+            _class: _class
+            href: href
+          self:
+            _class: _class
+            href: href
+          _class: _class
+        jenkinsOrganizationPipeline: true
+        name: name
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/GithubOrganizationlinks"
+        jenkinsOrganizationPipeline:
+          type: boolean
+        name:
+          type: string
+    ScmOrganisations:
+      items:
+        $ref: "#/components/schemas/GithubOrganization"
+      type: array
+      default: null
+    User:
+      example:
+        _class: _class
+        id: id
+        fullName: fullName
+        email: email
+        name: name
+      properties:
+        _class:
+          type: string
+        id:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+    BranchImpllinks:
+      example:
+        self:
+          _class: _class
+          href: href
+        actions:
+          _class: _class
+          href: href
+        runs:
+          _class: _class
+          href: href
+        queue:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        self:
+          $ref: "#/components/schemas/Link"
+        actions:
+          $ref: "#/components/schemas/Link"
+        runs:
+          $ref: "#/components/schemas/Link"
+        queue:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    PipelineRunImpllinks:
+      example:
+        nodes:
+          _class: _class
+          href: href
+        log:
+          _class: _class
+          href: href
+        self:
+          _class: _class
+          href: href
+        actions:
+          _class: _class
+          href: href
+        steps:
+          _class: _class
+          href: href
+        _class: _class
+      properties:
+        nodes:
+          $ref: "#/components/schemas/Link"
+        log:
+          $ref: "#/components/schemas/Link"
+        self:
+          $ref: "#/components/schemas/Link"
+        actions:
+          $ref: "#/components/schemas/Link"
+        steps:
+          $ref: "#/components/schemas/Link"
+        _class:
+          type: string
+    PipelineRunImpl:
+      example:
+        _class: _class
+        _links:
+          nodes:
+            _class: _class
+            href: href
+          log:
+            _class: _class
+            href: href
+          self:
+            _class: _class
+            href: href
+          actions:
+            _class: _class
+            href: href
+          steps:
+            _class: _class
+            href: href
+          _class: _class
+        durationInMillis: 1
+        enQueueTime: enQueueTime
+        endTime: endTime
+        estimatedDurationInMillis: 5
+        id: id
+        organization: organization
+        pipeline: pipeline
+        result: result
+        runSummary: runSummary
+        startTime: startTime
+        state: state
+        type: type
+        commitId: commitId
+      properties:
+        _class:
+          type: string
+        _links:
+          $ref: "#/components/schemas/PipelineRunImpllinks"
+        durationInMillis:
+          type: integer
+        enQueueTime:
+          type: string
+        endTime:
+          type: string
+        estimatedDurationInMillis:
+          type: integer
+        id:
+          type: string
+        organization:
+          type: string
+        pipeline:
+          type: string
+        result:
+          type: string
+        runSummary:
+          type: string
+        startTime:
+          type: string
+        state:
+          type: string
+        type:
+          type: string
+        commitId:
+          type: string
+    UserFavorites:
+      items:
+        $ref: "#/components/schemas/FavoriteImpl"
+      type: array
+      default: null
+    Users:
+      items:
+        $ref: "#/components/schemas/User"
+      type: array
+      default: null
+  securitySchemes:
+    jenkins_auth:
+      scheme: basic
+      type: http
+    jwt_auth:
+      in: header
+      name: Authorization
+      type: apiKey

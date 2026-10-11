@@ -5989,7 +5989,7 @@ export const RemoteAccessApiFetchParamCreator = function (configuration?: Config
                 localVarHeaderParameter['Content-Type'] = ((contentType:any):string);
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/xml';
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -6036,7 +6036,7 @@ export const RemoteAccessApiFetchParamCreator = function (configuration?: Config
                 localVarHeaderParameter['Content-Type'] = ((contentType:any):string);
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/xml';
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -6128,7 +6128,7 @@ export const RemoteAccessApiFetchParamCreator = function (configuration?: Config
                 localVarHeaderParameter['Jenkins-Crumb'] = ((jenkinsCrumb:any):string);
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/xml';
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -6316,7 +6316,7 @@ export const RemoteAccessApiFetchParamCreator = function (configuration?: Config
                 localVarHeaderParameter['Jenkins-Crumb'] = ((jenkinsCrumb:any):string);
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/xml';
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943

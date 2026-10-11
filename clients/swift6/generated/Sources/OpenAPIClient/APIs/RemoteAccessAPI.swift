@@ -499,7 +499,7 @@ open class RemoteAccessAPI {
         ])
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            "Content-Type": "application/json",
+            "Content-Type": "application/xml",
             "Jenkins-Crumb": jenkinsCrumb?.asParameter(codableHelper: apiConfiguration.codableHelper),
             "Content-Type": contentType?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
@@ -548,7 +548,7 @@ open class RemoteAccessAPI {
         ])
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            "Content-Type": "application/json",
+            "Content-Type": "application/xml",
             "Jenkins-Crumb": jenkinsCrumb?.asParameter(codableHelper: apiConfiguration.codableHelper),
             "Content-Type": contentType?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
@@ -646,7 +646,7 @@ open class RemoteAccessAPI {
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            "Content-Type": "application/json",
+            "Content-Type": "application/xml",
             "Jenkins-Crumb": jenkinsCrumb?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
@@ -864,7 +864,7 @@ open class RemoteAccessAPI {
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            "Content-Type": "application/json",
+            "Content-Type": "application/xml",
             "Jenkins-Crumb": jenkinsCrumb?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 

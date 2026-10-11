@@ -23,7 +23,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the view API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-08-16T01:39:21.535296905Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-10-11T12:05:43.483426402Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public interface ViewApi  {
 
     @GET
@@ -60,7 +60,7 @@ public interface ViewApi  {
     public Response getViewConfig( @PathParam("name") String name,@Context SecurityContext securityContext);
     @POST
     @Path("/config.xml")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Update view configuration", response = Void.class, authorizations = {
         @io.swagger.annotations.Authorization(value = "jenkins_auth")

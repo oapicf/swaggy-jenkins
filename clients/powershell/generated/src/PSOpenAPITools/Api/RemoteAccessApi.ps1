@@ -950,7 +950,7 @@ function Submit-CreateItem {
         $LocalVarAccepts = @('*/*')
 
         # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
+        $LocalVarContentTypes = @('application/xml')
 
         $LocalVarUri = '/createItem'
 
@@ -1070,7 +1070,7 @@ function Submit-CreateView {
         $LocalVarAccepts = @('*/*')
 
         # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
+        $LocalVarContentTypes = @('application/xml')
 
         $LocalVarUri = '/createView'
 
@@ -1284,7 +1284,7 @@ function Submit-JobConfig {
         $LocalVarAccepts = @('*/*')
 
         # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
+        $LocalVarContentTypes = @('application/xml')
 
         $LocalVarUri = '/job/{name}/config.xml'
         if (!$Name) {
@@ -1737,7 +1737,7 @@ function Submit-ViewConfig {
         $LocalVarAccepts = @('*/*')
 
         # HTTP header 'Content-Type'
-        $LocalVarContentTypes = @('application/json')
+        $LocalVarContentTypes = @('application/xml')
 
         $LocalVarUri = '/view/{name}/config.xml'
         if (!$Name) {

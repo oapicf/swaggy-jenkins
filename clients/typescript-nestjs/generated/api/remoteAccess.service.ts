@@ -670,7 +670,7 @@ export class RemoteAccessService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
+            'application/xml'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
@@ -742,7 +742,7 @@ export class RemoteAccessService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
+            'application/xml'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
@@ -879,7 +879,7 @@ export class RemoteAccessService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
+            'application/xml'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {
@@ -1165,7 +1165,7 @@ export class RemoteAccessService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
-            'application/json'
+            'application/xml'
         ];
         const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
         if (httpContentTypeSelected != undefined) {

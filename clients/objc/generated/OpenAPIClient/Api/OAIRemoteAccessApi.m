@@ -855,7 +855,7 @@ NSInteger kOAIRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
 
     // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json"]];
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/xml"]];
 
     // Authentication setting
     NSArray *authSettings = @[@"jenkins_auth"];
@@ -939,7 +939,7 @@ NSInteger kOAIRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
 
     // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json"]];
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/xml"]];
 
     // Authentication setting
     NSArray *authSettings = @[@"jenkins_auth"];
@@ -1125,7 +1125,7 @@ NSInteger kOAIRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
 
     // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json"]];
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/xml"]];
 
     // Authentication setting
     NSArray *authSettings = @[@"jenkins_auth"];
@@ -1510,7 +1510,7 @@ NSInteger kOAIRemoteAccessApiMissingParamErrorCode = 234513;
     NSString *responseContentType = [[acceptHeader componentsSeparatedByString:@", "] firstObject] ?: @"";
 
     // request content type
-    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/json"]];
+    NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[@"application/xml"]];
 
     // Authentication setting
     NSArray *authSettings = @[@"jenkins_auth"];

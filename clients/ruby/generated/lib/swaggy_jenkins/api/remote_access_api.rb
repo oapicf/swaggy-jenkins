@@ -727,7 +727,7 @@ module SwaggyJenkinsClient
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['*/*']) unless header_params['Accept']
       # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
+      content_type = @api_client.select_header_content_type(['application/xml'])
       if !content_type.nil?
           header_params['Content-Type'] = content_type
       end
@@ -802,7 +802,7 @@ module SwaggyJenkinsClient
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['*/*']) unless header_params['Accept']
       # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
+      content_type = @api_client.select_header_content_type(['application/xml'])
       if !content_type.nil?
           header_params['Content-Type'] = content_type
       end
@@ -950,7 +950,7 @@ module SwaggyJenkinsClient
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['*/*']) unless header_params['Accept']
       # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
+      content_type = @api_client.select_header_content_type(['application/xml'])
       if !content_type.nil?
           header_params['Content-Type'] = content_type
       end
@@ -1273,7 +1273,7 @@ module SwaggyJenkinsClient
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['*/*']) unless header_params['Accept']
       # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/json'])
+      content_type = @api_client.select_header_content_type(['application/xml'])
       if !content_type.nil?
           header_params['Content-Type'] = content_type
       end

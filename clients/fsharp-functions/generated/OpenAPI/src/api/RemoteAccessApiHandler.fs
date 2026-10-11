@@ -313,7 +313,7 @@ module RemoteAccessApiHandlers =
 
       use reader = StreamReader(req.Body)
 
-      let mediaTypes = ["application/json";] // currently unused
+      let mediaTypes = ["application/xml";] // currently unused
 
       let bind (contentType:string) body  =
         match (contentType.ToLower()) with
@@ -352,7 +352,7 @@ module RemoteAccessApiHandlers =
 
       use reader = StreamReader(req.Body)
 
-      let mediaTypes = ["application/json";] // currently unused
+      let mediaTypes = ["application/xml";] // currently unused
 
       let bind (contentType:string) body  =
         match (contentType.ToLower()) with
@@ -423,7 +423,7 @@ module RemoteAccessApiHandlers =
 
       use reader = StreamReader(req.Body)
 
-      let mediaTypes = ["application/json";] // currently unused
+      let mediaTypes = ["application/xml";] // currently unused
 
       let bind (contentType:string) body  =
         match (contentType.ToLower()) with
@@ -578,7 +578,7 @@ module RemoteAccessApiHandlers =
 
       use reader = StreamReader(req.Body)
 
-      let mediaTypes = ["application/json";] // currently unused
+      let mediaTypes = ["application/xml";] // currently unused
 
       let bind (contentType:string) body  =
         match (contentType.ToLower()) with

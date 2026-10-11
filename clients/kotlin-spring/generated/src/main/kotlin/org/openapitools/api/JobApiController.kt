@@ -170,7 +170,7 @@ class JobApiController() {
         // "/job/{name}/config.xml"
         value = [PATH_POST_JOB_CONFIG],
         produces = ["*/*"],
-        consumes = ["application/json"]
+        consumes = ["application/xml"]
     )
     fun postJobConfig(
         @Parameter(description = "Name of the job", required = true) @PathVariable("name") name: kotlin.String,

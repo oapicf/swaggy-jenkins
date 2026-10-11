@@ -27,7 +27,7 @@ import javax.validation.Valid;
 @Api
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-08-16T01:39:12.693690954Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-10-11T12:05:32.080247683Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 
 public class ViewApi  {
 
@@ -72,7 +72,7 @@ public class ViewApi  {
 
     @POST
     @Path("/config.xml")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     @ApiOperation(value = "", notes = "Update view configuration", response = Void.class, authorizations = {
         

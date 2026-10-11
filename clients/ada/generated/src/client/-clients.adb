@@ -21,6 +21,8 @@ package body .Clients is
      1 => Mime_1'Access   );
    Media_List_3 : constant Swagger.Mime_List := (
      1 => Mime_2'Access   );
+   Media_List_4 : constant Swagger.Mime_List := (
+     1 => Swagger.Mime_Xml   );
 
 
    --  
@@ -1022,7 +1024,7 @@ package body .Clients is
       Req   : Swagger.Clients.Request_Type;
    begin
       Client.Set_Accept (Media_List_2);
-      Client.Initialize (Req, Media_List_1);
+      Client.Initialize (Req, Media_List_4);
       .Models.Serialize (Req.Stream, "", P_Body);
 
       URI.Add_Param ("name", Name);
@@ -1044,7 +1046,7 @@ package body .Clients is
       Req   : Swagger.Clients.Request_Type;
    begin
       Client.Set_Accept (Media_List_2);
-      Client.Initialize (Req, Media_List_1);
+      Client.Initialize (Req, Media_List_4);
       .Models.Serialize (Req.Stream, "", P_Body);
 
       URI.Add_Param ("name", Name);
@@ -1082,7 +1084,7 @@ package body .Clients is
       Req   : Swagger.Clients.Request_Type;
    begin
       Client.Set_Accept (Media_List_2);
-      Client.Initialize (Req, Media_List_1);
+      Client.Initialize (Req, Media_List_4);
       .Models.Serialize (Req.Stream, "", P_Body);
 
       URI.Set_Path ("/job/{name}/config.xml");
@@ -1161,7 +1163,7 @@ package body .Clients is
       Req   : Swagger.Clients.Request_Type;
    begin
       Client.Set_Accept (Media_List_2);
-      Client.Initialize (Req, Media_List_1);
+      Client.Initialize (Req, Media_List_4);
       .Models.Serialize (Req.Stream, "", P_Body);
 
       URI.Set_Path ("/view/{name}/config.xml");

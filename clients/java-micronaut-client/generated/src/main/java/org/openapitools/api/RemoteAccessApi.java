@@ -31,7 +31,7 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-16T01:38:50.633047249Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-10-11T12:05:03.866233126Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Client("${openapi-micronaut-client-base-path}")
 public interface RemoteAccessApi {
     /**
@@ -169,7 +169,7 @@ public interface RemoteAccessApi {
      */
     @Post(uri="/createItem")
     
-    @Produces({"application/json"})
+    @Produces({"application/xml"})
     Mono<Void> postCreateItem(
         @QueryValue(value="name") @NotNull String name, 
         @QueryValue(value="from") @Nullable String from, 
@@ -189,7 +189,7 @@ public interface RemoteAccessApi {
      */
     @Post(uri="/createView")
     
-    @Produces({"application/json"})
+    @Produces({"application/xml"})
     Mono<Void> postCreateView(
         @QueryValue(value="name") @NotNull String name, 
         @Header(name="Jenkins-Crumb") @Nullable String jenkinsCrumb, 
@@ -222,7 +222,7 @@ public interface RemoteAccessApi {
      */
     @Post(uri="/job/{name}/config.xml")
     
-    @Produces({"application/json"})
+    @Produces({"application/xml"})
     Mono<Void> postJobConfig(
         @PathVariable(name="name") @NotNull String name, 
         @Body @NotNull String _body, 
@@ -286,7 +286,7 @@ public interface RemoteAccessApi {
      */
     @Post(uri="/view/{name}/config.xml")
     
-    @Produces({"application/json"})
+    @Produces({"application/xml"})
     Mono<Void> postViewConfig(
         @PathVariable(name="name") @NotNull String name, 
         @Body @NotNull String _body, 

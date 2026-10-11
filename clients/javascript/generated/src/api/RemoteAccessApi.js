@@ -535,7 +535,7 @@ export default class RemoteAccessApi {
       };
 
       let authNames = ['jenkins_auth'];
-      let contentTypes = ['application/json'];
+      let contentTypes = ['application/xml'];
       let accepts = ['*/*'];
       let returnType = null;
       return this.apiClient.callApi(
@@ -583,7 +583,7 @@ export default class RemoteAccessApi {
       };
 
       let authNames = ['jenkins_auth'];
-      let contentTypes = ['application/json'];
+      let contentTypes = ['application/xml'];
       let accepts = ['*/*'];
       let returnType = null;
       return this.apiClient.callApi(
@@ -686,7 +686,7 @@ export default class RemoteAccessApi {
       };
 
       let authNames = ['jenkins_auth'];
-      let contentTypes = ['application/json'];
+      let contentTypes = ['application/xml'];
       let accepts = ['*/*'];
       let returnType = null;
       return this.apiClient.callApi(
@@ -916,7 +916,7 @@ export default class RemoteAccessApi {
       };
 
       let authNames = ['jenkins_auth'];
-      let contentTypes = ['application/json'];
+      let contentTypes = ['application/xml'];
       let accepts = ['*/*'];
       let returnType = null;
       return this.apiClient.callApi(

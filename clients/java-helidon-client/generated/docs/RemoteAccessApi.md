@@ -463,7 +463,7 @@ Create a new job using job configuration, or copied from an existing job
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 
@@ -504,7 +504,7 @@ Create a new view using view configuration
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 
@@ -586,7 +586,7 @@ Update job configuration
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 
@@ -783,7 +783,7 @@ Update view configuration
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 

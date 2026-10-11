@@ -122,7 +122,7 @@ paths:
         style: simple
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: Job configuration in config.xml format
@@ -164,7 +164,7 @@ paths:
         style: simple
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: View configuration in config.xml format
@@ -296,7 +296,7 @@ paths:
       - $ref: "#/components/parameters/crumb"
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: Job configuration in config.xml format
@@ -566,7 +566,7 @@ paths:
       - $ref: "#/components/parameters/crumb"
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: View configuration in config.xml format

@@ -270,7 +270,7 @@ post_create_item(Ctx, Name, Optional) ->
     QS = lists:flatten([{<<"name">>, Name}])++openapi_utils:optional_params(['from', 'mode'], _OptionalParams),
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb', 'Content-Type'], _OptionalParams),
     Body1 = Body,
-    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
+    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/xml">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
     openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
@@ -291,7 +291,7 @@ post_create_view(Ctx, Name, Optional) ->
     QS = lists:flatten([{<<"name">>, Name}])++openapi_utils:optional_params([], _OptionalParams),
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb', 'Content-Type'], _OptionalParams),
     Body1 = Body,
-    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
+    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/xml">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
     openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
@@ -333,7 +333,7 @@ post_job_config(Ctx, Name, Body, Optional) ->
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = Body,
-    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
+    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/xml">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
     openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).
@@ -438,7 +438,7 @@ post_view_config(Ctx, Name, Body, Optional) ->
     QS = [],
     Headers = []++openapi_utils:optional_params(['Jenkins-Crumb'], _OptionalParams),
     Body1 = Body,
-    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>]),
+    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/xml">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
     openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).

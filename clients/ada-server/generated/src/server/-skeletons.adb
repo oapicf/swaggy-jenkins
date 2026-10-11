@@ -22,7 +22,8 @@ package body .Skeletons is
    Media_List_1 : aliased constant Swagger.Mime_List := (
      1 => Swagger.Mime_Json);   Media_List_2 : aliased constant Swagger.Mime_List := (
      1 => Mime_1'Access);   Media_List_3 : aliased constant Swagger.Mime_List := (
-     1 => Mime_2'Access);
+     1 => Mime_2'Access);   Media_List_4 : aliased constant Swagger.Mime_List := (
+     1 => Swagger.Mime_Xml);
 
    package body Skeleton is
 
@@ -2536,7 +2537,7 @@ package body .Skeletons is
          Mode := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "mode"));
 
          
-         Swagger.Servers.Read (Req, Media_List_1, Input);
+         Swagger.Servers.Read (Req, Media_List_4, Input);
          if Swagger.Is_Null (Input) then
             Context.Set_Error (415, "Invalid content");
             return;
@@ -2581,7 +2582,7 @@ package body .Skeletons is
          Name := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "name"));
 
          
-         Swagger.Servers.Read (Req, Media_List_1, Input);
+         Swagger.Servers.Read (Req, Media_List_4, Input);
          if Swagger.Is_Null (Input) then
             Context.Set_Error (415, "Invalid content");
             return;
@@ -2662,7 +2663,7 @@ package body .Skeletons is
          
          Name := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
 
-         Swagger.Servers.Read (Req, Media_List_1, Input);
+         Swagger.Servers.Read (Req, Media_List_4, Input);
          if Swagger.Is_Null (Input) then
             Context.Set_Error (415, "Invalid content");
             return;
@@ -2827,7 +2828,7 @@ package body .Skeletons is
          
          Name := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
 
-         Swagger.Servers.Read (Req, Media_List_1, Input);
+         Swagger.Servers.Read (Req, Media_List_4, Input);
          if Swagger.Is_Null (Input) then
             Context.Set_Error (415, "Invalid content");
             return;
@@ -5387,7 +5388,7 @@ package body .Skeletons is
          Mode := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "mode"));
 
          
-         Swagger.Servers.Read (Req, Media_List_1, Input);
+         Swagger.Servers.Read (Req, Media_List_4, Input);
          
          .Models.Deserialize (Input, "body", P_Body);
          Server.Post_Create_Item
@@ -5427,7 +5428,7 @@ package body .Skeletons is
          Name := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "name"));
 
          
-         Swagger.Servers.Read (Req, Media_List_1, Input);
+         Swagger.Servers.Read (Req, Media_List_4, Input);
          
          .Models.Deserialize (Input, "body", P_Body);
          Server.Post_Create_View
@@ -5502,7 +5503,7 @@ package body .Skeletons is
          
          Name := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
 
-         Swagger.Servers.Read (Req, Media_List_1, Input);
+         Swagger.Servers.Read (Req, Media_List_4, Input);
          
          .Models.Deserialize (Input, "body", P_Body);
          Server.Post_Job_Config
@@ -5663,7 +5664,7 @@ package body .Skeletons is
          
          Name := To_Swagger.UString (Swagger.Servers.Get_Path_Parameter (Req, 1));
 
-         Swagger.Servers.Read (Req, Media_List_1, Input);
+         Swagger.Servers.Read (Req, Media_List_4, Input);
          
          .Models.Deserialize (Input, "body", P_Body);
          Server.Post_View_Config

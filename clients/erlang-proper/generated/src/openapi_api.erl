@@ -156,7 +156,7 @@ post_create_item(Name) ->
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/createItem"],
   Body        = Body,
-  ContentType = hd(["application/json"]),
+  ContentType = hd(["application/xml"]),
   QueryString = [<<"name=">>, Name, <<"&">>, <<"from=">>, From, <<"&">>, <<"mode=">>, Mode, <<"&">>],
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path, <<"?">>, QueryString], jsx:encode(Body), ContentType).
@@ -170,7 +170,7 @@ post_create_view(Name) ->
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/createView"],
   Body        = Body,
-  ContentType = hd(["application/json"]),
+  ContentType = hd(["application/xml"]),
   QueryString = [<<"name=">>, Name, <<"&">>],
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path, <<"?">>, QueryString], jsx:encode(Body), ContentType).
@@ -198,7 +198,7 @@ post_job_config(Name, Body) ->
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/job/", Name, "/config.xml"],
   Body        = Body,
-  ContentType = hd(["application/json"]),
+  ContentType = hd(["application/xml"]),
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path], jsx:encode(Body), ContentType).
 
@@ -263,7 +263,7 @@ post_view_config(Name, Body) ->
   Host        = application:get_env(openapi, host, "http://localhost:8080"),
   Path        = ["/view/", Name, "/config.xml"],
   Body        = Body,
-  ContentType = hd(["application/json"]),
+  ContentType = hd(["application/xml"]),
 
   openapi_utils:request(Method, [Host, ?BASE_URL, Path], jsx:encode(Body), ContentType).
 

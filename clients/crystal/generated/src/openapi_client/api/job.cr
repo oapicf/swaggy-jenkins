@@ -43,7 +43,7 @@ module OpenAPIClient
         body: body,
         header: { "Jenkins-Crumb" => jenkins_crumb.try &.to_s },
         accept: %w[*/*],
-        content_type: %w[application/json],
+        content_type: %w[application/xml],
         raw: true,
         auth: %w[jenkins_auth])
     end

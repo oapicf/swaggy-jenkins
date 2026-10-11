@@ -107,16 +107,16 @@ class RemoteAccessApi
             'application/json',
         ],
         'postCreateItem' => [
-            'application/json',
+            'application/xml',
         ],
         'postCreateView' => [
-            'application/json',
+            'application/xml',
         ],
         'postJobBuild' => [
             'application/json',
         ],
         'postJobConfig' => [
-            'application/json',
+            'application/xml',
         ],
         'postJobDelete' => [
             'application/json',
@@ -131,7 +131,7 @@ class RemoteAccessApi
             'application/json',
         ],
         'postViewConfig' => [
-            'application/json',
+            'application/xml',
         ],
     ];
 

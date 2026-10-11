@@ -627,7 +627,7 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 
@@ -685,7 +685,7 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 
@@ -799,7 +799,7 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 
@@ -1071,6 +1071,6 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 

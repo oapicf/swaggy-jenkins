@@ -523,7 +523,7 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/xml',
                         'Accept': '*/*',
                     },
                     params: {
@@ -584,7 +584,7 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/xml',
                         'Accept': '*/*',
                     },
                     params: {
@@ -699,7 +699,7 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/xml',
                         'Accept': '*/*',
                     },
                     params: {
@@ -941,7 +941,7 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/xml',
                         'Accept': '*/*',
                     },
                     params: {

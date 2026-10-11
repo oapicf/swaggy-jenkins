@@ -38,7 +38,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   GithubRepository.JSON_PROPERTY_FULL_NAME
 })
 @JsonTypeName("GithubRepository")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-08-16T01:38:52.864546964Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-10-11T12:05:06.774202963Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class GithubRepository {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

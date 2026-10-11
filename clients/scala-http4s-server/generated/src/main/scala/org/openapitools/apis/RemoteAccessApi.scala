@@ -217,7 +217,7 @@ final case class RemoteAccessApiRoutes[
 
     val routejenkins_auth = AuthedRoutes.of[jenkins_auth, F] {
       case (req @ POST -> Root / "createItem" :? nameQueryParam(name) +& fromQueryParam(from) +& modeQueryParam(mode)) as auth =>
-          delegate.postCreateItem.handle_jenkins_auth(auth, req, req.asJsonDecode[String] , name, from, mode, responses)
+        delegate.postCreateItem.handle_jenkins_auth(auth, req, name, from, mode, responses)
 
     }
 
@@ -235,7 +235,7 @@ final case class RemoteAccessApiRoutes[
 
     val routejenkins_auth = AuthedRoutes.of[jenkins_auth, F] {
       case (req @ POST -> Root / "createView" :? nameQueryParam(name)) as auth =>
-          delegate.postCreateView.handle_jenkins_auth(auth, req, req.asJsonDecode[String] , name, responses)
+        delegate.postCreateView.handle_jenkins_auth(auth, req, name, responses)
 
     }
 
@@ -272,7 +272,7 @@ final case class RemoteAccessApiRoutes[
 
     val routejenkins_auth = AuthedRoutes.of[jenkins_auth, F] {
       case (req @ POST -> Root / "job" / name / "config.xml") as auth =>
-          delegate.postJobConfig.handle_jenkins_auth(auth, req, req.asJsonDecode[String] , name, responses)
+        delegate.postJobConfig.handle_jenkins_auth(auth, req, name, responses)
 
     }
 
@@ -358,7 +358,7 @@ final case class RemoteAccessApiRoutes[
 
     val routejenkins_auth = AuthedRoutes.of[jenkins_auth, F] {
       case (req @ POST -> Root / "view" / name / "config.xml") as auth =>
-          delegate.postViewConfig.handle_jenkins_auth(auth, req, req.asJsonDecode[String] , name, responses)
+        delegate.postViewConfig.handle_jenkins_auth(auth, req, name, responses)
 
     }
 
@@ -708,13 +708,11 @@ trait RemoteAccessApiDelegate[F[_], jenkins_auth] {
     def handle_jenkins_auth(
       auth: jenkins_auth,
       req: Request[F],
-      postCreateItem: F[String],
       name: String,
       from: Option[String],
       mode: Option[String],
       responses: postCreateItemResponses[F]
     ): F[Response[F]]
-
 
   }
   def postCreateItem: postCreateItem
@@ -727,11 +725,9 @@ trait RemoteAccessApiDelegate[F[_], jenkins_auth] {
     def handle_jenkins_auth(
       auth: jenkins_auth,
       req: Request[F],
-      postCreateView: F[String],
       name: String,
       responses: postCreateViewResponses[F]
     ): F[Response[F]]
-
 
   }
   def postCreateView: postCreateView
@@ -761,11 +757,9 @@ trait RemoteAccessApiDelegate[F[_], jenkins_auth] {
     def handle_jenkins_auth(
       auth: jenkins_auth,
       req: Request[F],
-      postJobConfig: F[String],
       name: String,
       responses: postJobConfigResponses[F]
     ): F[Response[F]]
-
 
   }
   def postJobConfig: postJobConfig
@@ -838,11 +832,9 @@ trait RemoteAccessApiDelegate[F[_], jenkins_auth] {
     def handle_jenkins_auth(
       auth: jenkins_auth,
       req: Request[F],
-      postViewConfig: F[String],
       name: String,
       responses: postViewConfigResponses[F]
     ): F[Response[F]]
-
 
   }
   def postViewConfig: postViewConfig

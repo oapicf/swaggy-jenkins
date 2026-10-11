@@ -131,7 +131,7 @@ paths:
         style: simple
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: Job configuration in config.xml format
@@ -148,7 +148,7 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-content-type: application/json
+      x-content-type: application/xml
       x-accepts:
       - '*/*'
       x-tags:
@@ -177,7 +177,7 @@ paths:
         style: simple
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: View configuration in config.xml format
@@ -194,7 +194,7 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-content-type: application/json
+      x-content-type: application/xml
       x-accepts:
       - '*/*'
       x-tags:
@@ -325,7 +325,7 @@ paths:
       - $ref: "#/components/parameters/crumb"
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: Job configuration in config.xml format
@@ -345,7 +345,7 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-content-type: application/json
+      x-content-type: application/xml
       x-accepts:
       - '*/*'
       x-tags:
@@ -629,7 +629,7 @@ paths:
       - $ref: "#/components/parameters/crumb"
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: View configuration in config.xml format
@@ -649,7 +649,7 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-content-type: application/json
+      x-content-type: application/xml
       x-accepts:
       - '*/*'
       x-tags:

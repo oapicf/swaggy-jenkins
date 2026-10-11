@@ -2083,7 +2083,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Consumes</b>: [{isJson=true, mediaType=application/json}]</p>
+     * <p><b>Consumes</b>: [{isXml=true, mediaType=application/xml}]</p>
      * <p><b>Payload</b>: {@link String} (<i>required: false</i>)</p>
      *
      * <p><b>Produces</b>: [{mediaType=*/*}]</p>
@@ -2135,7 +2135,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Consumes</b>: [{isJson=true, mediaType=application/json}]</p>
+     * <p><b>Consumes</b>: [{isXml=true, mediaType=application/xml}]</p>
      * <p><b>Payload</b>: {@link String} (<i>required: false</i>)</p>
      *
      * <p><b>Produces</b>: [{mediaType=*/*}]</p>
@@ -2234,7 +2234,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Consumes</b>: [{isJson=true, mediaType=application/json}]</p>
+     * <p><b>Consumes</b>: [{isXml=true, mediaType=application/xml}]</p>
      * <p><b>Payload</b>: {@link String} (<i>required: true</i>)</p>
      *
      * <p><b>Produces</b>: [{mediaType=*/*}]</p>
@@ -2434,7 +2434,7 @@ public interface PathHandlerInterface {
      * </li>
      * </ul>
      *
-     * <p><b>Consumes</b>: [{isJson=true, mediaType=application/json}]</p>
+     * <p><b>Consumes</b>: [{isXml=true, mediaType=application/xml}]</p>
      * <p><b>Payload</b>: {@link String} (<i>required: true</i>)</p>
      *
      * <p><b>Produces</b>: [{mediaType=*/*}]</p>

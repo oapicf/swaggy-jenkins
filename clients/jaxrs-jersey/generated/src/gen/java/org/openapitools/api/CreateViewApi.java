@@ -28,7 +28,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the createView API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-16T01:39:14.911217398Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-10-11T12:05:34.935738716Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class CreateViewApi  {
    private final CreateViewApiService delegate;
 
@@ -55,7 +55,7 @@ public class CreateViewApi  {
 
     @javax.ws.rs.POST
     
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     @io.swagger.annotations.ApiOperation(value = "", notes = "Create a new view using view configuration", response = Void.class, authorizations = {
         @io.swagger.annotations.Authorization(value = "jenkins_auth")

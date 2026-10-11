@@ -48,7 +48,7 @@ class CreateItemApiController() {
         // "/createItem"
         value = [PATH_POST_CREATE_ITEM],
         produces = ["*/*"],
-        consumes = ["application/json"]
+        consumes = ["application/xml"]
     )
     fun postCreateItem(
         @NotNull @Parameter(description = "Name of the new job", required = true) @Valid @RequestParam(value = "name", required = true) name: kotlin.String,

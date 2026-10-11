@@ -499,7 +499,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
         claims: &Self::Claims,
       header_params: &models::PostCreateItemHeaderParams,
       query_params: &models::PostCreateItemQueryParams,
-            body: &Option<String>,
+            body: &String,
     ) -> Result<PostCreateItemResponse, E>;
 
     /// PostCreateView - POST /createView
@@ -512,7 +512,7 @@ pub trait RemoteAccess<E: std::fmt::Debug + Send + Sync + 'static = ()>: super::
         claims: &Self::Claims,
       header_params: &models::PostCreateViewHeaderParams,
       query_params: &models::PostCreateViewQueryParams,
-            body: &Option<String>,
+            body: &String,
     ) -> Result<PostCreateViewResponse, E>;
 
     /// PostJobBuild - POST /job/{name}/build

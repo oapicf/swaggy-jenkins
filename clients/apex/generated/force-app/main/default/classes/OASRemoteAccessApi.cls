@@ -329,7 +329,7 @@ public class OASRemoteAccessApi {
                 'Content-Type' => (String) params.get('contentType')
             },
             new List<String>{ '*/*' },
-            new List<String>{ 'application/json' },
+            new List<String>{ 'application/xml' },
             new List<String> { 'jenkins_auth' },
             null
         );
@@ -362,7 +362,7 @@ public class OASRemoteAccessApi {
                 'Content-Type' => (String) params.get('contentType')
             },
             new List<String>{ '*/*' },
-            new List<String>{ 'application/json' },
+            new List<String>{ 'application/xml' },
             new List<String> { 'jenkins_auth' },
             null
         );
@@ -427,7 +427,7 @@ public class OASRemoteAccessApi {
                 'Jenkins-Crumb' => (String) params.get('jenkinsCrumb')
             },
             new List<String>{ '*/*' },
-            new List<String>{ 'application/json' },
+            new List<String>{ 'application/xml' },
             new List<String> { 'jenkins_auth' },
             null
         );
@@ -565,7 +565,7 @@ public class OASRemoteAccessApi {
                 'Jenkins-Crumb' => (String) params.get('jenkinsCrumb')
             },
             new List<String>{ '*/*' },
-            new List<String>{ 'application/json' },
+            new List<String>{ 'application/xml' },
             new List<String> { 'jenkins_auth' },
             null
         );

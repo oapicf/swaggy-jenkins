@@ -407,7 +407,7 @@ export class RemoteAccessService {
             headers['Authorization'] = btoa(this.APIConfiguration.username + ':' + this.APIConfiguration.password);
         }
         headers['Accept'] = '*/*';
-        headers['Content-Type'] = 'application/json';
+        headers['Content-Type'] = 'application/xml';
 
         const response: Observable<HttpResponse<any>> = this.httpClient.post(`${this.basePath}/createItem?${queryParameters.join('&')}`, body , headers);
         if (observe === 'body') {
@@ -453,7 +453,7 @@ export class RemoteAccessService {
             headers['Authorization'] = btoa(this.APIConfiguration.username + ':' + this.APIConfiguration.password);
         }
         headers['Accept'] = '*/*';
-        headers['Content-Type'] = 'application/json';
+        headers['Content-Type'] = 'application/xml';
 
         const response: Observable<HttpResponse<any>> = this.httpClient.post(`${this.basePath}/createView?${queryParameters.join('&')}`, body , headers);
         if (observe === 'body') {
@@ -541,7 +541,7 @@ export class RemoteAccessService {
             headers['Authorization'] = btoa(this.APIConfiguration.username + ':' + this.APIConfiguration.password);
         }
         headers['Accept'] = '*/*';
-        headers['Content-Type'] = 'application/json';
+        headers['Content-Type'] = 'application/xml';
 
         const response: Observable<HttpResponse<any>> = this.httpClient.post(`${this.basePath}/job/${encodeURIComponent(String(name))}/config.xml`, body , headers);
         if (observe === 'body') {
@@ -717,7 +717,7 @@ export class RemoteAccessService {
             headers['Authorization'] = btoa(this.APIConfiguration.username + ':' + this.APIConfiguration.password);
         }
         headers['Accept'] = '*/*';
-        headers['Content-Type'] = 'application/json';
+        headers['Content-Type'] = 'application/xml';
 
         const response: Observable<HttpResponse<any>> = this.httpClient.post(`${this.basePath}/view/${encodeURIComponent(String(name))}/config.xml`, body , headers);
         if (observe === 'body') {

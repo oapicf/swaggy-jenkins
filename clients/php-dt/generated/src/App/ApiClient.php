@@ -3290,7 +3290,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostCreateItemParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     ): ResponseInterface
     {
@@ -3317,7 +3317,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostCreateItemParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     ): array
     {
@@ -3360,7 +3360,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostCreateItemParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     )
     {
@@ -3383,7 +3383,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostCreateViewParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     ): ResponseInterface
     {
@@ -3410,7 +3410,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostCreateViewParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     ): array
     {
@@ -3453,7 +3453,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostCreateViewParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     )
     {
@@ -3552,7 +3552,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostJobConfigParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     ): ResponseInterface
     {
@@ -3579,7 +3579,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostJobConfigParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     ): array
     {
@@ -3625,7 +3625,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostJobConfigParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     )
     {
@@ -4094,7 +4094,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostViewConfigParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     ): ResponseInterface
     {
@@ -4121,7 +4121,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostViewConfigParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     ): array
     {
@@ -4167,7 +4167,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         \App\DTO\PostViewConfigParameterData $parameters,
         string $requestContent,
         iterable $security = ['jenkins_auth' => []],
-        string $requestMediaType = 'application/json',
+        string $requestMediaType = 'application/xml',
         string $responseMediaType = '*/*'
     )
     {

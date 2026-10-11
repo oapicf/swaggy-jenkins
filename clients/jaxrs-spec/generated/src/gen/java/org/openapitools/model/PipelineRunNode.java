@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("PipelineRunNode")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-16T01:39:23.681265440Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineRunNode   {
   private String propertyClass;
   private String displayName;

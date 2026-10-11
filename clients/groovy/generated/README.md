@@ -6,7 +6,7 @@ This Groovy package, using the [http-builder-ng library](https://http-builder-ng
 
 - API version: 3.4.1-pre.0
 - Package version: 3.4.1-pre.0
-- Build date: 2026-08-16T01:38:27.690641469Z[Etc/UTC]
+- Build date: 2026-10-11T12:04:34.244371266Z[Etc/UTC]
 - Generator version: 7.24.0
 - Build package: org.openapitools.codegen.languages.GroovyClientCodegen
 For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)

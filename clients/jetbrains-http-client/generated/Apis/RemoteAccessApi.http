@@ -67,7 +67,7 @@ Authorization: Basic: {{username-password}}
 ### 
 ## 
 POST http://localhost/createItem?name={{name}}&from={{from}}&mode={{mode}}
-Content-Type: application/json
+Content-Type: application/xml
 Accept: */*
 Jenkins-Crumb: {{jenkinsCrumb}}
 Content-Type: {{contentType}}
@@ -79,7 +79,7 @@ Authorization: Basic: {{username-password}}
 ### 
 ## 
 POST http://localhost/createView?name={{name}}
-Content-Type: application/json
+Content-Type: application/xml
 Accept: */*
 Jenkins-Crumb: {{jenkinsCrumb}}
 Content-Type: {{contentType}}
@@ -97,7 +97,7 @@ Authorization: Basic: {{username-password}}
 ### 
 ## 
 POST http://localhost/job/{{name}}/config.xml
-Content-Type: application/json
+Content-Type: application/xml
 Accept: */*
 Jenkins-Crumb: {{jenkinsCrumb}}
 Authorization: Basic: {{username-password}}
@@ -132,7 +132,7 @@ Authorization: Basic: {{username-password}}
 ### 
 ## 
 POST http://localhost/view/{{name}}/config.xml
-Content-Type: application/json
+Content-Type: application/xml
 Accept: */*
 Jenkins-Crumb: {{jenkinsCrumb}}
 Authorization: Basic: {{username-password}}

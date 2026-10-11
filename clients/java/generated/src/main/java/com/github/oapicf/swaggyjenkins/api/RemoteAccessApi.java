@@ -1639,7 +1639,7 @@ public class RemoteAccessApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -1806,7 +1806,7 @@ public class RemoteAccessApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2132,7 +2132,7 @@ public class RemoteAccessApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -2862,7 +2862,7 @@ public class RemoteAccessApi {
         }
 
         final String[] localVarContentTypes = {
-            "application/json"
+            "application/xml"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {

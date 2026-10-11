@@ -158,7 +158,7 @@ public class JobApi extends RouteBuilder {
                 .bindingMode(RestBindingMode.off)
                 .produces("*/*")
                 .outType(Void.class)
-                .consumes("application/json")
+                .consumes("application/xml")
                 
                 .param()
                     .name("name")

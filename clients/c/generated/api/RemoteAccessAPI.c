@@ -1073,7 +1073,7 @@ RemoteAccessAPI_postCreateItem(apiClient_t *apiClient, char *name, char *from, c
     localVarBodyParameters = strdup(body);
     localVarBodyLength = strlen(localVarBodyParameters);
     list_addElement(localVarHeaderType,"*/*"); //produces
-    list_addElement(localVarContentType,"application/json"); //consumes
+    list_addElement(localVarContentType,"application/xml"); //consumes
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -1263,7 +1263,7 @@ RemoteAccessAPI_postCreateView(apiClient_t *apiClient, char *name, char *Jenkins
     localVarBodyParameters = strdup(body);
     localVarBodyLength = strlen(localVarBodyParameters);
     list_addElement(localVarHeaderType,"*/*"); //produces
-    list_addElement(localVarContentType,"application/json"); //consumes
+    list_addElement(localVarContentType,"application/xml"); //consumes
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -1568,7 +1568,7 @@ RemoteAccessAPI_postJobConfig(apiClient_t *apiClient, char *name, char *body, ch
     localVarBodyParameters = strdup(body);
     localVarBodyLength = strlen(localVarBodyParameters);
     list_addElement(localVarHeaderType,"*/*"); //produces
-    list_addElement(localVarContentType,"application/json"); //consumes
+    list_addElement(localVarContentType,"application/xml"); //consumes
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -2078,7 +2078,7 @@ RemoteAccessAPI_postViewConfig(apiClient_t *apiClient, char *name, char *body, c
     localVarBodyParameters = strdup(body);
     localVarBodyLength = strlen(localVarBodyParameters);
     list_addElement(localVarHeaderType,"*/*"); //produces
-    list_addElement(localVarContentType,"application/json"); //consumes
+    list_addElement(localVarContentType,"application/xml"); //consumes
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,

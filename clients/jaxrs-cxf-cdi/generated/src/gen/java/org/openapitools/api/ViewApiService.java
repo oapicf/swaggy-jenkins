@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-08-16T01:39:12.693690954Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSCXFCDIServerCodegen", date = "2026-10-11T12:05:32.080247683Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public interface ViewApiService {
       public Response getView(String name, SecurityContext securityContext);
       public Response getViewConfig(String name, SecurityContext securityContext);

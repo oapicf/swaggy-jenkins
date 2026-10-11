@@ -912,7 +912,7 @@ class RemoteAccessApi {
         ],
         ...?extra,
       },
-      contentType: 'application/json',
+      contentType: 'application/xml',
       validateStatus: validateStatus,
     );
 
@@ -1000,7 +1000,7 @@ class RemoteAccessApi {
         ],
         ...?extra,
       },
-      contentType: 'application/json',
+      contentType: 'application/xml',
       validateStatus: validateStatus,
     );
 
@@ -1149,7 +1149,7 @@ class RemoteAccessApi {
         ],
         ...?extra,
       },
-      contentType: 'application/json',
+      contentType: 'application/xml',
       validateStatus: validateStatus,
     );
 
@@ -1450,7 +1450,7 @@ class RemoteAccessApi {
         ],
         ...?extra,
       },
-      contentType: 'application/json',
+      contentType: 'application/xml',
       validateStatus: validateStatus,
     );
 

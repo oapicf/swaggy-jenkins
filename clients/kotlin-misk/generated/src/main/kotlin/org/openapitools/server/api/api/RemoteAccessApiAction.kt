@@ -151,7 +151,7 @@ class RemoteAccessApiAction @Inject constructor(
 
     @Post("/createItem")
     @Description("")
-    @RequestContentType(MediaTypes.APPLICATION_JSON)
+    @RequestContentType(MediaTypes.APPLICATION_XML)
     @ResponseContentType(MediaTypes.ALL)
     @LogRequestResponse(bodySampling = 1.0, errorBodySampling = 1.0)
     fun postCreateItem(
@@ -167,7 +167,7 @@ class RemoteAccessApiAction @Inject constructor(
 
     @Post("/createView")
     @Description("")
-    @RequestContentType(MediaTypes.APPLICATION_JSON)
+    @RequestContentType(MediaTypes.APPLICATION_XML)
     @ResponseContentType(MediaTypes.ALL)
     @LogRequestResponse(bodySampling = 1.0, errorBodySampling = 1.0)
     fun postCreateView(
@@ -193,7 +193,7 @@ class RemoteAccessApiAction @Inject constructor(
 
     @Post("/job/{name}/config.xml")
     @Description("")
-    @RequestContentType(MediaTypes.APPLICATION_JSON)
+    @RequestContentType(MediaTypes.APPLICATION_XML)
     @ResponseContentType(MediaTypes.ALL)
     @LogRequestResponse(bodySampling = 1.0, errorBodySampling = 1.0)
     fun postJobConfig(
@@ -246,7 +246,7 @@ class RemoteAccessApiAction @Inject constructor(
 
     @Post("/view/{name}/config.xml")
     @Description("")
-    @RequestContentType(MediaTypes.APPLICATION_JSON)
+    @RequestContentType(MediaTypes.APPLICATION_XML)
     @ResponseContentType(MediaTypes.ALL)
     @LogRequestResponse(bodySampling = 1.0, errorBodySampling = 1.0)
     fun postViewConfig(

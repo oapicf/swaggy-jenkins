@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-16T01:42:02.317096987Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Validated
 @Tag(name = "remoteAccess", description = "the remoteAccess API")
 public interface CreateItemApi {
@@ -78,7 +78,7 @@ public interface CreateItemApi {
         method = RequestMethod.POST,
         value = CreateItemApi.PATH_POST_CREATE_ITEM,
         produces = { "*/*" },
-        consumes = { "application/json" }
+        consumes = { "application/xml" }
     )
     default ResponseEntity<Void> postCreateItem(
         @NotNull @Parameter(name = "name", description = "Name of the new job", required = true, in = ParameterIn.QUERY) @Valid @RequestParam(value = "name", required = true) String name,

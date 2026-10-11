@@ -285,7 +285,7 @@ class RemoteAccessApi(baseUrl: String) {
 ): Request[Either[ResponseException[String, Exception], Unit], Any] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/createItem?name=${ name }&from=${ from }&mode=${ mode }")
-      .contentType("application/json")
+      .contentType("application/xml")
       .header("Jenkins-Crumb", jenkinsCrumb.map(_.toString()))
       .header("Content-Type", contentType.map(_.toString()))
       .auth.basic(username, password)
@@ -313,7 +313,7 @@ class RemoteAccessApi(baseUrl: String) {
 ): Request[Either[ResponseException[String, Exception], Unit], Any] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/createView?name=${ name }")
-      .contentType("application/json")
+      .contentType("application/xml")
       .header("Jenkins-Crumb", jenkinsCrumb.map(_.toString()))
       .header("Content-Type", contentType.map(_.toString()))
       .auth.basic(username, password)
@@ -368,7 +368,7 @@ class RemoteAccessApi(baseUrl: String) {
 ): Request[Either[ResponseException[String, Exception], Unit], Any] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/job/${name}/config.xml")
-      .contentType("application/json")
+      .contentType("application/xml")
       .header("Jenkins-Crumb", jenkinsCrumb.map(_.toString()))
       .auth.basic(username, password)
       .body(body)
@@ -491,7 +491,7 @@ class RemoteAccessApi(baseUrl: String) {
 ): Request[Either[ResponseException[String, Exception], Unit], Any] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/view/${name}/config.xml")
-      .contentType("application/json")
+      .contentType("application/xml")
       .header("Jenkins-Crumb", jenkinsCrumb.map(_.toString()))
       .auth.basic(username, password)
       .body(body)

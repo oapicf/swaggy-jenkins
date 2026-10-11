@@ -162,7 +162,7 @@
         } ],
         "requestBody" : {
           "content" : {
-            "application/json" : {
+            "application/xml" : {
               "schema" : {
                 "type" : "string"
               }
@@ -188,7 +188,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-content-type" : "application/json",
+        "x-content-type" : "application/xml",
         "x-accepts" : [ "*/*" ]
       }
     },
@@ -221,7 +221,7 @@
         } ],
         "requestBody" : {
           "content" : {
-            "application/json" : {
+            "application/xml" : {
               "schema" : {
                 "type" : "string"
               }
@@ -247,7 +247,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-content-type" : "application/json",
+        "x-content-type" : "application/xml",
         "x-accepts" : [ "*/*" ]
       }
     },
@@ -410,7 +410,7 @@
         } ],
         "requestBody" : {
           "content" : {
-            "application/json" : {
+            "application/xml" : {
               "schema" : {
                 "type" : "string"
               }
@@ -440,7 +440,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-content-type" : "application/json",
+        "x-content-type" : "application/xml",
         "x-accepts" : [ "*/*" ]
       }
     },
@@ -795,7 +795,7 @@
         } ],
         "requestBody" : {
           "content" : {
-            "application/json" : {
+            "application/xml" : {
               "schema" : {
                 "type" : "string"
               }
@@ -825,7 +825,7 @@
           "jenkins_auth" : [ ]
         } ],
         "tags" : [ "remoteAccess" ],
-        "x-content-type" : "application/json",
+        "x-content-type" : "application/xml",
         "x-accepts" : [ "*/*" ]
       }
     },

@@ -273,7 +273,7 @@ class RemoteAccessApi(baseUrl: String) {
   def postCreateItem(username: String, password: String)(name: String, from: Option[String] = None, mode: Option[String] = None, jenkinsCrumb: Option[String] = None, contentType: Option[String] = None, body: Option[String] = None): Request[Either[ResponseException[String], Unit]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/createItem?name=${ name }&from=${ from }&mode=${ mode }")
-      .contentType("application/json")
+      .contentType("application/xml")
       .header("Jenkins-Crumb", jenkinsCrumb)
       .header("Content-Type", contentType)
       .auth.basic(username, password)
@@ -300,7 +300,7 @@ class RemoteAccessApi(baseUrl: String) {
   def postCreateView(username: String, password: String)(name: String, jenkinsCrumb: Option[String] = None, contentType: Option[String] = None, body: Option[String] = None): Request[Either[ResponseException[String], Unit]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/createView?name=${ name }")
-      .contentType("application/json")
+      .contentType("application/xml")
       .header("Jenkins-Crumb", jenkinsCrumb)
       .header("Content-Type", contentType)
       .auth.basic(username, password)
@@ -353,7 +353,7 @@ class RemoteAccessApi(baseUrl: String) {
   def postJobConfig(username: String, password: String)(name: String, body: String, jenkinsCrumb: Option[String] = None): Request[Either[ResponseException[String], Unit]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/job/${name}/config.xml")
-      .contentType("application/json")
+      .contentType("application/xml")
       .header("Jenkins-Crumb", jenkinsCrumb)
       .auth.basic(username, password)
       .body(asJson(body))
@@ -471,7 +471,7 @@ class RemoteAccessApi(baseUrl: String) {
   def postViewConfig(username: String, password: String)(name: String, body: String, jenkinsCrumb: Option[String] = None): Request[Either[ResponseException[String], Unit]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/view/${name}/config.xml")
-      .contentType("application/json")
+      .contentType("application/xml")
       .header("Jenkins-Crumb", jenkinsCrumb)
       .auth.basic(username, password)
       .body(asJson(body))

@@ -146,7 +146,7 @@ public interface RemoteAccessApi  {
 
     @POST
     @Path("/createItem")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     @ApiOperation(value = "", tags={ "remoteAccess" })
     @ApiResponses(value = { 
@@ -158,7 +158,7 @@ public interface RemoteAccessApi  {
 
     @POST
     @Path("/createView")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     @ApiOperation(value = "", tags={ "remoteAccess" })
     @ApiResponses(value = { 
@@ -181,7 +181,7 @@ public interface RemoteAccessApi  {
 
     @POST
     @Path("/job/{name}/config.xml")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     @ApiOperation(value = "", tags={ "remoteAccess" })
     @ApiResponses(value = { 
@@ -234,7 +234,7 @@ public interface RemoteAccessApi  {
 
     @POST
     @Path("/view/{name}/config.xml")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     @ApiOperation(value = "", tags={ "remoteAccess" })
     @ApiResponses(value = { 

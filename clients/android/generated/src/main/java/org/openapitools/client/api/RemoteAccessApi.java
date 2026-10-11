@@ -1476,7 +1476,7 @@ public class RemoteAccessApi {
     headerParams.put("Jenkins-Crumb", ApiInvoker.parameterToString(jenkinsCrumb));
     headerParams.put("Content-Type", ApiInvoker.parameterToString(contentType));
     String[] contentTypes = {
-      "application/json"
+      "application/xml"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -1547,7 +1547,7 @@ public class RemoteAccessApi {
     headerParams.put("Content-Type", ApiInvoker.parameterToString(contentType));
 
     String[] contentTypes = {
-      "application/json"
+      "application/xml"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -1611,7 +1611,7 @@ public class RemoteAccessApi {
     headerParams.put("Jenkins-Crumb", ApiInvoker.parameterToString(jenkinsCrumb));
     headerParams.put("Content-Type", ApiInvoker.parameterToString(contentType));
     String[] contentTypes = {
-      "application/json"
+      "application/xml"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -1680,7 +1680,7 @@ public class RemoteAccessApi {
     headerParams.put("Content-Type", ApiInvoker.parameterToString(contentType));
 
     String[] contentTypes = {
-      "application/json"
+      "application/xml"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -1888,7 +1888,7 @@ public class RemoteAccessApi {
     Map<String, String> formParams = new HashMap<String, String>();
     headerParams.put("Jenkins-Crumb", ApiInvoker.parameterToString(jenkinsCrumb));
     String[] contentTypes = {
-      "application/json"
+      "application/xml"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -1960,7 +1960,7 @@ public class RemoteAccessApi {
     headerParams.put("Jenkins-Crumb", ApiInvoker.parameterToString(jenkinsCrumb));
 
     String[] contentTypes = {
-      "application/json"
+      "application/xml"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -2530,7 +2530,7 @@ public class RemoteAccessApi {
     Map<String, String> formParams = new HashMap<String, String>();
     headerParams.put("Jenkins-Crumb", ApiInvoker.parameterToString(jenkinsCrumb));
     String[] contentTypes = {
-      "application/json"
+      "application/xml"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
@@ -2602,7 +2602,7 @@ public class RemoteAccessApi {
     headerParams.put("Jenkins-Crumb", ApiInvoker.parameterToString(jenkinsCrumb));
 
     String[] contentTypes = {
-      "application/json"
+      "application/xml"
     };
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 

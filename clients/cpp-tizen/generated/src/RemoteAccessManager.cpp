@@ -1714,7 +1714,7 @@ static bool postCreateItemHelper(char * accessToken,
 	string accessHeader = "Authorization: Bearer ";
 	accessHeader.append(accessToken);
 	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
+	headerList = curl_slist_append(headerList, "Content-Type: application/xml");
 
 	map <string, string> queryParams;
 	string itemAtq;
@@ -1877,7 +1877,7 @@ static bool postCreateViewHelper(char * accessToken,
 	string accessHeader = "Authorization: Bearer ";
 	accessHeader.append(accessToken);
 	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
+	headerList = curl_slist_append(headerList, "Content-Type: application/xml");
 
 	map <string, string> queryParams;
 	string itemAtq;
@@ -2167,7 +2167,7 @@ static bool postJobConfigHelper(char * accessToken,
 	string accessHeader = "Authorization: Bearer ";
 	accessHeader.append(accessToken);
 	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
+	headerList = curl_slist_append(headerList, "Content-Type: application/xml");
 
 	map <string, string> queryParams;
 	string itemAtq;
@@ -2856,7 +2856,7 @@ static bool postViewConfigHelper(char * accessToken,
 	string accessHeader = "Authorization: Bearer ";
 	accessHeader.append(accessToken);
 	headerList = curl_slist_append(headerList, accessHeader.c_str());
-	headerList = curl_slist_append(headerList, "Content-Type: application/json");
+	headerList = curl_slist_append(headerList, "Content-Type: application/xml");
 
 	map <string, string> queryParams;
 	string itemAtq;

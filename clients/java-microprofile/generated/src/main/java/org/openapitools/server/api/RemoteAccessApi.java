@@ -100,13 +100,13 @@ public interface RemoteAccessApi  {
 
     @POST
     @Path("/createItem")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     void postCreateItem(@QueryParam("name") String name, @QueryParam("from") String from, @QueryParam("mode") String mode, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb, @HeaderParam("Content-Type")  String contentType, String body) throws ApiException, ProcessingException;
 
     @POST
     @Path("/createView")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     void postCreateView(@QueryParam("name") String name, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb, @HeaderParam("Content-Type")  String contentType, String body) throws ApiException, ProcessingException;
 
@@ -116,7 +116,7 @@ public interface RemoteAccessApi  {
 
     @POST
     @Path("/job/{name}/config.xml")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     void postJobConfig(@PathParam("name") String name, String body, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb) throws ApiException, ProcessingException;
 
@@ -138,7 +138,7 @@ public interface RemoteAccessApi  {
 
     @POST
     @Path("/view/{name}/config.xml")
-    @Consumes({ "application/json" })
+    @Consumes({ "application/xml" })
     @Produces({ "*/*" })
     void postViewConfig(@PathParam("name") String name, String body, @HeaderParam("Jenkins-Crumb")  String jenkinsCrumb) throws ApiException, ProcessingException;
 }

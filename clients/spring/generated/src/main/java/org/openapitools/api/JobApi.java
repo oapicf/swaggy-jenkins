@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-16T01:42:02.317096987Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Validated
 @Tag(name = "remoteAccess", description = "the remoteAccess API")
 public interface JobApi {
@@ -303,7 +303,7 @@ public interface JobApi {
         method = RequestMethod.POST,
         value = JobApi.PATH_POST_JOB_CONFIG,
         produces = { "*/*" },
-        consumes = { "application/json" }
+        consumes = { "application/xml" }
     )
     default ResponseEntity<Void> postJobConfig(
         @Parameter(name = "name", description = "Name of the job", required = true, in = ParameterIn.PATH) @PathVariable("name") String name,

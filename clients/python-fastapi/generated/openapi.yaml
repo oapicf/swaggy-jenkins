@@ -125,7 +125,7 @@ paths:
         style: simple
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               title: _class
               type: string
@@ -168,7 +168,7 @@ paths:
         style: simple
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               title: _class
               type: string
@@ -299,7 +299,7 @@ paths:
       - $ref: "#/components/parameters/crumb"
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               title: _class
               type: string
@@ -563,7 +563,7 @@ paths:
       - $ref: "#/components/parameters/crumb"
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               title: _class
               type: string

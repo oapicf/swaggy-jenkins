@@ -18,7 +18,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("PipelineBranchesitem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-08-16T01:39:23.681265440Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class PipelineBranchesitem   {
   private String displayName;
   private Integer estimatedDurationInMillis;

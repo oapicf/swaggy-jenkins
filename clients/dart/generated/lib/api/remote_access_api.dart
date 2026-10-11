@@ -648,7 +648,7 @@ class RemoteAccessApi {
       headerParams[r'Content-Type'] = parameterToString(contentType);
     }
 
-    const contentTypes = <String>['application/json'];
+    const contentTypes = <String>['application/xml'];
 
 
     return apiClient.invokeAPI(
@@ -728,7 +728,7 @@ class RemoteAccessApi {
       headerParams[r'Content-Type'] = parameterToString(contentType);
     }
 
-    const contentTypes = <String>['application/json'];
+    const contentTypes = <String>['application/xml'];
 
 
     return apiClient.invokeAPI(
@@ -866,7 +866,7 @@ class RemoteAccessApi {
       headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    const contentTypes = <String>['application/json'];
+    const contentTypes = <String>['application/xml'];
 
 
     return apiClient.invokeAPI(
@@ -1162,7 +1162,7 @@ class RemoteAccessApi {
       headerParams[r'Jenkins-Crumb'] = parameterToString(jenkinsCrumb);
     }
 
-    const contentTypes = <String>['application/json'];
+    const contentTypes = <String>['application/xml'];
 
 
     return apiClient.invokeAPI(

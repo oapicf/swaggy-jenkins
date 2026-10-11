@@ -14,7 +14,7 @@ module OpenAPIClient
         header: { "Jenkins-Crumb" => jenkins_crumb.try &.to_s, "Content-Type" => content_type.try &.to_s },
         query: { "name" => name, "from" => from, "mode" => mode },
         accept: %w[*/*],
-        content_type: %w[application/json],
+        content_type: %w[application/xml],
         raw: true,
         auth: %w[jenkins_auth])
     end

@@ -342,7 +342,7 @@ export class RemoteAccessApi extends BaseAPI {
         throwIfNullOrUndefined(name, 'name', 'postCreateItem');
 
         const headers: HttpHeaders = {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/xml',
             ...(jenkinsCrumb != null ? { 'Jenkins-Crumb': String(jenkinsCrumb) } : undefined),
             ...(contentType != null ? { 'Content-Type': String(contentType) } : undefined),
             ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
@@ -373,7 +373,7 @@ export class RemoteAccessApi extends BaseAPI {
         throwIfNullOrUndefined(name, 'name', 'postCreateView');
 
         const headers: HttpHeaders = {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/xml',
             ...(jenkinsCrumb != null ? { 'Jenkins-Crumb': String(jenkinsCrumb) } : undefined),
             ...(contentType != null ? { 'Content-Type': String(contentType) } : undefined),
             ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
@@ -430,7 +430,7 @@ export class RemoteAccessApi extends BaseAPI {
         throwIfNullOrUndefined(body, 'body', 'postJobConfig');
 
         const headers: HttpHeaders = {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/xml',
             ...(jenkinsCrumb != null ? { 'Jenkins-Crumb': String(jenkinsCrumb) } : undefined),
             ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
         };
@@ -533,7 +533,7 @@ export class RemoteAccessApi extends BaseAPI {
         throwIfNullOrUndefined(body, 'body', 'postViewConfig');
 
         const headers: HttpHeaders = {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/xml',
             ...(jenkinsCrumb != null ? { 'Jenkins-Crumb': String(jenkinsCrumb) } : undefined),
             ...(this.configuration.username != null && this.configuration.password != null ? { Authorization: `Basic ${btoa(this.configuration.username + ':' + this.configuration.password)}` } : undefined),
         };

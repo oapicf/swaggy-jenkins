@@ -96,7 +96,7 @@ class ViewApiController() {
         // "/view/{name}/config.xml"
         value = [PATH_POST_VIEW_CONFIG],
         produces = ["*/*"],
-        consumes = ["application/json"]
+        consumes = ["application/xml"]
     )
     fun postViewConfig(
         @Parameter(description = "Name of the view", required = true) @PathVariable("name") name: kotlin.String,

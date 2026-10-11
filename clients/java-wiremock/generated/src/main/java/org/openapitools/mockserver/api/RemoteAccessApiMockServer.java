@@ -772,7 +772,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostCreateItem200(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String from, @javax.annotation.Nullable String mode, @javax.annotation.Nullable String jenkinsCrumb, @javax.annotation.Nullable String contentType, @javax.annotation.Nullable String body) {
         MappingBuilder stub = post(urlPathEqualTo("/createItem"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -800,7 +800,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostCreateItem400(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String from, @javax.annotation.Nullable String mode, @javax.annotation.Nullable String jenkinsCrumb, @javax.annotation.Nullable String contentType, @javax.annotation.Nullable String body) {
         MappingBuilder stub = post(urlPathEqualTo("/createItem"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -828,7 +828,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostCreateItem401(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String from, @javax.annotation.Nullable String mode, @javax.annotation.Nullable String jenkinsCrumb, @javax.annotation.Nullable String contentType, @javax.annotation.Nullable String body) {
         MappingBuilder stub = post(urlPathEqualTo("/createItem"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -856,7 +856,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostCreateItem403(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String from, @javax.annotation.Nullable String mode, @javax.annotation.Nullable String jenkinsCrumb, @javax.annotation.Nullable String contentType, @javax.annotation.Nullable String body) {
         MappingBuilder stub = post(urlPathEqualTo("/createItem"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -884,7 +884,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostCreateItemFault(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String from, @javax.annotation.Nullable String mode, @javax.annotation.Nullable String jenkinsCrumb, @javax.annotation.Nullable String contentType, @javax.annotation.Nullable String body, Fault fault) {
         MappingBuilder stub = post(urlPathEqualTo("/createItem"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -917,7 +917,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostCreateView200(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String jenkinsCrumb, @javax.annotation.Nullable String contentType, @javax.annotation.Nullable String body) {
         MappingBuilder stub = post(urlPathEqualTo("/createView"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -939,7 +939,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostCreateView400(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String jenkinsCrumb, @javax.annotation.Nullable String contentType, @javax.annotation.Nullable String body) {
         MappingBuilder stub = post(urlPathEqualTo("/createView"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -961,7 +961,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostCreateView401(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String jenkinsCrumb, @javax.annotation.Nullable String contentType, @javax.annotation.Nullable String body) {
         MappingBuilder stub = post(urlPathEqualTo("/createView"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -983,7 +983,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostCreateView403(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String jenkinsCrumb, @javax.annotation.Nullable String contentType, @javax.annotation.Nullable String body) {
         MappingBuilder stub = post(urlPathEqualTo("/createView"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1005,7 +1005,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostCreateViewFault(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String jenkinsCrumb, @javax.annotation.Nullable String contentType, @javax.annotation.Nullable String body, Fault fault) {
         MappingBuilder stub = post(urlPathEqualTo("/createView"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1149,7 +1149,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostJobConfig200(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb) {
         MappingBuilder stub = post(urlPathTemplate("/job/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1168,7 +1168,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostJobConfig400(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb) {
         MappingBuilder stub = post(urlPathTemplate("/job/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1187,7 +1187,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostJobConfig401(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb) {
         MappingBuilder stub = post(urlPathTemplate("/job/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1206,7 +1206,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostJobConfig403(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb) {
         MappingBuilder stub = post(urlPathTemplate("/job/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1225,7 +1225,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostJobConfig404(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb) {
         MappingBuilder stub = post(urlPathTemplate("/job/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1244,7 +1244,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostJobConfigFault(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb, Fault fault) {
         MappingBuilder stub = post(urlPathTemplate("/job/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1580,7 +1580,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostViewConfig200(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb) {
         MappingBuilder stub = post(urlPathTemplate("/view/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1599,7 +1599,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostViewConfig400(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb) {
         MappingBuilder stub = post(urlPathTemplate("/view/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1618,7 +1618,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostViewConfig401(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb) {
         MappingBuilder stub = post(urlPathTemplate("/view/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1637,7 +1637,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostViewConfig403(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb) {
         MappingBuilder stub = post(urlPathTemplate("/view/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1656,7 +1656,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostViewConfig404(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb) {
         MappingBuilder stub = post(urlPathTemplate("/view/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()
@@ -1675,7 +1675,7 @@ public class RemoteAccessApiMockServer {
     public static MappingBuilder stubPostViewConfigFault(@javax.annotation.Nonnull String name, @javax.annotation.Nonnull String body, @javax.annotation.Nullable String jenkinsCrumb, Fault fault) {
         MappingBuilder stub = post(urlPathTemplate("/view/{name}/config.xml"))
             .withHeader("Accept", containing("*/*"))
-            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/json")))
+            .withHeader("Content-Type", havingExactly(equalToIgnoreCase("application/xml")))
             .withHeader("Authorization", matching(".*"))
             .withRequestBody(equalToJson(body))
             .willReturn(aResponse()

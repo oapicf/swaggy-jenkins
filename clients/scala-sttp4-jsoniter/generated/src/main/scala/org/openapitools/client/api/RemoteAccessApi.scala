@@ -349,7 +349,7 @@ case class RemoteAccessApi[Auth <: org.openapitools.client.core.Authorization] p
 
     basicRequest
       .method(Method.POST, requestURL)
-      .contentType("application/json")
+      .contentType("application/xml")
       .headers(HeaderSerializable.serialize("Jenkins-Crumb", jenkinsCrumb, false))
       .headers(HeaderSerializable.serialize("Content-Type", contentType, false))
       .auth(authConfig)
@@ -380,7 +380,7 @@ case class RemoteAccessApi[Auth <: org.openapitools.client.core.Authorization] p
 
     basicRequest
       .method(Method.POST, requestURL)
-      .contentType("application/json")
+      .contentType("application/xml")
       .headers(HeaderSerializable.serialize("Jenkins-Crumb", jenkinsCrumb, false))
       .headers(HeaderSerializable.serialize("Content-Type", contentType, false))
       .auth(authConfig)
@@ -443,7 +443,7 @@ case class RemoteAccessApi[Auth <: org.openapitools.client.core.Authorization] p
 
     basicRequest
       .method(Method.POST, requestURL)
-      .contentType("application/json")
+      .contentType("application/xml")
       .headers(HeaderSerializable.serialize("Jenkins-Crumb", jenkinsCrumb, false))
       .auth(authConfig)
       .body(asJson(body))
@@ -581,7 +581,7 @@ case class RemoteAccessApi[Auth <: org.openapitools.client.core.Authorization] p
 
     basicRequest
       .method(Method.POST, requestURL)
-      .contentType("application/json")
+      .contentType("application/xml")
       .headers(HeaderSerializable.serialize("Jenkins-Crumb", jenkinsCrumb, false))
       .auth(authConfig)
       .body(asJson(body))

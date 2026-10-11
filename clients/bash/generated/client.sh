@@ -2227,7 +2227,7 @@ print_postCreateItem_help() {
         | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}Content-Type${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Content type header application/xml ${YELLOW}Specify as: Content-Type:value${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF}${OFF} - Job configuration in config.xml format" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/xml]${OFF}${OFF} - Job configuration in config.xml format" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -2256,7 +2256,7 @@ print_postCreateView_help() {
         | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}Content-Type${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Content type header application/xml ${YELLOW}Specify as: Content-Type:value${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF}${OFF} - View configuration in config.xml format" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/xml]${OFF}${OFF} - View configuration in config.xml format" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -2314,7 +2314,7 @@ print_postJobConfig_help() {
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the job ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - Job configuration in config.xml format" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/xml]${OFF} ${RED}(required)${OFF}${OFF} - Job configuration in config.xml format" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -2443,7 +2443,7 @@ print_postViewConfig_help() {
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}name${OFF} ${BLUE}[string]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - Name of the view ${YELLOW}Specify as: name=value${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}Jenkins-Crumb${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - CSRF protection token ${YELLOW}Specify as: Jenkins-Crumb:value${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json]${OFF} ${RED}(required)${OFF}${OFF} - View configuration in config.xml format" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/xml]${OFF} ${RED}(required)${OFF}${OFF} - View configuration in config.xml format" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -4303,7 +4303,7 @@ call_postCreateItem() {
     # if values produces and consumes are defined unambiguously
     #
     if [[ -z $header_content_type ]]; then
-        header_content_type="application/json"
+        header_content_type="application/xml"
     fi
 
 
@@ -4311,7 +4311,7 @@ call_postCreateItem() {
         :
         echo "ERROR: Request's content-type not specified!!!"
         echo "This operation expects content-type in one of the following formats:"
-        echo -e "\\t- application/json"
+        echo -e "\\t- application/xml"
         echo ""
         echo "Use '--content-type' to set proper content type"
         exit 1
@@ -4381,7 +4381,7 @@ call_postCreateView() {
     # if values produces and consumes are defined unambiguously
     #
     if [[ -z $header_content_type ]]; then
-        header_content_type="application/json"
+        header_content_type="application/xml"
     fi
 
 
@@ -4389,7 +4389,7 @@ call_postCreateView() {
         :
         echo "ERROR: Request's content-type not specified!!!"
         echo "This operation expects content-type in one of the following formats:"
-        echo -e "\\t- application/json"
+        echo -e "\\t- application/xml"
         echo ""
         echo "Use '--content-type' to set proper content type"
         exit 1
@@ -4495,7 +4495,7 @@ call_postJobConfig() {
     # if values produces and consumes are defined unambiguously
     #
     if [[ -z $header_content_type ]]; then
-        header_content_type="application/json"
+        header_content_type="application/xml"
     fi
 
 
@@ -4503,7 +4503,7 @@ call_postJobConfig() {
         :
         echo "ERROR: Request's content-type not specified!!!"
         echo "This operation expects content-type in one of the following formats:"
-        echo -e "\\t- application/json"
+        echo -e "\\t- application/xml"
         echo ""
         echo "Use '--content-type' to set proper content type"
         exit 1
@@ -4717,7 +4717,7 @@ call_postViewConfig() {
     # if values produces and consumes are defined unambiguously
     #
     if [[ -z $header_content_type ]]; then
-        header_content_type="application/json"
+        header_content_type="application/xml"
     fi
 
 
@@ -4725,7 +4725,7 @@ call_postViewConfig() {
         :
         echo "ERROR: Request's content-type not specified!!!"
         echo "This operation expects content-type in one of the following formats:"
-        echo -e "\\t- application/json"
+        echo -e "\\t- application/xml"
         echo ""
         echo "Use '--content-type' to set proper content type"
         exit 1

@@ -360,7 +360,7 @@
               :query-params  {"name" name "from" from "mode" mode }
               :form-params   {}
               :body-param    body
-              :content-types ["application/json"]
+              :content-types ["application/xml"]
               :accepts       ["*/*"]
               :auth-names    ["jenkins_auth"]})))
 
@@ -387,7 +387,7 @@
               :query-params  {"name" name }
               :form-params   {}
               :body-param    body
-              :content-types ["application/json"]
+              :content-types ["application/xml"]
               :accepts       ["*/*"]
               :auth-names    ["jenkins_auth"]})))
 
@@ -440,7 +440,7 @@
               :query-params  {}
               :form-params   {}
               :body-param    body
-              :content-types ["application/json"]
+              :content-types ["application/xml"]
               :accepts       ["*/*"]
               :auth-names    ["jenkins_auth"]})))
 
@@ -571,7 +571,7 @@
               :query-params  {}
               :form-params   {}
               :body-param    body
-              :content-types ["application/json"]
+              :content-types ["application/xml"]
               :accepts       ["*/*"]
               :auth-names    ["jenkins_auth"]})))
 

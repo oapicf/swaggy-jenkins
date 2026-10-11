@@ -48,7 +48,7 @@ class CreateViewApiController() {
         // "/createView"
         value = [PATH_POST_CREATE_VIEW],
         produces = ["*/*"],
-        consumes = ["application/json"]
+        consumes = ["application/xml"]
     )
     fun postCreateView(
         @NotNull @Parameter(description = "Name of the new view", required = true) @Valid @RequestParam(value = "name", required = true) name: kotlin.String,

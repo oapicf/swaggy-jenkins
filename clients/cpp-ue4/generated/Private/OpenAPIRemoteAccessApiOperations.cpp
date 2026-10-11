@@ -508,7 +508,7 @@ FString OpenAPIRemoteAccessApi::PostCreateItemRequest::ComputePath() const
 
 void OpenAPIRemoteAccessApi::PostCreateItemRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/xml") };
 	//static const TArray<FString> Produces = { TEXT("*/*") };
 
 	HttpRequest->SetVerb(TEXT("POST"));
@@ -591,7 +591,7 @@ FString OpenAPIRemoteAccessApi::PostCreateViewRequest::ComputePath() const
 
 void OpenAPIRemoteAccessApi::PostCreateViewRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/xml") };
 	//static const TArray<FString> Produces = { TEXT("*/*") };
 
 	HttpRequest->SetVerb(TEXT("POST"));
@@ -749,7 +749,7 @@ FString OpenAPIRemoteAccessApi::PostJobConfigRequest::ComputePath() const
 
 void OpenAPIRemoteAccessApi::PostJobConfigRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/xml") };
 	//static const TArray<FString> Produces = { TEXT("*/*") };
 
 	HttpRequest->SetVerb(TEXT("POST"));
@@ -1083,7 +1083,7 @@ FString OpenAPIRemoteAccessApi::PostViewConfigRequest::ComputePath() const
 
 void OpenAPIRemoteAccessApi::PostViewConfigRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
-	static const TArray<FString> Consumes = { TEXT("application/json") };
+	static const TArray<FString> Consumes = { TEXT("application/xml") };
 	//static const TArray<FString> Produces = { TEXT("*/*") };
 
 	HttpRequest->SetVerb(TEXT("POST"));

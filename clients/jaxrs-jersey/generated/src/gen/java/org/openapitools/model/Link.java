@@ -29,7 +29,7 @@ import javax.validation.Valid;
   Link.JSON_PROPERTY_PROPERTY_CLASS,
   Link.JSON_PROPERTY_HREF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-08-16T01:39:14.911217398Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-10-11T12:05:34.935738716Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class Link   {
   public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";
   @JsonProperty(JSON_PROPERTY_PROPERTY_CLASS)

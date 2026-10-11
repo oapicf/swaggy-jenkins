@@ -11,7 +11,7 @@ import org.openapitools.model.Link;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-08-16T01:38:48.446404622Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-10-11T12:05:01.024805084Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class BranchImpllinks   {
   @JsonProperty("self")
   private Link self;

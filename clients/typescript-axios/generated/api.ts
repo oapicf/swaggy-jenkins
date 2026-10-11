@@ -4172,7 +4172,7 @@ export const RemoteAccessApiAxiosParamCreator = function (configuration?: Config
                 localVarQueryParameter['mode'] = mode;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/xml';
             localVarHeaderParameter['Accept'] = '*/*';
 
             if (jenkinsCrumb != null) {
@@ -4223,7 +4223,7 @@ export const RemoteAccessApiAxiosParamCreator = function (configuration?: Config
                 localVarQueryParameter['name'] = name;
             }
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/xml';
             localVarHeaderParameter['Accept'] = '*/*';
 
             if (jenkinsCrumb != null) {
@@ -4324,7 +4324,7 @@ export const RemoteAccessApiAxiosParamCreator = function (configuration?: Config
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/xml';
             localVarHeaderParameter['Accept'] = '*/*';
 
             if (jenkinsCrumb != null) {
@@ -4530,7 +4530,7 @@ export const RemoteAccessApiAxiosParamCreator = function (configuration?: Config
             // http basic authentication required
             setBasicAuthToObject(localVarRequestOptions, configuration)
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/xml';
             localVarHeaderParameter['Accept'] = '*/*';
 
             if (jenkinsCrumb != null) {

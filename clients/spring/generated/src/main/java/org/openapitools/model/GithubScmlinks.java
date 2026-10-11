@@ -21,7 +21,7 @@ import jakarta.annotation.Generated;
  * GithubScmlinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-08-16T01:42:02.317096987Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class GithubScmlinks {
 
   @JsonInclude(JsonInclude.Include.NON_NULL)

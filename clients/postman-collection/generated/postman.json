@@ -216,7 +216,7 @@
     "header": [
         {
         "key": "Content-Type",
-        "value": "application/json",
+        "value": "application/xml",
         "description": "",
         "disabled": false
         },
@@ -297,7 +297,7 @@
     "header": [
         {
         "key": "Content-Type",
-        "value": "application/json",
+        "value": "application/xml",
         "description": "",
         "disabled": false
         },
@@ -594,7 +594,7 @@
     "header": [
         {
         "key": "Content-Type",
-        "value": "application/json",
+        "value": "application/xml",
         "description": "",
         "disabled": false
         },
@@ -1127,7 +1127,7 @@
     "header": [
         {
         "key": "Content-Type",
-        "value": "application/json",
+        "value": "application/xml",
         "description": "",
         "disabled": false
         },

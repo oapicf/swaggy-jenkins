@@ -37,7 +37,7 @@ import javax.annotation.Generated;
   PipelineImpl.JSON_PROPERTY_LINKS
 })
 @JsonTypeName("PipelineImpl")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-08-16T01:38:50.633047249Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-10-11T12:05:03.866233126Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Introspected
 public class PipelineImpl {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

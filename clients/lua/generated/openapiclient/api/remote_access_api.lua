@@ -559,8 +559,8 @@ function remote_access_api:post_create_item(name, from, mode, jenkins_crumb, con
 	-- set HTTP verb
 	req.headers:upsert(":method", "POST")
 	-- TODO: create a function to select proper accept
-	--local var_content_type = { "application/json" }
-	req.headers:upsert("accept", "application/json")
+	--local var_content_type = { "application/xml" }
+	req.headers:upsert("accept", "application/xml")
 
 	-- TODO: create a function to select proper content-type
 	--local var_accept = { "*/*" }
@@ -608,8 +608,8 @@ function remote_access_api:post_create_view(name, jenkins_crumb, content_type, b
 	-- set HTTP verb
 	req.headers:upsert(":method", "POST")
 	-- TODO: create a function to select proper accept
-	--local var_content_type = { "application/json" }
-	req.headers:upsert("accept", "application/json")
+	--local var_content_type = { "application/xml" }
+	req.headers:upsert("accept", "application/xml")
 
 	-- TODO: create a function to select proper content-type
 	--local var_accept = { "*/*" }
@@ -693,8 +693,8 @@ function remote_access_api:post_job_config(name, body, jenkins_crumb)
 	-- set HTTP verb
 	req.headers:upsert(":method", "POST")
 	-- TODO: create a function to select proper accept
-	--local var_content_type = { "application/json" }
-	req.headers:upsert("accept", "application/json")
+	--local var_content_type = { "application/xml" }
+	req.headers:upsert("accept", "application/xml")
 
 	-- TODO: create a function to select proper content-type
 	--local var_accept = { "*/*" }
@@ -883,8 +883,8 @@ function remote_access_api:post_view_config(name, body, jenkins_crumb)
 	-- set HTTP verb
 	req.headers:upsert(":method", "POST")
 	-- TODO: create a function to select proper accept
-	--local var_content_type = { "application/json" }
-	req.headers:upsert("accept", "application/json")
+	--local var_content_type = { "application/xml" }
+	req.headers:upsert("accept", "application/xml")
 
 	-- TODO: create a function to select proper content-type
 	--local var_accept = { "*/*" }

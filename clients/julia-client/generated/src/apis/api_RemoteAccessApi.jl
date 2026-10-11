@@ -371,7 +371,7 @@ function _oacinternal_post_create_item(_api::RemoteAccessApi, name::String; from
     OpenAPI.Clients.set_param(_ctx.header, "Jenkins-Crumb", jenkins_crumb)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "Content-Type", content_type)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["*/*", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/xml", ] : [_mediaType])
     return _ctx
 end
 
@@ -410,7 +410,7 @@ function _oacinternal_post_create_view(_api::RemoteAccessApi, name::String; jenk
     OpenAPI.Clients.set_param(_ctx.header, "Jenkins-Crumb", jenkins_crumb)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "Content-Type", content_type)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["*/*", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/xml", ] : [_mediaType])
     return _ctx
 end
 
@@ -486,7 +486,7 @@ function _oacinternal_post_job_config(_api::RemoteAccessApi, name::String, body:
     OpenAPI.Clients.set_param(_ctx.path, "name", name)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "Jenkins-Crumb", jenkins_crumb)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["*/*", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/xml", ] : [_mediaType])
     return _ctx
 end
 
@@ -658,7 +658,7 @@ function _oacinternal_post_view_config(_api::RemoteAccessApi, name::String, body
     OpenAPI.Clients.set_param(_ctx.path, "name", name)  # type String
     OpenAPI.Clients.set_param(_ctx.header, "Jenkins-Crumb", jenkins_crumb)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["*/*", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/xml", ] : [_mediaType])
     return _ctx
 end
 

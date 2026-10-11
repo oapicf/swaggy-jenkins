@@ -24,7 +24,7 @@ import java.util.List;
  * @author pkmst
  *
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-08-16T01:38:57.295171275Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", date = "2026-10-11T12:05:12.475838179Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 @Api(value = "RemoteAccess", description = "the RemoteAccess API")
 public interface RemoteAccessApi {
 
@@ -221,7 +221,7 @@ public interface RemoteAccessApi {
         method = RequestMethod.POST,
         value = "/createItem",
         produces = { "*/*" },
-        consumes = { "application/json" }
+        consumes = { "application/xml" }
     )
     ResponseEntity<Void> postCreateItem(@ApiParam(value = "Name of the new job", required = true)  @RequestParam(value = "name", required = true) String name,@ApiParam(value = "Existing job to copy from")  @RequestParam(value = "from", required = false) String from,@ApiParam(value = "Set to 'copy' for copying an existing job")  @RequestParam(value = "mode", required = false) String mode,@ApiParam(value = "CSRF protection token" ) @RequestHeader(value="Jenkins-Crumb", required=false) String jenkinsCrumb,@ApiParam(value = "Content type header application/xml" ) @RequestHeader(value="Content-Type", required=false) String contentType,@ApiParam(value = "Job configuration in config.xml format"  )   @RequestBody String body, @RequestHeader(value = "Accept", required = false) String accept) throws Exception;
 
@@ -239,7 +239,7 @@ public interface RemoteAccessApi {
         method = RequestMethod.POST,
         value = "/createView",
         produces = { "*/*" },
-        consumes = { "application/json" }
+        consumes = { "application/xml" }
     )
     ResponseEntity<Void> postCreateView(@ApiParam(value = "Name of the new view", required = true)  @RequestParam(value = "name", required = true) String name,@ApiParam(value = "CSRF protection token" ) @RequestHeader(value="Jenkins-Crumb", required=false) String jenkinsCrumb,@ApiParam(value = "Content type header application/xml" ) @RequestHeader(value="Content-Type", required=false) String contentType,@ApiParam(value = "View configuration in config.xml format"  )   @RequestBody String body, @RequestHeader(value = "Accept", required = false) String accept) throws Exception;
 
@@ -275,7 +275,7 @@ public interface RemoteAccessApi {
         method = RequestMethod.POST,
         value = "/job/{name}/config.xml",
         produces = { "*/*" },
-        consumes = { "application/json" }
+        consumes = { "application/xml" }
     )
     ResponseEntity<Void> postJobConfig(@ApiParam(value = "Name of the job",required=true ) @PathVariable("name") String name,@ApiParam(value = "Job configuration in config.xml format" ,required=true )   @RequestBody String body,@ApiParam(value = "CSRF protection token" ) @RequestHeader(value="Jenkins-Crumb", required=false) String jenkinsCrumb, @RequestHeader(value = "Accept", required = false) String accept) throws Exception;
 
@@ -358,7 +358,7 @@ public interface RemoteAccessApi {
         method = RequestMethod.POST,
         value = "/view/{name}/config.xml",
         produces = { "*/*" },
-        consumes = { "application/json" }
+        consumes = { "application/xml" }
     )
     ResponseEntity<Void> postViewConfig(@ApiParam(value = "Name of the view",required=true ) @PathVariable("name") String name,@ApiParam(value = "View configuration in config.xml format" ,required=true )   @RequestBody String body,@ApiParam(value = "CSRF protection token" ) @RequestHeader(value="Jenkins-Crumb", required=false) String jenkinsCrumb, @RequestHeader(value = "Accept", required = false) String accept) throws Exception;
 

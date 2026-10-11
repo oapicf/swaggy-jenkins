@@ -13,7 +13,7 @@ To see how to make this your own, look here:
 [README](https://openapi-generator.tech)
 
 - API version: 3.4.1-pre.0
-- Build date: 2026-08-16T01:38:21.591717100Z[Etc/UTC]
+- Build date: 2026-10-11T12:04:26.338398021Z[Etc/UTC]
 - Generator version: 7.24.0
 For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)
 

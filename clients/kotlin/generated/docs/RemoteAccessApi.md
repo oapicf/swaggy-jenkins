@@ -685,7 +685,7 @@ apiInstance.userCredentialProvider = { "user" to "pass" }
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: Not defined
 
 <a id="postCreateView"></a>
@@ -745,7 +745,7 @@ apiInstance.userCredentialProvider = { "user" to "pass" }
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: Not defined
 
 <a id="postJobBuild"></a>
@@ -863,7 +863,7 @@ apiInstance.userCredentialProvider = { "user" to "pass" }
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: Not defined
 
 <a id="postJobDelete"></a>
@@ -1145,6 +1145,6 @@ apiInstance.userCredentialProvider = { "user" to "pass" }
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: Not defined
 

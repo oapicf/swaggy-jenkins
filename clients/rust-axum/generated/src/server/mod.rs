@@ -5759,7 +5759,7 @@ where
     #[derive(validator::Validate)]
     #[allow(dead_code)]
     struct PostCreateItemBodyValidator<'a> {
-                #[validate(custom(function = "check_xss_string"))]
+          #[validate(custom(function = "check_xss_string"))]
           body: &'a String,
     }
 
@@ -5768,19 +5768,15 @@ where
 fn post_create_item_validation(
   header_params: models::PostCreateItemHeaderParams,
   query_params: models::PostCreateItemQueryParams,
-        body: Option<String>,
+        body: String,
 ) -> std::result::Result<(
   models::PostCreateItemHeaderParams,
   models::PostCreateItemQueryParams,
-        Option<String>,
+        String,
 ), ValidationErrors>
 {
   header_params.validate()?;
   query_params.validate()?;
-            if let Some(body) = &body {
-              let b = PostCreateItemBodyValidator { body };
-              b.validate()?;
-            }
 
 Ok((
   header_params,
@@ -5797,7 +5793,7 @@ async fn post_create_item<I, A, E, C>(
   headers: HeaderMap,
   QueryExtra(query_params): QueryExtra<models::PostCreateItemQueryParams>,
  State(api_impl): State<I>,
-          Json(body): Json<Option<String>>,
+          body: String,
 ) -> Result<Response, StatusCode>
 where
     I: AsRef<A> + Send + Sync,
@@ -5946,7 +5942,7 @@ where
     #[derive(validator::Validate)]
     #[allow(dead_code)]
     struct PostCreateViewBodyValidator<'a> {
-                #[validate(custom(function = "check_xss_string"))]
+          #[validate(custom(function = "check_xss_string"))]
           body: &'a String,
     }
 
@@ -5955,19 +5951,15 @@ where
 fn post_create_view_validation(
   header_params: models::PostCreateViewHeaderParams,
   query_params: models::PostCreateViewQueryParams,
-        body: Option<String>,
+        body: String,
 ) -> std::result::Result<(
   models::PostCreateViewHeaderParams,
   models::PostCreateViewQueryParams,
-        Option<String>,
+        String,
 ), ValidationErrors>
 {
   header_params.validate()?;
   query_params.validate()?;
-            if let Some(body) = &body {
-              let b = PostCreateViewBodyValidator { body };
-              b.validate()?;
-            }
 
 Ok((
   header_params,
@@ -5984,7 +5976,7 @@ async fn post_create_view<I, A, E, C>(
   headers: HeaderMap,
   QueryExtra(query_params): QueryExtra<models::PostCreateViewQueryParams>,
  State(api_impl): State<I>,
-          Json(body): Json<Option<String>>,
+          body: String,
 ) -> Result<Response, StatusCode>
 where
     I: AsRef<A> + Send + Sync,
@@ -6285,7 +6277,7 @@ where
     #[derive(validator::Validate)]
     #[allow(dead_code)]
     struct PostJobConfigBodyValidator<'a> {
-                #[validate(custom(function = "check_xss_string"))]
+          #[validate(custom(function = "check_xss_string"))]
           body: &'a String,
     }
 
@@ -6303,8 +6295,6 @@ fn post_job_config_validation(
 {
   header_params.validate()?;
   path_params.validate()?;
-              let b = PostJobConfigBodyValidator { body: &body };
-              b.validate()?;
 
 Ok((
   header_params,
@@ -6321,7 +6311,7 @@ async fn post_job_config<I, A, E, C>(
   headers: HeaderMap,
   Path(path_params): Path<models::PostJobConfigPathParams>,
  State(api_impl): State<I>,
-          Json(body): Json<String>,
+          body: String,
 ) -> Result<Response, StatusCode>
 where
     I: AsRef<A> + Send + Sync,
@@ -7010,7 +7000,7 @@ where
     #[derive(validator::Validate)]
     #[allow(dead_code)]
     struct PostViewConfigBodyValidator<'a> {
-                #[validate(custom(function = "check_xss_string"))]
+          #[validate(custom(function = "check_xss_string"))]
           body: &'a String,
     }
 
@@ -7028,8 +7018,6 @@ fn post_view_config_validation(
 {
   header_params.validate()?;
   path_params.validate()?;
-              let b = PostViewConfigBodyValidator { body: &body };
-              b.validate()?;
 
 Ok((
   header_params,
@@ -7046,7 +7034,7 @@ async fn post_view_config<I, A, E, C>(
   headers: HeaderMap,
   Path(path_params): Path<models::PostViewConfigPathParams>,
  State(api_impl): State<I>,
-          Json(body): Json<String>,
+          body: String,
 ) -> Result<Response, StatusCode>
 where
     I: AsRef<A> + Send + Sync,

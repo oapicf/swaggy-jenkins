@@ -345,7 +345,7 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 <a name="postCreateView"></a>
@@ -375,7 +375,7 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 <a name="postJobBuild"></a>
@@ -434,7 +434,7 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 <a name="postJobDelete"></a>
@@ -575,6 +575,6 @@ null (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 

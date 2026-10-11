@@ -702,7 +702,7 @@ func post_create_item(
 	var bzz_headers := Dictionary()
 	bzz_headers["Jenkins-Crumb"] = jenkinsCrumb
 	bzz_headers["Content-Type"] = contentType
-	var bzz_mimes_consumable_by_server := ['application/json']
+	var bzz_mimes_consumable_by_server := ['application/xml']
 	var bzz_found_producible_mime := false
 	for bzz_mime in BZZ_PRODUCIBLE_CONTENT_TYPES:
 		if bzz_mime in bzz_mimes_consumable_by_server:
@@ -810,7 +810,7 @@ func post_create_view(
 	var bzz_headers := Dictionary()
 	bzz_headers["Jenkins-Crumb"] = jenkinsCrumb
 	bzz_headers["Content-Type"] = contentType
-	var bzz_mimes_consumable_by_server := ['application/json']
+	var bzz_mimes_consumable_by_server := ['application/xml']
 	var bzz_found_producible_mime := false
 	for bzz_mime in BZZ_PRODUCIBLE_CONTENT_TYPES:
 		if bzz_mime in bzz_mimes_consumable_by_server:
@@ -979,7 +979,7 @@ func post_job_config(
 	# Collect the headers
 	var bzz_headers := Dictionary()
 	bzz_headers["Jenkins-Crumb"] = jenkinsCrumb
-	var bzz_mimes_consumable_by_server := ['application/json']
+	var bzz_mimes_consumable_by_server := ['application/xml']
 	var bzz_found_producible_mime := false
 	for bzz_mime in BZZ_PRODUCIBLE_CONTENT_TYPES:
 		if bzz_mime in bzz_mimes_consumable_by_server:
@@ -1320,7 +1320,7 @@ func post_view_config(
 	# Collect the headers
 	var bzz_headers := Dictionary()
 	bzz_headers["Jenkins-Crumb"] = jenkinsCrumb
-	var bzz_mimes_consumable_by_server := ['application/json']
+	var bzz_mimes_consumable_by_server := ['application/xml']
 	var bzz_found_producible_mime := false
 	for bzz_mime in BZZ_PRODUCIBLE_CONTENT_TYPES:
 		if bzz_mime in bzz_mimes_consumable_by_server:

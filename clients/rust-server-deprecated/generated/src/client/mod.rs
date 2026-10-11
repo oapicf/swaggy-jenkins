@@ -5136,11 +5136,11 @@ impl<S, C, B> Api<C> for Client<S, C> where
         // Consumes basic body
         // Body parameter
         if let Some(param_body) = param_body {
-        let body = serde_json::to_string(&param_body).expect("impossible to fail to serialize");
+        let body = param_body.as_xml();
         *request.body_mut() = body_from_string(body);
         }
 
-        let header = "application/json";
+        let header = "application/xml";
         request.headers_mut().insert(CONTENT_TYPE, HeaderValue::from_static(header));
 
         let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
@@ -5296,11 +5296,11 @@ impl<S, C, B> Api<C> for Client<S, C> where
         // Consumes basic body
         // Body parameter
         if let Some(param_body) = param_body {
-        let body = serde_json::to_string(&param_body).expect("impossible to fail to serialize");
+        let body = param_body.as_xml();
         *request.body_mut() = body_from_string(body);
         }
 
-        let header = "application/json";
+        let header = "application/xml";
         request.headers_mut().insert(CONTENT_TYPE, HeaderValue::from_static(header));
 
         let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
@@ -6250,10 +6250,10 @@ impl<S, C, B> Api<C> for Client<S, C> where
 
         // Consumes basic body
         // Body parameter
-        let body = serde_json::to_string(&param_body).expect("impossible to fail to serialize");
+        let body = param_body.as_xml();
         *request.body_mut() = body_from_string(body);
 
-        let header = "application/json";
+        let header = "application/xml";
         request.headers_mut().insert(CONTENT_TYPE, HeaderValue::from_static(header));
 
         let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());
@@ -6870,10 +6870,10 @@ impl<S, C, B> Api<C> for Client<S, C> where
 
         // Consumes basic body
         // Body parameter
-        let body = serde_json::to_string(&param_body).expect("impossible to fail to serialize");
+        let body = param_body.as_xml();
         *request.body_mut() = body_from_string(body);
 
-        let header = "application/json";
+        let header = "application/xml";
         request.headers_mut().insert(CONTENT_TYPE, HeaderValue::from_static(header));
 
         let header = HeaderValue::from_str(Has::<XSpanIdString>::get(context).0.as_str());

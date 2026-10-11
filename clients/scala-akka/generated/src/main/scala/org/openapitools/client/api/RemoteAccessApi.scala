@@ -291,7 +291,7 @@ class RemoteAccessApi(baseUrl: String) {
    * @param body Job configuration in config.xml format
    */
   def postCreateItem(name: String, from: Option[String] = None, mode: Option[String] = None, jenkinsCrumb: Option[String] = None, contentType: Option[String] = None, body: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
-    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/createItem", "application/json")
+    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/createItem", "application/xml")
       .withCredentials(basicAuth).withBody(body)
       .withQueryParam("name", name)
       .withQueryParam("from", from)
@@ -322,7 +322,7 @@ class RemoteAccessApi(baseUrl: String) {
    * @param body View configuration in config.xml format
    */
   def postCreateView(name: String, jenkinsCrumb: Option[String] = None, contentType: Option[String] = None, body: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
-    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/createView", "application/json")
+    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/createView", "application/xml")
       .withCredentials(basicAuth).withBody(body)
       .withQueryParam("name", name)
       .withHeaderParam("Jenkins-Crumb", jenkinsCrumb)
@@ -382,7 +382,7 @@ class RemoteAccessApi(baseUrl: String) {
    * @param jenkinsCrumb CSRF protection token
    */
   def postJobConfig(name: String, body: String, jenkinsCrumb: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
-    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/job/{name}/config.xml", "application/json")
+    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/job/{name}/config.xml", "application/xml")
       .withCredentials(basicAuth).withBody(body)
       .withPathParam("name", name)
       .withHeaderParam("Jenkins-Crumb", jenkinsCrumb)
@@ -511,7 +511,7 @@ class RemoteAccessApi(baseUrl: String) {
    * @param jenkinsCrumb CSRF protection token
    */
   def postViewConfig(name: String, body: String, jenkinsCrumb: Option[String] = None)(implicit basicAuth: BasicCredentials): ApiRequest[Unit] =
-    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/view/{name}/config.xml", "application/json")
+    ApiRequest[Unit](ApiMethods.POST, baseUrl, "/view/{name}/config.xml", "application/xml")
       .withCredentials(basicAuth).withBody(body)
       .withPathParam("name", name)
       .withHeaderParam("Jenkins-Crumb", jenkinsCrumb)

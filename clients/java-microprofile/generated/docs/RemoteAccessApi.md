@@ -911,7 +911,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 
@@ -992,7 +992,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 
@@ -1153,7 +1153,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 
@@ -1541,7 +1541,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: application/xml
 - **Accept**: */*
 
 

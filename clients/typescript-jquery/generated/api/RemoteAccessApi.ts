@@ -820,7 +820,7 @@ export class RemoteAccessApi {
 
         // to determine the Content-Type header
         let consumes: string[] = [
-            'application/json'
+            'application/xml'
         ];
 
         // to determine the Accept header
@@ -901,7 +901,7 @@ export class RemoteAccessApi {
 
         // to determine the Content-Type header
         let consumes: string[] = [
-            'application/json'
+            'application/xml'
         ];
 
         // to determine the Accept header
@@ -1063,7 +1063,7 @@ export class RemoteAccessApi {
 
         // to determine the Content-Type header
         let consumes: string[] = [
-            'application/json'
+            'application/xml'
         ];
 
         // to determine the Accept header
@@ -1419,7 +1419,7 @@ export class RemoteAccessApi {
 
         // to determine the Content-Type header
         let consumes: string[] = [
-            'application/json'
+            'application/xml'
         ];
 
         // to determine the Accept header

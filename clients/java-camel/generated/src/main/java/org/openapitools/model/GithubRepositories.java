@@ -24,7 +24,7 @@ import jakarta.annotation.Generated;
  * GithubRepositories
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-08-16T01:39:06.105967437Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-10-11T12:05:23.765681171Z[Etc/UTC]", comments = "Generator version: 7.24.0")
 public class GithubRepositories {
 
   private String propertyClass;

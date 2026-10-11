@@ -355,7 +355,7 @@ Create a new job using job configuration, or copied from an existing job
 * **[jenkins_auth](auth.md#jenkins_auth)**
 
 ### HTTP request headers
- - **Content-Type**: `application/json`
+ - **Content-Type**: `application/xml`
  - **Accept**: Not defined
 
 <a id="postCreateView"></a>
@@ -383,7 +383,7 @@ Create a new view using view configuration
 * **[jenkins_auth](auth.md#jenkins_auth)**
 
 ### HTTP request headers
- - **Content-Type**: `application/json`
+ - **Content-Type**: `application/xml`
  - **Accept**: Not defined
 
 <a id="postJobBuild"></a>
@@ -438,7 +438,7 @@ Update job configuration
 * **[jenkins_auth](auth.md#jenkins_auth)**
 
 ### HTTP request headers
- - **Content-Type**: `application/json`
+ - **Content-Type**: `application/xml`
  - **Accept**: Not defined
 
 <a id="postJobDelete"></a>
@@ -569,6 +569,6 @@ Update view configuration
 * **[jenkins_auth](auth.md#jenkins_auth)**
 
 ### HTTP request headers
- - **Content-Type**: `application/json`
+ - **Content-Type**: `application/xml`
  - **Accept**: Not defined
 

@@ -291,7 +291,7 @@ class RemoteAccessApiEndpointsImpl[F[*]: Concurrent](
 
   override def postCreateItem(name: String, from: Option[String] = None, mode: Option[String] = None, jenkinsCrumb: Option[String] = None, contentType: Option[String] = None, body: Option[String] = None)(using auth: _Authorization.Basic): F[Unit] = {
     val requestHeaders = Seq(
-      Some("Content-Type" -> "application/json"),
+      Some("Content-Type" -> "application/xml"),
       jenkinsCrumb.map(x => "Jenkins-Crumb" -> x), contentType.map(x => "Content-Type" -> x)
     ).flatten
     val queryParameters = (
@@ -318,7 +318,7 @@ class RemoteAccessApiEndpointsImpl[F[*]: Concurrent](
 
   override def postCreateView(name: String, jenkinsCrumb: Option[String] = None, contentType: Option[String] = None, body: Option[String] = None)(using auth: _Authorization.Basic): F[Unit] = {
     val requestHeaders = Seq(
-      Some("Content-Type" -> "application/json"),
+      Some("Content-Type" -> "application/xml"),
       jenkinsCrumb.map(x => "Jenkins-Crumb" -> x), contentType.map(x => "Content-Type" -> x)
     ).flatten
     val queryParameters = (
@@ -370,7 +370,7 @@ class RemoteAccessApiEndpointsImpl[F[*]: Concurrent](
 
   override def postJobConfig(name: String, body: String, jenkinsCrumb: Option[String] = None)(using auth: _Authorization.Basic): F[Unit] = {
     val requestHeaders = Seq(
-      Some("Content-Type" -> "application/json"),
+      Some("Content-Type" -> "application/xml"),
       jenkinsCrumb.map(x => "Jenkins-Crumb" -> x)
     ).flatten
 
@@ -481,7 +481,7 @@ class RemoteAccessApiEndpointsImpl[F[*]: Concurrent](
 
   override def postViewConfig(name: String, body: String, jenkinsCrumb: Option[String] = None)(using auth: _Authorization.Basic): F[Unit] = {
     val requestHeaders = Seq(
-      Some("Content-Type" -> "application/json"),
+      Some("Content-Type" -> "application/xml"),
       jenkinsCrumb.map(x => "Jenkins-Crumb" -> x)
     ).flatten
 

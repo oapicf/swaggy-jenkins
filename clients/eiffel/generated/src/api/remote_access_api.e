@@ -307,7 +307,7 @@ feature -- API Access
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"*/*">>)  as l_accept then
 				l_request.add_header(l_accept,"Accept");
 			end
-			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/json">>),"Content-Type")
+			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/xml">>),"Content-Type")
 			l_request.set_auth_names ({ARRAY [STRING]}<<"jenkins_auth">>)
 			l_response := api_client.call_api (l_path, "Post", l_request, agent serializer, Void)
 			if l_response.has_error then
@@ -350,7 +350,7 @@ feature -- API Access
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"*/*">>)  as l_accept then
 				l_request.add_header(l_accept,"Accept");
 			end
-			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/json">>),"Content-Type")
+			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/xml">>),"Content-Type")
 			l_request.set_auth_names ({ARRAY [STRING]}<<"jenkins_auth">>)
 			l_response := api_client.call_api (l_path, "Post", l_request, agent serializer, Void)
 			if l_response.has_error then
@@ -430,7 +430,7 @@ feature -- API Access
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"*/*">>)  as l_accept then
 				l_request.add_header(l_accept,"Accept");
 			end
-			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/json">>),"Content-Type")
+			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/xml">>),"Content-Type")
 			l_request.set_auth_names ({ARRAY [STRING]}<<"jenkins_auth">>)
 			l_response := api_client.call_api (l_path, "Post", l_request, agent serializer, Void)
 			if l_response.has_error then
@@ -612,7 +612,7 @@ feature -- API Access
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"*/*">>)  as l_accept then
 				l_request.add_header(l_accept,"Accept");
 			end
-			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/json">>),"Content-Type")
+			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<"application/xml">>),"Content-Type")
 			l_request.set_auth_names ({ARRAY [STRING]}<<"jenkins_auth">>)
 			l_response := api_client.call_api (l_path, "Post", l_request, agent serializer, Void)
 			if l_response.has_error then

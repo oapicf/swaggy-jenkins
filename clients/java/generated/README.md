@@ -2,7 +2,7 @@
 
 Swaggy Jenkins
 - API version: 3.4.1-pre.0
-  - Build date: 2026-08-16T01:38:35.684332638Z[Etc/UTC]
+  - Build date: 2026-10-11T12:04:44.705273464Z[Etc/UTC]
   - Generator version: 7.24.0
 
 Jenkins API clients generated from Swagger / Open API specification

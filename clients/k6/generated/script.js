@@ -165,7 +165,7 @@ export default function() {
             let url = BASE_URL + `/createItem?name=${name}&from=${from}&mode=${mode}`;
             let params = {
                 headers: {
-                    "Content-Type": "application/json", "Accept": "*/*"
+                    "Content-Type": "application/xml", "Accept": "*/*"
                 }
             };
             let request = http.post(url, params);
@@ -345,7 +345,7 @@ export default function() {
             let url = BASE_URL + `/createView?name=${name}`;
             let params = {
                 headers: {
-                    "Content-Type": "application/json", "Accept": "*/*"
+                    "Content-Type": "application/xml", "Accept": "*/*"
                 }
             };
             let request = http.post(url, params);
@@ -548,7 +548,7 @@ export default function() {
             let url = BASE_URL + `/view/${name}/config.xml`;
             let params = {
                 headers: {
-                    "Content-Type": "application/json", "Accept": "*/*"
+                    "Content-Type": "application/xml", "Accept": "*/*"
                 }
             };
             let request = http.post(url, params);
@@ -749,7 +749,7 @@ export default function() {
             let url = BASE_URL + `/job/${name}/config.xml`;
             let params = {
                 headers: {
-                    "Content-Type": "application/json", "Accept": "*/*"
+                    "Content-Type": "application/xml", "Accept": "*/*"
                 }
             };
             let request = http.post(url, params);

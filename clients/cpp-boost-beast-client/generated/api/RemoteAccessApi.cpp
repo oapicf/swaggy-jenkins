@@ -782,7 +782,7 @@ RemoteAccessApi::postJobConfig(
     std::string serializedRequestBody;
     std::string path = m_context + "/job/{name}/config.xml";
     std::map<std::string, std::string> headers;
-    static const std::vector<std::string> contentTypes{ "application/json", };
+    static const std::vector<std::string> contentTypes{ "application/xml", };
     std::string requestContentType = selectPreferredContentType(contentTypes);
     headers["Content-Type"] = requestContentType;
     // Body params
@@ -1130,7 +1130,7 @@ RemoteAccessApi::postViewConfig(
     std::string serializedRequestBody;
     std::string path = m_context + "/view/{name}/config.xml";
     std::map<std::string, std::string> headers;
-    static const std::vector<std::string> contentTypes{ "application/json", };
+    static const std::vector<std::string> contentTypes{ "application/xml", };
     std::string requestContentType = selectPreferredContentType(contentTypes);
     headers["Content-Type"] = requestContentType;
     // Body params
@@ -1186,7 +1186,7 @@ RemoteAccessApi::postCreateItem(
     std::string serializedRequestBody;
     std::string path = m_context + "/createItem";
     std::map<std::string, std::string> headers;
-    static const std::vector<std::string> contentTypes{ "application/json", };
+    static const std::vector<std::string> contentTypes{ "application/xml", };
     std::string requestContentType = selectPreferredContentType(contentTypes);
     headers["Content-Type"] = requestContentType;
     // Body params
@@ -1261,7 +1261,7 @@ RemoteAccessApi::postCreateView(
     std::string serializedRequestBody;
     std::string path = m_context + "/createView";
     std::map<std::string, std::string> headers;
-    static const std::vector<std::string> contentTypes{ "application/json", };
+    static const std::vector<std::string> contentTypes{ "application/xml", };
     std::string requestContentType = selectPreferredContentType(contentTypes);
     headers["Content-Type"] = requestContentType;
     // Body params

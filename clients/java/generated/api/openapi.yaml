@@ -125,7 +125,7 @@ paths:
         style: simple
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: Job configuration in config.xml format
@@ -142,7 +142,7 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-content-type: application/json
+      x-content-type: application/xml
       x-accepts:
       - '*/*'
   /createView:
@@ -169,7 +169,7 @@ paths:
         style: simple
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: View configuration in config.xml format
@@ -186,7 +186,7 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-content-type: application/json
+      x-content-type: application/xml
       x-accepts:
       - '*/*'
   /crumbIssuer/api/json:
@@ -307,7 +307,7 @@ paths:
       - $ref: "#/components/parameters/crumb"
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: Job configuration in config.xml format
@@ -327,7 +327,7 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-content-type: application/json
+      x-content-type: application/xml
       x-accepts:
       - '*/*'
   /job/{name}/doDelete:
@@ -589,7 +589,7 @@ paths:
       - $ref: "#/components/parameters/crumb"
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
               type: string
         description: View configuration in config.xml format
@@ -609,7 +609,7 @@ paths:
       - jenkins_auth: []
       tags:
       - remoteAccess
-      x-content-type: application/json
+      x-content-type: application/xml
       x-accepts:
       - '*/*'
   /jwt-auth/token:
