@@ -46,7 +46,7 @@ import javax.annotation.Generated;
   PipelineRun.JSON_PROPERTY_COMMIT_ID
 })
 @JsonTypeName("PipelineRun")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-01T13:20:30.018053635Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-01T13:46:41.322574956Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class PipelineRun {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

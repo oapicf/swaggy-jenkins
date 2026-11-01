@@ -31,7 +31,7 @@ import org.wso2.msf4j.formparam.FileInfo;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-01T13:20:35.618053359Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-01T13:46:48.042612921Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BlueApiServiceImpl extends BlueApiService {
     @Override
     public Response deletePipelineQueueItem(String organization

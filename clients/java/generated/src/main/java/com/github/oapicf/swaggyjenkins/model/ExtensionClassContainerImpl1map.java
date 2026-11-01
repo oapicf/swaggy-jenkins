@@ -50,7 +50,7 @@ import com.github.oapicf.swaggyjenkins.JSON;
 /**
  * ExtensionClassContainerImpl1map
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-01T13:20:14.184137214Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-01T13:46:20.747979192Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ExtensionClassContainerImpl1map {
   public static final String SERIALIZED_NAME_IO_JENKINS_BLUEOCEAN_SERVICE_EMBEDDED_REST_PIPELINE_IMPL = "io.jenkins.blueocean.service.embedded.rest.PipelineImpl";
   @SerializedName(SERIALIZED_NAME_IO_JENKINS_BLUEOCEAN_SERVICE_EMBEDDED_REST_PIPELINE_IMPL)

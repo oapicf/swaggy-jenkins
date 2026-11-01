@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 src/apis/BaseApi.ts
 src/apis/BlueOceanApi.ts
 src/apis/RemoteAccessApi.ts

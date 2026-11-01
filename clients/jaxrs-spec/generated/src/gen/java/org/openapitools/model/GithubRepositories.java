@@ -21,7 +21,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("GithubRepositories")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:47:27.742321535Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class GithubRepositories   {
   private String propertyClass;
   private GithubRepositorieslinks links;

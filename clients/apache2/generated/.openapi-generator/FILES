@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 BaseApi.conf
 BlueOceanApi.conf
 RemoteAccessApi.conf

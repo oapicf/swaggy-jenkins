@@ -27,7 +27,7 @@ import javax.validation.Valid;
 
 
 @io.swagger.annotations.Api(description = "the queue API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-01T13:21:03.518236156Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-01T13:47:21.789526521Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class QueueApi  {
 
     @Inject QueueApiService service;

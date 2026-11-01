@@ -33,7 +33,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
   FreeStyleProjecthealthReport.JSON_PROPERTY_PROPERTY_CLASS
 })
 @JsonTypeName("FreeStyleProjecthealthReport")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-01T13:20:32.710672774Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-01T13:46:44.548924937Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class FreeStyleProjecthealthReport {
     public static final String JSON_PROPERTY_DESCRIPTION = "description";

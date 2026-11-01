@@ -32,7 +32,7 @@ import javax.annotation.Generated;
   GithubRespositoryContainer.JSON_PROPERTY_REPOSITORIES
 })
 @JsonTypeName("GithubRespositoryContainer")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-01T13:20:30.018053635Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-01T13:46:41.322574956Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class GithubRespositoryContainer {
     public static final String JSON_PROPERTY_PROPERTY_CLASS = "_class";

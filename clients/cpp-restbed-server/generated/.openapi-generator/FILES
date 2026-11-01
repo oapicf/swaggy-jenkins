@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 CMakeLists.txt
 FindRestbedAndBoost.cmake
 README.md

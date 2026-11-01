@@ -38,7 +38,7 @@ import javax.annotation.Generated;
   HudsonMasterComputermonitorData.JSON_PROPERTY_PROPERTY_CLASS
 })
 @JsonTypeName("HudsonMasterComputermonitorData")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-01T13:20:30.018053635Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-01T13:46:41.322574956Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Introspected
 public class HudsonMasterComputermonitorData {
     public static final String JSON_PROPERTY_HUDSON_NODE_MONITORS_SWAP_SPACE_MONITOR = "hudson.node_monitors.SwapSpaceMonitor";

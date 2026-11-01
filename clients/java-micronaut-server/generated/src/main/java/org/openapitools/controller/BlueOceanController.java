@@ -51,7 +51,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-01T13:20:32.710672774Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautServerCodegen", date="2026-11-01T13:46:44.548924937Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Controller
 @Tag(name = "BlueOcean", description = "The BlueOcean API")
 public class BlueOceanController {

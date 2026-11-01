@@ -27,7 +27,7 @@ import org.openapitools.model.UnlabeledLoadStatistics;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-01T13:20:43.169933076Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-01T13:46:57.098486415Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Hudson   {
   
   private String propertyClass;

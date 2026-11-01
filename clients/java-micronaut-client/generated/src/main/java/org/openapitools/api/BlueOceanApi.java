@@ -40,7 +40,7 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-01T13:20:30.018053635Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-11-01T13:46:41.322574956Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 @Client("${openapi-micronaut-client-base-path}")
 public interface BlueOceanApi {
     /**

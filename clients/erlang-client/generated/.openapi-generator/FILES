@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 rebar.config
 src/openapi.app.src

@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-01T13:20:58.384357833Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-01T13:47:15.521037131Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public abstract class CreateViewApiService {
     public abstract Response postCreateView( @NotNull String name,String jenkinsCrumb,String contentType,String body,SecurityContext securityContext) throws NotFoundException;
 }

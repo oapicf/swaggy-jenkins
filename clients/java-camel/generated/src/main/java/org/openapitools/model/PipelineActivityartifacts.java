@@ -18,7 +18,7 @@ import jakarta.annotation.Generated;
  * PipelineActivityartifacts
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-01T13:20:48.791479972Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-01T13:47:03.321119538Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class PipelineActivityartifacts {
 
   private String name;

@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("Queue")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:47:27.742321535Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Queue   {
   private String propertyClass;
   private List<@Valid QueueBlockedItem> items = new ArrayList<>();

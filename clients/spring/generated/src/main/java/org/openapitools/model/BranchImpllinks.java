@@ -20,7 +20,7 @@ import jakarta.annotation.Generated;
  * BranchImpllinks
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:51:00.758086621Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BranchImpllinks {
 
   private @Nullable Link self;

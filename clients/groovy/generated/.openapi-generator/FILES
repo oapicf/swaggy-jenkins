@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 README.md
 build.gradle
 src/main/groovy/org/openapitools/api/ApiUtils.groovy

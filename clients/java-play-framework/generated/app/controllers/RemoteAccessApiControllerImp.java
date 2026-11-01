@@ -16,7 +16,7 @@ import java.io.FileInputStream;
 import play.libs.Files.TemporaryFile;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-01T13:20:40.121328296Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-01T13:46:54.082764062Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class RemoteAccessApiControllerImp extends RemoteAccessApiControllerImpInterface {
     @Override
     public ComputerSet getComputer(Http.Request request, @NotNull Integer depth) throws Exception {

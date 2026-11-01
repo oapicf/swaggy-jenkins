@@ -52,7 +52,7 @@ import com.github.oapicf.swaggyjenkins.JSON;
 /**
  * PipelinelatestRun
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-01T13:20:14.184137214Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-01T13:46:20.747979192Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class PipelinelatestRun {
   public static final String SERIALIZED_NAME_ARTIFACTS = "artifacts";
   @SerializedName(SERIALIZED_NAME_ARTIFACTS)

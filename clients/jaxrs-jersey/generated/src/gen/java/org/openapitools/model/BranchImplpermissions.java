@@ -32,7 +32,7 @@ import javax.validation.Valid;
   BranchImplpermissions.JSON_PROPERTY_STOP,
   BranchImplpermissions.JSON_PROPERTY_PROPERTY_CLASS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-01T13:20:58.384357833Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2026-11-01T13:47:15.521037131Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BranchImplpermissions   {
   public static final String JSON_PROPERTY_CREATE = "create";
   @JsonProperty(JSON_PROPERTY_CREATE)

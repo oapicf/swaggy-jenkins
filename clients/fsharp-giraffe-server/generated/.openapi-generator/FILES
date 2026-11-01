@@ -1,11 +1,4 @@
-.openapi-generator-ignore
-OpenAPI.Tests/BaseApiTests.fs
-OpenAPI.Tests/BaseApiTestsHelper.fs
-OpenAPI.Tests/BlueOceanApiTests.fs
-OpenAPI.Tests/BlueOceanApiTestsHelper.fs
 OpenAPI.Tests/OpenAPITests.fsproj
-OpenAPI.Tests/RemoteAccessApiTests.fs
-OpenAPI.Tests/RemoteAccessApiTestsHelper.fs
 OpenAPI.Tests/TestHelper.fs
 OpenAPI/.gitignore
 OpenAPI/README.md

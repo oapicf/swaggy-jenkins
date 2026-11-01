@@ -25,7 +25,7 @@ import javax.ws.rs.*;
 
 
 @io.swagger.annotations.Api(description = "the jwt-auth API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-01T13:20:35.618053359Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaMSF4JServerCodegen", date = "2026-11-01T13:46:48.042612921Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class JwtAuthApi  {
    private final JwtAuthApiService delegate = JwtAuthApiServiceFactory.getJwtAuthApi();
 

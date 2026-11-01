@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-11-01T13:21:05.914001350Z[Etc/UTC]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyEapServerCodegen", date = "2026-11-01T13:47:24.756826087Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class QueueApiServiceImpl implements QueueApi {
       public Response getQueue(SecurityContext securityContext) {
       // do some magic!

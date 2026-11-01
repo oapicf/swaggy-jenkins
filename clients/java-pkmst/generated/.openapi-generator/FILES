@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 Dockerfile
 Readme.md
 logstash.conf
@@ -102,10 +101,7 @@ src/main/resources/application-dev-config.yml
 src/main/resources/application-dev.yml
 src/main/resources/application-local.yml
 src/main/resources/bootstrap.yml
-src/test/java/com/prokarma/pkmst/controller/BaseApiTest.java
-src/test/java/com/prokarma/pkmst/controller/BlueOceanApiTest.java
 src/test/java/com/prokarma/pkmst/controller/PkmstIT.java
-src/test/java/com/prokarma/pkmst/controller/RemoteAccessApiTest.java
 src/test/java/com/prokarma/pkmst/cucumber/PkmstSteps.java
 src/test/java/com/prokarma/pkmst/cucumber/PkmstTest.java
 src/test/java/com/prokarma/pkmst/cucumber/Pkmstpackage-info.java
