@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 build.gradle
 src/gatling/resources/conf/CD.conf
 src/gatling/resources/conf/CI.conf

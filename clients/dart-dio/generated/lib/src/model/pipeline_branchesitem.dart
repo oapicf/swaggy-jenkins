@@ -261,3 +261,4 @@ class _$PipelineBranchesitemSerializer implements PrimitiveSerializer<PipelineBr
   }
 }
 
+

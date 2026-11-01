@@ -183,3 +183,4 @@ class _$BranchImplpermissionsSerializer implements PrimitiveSerializer<BranchImp
   }
 }
 
+

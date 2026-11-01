@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -26,12 +25,11 @@ import jakarta.annotation.Generated;
  * Hudson
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-10-11T12:05:23.765681171Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-01T13:20:48.791479972Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Hudson {
 
   private String propertyClass;
 
-  @Valid
   private List<@Valid HudsonassignedLabels> assignedLabels = new ArrayList<>();
 
   private String mode;
@@ -44,7 +42,6 @@ public class Hudson {
 
   private String description;
 
-  @Valid
   private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
 
   private AllView primaryView;
@@ -59,7 +56,6 @@ public class Hudson {
 
   private Boolean useSecurity;
 
-  @Valid
   private List<@Valid AllView> views = new ArrayList<>();
 
   public Hudson propertyClass(String propertyClass) {
@@ -99,7 +95,7 @@ public class Hudson {
    * Get assignedLabels
    * @return assignedLabels
    */
-  @Valid 
+  
   @Schema(name = "assignedLabels", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("assignedLabels")
   public List<@Valid HudsonassignedLabels> getAssignedLabels() {
@@ -227,7 +223,7 @@ public class Hudson {
    * Get jobs
    * @return jobs
    */
-  @Valid 
+  
   @Schema(name = "jobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("jobs")
   public List<@Valid FreeStyleProject> getJobs() {
@@ -375,7 +371,7 @@ public class Hudson {
    * Get views
    * @return views
    */
-  @Valid 
+  
   @Schema(name = "views", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("views")
   public List<@Valid AllView> getViews() {

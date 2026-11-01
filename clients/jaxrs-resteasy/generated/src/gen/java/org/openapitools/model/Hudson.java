@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-10-11T12:05:40.723530399Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-01T13:21:03.518236156Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Hudson   {
   
   private String propertyClass;
@@ -53,7 +53,6 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("assignedLabels")
-  @Valid
   public List<@Valid HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
   }
@@ -126,7 +125,6 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("jobs")
-  @Valid
   public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
@@ -213,7 +211,6 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("views")
-  @Valid
   public List<@Valid AllView> getViews() {
     return views;
   }

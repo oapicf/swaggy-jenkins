@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 README.md
 app/api/ApiDocController.scala
 app/api/BaseApi.scala

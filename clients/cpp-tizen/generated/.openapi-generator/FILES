@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 doc/Doxyfile
 doc/README.md
 doc/generateDocumentation.sh

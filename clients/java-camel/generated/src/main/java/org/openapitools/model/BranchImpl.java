@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ import jakarta.annotation.Generated;
  * BranchImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-10-11T12:05:23.765681171Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-01T13:20:48.791479972Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BranchImpl {
 
   private String propertyClass;
@@ -43,7 +42,6 @@ public class BranchImpl {
 
   private String organization;
 
-  @Valid
   private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
   private BranchImplpermissions permissions;
@@ -213,7 +211,7 @@ public class BranchImpl {
    * Get parameters
    * @return parameters
    */
-  @Valid 
+  
   @Schema(name = "parameters", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("parameters")
   public List<@Valid StringParameterDefinition> getParameters() {

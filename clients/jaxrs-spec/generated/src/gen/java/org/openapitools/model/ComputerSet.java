@@ -20,11 +20,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("ComputerSet")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ComputerSet   {
   private String propertyClass;
   private Integer busyExecutors;
-  private @Valid List<@Valid HudsonMasterComputer> computer = new ArrayList<>();
+  private List<@Valid HudsonMasterComputer> computer = new ArrayList<>();
   private String displayName;
   private Integer totalExecutors;
 
@@ -79,7 +79,7 @@ public class ComputerSet   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("computer")
-  @Valid public List<@Valid HudsonMasterComputer> getComputer() {
+  public List<@Valid HudsonMasterComputer> getComputer() {
     return computer;
   }
 

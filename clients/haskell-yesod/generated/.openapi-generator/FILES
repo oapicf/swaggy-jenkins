@@ -1,5 +1,6 @@
 .dir-locals.el
 .gitignore
+.openapi-generator-ignore
 README.md
 app/DevelMain.hs
 app/devel.hs
@@ -22,5 +23,8 @@ src/Settings/StaticFiles.hs
 src/SwaggyJenkins/Types.hs
 stack.yaml
 static/.gitkeep
+test/Handler/BaseSpec.hs
+test/Handler/BlueOceanSpec.hs
+test/Handler/RemoteAccessSpec.hs
 test/Spec.hs
 test/TestImport.hs

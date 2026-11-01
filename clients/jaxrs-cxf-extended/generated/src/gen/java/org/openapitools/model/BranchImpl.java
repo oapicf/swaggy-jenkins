@@ -39,7 +39,6 @@ public class BranchImpl  {
   private String organization;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
   @ApiModelProperty(value = "")

@@ -21,7 +21,6 @@ public class ComputerSet  {
   private Integer busyExecutors;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid HudsonMasterComputer> computer = new ArrayList<>();
 
   @ApiModelProperty(value = "")

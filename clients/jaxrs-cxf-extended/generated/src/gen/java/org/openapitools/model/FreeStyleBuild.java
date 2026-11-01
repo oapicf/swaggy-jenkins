@@ -25,7 +25,6 @@ public class FreeStyleBuild  {
   private String url;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid CauseAction> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")

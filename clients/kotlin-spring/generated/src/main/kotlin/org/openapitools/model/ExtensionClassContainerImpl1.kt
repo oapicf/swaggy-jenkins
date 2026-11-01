@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ExtensionClassContainerImpl1links
 import org.openapitools.model.ExtensionClassContainerImpl1map
 import javax.validation.constraints.DecimalMax
@@ -27,22 +24,16 @@ import io.swagger.v3.oas.annotations.media.Schema
 data class ExtensionClassContainerImpl1(
 
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("_class")
     @get:JsonProperty("_class") val propertyClass: kotlin.String? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("_links")
     @get:JsonProperty("_links") val links: ExtensionClassContainerImpl1links? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("map")
     @get:JsonProperty("map") val map: ExtensionClassContainerImpl1map? = null
 ) {

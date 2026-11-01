@@ -24,7 +24,6 @@ public class PipelineRunNode  {
   private Integer durationInMillis;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid PipelineRunNodeedges> edges = new ArrayList<>();
 
   @ApiModelProperty(value = "")

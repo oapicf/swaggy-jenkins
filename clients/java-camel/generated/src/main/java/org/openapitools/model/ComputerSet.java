@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -23,14 +22,13 @@ import jakarta.annotation.Generated;
  * ComputerSet
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-10-11T12:05:23.765681171Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-01T13:20:48.791479972Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ComputerSet {
 
   private String propertyClass;
 
   private Integer busyExecutors;
 
-  @Valid
   private List<@Valid HudsonMasterComputer> computer = new ArrayList<>();
 
   private String displayName;
@@ -94,7 +92,7 @@ public class ComputerSet {
    * Get computer
    * @return computer
    */
-  @Valid 
+  
   @Schema(name = "computer", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("computer")
   public List<@Valid HudsonMasterComputer> getComputer() {

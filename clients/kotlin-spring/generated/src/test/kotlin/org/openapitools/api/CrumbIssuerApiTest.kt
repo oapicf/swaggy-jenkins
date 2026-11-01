@@ -17,6 +17,7 @@ class CrumbIssuerApiTest {
     @Test
     fun getCrumbTest() {
         
+        
         val response: ResponseEntity<DefaultCrumbIssuer> = api.getCrumb()
 
         // TODO: test validations

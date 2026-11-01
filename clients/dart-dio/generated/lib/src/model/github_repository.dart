@@ -242,3 +242,4 @@ class _$GithubRepositorySerializer implements PrimitiveSerializer<GithubReposito
   }
 }
 
+

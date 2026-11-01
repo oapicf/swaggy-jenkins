@@ -164,3 +164,4 @@ class _$PipelineActivityartifactsSerializer implements PrimitiveSerializer<Pipel
   }
 }
 
+

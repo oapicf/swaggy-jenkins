@@ -19,7 +19,7 @@ import javax.validation.Valid;
 */
 @Path("/job/{name}")
 @Api(description = "the job API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class JobApi {
 
     @GET
@@ -35,7 +35,8 @@ public class JobApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response getJob(@PathParam("name") @ApiParam("Name of the job") String name) {
+    public Response getJob(@PathParam("name") @ApiParam("Name of the job") String name
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -52,7 +53,8 @@ public class JobApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response getJobConfig(@PathParam("name") @ApiParam("Name of the job") String name) {
+    public Response getJobConfig(@PathParam("name") @ApiParam("Name of the job") String name
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -69,7 +71,8 @@ public class JobApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response getJobLastBuild(@PathParam("name") @ApiParam("Name of the job") String name) {
+    public Response getJobLastBuild(@PathParam("name") @ApiParam("Name of the job") String name
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -85,7 +88,10 @@ public class JobApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response getJobProgressiveText(@PathParam("name") @ApiParam("Name of the job") String name,@PathParam("number") @ApiParam("Build number") String number,@QueryParam("start") @NotNull  @ApiParam("Starting point of progressive text output")  String start) {
+    public Response getJobProgressiveText(@PathParam("name") @ApiParam("Name of the job") String name
+,@PathParam("number") @ApiParam("Build number") String number
+,@QueryParam("start") @NotNull  @ApiParam("Starting point of progressive text output")  String start
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -102,7 +108,11 @@ public class JobApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response postJobBuild(@PathParam("name") @ApiParam("Name of the job") String name,@QueryParam("json") @NotNull   String json,@QueryParam("token")   String token,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb) {
+    public Response postJobBuild(@PathParam("name") @ApiParam("Name of the job") String name
+,@QueryParam("json") @NotNull   String json
+,@QueryParam("token")   String token
+,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -121,7 +131,10 @@ public class JobApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response postJobConfig(@PathParam("name") @ApiParam("Name of the job") String name,@Valid @NotNull String body,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb) {
+    public Response postJobConfig(@PathParam("name") @ApiParam("Name of the job") String name
+,@Valid @NotNull String body
+,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -137,7 +150,9 @@ public class JobApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response postJobDelete(@PathParam("name") @ApiParam("Name of the job") String name,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb) {
+    public Response postJobDelete(@PathParam("name") @ApiParam("Name of the job") String name
+,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -153,7 +168,9 @@ public class JobApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response postJobDisable(@PathParam("name") @ApiParam("Name of the job") String name,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb) {
+    public Response postJobDisable(@PathParam("name") @ApiParam("Name of the job") String name
+,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -169,7 +186,9 @@ public class JobApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response postJobEnable(@PathParam("name") @ApiParam("Name of the job") String name,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb) {
+    public Response postJobEnable(@PathParam("name") @ApiParam("Name of the job") String name
+,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -185,7 +204,9 @@ public class JobApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Job cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response postJobLastBuildStop(@PathParam("name") @ApiParam("Name of the job") String name,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb) {
+    public Response postJobLastBuildStop(@PathParam("name") @ApiParam("Name of the job") String name
+,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb
+) {
         return Response.ok().entity("magic!").build();
     }
 }

@@ -45,7 +45,7 @@ Method | HTTP request | Description
 
 # **deletePipelineQueueItem**
 ```swift
-    open class func deletePipelineQueueItem(organization: String, pipeline: String, queue: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deletePipelineQueueItem(organization: String, pipeline: String, queue: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -61,15 +61,10 @@ let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 let queue = "queue_example" // String | Name of the queue item
 
-BlueOceanAPI.deletePipelineQueueItem(organization: organization, pipeline: pipeline, queue: queue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await BlueOceanAPI.deletePipelineQueueItem(organization: organization, pipeline: pipeline, queue: queue)
+} catch {
+    print(error)
 }
 ```
 
@@ -98,7 +93,7 @@ Void (empty response body)
 
 # **getAuthenticatedUser**
 ```swift
-    open class func getAuthenticatedUser(organization: String, completion: @escaping (_ data: User?, _ error: Error?) -> Void)
+    open class func getAuthenticatedUser(organization: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> User
 ```
 
 
@@ -112,15 +107,11 @@ import OpenAPIClient
 
 let organization = "organization_example" // String | Name of the organization
 
-BlueOceanAPI.getAuthenticatedUser(organization: organization) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getAuthenticatedUser(organization: organization)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -147,7 +138,7 @@ Name | Type | Description  | Notes
 
 # **getClasses**
 ```swift
-    open class func getClasses(_class: String, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func getClasses(_class: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 
@@ -161,15 +152,11 @@ import OpenAPIClient
 
 let _class = "_class_example" // String | Name of the class
 
-BlueOceanAPI.getClasses(_class: _class) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getClasses(_class: _class)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -196,7 +183,7 @@ Name | Type | Description  | Notes
 
 # **getJsonWebKey**
 ```swift
-    open class func getJsonWebKey(key: Int, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func getJsonWebKey(key: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 
@@ -210,15 +197,11 @@ import OpenAPIClient
 
 let key = 987 // Int | Key ID received as part of JWT header field kid
 
-BlueOceanAPI.getJsonWebKey(key: key) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getJsonWebKey(key: key)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -245,7 +228,7 @@ No authorization required
 
 # **getJsonWebToken**
 ```swift
-    open class func getJsonWebToken(expiryTimeInMins: Int? = nil, maxExpiryTimeInMins: Int? = nil, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func getJsonWebToken(expiryTimeInMins: Int? = nil, maxExpiryTimeInMins: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 
@@ -260,15 +243,11 @@ import OpenAPIClient
 let expiryTimeInMins = 987 // Int | Token expiry time in minutes, default: 30 minutes (optional)
 let maxExpiryTimeInMins = 987 // Int | Maximum token expiry time in minutes, default: 480 minutes (optional)
 
-BlueOceanAPI.getJsonWebToken(expiryTimeInMins: expiryTimeInMins, maxExpiryTimeInMins: maxExpiryTimeInMins) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getJsonWebToken(expiryTimeInMins: expiryTimeInMins, maxExpiryTimeInMins: maxExpiryTimeInMins)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -296,7 +275,7 @@ No authorization required
 
 # **getOrganisation**
 ```swift
-    open class func getOrganisation(organization: String, completion: @escaping (_ data: Organisation?, _ error: Error?) -> Void)
+    open class func getOrganisation(organization: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Organisation
 ```
 
 
@@ -310,15 +289,11 @@ import OpenAPIClient
 
 let organization = "organization_example" // String | Name of the organization
 
-BlueOceanAPI.getOrganisation(organization: organization) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getOrganisation(organization: organization)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -345,7 +320,7 @@ Name | Type | Description  | Notes
 
 # **getOrganisations**
 ```swift
-    open class func getOrganisations(completion: @escaping (_ data: [Organisation]?, _ error: Error?) -> Void)
+    open class func getOrganisations(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [Organisation]
 ```
 
 
@@ -358,15 +333,11 @@ Retrieve all organizations details
 import OpenAPIClient
 
 
-BlueOceanAPI.getOrganisations() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getOrganisations()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -390,7 +361,7 @@ This endpoint does not need any parameter.
 
 # **getPipeline**
 ```swift
-    open class func getPipeline(organization: String, pipeline: String, completion: @escaping (_ data: Pipeline?, _ error: Error?) -> Void)
+    open class func getPipeline(organization: String, pipeline: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Pipeline
 ```
 
 
@@ -405,15 +376,11 @@ import OpenAPIClient
 let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 
-BlueOceanAPI.getPipeline(organization: organization, pipeline: pipeline) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipeline(organization: organization, pipeline: pipeline)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -441,7 +408,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineActivities**
 ```swift
-    open class func getPipelineActivities(organization: String, pipeline: String, completion: @escaping (_ data: [PipelineActivity]?, _ error: Error?) -> Void)
+    open class func getPipelineActivities(organization: String, pipeline: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [PipelineActivity]
 ```
 
 
@@ -456,15 +423,11 @@ import OpenAPIClient
 let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 
-BlueOceanAPI.getPipelineActivities(organization: organization, pipeline: pipeline) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineActivities(organization: organization, pipeline: pipeline)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -492,7 +455,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineBranch**
 ```swift
-    open class func getPipelineBranch(organization: String, pipeline: String, branch: String, completion: @escaping (_ data: BranchImpl?, _ error: Error?) -> Void)
+    open class func getPipelineBranch(organization: String, pipeline: String, branch: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BranchImpl
 ```
 
 
@@ -508,15 +471,11 @@ let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 let branch = "branch_example" // String | Name of the branch
 
-BlueOceanAPI.getPipelineBranch(organization: organization, pipeline: pipeline, branch: branch) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineBranch(organization: organization, pipeline: pipeline, branch: branch)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -545,7 +504,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineBranchRun**
 ```swift
-    open class func getPipelineBranchRun(organization: String, pipeline: String, branch: String, run: String, completion: @escaping (_ data: PipelineRun?, _ error: Error?) -> Void)
+    open class func getPipelineBranchRun(organization: String, pipeline: String, branch: String, run: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PipelineRun
 ```
 
 
@@ -562,15 +521,11 @@ let pipeline = "pipeline_example" // String | Name of the pipeline
 let branch = "branch_example" // String | Name of the branch
 let run = "run_example" // String | Name of the run
 
-BlueOceanAPI.getPipelineBranchRun(organization: organization, pipeline: pipeline, branch: branch, run: run) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineBranchRun(organization: organization, pipeline: pipeline, branch: branch, run: run)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -600,7 +555,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineBranches**
 ```swift
-    open class func getPipelineBranches(organization: String, pipeline: String, completion: @escaping (_ data: MultibranchPipeline?, _ error: Error?) -> Void)
+    open class func getPipelineBranches(organization: String, pipeline: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MultibranchPipeline
 ```
 
 
@@ -615,15 +570,11 @@ import OpenAPIClient
 let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 
-BlueOceanAPI.getPipelineBranches(organization: organization, pipeline: pipeline) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineBranches(organization: organization, pipeline: pipeline)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -651,7 +602,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineFolder**
 ```swift
-    open class func getPipelineFolder(organization: String, folder: String, completion: @escaping (_ data: PipelineFolderImpl?, _ error: Error?) -> Void)
+    open class func getPipelineFolder(organization: String, folder: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PipelineFolderImpl
 ```
 
 
@@ -666,15 +617,11 @@ import OpenAPIClient
 let organization = "organization_example" // String | Name of the organization
 let folder = "folder_example" // String | Name of the folder
 
-BlueOceanAPI.getPipelineFolder(organization: organization, folder: folder) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineFolder(organization: organization, folder: folder)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -702,7 +649,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineFolderPipeline**
 ```swift
-    open class func getPipelineFolderPipeline(organization: String, pipeline: String, folder: String, completion: @escaping (_ data: PipelineImpl?, _ error: Error?) -> Void)
+    open class func getPipelineFolderPipeline(organization: String, pipeline: String, folder: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PipelineImpl
 ```
 
 
@@ -718,15 +665,11 @@ let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 let folder = "folder_example" // String | Name of the folder
 
-BlueOceanAPI.getPipelineFolderPipeline(organization: organization, pipeline: pipeline, folder: folder) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineFolderPipeline(organization: organization, pipeline: pipeline, folder: folder)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -755,7 +698,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineQueue**
 ```swift
-    open class func getPipelineQueue(organization: String, pipeline: String, completion: @escaping (_ data: [QueueItemImpl]?, _ error: Error?) -> Void)
+    open class func getPipelineQueue(organization: String, pipeline: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [QueueItemImpl]
 ```
 
 
@@ -770,15 +713,11 @@ import OpenAPIClient
 let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 
-BlueOceanAPI.getPipelineQueue(organization: organization, pipeline: pipeline) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineQueue(organization: organization, pipeline: pipeline)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -806,7 +745,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineRun**
 ```swift
-    open class func getPipelineRun(organization: String, pipeline: String, run: String, completion: @escaping (_ data: PipelineRun?, _ error: Error?) -> Void)
+    open class func getPipelineRun(organization: String, pipeline: String, run: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PipelineRun
 ```
 
 
@@ -822,15 +761,11 @@ let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 let run = "run_example" // String | Name of the run
 
-BlueOceanAPI.getPipelineRun(organization: organization, pipeline: pipeline, run: run) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineRun(organization: organization, pipeline: pipeline, run: run)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -859,7 +794,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineRunLog**
 ```swift
-    open class func getPipelineRunLog(organization: String, pipeline: String, run: String, start: Int? = nil, download: Bool? = nil, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func getPipelineRunLog(organization: String, pipeline: String, run: String, start: Int? = nil, download: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 
@@ -877,15 +812,11 @@ let run = "run_example" // String | Name of the run
 let start = 987 // Int | Start position of the log (optional)
 let download = true // Bool | Set to true in order to download the file, otherwise it's passed as a response body (optional)
 
-BlueOceanAPI.getPipelineRunLog(organization: organization, pipeline: pipeline, run: run, start: start, download: download) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineRunLog(organization: organization, pipeline: pipeline, run: run, start: start, download: download)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -916,7 +847,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineRunNode**
 ```swift
-    open class func getPipelineRunNode(organization: String, pipeline: String, run: String, node: String, completion: @escaping (_ data: PipelineRunNode?, _ error: Error?) -> Void)
+    open class func getPipelineRunNode(organization: String, pipeline: String, run: String, node: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PipelineRunNode
 ```
 
 
@@ -933,15 +864,11 @@ let pipeline = "pipeline_example" // String | Name of the pipeline
 let run = "run_example" // String | Name of the run
 let node = "node_example" // String | Name of the node
 
-BlueOceanAPI.getPipelineRunNode(organization: organization, pipeline: pipeline, run: run, node: node) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineRunNode(organization: organization, pipeline: pipeline, run: run, node: node)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -971,7 +898,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineRunNodeStep**
 ```swift
-    open class func getPipelineRunNodeStep(organization: String, pipeline: String, run: String, node: String, step: String, completion: @escaping (_ data: PipelineStepImpl?, _ error: Error?) -> Void)
+    open class func getPipelineRunNodeStep(organization: String, pipeline: String, run: String, node: String, step: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PipelineStepImpl
 ```
 
 
@@ -989,15 +916,11 @@ let run = "run_example" // String | Name of the run
 let node = "node_example" // String | Name of the node
 let step = "step_example" // String | Name of the step
 
-BlueOceanAPI.getPipelineRunNodeStep(organization: organization, pipeline: pipeline, run: run, node: node, step: step) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineRunNodeStep(organization: organization, pipeline: pipeline, run: run, node: node, step: step)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1028,7 +951,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineRunNodeStepLog**
 ```swift
-    open class func getPipelineRunNodeStepLog(organization: String, pipeline: String, run: String, node: String, step: String, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func getPipelineRunNodeStepLog(organization: String, pipeline: String, run: String, node: String, step: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 
@@ -1046,15 +969,11 @@ let run = "run_example" // String | Name of the run
 let node = "node_example" // String | Name of the node
 let step = "step_example" // String | Name of the step
 
-BlueOceanAPI.getPipelineRunNodeStepLog(organization: organization, pipeline: pipeline, run: run, node: node, step: step) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineRunNodeStepLog(organization: organization, pipeline: pipeline, run: run, node: node, step: step)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1085,7 +1004,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineRunNodeSteps**
 ```swift
-    open class func getPipelineRunNodeSteps(organization: String, pipeline: String, run: String, node: String, completion: @escaping (_ data: [PipelineStepImpl]?, _ error: Error?) -> Void)
+    open class func getPipelineRunNodeSteps(organization: String, pipeline: String, run: String, node: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [PipelineStepImpl]
 ```
 
 
@@ -1102,15 +1021,11 @@ let pipeline = "pipeline_example" // String | Name of the pipeline
 let run = "run_example" // String | Name of the run
 let node = "node_example" // String | Name of the node
 
-BlueOceanAPI.getPipelineRunNodeSteps(organization: organization, pipeline: pipeline, run: run, node: node) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineRunNodeSteps(organization: organization, pipeline: pipeline, run: run, node: node)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1140,7 +1055,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineRunNodes**
 ```swift
-    open class func getPipelineRunNodes(organization: String, pipeline: String, run: String, completion: @escaping (_ data: [PipelineRunNode]?, _ error: Error?) -> Void)
+    open class func getPipelineRunNodes(organization: String, pipeline: String, run: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [PipelineRunNode]
 ```
 
 
@@ -1156,15 +1071,11 @@ let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 let run = "run_example" // String | Name of the run
 
-BlueOceanAPI.getPipelineRunNodes(organization: organization, pipeline: pipeline, run: run) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineRunNodes(organization: organization, pipeline: pipeline, run: run)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1193,7 +1104,7 @@ Name | Type | Description  | Notes
 
 # **getPipelineRuns**
 ```swift
-    open class func getPipelineRuns(organization: String, pipeline: String, completion: @escaping (_ data: [PipelineRun]?, _ error: Error?) -> Void)
+    open class func getPipelineRuns(organization: String, pipeline: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [PipelineRun]
 ```
 
 
@@ -1208,15 +1119,11 @@ import OpenAPIClient
 let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 
-BlueOceanAPI.getPipelineRuns(organization: organization, pipeline: pipeline) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelineRuns(organization: organization, pipeline: pipeline)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1244,7 +1151,7 @@ Name | Type | Description  | Notes
 
 # **getPipelines**
 ```swift
-    open class func getPipelines(organization: String, completion: @escaping (_ data: [Pipeline]?, _ error: Error?) -> Void)
+    open class func getPipelines(organization: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [Pipeline]
 ```
 
 
@@ -1258,15 +1165,11 @@ import OpenAPIClient
 
 let organization = "organization_example" // String | Name of the organization
 
-BlueOceanAPI.getPipelines(organization: organization) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getPipelines(organization: organization)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1293,7 +1196,7 @@ Name | Type | Description  | Notes
 
 # **getSCM**
 ```swift
-    open class func getSCM(organization: String, scm: String, completion: @escaping (_ data: GithubScm?, _ error: Error?) -> Void)
+    open class func getSCM(organization: String, scm: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GithubScm
 ```
 
 
@@ -1308,15 +1211,11 @@ import OpenAPIClient
 let organization = "organization_example" // String | Name of the organization
 let scm = "scm_example" // String | Name of SCM
 
-BlueOceanAPI.getSCM(organization: organization, scm: scm) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getSCM(organization: organization, scm: scm)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1344,7 +1243,7 @@ Name | Type | Description  | Notes
 
 # **getSCMOrganisationRepositories**
 ```swift
-    open class func getSCMOrganisationRepositories(organization: String, scm: String, scmOrganisation: String, credentialId: String? = nil, pageSize: Int? = nil, pageNumber: Int? = nil, completion: @escaping (_ data: [GithubOrganization]?, _ error: Error?) -> Void)
+    open class func getSCMOrganisationRepositories(organization: String, scm: String, scmOrganisation: String, credentialId: String? = nil, pageSize: Int? = nil, pageNumber: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [GithubOrganization]
 ```
 
 
@@ -1363,15 +1262,11 @@ let credentialId = "credentialId_example" // String | Credential ID (optional)
 let pageSize = 987 // Int | Number of items in a page (optional)
 let pageNumber = 987 // Int | Page number (optional)
 
-BlueOceanAPI.getSCMOrganisationRepositories(organization: organization, scm: scm, scmOrganisation: scmOrganisation, credentialId: credentialId, pageSize: pageSize, pageNumber: pageNumber) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getSCMOrganisationRepositories(organization: organization, scm: scm, scmOrganisation: scmOrganisation, credentialId: credentialId, pageSize: pageSize, pageNumber: pageNumber)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1403,7 +1298,7 @@ Name | Type | Description  | Notes
 
 # **getSCMOrganisationRepository**
 ```swift
-    open class func getSCMOrganisationRepository(organization: String, scm: String, scmOrganisation: String, repository: String, credentialId: String? = nil, completion: @escaping (_ data: [GithubOrganization]?, _ error: Error?) -> Void)
+    open class func getSCMOrganisationRepository(organization: String, scm: String, scmOrganisation: String, repository: String, credentialId: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [GithubOrganization]
 ```
 
 
@@ -1421,15 +1316,11 @@ let scmOrganisation = "scmOrganisation_example" // String | Name of the SCM orga
 let repository = "repository_example" // String | Name of the SCM repository
 let credentialId = "credentialId_example" // String | Credential ID (optional)
 
-BlueOceanAPI.getSCMOrganisationRepository(organization: organization, scm: scm, scmOrganisation: scmOrganisation, repository: repository, credentialId: credentialId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getSCMOrganisationRepository(organization: organization, scm: scm, scmOrganisation: scmOrganisation, repository: repository, credentialId: credentialId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1460,7 +1351,7 @@ Name | Type | Description  | Notes
 
 # **getSCMOrganisations**
 ```swift
-    open class func getSCMOrganisations(organization: String, scm: String, credentialId: String? = nil, completion: @escaping (_ data: [GithubOrganization]?, _ error: Error?) -> Void)
+    open class func getSCMOrganisations(organization: String, scm: String, credentialId: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [GithubOrganization]
 ```
 
 
@@ -1476,15 +1367,11 @@ let organization = "organization_example" // String | Name of the organization
 let scm = "scm_example" // String | Name of SCM
 let credentialId = "credentialId_example" // String | Credential ID (optional)
 
-BlueOceanAPI.getSCMOrganisations(organization: organization, scm: scm, credentialId: credentialId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getSCMOrganisations(organization: organization, scm: scm, credentialId: credentialId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1513,7 +1400,7 @@ Name | Type | Description  | Notes
 
 # **getUser**
 ```swift
-    open class func getUser(organization: String, user: String, completion: @escaping (_ data: User?, _ error: Error?) -> Void)
+    open class func getUser(organization: String, user: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> User
 ```
 
 
@@ -1528,15 +1415,11 @@ import OpenAPIClient
 let organization = "organization_example" // String | Name of the organization
 let user = "user_example" // String | Name of the user
 
-BlueOceanAPI.getUser(organization: organization, user: user) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getUser(organization: organization, user: user)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1564,7 +1447,7 @@ Name | Type | Description  | Notes
 
 # **getUserFavorites**
 ```swift
-    open class func getUserFavorites(user: String, completion: @escaping (_ data: [FavoriteImpl]?, _ error: Error?) -> Void)
+    open class func getUserFavorites(user: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [FavoriteImpl]
 ```
 
 
@@ -1578,15 +1461,11 @@ import OpenAPIClient
 
 let user = "user_example" // String | Name of the user
 
-BlueOceanAPI.getUserFavorites(user: user) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getUserFavorites(user: user)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1613,7 +1492,7 @@ Name | Type | Description  | Notes
 
 # **getUsers**
 ```swift
-    open class func getUsers(organization: String, completion: @escaping (_ data: User?, _ error: Error?) -> Void)
+    open class func getUsers(organization: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> User
 ```
 
 
@@ -1627,15 +1506,11 @@ import OpenAPIClient
 
 let organization = "organization_example" // String | Name of the organization
 
-BlueOceanAPI.getUsers(organization: organization) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.getUsers(organization: organization)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1662,7 +1537,7 @@ Name | Type | Description  | Notes
 
 # **postPipelineRun**
 ```swift
-    open class func postPipelineRun(organization: String, pipeline: String, run: String, completion: @escaping (_ data: QueueItemImpl?, _ error: Error?) -> Void)
+    open class func postPipelineRun(organization: String, pipeline: String, run: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> QueueItemImpl
 ```
 
 
@@ -1678,15 +1553,11 @@ let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 let run = "run_example" // String | Name of the run
 
-BlueOceanAPI.postPipelineRun(organization: organization, pipeline: pipeline, run: run) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.postPipelineRun(organization: organization, pipeline: pipeline, run: run)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1715,7 +1586,7 @@ Name | Type | Description  | Notes
 
 # **postPipelineRuns**
 ```swift
-    open class func postPipelineRuns(organization: String, pipeline: String, completion: @escaping (_ data: QueueItemImpl?, _ error: Error?) -> Void)
+    open class func postPipelineRuns(organization: String, pipeline: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> QueueItemImpl
 ```
 
 
@@ -1730,15 +1601,11 @@ import OpenAPIClient
 let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 
-BlueOceanAPI.postPipelineRuns(organization: organization, pipeline: pipeline) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.postPipelineRuns(organization: organization, pipeline: pipeline)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1766,7 +1633,7 @@ Name | Type | Description  | Notes
 
 # **putPipelineFavorite**
 ```swift
-    open class func putPipelineFavorite(organization: String, pipeline: String, body: Bool, completion: @escaping (_ data: FavoriteImpl?, _ error: Error?) -> Void)
+    open class func putPipelineFavorite(organization: String, pipeline: String, body: Bool, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FavoriteImpl
 ```
 
 
@@ -1782,15 +1649,11 @@ let organization = "organization_example" // String | Name of the organization
 let pipeline = "pipeline_example" // String | Name of the pipeline
 let body = true // Bool | Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite
 
-BlueOceanAPI.putPipelineFavorite(organization: organization, pipeline: pipeline, body: body) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.putPipelineFavorite(organization: organization, pipeline: pipeline, body: body)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1819,7 +1682,7 @@ Name | Type | Description  | Notes
 
 # **putPipelineRun**
 ```swift
-    open class func putPipelineRun(organization: String, pipeline: String, run: String, blocking: String? = nil, timeOutInSecs: Int? = nil, completion: @escaping (_ data: PipelineRun?, _ error: Error?) -> Void)
+    open class func putPipelineRun(organization: String, pipeline: String, run: String, blocking: String? = nil, timeOutInSecs: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PipelineRun
 ```
 
 
@@ -1837,15 +1700,11 @@ let run = "run_example" // String | Name of the run
 let blocking = "blocking_example" // String | Set to true to make blocking stop, default: false (optional)
 let timeOutInSecs = 987 // Int | Timeout in seconds, default: 10 seconds (optional)
 
-BlueOceanAPI.putPipelineRun(organization: organization, pipeline: pipeline, run: run, blocking: blocking, timeOutInSecs: timeOutInSecs) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.putPipelineRun(organization: organization, pipeline: pipeline, run: run, blocking: blocking, timeOutInSecs: timeOutInSecs)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1876,7 +1735,7 @@ Name | Type | Description  | Notes
 
 # **search**
 ```swift
-    open class func search(q: String, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func search(q: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 
@@ -1890,15 +1749,11 @@ import OpenAPIClient
 
 let q = "q_example" // String | Query string
 
-BlueOceanAPI.search(q: q) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.search(q: q)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1925,7 +1780,7 @@ Name | Type | Description  | Notes
 
 # **searchClasses**
 ```swift
-    open class func searchClasses(q: String, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func searchClasses(q: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 
@@ -1939,15 +1794,11 @@ import OpenAPIClient
 
 let q = "q_example" // String | Query string containing an array of class names
 
-BlueOceanAPI.searchClasses(q: q) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlueOceanAPI.searchClasses(q: q)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

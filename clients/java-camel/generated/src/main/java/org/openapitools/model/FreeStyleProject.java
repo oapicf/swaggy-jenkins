@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ import jakarta.annotation.Generated;
  * FreeStyleProject
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-10-11T12:05:23.765681171Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-01T13:20:48.791479972Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FreeStyleProject {
 
   private String propertyClass;
@@ -37,7 +36,6 @@ public class FreeStyleProject {
 
   private String color;
 
-  @Valid
   private List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
 
   private String description;
@@ -52,12 +50,10 @@ public class FreeStyleProject {
 
   private Boolean buildable;
 
-  @Valid
   private List<@Valid FreeStyleBuild> builds = new ArrayList<>();
 
   private FreeStyleBuild firstBuild;
 
-  @Valid
   private List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
 
   private Boolean inQueue;
@@ -183,7 +179,7 @@ public class FreeStyleProject {
    * Get actions
    * @return actions
    */
-  @Valid 
+  
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
   public List<@Valid FreeStyleProjectactions> getActions() {
@@ -331,7 +327,7 @@ public class FreeStyleProject {
    * Get builds
    * @return builds
    */
-  @Valid 
+  
   @Schema(name = "builds", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("builds")
   public List<@Valid FreeStyleBuild> getBuilds() {
@@ -379,7 +375,7 @@ public class FreeStyleProject {
    * Get healthReport
    * @return healthReport
    */
-  @Valid 
+  
   @Schema(name = "healthReport", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("healthReport")
   public List<@Valid FreeStyleProjecthealthReport> getHealthReport() {

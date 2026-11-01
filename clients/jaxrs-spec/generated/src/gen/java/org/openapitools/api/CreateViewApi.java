@@ -17,7 +17,7 @@ import javax.validation.Valid;
 */
 @Path("/createView")
 @Api(description = "the createView API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateViewApi {
 
     @POST
@@ -33,7 +33,11 @@ public class CreateViewApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response postCreateView(@QueryParam("name") @NotNull  @ApiParam("Name of the new view")  String name,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb,@HeaderParam("Content-Type")   @ApiParam("Content type header application/xml") String contentType,@Valid String body) {
+    public Response postCreateView(@QueryParam("name") @NotNull  @ApiParam("Name of the new view")  String name
+,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb
+,@HeaderParam("Content-Type")   @ApiParam("Content type header application/xml") String contentType
+,@Valid String body
+) {
         return Response.ok().entity("magic!").build();
     }
 }

@@ -703,7 +703,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/createItem" + "?name=ADDME&from=ADDME&mode=ADDME"
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostCreateItemExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostCreateItemExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -725,7 +725,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/createItem" + "?name=ADDME&from=ADDME&mode=ADDME"
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostCreateItemExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostCreateItemExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -747,7 +747,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/createItem" + "?name=ADDME&from=ADDME&mode=ADDME"
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostCreateItemExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostCreateItemExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -769,7 +769,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/createItem" + "?name=ADDME&from=ADDME&mode=ADDME"
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostCreateItemExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostCreateItemExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -791,7 +791,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/createView" + "?name=ADDME"
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostCreateViewExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostCreateViewExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -813,7 +813,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/createView" + "?name=ADDME"
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostCreateViewExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostCreateViewExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -835,7 +835,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/createView" + "?name=ADDME"
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostCreateViewExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostCreateViewExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -857,7 +857,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/createView" + "?name=ADDME"
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostCreateViewExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostCreateViewExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -964,7 +964,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/job/{name}/config.xml".Replace("name", "ADDME")
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostJobConfigExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostJobConfigExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -986,7 +986,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/job/{name}/config.xml".Replace("name", "ADDME")
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostJobConfigExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostJobConfigExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -1008,7 +1008,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/job/{name}/config.xml".Replace("name", "ADDME")
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostJobConfigExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostJobConfigExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -1030,7 +1030,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/job/{name}/config.xml".Replace("name", "ADDME")
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostJobConfigExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostJobConfigExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -1052,7 +1052,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/job/{name}/config.xml".Replace("name", "ADDME")
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostJobConfigExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostJobConfigExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -1346,7 +1346,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/view/{name}/config.xml".Replace("name", "ADDME")
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostViewConfigExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostViewConfigExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -1368,7 +1368,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/view/{name}/config.xml".Replace("name", "ADDME")
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostViewConfigExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostViewConfigExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -1390,7 +1390,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/view/{name}/config.xml".Replace("name", "ADDME")
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostViewConfigExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostViewConfigExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -1412,7 +1412,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/view/{name}/config.xml".Replace("name", "ADDME")
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostViewConfigExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostViewConfigExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 
@@ -1434,7 +1434,7 @@ module RemoteAccessApiHandlerTests =
       let path = "/view/{name}/config.xml".Replace("name", "ADDME")
 
       // use an example requestBody provided by the spec
-      let examples = Map.empty.Add("application/json", getPostViewConfigExample "application/json")
+      let examples = Map.empty.Add("application/xml", getPostViewConfigExample "application/xml")
       // or pass a body of type string
       let body = obj() :?> string |> Newtonsoft.Json.JsonConvert.SerializeObject |> Encoding.UTF8.GetBytes |> MemoryStream |> StreamContent
 

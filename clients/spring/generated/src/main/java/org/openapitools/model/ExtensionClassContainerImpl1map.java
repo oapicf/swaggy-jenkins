@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.openapitools.model.ExtensionClassImpl;
@@ -21,16 +20,13 @@ import jakarta.annotation.Generated;
  * ExtensionClassContainerImpl1map
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ExtensionClassContainerImpl1map {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestMultiBranchPipelineImpl;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
   public ExtensionClassContainerImpl1map ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl(@Nullable ExtensionClassImpl ioJenkinsBlueoceanServiceEmbeddedRestPipelineImpl) {

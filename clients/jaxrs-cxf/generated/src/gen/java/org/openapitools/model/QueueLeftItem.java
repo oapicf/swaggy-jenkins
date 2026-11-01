@@ -22,8 +22,6 @@ public class QueueLeftItem  {
 
   @ApiModelProperty(value = "")
 
-  @Valid
-
   private List<@Valid CauseAction> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")

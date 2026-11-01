@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 git_push.sh
 project.clj
 src/swaggy_jenkins/api/base.clj

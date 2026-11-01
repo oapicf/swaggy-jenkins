@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -27,46 +26,33 @@ import jakarta.annotation.Generated;
  * BranchImpl
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BranchImpl {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer estimatedDurationInMillis;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String fullDisplayName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String fullName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String organization;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BranchImplpermissions permissions;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer weatherScore;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String pullRequest;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable BranchImpllinks links;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable PipelineRunImpl latestRun;
 
   public BranchImpl propertyClass(@Nullable String propertyClass) {
@@ -233,7 +219,7 @@ public class BranchImpl {
    * Get parameters
    * @return parameters
    */
-  @Valid 
+  
   @Schema(name = "parameters", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("parameters")
   public List<@Valid StringParameterDefinition> getParameters() {

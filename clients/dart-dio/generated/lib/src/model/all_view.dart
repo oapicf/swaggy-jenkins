@@ -145,3 +145,4 @@ class _$AllViewSerializer implements PrimitiveSerializer<AllView> {
   }
 }
 
+

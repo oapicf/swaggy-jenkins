@@ -17,6 +17,7 @@ class QueueApiTest {
     @Test
     fun getQueueTest() {
         
+        
         val response: ResponseEntity<Queue> = api.getQueue()
 
         // TODO: test validations
@@ -31,6 +32,7 @@ class QueueApiTest {
     @Test
     fun getQueueItemTest() {
         val number: kotlin.String = TODO()
+        
         
         val response: ResponseEntity<Queue> = api.getQueueItem(number)
 

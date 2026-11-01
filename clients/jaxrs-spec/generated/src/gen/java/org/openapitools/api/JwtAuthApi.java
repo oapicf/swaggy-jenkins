@@ -17,7 +17,7 @@ import javax.validation.Valid;
 */
 @Path("/jwt-auth")
 @Api(description = "the jwt-auth API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class JwtAuthApi {
 
     @GET
@@ -29,7 +29,8 @@ public class JwtAuthApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getJsonWebKey(@PathParam("key") @ApiParam("Key ID received as part of JWT header field kid") Integer key) {
+    public Response getJsonWebKey(@PathParam("key") @ApiParam("Key ID received as part of JWT header field kid") Integer key
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -42,7 +43,9 @@ public class JwtAuthApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getJsonWebToken(@QueryParam("expiryTimeInMins")  @ApiParam("Token expiry time in minutes, default: 30 minutes")  Integer expiryTimeInMins,@QueryParam("maxExpiryTimeInMins")  @ApiParam("Maximum token expiry time in minutes, default: 480 minutes")  Integer maxExpiryTimeInMins) {
+    public Response getJsonWebToken(@QueryParam("expiryTimeInMins")  @ApiParam("Token expiry time in minutes, default: 30 minutes")  Integer expiryTimeInMins
+,@QueryParam("maxExpiryTimeInMins")  @ApiParam("Maximum token expiry time in minutes, default: 480 minutes")  Integer maxExpiryTimeInMins
+) {
         return Response.ok().entity("magic!").build();
     }
 }

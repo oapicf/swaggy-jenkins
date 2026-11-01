@@ -147,3 +147,4 @@ class _$GithubRespositoryContainerSerializer implements PrimitiveSerializer<Gith
   }
 }
 
+

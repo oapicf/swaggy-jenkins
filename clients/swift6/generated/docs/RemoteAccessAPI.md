@@ -28,7 +28,7 @@ Method | HTTP request | Description
 
 # **getComputer**
 ```swift
-    open class func getComputer(depth: Int, completion: @escaping (_ data: ComputerSet?, _ error: Error?) -> Void)
+    open class func getComputer(depth: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ComputerSet
 ```
 
 
@@ -42,15 +42,11 @@ import OpenAPIClient
 
 let depth = 987 // Int | Recursion depth in response model
 
-RemoteAccessAPI.getComputer(depth: depth) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await RemoteAccessAPI.getComputer(depth: depth)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -77,7 +73,7 @@ Name | Type | Description  | Notes
 
 # **getJenkins**
 ```swift
-    open class func getJenkins(completion: @escaping (_ data: Hudson?, _ error: Error?) -> Void)
+    open class func getJenkins(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Hudson
 ```
 
 
@@ -90,15 +86,11 @@ Retrieve Jenkins details
 import OpenAPIClient
 
 
-RemoteAccessAPI.getJenkins() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await RemoteAccessAPI.getJenkins()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -122,7 +114,7 @@ This endpoint does not need any parameter.
 
 # **getJob**
 ```swift
-    open class func getJob(name: String, completion: @escaping (_ data: FreeStyleProject?, _ error: Error?) -> Void)
+    open class func getJob(name: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FreeStyleProject
 ```
 
 
@@ -136,15 +128,11 @@ import OpenAPIClient
 
 let name = "name_example" // String | Name of the job
 
-RemoteAccessAPI.getJob(name: name) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await RemoteAccessAPI.getJob(name: name)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -171,7 +159,7 @@ Name | Type | Description  | Notes
 
 # **getJobConfig**
 ```swift
-    open class func getJobConfig(name: String, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func getJobConfig(name: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 
@@ -185,15 +173,11 @@ import OpenAPIClient
 
 let name = "name_example" // String | Name of the job
 
-RemoteAccessAPI.getJobConfig(name: name) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await RemoteAccessAPI.getJobConfig(name: name)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -220,7 +204,7 @@ Name | Type | Description  | Notes
 
 # **getJobLastBuild**
 ```swift
-    open class func getJobLastBuild(name: String, completion: @escaping (_ data: FreeStyleBuild?, _ error: Error?) -> Void)
+    open class func getJobLastBuild(name: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FreeStyleBuild
 ```
 
 
@@ -234,15 +218,11 @@ import OpenAPIClient
 
 let name = "name_example" // String | Name of the job
 
-RemoteAccessAPI.getJobLastBuild(name: name) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await RemoteAccessAPI.getJobLastBuild(name: name)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -269,7 +249,7 @@ Name | Type | Description  | Notes
 
 # **getJobProgressiveText**
 ```swift
-    open class func getJobProgressiveText(name: String, number: String, start: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func getJobProgressiveText(name: String, number: String, start: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -285,15 +265,10 @@ let name = "name_example" // String | Name of the job
 let number = "number_example" // String | Build number
 let start = "start_example" // String | Starting point of progressive text output
 
-RemoteAccessAPI.getJobProgressiveText(name: name, number: number, start: start) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.getJobProgressiveText(name: name, number: number, start: start)
+} catch {
+    print(error)
 }
 ```
 
@@ -322,7 +297,7 @@ Void (empty response body)
 
 # **getQueue**
 ```swift
-    open class func getQueue(completion: @escaping (_ data: Queue?, _ error: Error?) -> Void)
+    open class func getQueue(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Queue
 ```
 
 
@@ -335,15 +310,11 @@ Retrieve queue details
 import OpenAPIClient
 
 
-RemoteAccessAPI.getQueue() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await RemoteAccessAPI.getQueue()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -367,7 +338,7 @@ This endpoint does not need any parameter.
 
 # **getQueueItem**
 ```swift
-    open class func getQueueItem(number: String, completion: @escaping (_ data: Queue?, _ error: Error?) -> Void)
+    open class func getQueueItem(number: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Queue
 ```
 
 
@@ -381,15 +352,11 @@ import OpenAPIClient
 
 let number = "number_example" // String | Queue number
 
-RemoteAccessAPI.getQueueItem(number: number) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await RemoteAccessAPI.getQueueItem(number: number)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -416,7 +383,7 @@ Name | Type | Description  | Notes
 
 # **getView**
 ```swift
-    open class func getView(name: String, completion: @escaping (_ data: ListView?, _ error: Error?) -> Void)
+    open class func getView(name: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ListView
 ```
 
 
@@ -430,15 +397,11 @@ import OpenAPIClient
 
 let name = "name_example" // String | Name of the view
 
-RemoteAccessAPI.getView(name: name) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await RemoteAccessAPI.getView(name: name)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -465,7 +428,7 @@ Name | Type | Description  | Notes
 
 # **getViewConfig**
 ```swift
-    open class func getViewConfig(name: String, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func getViewConfig(name: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 
@@ -479,15 +442,11 @@ import OpenAPIClient
 
 let name = "name_example" // String | Name of the view
 
-RemoteAccessAPI.getViewConfig(name: name) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await RemoteAccessAPI.getViewConfig(name: name)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -514,7 +473,7 @@ Name | Type | Description  | Notes
 
 # **headJenkins**
 ```swift
-    open class func headJenkins(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func headJenkins(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -527,15 +486,10 @@ Retrieve Jenkins headers
 import OpenAPIClient
 
 
-RemoteAccessAPI.headJenkins() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.headJenkins()
+} catch {
+    print(error)
 }
 ```
 
@@ -559,7 +513,7 @@ Void (empty response body)
 
 # **postCreateItem**
 ```swift
-    open class func postCreateItem(name: String, from: String? = nil, mode: String? = nil, jenkinsCrumb: String? = nil, contentType: String? = nil, body: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postCreateItem(name: String, from: String? = nil, mode: String? = nil, jenkinsCrumb: String? = nil, contentType: String? = nil, body: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -578,15 +532,10 @@ let jenkinsCrumb = "jenkinsCrumb_example" // String | CSRF protection token (opt
 let contentType = "contentType_example" // String | Content type header application/xml (optional)
 let body = "body_example" // String | Job configuration in config.xml format (optional)
 
-RemoteAccessAPI.postCreateItem(name: name, from: from, mode: mode, jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.postCreateItem(name: name, from: from, mode: mode, jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body)
+} catch {
+    print(error)
 }
 ```
 
@@ -618,7 +567,7 @@ Void (empty response body)
 
 # **postCreateView**
 ```swift
-    open class func postCreateView(name: String, jenkinsCrumb: String? = nil, contentType: String? = nil, body: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postCreateView(name: String, jenkinsCrumb: String? = nil, contentType: String? = nil, body: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -635,15 +584,10 @@ let jenkinsCrumb = "jenkinsCrumb_example" // String | CSRF protection token (opt
 let contentType = "contentType_example" // String | Content type header application/xml (optional)
 let body = "body_example" // String | View configuration in config.xml format (optional)
 
-RemoteAccessAPI.postCreateView(name: name, jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.postCreateView(name: name, jenkinsCrumb: jenkinsCrumb, contentType: contentType, body: body)
+} catch {
+    print(error)
 }
 ```
 
@@ -673,7 +617,7 @@ Void (empty response body)
 
 # **postJobBuild**
 ```swift
-    open class func postJobBuild(name: String, json: String, token: String? = nil, jenkinsCrumb: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postJobBuild(name: String, json: String, token: String? = nil, jenkinsCrumb: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -690,15 +634,10 @@ let json = "json_example" // String |
 let token = "token_example" // String |  (optional)
 let jenkinsCrumb = "jenkinsCrumb_example" // String | CSRF protection token (optional)
 
-RemoteAccessAPI.postJobBuild(name: name, json: json, token: token, jenkinsCrumb: jenkinsCrumb) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.postJobBuild(name: name, json: json, token: token, jenkinsCrumb: jenkinsCrumb)
+} catch {
+    print(error)
 }
 ```
 
@@ -728,7 +667,7 @@ Void (empty response body)
 
 # **postJobConfig**
 ```swift
-    open class func postJobConfig(name: String, body: String, jenkinsCrumb: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postJobConfig(name: String, body: String, jenkinsCrumb: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -744,15 +683,10 @@ let name = "name_example" // String | Name of the job
 let body = "body_example" // String | Job configuration in config.xml format
 let jenkinsCrumb = "jenkinsCrumb_example" // String | CSRF protection token (optional)
 
-RemoteAccessAPI.postJobConfig(name: name, body: body, jenkinsCrumb: jenkinsCrumb) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.postJobConfig(name: name, body: body, jenkinsCrumb: jenkinsCrumb)
+} catch {
+    print(error)
 }
 ```
 
@@ -781,7 +715,7 @@ Void (empty response body)
 
 # **postJobDelete**
 ```swift
-    open class func postJobDelete(name: String, jenkinsCrumb: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postJobDelete(name: String, jenkinsCrumb: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -796,15 +730,10 @@ import OpenAPIClient
 let name = "name_example" // String | Name of the job
 let jenkinsCrumb = "jenkinsCrumb_example" // String | CSRF protection token (optional)
 
-RemoteAccessAPI.postJobDelete(name: name, jenkinsCrumb: jenkinsCrumb) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.postJobDelete(name: name, jenkinsCrumb: jenkinsCrumb)
+} catch {
+    print(error)
 }
 ```
 
@@ -832,7 +761,7 @@ Void (empty response body)
 
 # **postJobDisable**
 ```swift
-    open class func postJobDisable(name: String, jenkinsCrumb: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postJobDisable(name: String, jenkinsCrumb: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -847,15 +776,10 @@ import OpenAPIClient
 let name = "name_example" // String | Name of the job
 let jenkinsCrumb = "jenkinsCrumb_example" // String | CSRF protection token (optional)
 
-RemoteAccessAPI.postJobDisable(name: name, jenkinsCrumb: jenkinsCrumb) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.postJobDisable(name: name, jenkinsCrumb: jenkinsCrumb)
+} catch {
+    print(error)
 }
 ```
 
@@ -883,7 +807,7 @@ Void (empty response body)
 
 # **postJobEnable**
 ```swift
-    open class func postJobEnable(name: String, jenkinsCrumb: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postJobEnable(name: String, jenkinsCrumb: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -898,15 +822,10 @@ import OpenAPIClient
 let name = "name_example" // String | Name of the job
 let jenkinsCrumb = "jenkinsCrumb_example" // String | CSRF protection token (optional)
 
-RemoteAccessAPI.postJobEnable(name: name, jenkinsCrumb: jenkinsCrumb) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.postJobEnable(name: name, jenkinsCrumb: jenkinsCrumb)
+} catch {
+    print(error)
 }
 ```
 
@@ -934,7 +853,7 @@ Void (empty response body)
 
 # **postJobLastBuildStop**
 ```swift
-    open class func postJobLastBuildStop(name: String, jenkinsCrumb: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postJobLastBuildStop(name: String, jenkinsCrumb: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -949,15 +868,10 @@ import OpenAPIClient
 let name = "name_example" // String | Name of the job
 let jenkinsCrumb = "jenkinsCrumb_example" // String | CSRF protection token (optional)
 
-RemoteAccessAPI.postJobLastBuildStop(name: name, jenkinsCrumb: jenkinsCrumb) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.postJobLastBuildStop(name: name, jenkinsCrumb: jenkinsCrumb)
+} catch {
+    print(error)
 }
 ```
 
@@ -985,7 +899,7 @@ Void (empty response body)
 
 # **postViewConfig**
 ```swift
-    open class func postViewConfig(name: String, body: String, jenkinsCrumb: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func postViewConfig(name: String, body: String, jenkinsCrumb: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 
@@ -1001,15 +915,10 @@ let name = "name_example" // String | Name of the view
 let body = "body_example" // String | View configuration in config.xml format
 let jenkinsCrumb = "jenkinsCrumb_example" // String | CSRF protection token (optional)
 
-RemoteAccessAPI.postViewConfig(name: name, body: body, jenkinsCrumb: jenkinsCrumb) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await RemoteAccessAPI.postViewConfig(name: name, body: body, jenkinsCrumb: jenkinsCrumb)
+} catch {
+    print(error)
 }
 ```
 

@@ -225,3 +225,4 @@ class _$HudsonMasterComputermonitorDataSerializer implements PrimitiveSerializer
   }
 }
 
+

@@ -184,3 +184,4 @@ class _$GithubScmSerializer implements PrimitiveSerializer<GithubScm> {
   }
 }
 
+

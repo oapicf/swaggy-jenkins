@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 README.md
 build.gradle.kts
 docs/AllView.md
@@ -168,3 +169,6 @@ src/main/kotlin/org/openapitools/server/api/model/StringParameterValue.kt
 src/main/kotlin/org/openapitools/server/api/model/SwapSpaceMonitorMemoryUsage2.kt
 src/main/kotlin/org/openapitools/server/api/model/UnlabeledLoadStatistics.kt
 src/main/kotlin/org/openapitools/server/api/model/User.kt
+src/test/kotlin/org/openapitools/server/api/api/BaseApiTest.kt
+src/test/kotlin/org/openapitools/server/api/api/BlueOceanApiTest.kt
+src/test/kotlin/org/openapitools/server/api/api/RemoteAccessApiTest.kt

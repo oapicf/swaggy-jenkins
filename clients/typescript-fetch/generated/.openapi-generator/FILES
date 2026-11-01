@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 apis/BaseApi.ts
 apis/BlueOceanApi.ts
 apis/RemoteAccessApi.ts

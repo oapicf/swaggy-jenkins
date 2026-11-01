@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 docs/AllView.md
 docs/BranchImpl.md
 docs/BranchImpllinks.md

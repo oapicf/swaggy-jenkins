@@ -23,22 +23,22 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("FreeStyleProject")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FreeStyleProject   {
   private String propertyClass;
   private String name;
   private String url;
   private String color;
-  private @Valid List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
+  private List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
   private String description;
   private String displayName;
   private String displayNameOrNull;
   private String fullDisplayName;
   private String fullName;
   private Boolean buildable;
-  private @Valid List<@Valid FreeStyleBuild> builds = new ArrayList<>();
+  private List<@Valid FreeStyleBuild> builds = new ArrayList<>();
   private FreeStyleBuild firstBuild;
-  private @Valid List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
+  private List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
   private Boolean inQueue;
   private Boolean keepDependencies;
   private FreeStyleBuild lastBuild;
@@ -142,7 +142,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  @Valid public List<@Valid FreeStyleProjectactions> getActions() {
+  public List<@Valid FreeStyleProjectactions> getActions() {
     return actions;
   }
 
@@ -291,7 +291,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("builds")
-  @Valid public List<@Valid FreeStyleBuild> getBuilds() {
+  public List<@Valid FreeStyleBuild> getBuilds() {
     return builds;
   }
 
@@ -345,7 +345,7 @@ public class FreeStyleProject   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("healthReport")
-  @Valid public List<@Valid FreeStyleProjecthealthReport> getHealthReport() {
+  public List<@Valid FreeStyleProjecthealthReport> getHealthReport() {
     return healthReport;
   }
 

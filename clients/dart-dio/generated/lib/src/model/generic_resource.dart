@@ -202,3 +202,4 @@ class _$GenericResourceSerializer implements PrimitiveSerializer<GenericResource
   }
 }
 
+

@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 LICENSE
 README
 app/Module.java

@@ -107,3 +107,4 @@ class _$Label1Serializer implements PrimitiveSerializer<Label1> {
   }
 }
 
+

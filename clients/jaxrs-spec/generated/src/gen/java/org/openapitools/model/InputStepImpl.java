@@ -21,14 +21,14 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("InputStepImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class InputStepImpl   {
   private String propertyClass;
   private InputStepImpllinks links;
   private String id;
   private String message;
   private String ok;
-  private @Valid List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
+  private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
   private String submitter;
 
   public InputStepImpl() {
@@ -139,7 +139,7 @@ public class InputStepImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("parameters")
-  @Valid public List<@Valid StringParameterDefinition> getParameters() {
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
 

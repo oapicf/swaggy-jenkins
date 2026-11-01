@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("MultibranchPipeline")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MultibranchPipeline   {
   private String displayName;
   private Integer estimatedDurationInMillis;
@@ -27,7 +27,7 @@ public class MultibranchPipeline   {
   private String name;
   private String organization;
   private Integer weatherScore;
-  private @Valid List<String> branchNames = new ArrayList<>();
+  private List<String> branchNames = new ArrayList<>();
   private Integer numberOfFailingBranches;
   private Integer numberOfFailingPullRequests;
   private Integer numberOfSuccessfulBranches;

@@ -184,3 +184,4 @@ class _$BranchImpllinksSerializer implements PrimitiveSerializer<BranchImpllinks
   }
 }
 
+

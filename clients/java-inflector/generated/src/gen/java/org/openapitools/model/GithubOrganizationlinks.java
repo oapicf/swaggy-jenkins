@@ -11,7 +11,7 @@ import org.openapitools.model.Link;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-10-11T12:05:01.024805084Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaInflectorServerCodegen", date = "2026-11-01T13:20:27.649074369Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class GithubOrganizationlinks   {
   @JsonProperty("repositories")
   private Link repositories;

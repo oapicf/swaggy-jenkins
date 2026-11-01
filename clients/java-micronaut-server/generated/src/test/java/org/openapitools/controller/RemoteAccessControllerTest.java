@@ -85,7 +85,7 @@ public class RemoteAccessControllerTest {
         // given
         String uri = UriTemplate.of("/computer/api/json").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@5bb2fb2b");
+            .accept("[Ljava.lang.String;@1be4a7e3");
         request.getParameters()
             .add("depth", String.valueOf(56)); // The query parameter format should be 
 
@@ -129,7 +129,7 @@ public class RemoteAccessControllerTest {
         // given
         String uri = UriTemplate.of("/api/json").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@2cee5365");
+            .accept("[Ljava.lang.String;@632b96b8");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Hudson.class);
@@ -175,7 +175,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@796c68bf");
+            .accept("[Ljava.lang.String;@544e6b");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, FreeStyleProject.class);
@@ -221,7 +221,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@56d6a1b1");
+            .accept("[Ljava.lang.String;@5b430541");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, String.class);
@@ -267,7 +267,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@1a7163e3");
+            .accept("[Ljava.lang.String;@65a66a75");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, FreeStyleBuild.class);
@@ -316,7 +316,7 @@ public class RemoteAccessControllerTest {
             put("number", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@44da7eb3");
+            .accept("[Ljava.lang.String;@5a07ae2f");
         request.getParameters()
             .add("start", "example"); // The query parameter format should be 
 
@@ -360,7 +360,7 @@ public class RemoteAccessControllerTest {
         // given
         String uri = UriTemplate.of("/queue/api/json").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@5e69cf07");
+            .accept("[Ljava.lang.String;@78829412");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Queue.class);
@@ -406,7 +406,7 @@ public class RemoteAccessControllerTest {
             put("number", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@3d512652");
+            .accept("[Ljava.lang.String;@3ba8ef4e");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, Queue.class);
@@ -452,7 +452,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@2c2e3460");
+            .accept("[Ljava.lang.String;@6d0bcf8c");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, ListView.class);
@@ -498,7 +498,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.GET(uri)
-            .accept("[Ljava.lang.String;@3b96f8b0");
+            .accept("[Ljava.lang.String;@a1a72d4");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request, String.class);
@@ -540,7 +540,7 @@ public class RemoteAccessControllerTest {
         // given
         String uri = UriTemplate.of("/api/json").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.HEAD(uri)
-            .accept("[Ljava.lang.String;@2b170932");
+            .accept("[Ljava.lang.String;@66d44581");
 
         // when
         HttpResponse<?> response = client.toBlocking().exchange(request); // To retrieve body you must specify required type (e.g. Map.class) as second argument 
@@ -589,7 +589,7 @@ public class RemoteAccessControllerTest {
         String body = "example";
         String uri = UriTemplate.of("/createItem").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@1fc0d9b4")
+            .accept("[Ljava.lang.String;@1afa048a")
             .header("Jenkins-Crumb", "example")
             .header("Content-Type", "example");
         request.getParameters()
@@ -642,7 +642,7 @@ public class RemoteAccessControllerTest {
         String body = "example";
         String uri = UriTemplate.of("/createView").expand(new HashMap<>());
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@42107318")
+            .accept("[Ljava.lang.String;@293ecff6")
             .header("Jenkins-Crumb", "example")
             .header("Content-Type", "example");
         request.getParameters()
@@ -695,7 +695,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, null)
-            .accept("[Ljava.lang.String;@4e4f4092")
+            .accept("[Ljava.lang.String;@70eb94d7")
             .header("Jenkins-Crumb", "example");
         request.getParameters()
             .add("json", "example") // The query parameter format should be 
@@ -748,7 +748,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@5d829ef0")
+            .accept("[Ljava.lang.String;@34d72f06")
             .header("Jenkins-Crumb", "example");
 
         // when
@@ -796,7 +796,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, null)
-            .accept("[Ljava.lang.String;@4416e18d")
+            .accept("[Ljava.lang.String;@7e43b342")
             .header("Jenkins-Crumb", "example");
 
         // when
@@ -844,7 +844,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, null)
-            .accept("[Ljava.lang.String;@5dfc2a4")
+            .accept("[Ljava.lang.String;@21dd9203")
             .header("Jenkins-Crumb", "example");
 
         // when
@@ -892,7 +892,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, null)
-            .accept("[Ljava.lang.String;@3120495d")
+            .accept("[Ljava.lang.String;@dbcf7c3")
             .header("Jenkins-Crumb", "example");
 
         // when
@@ -940,7 +940,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, null)
-            .accept("[Ljava.lang.String;@781c2497")
+            .accept("[Ljava.lang.String;@1e466d")
             .header("Jenkins-Crumb", "example");
 
         // when
@@ -990,7 +990,7 @@ public class RemoteAccessControllerTest {
             put("name", "example");
         }});
         MutableHttpRequest<?> request = HttpRequest.POST(uri, body)
-            .accept("[Ljava.lang.String;@b75b890")
+            .accept("[Ljava.lang.String;@63243c8f")
             .header("Jenkins-Crumb", "example");
 
         // when

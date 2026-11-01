@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import io.swagger.annotations.*;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-10-11T12:05:40.723530399Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaResteasyServerCodegen", date = "2026-11-01T13:21:03.518236156Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ComputerSet   {
   
   private String propertyClass;
@@ -52,7 +52,6 @@ public class ComputerSet   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("computer")
-  @Valid
   public List<@Valid HudsonMasterComputer> getComputer() {
     return computer;
   }

@@ -22,11 +22,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("HudsonMasterComputer")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class HudsonMasterComputer   {
   private String propertyClass;
   private String displayName;
-  private @Valid List<@Valid HudsonMasterComputerexecutors> executors = new ArrayList<>();
+  private List<@Valid HudsonMasterComputerexecutors> executors = new ArrayList<>();
   private String icon;
   private String iconClassName;
   private Boolean idle;
@@ -92,7 +92,7 @@ public class HudsonMasterComputer   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("executors")
-  @Valid public List<@Valid HudsonMasterComputerexecutors> getExecutors() {
+  public List<@Valid HudsonMasterComputerexecutors> getExecutors() {
     return executors;
   }
 

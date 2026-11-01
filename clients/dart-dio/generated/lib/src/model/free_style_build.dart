@@ -433,3 +433,4 @@ class _$FreeStyleBuildSerializer implements PrimitiveSerializer<FreeStyleBuild> 
   }
 }
 
+

@@ -396,3 +396,4 @@ class _$HudsonMasterComputerSerializer implements PrimitiveSerializer<HudsonMast
   }
 }
 
+

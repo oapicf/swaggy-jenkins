@@ -930,7 +930,7 @@ public class BlueOceanApiHandler {
 
         logger.debug("Parameter organization is {}", organization);
         logger.debug("Parameter pipeline is {}", pipeline);
-        logger.debug("Parameter body is {}", body);
+        logger.debug("Parameter body is (body omitted)");
 
         api.putPipelineFavorite(organization, pipeline, body)
             .onSuccess(apiResponse -> {

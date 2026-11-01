@@ -6,18 +6,18 @@
     <parent>
         <groupId>io.helidon.applications</groupId>
         <artifactId>helidon-se</artifactId>
-        <version>4.5.2</version>
+        <version>27.0.0</version>
         <relativePath/>
     </parent>
     <groupId>org.openapitools</groupId>
     <artifactId>openapi-java-server</artifactId>
-    <version>3.3.1-pre.0</version>
+    <version>3.5.1-pre.0</version>
     <name>openapi-java-server</name>
     <description>Jenkins API clients generated from Swagger / Open API specification</description>
 
     <properties>
         <mainClass>org.openapitools.server.Main</mainClass>
-        <version.jackson.databind.nullable>0.2.10</version.jackson.databind.nullable>
+        <version.jackson.databind.nullable>0.2.12</version.jackson.databind.nullable>
     </properties>
 
     <dependencies>

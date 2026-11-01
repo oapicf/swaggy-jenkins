@@ -21,12 +21,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("FreeStyleBuild")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FreeStyleBuild   {
   private String propertyClass;
   private Integer number;
   private String url;
-  private @Valid List<@Valid CauseAction> actions = new ArrayList<>();
+  private List<@Valid CauseAction> actions = new ArrayList<>();
   private Boolean building;
   private String description;
   private String displayName;
@@ -112,7 +112,7 @@ public class FreeStyleBuild   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  @Valid public List<@Valid CauseAction> getActions() {
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
 

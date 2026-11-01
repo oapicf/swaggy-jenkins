@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -23,49 +22,35 @@ import jakarta.annotation.Generated;
  * MultibranchPipeline
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class MultibranchPipeline {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer estimatedDurationInMillis;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String latestRun;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String organization;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer weatherScore;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<String> branchNames = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numberOfFailingBranches;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numberOfFailingPullRequests;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numberOfSuccessfulBranches;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numberOfSuccessfulPullRequests;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer totalNumberOfBranches;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer totalNumberOfPullRequests;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
   public MultibranchPipeline displayName(@Nullable String displayName) {

@@ -21,10 +21,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("QueueBlockedItem")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class QueueBlockedItem   {
   private String propertyClass;
-  private @Valid List<@Valid CauseAction> actions = new ArrayList<>();
+  private List<@Valid CauseAction> actions = new ArrayList<>();
   private Boolean blocked;
   private Boolean buildable;
   private Integer id;
@@ -68,7 +68,7 @@ public class QueueBlockedItem   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("actions")
-  @Valid public List<@Valid CauseAction> getActions() {
+  public List<@Valid CauseAction> getActions() {
     return actions;
   }
 

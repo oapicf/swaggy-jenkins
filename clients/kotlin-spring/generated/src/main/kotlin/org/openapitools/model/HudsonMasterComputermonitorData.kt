@@ -1,10 +1,7 @@
 package org.openapitools.model
 
 import java.util.Objects
-import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import org.openapitools.model.ClockDifference
 import org.openapitools.model.DiskSpaceMonitorDescriptorDiskSpace
 import org.openapitools.model.ResponseTimeMonitorData
@@ -34,48 +31,34 @@ data class HudsonMasterComputermonitorData(
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("hudson.node_monitors.SwapSpaceMonitor")
     @get:JsonProperty("hudson.node_monitors.SwapSpaceMonitor") val hudsonNodeMonitorsSwapSpaceMonitor: SwapSpaceMonitorMemoryUsage2? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("hudson.node_monitors.TemporarySpaceMonitor")
     @get:JsonProperty("hudson.node_monitors.TemporarySpaceMonitor") val hudsonNodeMonitorsTemporarySpaceMonitor: DiskSpaceMonitorDescriptorDiskSpace? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("hudson.node_monitors.DiskSpaceMonitor")
     @get:JsonProperty("hudson.node_monitors.DiskSpaceMonitor") val hudsonNodeMonitorsDiskSpaceMonitor: DiskSpaceMonitorDescriptorDiskSpace? = null,
 
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("hudson.node_monitors.ArchitectureMonitor")
     @get:JsonProperty("hudson.node_monitors.ArchitectureMonitor") val hudsonNodeMonitorsArchitectureMonitor: kotlin.String? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("hudson.node_monitors.ResponseTimeMonitor")
     @get:JsonProperty("hudson.node_monitors.ResponseTimeMonitor") val hudsonNodeMonitorsResponseTimeMonitor: ResponseTimeMonitorData? = null,
 
     @field:Valid
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("hudson.node_monitors.ClockMonitor")
     @get:JsonProperty("hudson.node_monitors.ClockMonitor") val hudsonNodeMonitorsClockMonitor: ClockDifference? = null,
 
     @Schema(description = "")
-    @field:JsonInclude(JsonInclude.Include.NON_NULL)
-    @field:JsonSetter(nulls = Nulls.SKIP)
     @param:JsonProperty("_class")
     @get:JsonProperty("_class") val propertyClass: kotlin.String? = null
 ) {

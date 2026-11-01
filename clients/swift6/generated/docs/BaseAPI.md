@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **getCrumb**
 ```swift
-    open class func getCrumb(completion: @escaping (_ data: DefaultCrumbIssuer?, _ error: Error?) -> Void)
+    open class func getCrumb(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DefaultCrumbIssuer
 ```
 
 
@@ -22,15 +22,11 @@ Retrieve CSRF protection token
 import OpenAPIClient
 
 
-BaseAPI.getCrumb() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BaseAPI.getCrumb()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

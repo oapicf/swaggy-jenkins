@@ -127,3 +127,4 @@ class _$GithubRespositoryContainerlinksSerializer implements PrimitiveSerializer
   }
 }
 
+

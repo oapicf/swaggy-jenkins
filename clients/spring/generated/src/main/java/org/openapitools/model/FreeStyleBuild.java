@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -25,61 +24,43 @@ import jakarta.annotation.Generated;
  * FreeStyleBuild
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FreeStyleBuild {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer number;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String url;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid CauseAction> actions = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean building;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String description;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer duration;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer estimatedDuration;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String executor;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String fullDisplayName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean keepLog;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer queueId;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String result;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer timestamp;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String builtOn;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable EmptyChangeLogSet changeSet;
 
   public FreeStyleBuild propertyClass(@Nullable String propertyClass) {
@@ -162,7 +143,7 @@ public class FreeStyleBuild {
    * Get actions
    * @return actions
    */
-  @Valid 
+  
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
   public List<@Valid CauseAction> getActions() {

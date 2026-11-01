@@ -127,3 +127,4 @@ class _$ClassesByClassSerializer implements PrimitiveSerializer<ClassesByClass> 
   }
 }
 
+

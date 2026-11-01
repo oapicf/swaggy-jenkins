@@ -158,7 +158,7 @@ class TestRemoteAccessController(BaseTestCase):
             method='POST',
             data=json.dumps(body),
             headers=headers,
-            content_type='application/json',
+            content_type='application/xml',
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -177,7 +177,7 @@ class TestRemoteAccessController(BaseTestCase):
             method='POST',
             data=json.dumps(body),
             headers=headers,
-            content_type='application/json',
+            content_type='application/xml',
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -210,7 +210,7 @@ class TestRemoteAccessController(BaseTestCase):
             method='POST',
             data=json.dumps(body),
             headers=headers,
-            content_type='application/json')
+            content_type='application/xml')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -278,7 +278,7 @@ class TestRemoteAccessController(BaseTestCase):
             method='POST',
             data=json.dumps(body),
             headers=headers,
-            content_type='application/json')
+            content_type='application/xml')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

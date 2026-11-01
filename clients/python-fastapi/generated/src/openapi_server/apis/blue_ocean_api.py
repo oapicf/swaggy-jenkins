@@ -22,8 +22,7 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import Field, StrictBool, StrictInt, StrictStr
+from pydantic import Field, StrictBool, StrictStr
 from typing import Any, List, Optional
 from typing_extensions import Annotated
 from openapi_server.models.branch_impl import BranchImpl
@@ -41,6 +40,7 @@ from openapi_server.models.pipeline_run_node import PipelineRunNode
 from openapi_server.models.pipeline_step_impl import PipelineStepImpl
 from openapi_server.models.queue_item_impl import QueueItemImpl
 from openapi_server.models.user import User
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_jenkins_auth
 
 router = APIRouter()
@@ -61,8 +61,8 @@ for _, name, _ in pkgutil.iter_modules(ns_pkg.__path__, ns_pkg.__name__ + "."):
     response_model_by_alias=True,
 )
 async def get_json_web_token(
-    expiry_time_in_mins: Annotated[Optional[StrictInt], Field(description="Token expiry time in minutes, default: 30 minutes")] = Query(None, description="Token expiry time in minutes, default: 30 minutes", alias="expiryTimeInMins"),
-    max_expiry_time_in_mins: Annotated[Optional[StrictInt], Field(description="Maximum token expiry time in minutes, default: 480 minutes")] = Query(None, description="Maximum token expiry time in minutes, default: 480 minutes", alias="maxExpiryTimeInMins"),
+    expiry_time_in_mins: Annotated[Optional[int], Field(description="Token expiry time in minutes, default: 30 minutes")] = Query(None, description="Token expiry time in minutes, default: 30 minutes", alias="expiryTimeInMins"),
+    max_expiry_time_in_mins: Annotated[Optional[int], Field(description="Maximum token expiry time in minutes, default: 480 minutes")] = Query(None, description="Maximum token expiry time in minutes, default: 480 minutes", alias="maxExpiryTimeInMins"),
 ) -> str:
     """Retrieve JSON Web Token"""
     if not BaseBlueOceanApi.subclasses:
@@ -81,7 +81,7 @@ async def get_json_web_token(
     response_model_by_alias=True,
 )
 async def get_json_web_key(
-    key: Annotated[StrictInt, Field(description="Key ID received as part of JWT header field kid")] = Path(..., description="Key ID received as part of JWT header field kid"),
+    key: Annotated[int, Field(description="Key ID received as part of JWT header field kid")] = Path(..., description="Key ID received as part of JWT header field kid"),
 ) -> str:
     """Retrieve JSON Web Key"""
     if not BaseBlueOceanApi.subclasses:
@@ -100,7 +100,7 @@ async def get_json_web_key(
     response_model_by_alias=True,
 )
 async def search_classes(
-    q: Annotated[StrictStr, Field(description="Query string containing an array of class names")] = Query(None, description="Query string containing an array of class names", alias="q"),
+    q: Annotated[str, Field(description="Query string containing an array of class names")] = Query(..., description="Query string containing an array of class names", alias="q"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -122,7 +122,7 @@ async def search_classes(
     response_model_by_alias=True,
 )
 async def get_classes(
-    class: Annotated[StrictStr, Field(description="Name of the class")] = Path(..., description="Name of the class"),
+    class: Annotated[str, Field(description="Name of the class")] = Path(..., description="Name of the class"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -144,7 +144,7 @@ async def get_classes(
     response_model_by_alias=True,
 )
 async def search(
-    q: Annotated[StrictStr, Field(description="Query string")] = Query(None, description="Query string", alias="q"),
+    q: Annotated[str, Field(description="Query string")] = Query(..., description="Query string", alias="q"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -188,7 +188,7 @@ async def get_organisations(
     response_model_by_alias=True,
 )
 async def get_organisation(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -210,7 +210,7 @@ async def get_organisation(
     response_model_by_alias=True,
 )
 async def get_pipelines(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -233,8 +233,8 @@ async def get_pipelines(
     response_model_by_alias=True,
 )
 async def get_pipeline(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -256,8 +256,8 @@ async def get_pipeline(
     response_model_by_alias=True,
 )
 async def get_pipeline_activities(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -279,8 +279,8 @@ async def get_pipeline_activities(
     response_model_by_alias=True,
 )
 async def get_pipeline_branches(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -302,9 +302,9 @@ async def get_pipeline_branches(
     response_model_by_alias=True,
 )
 async def get_pipeline_branch(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    branch: Annotated[StrictStr, Field(description="Name of the branch")] = Path(..., description="Name of the branch"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    branch: Annotated[str, Field(description="Name of the branch")] = Path(..., description="Name of the branch"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -326,10 +326,10 @@ async def get_pipeline_branch(
     response_model_by_alias=True,
 )
 async def get_pipeline_branch_run(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    branch: Annotated[StrictStr, Field(description="Name of the branch")] = Path(..., description="Name of the branch"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    branch: Annotated[str, Field(description="Name of the branch")] = Path(..., description="Name of the branch"),
+    run: Annotated[str, Field(description="Name of the run")] = Path(..., description="Name of the run"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -351,8 +351,8 @@ async def get_pipeline_branch_run(
     response_model_by_alias=True,
 )
 async def get_pipeline_folder(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    folder: Annotated[StrictStr, Field(description="Name of the folder")] = Path(..., description="Name of the folder"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    folder: Annotated[str, Field(description="Name of the folder")] = Path(..., description="Name of the folder"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -374,9 +374,9 @@ async def get_pipeline_folder(
     response_model_by_alias=True,
 )
 async def get_pipeline_folder_pipeline(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    folder: Annotated[StrictStr, Field(description="Name of the folder")] = Path(..., description="Name of the folder"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    folder: Annotated[str, Field(description="Name of the folder")] = Path(..., description="Name of the folder"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -398,9 +398,9 @@ async def get_pipeline_folder_pipeline(
     response_model_by_alias=True,
 )
 async def put_pipeline_favorite(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    body: Annotated[StrictBool, Field(description="Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite")] = Body(None, description="Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    body: Annotated[StrictBool, Field(description="Set JSON string body to {\"favorite\": true} to favorite, set value to false to unfavorite")] = Body(..., description="Set JSON string body to {\&quot;favorite\&quot;: true} to favorite, set value to false to unfavorite"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -422,8 +422,8 @@ async def put_pipeline_favorite(
     response_model_by_alias=True,
 )
 async def get_pipeline_queue(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -445,9 +445,9 @@ async def get_pipeline_queue(
     response_model_by_alias=True,
 )
 async def delete_pipeline_queue_item(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    queue: Annotated[StrictStr, Field(description="Name of the queue item")] = Path(..., description="Name of the queue item"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    queue: Annotated[str, Field(description="Name of the queue item")] = Path(..., description="Name of the queue item"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -469,8 +469,8 @@ async def delete_pipeline_queue_item(
     response_model_by_alias=True,
 )
 async def get_pipeline_runs(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -492,8 +492,8 @@ async def get_pipeline_runs(
     response_model_by_alias=True,
 )
 async def post_pipeline_runs(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -515,9 +515,9 @@ async def post_pipeline_runs(
     response_model_by_alias=True,
 )
 async def get_pipeline_run(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[str, Field(description="Name of the run")] = Path(..., description="Name of the run"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -539,9 +539,9 @@ async def get_pipeline_run(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_nodes(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[str, Field(description="Name of the run")] = Path(..., description="Name of the run"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -563,10 +563,10 @@ async def get_pipeline_run_nodes(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_node(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
-    node: Annotated[StrictStr, Field(description="Name of the node")] = Path(..., description="Name of the node"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[str, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    node: Annotated[str, Field(description="Name of the node")] = Path(..., description="Name of the node"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -588,10 +588,10 @@ async def get_pipeline_run_node(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_node_steps(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
-    node: Annotated[StrictStr, Field(description="Name of the node")] = Path(..., description="Name of the node"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[str, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    node: Annotated[str, Field(description="Name of the node")] = Path(..., description="Name of the node"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -613,11 +613,11 @@ async def get_pipeline_run_node_steps(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_node_step(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
-    node: Annotated[StrictStr, Field(description="Name of the node")] = Path(..., description="Name of the node"),
-    step: Annotated[StrictStr, Field(description="Name of the step")] = Path(..., description="Name of the step"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[str, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    node: Annotated[str, Field(description="Name of the node")] = Path(..., description="Name of the node"),
+    step: Annotated[str, Field(description="Name of the step")] = Path(..., description="Name of the step"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -639,11 +639,11 @@ async def get_pipeline_run_node_step(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_node_step_log(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
-    node: Annotated[StrictStr, Field(description="Name of the node")] = Path(..., description="Name of the node"),
-    step: Annotated[StrictStr, Field(description="Name of the step")] = Path(..., description="Name of the step"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[str, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    node: Annotated[str, Field(description="Name of the node")] = Path(..., description="Name of the node"),
+    step: Annotated[str, Field(description="Name of the step")] = Path(..., description="Name of the step"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -665,11 +665,11 @@ async def get_pipeline_run_node_step_log(
     response_model_by_alias=True,
 )
 async def get_pipeline_run_log(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
-    start: Annotated[Optional[StrictInt], Field(description="Start position of the log")] = Query(None, description="Start position of the log", alias="start"),
-    download: Annotated[Optional[StrictBool], Field(description="Set to true in order to download the file, otherwise it's passed as a response body")] = Query(None, description="Set to true in order to download the file, otherwise it&#39;s passed as a response body", alias="download"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[str, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    start: Annotated[Optional[int], Field(description="Start position of the log")] = Query(None, description="Start position of the log", alias="start"),
+    download: Annotated[Optional[bool], Field(description="Set to true in order to download the file, otherwise it's passed as a response body")] = Query(None, description="Set to true in order to download the file, otherwise it&#39;s passed as a response body", alias="download"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -691,9 +691,9 @@ async def get_pipeline_run_log(
     response_model_by_alias=True,
 )
 async def post_pipeline_run(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[str, Field(description="Name of the run")] = Path(..., description="Name of the run"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -715,11 +715,11 @@ async def post_pipeline_run(
     response_model_by_alias=True,
 )
 async def put_pipeline_run(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    pipeline: Annotated[StrictStr, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
-    run: Annotated[StrictStr, Field(description="Name of the run")] = Path(..., description="Name of the run"),
-    blocking: Annotated[Optional[StrictStr], Field(description="Set to true to make blocking stop, default: false")] = Query(None, description="Set to true to make blocking stop, default: false", alias="blocking"),
-    time_out_in_secs: Annotated[Optional[StrictInt], Field(description="Timeout in seconds, default: 10 seconds")] = Query(None, description="Timeout in seconds, default: 10 seconds", alias="timeOutInSecs"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    pipeline: Annotated[str, Field(description="Name of the pipeline")] = Path(..., description="Name of the pipeline"),
+    run: Annotated[str, Field(description="Name of the run")] = Path(..., description="Name of the run"),
+    blocking: Annotated[Optional[str], Field(description="Set to true to make blocking stop, default: false")] = Query(None, description="Set to true to make blocking stop, default: false", alias="blocking"),
+    time_out_in_secs: Annotated[Optional[int], Field(description="Timeout in seconds, default: 10 seconds")] = Query(None, description="Timeout in seconds, default: 10 seconds", alias="timeOutInSecs"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -741,8 +741,8 @@ async def put_pipeline_run(
     response_model_by_alias=True,
 )
 async def get_scm(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    scm: Annotated[StrictStr, Field(description="Name of SCM")] = Path(..., description="Name of SCM"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    scm: Annotated[str, Field(description="Name of SCM")] = Path(..., description="Name of SCM"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -764,9 +764,9 @@ async def get_scm(
     response_model_by_alias=True,
 )
 async def get_scm_organisations(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    scm: Annotated[StrictStr, Field(description="Name of SCM")] = Path(..., description="Name of SCM"),
-    credential_id: Annotated[Optional[StrictStr], Field(description="Credential ID")] = Query(None, description="Credential ID", alias="credentialId"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    scm: Annotated[str, Field(description="Name of SCM")] = Path(..., description="Name of SCM"),
+    credential_id: Annotated[Optional[str], Field(description="Credential ID")] = Query(None, description="Credential ID", alias="credentialId"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -788,12 +788,12 @@ async def get_scm_organisations(
     response_model_by_alias=True,
 )
 async def get_scm_organisation_repositories(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    scm: Annotated[StrictStr, Field(description="Name of SCM")] = Path(..., description="Name of SCM"),
-    scmOrganisation: Annotated[StrictStr, Field(description="Name of the SCM organization")] = Path(..., description="Name of the SCM organization"),
-    credential_id: Annotated[Optional[StrictStr], Field(description="Credential ID")] = Query(None, description="Credential ID", alias="credentialId"),
-    page_size: Annotated[Optional[StrictInt], Field(description="Number of items in a page")] = Query(None, description="Number of items in a page", alias="pageSize"),
-    page_number: Annotated[Optional[StrictInt], Field(description="Page number")] = Query(None, description="Page number", alias="pageNumber"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    scm: Annotated[str, Field(description="Name of SCM")] = Path(..., description="Name of SCM"),
+    scmOrganisation: Annotated[str, Field(description="Name of the SCM organization")] = Path(..., description="Name of the SCM organization"),
+    credential_id: Annotated[Optional[str], Field(description="Credential ID")] = Query(None, description="Credential ID", alias="credentialId"),
+    page_size: Annotated[Optional[int], Field(description="Number of items in a page")] = Query(None, description="Number of items in a page", alias="pageSize"),
+    page_number: Annotated[Optional[int], Field(description="Page number")] = Query(None, description="Page number", alias="pageNumber"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -815,11 +815,11 @@ async def get_scm_organisation_repositories(
     response_model_by_alias=True,
 )
 async def get_scm_organisation_repository(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    scm: Annotated[StrictStr, Field(description="Name of SCM")] = Path(..., description="Name of SCM"),
-    scmOrganisation: Annotated[StrictStr, Field(description="Name of the SCM organization")] = Path(..., description="Name of the SCM organization"),
-    repository: Annotated[StrictStr, Field(description="Name of the SCM repository")] = Path(..., description="Name of the SCM repository"),
-    credential_id: Annotated[Optional[StrictStr], Field(description="Credential ID")] = Query(None, description="Credential ID", alias="credentialId"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    scm: Annotated[str, Field(description="Name of SCM")] = Path(..., description="Name of SCM"),
+    scmOrganisation: Annotated[str, Field(description="Name of the SCM organization")] = Path(..., description="Name of the SCM organization"),
+    repository: Annotated[str, Field(description="Name of the SCM repository")] = Path(..., description="Name of the SCM repository"),
+    credential_id: Annotated[Optional[str], Field(description="Credential ID")] = Query(None, description="Credential ID", alias="credentialId"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -841,7 +841,7 @@ async def get_scm_organisation_repository(
     response_model_by_alias=True,
 )
 async def get_authenticated_user(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -863,7 +863,7 @@ async def get_authenticated_user(
     response_model_by_alias=True,
 )
 async def get_users(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -885,8 +885,8 @@ async def get_users(
     response_model_by_alias=True,
 )
 async def get_user(
-    organization: Annotated[StrictStr, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
-    user: Annotated[StrictStr, Field(description="Name of the user")] = Path(..., description="Name of the user"),
+    organization: Annotated[str, Field(description="Name of the organization")] = Path(..., description="Name of the organization"),
+    user: Annotated[str, Field(description="Name of the user")] = Path(..., description="Name of the user"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -908,7 +908,7 @@ async def get_user(
     response_model_by_alias=True,
 )
 async def get_user_favorites(
-    user: Annotated[StrictStr, Field(description="Name of the user")] = Path(..., description="Name of the user"),
+    user: Annotated[str, Field(description="Name of the user")] = Path(..., description="Name of the user"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),

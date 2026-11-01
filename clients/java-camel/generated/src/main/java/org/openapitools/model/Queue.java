@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -23,12 +22,11 @@ import jakarta.annotation.Generated;
  * Queue
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-10-11T12:05:23.765681171Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-01T13:20:48.791479972Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Queue {
 
   private String propertyClass;
 
-  @Valid
   private List<@Valid QueueBlockedItem> items = new ArrayList<>();
 
   public Queue propertyClass(String propertyClass) {
@@ -68,7 +66,7 @@ public class Queue {
    * Get items
    * @return items
    */
-  @Valid 
+  
   @Schema(name = "items", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("items")
   public List<@Valid QueueBlockedItem> getItems() {

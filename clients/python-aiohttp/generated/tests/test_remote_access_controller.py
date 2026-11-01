@@ -225,6 +225,7 @@ async def test_head_jenkins(client):
 
 pytestmark = pytest.mark.asyncio
 
+@pytest.mark.skip("application/xml not supported by Connexion")
 async def test_post_create_item(client):
     """Test case for post_create_item
 
@@ -236,7 +237,7 @@ async def test_post_create_item(client):
                     ('mode', 'mode_example')]
     headers = { 
         'Accept': '*/*',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/xml',
         'jenkins_crumb': 'jenkins_crumb_example',
         'content_type': 'content_type_example',
         'Authorization': 'BasicZm9vOmJhcg==',
@@ -253,6 +254,7 @@ async def test_post_create_item(client):
 
 pytestmark = pytest.mark.asyncio
 
+@pytest.mark.skip("application/xml not supported by Connexion")
 async def test_post_create_view(client):
     """Test case for post_create_view
 
@@ -262,7 +264,7 @@ async def test_post_create_view(client):
     params = [('name', 'name_example')]
     headers = { 
         'Accept': '*/*',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/xml',
         'jenkins_crumb': 'jenkins_crumb_example',
         'content_type': 'content_type_example',
         'Authorization': 'BasicZm9vOmJhcg==',
@@ -301,6 +303,7 @@ async def test_post_job_build(client):
 
 pytestmark = pytest.mark.asyncio
 
+@pytest.mark.skip("application/xml not supported by Connexion")
 async def test_post_job_config(client):
     """Test case for post_job_config
 
@@ -309,7 +312,7 @@ async def test_post_job_config(client):
     body = 'body_example'
     headers = { 
         'Accept': '*/*',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/xml',
         'jenkins_crumb': 'jenkins_crumb_example',
         'Authorization': 'BasicZm9vOmJhcg==',
     }
@@ -400,6 +403,7 @@ async def test_post_job_last_build_stop(client):
 
 pytestmark = pytest.mark.asyncio
 
+@pytest.mark.skip("application/xml not supported by Connexion")
 async def test_post_view_config(client):
     """Test case for post_view_config
 
@@ -408,7 +412,7 @@ async def test_post_view_config(client):
     body = 'body_example'
     headers = { 
         'Accept': '*/*',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/xml',
         'jenkins_crumb': 'jenkins_crumb_example',
         'Authorization': 'BasicZm9vOmJhcg==',
     }

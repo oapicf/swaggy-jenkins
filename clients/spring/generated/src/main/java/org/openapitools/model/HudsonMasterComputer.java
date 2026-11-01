@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -26,55 +25,39 @@ import jakarta.annotation.Generated;
  * HudsonMasterComputer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class HudsonMasterComputer {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid HudsonMasterComputerexecutors> executors = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String icon;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String iconClassName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean idle;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean jnlpAgent;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean launchSupported;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Label1 loadStatistics;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean manualLaunchAllowed;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable HudsonMasterComputermonitorData monitorData;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numExecutors;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean offline;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String offlineCause;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String offlineCauseReason;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean temporarilyOffline;
 
   public HudsonMasterComputer propertyClass(@Nullable String propertyClass) {
@@ -136,7 +119,7 @@ public class HudsonMasterComputer {
    * Get executors
    * @return executors
    */
-  @Valid 
+  
   @Schema(name = "executors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("executors")
   public List<@Valid HudsonMasterComputerexecutors> getExecutors() {

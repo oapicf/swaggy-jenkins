@@ -126,3 +126,4 @@ class _$EmptyChangeLogSetSerializer implements PrimitiveSerializer<EmptyChangeLo
   }
 }
 
+

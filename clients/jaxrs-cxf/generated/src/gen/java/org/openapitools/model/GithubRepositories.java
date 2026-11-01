@@ -27,8 +27,6 @@ public class GithubRepositories  {
 
   @ApiModelProperty(value = "")
 
-  @Valid
-
   private List<@Valid GithubRepository> items = new ArrayList<>();
 
   @ApiModelProperty(value = "")

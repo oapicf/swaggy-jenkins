@@ -127,3 +127,4 @@ class _$FavoriteImpllinksSerializer implements PrimitiveSerializer<FavoriteImpll
   }
 }
 
+

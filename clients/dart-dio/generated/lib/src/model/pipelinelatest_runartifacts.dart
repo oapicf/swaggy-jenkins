@@ -164,3 +164,4 @@ class _$PipelinelatestRunartifactsSerializer implements PrimitiveSerializer<Pipe
   }
 }
 
+

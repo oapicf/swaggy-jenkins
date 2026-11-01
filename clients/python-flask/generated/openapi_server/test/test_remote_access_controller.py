@@ -192,6 +192,7 @@ class TestRemoteAccessController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
+    @unittest.skip("application/xml not supported by Connexion")
     def test_post_create_item(self):
         """Test case for post_create_item
 
@@ -203,7 +204,7 @@ class TestRemoteAccessController(BaseTestCase):
                         ('mode', 'mode_example')]
         headers = { 
             'Accept': '*/*',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/xml',
             'jenkins_crumb': 'jenkins_crumb_example',
             'content_type': 'content_type_example',
             'Authorization': 'Basic Zm9vOmJhcg==',
@@ -213,11 +214,12 @@ class TestRemoteAccessController(BaseTestCase):
             method='POST',
             headers=headers,
             data=json.dumps(body),
-            content_type='application/json',
+            content_type='application/xml',
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
+    @unittest.skip("application/xml not supported by Connexion")
     def test_post_create_view(self):
         """Test case for post_create_view
 
@@ -227,7 +229,7 @@ class TestRemoteAccessController(BaseTestCase):
         query_string = [('name', 'name_example')]
         headers = { 
             'Accept': '*/*',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/xml',
             'jenkins_crumb': 'jenkins_crumb_example',
             'content_type': 'content_type_example',
             'Authorization': 'Basic Zm9vOmJhcg==',
@@ -237,7 +239,7 @@ class TestRemoteAccessController(BaseTestCase):
             method='POST',
             headers=headers,
             data=json.dumps(body),
-            content_type='application/json',
+            content_type='application/xml',
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
@@ -261,6 +263,7 @@ class TestRemoteAccessController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
+    @unittest.skip("application/xml not supported by Connexion")
     def test_post_job_config(self):
         """Test case for post_job_config
 
@@ -269,7 +272,7 @@ class TestRemoteAccessController(BaseTestCase):
         body = 'body_example'
         headers = { 
             'Accept': '*/*',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/xml',
             'jenkins_crumb': 'jenkins_crumb_example',
             'Authorization': 'Basic Zm9vOmJhcg==',
         }
@@ -278,7 +281,7 @@ class TestRemoteAccessController(BaseTestCase):
             method='POST',
             headers=headers,
             data=json.dumps(body),
-            content_type='application/json')
+            content_type='application/xml')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -346,6 +349,7 @@ class TestRemoteAccessController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
+    @unittest.skip("application/xml not supported by Connexion")
     def test_post_view_config(self):
         """Test case for post_view_config
 
@@ -354,7 +358,7 @@ class TestRemoteAccessController(BaseTestCase):
         body = 'body_example'
         headers = { 
             'Accept': '*/*',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/xml',
             'jenkins_crumb': 'jenkins_crumb_example',
             'Authorization': 'Basic Zm9vOmJhcg==',
         }
@@ -363,7 +367,7 @@ class TestRemoteAccessController(BaseTestCase):
             method='POST',
             headers=headers,
             data=json.dumps(body),
-            content_type='application/json')
+            content_type='application/xml')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

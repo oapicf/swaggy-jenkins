@@ -18,7 +18,7 @@ import javax.validation.Valid;
 */
 @Path("/view/{name}")
 @Api(description = "the view API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ViewApi {
 
     @GET
@@ -34,7 +34,8 @@ public class ViewApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "View cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response getView(@PathParam("name") @ApiParam("Name of the view") String name) {
+    public Response getView(@PathParam("name") @ApiParam("Name of the view") String name
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -51,7 +52,8 @@ public class ViewApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "View cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response getViewConfig(@PathParam("name") @ApiParam("Name of the view") String name) {
+    public Response getViewConfig(@PathParam("name") @ApiParam("Name of the view") String name
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -70,7 +72,10 @@ public class ViewApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "View cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response postViewConfig(@PathParam("name") @ApiParam("Name of the view") String name,@Valid @NotNull String body,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb) {
+    public Response postViewConfig(@PathParam("name") @ApiParam("Name of the view") String name
+,@Valid @NotNull String body
+,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb
+) {
         return Response.ok().entity("magic!").build();
     }
 }

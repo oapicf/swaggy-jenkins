@@ -165,3 +165,4 @@ class _$GithubOrganizationSerializer implements PrimitiveSerializer<GithubOrgani
   }
 }
 
+

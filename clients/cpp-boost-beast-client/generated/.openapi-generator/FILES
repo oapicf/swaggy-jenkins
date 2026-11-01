@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 CMakeLists.txt
 README.md
 api/BaseApi.cpp
@@ -108,6 +109,14 @@ model/MultibranchPipeline.cpp
 model/MultibranchPipeline.h
 model/NullSCM.cpp
 model/NullSCM.h
+model/NullableField.h
+model/Oas31DeepEqual.h
+model/Oas31ExactJson.h
+model/Oas31ExactNumber.cpp
+model/Oas31ExactNumber.h
+model/Oas31SchemaIr.h
+model/Oas31SchemaRegistry.h
+model/Oas31Validator.h
 model/Organisation.cpp
 model/Organisation.h
 model/Pipeline.cpp
@@ -170,3 +179,8 @@ model/UnlabeledLoadStatistics.cpp
 model/UnlabeledLoadStatistics.h
 model/User.cpp
 model/User.h
+model/ValidationTypes.h
+model/schema_ir.generated.chunk0.cpp
+model/schema_ir.generated.chunk1.cpp
+model/schema_ir.generated.cpp
+test/MultipartWireTest.cpp

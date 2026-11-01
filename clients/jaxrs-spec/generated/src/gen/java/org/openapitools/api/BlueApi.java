@@ -32,7 +32,7 @@ import javax.validation.Valid;
 */
 @Path("/blue/rest")
 @Api(description = "the blue API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BlueApi {
 
     @DELETE
@@ -46,7 +46,10 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response deletePipelineQueueItem(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("queue") @ApiParam("Name of the queue item") String queue) {
+    public Response deletePipelineQueueItem(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("queue") @ApiParam("Name of the queue item") String queue
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -62,7 +65,8 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getAuthenticatedUser(@PathParam("organization") @ApiParam("Name of the organization") String organization) {
+    public Response getAuthenticatedUser(@PathParam("organization") @ApiParam("Name of the organization") String organization
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -78,7 +82,8 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getClasses(@PathParam("class") @ApiParam("Name of the class") String propertyClass) {
+    public Response getClasses(@PathParam("class") @ApiParam("Name of the class") String propertyClass
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -95,7 +100,8 @@ public class BlueApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Pipeline cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response getOrganisation(@PathParam("organization") @ApiParam("Name of the organization") String organization) {
+    public Response getOrganisation(@PathParam("organization") @ApiParam("Name of the organization") String organization
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -128,7 +134,9 @@ public class BlueApi {
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class),
         @ApiResponse(code = 404, message = "Pipeline cannot be found on Jenkins instance", response = Void.class)
     })
-    public Response getPipeline(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline) {
+    public Response getPipeline(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -144,7 +152,9 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineActivities(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline) {
+    public Response getPipelineActivities(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -160,7 +170,10 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineBranch(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("branch") @ApiParam("Name of the branch") String branch) {
+    public Response getPipelineBranch(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("branch") @ApiParam("Name of the branch") String branch
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -176,7 +189,11 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineBranchRun(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("branch") @ApiParam("Name of the branch") String branch,@PathParam("run") @ApiParam("Name of the run") String run) {
+    public Response getPipelineBranchRun(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("branch") @ApiParam("Name of the branch") String branch
+,@PathParam("run") @ApiParam("Name of the run") String run
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -192,7 +209,9 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineBranches(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline) {
+    public Response getPipelineBranches(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -208,7 +227,9 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineFolder(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("folder") @ApiParam("Name of the folder") String folder) {
+    public Response getPipelineFolder(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("folder") @ApiParam("Name of the folder") String folder
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -224,7 +245,10 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineFolderPipeline(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("folder") @ApiParam("Name of the folder") String folder) {
+    public Response getPipelineFolderPipeline(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("folder") @ApiParam("Name of the folder") String folder
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -240,7 +264,9 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineQueue(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline) {
+    public Response getPipelineQueue(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -256,7 +282,10 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineRun(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("run") @ApiParam("Name of the run") String run) {
+    public Response getPipelineRun(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("run") @ApiParam("Name of the run") String run
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -272,7 +301,12 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineRunLog(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("run") @ApiParam("Name of the run") String run,@QueryParam("start")  @ApiParam("Start position of the log")  Integer start,@QueryParam("download")  @ApiParam("Set to true in order to download the file, otherwise it&#39;s passed as a response body")  Boolean download) {
+    public Response getPipelineRunLog(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("run") @ApiParam("Name of the run") String run
+,@QueryParam("start")  @ApiParam("Start position of the log")  Integer start
+,@QueryParam("download")  @ApiParam("Set to true in order to download the file, otherwise it&#39;s passed as a response body")  Boolean download
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -288,7 +322,11 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineRunNode(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("run") @ApiParam("Name of the run") String run,@PathParam("node") @ApiParam("Name of the node") String node) {
+    public Response getPipelineRunNode(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("run") @ApiParam("Name of the run") String run
+,@PathParam("node") @ApiParam("Name of the node") String node
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -304,7 +342,12 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineRunNodeStep(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("run") @ApiParam("Name of the run") String run,@PathParam("node") @ApiParam("Name of the node") String node,@PathParam("step") @ApiParam("Name of the step") String step) {
+    public Response getPipelineRunNodeStep(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("run") @ApiParam("Name of the run") String run
+,@PathParam("node") @ApiParam("Name of the node") String node
+,@PathParam("step") @ApiParam("Name of the step") String step
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -320,7 +363,12 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineRunNodeStepLog(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("run") @ApiParam("Name of the run") String run,@PathParam("node") @ApiParam("Name of the node") String node,@PathParam("step") @ApiParam("Name of the step") String step) {
+    public Response getPipelineRunNodeStepLog(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("run") @ApiParam("Name of the run") String run
+,@PathParam("node") @ApiParam("Name of the node") String node
+,@PathParam("step") @ApiParam("Name of the step") String step
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -336,7 +384,11 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineRunNodeSteps(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("run") @ApiParam("Name of the run") String run,@PathParam("node") @ApiParam("Name of the node") String node) {
+    public Response getPipelineRunNodeSteps(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("run") @ApiParam("Name of the run") String run
+,@PathParam("node") @ApiParam("Name of the node") String node
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -352,7 +404,10 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineRunNodes(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("run") @ApiParam("Name of the run") String run) {
+    public Response getPipelineRunNodes(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("run") @ApiParam("Name of the run") String run
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -368,7 +423,9 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelineRuns(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline) {
+    public Response getPipelineRuns(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -384,7 +441,8 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getPipelines(@PathParam("organization") @ApiParam("Name of the organization") String organization) {
+    public Response getPipelines(@PathParam("organization") @ApiParam("Name of the organization") String organization
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -400,7 +458,9 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getSCM(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("scm") @ApiParam("Name of SCM") String scm) {
+    public Response getSCM(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("scm") @ApiParam("Name of SCM") String scm
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -416,7 +476,13 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getSCMOrganisationRepositories(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("scm") @ApiParam("Name of SCM") String scm,@PathParam("scmOrganisation") @ApiParam("Name of the SCM organization") String scmOrganisation,@QueryParam("credentialId")  @ApiParam("Credential ID")  String credentialId,@QueryParam("pageSize")  @ApiParam("Number of items in a page")  Integer pageSize,@QueryParam("pageNumber")  @ApiParam("Page number")  Integer pageNumber) {
+    public Response getSCMOrganisationRepositories(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("scm") @ApiParam("Name of SCM") String scm
+,@PathParam("scmOrganisation") @ApiParam("Name of the SCM organization") String scmOrganisation
+,@QueryParam("credentialId")  @ApiParam("Credential ID")  String credentialId
+,@QueryParam("pageSize")  @ApiParam("Number of items in a page")  Integer pageSize
+,@QueryParam("pageNumber")  @ApiParam("Page number")  Integer pageNumber
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -432,7 +498,12 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getSCMOrganisationRepository(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("scm") @ApiParam("Name of SCM") String scm,@PathParam("scmOrganisation") @ApiParam("Name of the SCM organization") String scmOrganisation,@PathParam("repository") @ApiParam("Name of the SCM repository") String repository,@QueryParam("credentialId")  @ApiParam("Credential ID")  String credentialId) {
+    public Response getSCMOrganisationRepository(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("scm") @ApiParam("Name of SCM") String scm
+,@PathParam("scmOrganisation") @ApiParam("Name of the SCM organization") String scmOrganisation
+,@PathParam("repository") @ApiParam("Name of the SCM repository") String repository
+,@QueryParam("credentialId")  @ApiParam("Credential ID")  String credentialId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -448,7 +519,10 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getSCMOrganisations(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("scm") @ApiParam("Name of SCM") String scm,@QueryParam("credentialId")  @ApiParam("Credential ID")  String credentialId) {
+    public Response getSCMOrganisations(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("scm") @ApiParam("Name of SCM") String scm
+,@QueryParam("credentialId")  @ApiParam("Credential ID")  String credentialId
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -464,7 +538,9 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getUser(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("user") @ApiParam("Name of the user") String user) {
+    public Response getUser(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("user") @ApiParam("Name of the user") String user
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -480,7 +556,8 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getUserFavorites(@PathParam("user") @ApiParam("Name of the user") String user) {
+    public Response getUserFavorites(@PathParam("user") @ApiParam("Name of the user") String user
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -496,7 +573,8 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getUsers(@PathParam("organization") @ApiParam("Name of the organization") String organization) {
+    public Response getUsers(@PathParam("organization") @ApiParam("Name of the organization") String organization
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -512,7 +590,10 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response postPipelineRun(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("run") @ApiParam("Name of the run") String run) {
+    public Response postPipelineRun(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("run") @ApiParam("Name of the run") String run
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -528,7 +609,9 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response postPipelineRuns(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline) {
+    public Response postPipelineRuns(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -545,7 +628,10 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response putPipelineFavorite(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@Valid @NotNull Boolean body) {
+    public Response putPipelineFavorite(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@Valid @NotNull Boolean body
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -561,7 +647,12 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response putPipelineRun(@PathParam("organization") @ApiParam("Name of the organization") String organization,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline,@PathParam("run") @ApiParam("Name of the run") String run,@QueryParam("blocking")  @ApiParam("Set to true to make blocking stop, default: false")  String blocking,@QueryParam("timeOutInSecs")  @ApiParam("Timeout in seconds, default: 10 seconds")  Integer timeOutInSecs) {
+    public Response putPipelineRun(@PathParam("organization") @ApiParam("Name of the organization") String organization
+,@PathParam("pipeline") @ApiParam("Name of the pipeline") String pipeline
+,@PathParam("run") @ApiParam("Name of the run") String run
+,@QueryParam("blocking")  @ApiParam("Set to true to make blocking stop, default: false")  String blocking
+,@QueryParam("timeOutInSecs")  @ApiParam("Timeout in seconds, default: 10 seconds")  Integer timeOutInSecs
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -577,7 +668,8 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response search(@QueryParam("q") @NotNull  @ApiParam("Query string")  String q) {
+    public Response search(@QueryParam("q") @NotNull  @ApiParam("Query string")  String q
+) {
         return Response.ok().entity("magic!").build();
     }
 
@@ -593,7 +685,8 @@ public class BlueApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response searchClasses(@QueryParam("q") @NotNull  @ApiParam("Query string containing an array of class names")  String q) {
+    public Response searchClasses(@QueryParam("q") @NotNull  @ApiParam("Query string containing an array of class names")  String q
+) {
         return Response.ok().entity("magic!").build();
     }
 }

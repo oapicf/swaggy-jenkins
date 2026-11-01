@@ -16,8 +16,6 @@ public class PipelinelatestRun  {
   
   @ApiModelProperty(value = "")
 
-  @Valid
-
   private List<@Valid PipelinelatestRunartifacts> artifacts = new ArrayList<>();
 
   @ApiModelProperty(value = "")

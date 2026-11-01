@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -27,52 +26,37 @@ import jakarta.annotation.Generated;
  * Hudson
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Hudson {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid HudsonassignedLabels> assignedLabels = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String mode;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String nodeDescription;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String nodeName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer numExecutors;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String description;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable AllView primaryView;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean quietingDown;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer slaveAgentPort;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable UnlabeledLoadStatistics unlabeledLoad;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean useCrumbs;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean useSecurity;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid AllView> views = new ArrayList<>();
 
   public Hudson propertyClass(@Nullable String propertyClass) {
@@ -113,7 +97,7 @@ public class Hudson {
    * Get assignedLabels
    * @return assignedLabels
    */
-  @Valid 
+  
   @Schema(name = "assignedLabels", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("assignedLabels")
   public List<@Valid HudsonassignedLabels> getAssignedLabels() {
@@ -247,7 +231,7 @@ public class Hudson {
    * Get jobs
    * @return jobs
    */
-  @Valid 
+  
   @Schema(name = "jobs", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("jobs")
   public List<@Valid FreeStyleProject> getJobs() {
@@ -402,7 +386,7 @@ public class Hudson {
    * Get views
    * @return views
    */
-  @Valid 
+  
   @Schema(name = "views", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("views")
   public List<@Valid AllView> getViews() {

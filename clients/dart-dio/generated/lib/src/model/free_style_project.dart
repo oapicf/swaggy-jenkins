@@ -606,3 +606,4 @@ class _$FreeStyleProjectSerializer implements PrimitiveSerializer<FreeStyleProje
   }
 }
 
+

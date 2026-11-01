@@ -23,7 +23,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("BranchImpl")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BranchImpl   {
   private String propertyClass;
   private String displayName;
@@ -32,7 +32,7 @@ public class BranchImpl   {
   private String fullName;
   private String name;
   private String organization;
-  private @Valid List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
+  private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
   private BranchImplpermissions permissions;
   private Integer weatherScore;
   private String pullRequest;
@@ -185,7 +185,7 @@ public class BranchImpl   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("parameters")
-  @Valid public List<@Valid StringParameterDefinition> getParameters() {
+  public List<@Valid StringParameterDefinition> getParameters() {
     return parameters;
   }
 

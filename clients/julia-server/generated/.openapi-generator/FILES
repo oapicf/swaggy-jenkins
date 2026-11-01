@@ -1,3 +1,5 @@
+.openapi-generator-ignore
+Project.toml
 README.md
 docs/AllView.md
 docs/BaseApi.md

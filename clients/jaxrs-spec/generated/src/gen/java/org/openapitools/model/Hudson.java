@@ -23,23 +23,23 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("Hudson")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Hudson   {
   private String propertyClass;
-  private @Valid List<@Valid HudsonassignedLabels> assignedLabels = new ArrayList<>();
+  private List<@Valid HudsonassignedLabels> assignedLabels = new ArrayList<>();
   private String mode;
   private String nodeDescription;
   private String nodeName;
   private Integer numExecutors;
   private String description;
-  private @Valid List<@Valid FreeStyleProject> jobs = new ArrayList<>();
+  private List<@Valid FreeStyleProject> jobs = new ArrayList<>();
   private AllView primaryView;
   private Boolean quietingDown;
   private Integer slaveAgentPort;
   private UnlabeledLoadStatistics unlabeledLoad;
   private Boolean useCrumbs;
   private Boolean useSecurity;
-  private @Valid List<@Valid AllView> views = new ArrayList<>();
+  private List<@Valid AllView> views = new ArrayList<>();
 
   public Hudson() {
   }
@@ -73,7 +73,7 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("assignedLabels")
-  @Valid public List<@Valid HudsonassignedLabels> getAssignedLabels() {
+  public List<@Valid HudsonassignedLabels> getAssignedLabels() {
     return assignedLabels;
   }
 
@@ -203,7 +203,7 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("jobs")
-  @Valid public List<@Valid FreeStyleProject> getJobs() {
+  public List<@Valid FreeStyleProject> getJobs() {
     return jobs;
   }
 
@@ -352,7 +352,7 @@ public class Hudson   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("views")
-  @Valid public List<@Valid AllView> getViews() {
+  public List<@Valid AllView> getViews() {
     return views;
   }
 

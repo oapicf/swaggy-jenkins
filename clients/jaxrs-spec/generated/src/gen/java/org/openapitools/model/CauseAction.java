@@ -20,10 +20,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("CauseAction")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CauseAction   {
   private String propertyClass;
-  private @Valid List<@Valid CauseUserIdCause> causes = new ArrayList<>();
+  private List<@Valid CauseUserIdCause> causes = new ArrayList<>();
 
   public CauseAction() {
   }
@@ -57,7 +57,7 @@ public class CauseAction   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("causes")
-  @Valid public List<@Valid CauseUserIdCause> getCauses() {
+  public List<@Valid CauseUserIdCause> getCauses() {
     return causes;
   }
 

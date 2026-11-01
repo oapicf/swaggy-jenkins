@@ -103,8 +103,7 @@ impl<T, A, B, C, ReqBody> Service<Request<ReqBody>> for AddContext<T, A>
         let headers = request.headers();
 
         {
-            use std::ops::Deref;
-            if let Some(auth) = swagger::auth::from_headers(headers) {
+            if let Some(auth @ AuthData::Basic(..)) = swagger::auth::from_headers(headers) {
                 let context = context.push(Some(auth));
 
                 return self.inner.call((request, context))

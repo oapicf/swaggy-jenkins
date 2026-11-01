@@ -18,7 +18,6 @@ public class PipelineActivity  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid PipelineActivityartifacts> artifacts = new ArrayList<>();
 
   @ApiModelProperty(value = "")

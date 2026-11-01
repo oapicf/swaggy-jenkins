@@ -328,10 +328,10 @@ try {
 ```
 
 ### Parameters
-| **name** | **kotlin.String**| Name of the job | |
-| **number** | **kotlin.String**| Build number | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the job | |
+| **number** | **kotlin.String**| Build number | |
 | **start** | **kotlin.String**| Starting point of progressive text output | |
 
 ### Return type
@@ -657,13 +657,13 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **name** | **kotlin.String**| Name of the new job | |
 | **from** | **kotlin.String**| Existing job to copy from | [optional] |
 | **mode** | **kotlin.String**| Set to &#39;copy&#39; for copying an existing job | [optional] |
 | **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 | **contentType** | **kotlin.String**| Content type header application/xml | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **body** | **kotlin.String**| Job configuration in config.xml format | [optional] |
 
 ### Return type
@@ -719,11 +719,11 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **name** | **kotlin.String**| Name of the new view | |
 | **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 | **contentType** | **kotlin.String**| Content type header application/xml | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **body** | **kotlin.String**| View configuration in config.xml format | [optional] |
 
 ### Return type
@@ -779,11 +779,11 @@ try {
 ```
 
 ### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
 | **name** | **kotlin.String**| Name of the job | |
 | **json** | **kotlin.String**|  | |
 | **token** | **kotlin.String**|  | [optional] |
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
 | **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
@@ -838,10 +838,10 @@ try {
 ```
 
 ### Parameters
-| **name** | **kotlin.String**| Name of the job | |
-| **body** | **kotlin.String**| Job configuration in config.xml format | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the job | |
+| **body** | **kotlin.String**| Job configuration in config.xml format | |
 | **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
@@ -895,9 +895,9 @@ try {
 ```
 
 ### Parameters
-| **name** | **kotlin.String**| Name of the job | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the job | |
 | **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
@@ -951,9 +951,9 @@ try {
 ```
 
 ### Parameters
-| **name** | **kotlin.String**| Name of the job | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the job | |
 | **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
@@ -1007,9 +1007,9 @@ try {
 ```
 
 ### Parameters
-| **name** | **kotlin.String**| Name of the job | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the job | |
 | **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
@@ -1063,9 +1063,9 @@ try {
 ```
 
 ### Parameters
-| **name** | **kotlin.String**| Name of the job | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the job | |
 | **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type
@@ -1120,10 +1120,10 @@ try {
 ```
 
 ### Parameters
-| **name** | **kotlin.String**| Name of the view | |
-| **body** | **kotlin.String**| View configuration in config.xml format | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
+| **name** | **kotlin.String**| Name of the view | |
+| **body** | **kotlin.String**| View configuration in config.xml format | |
 | **jenkinsCrumb** | **kotlin.String**| CSRF protection token | [optional] |
 
 ### Return type

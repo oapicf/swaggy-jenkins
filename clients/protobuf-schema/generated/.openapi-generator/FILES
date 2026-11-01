@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 README.md
 models/all_view.proto
 models/branch_impl.proto

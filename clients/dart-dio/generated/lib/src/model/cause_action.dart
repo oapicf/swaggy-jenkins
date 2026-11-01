@@ -128,3 +128,4 @@ class _$CauseActionSerializer implements PrimitiveSerializer<CauseAction> {
   }
 }
 
+

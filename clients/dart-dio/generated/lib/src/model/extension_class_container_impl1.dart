@@ -147,3 +147,4 @@ class _$ExtensionClassContainerImpl1Serializer implements PrimitiveSerializer<Ex
   }
 }
 
+

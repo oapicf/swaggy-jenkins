@@ -21,11 +21,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("GithubRepositories")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class GithubRepositories   {
   private String propertyClass;
   private GithubRepositorieslinks links;
-  private @Valid List<@Valid GithubRepository> items = new ArrayList<>();
+  private List<@Valid GithubRepository> items = new ArrayList<>();
   private Integer lastPage;
   private Integer nextPage;
   private Integer pageSize;
@@ -81,7 +81,7 @@ public class GithubRepositories   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("items")
-  @Valid public List<@Valid GithubRepository> getItems() {
+  public List<@Valid GithubRepository> getItems() {
     return items;
   }
 

@@ -354,3 +354,4 @@ class _$PipelineBranchesitemlatestRunSerializer implements PrimitiveSerializer<P
   }
 }
 
+

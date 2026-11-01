@@ -20,8 +20,6 @@ public class Queue  {
 
   @ApiModelProperty(value = "")
 
-  @Valid
-
   private List<@Valid QueueBlockedItem> items = new ArrayList<>();
  /**
    * Get propertyClass

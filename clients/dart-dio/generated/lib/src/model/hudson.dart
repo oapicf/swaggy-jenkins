@@ -378,3 +378,4 @@ class _$HudsonSerializer implements PrimitiveSerializer<Hudson> {
   }
 }
 
+

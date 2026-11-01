@@ -18,6 +18,7 @@ class ViewApiTest {
     fun getViewTest() {
         val name: kotlin.String = TODO()
         
+        
         val response: ResponseEntity<ListView> = api.getView(name)
 
         // TODO: test validations
@@ -32,6 +33,7 @@ class ViewApiTest {
     @Test
     fun getViewConfigTest() {
         val name: kotlin.String = TODO()
+        
         
         val response: ResponseEntity<kotlin.String> = api.getViewConfig(name)
 
@@ -49,6 +51,7 @@ class ViewApiTest {
         val name: kotlin.String = TODO()
         val body: kotlin.String = TODO()
         val jenkinsCrumb: kotlin.String? = TODO()
+        
         
         val response: ResponseEntity<Unit> = api.postViewConfig(name, body, jenkinsCrumb)
 

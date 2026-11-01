@@ -127,3 +127,4 @@ class _$GithubFileSerializer implements PrimitiveSerializer<GithubFile> {
   }
 }
 
+

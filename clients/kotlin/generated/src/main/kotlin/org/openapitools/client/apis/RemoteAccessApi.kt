@@ -339,6 +339,7 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
+
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/job/{name}/config.xml".replace("{"+"name"+"}", encodeURIComponent(name.toString())),
@@ -491,6 +492,7 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
+
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/job/{name}/{number}/logText/progressiveText".replace("{"+"name"+"}", encodeURIComponent(name.toString())).replace("{"+"number"+"}", encodeURIComponent(number.toString())),
@@ -779,6 +781,7 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
+
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/view/{name}/config.xml".replace("{"+"name"+"}", encodeURIComponent(name.toString())),
@@ -846,6 +849,7 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
+
         return RequestConfig(
             method = RequestMethod.HEAD,
             path = "/api/json",
@@ -939,9 +943,10 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
         jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
         contentType?.apply { localVariableHeaders["Content-Type"] = this.toString() }
-        
+
         return RequestConfig(
             method = RequestMethod.POST,
             path = "/createItem",
@@ -1023,9 +1028,10 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
                 put("name", listOf(name.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        
         jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
         contentType?.apply { localVariableHeaders["Content-Type"] = this.toString() }
-        
+
         return RequestConfig(
             method = RequestMethod.POST,
             path = "/createView",
@@ -1110,8 +1116,9 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
         
+        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
+
         return RequestConfig(
             method = RequestMethod.POST,
             path = "/job/{name}/build".replace("{"+"name"+"}", encodeURIComponent(name.toString())),
@@ -1187,8 +1194,9 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
         val localVariableBody = body
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
         
+        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
+
         return RequestConfig(
             method = RequestMethod.POST,
             path = "/job/{name}/config.xml".replace("{"+"name"+"}", encodeURIComponent(name.toString())),
@@ -1261,8 +1269,9 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
         
+        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
+
         return RequestConfig(
             method = RequestMethod.POST,
             path = "/job/{name}/doDelete".replace("{"+"name"+"}", encodeURIComponent(name.toString())),
@@ -1335,8 +1344,9 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
         
+        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
+
         return RequestConfig(
             method = RequestMethod.POST,
             path = "/job/{name}/disable".replace("{"+"name"+"}", encodeURIComponent(name.toString())),
@@ -1409,8 +1419,9 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
         
+        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
+
         return RequestConfig(
             method = RequestMethod.POST,
             path = "/job/{name}/enable".replace("{"+"name"+"}", encodeURIComponent(name.toString())),
@@ -1483,8 +1494,9 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
         
+        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
+
         return RequestConfig(
             method = RequestMethod.POST,
             path = "/job/{name}/lastBuild/stop".replace("{"+"name"+"}", encodeURIComponent(name.toString())),
@@ -1560,8 +1572,9 @@ open class RemoteAccessApi(basePath: kotlin.String = defaultBasePath, client: Ca
         val localVariableBody = body
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
         
+        jenkinsCrumb?.apply { localVariableHeaders["Jenkins-Crumb"] = this.toString() }
+
         return RequestConfig(
             method = RequestMethod.POST,
             path = "/view/{name}/config.xml".replace("{"+"name"+"}", encodeURIComponent(name.toString())),

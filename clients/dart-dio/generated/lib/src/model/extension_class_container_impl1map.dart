@@ -146,3 +146,4 @@ class _$ExtensionClassContainerImpl1mapSerializer implements PrimitiveSerializer
   }
 }
 
+

@@ -340,3 +340,4 @@ class _$BranchImplSerializer implements PrimitiveSerializer<BranchImpl> {
   }
 }
 
+

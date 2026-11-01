@@ -133,6 +133,7 @@ open class BlueOceanApi(basePath: kotlin.String = defaultBasePath, client: Call.
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
+
         return RequestConfig(
             method = RequestMethod.DELETE,
             path = "/blue/rest/organizations/{organization}/pipelines/{pipeline}/queue/{queue}".replace("{"+"organization"+"}", encodeURIComponent(organization.toString())).replace("{"+"pipeline"+"}", encodeURIComponent(pipeline.toString())).replace("{"+"queue"+"}", encodeURIComponent(queue.toString())),

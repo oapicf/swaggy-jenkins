@@ -146,3 +146,4 @@ class _$GithubOrganizationlinksSerializer implements PrimitiveSerializer<GithubO
   }
 }
 
+

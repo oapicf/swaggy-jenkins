@@ -11,9 +11,9 @@ server, you can easily generate a server stub.
 
 To see how to make this your own, look here: [README](https://openapi-generator.tech)
 
-- API version: 3.4.1-pre.0
-- Build date: 2026-10-11T12:08:13.328902581Z[Etc/UTC]
-- Generator version: 7.24.0
+- API version: 3.5.1-pre.0
+- Build date: 2026-11-01T13:23:12.055420871Z[Etc/UTC]
+- Generator version: 7.26.0
 
 For more information, please visit [https://github.com/oapicf/swaggy-jenkins](https://github.com/oapicf/swaggy-jenkins)
 

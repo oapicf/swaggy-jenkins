@@ -375,3 +375,4 @@ class _$PipelinelatestRunSerializer implements PrimitiveSerializer<Pipelinelates
   }
 }
 
+

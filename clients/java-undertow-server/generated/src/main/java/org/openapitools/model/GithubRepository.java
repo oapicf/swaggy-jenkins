@@ -3,7 +3,7 @@
  *
  * Jenkins API clients generated from Swagger / Open API specification
  *
- * OpenAPI document version: 3.4.1-pre.0
+ * OpenAPI document version: 3.5.1-pre.0
  * Maintained by: blah+oapicf@cliffano.com
  *
  * AUTO-GENERATED FILE, DO NOT MODIFY!
@@ -22,7 +22,7 @@ import org.openapitools.model.GithubRepositorypermissions;
 
 
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-10-11T12:05:17.997052953Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaUndertowServerCodegen", date = "2026-11-01T13:20:43.169933076Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class GithubRepository   {
   
   private String propertyClass;

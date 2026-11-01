@@ -17,7 +17,7 @@ import javax.validation.Valid;
 */
 @Path("/createItem")
 @Api(description = "the createItem API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class CreateItemApi {
 
     @POST
@@ -33,7 +33,13 @@ public class CreateItemApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response postCreateItem(@QueryParam("name") @NotNull  @ApiParam("Name of the new job")  String name,@QueryParam("from")  @ApiParam("Existing job to copy from")  String from,@QueryParam("mode")  @ApiParam("Set to &#39;copy&#39; for copying an existing job")  String mode,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb,@HeaderParam("Content-Type")   @ApiParam("Content type header application/xml") String contentType,@Valid String body) {
+    public Response postCreateItem(@QueryParam("name") @NotNull  @ApiParam("Name of the new job")  String name
+,@QueryParam("from")  @ApiParam("Existing job to copy from")  String from
+,@QueryParam("mode")  @ApiParam("Set to &#39;copy&#39; for copying an existing job")  String mode
+,@HeaderParam("Jenkins-Crumb")   @ApiParam("CSRF protection token") String jenkinsCrumb
+,@HeaderParam("Content-Type")   @ApiParam("Content type header application/xml") String contentType
+,@Valid String body
+) {
         return Response.ok().entity("magic!").build();
     }
 }

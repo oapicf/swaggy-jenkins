@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -25,25 +24,19 @@ import jakarta.annotation.Generated;
  * GithubRepositories
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class GithubRepositories {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable GithubRepositorieslinks links;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid GithubRepository> items = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer lastPage;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer nextPage;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer pageSize;
 
   public GithubRepositories propertyClass(@Nullable String propertyClass) {
@@ -105,7 +98,7 @@ public class GithubRepositories {
    * Get items
    * @return items
    */
-  @Valid 
+  
   @Schema(name = "items", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("items")
   public List<@Valid GithubRepository> getItems() {

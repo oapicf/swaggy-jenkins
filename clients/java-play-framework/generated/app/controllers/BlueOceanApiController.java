@@ -38,7 +38,7 @@ import com.typesafe.config.Config;
 
 import openapitools.OpenAPIUtils.ApiAction;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-10-11T12:05:15.240073890Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPlayFrameworkCodegen", date = "2026-11-01T13:20:40.121328296Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class BlueOceanApiController extends Controller {
     private final BlueOceanApiControllerImpInterface imp;
     private final ObjectMapper mapper;

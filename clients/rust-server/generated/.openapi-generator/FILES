@@ -1,5 +1,6 @@
 .cargo/config.toml
 .gitignore
+.openapi-generator-ignore
 Cargo.toml
 README.md
 api/openapi.yaml
@@ -103,3 +104,4 @@ src/lib.rs
 src/models.rs
 src/server/mod.rs
 src/server/server_auth.rs
+tests/auth_scheme_precedence.rs

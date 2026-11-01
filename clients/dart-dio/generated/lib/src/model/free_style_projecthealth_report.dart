@@ -183,3 +183,4 @@ class _$FreeStyleProjecthealthReportSerializer implements PrimitiveSerializer<Fr
   }
 }
 
+

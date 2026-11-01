@@ -22,9 +22,9 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from typing import Any
 from openapi_server.models.default_crumb_issuer import DefaultCrumbIssuer
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_jenkins_auth
 
 router = APIRouter()

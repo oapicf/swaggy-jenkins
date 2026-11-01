@@ -234,7 +234,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         q: String,
         context: &C) -> Result<SearchResponse, ApiError>
     {
-        info!("search(\"{}\") - X-Span-ID: {:?}", q, context.get().0.clone());
+        info!("search({:?}) - X-Span-ID: {:?}", q, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -243,7 +243,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         q: String,
         context: &C) -> Result<SearchClassesResponse, ApiError>
     {
-        info!("search_classes(\"{}\") - X-Span-ID: {:?}", q, context.get().0.clone());
+        info!("search_classes({:?}) - X-Span-ID: {:?}", q, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -252,7 +252,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         organization: String,
         context: &C) -> Result<GetAuthenticatedUserResponse, ApiError>
     {
-        info!("get_authenticated_user(\"{}\") - X-Span-ID: {:?}", organization, context.get().0.clone());
+        info!("get_authenticated_user({:?}) - X-Span-ID: {:?}", organization, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -261,7 +261,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         class: String,
         context: &C) -> Result<GetClassesResponse, ApiError>
     {
-        info!("get_classes(\"{}\") - X-Span-ID: {:?}", class, context.get().0.clone());
+        info!("get_classes({:?}) - X-Span-ID: {:?}", class, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -270,7 +270,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         key: i32,
         context: &C) -> Result<GetJsonWebKeyResponse, ApiError>
     {
-        info!("get_json_web_key({}) - X-Span-ID: {:?}", key, context.get().0.clone());
+        info!("get_json_web_key({:?}) - X-Span-ID: {:?}", key, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -279,7 +279,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         organization: String,
         context: &C) -> Result<GetOrganisationResponse, ApiError>
     {
-        info!("get_organisation(\"{}\") - X-Span-ID: {:?}", organization, context.get().0.clone());
+        info!("get_organisation({:?}) - X-Span-ID: {:?}", organization, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -288,7 +288,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         organization: String,
         context: &C) -> Result<GetPipelinesResponse, ApiError>
     {
-        info!("get_pipelines(\"{}\") - X-Span-ID: {:?}", organization, context.get().0.clone());
+        info!("get_pipelines({:?}) - X-Span-ID: {:?}", organization, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -297,7 +297,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         user: String,
         context: &C) -> Result<GetUserFavoritesResponse, ApiError>
     {
-        info!("get_user_favorites(\"{}\") - X-Span-ID: {:?}", user, context.get().0.clone());
+        info!("get_user_favorites({:?}) - X-Span-ID: {:?}", user, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -306,7 +306,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         organization: String,
         context: &C) -> Result<GetUsersResponse, ApiError>
     {
-        info!("get_users(\"{}\") - X-Span-ID: {:?}", organization, context.get().0.clone());
+        info!("get_users({:?}) - X-Span-ID: {:?}", organization, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -316,7 +316,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         pipeline: String,
         context: &C) -> Result<GetPipelineResponse, ApiError>
     {
-        info!("get_pipeline(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
+        info!("get_pipeline({:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -326,7 +326,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         pipeline: String,
         context: &C) -> Result<GetPipelineActivitiesResponse, ApiError>
     {
-        info!("get_pipeline_activities(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
+        info!("get_pipeline_activities({:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -336,7 +336,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         pipeline: String,
         context: &C) -> Result<GetPipelineBranchesResponse, ApiError>
     {
-        info!("get_pipeline_branches(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
+        info!("get_pipeline_branches({:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -346,7 +346,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         folder: String,
         context: &C) -> Result<GetPipelineFolderResponse, ApiError>
     {
-        info!("get_pipeline_folder(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, folder, context.get().0.clone());
+        info!("get_pipeline_folder({:?}, {:?}) - X-Span-ID: {:?}", organization, folder, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -356,7 +356,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         pipeline: String,
         context: &C) -> Result<GetPipelineQueueResponse, ApiError>
     {
-        info!("get_pipeline_queue(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
+        info!("get_pipeline_queue({:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -366,7 +366,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         pipeline: String,
         context: &C) -> Result<GetPipelineRunsResponse, ApiError>
     {
-        info!("get_pipeline_runs(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
+        info!("get_pipeline_runs({:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -376,7 +376,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         scm: String,
         context: &C) -> Result<GetScmResponse, ApiError>
     {
-        info!("get_scm(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, scm, context.get().0.clone());
+        info!("get_scm({:?}, {:?}) - X-Span-ID: {:?}", organization, scm, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -387,7 +387,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         credential_id: Option<String>,
         context: &C) -> Result<GetScmOrganisationsResponse, ApiError>
     {
-        info!("get_scm_organisations(\"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", organization, scm, credential_id, context.get().0.clone());
+        info!("get_scm_organisations({:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, scm, credential_id, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -397,7 +397,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         user: String,
         context: &C) -> Result<GetUserResponse, ApiError>
     {
-        info!("get_user(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, user, context.get().0.clone());
+        info!("get_user({:?}, {:?}) - X-Span-ID: {:?}", organization, user, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -407,7 +407,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         pipeline: String,
         context: &C) -> Result<PostPipelineRunsResponse, ApiError>
     {
-        info!("post_pipeline_runs(\"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
+        info!("post_pipeline_runs({:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -418,7 +418,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         body: bool,
         context: &C) -> Result<PutPipelineFavoriteResponse, ApiError>
     {
-        info!("put_pipeline_favorite(\"{}\", \"{}\", {}) - X-Span-ID: {:?}", organization, pipeline, body, context.get().0.clone());
+        info!("put_pipeline_favorite({:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, body, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -429,7 +429,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         queue: String,
         context: &C) -> Result<DeletePipelineQueueItemResponse, ApiError>
     {
-        info!("delete_pipeline_queue_item(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, queue, context.get().0.clone());
+        info!("delete_pipeline_queue_item({:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, queue, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -440,7 +440,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         branch: String,
         context: &C) -> Result<GetPipelineBranchResponse, ApiError>
     {
-        info!("get_pipeline_branch(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, branch, context.get().0.clone());
+        info!("get_pipeline_branch({:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, branch, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -451,7 +451,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         folder: String,
         context: &C) -> Result<GetPipelineFolderPipelineResponse, ApiError>
     {
-        info!("get_pipeline_folder_pipeline(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, folder, context.get().0.clone());
+        info!("get_pipeline_folder_pipeline({:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, folder, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -462,7 +462,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         run: String,
         context: &C) -> Result<GetPipelineRunResponse, ApiError>
     {
-        info!("get_pipeline_run(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, context.get().0.clone());
+        info!("get_pipeline_run({:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -475,7 +475,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         download: Option<bool>,
         context: &C) -> Result<GetPipelineRunLogResponse, ApiError>
     {
-        info!("get_pipeline_run_log(\"{}\", \"{}\", \"{}\", {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, start, download, context.get().0.clone());
+        info!("get_pipeline_run_log({:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, start, download, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -486,7 +486,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         run: String,
         context: &C) -> Result<GetPipelineRunNodesResponse, ApiError>
     {
-        info!("get_pipeline_run_nodes(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, context.get().0.clone());
+        info!("get_pipeline_run_nodes({:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -500,7 +500,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         page_number: Option<i32>,
         context: &C) -> Result<GetScmOrganisationRepositoriesResponse, ApiError>
     {
-        info!("get_scm_organisation_repositories(\"{}\", \"{}\", \"{}\", {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, scm, scm_organisation, credential_id, page_size, page_number, context.get().0.clone());
+        info!("get_scm_organisation_repositories({:?}, {:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, scm, scm_organisation, credential_id, page_size, page_number, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -511,7 +511,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         run: String,
         context: &C) -> Result<PostPipelineRunResponse, ApiError>
     {
-        info!("post_pipeline_run(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, context.get().0.clone());
+        info!("post_pipeline_run({:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -524,7 +524,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         time_out_in_secs: Option<i32>,
         context: &C) -> Result<PutPipelineRunResponse, ApiError>
     {
-        info!("put_pipeline_run(\"{}\", \"{}\", \"{}\", {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, blocking, time_out_in_secs, context.get().0.clone());
+        info!("put_pipeline_run({:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, blocking, time_out_in_secs, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -536,7 +536,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         run: String,
         context: &C) -> Result<GetPipelineBranchRunResponse, ApiError>
     {
-        info!("get_pipeline_branch_run(\"{}\", \"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, branch, run, context.get().0.clone());
+        info!("get_pipeline_branch_run({:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, branch, run, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -548,7 +548,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         node: String,
         context: &C) -> Result<GetPipelineRunNodeResponse, ApiError>
     {
-        info!("get_pipeline_run_node(\"{}\", \"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, node, context.get().0.clone());
+        info!("get_pipeline_run_node({:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, node, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -560,7 +560,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         node: String,
         context: &C) -> Result<GetPipelineRunNodeStepsResponse, ApiError>
     {
-        info!("get_pipeline_run_node_steps(\"{}\", \"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, node, context.get().0.clone());
+        info!("get_pipeline_run_node_steps({:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, node, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -573,7 +573,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         credential_id: Option<String>,
         context: &C) -> Result<GetScmOrganisationRepositoryResponse, ApiError>
     {
-        info!("get_scm_organisation_repository(\"{}\", \"{}\", \"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", organization, scm, scm_organisation, repository, credential_id, context.get().0.clone());
+        info!("get_scm_organisation_repository({:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, scm, scm_organisation, repository, credential_id, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -586,7 +586,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         step: String,
         context: &C) -> Result<GetPipelineRunNodeStepResponse, ApiError>
     {
-        info!("get_pipeline_run_node_step(\"{}\", \"{}\", \"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, node, step, context.get().0.clone());
+        info!("get_pipeline_run_node_step({:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, node, step, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -599,7 +599,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         step: String,
         context: &C) -> Result<GetPipelineRunNodeStepLogResponse, ApiError>
     {
-        info!("get_pipeline_run_node_step_log(\"{}\", \"{}\", \"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", organization, pipeline, run, node, step, context.get().0.clone());
+        info!("get_pipeline_run_node_step_log({:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", organization, pipeline, run, node, step, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -608,7 +608,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         depth: i32,
         context: &C) -> Result<GetComputerResponse, ApiError>
     {
-        info!("get_computer({}) - X-Span-ID: {:?}", depth, context.get().0.clone());
+        info!("get_computer({:?}) - X-Span-ID: {:?}", depth, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -646,7 +646,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         body: Option<String>,
         context: &C) -> Result<PostCreateItemResponse, ApiError>
     {
-        info!("post_create_item(\"{}\", {:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", name, from, mode, jenkins_crumb, content_type, body, context.get().0.clone());
+        info!("post_create_item({:?}, {:?}, {:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", name, from, mode, jenkins_crumb, content_type, body, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -658,7 +658,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         body: Option<String>,
         context: &C) -> Result<PostCreateViewResponse, ApiError>
     {
-        info!("post_create_view(\"{}\", {:?}, {:?}, {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, content_type, body, context.get().0.clone());
+        info!("post_create_view({:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, content_type, body, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -667,7 +667,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         name: String,
         context: &C) -> Result<GetJobResponse, ApiError>
     {
-        info!("get_job(\"{}\") - X-Span-ID: {:?}", name, context.get().0.clone());
+        info!("get_job({:?}) - X-Span-ID: {:?}", name, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -676,7 +676,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         name: String,
         context: &C) -> Result<GetJobConfigResponse, ApiError>
     {
-        info!("get_job_config(\"{}\") - X-Span-ID: {:?}", name, context.get().0.clone());
+        info!("get_job_config({:?}) - X-Span-ID: {:?}", name, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -685,7 +685,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         name: String,
         context: &C) -> Result<GetJobLastBuildResponse, ApiError>
     {
-        info!("get_job_last_build(\"{}\") - X-Span-ID: {:?}", name, context.get().0.clone());
+        info!("get_job_last_build({:?}) - X-Span-ID: {:?}", name, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -694,7 +694,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         number: String,
         context: &C) -> Result<GetQueueItemResponse, ApiError>
     {
-        info!("get_queue_item(\"{}\") - X-Span-ID: {:?}", number, context.get().0.clone());
+        info!("get_queue_item({:?}) - X-Span-ID: {:?}", number, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -703,7 +703,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         name: String,
         context: &C) -> Result<GetViewResponse, ApiError>
     {
-        info!("get_view(\"{}\") - X-Span-ID: {:?}", name, context.get().0.clone());
+        info!("get_view({:?}) - X-Span-ID: {:?}", name, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -712,7 +712,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         name: String,
         context: &C) -> Result<GetViewConfigResponse, ApiError>
     {
-        info!("get_view_config(\"{}\") - X-Span-ID: {:?}", name, context.get().0.clone());
+        info!("get_view_config({:?}) - X-Span-ID: {:?}", name, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -724,7 +724,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         jenkins_crumb: Option<String>,
         context: &C) -> Result<PostJobBuildResponse, ApiError>
     {
-        info!("post_job_build(\"{}\", \"{}\", {:?}, {:?}) - X-Span-ID: {:?}", name, json, token, jenkins_crumb, context.get().0.clone());
+        info!("post_job_build({:?}, {:?}, {:?}, {:?}) - X-Span-ID: {:?}", name, json, token, jenkins_crumb, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -735,7 +735,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         jenkins_crumb: Option<String>,
         context: &C) -> Result<PostJobConfigResponse, ApiError>
     {
-        info!("post_job_config(\"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", name, body, jenkins_crumb, context.get().0.clone());
+        info!("post_job_config({:?}, {:?}, {:?}) - X-Span-ID: {:?}", name, body, jenkins_crumb, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -745,7 +745,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         jenkins_crumb: Option<String>,
         context: &C) -> Result<PostJobDeleteResponse, ApiError>
     {
-        info!("post_job_delete(\"{}\", {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
+        info!("post_job_delete({:?}, {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -755,7 +755,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         jenkins_crumb: Option<String>,
         context: &C) -> Result<PostJobDisableResponse, ApiError>
     {
-        info!("post_job_disable(\"{}\", {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
+        info!("post_job_disable({:?}, {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -765,7 +765,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         jenkins_crumb: Option<String>,
         context: &C) -> Result<PostJobEnableResponse, ApiError>
     {
-        info!("post_job_enable(\"{}\", {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
+        info!("post_job_enable({:?}, {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -775,7 +775,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         jenkins_crumb: Option<String>,
         context: &C) -> Result<PostJobLastBuildStopResponse, ApiError>
     {
-        info!("post_job_last_build_stop(\"{}\", {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
+        info!("post_job_last_build_stop({:?}, {:?}) - X-Span-ID: {:?}", name, jenkins_crumb, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -786,7 +786,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         jenkins_crumb: Option<String>,
         context: &C) -> Result<PostViewConfigResponse, ApiError>
     {
-        info!("post_view_config(\"{}\", \"{}\", {:?}) - X-Span-ID: {:?}", name, body, jenkins_crumb, context.get().0.clone());
+        info!("post_view_config({:?}, {:?}, {:?}) - X-Span-ID: {:?}", name, body, jenkins_crumb, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 
@@ -797,7 +797,7 @@ impl<C> Api<C> for Server<C> where C: Has<XSpanIdString> + Send + Sync
         start: String,
         context: &C) -> Result<GetJobProgressiveTextResponse, ApiError>
     {
-        info!("get_job_progressive_text(\"{}\", \"{}\", \"{}\") - X-Span-ID: {:?}", name, number, start, context.get().0.clone());
+        info!("get_job_progressive_text({:?}, {:?}, {:?}) - X-Span-ID: {:?}", name, number, start, context.get().0.clone());
         Err(ApiError("Api-Error: Operation is NOT implemented".into()))
     }
 

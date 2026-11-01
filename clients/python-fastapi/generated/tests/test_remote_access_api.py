@@ -3,7 +3,7 @@
 from fastapi.testclient import TestClient
 
 
-from pydantic import Field, StrictInt, StrictStr  # noqa: F401
+from pydantic import Field, StrictStr  # noqa: F401
 from typing import Any, Optional  # noqa: F401
 from typing_extensions import Annotated  # noqa: F401
 from openapi_server.models.computer_set import ComputerSet  # noqa: F401

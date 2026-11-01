@@ -318,7 +318,7 @@ public class RemoteAccessApiHandler {
         logger.debug("Parameter mode is {}", mode);
         logger.debug("Parameter jenkinsCrumb is {}", jenkinsCrumb);
         logger.debug("Parameter contentType is {}", contentType);
-        logger.debug("Parameter body is {}", body);
+        logger.debug("Parameter body is (body omitted)");
 
         api.postCreateItem(name, from, mode, jenkinsCrumb, contentType, body)
             .onSuccess(apiResponse -> {
@@ -347,7 +347,7 @@ public class RemoteAccessApiHandler {
         logger.debug("Parameter name is {}", name);
         logger.debug("Parameter jenkinsCrumb is {}", jenkinsCrumb);
         logger.debug("Parameter contentType is {}", contentType);
-        logger.debug("Parameter body is {}", body);
+        logger.debug("Parameter body is (body omitted)");
 
         api.postCreateView(name, jenkinsCrumb, contentType, body)
             .onSuccess(apiResponse -> {
@@ -401,7 +401,7 @@ public class RemoteAccessApiHandler {
         String jenkinsCrumb = requestParameters.headerParameter("Jenkins-Crumb") != null ? requestParameters.headerParameter("Jenkins-Crumb").getString() : null;
 
         logger.debug("Parameter name is {}", name);
-        logger.debug("Parameter body is {}", body);
+        logger.debug("Parameter body is (body omitted)");
         logger.debug("Parameter jenkinsCrumb is {}", jenkinsCrumb);
 
         api.postJobConfig(name, body, jenkinsCrumb)
@@ -524,7 +524,7 @@ public class RemoteAccessApiHandler {
         String jenkinsCrumb = requestParameters.headerParameter("Jenkins-Crumb") != null ? requestParameters.headerParameter("Jenkins-Crumb").getString() : null;
 
         logger.debug("Parameter name is {}", name);
-        logger.debug("Parameter body is {}", body);
+        logger.debug("Parameter body is (body omitted)");
         logger.debug("Parameter jenkinsCrumb is {}", jenkinsCrumb);
 
         api.postViewConfig(name, body, jenkinsCrumb)

@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -25,43 +24,31 @@ import jakarta.annotation.Generated;
  * QueueBlockedItem
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class QueueBlockedItem {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid CauseAction> actions = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean blocked;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean buildable;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer id;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer inQueueSince;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String params;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean stuck;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleProject task;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String url;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String why;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer buildableStartMilliseconds;
 
   public QueueBlockedItem propertyClass(@Nullable String propertyClass) {
@@ -102,7 +89,7 @@ public class QueueBlockedItem {
    * Get actions
    * @return actions
    */
-  @Valid 
+  
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
   public List<@Valid CauseAction> getActions() {

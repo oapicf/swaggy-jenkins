@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.lang.Nullable;
@@ -20,25 +19,19 @@ import jakarta.annotation.Generated;
  * GenericResource
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class GenericResource {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer durationInMillis;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String id;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String result;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String startTime;
 
   public GenericResource propertyClass(@Nullable String propertyClass) {

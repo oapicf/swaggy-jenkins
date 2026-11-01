@@ -127,3 +127,4 @@ class _$GithubScmlinksSerializer implements PrimitiveSerializer<GithubScmlinks> 
   }
 }
 
+

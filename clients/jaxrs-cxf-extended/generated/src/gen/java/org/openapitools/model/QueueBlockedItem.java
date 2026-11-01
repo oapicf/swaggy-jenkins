@@ -19,7 +19,6 @@ public class QueueBlockedItem  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid CauseAction> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")

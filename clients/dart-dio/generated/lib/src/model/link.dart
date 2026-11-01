@@ -126,3 +126,4 @@ class _$LinkSerializer implements PrimitiveSerializer<Link> {
   }
 }
 
+

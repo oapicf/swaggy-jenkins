@@ -147,3 +147,4 @@ class _$ExtensionClassImplSerializer implements PrimitiveSerializer<ExtensionCla
   }
 }
 
+

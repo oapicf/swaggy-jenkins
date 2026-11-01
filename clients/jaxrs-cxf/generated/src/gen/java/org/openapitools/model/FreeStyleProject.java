@@ -35,8 +35,6 @@ public class FreeStyleProject  {
 
   @ApiModelProperty(value = "")
 
-  @Valid
-
   private List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
 
   @ApiModelProperty(value = "")
@@ -65,8 +63,6 @@ public class FreeStyleProject  {
 
   @ApiModelProperty(value = "")
 
-  @Valid
-
   private List<@Valid FreeStyleBuild> builds = new ArrayList<>();
 
   @ApiModelProperty(value = "")
@@ -76,8 +72,6 @@ public class FreeStyleProject  {
   private FreeStyleBuild firstBuild;
 
   @ApiModelProperty(value = "")
-
-  @Valid
 
   private List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
 

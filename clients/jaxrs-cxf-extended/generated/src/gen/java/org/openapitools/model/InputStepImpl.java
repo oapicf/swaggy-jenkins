@@ -32,7 +32,6 @@ public class InputStepImpl  {
   private String ok;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid StringParameterDefinition> parameters = new ArrayList<>();
 
   @ApiModelProperty(value = "")

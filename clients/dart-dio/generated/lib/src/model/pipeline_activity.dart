@@ -375,3 +375,4 @@ class _$PipelineActivitySerializer implements PrimitiveSerializer<PipelineActivi
   }
 }
 
+

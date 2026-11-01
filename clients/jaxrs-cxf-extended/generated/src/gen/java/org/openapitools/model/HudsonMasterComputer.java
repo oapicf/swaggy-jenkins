@@ -23,7 +23,6 @@ public class HudsonMasterComputer  {
   private String displayName;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid HudsonMasterComputerexecutors> executors = new ArrayList<>();
 
   @ApiModelProperty(value = "")

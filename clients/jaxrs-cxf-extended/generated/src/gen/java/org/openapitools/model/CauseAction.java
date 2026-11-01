@@ -18,7 +18,6 @@ public class CauseAction  {
   private String propertyClass;
 
   @ApiModelProperty(value = "")
-  @Valid
   private List<@Valid CauseUserIdCause> causes = new ArrayList<>();
  /**
   * Get propertyClass

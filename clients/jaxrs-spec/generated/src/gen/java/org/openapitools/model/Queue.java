@@ -20,10 +20,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("Queue")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class Queue   {
   private String propertyClass;
-  private @Valid List<@Valid QueueBlockedItem> items = new ArrayList<>();
+  private List<@Valid QueueBlockedItem> items = new ArrayList<>();
 
   public Queue() {
   }
@@ -57,7 +57,7 @@ public class Queue   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("items")
-  @Valid public List<@Valid QueueBlockedItem> getItems() {
+  public List<@Valid QueueBlockedItem> getItems() {
     return items;
   }
 

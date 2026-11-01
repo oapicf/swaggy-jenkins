@@ -44,7 +44,7 @@ module RemoteAccessApiHandlerTestsHelper =
   let mutable PostCreateItemBody = ""
 
   PostCreateItemBody <- WebUtility.HtmlDecode ""
-  PostCreateItemExamples <- PostCreateItemExamples.Add("", PostCreateItemBody)
+  PostCreateItemExamples <- PostCreateItemExamples.Add("application/xml", PostCreateItemBody)
 
   let getPostCreateItemExample mediaType =
     PostCreateItemExamples.[mediaType]
@@ -54,7 +54,7 @@ module RemoteAccessApiHandlerTestsHelper =
   let mutable PostCreateViewBody = ""
 
   PostCreateViewBody <- WebUtility.HtmlDecode ""
-  PostCreateViewExamples <- PostCreateViewExamples.Add("", PostCreateViewBody)
+  PostCreateViewExamples <- PostCreateViewExamples.Add("application/xml", PostCreateViewBody)
 
   let getPostCreateViewExample mediaType =
     PostCreateViewExamples.[mediaType]
@@ -66,7 +66,7 @@ module RemoteAccessApiHandlerTestsHelper =
   let mutable PostJobConfigBody = ""
 
   PostJobConfigBody <- WebUtility.HtmlDecode ""
-  PostJobConfigExamples <- PostJobConfigExamples.Add("", PostJobConfigBody)
+  PostJobConfigExamples <- PostJobConfigExamples.Add("application/xml", PostJobConfigBody)
 
   let getPostJobConfigExample mediaType =
     PostJobConfigExamples.[mediaType]
@@ -84,7 +84,7 @@ module RemoteAccessApiHandlerTestsHelper =
   let mutable PostViewConfigBody = ""
 
   PostViewConfigBody <- WebUtility.HtmlDecode ""
-  PostViewConfigExamples <- PostViewConfigExamples.Add("", PostViewConfigBody)
+  PostViewConfigExamples <- PostViewConfigExamples.Add("application/xml", PostViewConfigBody)
 
   let getPostViewConfigExample mediaType =
     PostViewConfigExamples.[mediaType]

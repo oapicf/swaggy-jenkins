@@ -107,3 +107,4 @@ class _$HudsonassignedLabelsSerializer implements PrimitiveSerializer<Hudsonassi
   }
 }
 
+

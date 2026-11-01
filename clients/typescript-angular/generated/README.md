@@ -2,7 +2,7 @@
 
 Jenkins API clients generated from Swagger / Open API specification
 
-The version of the OpenAPI document: 3.4.1-pre.0
+The version of the OpenAPI document: 3.5.1-pre.0
 
 ## Building
 
@@ -183,3 +183,13 @@ new Configuration({
 [parameter-locations-url]: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-locations
 [style-values-url]: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#style-values
 [@honoluluhenk/http-param-expander]: https://www.npmjs.com/package/@honoluluhenk/http-param-expander
+
+## Deep-object query parameters
+
+For `style: deepObject`, nested objects are serialized using bracket notation, for example
+`filter[name][contains]=Alice`. Arrays and sets use zero-based indices, for example
+`filter[sort][0][field]=name`. Dates are serialized as ISO strings; null and undefined
+values and empty containers are omitted.
+
+OpenAPI only specifies deepObject serialization for flat objects. This recursive
+encoding is a generator extension and requires a server that accepts bracket notation.

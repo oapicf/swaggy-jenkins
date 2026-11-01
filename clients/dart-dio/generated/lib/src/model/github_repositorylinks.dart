@@ -127,3 +127,4 @@ class _$GithubRepositorylinksSerializer implements PrimitiveSerializer<GithubRep
   }
 }
 
+

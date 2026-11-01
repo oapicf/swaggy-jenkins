@@ -18,7 +18,7 @@ import javax.validation.Valid;
 */
 @Path("/computer/api/json")
 @Api(description = "the computer API")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class ComputerApi {
 
     @GET
@@ -32,7 +32,8 @@ public class ComputerApi {
         @ApiResponse(code = 401, message = "Authentication failed - incorrect username and/or password", response = Void.class),
         @ApiResponse(code = 403, message = "Jenkins requires authentication - please set username and password", response = Void.class)
     })
-    public Response getComputer(@QueryParam("depth") @NotNull  @ApiParam("Recursion depth in response model")  Integer depth) {
+    public Response getComputer(@QueryParam("depth") @NotNull  @ApiParam("Recursion depth in response model")  Integer depth
+) {
         return Response.ok().entity("magic!").build();
     }
 }

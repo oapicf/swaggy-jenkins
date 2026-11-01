@@ -240,3 +240,4 @@ class _$GithubContentSerializer implements PrimitiveSerializer<GithubContent> {
   }
 }
 
+

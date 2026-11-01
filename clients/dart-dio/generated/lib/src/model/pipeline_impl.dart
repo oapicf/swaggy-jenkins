@@ -260,3 +260,4 @@ class _$PipelineImplSerializer implements PrimitiveSerializer<PipelineImpl> {
   }
 }
 
+

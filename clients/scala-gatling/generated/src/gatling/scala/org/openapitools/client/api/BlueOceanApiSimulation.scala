@@ -167,8 +167,8 @@ class BlueOceanApiSimulation extends Simulation {
         .feed(getJsonWebTokenQUERYFeeder)
         .exec(http("getJsonWebToken")
         .httpRequest("GET","/jwt-auth/token")
-        .queryParam("expiryTimeInMins","${expiryTimeInMins}")
         .queryParam("maxExpiryTimeInMins","${maxExpiryTimeInMins}")
+        .queryParam("expiryTimeInMins","${expiryTimeInMins}")
 )
 
     // Run scngetJsonWebToken with warm up and reach a constant rate for entire duration
@@ -326,8 +326,8 @@ class BlueOceanApiSimulation extends Simulation {
         .feed(getPipelineRunLogQUERYFeeder)
         .exec(http("getPipelineRunLog")
         .httpRequest("GET","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/log")
-        .queryParam("download","${download}")
         .queryParam("start","${start}")
+        .queryParam("download","${download}")
 )
 
     // Run scngetPipelineRunLog with warm up and reach a constant rate for entire duration
@@ -571,8 +571,8 @@ class BlueOceanApiSimulation extends Simulation {
         .feed(putPipelineRunQUERYFeeder)
         .exec(http("putPipelineRun")
         .httpRequest("PUT","/blue/rest/organizations/${organization}/pipelines/${pipeline}/runs/${run}/stop")
-        .queryParam("timeOutInSecs","${timeOutInSecs}")
         .queryParam("blocking","${blocking}")
+        .queryParam("timeOutInSecs","${timeOutInSecs}")
 )
 
     // Run scnputPipelineRun with warm up and reach a constant rate for entire duration

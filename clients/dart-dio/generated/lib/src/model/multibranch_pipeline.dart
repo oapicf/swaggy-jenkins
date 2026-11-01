@@ -355,3 +355,4 @@ class _$MultibranchPipelineSerializer implements PrimitiveSerializer<Multibranch
   }
 }
 
+

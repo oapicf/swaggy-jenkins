@@ -205,3 +205,4 @@ class _$GithubRepositoriesSerializer implements PrimitiveSerializer<GithubReposi
   }
 }
 
+

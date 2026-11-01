@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -27,88 +26,61 @@ import jakarta.annotation.Generated;
  * FreeStyleProject
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-10-11T12:09:06.577199885Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-11-01T13:23:54.112519158Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class FreeStyleProject {
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String propertyClass;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String name;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String url;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String color;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid FreeStyleProjectactions> actions = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String description;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String displayNameOrNull;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String fullDisplayName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String fullName;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean buildable;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid FreeStyleBuild> builds = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild firstBuild;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private List<@Valid FreeStyleProjecthealthReport> healthReport = new ArrayList<>();
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean inQueue;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean keepDependencies;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild lastBuild;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild lastCompletedBuild;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String lastFailedBuild;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild lastStableBuild;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable FreeStyleBuild lastSuccessfulBuild;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String lastUnstableBuild;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String lastUnsuccessfulBuild;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Integer nextBuildNumber;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable String queueItem;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable Boolean concurrentBuild;
 
-  @JsonInclude(JsonInclude.Include.NON_NULL)
   private @Nullable NullSCM scm;
 
   public FreeStyleProject propertyClass(@Nullable String propertyClass) {
@@ -212,7 +184,7 @@ public class FreeStyleProject {
    * Get actions
    * @return actions
    */
-  @Valid 
+  
   @Schema(name = "actions", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("actions")
   public List<@Valid FreeStyleProjectactions> getActions() {
@@ -367,7 +339,7 @@ public class FreeStyleProject {
    * Get builds
    * @return builds
    */
-  @Valid 
+  
   @Schema(name = "builds", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("builds")
   public List<@Valid FreeStyleBuild> getBuilds() {
@@ -417,7 +389,7 @@ public class FreeStyleProject {
    * Get healthReport
    * @return healthReport
    */
-  @Valid 
+  
   @Schema(name = "healthReport", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("healthReport")
   public List<@Valid FreeStyleProjecthealthReport> getHealthReport() {

@@ -2,7 +2,6 @@ package org.openapitools.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
@@ -25,14 +24,13 @@ import jakarta.annotation.Generated;
  * HudsonMasterComputer
  */
 
-@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-10-11T12:05:23.765681171Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@Generated(value = "org.openapitools.codegen.languages.JavaCamelServerCodegen", date = "2026-11-01T13:20:48.791479972Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class HudsonMasterComputer {
 
   private String propertyClass;
 
   private String displayName;
 
-  @Valid
   private List<@Valid HudsonMasterComputerexecutors> executors = new ArrayList<>();
 
   private String icon;
@@ -118,7 +116,7 @@ public class HudsonMasterComputer {
    * Get executors
    * @return executors
    */
-  @Valid 
+  
   @Schema(name = "executors", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("executors")
   public List<@Valid HudsonMasterComputerexecutors> getExecutors() {

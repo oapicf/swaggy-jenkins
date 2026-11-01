@@ -20,10 +20,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 @JsonTypeName("PipelineRun")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-10-11T12:05:46.178183922Z[Etc/UTC]", comments = "Generator version: 7.24.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", date = "2026-11-01T13:21:08.547442788Z[Etc/UTC]", comments = "Generator version: 7.26.0")
 public class PipelineRun   {
   private String propertyClass;
-  private @Valid List<@Valid PipelineRunartifacts> artifacts = new ArrayList<>();
+  private List<@Valid PipelineRunartifacts> artifacts = new ArrayList<>();
   private Integer durationInMillis;
   private Integer estimatedDurationInMillis;
   private String enQueueTime;
@@ -70,7 +70,7 @@ public class PipelineRun   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("artifacts")
-  @Valid public List<@Valid PipelineRunartifacts> getArtifacts() {
+  public List<@Valid PipelineRunartifacts> getArtifacts() {
     return artifacts;
   }
 

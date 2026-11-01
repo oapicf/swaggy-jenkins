@@ -22,8 +22,7 @@ from fastapi import (  # noqa: F401
     status,
 )
 
-from openapi_server.models.extra_models import TokenModel  # noqa: F401
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import Field, StrictStr
 from typing import Any, Optional
 from typing_extensions import Annotated
 from openapi_server.models.computer_set import ComputerSet
@@ -32,6 +31,7 @@ from openapi_server.models.free_style_project import FreeStyleProject
 from openapi_server.models.hudson import Hudson
 from openapi_server.models.list_view import ListView
 from openapi_server.models.queue import Queue
+from openapi_server.models.extra_models import TokenModel  # noqa: F401
 from openapi_server.security_api import get_token_jenkins_auth
 
 router = APIRouter()
@@ -94,7 +94,7 @@ async def head_jenkins(
     response_model_by_alias=True,
 )
 async def get_computer(
-    depth: Annotated[StrictInt, Field(description="Recursion depth in response model")] = Query(None, description="Recursion depth in response model", alias="depth"),
+    depth: Annotated[int, Field(description="Recursion depth in response model")] = Query(..., description="Recursion depth in response model", alias="depth"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -117,11 +117,11 @@ async def get_computer(
     response_model_by_alias=True,
 )
 async def post_create_item(
-    name: Annotated[StrictStr, Field(description="Name of the new job")] = Query(None, description="Name of the new job", alias="name"),
-    var_from: Annotated[Optional[StrictStr], Field(description="Existing job to copy from")] = Query(None, description="Existing job to copy from", alias="from"),
-    mode: Annotated[Optional[StrictStr], Field(description="Set to 'copy' for copying an existing job")] = Query(None, description="Set to &#39;copy&#39; for copying an existing job", alias="mode"),
-    jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
-    content_type: Annotated[Optional[StrictStr], Field(description="Content type header application/xml")] = Header(None, description="Content type header application/xml"),
+    name: Annotated[str, Field(description="Name of the new job")] = Query(..., description="Name of the new job", alias="name"),
+    var_from: Annotated[Optional[str], Field(description="Existing job to copy from")] = Query(None, description="Existing job to copy from", alias="from"),
+    mode: Annotated[Optional[str], Field(description="Set to 'copy' for copying an existing job")] = Query(None, description="Set to &#39;copy&#39; for copying an existing job", alias="mode"),
+    jenkins_crumb: Annotated[Optional[str], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
+    content_type: Annotated[Optional[str], Field(description="Content type header application/xml")] = Header(None, description="Content type header application/xml"),
     body: Annotated[Optional[StrictStr], Field(description="Job configuration in config.xml format")] = Body(None, description="Job configuration in config.xml format"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
@@ -145,9 +145,9 @@ async def post_create_item(
     response_model_by_alias=True,
 )
 async def post_create_view(
-    name: Annotated[StrictStr, Field(description="Name of the new view")] = Query(None, description="Name of the new view", alias="name"),
-    jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
-    content_type: Annotated[Optional[StrictStr], Field(description="Content type header application/xml")] = Header(None, description="Content type header application/xml"),
+    name: Annotated[str, Field(description="Name of the new view")] = Query(..., description="Name of the new view", alias="name"),
+    jenkins_crumb: Annotated[Optional[str], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
+    content_type: Annotated[Optional[str], Field(description="Content type header application/xml")] = Header(None, description="Content type header application/xml"),
     body: Annotated[Optional[StrictStr], Field(description="View configuration in config.xml format")] = Body(None, description="View configuration in config.xml format"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
@@ -171,7 +171,7 @@ async def post_create_view(
     response_model_by_alias=True,
 )
 async def get_job(
-    name: Annotated[StrictStr, Field(description="Name of the job")] = Path(..., description="Name of the job"),
+    name: Annotated[str, Field(description="Name of the job")] = Path(..., description="Name of the job"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -195,10 +195,10 @@ async def get_job(
     response_model_by_alias=True,
 )
 async def post_job_build(
-    name: Annotated[StrictStr, Field(description="Name of the job")] = Path(..., description="Name of the job"),
-    var_json: StrictStr = Query(None, description="", alias="json"),
-    token: Optional[StrictStr] = Query(None, description="", alias="token"),
-    jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
+    name: Annotated[str, Field(description="Name of the job")] = Path(..., description="Name of the job"),
+    var_json: str = Query(..., description="", alias="json"),
+    token: Optional[str] = Query(None, description="", alias="token"),
+    jenkins_crumb: Annotated[Optional[str], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -221,7 +221,7 @@ async def post_job_build(
     response_model_by_alias=True,
 )
 async def get_job_config(
-    name: Annotated[StrictStr, Field(description="Name of the job")] = Path(..., description="Name of the job"),
+    name: Annotated[str, Field(description="Name of the job")] = Path(..., description="Name of the job"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -245,9 +245,9 @@ async def get_job_config(
     response_model_by_alias=True,
 )
 async def post_job_config(
-    name: Annotated[StrictStr, Field(description="Name of the job")] = Path(..., description="Name of the job"),
-    body: Annotated[StrictStr, Field(description="Job configuration in config.xml format")] = Body(None, description="Job configuration in config.xml format"),
-    jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
+    name: Annotated[str, Field(description="Name of the job")] = Path(..., description="Name of the job"),
+    body: Annotated[StrictStr, Field(description="Job configuration in config.xml format")] = Body(..., description="Job configuration in config.xml format"),
+    jenkins_crumb: Annotated[Optional[str], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -270,8 +270,8 @@ async def post_job_config(
     response_model_by_alias=True,
 )
 async def post_job_delete(
-    name: Annotated[StrictStr, Field(description="Name of the job")] = Path(..., description="Name of the job"),
-    jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
+    name: Annotated[str, Field(description="Name of the job")] = Path(..., description="Name of the job"),
+    jenkins_crumb: Annotated[Optional[str], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -294,8 +294,8 @@ async def post_job_delete(
     response_model_by_alias=True,
 )
 async def post_job_disable(
-    name: Annotated[StrictStr, Field(description="Name of the job")] = Path(..., description="Name of the job"),
-    jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
+    name: Annotated[str, Field(description="Name of the job")] = Path(..., description="Name of the job"),
+    jenkins_crumb: Annotated[Optional[str], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -318,8 +318,8 @@ async def post_job_disable(
     response_model_by_alias=True,
 )
 async def post_job_enable(
-    name: Annotated[StrictStr, Field(description="Name of the job")] = Path(..., description="Name of the job"),
-    jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
+    name: Annotated[str, Field(description="Name of the job")] = Path(..., description="Name of the job"),
+    jenkins_crumb: Annotated[Optional[str], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -342,7 +342,7 @@ async def post_job_enable(
     response_model_by_alias=True,
 )
 async def get_job_last_build(
-    name: Annotated[StrictStr, Field(description="Name of the job")] = Path(..., description="Name of the job"),
+    name: Annotated[str, Field(description="Name of the job")] = Path(..., description="Name of the job"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -365,8 +365,8 @@ async def get_job_last_build(
     response_model_by_alias=True,
 )
 async def post_job_last_build_stop(
-    name: Annotated[StrictStr, Field(description="Name of the job")] = Path(..., description="Name of the job"),
-    jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
+    name: Annotated[str, Field(description="Name of the job")] = Path(..., description="Name of the job"),
+    jenkins_crumb: Annotated[Optional[str], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -389,9 +389,9 @@ async def post_job_last_build_stop(
     response_model_by_alias=True,
 )
 async def get_job_progressive_text(
-    name: Annotated[StrictStr, Field(description="Name of the job")] = Path(..., description="Name of the job"),
-    number: Annotated[StrictStr, Field(description="Build number")] = Path(..., description="Build number"),
-    start: Annotated[StrictStr, Field(description="Starting point of progressive text output")] = Query(None, description="Starting point of progressive text output", alias="start"),
+    name: Annotated[str, Field(description="Name of the job")] = Path(..., description="Name of the job"),
+    number: Annotated[str, Field(description="Build number")] = Path(..., description="Build number"),
+    start: Annotated[str, Field(description="Starting point of progressive text output")] = Query(..., description="Starting point of progressive text output", alias="start"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -434,7 +434,7 @@ async def get_queue(
     response_model_by_alias=True,
 )
 async def get_queue_item(
-    number: Annotated[StrictStr, Field(description="Queue number")] = Path(..., description="Queue number"),
+    number: Annotated[str, Field(description="Queue number")] = Path(..., description="Queue number"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -457,7 +457,7 @@ async def get_queue_item(
     response_model_by_alias=True,
 )
 async def get_view(
-    name: Annotated[StrictStr, Field(description="Name of the view")] = Path(..., description="Name of the view"),
+    name: Annotated[str, Field(description="Name of the view")] = Path(..., description="Name of the view"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -480,7 +480,7 @@ async def get_view(
     response_model_by_alias=True,
 )
 async def get_view_config(
-    name: Annotated[StrictStr, Field(description="Name of the view")] = Path(..., description="Name of the view"),
+    name: Annotated[str, Field(description="Name of the view")] = Path(..., description="Name of the view"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
@@ -504,9 +504,9 @@ async def get_view_config(
     response_model_by_alias=True,
 )
 async def post_view_config(
-    name: Annotated[StrictStr, Field(description="Name of the view")] = Path(..., description="Name of the view"),
-    body: Annotated[StrictStr, Field(description="View configuration in config.xml format")] = Body(None, description="View configuration in config.xml format"),
-    jenkins_crumb: Annotated[Optional[StrictStr], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
+    name: Annotated[str, Field(description="Name of the view")] = Path(..., description="Name of the view"),
+    body: Annotated[StrictStr, Field(description="View configuration in config.xml format")] = Body(..., description="View configuration in config.xml format"),
+    jenkins_crumb: Annotated[Optional[str], Field(description="CSRF protection token")] = Header(None, description="CSRF protection token"),
     token_jenkins_auth: TokenModel = Security(
         get_token_jenkins_auth
     ),
