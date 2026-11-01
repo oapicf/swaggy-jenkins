@@ -3,21 +3,20 @@ name: Generate API Clients
 on: [workflow_dispatch]
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
         with:
           token: ${{ secrets.OAPICF_GITHUB_TOKEN }}
-      - uses: iamsauravsharma/create-dotenv@v2.0.1
+      - uses: iamsauravsharma/create-dotenv@v4.0.0
         with:
+          input-prefix: 'GITHUB_'
+          output-prefix: 'GITHUB_'
           file-path: '/tmp/.env'
-        env:
-          GITHUB_ACTIONS: ${{ env.GITHUB_ACTIONS }}
-      - uses: cliffano/command-docker-action@v2.0.0
+      - uses: cliffano/command-docker-action@v2.1.0
         with:
           command: 'make deps init-spec generate'
-          image: cliffano/studio
-          shell: bash
+          image: cliffano/studio:4.0.0
           # based on https://github.com/cliffano/packer-studio/blob/main/provisioners/shell/info-post.sh#L5
           # TODO: replace /root with studio-user's home when available
           extra_path: '/root/.cargo/bin:/root/.local/bin:/root/go/bin:/opt/poetry-venv/bin:/opt/poetry/bin:/usr/local/go/bin:/usr/local/maven/bin:/usr/local/node/bin:/usr/local/openjdk-jdk/bin'

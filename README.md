@@ -22,6 +22,7 @@ Swaggy Jenkins is a set of Jenkins API clients in multiple languages generated f
 
 | Swaggy Jenkins Version | OpenAPI Version | OpenAPI Generator Version |
 |------------------------|-----------------|---------------------------|
+| 3.5.0 | 3.1.0 | 7.26.0 |
 | 3.4.0 | 3.1.0 | 7.24.0 |
 | 3.3.0 | 3.1.0 | 7.18.0 |
 | 3.2.0 | 3.0.0 | 7.12.0 |

@@ -1,4 +1,3 @@
----
 name: Publish Python
 'on':
   push:
@@ -9,24 +8,21 @@ permissions:
   id-token: write
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
         with:
           set-safe-directory: ${{ github.workspace }}
-          ref: main
-      - uses: iamsauravsharma/create-dotenv@v2.0.1
+      - uses: iamsauravsharma/create-dotenv@v4.0.0
         with:
-          file-path: /tmp/.env
-        env:
-          GITHUB_ACTIONS: ${{ env.GITHUB_ACTIONS }}
+          input-prefix: 'GITHUB_'
+          output-prefix: 'GITHUB_'
+          file-path: '/tmp/.env'
       - uses: cliffano/command-docker-action@v2.1.0
         with:
-          image: cliffano/studio:3.8.0
-          shell: bash
-          command: >
-            make clean deps init-spec generate-primary build-python test-python
-            &&
-
+          image: cliffano/studio:4.0.0
+          command: |
+            make clean deps init-spec generate-primary build-python test-python &&
             make publish-python
-          env_file: /tmp/.env
+          env_file: '/tmp/.env'
+          extra_args: '--env ACTIONS_ID_TOKEN_REQUEST_URL --env ACTIONS_ID_TOKEN_REQUEST_TOKEN'
